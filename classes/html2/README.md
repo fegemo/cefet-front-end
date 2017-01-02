@@ -36,18 +36,21 @@ página web.
 - <div>
     <strong>estou em destaque (tipicamente negrito)</strong>
   </div>
+
   ```html
   <strong>estou em destaque (tipicamente negrito)</strong>
   ```
 - <div>
     <em>tenho ênfase (tipicamente itálico)</em>
   </div>
+
   ```html
   <em>tenho ênfase (tipicamente itálico)</em>
   ```
 - <div>
     <del>fui riscado! (tipicamente riscado)</del>
   </div>
+
   ```html
   <del>fui riscado! (tipicamente riscado)</del>
   ```
@@ -59,6 +62,7 @@ página web.
   <div>
     Romário disse: <q>o Pelé calado é um poeta.</q>
   </div>
+
   ```html
   Romário disse: <q>o Pelé calado é um poeta.</q>
   ```
@@ -67,6 +71,7 @@ página web.
     <blockquote>Tô quebrado, peixe</blockquote> - Romário negando-se a
     pagar mais de R$ 3 mil de pensão
   </div>
+
   ```html
   <blockquote>Tô quebrado, peixe</blockquote> - Romário
   negando-se a pagar mais de R$ 3 mil de pensão
@@ -76,16 +81,19 @@ página web.
 ## _Tag_ de **_Hyperlink_** (1/3)
 
 - [Link para fora da página](http://www.google.com):
+
   ```html
   <a href="http://www.google.com">Link para fora da página</a>
   ```
 - [Link para um arquivo](../../images/flavio-avatar.jpg) que o navegador sabe
   abrir (_e.g._, uma imagem):
+
   ```html
   <a href="images/flavio-avatar.jpg">Link para um arquivo</a>
   ```
 - [Link para um arquivo](../../attachments/exemplo.zip) que o navegador não
   sabe abrir (_e.g._, `.zip`):
+
   ```html
   <a href="attachments/exemplo.zip">Link para um arquivo</a>
   ```
@@ -95,11 +103,13 @@ página web.
 
 - [Link para email](mailto:adamastor@fazenda.mg.br) - abre o programa de email
   do usuário:
+
   ```html
   <a href="mailto:adamastor@...">Link para cliente de email</a>
   ```
   - Repare o **`mailto:`** antes do endereço de email
 - [Link para telefone](tel:+553130143045):
+
   ```html
   <a href="tel:+553133196870">3319-6870</a>
   ```
@@ -108,14 +118,17 @@ página web.
 ## _Tag_ de _Hyperlink_ (1/3)
 
 - [Link para uma outra página](/classes/html1/index.html) do próprio site:
+
   ```html
   <a href="outra_pagina.html">Outra página</a>
   ```
 - [Link para dentro da página](#uma-secao-do-site) - rola até a seção:
+
   ```html
   <a href="#um-id-de-elemento">Link para dentro da página</a>
   ```
   - Repare o `#um-id-de-elemento`
+
     ```html
     <!-- ...outras coisas... -->
     <h2 id="um-id-de-elemento">Um título</h2>
@@ -131,6 +144,7 @@ página web.
     <li>Item 1</li>
     <li>Item 2</li>
   </ul>
+
   ```html
   <ul>
     <li>Item 1</li>
@@ -146,12 +160,13 @@ página web.
     <li>Item</li>
     <li>Item</li>
   </ol>
+
   ```html
   <ol>
     <li>Item</li>
     <li>Item</li>
   </ol>
-```
+  ```
 
 ---
 ## _Tags_ de **Tabela**
@@ -175,17 +190,17 @@ página web.
 ---
 ## Exemplo: **tabela simples** (1/3)
 
-```
-&lt;table>
-  &lt;tr>
-    &lt;th>Fruta&lt;/th>
-    &lt;th>Preço&lt;/th>
-  &lt;/tr>
-  &lt;tr>
-    &lt;td>Goiaba&lt;/td>
-    &lt;td>R$ 1,89/Kg&lt;/td>
-  &lt;/tr>
-&lt;/table>
+```html
+<table>
+  <tr>
+    <th>Fruta</th>
+    <th>Preço</th>
+  </tr>
+  <tr>
+    <td>Goiaba</td>
+    <td>R$ 1,89/Kg</td>
+  </tr>
+</table>
 ```
 - Apenas uma tabelinha 2x2
 - Exemplo: http://jsfiddle.net/fegemo/wL3zg2y1/11/
@@ -194,14 +209,14 @@ página web.
 ## Exemplo: **mesclando células horizontais** (2/3)
 
 ```
-&lt;table>
-  &lt;tr>
-    &lt;th colspan="2">Pessoas&lt;/th>
-  &lt;/tr>
-  &lt;tr>
-    &lt;td>2005046102&lt;/td>&lt;td>Epaminondas&lt;/td>
-  &lt;/tr>
-&lt;/table>
+<table>
+  <tr>
+    <th colspan="2">Pessoas</th>
+  </tr>
+  <tr>
+    <td>2005046102</td><td>Epaminondas</td>
+  </tr>
+</table>
 ```
 - **`colspan="X"`** faz com que aquela **célula ocupe `X` colunas**
   - Para mesclar células "para baixo", usamos **`rowspan="Y"`**, onde `Y` é o
@@ -212,20 +227,20 @@ página web.
 ---
 ## Exemplo: **legenda, cabeçalho e rodapé** (3/3)
 
-```
-&lt;table>
-  &lt;caption>Alunos de Web&lt;/caption>
-  &lt;thead>
-    &lt;tr>
-      &lt;th colspan="2">Pessoas&lt;/th>
-    &lt;/tr>
-  &lt;/thead>
-  &lt;tbody>
-    &lt;tr>
-      &lt;td>2005046102&lt;/td>&lt;td>Epaminondas&lt;/td>
-    &lt;/tr>
-  &lt;/tbody>
-&lt;/table>
+```html
+<table>
+  <caption>Alunos de Web</caption>
+  <thead>
+    <tr>
+      <th colspan="2">Pessoas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2005046102</td><td>Epaminondas</td>
+    </tr>
+  </tbody>
+</table>
 ```
 - Exemplo: http://jsfiddle.net/fegemo/wL3zg2y1/7/
 

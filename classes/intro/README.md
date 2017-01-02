@@ -269,16 +269,16 @@ Este é um texto com <em>itálico</em>.
 ---
 ## Um arquivo `html` completo
 
-```
-&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;An Example Page&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+```html
+<doctype html>
+<html>
+<head>
+  <title>An Example Page</title>
+</head>
+<body>
   Hello World, this is a very simple HTML document.
-&lt;/body&gt;
-&lt;/html&gt;
+</body>
+</html>
 ```
 
 
