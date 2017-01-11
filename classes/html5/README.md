@@ -84,6 +84,7 @@
     <label>Seu bairro: <input name="bairro"></label>
     <input type="submit" value="Enviar">
   </form>
+  
   - Clique em "Enviar" e perceba que **o navegador navegou para o
     endereço `/enviar.php`**
 
@@ -202,11 +203,11 @@
 ## Outros semelhantes à caixa de texto ![À partir do html5](../../images/html5-logo-32.png)
 
 - Pesquisa
-  <div>`<input type="search">` <input type="search"></div>
+  `<input type="search">`: <input type="search">
 - URL
-  <div>`<input type="url">` <input type="url"></div>
+  `<input type="url">`: <input type="url">
 - Telefone
-  <div>`<input type="tel">` <input type="tel"></div>
+  `<input type="tel">`: <input type="tel">
 
 ---
 ## Checkbox
@@ -225,8 +226,8 @@
   </label></div>
 - Atributos:
   - `checked`, para deixar marcado
-    ```
-    &lt;input name="..." type="checkbox" checked&gt;
+    ```html
+    <input name="..." type="checkbox" checked>
     ```
 
 ---
@@ -255,12 +256,12 @@
 ## Select (lista de opções)
 
 - _Markup_:
-  ```
-  &lt;label for="sabor">Sabor da pizza:&lt;/label>
-  &lt;select name="sabor" id="sabor">
-    &lt;option value="marg">Marguerita&lt;/option>
-    &lt;option value="muzza" selected>Muzzarela&lt;/option>
-  &lt;/select>
+  ```html
+  <label for="sabor">Sabor da pizza:</label>
+  <select name="sabor" id="sabor">
+    <option value="marg">Marguerita</option>
+    <option value="muzza" selected>Muzzarela</option>
+  </select>
   ```
 - Resultado:
   <label for="sabor">Sabor da pizza:</label> <select name="sabor" id="sabor">
@@ -386,10 +387,10 @@
       <label>Digite seu e-mail: <input type="email"></label> <button>Enviar</button>
     </form>
 - Para previnir essa validação, basta acrescentar um parâmetro ao formulário:
-  ```
-  &lt;form novalidate>
+  ```html
+  <form novalidate>
     ...
-  &lt;/form>
+  </form>
   ```
 
 ---
@@ -397,7 +398,7 @@
 
 - Campo obrigatório: atributo `required`
   ```
-  &lt;input type="text" required> &lt;button>Enviar&lt;/button>
+  <input type="text" required> <button>Enviar</button>
   ```
   <form action="javascript:void(0);">
     <input type="text" required> <button>Enviar</button>
@@ -429,7 +430,8 @@
   da requisição, eles são colocados na própria URL, em uma estrutura
   chamada _query string_:
   - Partes de uma URL
-    <div>![](../../images/url-1.png)</div>
+    ![](../../images/url-1.png)
+    
     - Repare que a _query string_ é a parte que começa com o símbolo de `?`
       (interrogação)
     - Ela é formada por um conjunto de `nome=valor`, separados pelo símbolo
@@ -452,6 +454,7 @@
     <label>Seu bairro: <input name="bairro"></label>
     <button>Enviar</button>
   </form>
+  
   - Envie o formulário e repare que, em vez de ir para a página `/enviar.php`,
     fomos para **/enviar.php?nome=XXX&bairro=YYY**
 

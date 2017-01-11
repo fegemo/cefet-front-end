@@ -14,38 +14,38 @@
 ---
 ## Problema
 
-<figure class="portrait" style="float: right;">
-  <img src="../../images/philosoraptor.jpg" alt="O Filosoraptor">
-</figure>
+![O Filosoraptor](../../images/philosoraptor.jpg) <!-- {.portrait} -->
 
 - Já que temos um hipertexto (`html`), não podemos expandir o conceito para
   **hipermídia** e colocar áudio e vídeo em um documento?
   - Opção 1: colocar um link para que o usuário faça download do arquivo
   - Opção 2: usar um plugin que seja capaz de renderizar vídeo (eu escutei _flash_?)
-  - Opção 3: usar os elementos de ** `<audio />` e `<video />` do `html5` **
+  - Opção 3: usar os elementos de **`<audio>` e `<video>` do `html5`**
 
 ---
 ## Formatos de Vídeo
 
 - Existem diversos **formatos de arquivo**:
   - Formatos (de recipiente):
-    <ol style="-moz-column-count: 2; -webkit-column-count: 2; column-count: 2;">
-    <li>AVI (.avi)</li>
-    <li>WebM (.webm)</li>
-    <li>MP4 (.mp4, .m4v)</li>
-    <li>Ogg (.ogg)</li>
-    <li>Flash Video (.flv)</li>
-    <li>ASF (.asf)</li>
-    </ol>
+    - AVI (.avi)
+    - WebM (.webm)
+    - MP4 (.mp4, .m4v)
+    - Ogg (.ogg)
+    - Flash Video (.flv)
+    - ASF (.asf) <!-- {ul:.multi-column-list-2} -->
 - Os formatos definem apenas **como é organizada a estrutura** de um arquivo de
   vídeo
   - Os formatos definem jeitos diferentes para se armazenar **_tracks_ de vídeo e
     de áudio**
     - Normalmente, 1 _track_ de vídeo e 2 de áudio (para som estéreo)
-  - O conteúdo precisa ser codificado usando um **algoritmo <abbr title="Coder Decoder">CODEC</abbr>**
+  - O conteúdo precisa ser codificado usando um **algoritmo CODEC**
+
+*[CODEC]: Coder-Decoder*
 
 ---
-## <abbr title="Coder Decoder">CODEC</abbr>s de Vídeo e Áudio
+## **CODEC**s de Vídeo e Áudio
+
+*[CODEC]: Coder-Decoder**
 
 - Alguns CODECs de vídeo são:
   1. H.264, ou MPEG-4 _part_ 10
@@ -151,15 +151,16 @@
   antigas do `html`
 - Usados para referenciar objetos externos
   - Comuns para plugins: java _applets_, _flash_, _adobe pdf_ etc.
-- Um dos objetivos do `html5` é não precisar mais de plugins -&gt;
-  `<object />`, `<embed />`
+- Um dos objetivos do `html5` é não precisar mais de plugins &rarr;
+  `<object>`, `<embed>`
 
 ---
 ## Exemplo de _object_
 
 - Incluindo um arquivo _flash_:
   ```html
-  <object data="a.swf" type="application/x-shockwave-flash"></object>
+  <object data="a.swf" type="application/x-shockwave-flash">
+  </object>
 
   <!-- com parametros -->
   <object data="a.swf" type="application/x-shockwave-flash">
@@ -195,22 +196,22 @@
 ---
 ## Sintaxe dos _frames_ (for fun :)
 
-```
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;Java Platform SE 7 &lt;/title&gt;
-&lt;/head&gt;
-&lt;frameset cols="20%,80%" title="Documentation frame"&gt;
-&lt;frameset rows="30%,70%" title="Left frames"&gt;
-	&lt;frame src="o.html" name="packageListFrame" title="All Packages"&gt;
-	&lt;frame src="a.html" name="packageFrame" title="..."&gt;
-&lt;/frameset&gt;
-&lt;frame src="s.html" name="classFrame" title="..."&gt;
-&lt;noframes&gt;
-	Navegador não suporta frames.
-&lt;/noframes&gt;
-&lt;/frameset&gt;
-&lt;/html&gt;
+```html
+<html>
+<head>
+  <title>Java Platform SE 7 </title>
+</head>
+<frameset cols="20%,80%" title="Documentation frame">
+<frameset rows="30%,70%" title="Left frames">
+  <frame src="o.html" name="lista" title="All Packages">
+  <frame src="a.html" name="pacote" title="...">
+</frameset>
+<frame src="s.html" name="classFrame" title="...">
+<noframes>
+  Navegador não suporta frames.
+</noframes>
+</frameset>
+</html>
 ```
 
 ---
@@ -234,7 +235,7 @@
 ---
 ## Exemplo loucão
 
-<iframe width="50%" height="50%" src="http://fegemo.github.io/cefet-web/classes/html5/#29"></iframe>
+<iframe width="50%" height="50%" src="http://fegemo.github.io/cefet-web/classes/html5/#23"></iframe>
 
 ---
 ## Usos legítimos e atuais do _iframe_

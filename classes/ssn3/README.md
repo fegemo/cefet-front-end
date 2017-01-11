@@ -139,7 +139,7 @@
 # Express
 
 ---
-## <img src="../../images/expressjs.png" style="float:right;margin-left:10px;border-radius:5px;">
+## ![Logo do Express](../../images/expressjs.png)
 
 - Se entitulam um _web framework_ para Node.js:
   1. Rápido
@@ -257,12 +257,12 @@ var server = app.listen(3000, function () {
 
 - (2) Escrevemos arquivos no formato `.ejs` em vez de `.html`. Trecho de um
   arquivo, e.g., `equipe.ejs`:
-  ```
-  &lt;ul>
+  ```html
+  <ul>
     <% for (var i=0; i < users.length; i++) { %>
-      &lt;li>&lt;img src="<%= users[i].foto %>"><%= users[i].nome %>&lt;/li>
+      <li><img src="<%= users[i].foto %>"><%= users[i].nome %></li>
     <% } %>
-  &lt;/ul>
+  </ul>
   ```
   - Esses arquivos são chamados de _views_ e devem ficar dentro de uma pasta
     que configurarmos (valor padrão: `./views`):

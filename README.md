@@ -5,8 +5,6 @@
 # Aulas
 
 - [História da Web](classes/intro/) (25/02/2016)
-
-<!--
 - [HTML 1 - Linguagem](classes/html1/) (01/03/2016)
 - [HTML 2 - Imagens e Plantas Carnívoras (Prática)](classes/html2/) (03/03/2016)
 - [HTML 3 - Multimídia](classes/html3/) (08/03/2016)
@@ -15,6 +13,7 @@
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)
 - [Javascript 1 - Linguagem](classes/js1/) (22/03/2016)
 
+---
 # Aulas (página 2)
 
 - [CSS 3 - _Layout_](classes/css3/) (29/03/2016)
@@ -26,6 +25,7 @@
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
 - [HTML 5 - Formulários e Monstros (Prática)](classes/html5/) (26/04/2016)
 
+---
 # Aulas (página 3)
 
 - [Node.js 1 - Servidores Web](classes/ssn1/) (03/05/2016)
@@ -40,11 +40,11 @@
 - [CSS 5 - Animações e _Edukids Animals_ (Prática)](classes/css5/) (02/06/2015)
 - [Javascript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
 
-
+---
 # Aulas (página 4)
 
 - [Server-side Node.js - Parte 8 (Prática WebSockets)](classes/ssn8/) (18/06/2015)
--->
+
 
 ---
 # Ementa

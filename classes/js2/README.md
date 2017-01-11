@@ -75,14 +75,15 @@
   - `window.Math`
     - Funções matemáticas
   - `window.JSON`
-    - Funções de conversão entre string e
-      <abbr title="Javascript Object Notation">JSON<abbr>
+    - Funções de conversão entre string e JSON
   - `window.localStorage`
     - Cache de informações locais à página
   - `window.sessionStorage`
     - Cache com duração de apenas uma sessão
   - `window.location`
     - Informações acerca do endereço da página
+
+*[JSON]: JavaScript Object Notation*
 
 ---
 ## Convenção
@@ -102,14 +103,15 @@
 ---
 # O DOM
 
-<img src="../../images/don.png" alt="Foto do Don Corleone, do filme O Poderoso Chefão" class="portrait">
+![Foto do Don Corleone, do filme O Poderoso Chefão](../../images/don.png) <!-- {.portrait} -->
 
 ---
 ## O objeto **document**
 
 - O objeto `document` dá acesso ao **Document Object Model**, ou DOM
-- <p>O DOM é uma representação da estrutura dos elementos html na forma de
-  árvore</p>
+- O DOM é uma representação da estrutura dos elementos html na forma de
+  árvore
+  
   <img src="../../images/dom-tree.png" style="float:right;width:50%;">
   <pre style="float:right;width:50%;margin:0;"><code class="hljs lang-html">&lt;!DOCTYPE html&gt;
   &lt;html lang="en"&gt;
@@ -120,10 +122,9 @@
   &lt;!-- Add your content here--&gt;
   &lt;/body&gt;
   &lt;/html&gt;</code></pre>
-  <div style="clear:both;"></div>
 
 ---
-## <abbr title="Document Object Model">DOM</abbr>
+## DOM
 
 - Cada elemento do DOM é chamado de **nó** (_node_) (em referência à
   estrutura de árvore)
@@ -137,6 +138,8 @@
     ```js
     console.log(botaoAzul.className);   // className -- class
     ```
+
+*[DOM]: Document Object Model*
 
 ---
 ## Buscando nós na árvore
@@ -190,11 +193,11 @@
 ---
 ## Ponteiros entre nós
 
-<figure style="position: relative;width:100%;height:500px;">
-  <img src="../../images/dom-traversal.png" class="bullet bullet-no-anim" style="position:absolute;top:0;left:0;">
-  <img src="../../images/dom-traversal-2.png" class="bullet bullet-no-anim" style="position:absolute;top:0;left:0;">
-  <img src="../../images/dom-traversal-3.png" class="bullet bullet-no-anim" style="position:absolute;top:0;left:0;">
-</figure>
+::: figure .figure-slides
+![](../../images/dom-traversal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![](../../images/dom-traversal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![](../../images/dom-traversal-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
 ## Exemplo: imprimindo o nome das _tags_
@@ -311,26 +314,21 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 - Eventos são atrelados a nós específicos e causam a invocação de uma função
   "manipuladora" (_event handler_ ou apenas _handler_)
 - Eventos de mouse
-  <ul class="multi-column-list-4">
-    <li>`click`</li>
-    <li>`dblclick`</li>
-    <li>`mousedown`</li>
-    <li>`mouseup`</li>
-    <li>`mousemove`</li>
-    <li>`mouseover`</li>
-    <li>`mouseout`</li>
-  </ul>
+  - `click`
+  - `dblclick`
+  - `mousedown`
+  - `mouseup`
+  - `mousemove`
+  - `mouseover`
+  - `mouseout` <!-- {ul:.multi-column-list-4}-->
 - Eventos de entrada
-  <ul class="multi-column-list-4">
-    <li>`change`</li>
-    <li>`blur`</li>
-    <li>`focus`</li>
-    <li>`keydown`</li>
-    <li>`keyup`</li>
-    <li>`reset`</li>
-    <li>`submit`</li>
-  </ul>
-
+  - `change`
+  - `blur`
+  - `focus`
+  - `keydown`
+  - `keyup`
+  - `reset`
+  - `submit` <!-- {ul:.multi-column-list-4}-->
 - (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
 
 ---

@@ -1,18 +1,23 @@
 # CSS - Parte 5
 
 ---
+<!--
+{
+  "embeddedStyles": ".righteous { font-family: Righteous, cursive; color: #e90c0c }"
+}
+-->
 # Roteiro de hoje
 
-1. Finalizar o jogo <span style="font-family: Righteous, cursive">EduKids Animals</span>
+1. Finalizar o jogo **EduKids Animals** <!-- {.righteous} -->
 1. Sprites
 1. Transições
 1. Transformações
 1. Animações
 
 ---
-<h2 style="font-family: Righteous, cursive; color: #e90c0c">EduKids Animals</h2>
+## EduKids Animals <!-- {.righteous} -->
 
-<img class="portrait" src="../../images/urso.jpg" style="border: 1px solid rgba(0,0,0,.2)" alt="Desenho de um Urso">
+![Desenho de um urso](../../images/urso.jpg) <!-- {.portrait} -->
 
 ---
 ## Motivação
@@ -49,7 +54,7 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 ## O que está **faltando**
 
 1. O jogo ainda não dá um _feedback_ visual interessante para o jogador
-  - Apenas o nome do animal aparece escrito e seu sobrinho ainda não sabe ler
+   - Apenas o nome do animal aparece escrito e seu sobrinho ainda não sabe ler
 1. O arquivo javascript `jogo.js` controla o jogo. Ele tem um temporizador que
    fica **adicionando e removendo classes dos elementos** dos animais
    - `agitado`, quando o animal está com fome
@@ -103,7 +108,7 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 
 - _Sprite_ é um arquivo de imagem que possuem várias imagens agrupadas
   - Muito comum em jogos digitais<br>
-    <img src="../../images/terrivel-eating.png" style="width: 150px;">
+    ![Imagem do terrível monstro verde, mostrando 3 quadros de animação](../../images/terrivel-eating.png) <!-- {style="width: 150px; image-rendering: pixelated;"} -->
   - Pode ser usado para criar animações, mas também para agrupar as imagens
 - Benefício para páginas web
   - Apenas uma _round-trip_ de requisição/resposta `http`
@@ -116,7 +121,7 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 
 - Em páginas Web, temos **duas formas de mostrar imagens**:
   ```html
-  <img src="images/terrivel-eating.png">
+  <img src="images/monstro-comendo.png">
   ```
   ```css
   #cabecalho { background-image: url("images/bolhas.png"); }
@@ -131,10 +136,10 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 
 - Também existem duas formas para usar _sprites_:
   1. Tradicional
-    - Para ser usado em contextos em que pode-se usar a propriedade
-      `background-image`
+     - Para ser usado em contextos em que pode-se usar a propriedade
+       `background-image`
   1. Semântico
-    - Usado em contextos de imagens semânticas
+     - Usado em contextos de imagens semânticas
 
 ---
 ## Usando _sprites_: forma **tradicional**
@@ -158,7 +163,7 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 
 - ```html
   <figure id="monstro">
-    <img src="images/terrivel-eating.png">
+    <img src="images/monstro-comendo.png">
   </figure>
   ```
   ```css
@@ -218,23 +223,22 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 
 - Nem todas as propriedades são animáveis e elas podem variar entre navegadores
 - Algumas que são animáveis:
-  <ul style="-moz-column-count: 3; -webkit-column-count: 3; column-count: 3; padding: 0; margin: 0">
-    <li>`transform`</li>
-    <li>`opacity`</li>
-    <li>`color`</li>
-    <li>`background-color`</li>
-    <li>`left`</li>
-    <li>`right`</li>
-    <li>`top`</li>
-    <li>`bottom`</li>
-    <li>`background-position`</li>
-    <li>`border-radius`</li>
-    <li>`margin`</li>
-    <li>`padding`</li>
-    <li>`width`</li>
-    <li>`height`</li>
-    <li>[E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)</li>
-  </ul>
+  - `transform`
+  - `opacity`
+  - `color`
+  - `background-color`
+  - `left`
+  - `right`
+  - `top`
+  - `bottom`
+  - `background-position`
+  - `border-radius`
+  - `margin`
+  - `padding`
+  - `width`
+  - `height`
+  - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties) <!-- {ul:.multi-column-list-3}-->
+
 
 ---
 ## A propriedade **transition** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
@@ -245,7 +249,7 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
   - `transition-timing-function: ease`, a função de interpolação
   - `transition-delay: 0s`, tempo de atraso até que se comece a transição
 - Sintaxe formal:
-  ```css
+  ```
   transition: [ none | <single-transition-property> ] || <time>
                 || <timing-function> || <time>;
   ```
@@ -316,24 +320,22 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 
 - Diversas matrizes de transformação podem ser atribuídas como valor para a
   propriedade `transform`:
-  <ul style="-moz-column-count: 3; -webkit-column-count: 3; column-count: 3; padding: 0; margin: 0">
-    <li>`translate(x,y)`</li>
-    <li>`translate3d(x,y,z)`</li>
-    <li>`translateX(x)`</li>
-    <li>`translateY(y)`</li>
-    <li>`translateZ(z)`</li>
-    <li>`scale(x,y)`</li>
-    <li>`scale3d(x,y,z)`</li>
-    <li>`scaleX(x)`</li>
-    <li>`scaleY(y)`</li>
-    <li>`scaleZ(z)`</li>
-    <li>`rotate(ang)`</li>
-    <li>`rotat3d(x,y,z,ang)`</li>
-    <li>`rotateX(ang)`</li>
-    <li>`rotateY(ang)`</li>
-    <li>`rotateZ(ang)`</li>
-    <li>[E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)</li>
-  </ul>
+  - `translate(x,y)`
+  - `translate3d(x,y,z)`
+  - `translateX(x)`
+  - `translateY(y)`
+  - `translateZ(z)`
+  - `scale(x,y)`
+  - `scale3d(x,y,z)`
+  - `scaleX(x)`
+  - `scaleY(y)`
+  - `scaleZ(z)`
+  - `rotate(ang)`
+  - `rotat3d(x,y,z,ang)`
+  - `rotateX(ang)`
+  - `rotateY(ang)`
+  - `rotateZ(ang)`
+  - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) <!-- {ul:.multi-column-list-3}-->
 
 ---
 ## Combinando **transition** e **transform**
@@ -463,19 +465,7 @@ a.combinando:hover {
 ---
 ## Definindo **@keyframes**
 
-- ```css
-  @keyframes piscando {
-    from { opacity: 1.0; }
-    to   { opacity: 0.7; }
-  }
-  ```
-  ```css
-  @keyframes terra-ao-longo-do-dia {
-  	0%   { background: #6c5228; }  33%  { background: #48a037; }
-  	66%  { background: #48a037; }  100% { background: #6c5228; }
-  }
-  ```
-  <style>
+<style>
 @-webkit-keyframes terra-ao-longo-do-dia {
   0%   { background: #6c5228; }
   33%  { background: #48a037; }
@@ -499,23 +489,26 @@ a.combinando:hover {
   -moz-animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
   -ms-animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
   animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
-}
-  </style>
+}</style>
+
+- ```css
+  @keyframes piscando {
+    from { opacity: 1.0; }
+    to   { opacity: 0.7; }
+  }
+  ```
+  ```css
+  @keyframes terra-ao-longo-do-dia {
+  	0%   { background: #6c5228; }  33%  { background: #48a037; }
+  	66%  { background: #48a037; }  100% { background: #6c5228; }
+  }
+  ```
   <div class="terra"> </div>
 
 ---
 ## Definindo **@keyframes** (cont.)
 
-- ```css
-  .estrela-mario-1:hover {
-    animation: girando 1s ease-in-out 0s infinite alternate;
-  }
-  @keyframes girando {
-    from { transform: rotate(15deg); }
-    to   { transform: rotate(-15deg); }
-  }
-  ```
-  <style>
+<style>
 .estrela-mario-1:hover {
   -webkit-animation: girando 1s ease-in-out 0s infinite alternate;
   -moz-animation: girando 1s ease-in-out 0s infinite alternate;
@@ -536,20 +529,23 @@ a.combinando:hover {
 @keyframes girando {
   from { transform: rotate(15deg); }
   to   { transform: rotate(-15deg); }
-}  
-  </style>
-    <img class="estrela-mario-1" src="../../images/mario-star.png">
+}</style>
+
+- ```css
+  .estrela-mario-1:hover {
+    animation: girando 1s ease-in-out 0s infinite alternate;
+  }
+  @keyframes girando {
+    from { transform: rotate(15deg); }
+    to   { transform: rotate(-15deg); }
+  }
+  ```
+  <img class="estrela-mario-1" src="../../images/mario-star.png">
 
 ---
 ## Definindo **@keyframes** (cont.)
 
-- ```css
-  .estrela-mario-2:hover {
-    animation: pirando 600ms ease-in 3s 1 forwards,
-               girando-costas 3600ms ease-in 1 forwards;
-  }
-  ```
-  <style>
+<style>
 .estrela-mario-2:hover {
   -webkit-animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
   -moz-animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
@@ -590,7 +586,14 @@ a.combinando:hover {
   from { transform: rotateY(0); }
   to   { transform: rotateY(3600deg); }
 }
-  </style>
+</style>
+
+- ```css
+  .estrela-mario-2:hover {
+    animation: pirando 600ms ease-in 3s 1 forwards,
+               girando-costas 3600ms ease-in 1 forwards;
+  }
+  ```
   <div style="position:relative;">
     <img class="estrela-mario-2" src="../../images/mario-star.png" style="position:absolute;">
   </div>

@@ -1,42 +1,32 @@
 # História da Web
 
-
 ---
 ## Alguns personagens
 
-<ul class="list-horizontal">
-  <li>
-    <figure class="portrait">
-      <img src="../../images/larry-roberts.jpg" alt="Foto de Larry Roberts">
-      <figcaption>**Larry Roberts**, "pai" da ARPANET</figcaption>
-    </figure>
-  </li>
-  <li>
-    <figure class="portrait">
-      <img src="../../images/vint-cerf.jpg" alt="Foto de Vint Cerf">
-      <figcaption>**Vint Cerf**, "pai" dos protocolos TCP/IP</figcaption>
-    </figure>
-  </li>
-  <li>
-    <figure class="portrait">
-      <img src="../../images/bob-kahn.jpg" alt="Foto de Bob Kahn">
-      <figcaption>**Bob Kahn**, "pai" dos protocolos TCP/IP</figcaption>
-    </figure>
-  </li>
-  <li>
-    <figure class="portrait">
-      <img src="../../images/tim-berners-lee.jpg" alt="Foto de Tim Berners-Lee">
-      <figcaption>**Tim Berners-Lee**, "pai" da Web</figcaption>
-    </figure>
-  </li>
-</ul>
+- ::: figure .portrait text-align: center;
+  ![](../../images/larry-roberts.jpg)
+  **Larry Roberts**, "pai" da ARPANET
+  :::
+- ::: figure .portrait
+  ![](../../images/vint-cerf.jpg)
+  **Vint Cerf**, "pai" dos protocolos TCP/IP
+  :::
+- ::: figure .portrait
+  ![](../../images/bob-kahn.jpg)
+  **Vint Cerf**, "pai" dos protocolos TCP/IP
+  :::
+- ::: figure .portrait
+  ![](../../images/tim-berners-lee.jpg)
+  **Tim Berners-Lee**, "pai" da Web
+  :::
+
+<!-- {ul:.multi-column-list-4 style="list-style-type: none;"} -->
 
 ---
 ## Linha do Tempo
 
-<dl>
-  <dt>1969</dt><dd>Larry Roberts estabelece 1º link da **ARPANET**</dd>
-</dl>
+1969
+  ~ Larry Roberts estabelece 1º link da **ARPANET**
 
 ---
 ## ARPANET
@@ -84,7 +74,7 @@ _Fonte: [Estradas e Encruzilhadas da História da Internet (inglês)][roads-cros
 [roads-crossroads]: http://www.netvalley.com/cgi-bin/intval/net_history.pl?chapter=1
 
 ---
-À partir de 1969 e durante a década de 1970, a ARPANET cresceu e se conectou com
+A partir de 1969 e durante a década de 1970, a ARPANET cresceu e se conectou com
 várias outras grandes redes.
 
 <img src="../../images/arpanet-1986.png" alt="Diagrama lógico da ARPANET em 1986">
@@ -97,36 +87,40 @@ confiabilidade**.
 ---
 ## Linha do Tempo (1/2)
 
-<dl>
-  <dt class="bullet-old">1969</dt><dd class="bullet-old">Larry Roberts
-    estabelece 1º link da **ARPANET**</dd>
-  <dt>1974</dt><dd>Bob Kahn e Vint Cerf **especificam os protocolos
-    TCP/IP**</dd>
-  <dt>1983</dt><dd>Bob Kahn e Vint Cerf implantam a **família de protocolos
-    TCP/IP na ARPANET**</dd>
-  <dt>1974 - 1990</dt><dd>Outras **grandes redes se conectaram a ARPANET**
-    (CSNET, NIPRNET, SPAN, NSN, ESNet, NSFNET, MILNET, SATNET, WIDEBRAND)</dd>
-</dl>
-
+1969 <!-- {.bullet-old} -->
+  ~ Larry Roberts estabelece 1º link da **ARPANET** <!-- {dd:.bullet-old} -->
+  
+1974
+  ~ Bob Kahn e Vint Cerf **especificam os protocolos TCP/IP**
+  
+1983
+  ~ Bob Kahn e Vint Cerf implantam a **família de protocolos
+    TCP/IP na ARPANET**
+    
+1974 - 1990
+  ~ Outras **grandes redes se conectaram a ARPANET**
+    (CSNET, NIPRNET, SPAN, NSN, ESNet, NSFNET, MILNET, SATNET, WIDEBRAND)
+    
 ---
 ## Linha do Tempo (2/2)
 
-<dl>
-  <dt>1988 - 1989</dt><dd>Surgimento dos primeiros provedores de acesso ao
-    público geral (ISP), dando forma à **Internet** (_case-sensitive_)</dd>
-  <dt>1992</dt><dd>O governo americano permitiu a conexão da Internet com
-    outras redes que não eram exclusivamente de pesquisa</dd>
-  <dt>**1989 - 1993**</dt><dd>Tim Berners-Lee **cria a WWW** em CERN
+1988 - 1989
+  ~ Surgimento dos primeiros provedores de acesso ao
+    público geral (ISP), dando forma à **Internet** (_case-sensitive_)
+
+1992
+  ~ O governo americano permitiu a conexão da Internet com
+    outras redes que não eram exclusivamente de pesquisa
+
+**1989 - 1993**
+  ~ Tim Berners-Lee **cria a WWW** em CERN
     (_European Organization for Nuclear Research_) e a deixa aberta ao público
-    geral</dd>
-</dl>
+    geral
 
 ---
 # Mas se a Web surgiu apenas em 1989, o que era a Internet antes dela?
 
-<figure class="portrait">
-  <img src="../../images/philosoraptor.jpg" alt="O Filosoraptor">
-</figure>
+![O Filosoraptor](../../images/philosoraptor.jpg) <!-- {.portrait} -->
 
 ---
 ## A era Pré-web
@@ -137,52 +131,43 @@ confiabilidade**.
 - Gopher (1991)
 
 ---
-<figure>
-  <img src="../../images/email-elm.png" alt="Tela do cliente de E-mail ELM">
-  <figcaption>Cliente de E-mail ELM (1986)</figcaption>
-</figure>
+::: figure
+![Tela do cliente de E-mail ELM](../../images/email-elm.png)
+<figcaption>Cliente de E-mail ELM (1986)</figcaption>
+:::
 
 ---
-<figure>
-  <img src="../../images/email-pine.png" alt="Tela do cliente de E-mail Pine">
-  <figcaption>Cliente de E-mail Pine (1989)</figcaption>
-</figure>
+::: figure
+![Tela do cliente de E-mail Pine](../../images/email-pine.png)
+<figcaption>Cliente de E-mail Pine (1989)</figcaption>
+:::
 
 ---
-<figure>
-  <img src="../../images/bbs-koala-country.jpg" alt="Tela do BBS Koala Country">
-  <figcaption>BBS Koala Country (1989)</figcaption>
-</figure>
+::: figure
+![Tela do BBS Koala Country](../../images/bbs-koala-country.jpg)
+<figcaption>BBS Koala Country (1989)</figcaption>
+:::
 
 ---
-<figure>
-  <img src="../../images/bbs-exec-pc.png" alt="Tela do BBS Exec-PC">
-  <figcaption>BBS Exec-PC (1982)</figcaption>
-</figure>
+::: figure . height: calc(90% - 3em)
+<figcaption>Usenet GNUs</figcaption>
+
+![Tela do Usenet GNUs](../../images/usenet-gnus.png)
+:::
 
 ---
-<figure>
-  <figcaption>Usenet GNUs</figcaption>
-  <img src="../../images/usenet-gnus.png" alt="Tela do Usenet GNUs">
-</figure>
+::: figure . height: calc(90% - 3em)
+<figcaption>Gopher de Jospeh Maistre</figcaption>
+
+![Tela do gopher de Jospeh Maistre](../../images/gopher-jospeh-maistre.png)
+:::
 
 ---
-<figure>
-  <figcaption>Gopher de Jospeh Maistre</figcaption>
-  <img src="../../images/gopher-jospeh-maistre.png" alt="Tela do gopher de Jospeh Maistre">
-</figure>
+::: figure . height: calc(90% - 3em)
+<figcaption>Tela do Gopherpedia</figcaption>
 
----
-<figure>
-  <figcaption>Uma busca em gopher por Veronica</figcaption>
-  <img src="../../images/gopher-veronica-search-engine.png" alt="Tela mostrando uma busca em gopher via Veronica">
-</figure>
-
----
-<figure>
-  <figcaption>Tela do Gopherpedia</figcaption>
-  <img src="../../images/gopherpedia.png" alt="Tela do Gopherpedia">
-</figure>
+![Tela do Gopherpedia](../../images/gopherpedia.png)
+:::
 
 ---
 ## A era Pré-web
@@ -227,9 +212,7 @@ confiabilidade**.
 
 Se estamos viajando no hiperespaço e escrevemos um texto
 
-<figure class="portrait">
-  <img src="../../images/philosoraptor.jpg" alt="O Filosoraptor">
-</figure>
+![O Filosoraptor](../../images/philosoraptor.jpg) <!-- {.portrait} -->
 
 Ele se torna um hipertexto?
 
@@ -237,7 +220,7 @@ Ele se torna um hipertexto?
 ## Tim, o coração valente, tinha uma dúvida
 
 Quero que **qualquer pessoa**, em **qualquer computador** (arquitetura, sistema
-operacional, rede), em qualquer lugar, consiga** visualizar documentos um do
+operacional, rede), em qualquer lugar, consiga **visualizar documentos um do
 outro**.
 
 Mais que isso, os documentos podem **referenciar um ao outro não necessariamente
@@ -254,33 +237,34 @@ e outras coisas legais.
 ---
 ## HyperText Markup Language (HTML)
 
-- É um formato de arquivo (`.html`) em texto simples (_plain-text_) em que
-  seleciona-se **um texto e marca-se suas partes dando a ele estrutura**
+- É um <u>formato de arquivo</u> (`.html`) em texto simples (_plain-text_) em que
+  seleciona-se **um texto e marca suas partes dando a ele estrutura**
 
   Texto puro:
   ```html
-Este é um texto com itálico.
+  Este é um texto com itálico.
   ```
 
   Texto html:
   ```html
-Este é um texto com <em>itálico</em>.
+  Este é um texto com <em>itálico</em>.
   ```
+
 ---
 ## Um arquivo `html` completo
 
 ```html
-<doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>An Example Page</title>
+  <title>Uma página web!</title>
 </head>
 <body>
-  Hello World, this is a very simple HTML document.
+  Olá pessoal, esta é uma página com apenas este singelo texto!
 </body>
 </html>
 ```
-
+<!-- {pre:data-filename="pagina.html"} -->
 
 ---
 ## HTML

@@ -9,15 +9,23 @@
 1. Centralizando as coisas
 
 ---
-<h2 style="font-family: Ravie, serif; color: #e90c0c">Lanchonete do Coral 55</h2>
+<!--
+{
+  "embeddedStyles": ".siri { background: linear-gradient(to bottom, aqua, silver); border: 3px double rgba(0,0,0,.2); } .ravie { font-family: Ravie, serif; color: #e90c0c; }"
+}
+-->
+## Lanchonete do Coral 55 <!-- {.ravie} -->
 
-<img class="portrait" src="../../images/siri.png" style="background-image: linear-gradient(to bottom, aqua, silver); border: 3px double rgba(0,0,0,.2)" alt="Bolhas de ar na água">
+![O Siri da lanchonete](../../images/siri.png) <!-- {.portrait.siri} -->
 
 ---
-## <abbr title="Comprehensive Layout">Comp</abbr> / <abbr title="Specifications">Specs</abbr>
+## Comp / Specs
 
 [![](../../images/coral55-comp-thumb.png)](../../images/coral55-comp.png)
 [![](../../images/coral55-specs-thumb.png)](../../images/coral55-specs.png)
+
+*[Comp]: Comprehensive Layout*
+*[Specs]: Specifications*
 
 ---
 ## Passos para o exercício
@@ -31,7 +39,7 @@
 ## Detalhes sobre o exercício
 
 1. O objetivo é treinar **_Layout_ e posicionamento** em `CSS`
-  - `position` (`static`, `relative`, `absolute`, `fixed`), `float`, `clear` etc.
+   - `position` (`static`, `relative`, `absolute`, `fixed`), `float`, `clear` etc.
 1. O _layout_ que usamos no exercício dos Unicórnios se chama **fluido**. Hoje,
    você vai fazer um **_layout_ de tamanho fixo**
    - O conteúdo da página deve ter `800px` de largura e deve estar centralizado

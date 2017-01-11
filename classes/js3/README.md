@@ -6,13 +6,15 @@
 1. Criando objetos
 1. Funções Construtoras (ou classes)
 1. Herança
-  - Pseudo-clássica
+   - Pseudo-clássica
 1. Padrões de projeto
-  - `this`, `that`
-  - _`new` enforcer_
-  - _single-`var`_
-  - _Revealing Module_
-  - <abbr title="Immediately Invoked Function Expression">IIFE</abbr>
+   - `this`, `that` 
+   - _`new` enforcer_
+   - _single-`var`_
+   - _Revealing Module_
+   - IIFE
+
+*[IIFE]: Immediately Invoked Function Expression*
 
 ---
 ## Java (ou C#) _vs_ Javascript

@@ -11,23 +11,26 @@
 ---
 # _Unicorns are real_ (Exercício)
 
-<img class="portrait" src="../../images/little-pony.png" alt="Little Pony">
+![Little Pony](../../images/little-pony.png) <!-- {.portrait} -->
 
 ---
 ## Exercício
 
 1. Criar uma página para expor a verdade sobre os pôneis.
-  - Seu amigo _designer_ criou um _layout_ no Photoshop para sua página e você
-    deve criá-la de forma a reproduzir esse _layout_ na sua página `html`
-  - Você pode ver o _layout_ na página seguinte
-  - Você vai precisar usar novas tags e conceitos: `div`, `span`, _Box Model_ e
-    `float`. Portanto, continue navegando até o final dos slides antes de
-    colocar as mãos na massa ;)
+   - Seu amigo _designer_ criou um _layout_ no Photoshop para sua página e você
+     deve criá-la de forma a reproduzir esse _layout_ na sua página `html`
+   - Você pode ver o _layout_ na página seguinte
+   - Você vai precisar usar novas tags e conceitos: `div`, `span`, _Box Model_ e
+     `float`. Portanto, continue navegando até o final dos slides antes de
+     colocar as mãos na massa ;)
 ---
-## <abbr title="Comprehensive Layout">Comp</abbr> / <abbr title="Specifications">Specs</abbr>
+## Comp / Specs
 
 [![](../../images/unicorns-comp-thumb.png)](../../images/unicorns-comp.png)
 [![](../../images/unicorns-specs-thumb.png)](../../images/unicorns-specs.png)
+
+*[Comp]: Comprehensive Layout*
+*[Specs]: Specifications*
 
 ---
 ## Passos para o exercício
@@ -124,14 +127,10 @@
     - [Apenas FF](http://caniuse.com/#search=padding-box)
 
 ---
-# Flutuando com **float**s
+# Flutuando com **float**
 
-<p style="text-align: right">
-  <blockquote style="font-style: italic">
-    "Para voar basta errar o chão"
-  </blockquote>
-  (Douglas Adams)
-</p>
+> Para voar basta errar o chão
+> <cite>Douglas Adams</cite>
 
 ---
 ## Mas primeiro, vamos falar do Fluxo (_Flow_)
@@ -183,7 +182,7 @@
 ---
 ## Float (cont.)
 
-- <img src="../../images/float-p1.png" style="float: right; margin-left: 20px">
+- ![](../../images/float-p1.png) <!-- {.push-right} -->
   Um elemento flutuante é removido do fluxo tradicional e
   - os elementos `block` depois dele fingem que ele não está ali
   - os elementos `inline` depois dele respeitam seu formato
@@ -191,7 +190,7 @@
 ## Float (exemplo)
 
 
-- <img src="../../images/float-p2.png" style="float: right; margin-left: 20px">
+- ![](../../images/float-p2.png)  <!-- {.push-right} -->
   Alterando a largura de um parágrafo para 200px
   ```css
   p#amazing {
@@ -202,7 +201,7 @@
 ---
 ## Float (exemplo cont.)
 
-- <img src="../../images/float-p3.png" style="float: right; margin-left: 20px">
+- ![](../../images/float-p3.png)  <!-- {.push-right} -->
   Flutuando o parágrafo à direita
   ```css
   p#amazing {

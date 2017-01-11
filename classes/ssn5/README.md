@@ -12,7 +12,7 @@
 ---
 ## Interação cliente x servidor com estado
 
-- <img src="../../images/session-moodle.png" style="float:right; margin: 0 0 15px 15px;">
+- ![Tela do Moodle mostrando que você está logado](../../images/session-moodle.png) <!-- {.push-right} -->
   Alguns sites parecem lembrar que você passou por ele. Mas como eles fazem
   isso?
   - HTTP é um protocolo que **não armazena estado** (_stateless_)
@@ -40,7 +40,7 @@
 ---
 ## Como os _cookies_ são enviados
 
-- <img src="../../images/cookies-envio.png" style="float:right; margin: 0 0 15px 15px;">
+- ![Envio e recebimento de cookies](../../images/cookies-envio.png) <!-- {.push-right} -->
   Quando o navegador solicita uma página, o **servidor pode enviar
   _cookies_** de volta
 - Se o servidor já havia enviado _cookies_ para **o navegador**, este os **enviará
@@ -82,7 +82,7 @@
     o usuário voltar
 - Passos:
   - (1) Navegador **solicita** a página inicial:
-     ```
+     ```http
      GET /index.html HTTP/1.1
      Host: www.ispeakmanymanylanguages.com
      ```
@@ -92,7 +92,7 @@
 
 - (2) Servidor **responde**, definindo um _cookie_ com nome "`lang`" com o
    valor (padrão) "`english`":
-   ```
+   ```http
    HTTP/1.1 200 OK
    Content-type: text/html
    <strong>Set-Cookie: lang=english</strong>
@@ -109,7 +109,7 @@
 
 - (3) Navegador armazenou o _cookie_. Agora, o usuário navega para outra
   página do site e **o _cookie_ é enviado na requisição**:
-  ```
+  ```http
   GET /promotions.html HTTP/1.1
   Host: www.ispeakmanymanylanguages.com
   <strong>Cookie: lang=english</strong>
@@ -125,8 +125,8 @@
 - (4) Usuário altera a língua para `"portuguese"`. A forma como nosso servidor
   de exemplo possibilita isso é através de uma **requisção** GET para
   `/changeLanguage?l=portuguese`:
-  ```
-  GET <strong>/changeLanguage?l=portuguese</strong> HTTP/1.1
+  ```http
+  GET /changeLanguage?l=portuguese HTTP/1.1
   Host: www.ispeakmanymanylanguages.com
   Cookie: lang=english
   ```
@@ -137,7 +137,7 @@
 - (5) Recebendo esta mensagem, o servidor **responde** com a página inicial
   já em português e com um novo `Set-Cookie` para sobrescrever
   o _cookie_ `lang`:
-  ```
+  ```http
   HTTP/1.1 200 OK
   Content-type: text/html
   <strong>Set-Cookie: lang=portuguese</strong>
@@ -179,7 +179,7 @@
   - `Max-Age` define um valor em milissegundos a partir de quando o navegador
     deve excluir o _cookie_
 - Para consertar, o servidor deve enviar o `Set-Cookie` do passo 5:
-  ```
+  ```http
   HTTP/1.0 200 OK
   Content-type: text/html
   Set-Cookie: lang=portuguese<strong>; Expires=Wed, 01-Jan-2020 00:00:00 GMT</strong>
@@ -252,7 +252,7 @@
 1. O navegador faz requisição inicial ao servidor
 1. Servidor guarda o endereço IP/navegador do cliente, gera um identificador
    único de sessão e envia um _cookie_ de volta
-   - <img src="../../images/session-php.png" style="float:right;margin:0 0 15px 15px">
+   - ![Cookies em PHP](../../images/session-php.png) <!-- {.push-right} -->
      Em PHP, esse _cookie_ tem o nome `PHPSESSID`
    - Em Java, `JSESSIONID`
    - Express.js, **`connect.sid`**

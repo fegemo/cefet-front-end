@@ -11,30 +11,33 @@
 1. **Os Ninjas**
 
 ---
-# História
-
-<figure class="portrait">
-  <img src="../../images/howcome.jpg" alt="Foto de Håkon Wium Lie">
-  <figcaption>**Håkon Wium Lie**, "pai" do CSS</figcaption>
-</figure>
-
----
 ## História
 
-<dl>
-  <dt class="bullet-old">1989 - 1993</dt><dd class="bullet-old">Tim Berners-Lee
-    cria a WWW em CERN (_European Organization for Nuclear Research_) e a deixa
-    aberta ao público geral</dd>
-  <dt>1994</dt><dd>Håkon propõe uma linguagem para dar conta da responsabilidade
-   de alterar a aparência de páginas web chamada CSS</dd>
-  <dt>1996</dt><dd>Juntamente com Bert Bos, Håkon publica a especificação do
-    **CSS1**</dd>
-  <dt>1998</dt><dd>Já gerenciado pela W3C, a especificação do **CSS2** foi
-  publicada</dd>
-  <dt>1998 - 2014</dt><dd>Desenvolvimento da especificação do **CSS3** (_living
-    standard_)</dd>
-  <dt>2013</dt><dd>Håkon tornou-se CTO na _Opera Software_</dd>
-</dl>
+1989 - 1993 <!-- {.bullet-old} -->
+  ~ Tim Berners-Lee cria a WWW em CERN
+    (_European Organization for Nuclear Research_) e a deixa aberta ao público
+    geral <!-- {dd:.bullet-old} -->
+
+1994
+  ~ ::: figure .floating-portrait-container.push-right
+    ![Foto de Håkon Wium Lie](../../images/howcome.jpg)
+    :::
+    Håkon propõe uma linguagem para dar conta da responsabilidade
+    de alterar a aparência de páginas web chamada CSS
+
+1996
+  ~ Juntamente com Bert Bos, Håkon publica a especificação do
+    **CSS1**
+    
+1998
+  ~ Já gerenciado pela W3C, a especificação do **CSS2** foi
+  publicada
+  
+1998 - 2014
+  ~ Desenvolvimento da especificação do **CSS3** (_living standard_)
+
+2013
+  ~ Håkon tornou-se CTO na _Opera Software_
 
 ---
 # Recapitulando a **sintaxe**
@@ -217,7 +220,7 @@
 
 - Formato: `X` &gt; `Y`
 - Exemplo
-  ```
+  ```css
   #menu-principal > ul {
     padding: 20px;
   }
@@ -379,17 +382,17 @@
 ---
 ## Outros seletores
 
-<ul class="multi-column-list-2">
-  <li>`X:first-child`</li>
-  <li>`X:last-child`</li>
-  <li>`X:nth-child(n)`</li>
-  <li>`X:nth-last-child(n)`</li>
-  <li>`X:nth-of-type(n)`</li>
-  <li>`X:nth-last-of-type(n)`</li>
-  <li>`X:only-child`</li>
-  <li>`X:only-of-type`</li>
-  <li>`X:first-of-type`</li>
-</ul>
+- `X:first-child`
+- `X:last-child`
+- `X:nth-child(n)`
+- `X:nth-last-child(n)`
+- `X:nth-of-type(n)`
+- `X:nth-last-of-type(n)`
+- `X:only-child`
+- `X:only-of-type`
+- `X:first-of-type`
+
+<!-- {ul:.multi-column-list-2}-->
 
 ---
 ## Atividade de Hoje

@@ -108,8 +108,10 @@
   - Uma seção da página que contenha _links_ de navegação
   - Exemplos:
     - O menu principal da página
-    - Tabela de conteúdo (<abbr title="Table of Contents">TOC</abbr>) com
+    - Tabela de conteúdo (TOC) com
       _links_ internos
+
+*[TOC]: Table of Contents*
 
 ---
 ## Elementos semânticos (3/3)
@@ -200,11 +202,12 @@
 ## Display: **table-***
 
 - <div class="caniuse" data-feature="css-table" style="float: right;"></div>
-  Alguns valores são para a criação de _layouts_ em formato de tabelas:
-  - `table, table-cell, table-column, table-column-group, table-footer-group,`
-     `table-header-group, table-row, table-row-group, inline-table`
-- [Exemplos de uso](http://colintoh.com/blog/display-table-anti-hero)
 
+  Alguns valores são para a criação de _layouts_ em formato de tabelas:
+  - `table`, `table-cell`, `table-column`, `table-column-group`, 
+    `table-footer-group`, `table-header-group`, `table-row`, 
+    `table-row-group`, `inline-table`
+- [Exemplos de uso](http://colintoh.com/blog/display-table-anti-hero)
 
 ---
 ## Display: **flex**
@@ -324,14 +327,12 @@
   }
   ```
 - Algumas das _pseudo-classes_ mais comuns:
-  <ul class="multi-column-list-2">
-    <li>`:focus` - contém o foco</li>
-    <li>`:hover` - mouse em cima</li>
-    <li>`:last-child` - último</li>
-    <li>`:not()` - exceto que</li>
-    <li>`:nth-child()` - n-ésimo</li>
-    <li>`:checked` - caixa marcada</li>
-  </ul>
+  - `:focus` - contém o foco
+  - `:hover` - mouse em cima
+  - `:last-child` - último
+  - `:not()` - exceto que
+  - `:nth-child()` - n-ésimo
+  - `:checked` - caixa marcada <!-- {ul:.multi-column-list-2} -->
 - [Lista com todas](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
   na MDN
 

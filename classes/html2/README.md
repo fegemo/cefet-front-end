@@ -16,9 +16,7 @@ documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
 uma **pequena loja de sementes** dessas plantas e deseja divulgá-la em uma
 página web.
 
-<figure class="portrait">
-  <img src="../../images/piranha-mario.png" alt="Planta carnívora do jogo Mario Bros">
-</figure>
+![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!-- {.portrait} -->
 
 ---
 ## Passos para o exercício
@@ -130,7 +128,6 @@ página web.
   - Repare o `#um-id-de-elemento`
 
     ```html
-    <!-- ...outras coisas... -->
     <h2 id="um-id-de-elemento">Um título</h2>
     ```
     - Ao clicar no link, o navegador vai rolar a barra até que esse `<h2></h2>`
@@ -208,7 +205,7 @@ página web.
 ---
 ## Exemplo: **mesclando células horizontais** (2/3)
 
-```
+```html
 <table>
   <tr>
     <th colspan="2">Pessoas</th>

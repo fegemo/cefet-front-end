@@ -15,46 +15,56 @@
 ---
 # História
 
-<figure class="portrait">
-  <img src="../../images/brendan-eich.png" alt="Foto de Brendan Eich">
-  <figcaption>**Brendan Eich**, "pai" do Javascript</figcaption>
-</figure>
+1989 - 1993 <!-- {.bullet-old} -->
+  ~ Tim Berners-Lee cria a WWW em CERN (*European Organization for 
+    Nuclear Research*) e a deixa aberta ao público geral <!-- {dd:.bullet-old} -->
 
----
-## História
+1994 <!-- {.bullet-old} -->
+  ~ Håkon propõe uma linguagem para dar conta da responsabilidade de 
+    alterar a aparência de páginas web chamada CSS <!-- {dd:.bullet-old} -->
+  
+1995 (maio)
+  ~ ![Foto de Brendan Eich](../../images/brendan-eich.png) <!-- {.portrait.push-right} -->
+    Brendan Eich, funcionário do Netscape, criou (em 10 dias!!) uma 
+    linguagem para alterar páginas web dinamicamente - o _Mocha_
 
-<dl>
-  <dt class="bullet-old">1989 - 1993</dt><dd class="bullet-old">Tim Berners-Lee
-    cria a WWW em CERN (_European Organization for Nuclear Research_) e a deixa
-    aberta ao público geral</dd>
-  <dt class="bullet-old">1994</dt><dd class="bullet-old">Håkon propõe uma linguagem para dar
-    conta da responsabilidade de alterar a aparência de páginas web
-    chamada CSS</dd>
-  <dt>1995 (maio)</dt><dd>Brendan Eich, funcionário do Netscape, criou
-    (em 10 dias!!) uma linguagem para alterar páginas web dinamicamente -
-    o _Mocha_</dd>
-  <dt>1995 (setembro)</dt><dd>_LiveScript_ (novo nome) é lançado com a versão
-    beta do Netscape 2.0</dd>
-  <dt>1995 (dezembro)</dt><dd>Nome alterado para JavaScript na versão 2.0 oficial para
-    aproveitar a fama do Java</dd>
-</dl>
+1995 (setembro)
+  ~ _LiveScript_ (novo nome) é lançado com a versão beta do Netscape 2.0
+  
+1995 (dezembro)
+  ~ Nome alterado para JavaScript na versão 2.0 oficial para
+    aproveitar a fama do Java
 
 ---
 ## História (cont.)
 
-<dl>
-  <dt>1996 (agosto)</dt><dd>Microsoft adota o JavaScript sob o nome de JScript
-    no navegador Internet Explorer 3.0</dd>
-  <dt>1996 (novembro)</dt><dd>A Netscape submeteu o JavaScript para a
-    _<abbr title="European Computer Manufacturers Association">Ecma</abbr>
-     international_ para padronização. A especificação recebeu o nome de
-     _ECMAScript_</dd>
-  <dt>1997 (junho)</dt><dd>A _Ecma International_ publicou a primeira versão,
-    o ECMA-262</dd>
-  <dt>1998</dt><dd>Versão 2 do ECMAScript</dd>
-  <dt>1999 (junho)</dt><dd>Versão 3 do ECMAScript</dd>
-  <dt>2009</dt><dd>Versão 5 do ECMAScript</dd>
-</dl>
+1996 (agosto)
+  ~ Microsoft adota o JavaScript sob o nome de JScript no navegador 
+    Internet Explorer 3.0
+    
+1996 (novembro)
+  ~ A Netscape submeteu o JavaScript para a 
+    _Ecma international_ para padronização. A especificação recebeu o nome de
+     _ECMAScript_
+  
+1997 (junho)
+  ~ A _Ecma International_ publicou a primeira versão, o ECMA-262
+
+1998
+  ~ Versão 2 do ECMAScript
+
+1999 (junho)
+  ~ Versão 3 do ECMAScript
+
+2009
+  ~ Versão 5 do ECMAScript
+
+2013 - 2017
+  ~ Versão 6 e 7 do ECMAScript, que mudaram de nome para es2015 e 
+    es2016 respectivamente
+    
+*[ECMA]: European Computer Manufacturers Association*
+*[Ecma]: European Computer Manufacturers Association*
 
 ---
 ## JavaScript nos anos 90
@@ -98,14 +108,14 @@
 - As formas de incluir código Javascript em uma página são semelhantes às de
   inclusão de CSS:
   - Externa
-      ```
+      ```html
         ...
-        &lt;script src="topo.js"&gt;&lt;/script&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
+        <script src="executa-no-inicio.js"></script>
+      </head>
+      <body>
         ...
-        &lt;script src="fim.js"&gt;&lt;/script&gt;
-      &lt;/body&gt;
+        <script src="executa-no-fim-da-pagina.js"></script>
+      </body>
       ```
 
 ---
@@ -117,7 +127,7 @@
     // código javascript aqui
   </script>
   ```
-- Inline
+- *Inline*
   ```html
   <button onclick="javascript: alert();">Mensagem</button>
   ```
@@ -126,43 +136,31 @@
 # Operadores
 
 - Semelhantes aos de C, Java e C#:
-  <ul class="multi-column-list-2">
-    <li>Aritméticos
-      <ul>
-        <li>**`+`** soma</li>
-        <li>**`-`** subtração</li>
-        <li>**`*`** multiplicação</li>
-        <li>**`/`** divisão</li>
-        <li>**`%`** resto da divisão</li>
-        <li>**`++`** incremento</li>
-        <li>**`--`** decremento</li>
-      </ul>
-    </li>
-    <li>Atribuição
-      <ul>
-        <li>**`=`** simples</li>
-        <li>**`+=  /=  %=`** composta</li>
-      </ul>
-    </li>
-    <li>Relacionais
-      <ul>
-        <li>**`==`** igualdade</li>
-        <li>**`===`** igualdade forte</li>
-        <li>**`!=`** desigualdade</li>
-        <li>**`!==`** desigualdade forte</li>
-        <li>**&lt;  &lt;=** menor/menor igual</li>
-        <li>**&gt;  &gt;=** maior/maior igual</li>
-      </ul>
-    </li>
-    <li>Lógicos
-      <ul>
-        <li>**`!`** não</li>
-        <li>**&amp;&amp;** e</li>
-        <li>**`||`** ou</li>
-      </ul>
-    </li>
-  </ul>
+  - Aritméticos
+    - **`+`** soma
+    - **`-`** subtração
+    - **`*`** multiplicação
+    - **`/`** divisão
+    - **`%`** resto da divisão
+    - **`++`** incremento
+    - **`--`** decremento
+  - Atribuição
+    - **`=`** simples
+    - **`+=  /=  %=`** composta
+  - Relacionais
+    - **`==`** igualdade
+    - **`===`** igualdade forte
+    - **`!=`** desigualdade
+    - **`!==`** desigualdade forte
+    - **&lt;  &lt;=** menor/menor igual
+    - **&gt;  &gt;=** maior/maior igual
+  - Lógicos
+    - **`!`** não
+    - **&amp;&amp;** e
+    - **`||`** ou
 
+<!-- {ul^4:.multi-column-list-2} -->
+  
 ---
 # Variáveis
 
@@ -178,11 +176,7 @@
   - Começar com os símbolos $, \_ ou qualquer caractere unicode que represente uma letra (&larr; _tricky_)
   - Quaisquer combinações do conjunto anterior mais caracteres unicode que representem números e alguns
     tipos de pontuação
-
----
-## Validador de nomes
-
-<iframe src="https://mothereff.in/js-variables" width="500" height="400"></iframe>
+    - [Validador de nomes de variáveis JavaScript](https://mothereff.in/js-variables)
 
 ---
 ## Nomes reservados
@@ -230,14 +224,12 @@
 ## Tipos de dados (cont.)
 
 - Seis tipos de dados **primitivos**:
-  <ul class="multi-column-list-2">
-    <li>`Boolean`</li>
-    <li>`Number`</li>
-    <li>`String`</li>
-    <li>`Null`</li>
-    <li>`Undefined`</li>
-    <li>`Symbol` (ECMAScript 6)</li>
-  </ul>
+  - `Boolean`
+  - `Number`
+  - `String`
+  - `Null`
+  - `Undefined`
+  - `Symbol` (ECMAScript 6) <!-- {ul:.multi-column-list-2} -->
 - Um tipo **complexo**
   - `Object`
 - Podemos usar o operador `typeof` para determinar o tipo de uma variável
@@ -474,7 +466,7 @@ var flight = {
 ## if/else
 
 - Similar a C, Java
-  ```
+  ```js
   if (hora < 12) {
     manha = true;
   } else {

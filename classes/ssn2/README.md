@@ -48,7 +48,7 @@
     ```
 
 ---
-## Instalando por um **gerenciador de versões do Node.js**
+## Instalando um **gerenciador de versões do Node.js**
 
 - Assim como `ruby` possui o `rvm` ou o `rbenv` para gerenciar múltiplas
   versões da plataforma instaladas, o Node.js possui algumas alternativas
@@ -103,13 +103,13 @@
 ## O **npm** (cont.)
 
 - Para instalar um pacote no diretório atual, usamos o comando:
-  ```
-  $ npm install &lt;nome>
+  ```bash
+  $ npm install <nome-do-pacote>
   ```
 - Se quisermos instalar um pacote de forma global (acessível de qualquer
   lugar, como um programa executável):
-  ```
-  $ npm install -g &lt;nome>
+  ```bash
+  $ npm install -g <nome>
   ```
 
 ---
@@ -218,16 +218,19 @@
 
 - Faça os exercícios 5 e 6 do _learnyounode_
   - Você vai precisar usar os seguintes módulos da plataforma:
-    1. `fs`, para [ler um diretório](http://nodejs.org/api/fs.html#fs_fs_readdir_path_callback)
-    1. `path`, para [recuperar uma extensão](http://nodejs.org/api/path.html#path_path_extname_p) à partir de um caminho de arquivo
+    1. `fs`, para 
+       [ler um diretório](http://nodejs.org/api/fs.html#fs_fs_readdir_path_callback)
+    1. `path`, para 
+       [recuperar uma extensão](http://nodejs.org/api/path.html#path_path_extname_p)
+       à partir de um caminho de arquivo
 
 ---
 ## Exercícios 10 e 11
 
 - Faça os exercícios 10 e 11 do _learnyounode_
 - Você vai precisar usar os seguintes módulos da plataforma:
-1. `net`, para [iniciar uma conexão TCP](http://nodejs.org/api/net.html)
-1. `http`, para [realizar uma requisição HTTP](http://nodejs.org/api/http.html)
+  1. `net`, para [iniciar uma conexão TCP](http://nodejs.org/api/net.html)
+  1. `http`, para [realizar uma requisição HTTP](http://nodejs.org/api/http.html)
 
 ---
 # Referências

@@ -4,9 +4,9 @@
 # Roteiro
 
 1. Criando o <span style="font-family: Sacramento; font-size:120%">Geiser</span>
-  - Parte 1 - configuração e servidor estático
-  - Parte 2 - página inicial
-  - Parte 3 - página de detalhes do jogador
+   - Parte 1 - configuração e servidor estático
+   - Parte 2 - página inicial
+   - Parte 3 - página de detalhes do jogador
 1. O arquivo `package.json`
 1. Renderizando com Handlebars
 1. Programação funcional com Underscore
@@ -89,7 +89,7 @@
 # Parte 1 - configuração e servidor estático
 
 
-- <img src="../../images/geiser-diretorios.png" style="float:right; margin-left: 10px;">
+- ![Estrutura de pastas do projeto](../../images/geiser-diretorios.png) <!-- {.push-right} -->
   Repare que o projeto já tem uma estrutura de diretórios e alguns arquivos
   criados:
   1. Pasta **`client`** com arquivos estáticos (css, js, imgs)
@@ -190,25 +190,29 @@
     1. Calculadas
 
 ---
-<a href="../../images/geiser-jogos1.png">
-  <img src="../../images/geiser-jogos1.png" style="max-width: 800px; max-height: 600px">
-</a>
+[![](../../images/geiser-jogos1.png)](../../images/geiser-jogos1.png)
+
+<!-- {.full-width} -->
+<!-- {a:target="pic1"} -->
 
 ---
-<a href="../../images/geiser-jogos1-json.png">
-  <img src="../../images/geiser-jogos1-json.png" style="max-width: 800px; max-height: 600px">
-</a>
+[![](../../images/geiser-jogos1-json.png)](../../images/geiser-jogos1-json.png)
 
+<!-- {.full-width} -->
+<!-- {a:target="pic2"} -->
+  
 ---
-<a href="../../images/geiser-jogos2.png">
-  <img src="../../images/geiser-jogos2.png" style="max-width: 800px; max-height: 600px">
-</a>
+[![](../../images/geiser-jogos2.png)](../../images/geiser-jogos2.png)
 
+<!-- {.full-width} -->
+<!-- {a:target="pic3"} -->
+  
 ---
-<a href="../../images/geiser-jogos2-json.png">
-  <img src="../../images/geiser-jogos2-json.png" style="max-width: 800px; max-height: 600px">
-</a>
+[![](../../images/geiser-jogos2-json.png)](../../images/geiser-jogos2-json.png)
 
+<!-- {.huge-height} -->
+<!-- {a:target="pic4"} -->
+  
 ---
 ## Parte 3 - página de detalhes do jogador (cont.)
 
@@ -246,15 +250,15 @@
 ## Underscore (cont.)
 
 1. Ordenação ([`_.sortBy`](http://underscorejs.org/#sortBy)):
-  ```js
-  var ordenadoDesc = _.sortBy([5,4,6,1], function(el) {
-    return -el;
-  });
-  ```
+   ```js
+   var ordenadoDesc = _.sortBy([5,4,6,1], function(el) {
+     return -el;
+   });
+   ```
 1. X primeiros ([`_.first`](http://underscorejs.org/#first)):
-  ```js
-  var primeiros10 = _.first(lista, 10);
-  ```
+   ```js
+   var primeiros10 = _.first(lista, 10);
+   ```
 
 ---
 ## Parte 3 - página de detalhes do jogador (cont.)

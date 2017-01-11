@@ -5,9 +5,14 @@
 
 1. Arquitetura baseada em serviços (SOA)
 1. _Web Services_
-  - Arquitetura SOAP
-  - Arquiteturas REST
+   - Arquitetura SOAP
+   - Arquiteturas REST
 1. Organização de código em 3 camadas: **MVC**
+
+*[SOAP]: Simple Object Access Protocol*
+*[SOA]: Service Oriented Architecture*
+*[REST]: Representational State Transfer*
+*[MVC]: Model-View-Controller*
 
 ---
 # _Service-Oriented Architecture_ (SOA)
@@ -34,14 +39,19 @@
 ## Abordagens de integração entre sistemas
 
 - Surgiram algumas formas de integração e organização de sistemas
-  - <abbr title="Remote Procedure Call">RPC</abbr>
+  - RPC
     - Execução de um procedimento arbitrário em um computador remoto
-  - <abbr title="Common Object Request Broker Architecture">CORBA</abbr>
-    - Interfaces dos sistemas definidas numa linguagem específica (<abbr title="Interface Definition Language">IDL</abbr>)
-  - <abbr title="Distributed Component Object Model">DCOM</abbr>
+  - CORBA
+    - Interfaces dos sistemas definidas numa linguagem específica (IDL)
+  - DCOM
     - Baseado em COM (comunicação entre processos), porém distribuído em rede 
   - **Web services**
    
+*[RPC]: Remote Procedure Call*
+*[CORBA]: Common Object Request Broker Architecture*
+*[IDL]: Interface Definition Language
+*[DCOM]: Distributed Component Object Model*
+
 ---
 # _Web Services_
 
@@ -94,13 +104,15 @@
 ## _Web services_ arbitrários
 
 - Usam um conjunto de tecnologias para 
-- <abbr title="Simple Object Access Protocol">**SOAP**</abbr>
+- **SOAP**
   - Protocolo de comunicação entre serviços expostos via Web (explicado a seguir)
+
+*[SOAP]: Simple Object Access Protocol*
 
 ---
 ## Exemplo de mensagens SOAP (invocação)
 
-```xml
+```http
 GET /weather HTTP/1.1
 Host: api.climatempo.com.br
 Content-Type: application/soap+xml; charset=utf-8
@@ -123,7 +135,7 @@ Content-Length: 295
 ---
 ## Exemplo de mensagens SOAP (resposta)
 
-```xml
+```http
 HTTP/1.1 200 OK
 Content-Type: application/soap+xml; charset=utf-8
 Content-Length: 319
@@ -147,7 +159,3 @@ Content-Length: 319
 
 ---
 ## a
-
-
-
-

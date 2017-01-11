@@ -146,13 +146,13 @@
 ---
 ## Simulação de _**retina display**_
 
-<img src="../../images/mario-star.png" style="width: 100px">
-<img src="../../images/mario-star-half.png" style="width: 100px">
+![Desenho da estrela do jogo do Mario](../../images/mario-star-half.png) <!-- {style="width: 100px"} -->
+![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
 
 ## Para testar em um dispositivo de **tela com alta densidade de pixels**:
 
-<img src="../../images/mario-star-double.png" style="width: 100px">
-<img src="../../images/mario-star.png" style="width: 100px">
+![Desenho da estrela do jogo do Mario](../../images/mario-star-double.png) <!-- {style="width: 100px"} -->
+![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
 
 ---
 # _Responsive Design_
@@ -287,7 +287,7 @@ div.produto {  display: inline-block; }
 ---
 ## Motivação (cont.)
 
-- Além disso, o CSS não é muito <abbr title="Don't Repeat Yourself">DRY</abbr>-
+- Além disso, o CSS não é muito DRY-
   _friendly_
   - Você acaba repetindo a mesma cor, as mesmas dimensões e outros valores
     várias vezes
@@ -301,6 +301,8 @@ div.produto {  display: inline-block; }
     .animal img { width: 1800px; }
     .animal figcaption { width: 100%; }
     ```
+
+*[DRY]: Don't Repeat Yourself*
 
 ---
 ## Problema
@@ -320,11 +322,9 @@ div.produto {  display: inline-block; }
 - O pré-processador irá processar o código fonte nessa nova linguagem e
   transformá-lo em CSS, que é o que o navegador entende
 - Os mais populares:
-  <ul class="horizontal-list">
-    <li><img src="../../images/sass-logo.png" style="width: 100%;"></li>
-    <li><img src="../../images/less-logo.png" style="width: 100%;"></li>
-    <li><img src="../../images/stylus-logo.png" style="width: 100%;"></li>
-  </ul>
+  - ![Logo do Sass](../../images/sass-logo.png) <!-- {style="width: 100%;"} -->
+  - ![Logo do Less](../../images/less-logo.png) <!-- {style="width: 100%;"} -->
+  - ![Logo do Stylus](../../images/stylus-logo.png) <!-- {style="width: 100%;"} --> <!-- {ul:.horizontal-list} -->
 
 ---
 ## O que eles oferecem?

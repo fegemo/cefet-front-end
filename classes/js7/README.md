@@ -14,25 +14,40 @@
 ---
 # Breve histórico
 
-- **1995** Brendan Eich criou JS para o Netscape
-- **1996, Agosto** Micro$oft criou o JScript no IE e no IIS 3.0
-- **1996, Novembro** Netscape enviou para a Ecma International -> ECMAScript
-- **1997, Junho** ECMAScript 2
-- **1999, Dezembro** ECMAScript 3
-- **2009, Dezembro** ECMAScript 5
-- **2011, Junho** ECMAScript 5.1
-- **2014** ECMAScript 6
+1995
+  ~ Brendan Eich criou JS para o Netscape
+  
+1996, Agosto
+  ~ Micro$oft criou o JScript no IE e no IIS 3.0
+
+1996, Novembro
+  ~ Netscape enviou para a Ecma International -> ECMAScript
+
+1997, Junho
+  ~ ECMAScript 2
+
+1999, Dezembro
+  ~ ECMAScript 3
+
+2009, Dezembro
+  ~ ECMAScript 5
+
+2011, Junho
+  ~ ECMAScript 5.1
+
+2014
+  ~ ECMAScript 6
 
 ---
 <!--
-  scripts: ['../../scripts/classes/item-cloud.min.js']
-  styles: ['../../styles/classes/item-cloud.min.css']
+{
+  "scripts": ["../../scripts/classes/item-cloud.min.js"],
+  "styles": ["../../styles/classes/item-cloud.min.css"]
+}
 -->
 
 # Visão geral de funcionalidades
 
-
-<div data-state="itemcloud">
 - Escopo de bloco
 - Classes
 - Parâmetros _default_
@@ -44,12 +59,13 @@
 - _Generators_
 - Módulos
 - Promessas
-</div>
+
+<!-- {ul:data-state="itemcloud"} -->
 
 ---
 ## Escopo **de bloco**
 
-<img src="../../images/three-little-pigs.jpg" style="height: 450px; width: auto;" />
+![](../../images/three-little-pigs.jpg) <!-- {style="height: 450px"} -->
 
 ---
 ## **var**, <small>o irmão mais velho</small>
@@ -344,9 +360,9 @@ Ano: 2006
     <h3>Em <strong>ES6</strong>:</h3>
     <pre style="text-align: left;">
       <code class="hljs">var poema =
-  \`Cavei, cavei, cavei
+  `Cavei, cavei, cavei
    Isto não é um poema
-   Mas é profundo.\`;</code>
+   Mas é profundo.`;</code>
     </pre>
   </section>
 </div>
@@ -388,8 +404,7 @@ Veja mais em: [A critical review of ES6 quasi-literals](http://www.nczonline.net
 
 - Ainda hoje, nenhum navegador suporta todas as funcionalidades do es6
 - Existe uma tabela curada que mostra a compatibilidade por _feature_:
-
-<img src="../../images/es6-compatibility-table.jpg" style="max-height: 200px">
+  ![](../../images/es6-compatibility-table.jpg) <!-- {.small-height.block} -->
 
 Veja na [ECMAScript 6 _compatibility table_](http://kangax.github.io/es5-compat-table/es6/) do Kangax
 
@@ -399,8 +414,7 @@ Veja na [ECMAScript 6 _compatibility table_](http://kangax.github.io/es5-compat-
 - Podemos usar um **_transpiler_** para transformar ES6 em ES5!!
 - O mais usado hoje em dia é o [babel](https://babeljs.io/), que bastante
   agilmente implementa os _specs_ ES6
-
-<img src="../../images/babel-logo.svg" style="height: 200px">
+  ![](../../images/babel-logo.svg) <!-- {.small-height.block} -->
 - Aqui está a
   [lista de funcionalidades](https://babeljs.io/docs/learn-es2015/#ecmascript-6-features)
   suportadas pelo babel

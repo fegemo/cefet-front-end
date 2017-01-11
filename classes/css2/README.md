@@ -32,13 +32,22 @@
 ---
 ## Regras gerais de especificidade
 
-<dl>
-  <dt>Regra 1</dt><dd>Cada seletor tem uma **pontuação de especificidade**</dd>
-  <dt>Regra 2</dt><dd>Se dois seletores selecionam o mesmo elemento, mas com pontuações diferentes, ganha aquele com pontuação maior</dd>
-  <dt>Regra 3</dt><dd>Se dois seletores selecionam o mesmo elemento e têm a mesma pontuação, ganha o que foi declarado por último</dd>
-  <dt>Regra 4</dt><dd>Estilo Inline &gt;&gt; Arquivo Externo &gt;&gt; Incorporado</dd>
-  <dt>Regra 5</dt><dd>ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag</dd>
-</dl>
+Regra 1
+  ~ Cada seletor tem uma **pontuação de especificidade**
+
+Regra 2
+  ~ Se dois seletores selecionam o mesmo elemento, mas com pontuações 
+    diferentes, ganha aquele com pontuação maior
+
+Regra 3
+  ~ Se dois seletores selecionam o mesmo elemento e têm a mesma 
+    pontuação, ganha o que foi declarado por último
+
+Regra 4
+  ~ Estilo Inline &gt;&gt; Arquivo Externo &gt;&gt; Incorporado
+
+Regra 5
+  ~ ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag
 
 ---
 ## Cálculo da **pontuação de especificidade**
@@ -86,8 +95,10 @@ p strong em { }           /* 003 */
 
 ---
 <!--
-  scripts: [../../scripts/classes/spec-tabajara.min.js]
-  styles: [../../styles/classes/spec-tabajara.min.css]
+{
+  "scripts": ["../../scripts/classes/spec-tabajara.min.js"],
+  "styles": ["../../styles/classes/spec-tabajara.min.css"]
+}
 -->
 
 ## **Specificator Tabajara**
@@ -283,22 +294,20 @@ p strong em { }           /* 003 */
 - Assim como `color`,
   [`gradient`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient) é
   um tipo de dados em CSS
-  - **Herda de [`image`](https://developer.mozilla.org/en-US/docs/Web/CSS/image)**,
+  - **Herda de 
+    [`image`](https://developer.mozilla.org/en-US/docs/Web/CSS/image)**,
     não de `color`
     - Ou seja, `linear-gradient` é um **valor válido para `background-image`**,
       e não para `background-color`
 - Podemos definir um gradiente (degradê) linear usando dois valores
-  - ```css
-    linear-gradient( 45deg, blue, red );
-    linear-gradient( to left top, blue, red);
-    linear-gradient( 0deg, blue, white 20%, red ); /* exemplo */
-    ```
-- <div style="background-image: linear-gradient(90deg, blue, white 20%, red)">
+  ```css
+  linear-gradient( 45deg, blue, red );
+  linear-gradient( to left top, blue, red);
+  linear-gradient( 90deg, blue, white 20%, red ); /* exemplo */
+  ```
+  <div style="background-image: linear-gradient(90deg, blue, white 20%, red)">
     Conteúdo
   </div>
-  ```css
-  li { background-image: linear-gradient(90deg, blue, white 20%, red); }
-  ```
 
 
 ---
@@ -310,11 +319,15 @@ p strong em { }           /* 003 */
 - Aplica sublinhado, tachado, linha sobre o texto ou remove efeitos
   ```css
   a {
-    text-decoration: none;    /* underline, overline, line-through */
+    text-decoration: none;    /* underline, overline,
+                                 line-through */
   }
   ```
-- Uma combinação pode ser usada também
-  `text-decoration: underline overline`
+- <span style="text-decoration: underline">underline</span>,
+  <span style="text-decoration: overline">underline</span>,
+  <span style="text-decoration: line-through">line-through</span>
+- Uma combinação dos valores pode ser usada também:<br>
+  <span style="text-decoration: underline overline line-through">underline overline line-through</span>
 
 ---
 ## [text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
@@ -322,7 +335,7 @@ p strong em { }           /* 003 */
 - Alinha o texto (e conteúdo) à esquerda, à direita ou justificado
   ```css
   p {
-    text-align: justify;      /* left, right */
+    text-align: justify;      /* left, right, justify */
   }
   ```
 
@@ -345,9 +358,19 @@ p strong em { }           /* 003 */
 - Altera o _casing_ (maiúsculas vs minúsculas) de um texto
   ```css
   h1 {
-    text-transform: uppercase;   /* none, capitalize, lowercase */
+    text-transform: uppercase;   /* none, capitalize,
+                                    lowercase */
   }
   ```
+  - Exemplo: uma palavra
+    - Usando **`uppercase`**: 
+      <span style="text-transform: uppercase">uma palavra</span>
+  - Exemplo: kiwi. maracujá. uva. pêssego
+    - Usando **`capitalize`**: 
+      <span style="text-transform: capitalize">kiwi. maracujá. uva. pêssego</span>
+  - Exemplo: NÃO GRITE COM CAPSLOCK!
+    - Usando **`lowercase`**: 
+      <span style="text-transform: lowercase">NÃO GRITE COM CAPSLOCK!</span>
 
 ---
 ## Outras
@@ -362,8 +385,9 @@ p strong em { }           /* 003 */
 ---
 ## [font-family](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family)
 
-- <img src="../../images/font-families.png" style="float: right">
+- ![Várias famílias de fontes](../../images/font-families.png) <!-- {.push-right} -->
   Altera a tipografia do texto para a fonte especificada
+  
   ```css
   body {
     font-family: Verdana, Arial, sans-serif;
@@ -386,14 +410,14 @@ p strong em { }           /* 003 */
   - `px`
   - `em` - Largura da letra `M`
   - `rem` - Largura da letra `M` do elemento raiz (`html`)
-    - Suporte: >= IE9
 
 ---
 ## [font-weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight)
 
 
-- <img src="../../images/font-weights.png" style="float: right; border: 3px solid white; margin-left: 40px; padding: 20px">
+- ![Vários pesos de fonte](../../images/font-weights.png) <!-- {.push-right} -->
   Altera o "peso" ou a grossura do traço da fonte
+
   ```css
   body {
     font-weight: bold;
@@ -438,20 +462,20 @@ p strong em { }           /* 003 */
 ---
 ## Web Fonts (cont.)
 
-  1. Descrever a fonte no seu arquivo `CSS`
+  1. Descrever a fonte no seu arquivo `CSS`:
      ```css
      @font-face {
        font-family: "Emblema One";
-       src: url("fonts/EmblemaOne-Regular.woff"),
-            url("fonts/EmblemaOne-Regular.ttf");
+       src: url("fonts/EmblemaOne-Regular.woff"), 
+           url("fonts/EmblemaOne-Regular.ttf");
      }
      ```
-  1. Usar a fonte
+  1. Usar a fonte:
      ```css
-    h1 {
-      font-family: "Emblema One", sans-serif;
-    }
-    ```
+     h1 {
+       font-family: "Emblema One", sans-serif;
+     }
+     ```
 
 ---
 # Referências

@@ -18,9 +18,9 @@
 ---
 ## Todos os caminhos levam a **Tim**
 
-<figure class="portrait">
-  <img src="../../images/tim-berners-lee.jpg" alt="Foto de Tim Berners-Lee">
-</figure>
+::: figure .floating-portrait-container.push-right
+![Foto de Tim Berners-Lee](../../images/tim-berners-lee.jpg) <!-- {.portrait} -->
+:::
 
 - Tim Berners-Lee desenvolveu as 4 tecnologias básicas da Web
   1. O formato HTML
@@ -86,7 +86,7 @@
   - Pense em um programa que tem _sockets_ escutando na porta 80 (HTTP) e na
     443 (HTTPS) por conexões que transmitem pacotes que contém pedidos
     - Os pedidos são requisições HTTP
-      ```
+      ```http
       GET cefet-web/classes/ssn1
       Host: fegemo.github.io
       ```
@@ -107,12 +107,12 @@
 ## Geração dinâmica de recursos
 
 - Queremos poder escrever algo como isto:
-  ```
-  &lt;ul&gt;
-    &lt;% for (int i=0; i < products.length; i++) { %&gt;
-      &lt;li&gt;&lt;%= products[i].name %&gt;&lt;li&gt;
-    &lt;% } %&gt;
-  &lt;/ul&gt;
+  ```html
+  <ul>
+    <% for (int i=0; i < products.length; i++) { %>
+      <li><%= products[i].name %><li>
+    <% } %>
+  </ul>
   ```
   - Gerando código HTML (que o navegador entende):
     ```html
@@ -127,20 +127,21 @@
 
 - Supondo que você tem Python 2.x instalado e esteja num diretório com alguns
   arquivos de páginas web:
-  ```
+  ```bash
   $ python -m SimpleHTTPServer
   ```
   - Com isso, temos um servidor Web funcional, servindo os arquivos do
     diretório atual
-- ![right](../../images/py-server-folder.png)
+- ![](../../images/py-server-folder.png) <!-- {.push-right} -->
   Exemplo:
 
 ---
 ## Um servidor Web simplão (cont.)
 
-<img src="../../images/py-server-terminal.png" style="">
+![](../../images/py-server-terminal.png)
+![](../../images/py-server-browser.png)
 
-<img src="../../images/py-server-browser.png" style="">
+<!-- {p:.center-aligned} -->
 
 ---
 ## Tipos de servidor Web
@@ -186,21 +187,21 @@
 ## Um **hello world** em PHP + Apache
 
 - Código de um arquivo `index.php`
-  ```
-  &lt;html&gt;
-    &lt;head&gt;
-      &lt;title&gt;PHP Teste&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-      &lt;?php echo "&lt;p&gt;Olá Mundo&lt;/p&gt;"; ?&gt;
-    &lt;/body&gt;
-  &lt;/html&gt;
+  ```php
+  <html>
+    <head>
+      <title>PHP Teste</title>
+    </head>
+    <body>
+      <?php echo "<p>Olá Mundo</p>"; ?>
+    </body>
+  </html>
   ```
 
 ---
 ## Arquitetura do Apache
 
-<img src="../../images/arquitetura-apache.png" style="height: 300px;">
+![Arquitetura do Apache](../../images/arquitetura-apache.png) <!-- {.medium-height} -->
 
 - Os módulos são ativados/desativados e configurados por meio de arquivos de
   configuração
@@ -252,11 +253,11 @@
 
 ---
 ## Node.js
-
+    
 - Não é um servidor web (OMG!!!)
-- <figure class="portrait" style="float:right;">
-    <img src="../../images/ryan-dahl.jpg" alt="Foto de Ryan Dahl">
-  </figure>
+- ::: figure .floating-portrait-container.push-right
+  ![Ryan Dahl](../../images/ryan-dahl.jpg) <!-- {img.portrait} -->
+  :::
   **Ryan Dahl**, seu criador, teve o seguinte raciocínio:
   1. Gosto de Javascript e gostaria de poder usar a linguagem fora dos
      navegadores
@@ -297,7 +298,7 @@
   console.log('woot woot');
   ```
 - Execute seu arquivo no terminal:
-  ```
+  ```bash
   $ node hello.js
   ```
 

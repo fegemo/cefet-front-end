@@ -1,6 +1,7 @@
 // Import CSS from "node_modules" and "bower_components"
 // thanks to Stylus' "import css" and "paths" options
-@import 'highlight.js/styles/monokai-sublime.css'
+// @import 'highlight.js/styles/monokai-sublime.css'
+@import 'bespoke-markdownit/node_modules/highlight.js/styles/monokai-sublime.css'
 
 @import './caniuse.css';
 
@@ -18,23 +19,29 @@ html, body
 body
   background-color #FFD5D5
 
-.bespoke-slide
-  img.full-width
-    width 100%
-  img.large-width
-    width 600px
-  img.medium-width
-    width 400px
-  img.small-width
-    width 200px
-  img.full-height
-    height 100%
-  img.large-height
-    height 400px
-  img.medium-height
-    height 300px
-  img.small-height
-    height 200px
+img.full-width
+  width 100%
+img.large-width
+  width 600px
+img.medium-width
+  width 400px
+img.small-width
+  width 200px
+img.full-height
+  height 100%
+img.huge-height
+  height 600px
+img.large-height
+  height 400px
+img.medium-height
+  height 300px
+img.small-height
+  height 200px
+img.block
+  display block
+
+.center-aligned
+  text-align center
 
 del
   color gray
@@ -81,6 +88,32 @@ th
   color white
   background-color #333
 
+blockquote
+  position relative
+  margin 0.25em 0
+  padding 0.25em 40px
+  background whitesmoke
+  box-shadow 4px 4px 4px silver
+  line-height 1.45
+  font-size 18px
+  font-family Georgia, serif
+  font-style italic
+  color #383838
+  &::before
+    content "\201C"
+    display block
+    position absolute
+    left -0.25em
+    top -0.25em
+    font-size 80px
+    color #7a7a7a
+  & cite
+    display block
+    margin-top 5px
+    font-size 75%
+    color #999
+    &::before
+      content "\2014 \2009"
 
 .horizontal-list
   list-style none
@@ -232,6 +265,44 @@ $portrait-size = 100px
   figcaption
     background-color transparent
 
+.floating-portrait-container
+  position relative
+  *
+    margin 0
+    @extend .portrait
+    animation floating 2s ease-in-out 0s infinite alternate
+
+  &::after
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    left: 0;
+    right: 0;
+    bottom: -20%;
+    background: radial-gradient(ellipse closest-side, rgba(21, 21, 21, 0.25) 0%,rgba(255,255,255,0) 100%);
+    z-index: -1;
+    animation floated-element-shadow 2s ease-in-out 0s infinite alternate
+
+.flips
+  *
+    margin 0
+  transition transform 600ms ease-out
+  &:hover
+    transform rotateY(720deg)
+
+@keyframes floating
+  from
+    transform translateY(0)
+  to
+    transform translateY(-25%)
+
+@keyframes floated-element-shadow
+  from
+    transform scaleX(1.0)
+  to
+    transform scaleX(0.5)
+
 .list-horizontal
   list-style-type none
   clearfix()
@@ -338,6 +409,17 @@ pre code span
   word-break break-all
 
 
+.figure-slides
+  position relative
+  width 100%
+  height 500px
+
+.figure-step
+  position absolute
+  top 0
+  left 0
+
+
 // Switches (toggle buttons)
 input.switch:empty
   display block
@@ -398,10 +480,19 @@ a.bookmarklet
 
 
 // pulling images left or right
+$image-margin-to-text = 20px
 img[alt$="right"]
   float right
 img[alt$="left"]
   float left
+.push-right
+  float right
+  margin-left $image-margin-to-text
+.push-left
+  float left
+  margin-right $image-margin-to-text
+
+
 
 // backdrop slides
 .blastoff.bespoke-backdrop-active

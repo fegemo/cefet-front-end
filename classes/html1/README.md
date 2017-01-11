@@ -5,9 +5,7 @@
 
 - Conversamos sobre a história da Internet e da Web
 - Vimos as proezas de Tim (Berners-Lee), o coração valente, ao criar
-  <figure class="portrait" style="float: right">
-    <img src="../../images/tim-berners-lee.jpg" alt="Foto de Tim Berners-Lee">
-  </figure>
+  ![Foto de Tim Berners-Lee](../../images/tim-berners-lee.jpg) <!-- {.portrait.push-right} -->
   - Seu primeiro protocolo (http)
   - Seu primeiro formato de arquivo (html)
   - Seu primeiro servidor http (CERN httpd)
@@ -98,10 +96,10 @@
 
 - Para marcar onde um parágrafo começa e onde ele termina
   ```html
-<p>
-    You'll find us right in the center of
-    downtown Webville. Come join us!
-</p>
+  <p>
+      You'll find us right in the center of
+      downtown Webville. Come join us!
+  </p>
   ```
 - Resultado: apenas um bloco de texto, como esperávamos
   <iframe width="100%" height="120" src="http://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
@@ -149,10 +147,10 @@
 ## A _tag_ &lt;html&gt;
 
 - Envolve todas* as outras _tags_
-  - *Exceto a _tag_ especial &lt;!doctype html&gt;
+  - *Exceto a _tag_ especial `<!DOCTYPE html>`
 - Dentro dela, **devem existir todas e apenas**, nesta ordem:
-  - &lt;head&gt;
-  - &lt;body&gt;
+  - `<head>...</head>`
+  - `<body>...</body>`
 
 ---
 ## A _tag_ &lt;head&gt;
@@ -164,13 +162,14 @@
   - Ícone
   - Inclusão de arquivos (`.css`, `.js`)
 - Trecho de código
-```
-&lt;html&gt;
-      &lt;head&gt;
-        &lt;title&gt;Este é o título que aparece na aba&lt;/title&gt;
-        ...
-      &lt;/head&gt;
-...
+
+```html
+<html>
+  <head>
+    <title>Este é o título que aparece na aba</title>
+    ...
+  </head>
+  ...
 ```
 
 ---
@@ -182,13 +181,13 @@
   - títulos e subtítulos (`<h1>...</h1>`)
   - imagens (`<img>`), etc.
 - Trecho de código
-```
-&lt;html&gt;
-    &lt;head&gt;...&lt;/head&gt;
-    &lt;body&gt;
-        ...
-    &lt;/body&gt;
-&lt;html&gt;
+```html
+<html>
+  <head>...</head>
+  <body>
+    ...
+  </body>
+<html>
 ```
 
 ---
@@ -212,15 +211,15 @@
 - Adicionamos um novo elemento: `<style>...</style>`
 - Podemos colocá-lo no &lt;head&gt; ou no &lt;body&gt;, mas a **melhor prática é
   no cabeçalho**
-```
-&lt;html&gt;
-      &lt;head&gt;
-        &lt;title&gt;Este é o título que aparece na aba&lt;/title&gt;
-        &lt;style type="text/css"&gt;
+```html
+<html>
+  <head>
+    <title>Título da página</title>
+    <style>
 
-        &lt;/style&gt;
-      &lt;/head&gt;
-      ...
+    </style>
+  </head>
+  ...
 ```
 
 ---

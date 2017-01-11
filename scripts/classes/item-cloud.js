@@ -38,7 +38,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       this.el = el;
       this.el.classList.add('itemcloud');
-      this.textItems = this.el.innerHTML.split('\n-');
+      this.textItems = this.el.innerHTML.split(/<li>/);
+      // this.textItems = this.el.innerHTML.split('\n-');
       this.buildCloudItems();
     }
 

@@ -45,26 +45,26 @@
 ## Na última aula... (cont.)
 
 - É possível declarar regras em CSS de três formas
-  1. _Inline_
+  1. _Inline_ (**na mesma linha**)
   ```html
   <p style="color: #fff">...</p>
   ```
-  2. _Embedded_
+  2. _Embedded_ (**embutido**)
   ```html
-    <style>
-        p {
-          color: #fff;
-        }
-    </style>
+  <style>
+    p {
+      color: #fff;
+    }
+  </style>
   ```
-  3. continua...
+  - continua...
 
 ---
 ## Na última aula... (cont.)
-1. _Linked_
-```html
+3. _Linked_ (arquivo **referenciado**)
+  ```html
   <link rel="stylesheet" href="arquivo-de-estilos.css" />
-```
+  ```
 
 ---
 # Hoje veremos
@@ -78,7 +78,9 @@
 1. DOCTYPE (versão do HTML)
 
 ---
-# **Editores de Texto** e **<abbr title="Integrated Development Environment">IDE</abbr>s**
+# **Editores de Texto** e **IDE**s
+
+*[IDE]: Integrated Development Environment**
 
 ---
 ## Como ser mais **produtivo**
@@ -266,9 +268,9 @@ Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
 
   <img src="../../images/humble-imagemap.png" border="0" width="600" height="420" orgWidth="600" orgHeight="420" usemap="#image-maps-2014-10-22-192942" alt="" />
   <map name="image-maps-2014-10-22-192942" id="ImageMapsCom-image-maps-2014-10-22-192942">
-  <area  alt="O desenho de uma mulher" title="Jogo Syberia" href="https://www.google.com.br/search?q=syberia+game&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=t0JIVLyYC_WCsQSk-4KACA&ved=0CAgQ_AUoAQ&biw=1366&bih=643" shape="rect" coords="125,19,182,161" style="outline:none;" target="_self"     />
-  <area  alt="Um soldado" title="Neuroshima Hex" href="https://www.google.com.br/search?q=Neuroshima+Hex+game&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=yEJIVPurEenksAS91YGoCg&ved=0CAgQ_AUoAQ&biw=1366&bih=643" shape="poly" coords="274,29,260,42,255,61,251,80,253,109,263,113,267,123,237,149,276,155,340,154,335,138,289,133,289,122,290,104,292,89,298,82,303,98,319,83,339,71,325,55,307,53,303,30" style="outline:none;" target="_self"     />
-  <area  alt="Um bardo bárbaro" title="Bardbarian" href="https://www.google.com.br/search?q=bardbarian+game&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=u0JIVNaMHoa1sQSm4oKYCg&ved=0CAkQ_AUoAg&biw=1366&bih=643" shape="poly" coords="439,20,411,26,387,42,371,66,365,94,371,122,387,146,411,162,439,168,467,162,491,146,507,122,513,94,507,66,491,42,467,26" style="outline:none;" target="_self"     />
+  <area  alt="O desenho de uma mulher" title="Jogo Syberia" href="https://www.google.com.br/search?q=syberia+game&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=t0JIVLyYC_WCsQSk-4KACA&ved=0CAgQ_AUoAQ&biw=1366&bih=643" shape="rect" coords="125,19,182,161" style="outline:none;" />
+  <area  alt="Um soldado" title="Neuroshima Hex" href="https://www.google.com.br/search?q=Neuroshima+Hex+game&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=yEJIVPurEenksAS91YGoCg&ved=0CAgQ_AUoAQ&biw=1366&bih=643" shape="poly" coords="274,29,260,42,255,61,251,80,253,109,263,113,267,123,237,149,276,155,340,154,335,138,289,133,289,122,290,104,292,89,298,82,303,98,319,83,339,71,325,55,307,53,303,30" style="outline:none;" />
+  <area  alt="Um bardo bárbaro" title="Bardbarian" href="https://www.google.com.br/search?q=bardbarian+game&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=u0JIVNaMHoa1sQSm4oKYCg&ved=0CAkQ_AUoAg&biw=1366&bih=643" shape="poly" coords="439,20,411,26,387,42,371,66,365,94,371,122,387,146,411,162,439,168,467,162,491,146,507,122,513,94,507,66,491,42,467,26" style="outline:none;" />
   </map>
 
 ---
@@ -301,18 +303,18 @@ Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
 ---
 ## Meta _tags_
 
-```
-&lt;html&gt;
-	&lt;head&gt;
-	  &lt;title&gt; Aprendendo sobre as meta tags &lt;/title&gt;
-	  &lt;meta name="author" content="Flávio"&gt;
-	  &lt;meta name="description" content="Textão explicativo"&gt;
-	  &lt;meta name="keywords" content="web, css, html, js"&gt;
-	&lt;/head&gt;
-	...
+```html
+<html>
+  <head>
+    <title> Aprendendo sobre as meta tags </title>
+    <meta name="author" content="Flávio">
+    <meta name="description" content="Textão explicativo">
+    <meta name="keywords" content="web, css, html, js">
+  </head>
+  ...
 ```
 
-- _Tags_ meta são elementos _void_
+- As _tags_ meta são elementos _void_
 - Referência na [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
 
 ---
@@ -331,7 +333,8 @@ Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
 ## Meta _tag_: **description**
 
 - Um breve e preciso texto sumário do conteúdo da página
-- Alguns navegadores usam isto como a descrição da página quando adicionada aos favoritos
+- Alguns navegadores usam isto como a descrição da página quando 
+  adicionada aos favoritos
 - Exemplo:
   ```html
   <meta name="description" content="Meet the global face of the world's #1 games media brand.">
@@ -346,12 +349,14 @@ Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
     ```html
     <meta name="author" content="Flávio Coutinho">
     ```
-- `robots`: indicar a buscadores (_crawlers_) se eles devem indexar a página ou não
+- `robots`: indicar a motores de busca (e.g., Google) se eles devem indexar 
+  a página ou não
   - Exemplo:
     ```html
     <meta name="robots" content="index,follow">
     ```
-  - A forma mais recente é usar um arquivo [/robots.txt com descrições](http://www.robotstxt.org/orig.html)
+  - A forma mais recente é usar um arquivo 
+    [/robots.txt com descrições](http://www.robotstxt.org/orig.html)
 
 ---
 ## Meta _tag_: **refresh**
@@ -390,7 +395,7 @@ Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
   <meta name="charset" content="ISO-8859-1">
   ```
   - Opções de codificação são gerenciadas pela IANA e [podem ser vistas aqui](http://www.iana.org/assignments/character-sets/character-sets.xhtml)
-- <img src="../../images/encoding-error.png" style="height: 150px; float:right;">
+- ![Uma página web com caracteres não reconhecidos devido a um problema de codificação](../../images/encoding-error.png) <!-- {.push-right style="height: 150px"} -->
   Erro de codificação:
   - Deve-se manter a mesma codificação do banco de dados e da página
 
@@ -404,30 +409,30 @@ Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
 - Especifica para o navegador qual a versão do `html` que estamos usando
 - Aparece como a primeira "tag" em um arquivo `html`
 - Formato
-  ```
-  &lt;!DOCTYPE ... &gt;
+  ```html
+  <!DOCTYPE ... >
   ```
 ---
 ## Evolução do DOCTYPE
 
 - HTML 4.01
-  ```
-  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd"&gt;
+  ```xml
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
   ```
 - XHTML 1.1
-  ```
-  &lt;!DOCTYPE html
+  ```xml
+  <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
   ```
 
 ---
 ## DOCTYPE hoje
 
 - HTML5
-  ```
-  &lt;!doctype html&gt;
+  ```xml
+  <!DOCTYPE html>
   ```
   ![Bebezinho fazendo cara de que gostou do que foi falado](../../images/baby-success.jpg)
 

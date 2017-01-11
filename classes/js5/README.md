@@ -1,5 +1,5 @@
 <!--
-backdrop: blastoff
+{ "backdrop": "blastoff" }
 -->
 
 # Javascript - Parte 5
@@ -149,7 +149,7 @@ window.onload = function() {
 
 ---
 <!--
-scripts: https://maps.googleapis.com/maps/api/js?API_KEY=AIzaSyCSdP45elEaQN0CIIWpAfMq6XIRGhcICM4&callback=noop
+{ "scripts": "https://maps.googleapis.com/maps/api/js?API_KEY=AIzaSyCSdP45elEaQN0CIIWpAfMq6XIRGhcICM4&callback=noop" }
 -->
 
 ## O resultado
@@ -253,17 +253,17 @@ function addMarker(map, latlong, title, content) {
 ## Métodos de desenho do contexto gráfico
 
 1. ```js
-  fillRect(x, y, width, height)
-  ```
-  Desenha um retângulo preenchido (com cor)
+   fillRect(x, y, width, height)
+   ```
+   Desenha um retângulo preenchido (com cor)
 1. ```js
-  strokeRect(x, y, width, height)
-  ```
-  Desenha um contorno retangular
+   strokeRect(x, y, width, height)
+   ```
+   Desenha um contorno retangular
 1. ```js
-  clearRect(x, y, width, height)
-  ```
-  Apaga a área retangular especificada, tornando-a transparente
+   clearRect(x, y, width, height)
+   ```
+   Apaga a área retangular especificada, tornando-a transparente
 
 ---
 ## Exemplo
@@ -295,19 +295,19 @@ function desenhaRetanguloFurado() {
 ## Métodos de **gerenciamento de trajetórias**
 
 1. ```js
-  beginPath()
-  ```
-  Cria uma nova trajetória (_path_)
+   beginPath()
+   ```
+   Cria uma nova trajetória (_path_)
 1. ```js
-  closePath()
-  ```
-  Encerra a trajetória
+   closePath()
+   ```
+   Encerra a trajetória
 1. ```js
-  stroke()
-  fill()
-  ```
-  Desenha a forma especificada pela trajetória como um contorno
-  (`stroke`) ou como uma forma preenchida (`fill`)
+   stroke()
+   fill()
+   ```
+   Desenha a forma especificada pela trajetória como um contorno
+   (`stroke`) ou como uma forma preenchida (`fill`)
 
 ---
 ## Métodos de **desenho de segmentos de trajetórias**
@@ -419,7 +419,7 @@ ctx.stroke();
 ---
 ## Exemplo na Phaser
 
-[![Exemplo de space invaders feito na Phaser](../../images/phaser-example)](http://phaser.io/examples/v2/games/invaders)
+[![Exemplo de space invaders feito na Phaser](../../images/phaser-example.png)](http://phaser.io/examples/v2/games/invaders)
 
 ---
 ## Professor, já posso usar **Canvas**??
@@ -431,7 +431,7 @@ ctx.stroke();
 
 ---
 <!--
-scripts: ['../../scripts/classes/draganddrop.min.js']
+{ "scripts": ["../../scripts/classes/draganddrop.min.js"] }
 -->
 
 ## Exemplo de _Drag and Drop_
@@ -477,7 +477,7 @@ scripts: ['../../scripts/classes/draganddrop.min.js']
     this.classList.add('element-over-me');
     e.dataTransfer.dropEffect = 'move';
   });
- ```
+  ```
 
 ---
 ## 3º passo para _Drag and Drop_
@@ -487,7 +487,7 @@ scripts: ['../../scripts/classes/draganddrop.min.js']
   ```js
   dragTarget.addEventListener('drop', function(e) {
     // faz algo com o elemento solto aqui
-    // ID do elemento solto: e.dataTransfer.getData('text/plain');
+    // ID do elem. solto: e.dataTransfer.getData('text/plain');
     // ...
     dragTarget.classList.remove('element-over-me');
   });
@@ -543,7 +543,7 @@ scripts: ['../../scripts/classes/draganddrop.min.js']
 
 ---
 <!--
-backdrop: oldtimes
+{ "backdrop": "oldtimes" }
 -->
 ## _History_ API, **pré-HTML5**
 
@@ -616,13 +616,12 @@ backdrop: oldtimes
 # Referências
 
 1. Geolocation
-  - http://diveintohtml5.info/geo.html
+   - http://diveintohtml5.info/geo.html
 1. Canvas
-  - https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
-  - http://diveintohtml5.info/canvas.html
-  - https://developer.mozilla.org/pt-BR/docs/Web/HTML/Canvas
+   - https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+   - http://diveintohtml5.info/canvas.html
 1. Drag and Drop
-  - https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_and_drop
+   - https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Drag_and_drop
 1. History API
-  - https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
-  - http://diveintohtml5.info/history.html
+   - https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
+   - http://diveintohtml5.info/history.html

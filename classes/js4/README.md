@@ -142,8 +142,7 @@
 ## Armazenando objetos serializados
 
 - Na verdade, o Javascript sabe **serializar e desserializar** objetos em
-  _Strings_, usando um formato que se chama
-  <abbr title="Javascript Object Notation">JSON</abbr>
+  _Strings_, usando um formato que se chama JSON
     - JSON é Javascript Object Notation
   - Salvando:
     ```js
@@ -156,11 +155,17 @@
     jogo = JSON.parse(jogo);
     ```
 
+*[JSON]: JavaScript Object Notation*
+
 ---
 # JSON
 
+*[JSON]: JavaScript Object Notation*
+
 ---
 ## JSON
+
+*[JSON]: JavaScript Object Notation*
 
 - _Javascript Object Notation_ é um formato leve de troca de dados
 - Pode ser usado para troca de informação entre programas escritos em
@@ -181,15 +186,15 @@
 ---
 ## JSON
 
+*[JSON]: JavaScript Object Notation*
+
 - O formato possui seis tipos de valores:
-  <ul class="multi-column-list-4">
-    <li>Objetos</li>
-    <li>Arrays</li>
-    <li>`String`</li>
-    <li>`Number`</li>
-    <li>`Boolean`</li>
-    <li>`null`</li>
-  </ul>
+  - Objetos
+  - Arrays
+  - `String`
+  - `Number`
+  - `Boolean`
+  - `null` <!-- {ul:.multi-column-list-4} -->
 - Um objeto JSON é como um objeto Javascript: um container não ordenado de
   propriedades
   - Uma chave é sempre uma string entre aspas duplas
@@ -199,6 +204,9 @@
 
 ---
 ## **JSON** vs XML
+
+*[JSON]: JavaScript Object Notation*
+*[XML]: eXtensible Markup Language*
 
 ```json
 [
@@ -218,6 +226,9 @@
 
 ---
 ## JSON vs **XML**
+
+*[JSON]: JavaScript Object Notation*
+*[XML]: eXtensible Markup Language*
 
 ```xml
 <livros>
@@ -280,9 +291,10 @@
 ---
 # AJAX
 
-<figure class="portrait">
-  <img src="../../images/ajax-troy.jpg" alt="Foto do personagem Ajax no filme Tróia">
-</figure>
+*[AJAX]: Asynchronous JavaScript and XML*
+*[XML]: eXtensible Markup Language*
+
+![Foto do personagem Ajax no filme Tróia](../../images/ajax-troy.jpg) <!-- {.portrait} -->
 
 ---
 ## Problema
@@ -307,12 +319,15 @@
   - Surgiu no Internet Explorer, no ano 2000, por [Jesse Gareth](http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/)
 
 ---
-## <abbr title="Asynchronous JavaScript and XML">AJAX</abbr>
+## AJAX
+
+*[AJAX]: Asynchronous JavaScript and XML*
+*[XML]: eXtensible Markup Language*
 
 - É a sigla para _Asynchronous JavaScript and XML_
 - É uma operação realizada via Javascript no navegador
 - Originalmente, usava-se Javascript para fazer uma requisição de dados ao
-  servidor, que respondia no formato <abbr title="eXtensible Markup Language">XML<abbr>
+  servidor, que respondia no formato XML
   - Hoje em dia, responde-se com qualquer objeto reconhecido pelo navegador
 - Usamos um objeto do tipo `window.XMLHttpRequest` para fazer a requisição e
   receber a resposta
@@ -366,9 +381,7 @@
 ---
 ## Jake Weary
 
-<figure class="portrait">
-  <img src="../../images/jake-weary.jpg" alt="Foto do ator Jake Weary">
-</figure>
+![Foto do ator Jake Weary](../../images/jake-weary.jpg) <!-- {.portrait} -->
 
 - Criado em 1990 na cidade de Trenton, New Jersey
 - Criado por A.C. Weary, juntamente com Kim Zimmer, ambos atores
@@ -378,12 +391,11 @@
 ---
 ## jQuery
 
-<figure class="portrait">
-  <img src="../../images/jquery-logo.png" alt="Foto do ator Jake Weary">
-</figure>
+![Logomarca da biblioteca jQuery](../../images/jquery-logo.png) <!-- {.portrait} -->
 
 - Criado em 2006 na cidade de Nova York
-- Criado por John Resig, um engenheiro de software e empreendedor americano
+- ![Foto do autor da biblioteca jQuery, John Resig](../../images/john-resig.jpg) <!-- {.portrait.push-right} -->
+  Criado por John Resig, um engenheiro de software e empreendedor americano
 - Usado em páginas Web, originalmente para facilitar a interação com o DOM de
   forma _cross-browser_
 
@@ -415,9 +427,10 @@
 ---
 ## AJAX mais facinho com jQuery
 
-- O jQuery possui uma abstração do objeto XMLHttpRequest para agilizar a
+- O jQuery possui uma abstração do objeto `XMLHttpRequest` para agilizar a
   realização de requisições AJAX
   - Veja como ficaria o exemplo do botão "curtir" usando jQuery:
+
     ```js
     $.ajax({
       url: '/curtir/3434',
@@ -455,9 +468,9 @@ página via o protocolo file:// que proíbe o uso de requisições AJAX, dentre
 outras coisas
 - Para contornar a restrição, precisamos hospedar nosso arquivo em um servidor
 Web e acessar a página usando o protocolo http
-1. Navegue até seu diretório com o arquivo index.html **pelo terminal**
-1. Use um servidor http simples em python
-```
-$ python -m SimpleHTTPServer
-```
-1. Acesse http://localhost:8000 no navegador
+  1. Navegue até seu diretório com o arquivo index.html **pelo terminal**
+  1. Use um servidor http simples em python
+     ```
+     $ python -m SimpleHTTPServer
+     ```
+  1. Acesse http://localhost:8000 no navegador

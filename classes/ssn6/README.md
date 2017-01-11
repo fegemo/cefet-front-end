@@ -19,8 +19,11 @@
   1. Gerenciadores de conteúdo (CMS)
   1. Gerenciadores de relação com cliente (CRM)
   1. Carrinhos de compra
-- Requerem o uso de <abbr title="Structured Query Language">SQL</abbr>
+- Requerem o uso de SQL
 
+*[CMS]: Content Management System*
+*[CRM]: Customer Relationship Manager*
+*[SQL]: Structured Query Language*
 ---
 # MySQL
 
