@@ -66,7 +66,7 @@ página web.
   ```
 - Citação **"em bloco"**:
   <div>
-    <blockquote>Tô quebrado, peixe</blockquote> - Romário negando-se a
+    <blockquoter>Tô quebrado, peixe</blockquoter> - Romário negando-se a
     pagar mais de R$ 3 mil de pensão
   </div>
 
