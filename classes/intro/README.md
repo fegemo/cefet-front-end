@@ -13,7 +13,7 @@
   :::
 - ::: figure .portrait
   ![](../../images/bob-kahn.jpg)
-  **Vint Cerf**, "pai" dos protocolos TCP/IP
+  **Bob Khan**, "pai" dos protocolos TCP/IP
   :::
 - ::: figure .portrait
   ![](../../images/tim-berners-lee.jpg)
@@ -41,6 +41,7 @@ _(Charles Herzfeld, diretor da ARPA)_
 - A primeira rede a utilizar a família de protocolos TCP/IP
 
 ---
+<!-- { "styles": ["../../styles/classes/bubble-chat.min.css"] } -->
 22:30 de 29 de Outubro de 1969:
 
 <div class="bubble-chat" style="height: 300px; overflow: auto; border: 1px solid gray; background-color: #eda">

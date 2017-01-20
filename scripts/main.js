@@ -1,7 +1,5 @@
-// Require Node modules in the browser thanks to Browserify: http://browserify.org
-
 var bespoke = require('bespoke'),
-    fancy = require('bespoke-theme-fancy'),
+    beachday = require('bespoke-theme-beachday'),
     keys = require('bespoke-keys'),
     touch = require('bespoke-touch'),
     bullets = require('bespoke-bullets'),
@@ -68,6 +66,12 @@ bespoke.from('article', [
       var s = document.createElement('style');
       s.innerHTML = styleString;
       document.head.appendChild(s);
+    },
+    slideHash: function(slide, value) {
+      slide.setAttribute('data-bespoke-hash', value);
+    },
+    layout: function(slide, value) {
+      slide.classList.add('layout-' + value);
     }
   }, [
     [
@@ -110,7 +114,7 @@ bespoke.from('article', [
     markdownItAbbr,
     markdownItDecorate
   ]),
-  fancy(),
+  beachday({ insertFonts: false }),
   keys(),
   touch(),
   overview({ insertStyles: false }),

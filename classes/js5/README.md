@@ -149,13 +149,16 @@ window.onload = function() {
 
 ---
 <!--
-{ "scripts": "https://maps.googleapis.com/maps/api/js?API_KEY=AIzaSyCSdP45elEaQN0CIIWpAfMq6XIRGhcICM4&callback=noop" }
+  {
+    "scripts": "https://maps.googleapis.com/maps/api/js?API_KEY=AIzaSyCSdP45elEaQN0CIIWpAfMq6XIRGhcICM4&callback=noop",
+    "embeddedStyles": ".gmap { border: 1px solid silver; width: 100%; height: 300px; }"
+  }
 -->
 
 ## O resultado
 
 <button type="button" onclick="function showMap(a){var b=a.coords,c={zoom:12,center:{lat:b.latitude,lng:b.longitude}},d=document.getElementById('gmaps-example');map=new window.google.maps.Map(d,c)}var map;navigator.geolocation&&navigator.geolocation.getCurrentPosition(showMap);">Carregar mapa</button>
-<div id="gmaps-example" class="gmap" style="border: 1px dotted rgba(0,0,0,.3);">
+<div id="gmaps-example" class="gmap">
   O mapa será carregado aqui...
 </div>
 
@@ -179,7 +182,7 @@ function addMarker(map, latlong, title, content) {
 ## O resultado com o marcador
 
 <button type="button" onclick="function showMap2(a){var b=a.coords,c={zoom:12,center:{lat:b.latitude,lng:b.longitude}},d=document.getElementById('gmaps-example-2');map=new google.maps.Map(d,c);var e={position:{lat:b.latitude,lng:b.longitude},map:map,title:'Aqui estamos',clickable:!1};new google.maps.Marker(e)}var map;navigator.geolocation&&navigator.geolocation.getCurrentPosition(showMap2);">Carregar mapa</button>
-<div id="gmaps-example-2" class="gmap" style="border: 1px dotted rgba(0,0,0,.3);">
+<div id="gmaps-example-2" class="gmap">
   O mapa será carregado aqui...
 </div>
 
@@ -431,7 +434,10 @@ ctx.stroke();
 
 ---
 <!--
-{ "scripts": ["../../scripts/classes/draganddrop.min.js"] }
+{ 
+  "scripts": ["../../scripts/classes/drag-and-drop.min.js"],
+  "styles": ["../../styles/classes/drag-and-drop.min.css"]
+}
 -->
 
 ## Exemplo de _Drag and Drop_

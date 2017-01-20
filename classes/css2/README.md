@@ -4,7 +4,7 @@
 # Roteiro de hoje
 
 1. **Especificidade** de seletores
-1. Família de propriedades: **background-***
+1. [Família de propriedades: **background-***](#propriedades-background)
 1. Família de propriedades: **border-***
 1. Cores e Gradientes
 1. Família de propriedades: **text-***
@@ -127,6 +127,11 @@ p strong em { }           /* 003 */
 </article>
 
 ---
+<!--
+{
+  "slideHash": "propriedades-background"
+}
+-->
 # Propriedade **background**
 
 ---
