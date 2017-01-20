@@ -100,7 +100,7 @@ Veja a bibliografia básica e a complementar.
 
 <!-- {p:.content} -->
 ---
-<!-- { "styles": ["../styles/classes/books.min.css"] } -->
+<!-- { "styles": ["styles/classes/books.min.css"] } -->
 ## **Livro texto** da parte 1
 
 ::: figure .book
