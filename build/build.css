@@ -1,0 +1,409 @@
+/*
+
+Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #23241f;
+}
+
+.hljs,
+.hljs-tag,
+.hljs-subst {
+  color: #f8f8f2;
+}
+
+.hljs-strong,
+.hljs-emphasis {
+  color: #a8a8a2;
+}
+
+.hljs-bullet,
+.hljs-quote,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal,
+.hljs-link {
+  color: #ae81ff;
+}
+
+.hljs-code,
+.hljs-title,
+.hljs-section,
+.hljs-selector-class {
+  color: #a6e22e;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-attr {
+  color: #f92672;
+}
+
+.hljs-symbol,
+.hljs-attribute {
+  color: #66d9ef;
+}
+
+.hljs-params,
+.hljs-class .hljs-title {
+  color: #f8f8f2;
+}
+
+.hljs-string,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-variable {
+  color: #e6db74;
+}
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background-color: #d6def8;
+}
+#page-header {
+  padding: 0;
+  font-size: 1vw;
+  transition: height 200ms ease-out, transform 200ms ease-out;
+  transform: translate3d(0, -0.5vw, 0);
+}
+#page-header:hover {
+  transform: translate3d(0, 0, 0);
+}
+#page-header:hover + #presentation-container {
+  transform: translate3d(0, 6vw, 0);
+}
+@media screen and (orientation: portrait) {
+  #page-header {
+    font-size: 1.25vh;
+  }
+  #page-header:hover + #presentation-container {
+    transform: translate3d(0, 12vh, 0);
+  }
+}
+#page-title {
+  margin: 0;
+  vertical-align: top;
+}
+#page-author {
+  display: inline-block;
+  float: right;
+  margin: 8px;
+}
+#page-author-name {
+  display: none;
+}
+.page-author-picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+#presentation-container {
+  position: absolute;
+  top: 0;
+  height: calc(100vh - 1vw);
+  width: 100%;
+  transform: translate3d(0, 1vw, 0);
+  transition: transform 300ms ease;
+}
+.blastoff.bespoke-backdrop-active {
+  background-image: url("../images/icanhaz-blastoff.gif");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.oldtimes.bespoke-backdrop-active {
+  background-image: url("../images/old-movie-texture.gif");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.resolution {
+  opacity: 0;
+  transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(100%);
+}
+.resolution.resolution-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tutorial {
+  position: absolute;
+  right: 1vw;
+  bottom: 2em;
+  padding: 0.5em 0.75em;
+  font-size: 2vw;
+  width: 13em;
+  border-radius: 0.4em;
+  border: 1px solid rgba(0,0,0,0.3);
+  background-color: rgba(255,255,255,0.8);
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+  transition: opacity 300ms ease-out, transform 400ms cubic-bezier(0, 0, 0.53, 1.64);
+  opacity: 0;
+  transform: scale(0.5);
+  z-index: 1;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tutorial.tutorial-on {
+  opacity: 1;
+  transform: scale(1);
+  animation: bounce 1s ease-out 0s infinite alternate;
+}
+@media screen and (orientation: portrait) {
+  .tutorial {
+    font-size: 2vh;
+  }
+}
+@keyframes bounce {
+  from {
+    right: 1vw;
+  }
+  to {
+    right: 2vw;
+  }
+}
+/* fonts for browser icons (used with permission from IcoMoon.io) */
+@font-face {
+  font-family: 'agents';
+  src: url('../fonts/agents.eot');
+  src: url('../fonts/agents.eot?#iefix') format('embedded-opentype'), url('../fonts/agents.svg#agents') format('svg'), url('../fonts/agents.woff') format('woff'), url('../fonts/agents.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.caniuse {
+  padding: 10px;
+  border: 1px solid silver;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 380px;
+  display: inline-block;
+}
+.caniuse h1,
+.caniuse h2,
+.caniuse h3,
+.caniuse h4,
+.caniuse .caniuse-title,
+.caniuse p {
+  line-height: 1.4;
+  margin: 5px;
+  text-align: center;
+}
+.caniuse h1,
+h1.caniuse-title {
+  font-size: 1.8em;
+}
+.caniuse h2,
+h2.caniuse-title {
+  font-size: 1.4em;
+}
+.caniuse h3,
+h3.caniuse-title {
+  font-size: 1.2em;
+}
+.caniuse p {
+  font-size: 0.8em;
+}
+.caniuse .status {
+  font-style: italic;
+}
+.caniuse .agents,
+.caniuse .legend {
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: hidden;
+  width: auto;
+  list-style-type: none;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  width: auto;
+  margin: 0 auto;
+  max-width: 400px;
+  clear: left;
+}
+.caniuse .agents > li,
+.caniuse .legend > li {
+  float: left;
+}
+.caniuse .agents li,
+.caniuse .legend li {
+  box-shadow: inset 0 -5px 2px rgba(175, 175, 195, 0.02);
+  float: left;
+  margin-right: 1.2024048096192386%;
+  padding: 5px 0;
+  text-align: center;
+  width: 19.03807615230461%;
+}
+.caniuse .agents li.y,
+.caniuse .legend li.y,
+.caniuse .agents li.x,
+.caniuse .legend li.x {
+  background: #cf9;
+}
+.caniuse .agents li.a,
+.caniuse .legend li.a {
+  background: #cd5;
+}
+.caniuse .agents li.p,
+.caniuse .legend li.p {
+  background: #aaf;
+}
+.caniuse .agents li.n,
+.caniuse .legend li.n {
+  background: #f99;
+}
+.caniuse .agents li.u,
+.caniuse .legend li.u {
+  background: #ccc;
+}
+.caniuse .agents li:last-child,
+.caniuse .legend li:last-child {
+  margin-right: 0;
+}
+.caniuse .agents li {
+  font-size: 1em;
+  /* android */
+
+  /* chrome */
+
+  /* firefox */
+
+  /* ie */
+
+  /* ios */
+
+  /* opera */
+
+  /* safari */
+
+  /* hover states */
+
+}
+.caniuse .agents li:hover,
+.caniuse .agents li:hover:before {
+  color: #fff;
+  text-shadow: 0 1px 0 #aaa;
+}
+.caniuse .agents li:before {
+  color: #555;
+  font-size: 2em;
+}
+.caniuse .agents li[class^="icon-"]:before,
+.caniuse .agents li [class*=" icon-"]:before {
+  font-family: 'agents';
+  font-style: normal;
+  speak: none;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+.caniuse .agents li.icon-android:before {
+  content: "\e006";
+}
+.caniuse .agents li.icon-chrome:before,
+.caniuse .agents li.icon-and_chr:before {
+  content: "\e004";
+}
+.caniuse .agents li.icon-firefox:before,
+.caniuse .agents li.icon-and_ff:before {
+  content: "\e000";
+}
+.caniuse .agents li.icon-ie:before,
+.caniuse .agents li.icon-windows:before {
+  content: "\e001";
+  /* alternate windows icon: content: "\e007" */
+
+}
+.caniuse .agents li.icon-ios_saf:before {
+  content: "\e005";
+}
+.caniuse .agents li.icon-opera:before,
+.caniuse .agents li.icon-op_mini:before,
+.caniuse .agents li.icon-op_mob:before {
+  content: "\e002";
+}
+.caniuse .agents li.icon-safari:before {
+  content: "\e003";
+}
+.caniuse .agents li.icon-ios_saf:hover,
+.caniuse .agents li.icon-safari:hover {
+  background: #869abb;
+}
+.caniuse .agents li.icon-android:hover {
+  background: #97c03d;
+}
+.caniuse .agents li.icon-chrome:hover,
+.caniuse .agents li.icon-and_chr:hover {
+  background: #40ace8;
+}
+.caniuse .agents li.icon-firefox:hover,
+.caniuse .agents li.icon-and_ff:hover {
+  background: #dc6f26;
+}
+.caniuse .agents li.icon-ie:hover,
+.caniuse .agents li.icon-windows:hover {
+  background: #1a4cbd;
+}
+.caniuse .agents li.icon-opera:hover,
+.caniuse .agents li.icon-op_mini:hover,
+.caniuse .agents li.icon-op_mob:hover {
+  background: #f0232a;
+}
+.caniuse .legend {
+  border-top: 1px dotted #aaa;
+  margin: 20px auto 10px;
+  padding-top: 10px;
+}
+.caniuse .legend li {
+  font-size: 0.8em;
+}
+.caniuse .legend li.key {
+  font-weight: bold;
+}
+.caniuse .version {
+  display: block;
+}
+
+@media print {
+  #page-header {
+    display: none;
+  }
+  #presentation-container {
+    height: auto;
+  }
+  .bespoke-slide {
+    overflow-y: hidden;
+  }
+}
