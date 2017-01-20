@@ -1,0 +1,91 @@
+#dnd-example-container
+  display block
+  width 100%
+  text-align center
+
+.anim-dashes
+  background-color silver
+  background-image repeating-linear-gradient(45deg, transparent, transparent 10px, #ffffff 10px, #ffffff 20px)
+  width 392px
+  margin-left auto
+  margin-right auto
+  padding 2px
+  border-radius 5px
+
+.anim-dashes-blank
+  background-color white
+  border-radius 5px
+  width 100%
+  height 100%
+
+@keyframes dashes
+  from
+    background-position: 0 0
+  to
+    background-position: 196px 0
+
+
+#dnd-target
+  height 200px
+  margin auto
+  position relative
+  opacity .6
+  transition all 200ms
+  &.dnd-over
+    animation dashes 5s linear infinite
+    border-color red
+    background-color: red
+    opacity .9
+
+#dnd-sources
+  display block
+  & > ul
+    width 100%
+    padding 0
+  & > ul li
+    display inline-block
+
+.dnd-draggable
+  width 64px
+  height 64px
+  text-indent -9999px
+  overflow hidden
+  cursor move
+  user-select none
+
+  &#johnny
+    background-image url(../../images/toshl-johnny.png)
+  &#dmitry
+    background-image url(../../images/toshl-dmitry.png)
+  &#ales
+    background-image url(../../images/toshl-ales.png)
+  &#andraz
+    background-image url(../../images/toshl-andraz.png)
+  &#logar
+    background-image url(../../images/toshl-logar.png)
+
+  &.dnd-destroying
+    position absolute
+    top 50%
+    margin-top -32px
+    left 50%
+    margin-left -32px
+    animation dying 2s
+
+    &:nth-child(2)
+      left calc(50% - 160px)
+    &:nth-child(3)
+      left calc(50% - 80px)
+    &:nth-child(4)
+      left 50%
+    &:nth-child(5)
+      left calc(50% + 80px)
+    &:nth-child(6)
+      left calc(50% + 160px)
+
+@keyframes dying
+  from
+    transform none
+  to
+    transform scale(.3) rotate(1080deg)
+    opacity 0

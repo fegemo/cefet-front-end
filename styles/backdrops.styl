@@ -1,0 +1,20 @@
+// backdrop slides
+.blastoff.bespoke-backdrop-active
+  background-image url(../images/icanhaz-blastoff.gif)
+  background-size cover
+  width 100%
+  height 100%
+
+.oldtimes.bespoke-backdrop-active
+  background-image url(../images/old-movie-texture.gif)
+  background-size cover
+  width 100%
+  height 100%
+
+.resolution
+  opacity  0
+  transition all 100ms cubic-bezier(0.175, 0.885, 0.320, 1.275)
+  transform translateY(100%)
+  &.resolution-shown
+    opacity 1
+    transform translateY(0)

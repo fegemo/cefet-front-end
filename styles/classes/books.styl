@@ -1,0 +1,430 @@
+// 1. book with gutter (amazon style)
+$book-gutter-width = 30px
+$book-height = 250px
+
+.book-cover-container
+  position relative
+  perspective 400px
+  transform-style preserve-3d
+  transform rotateY(0)
+  transform-origin center center
+  transition transform 300ms ease-out
+
+  &:hover
+    transform rotateY(40deg)
+
+.book-cover
+  height $book-height
+
+.book-left
+  position absolute
+  top 0
+  left - $book-gutter-width
+  width $book-gutter-width
+  height $book-height
+  transform rotateY(-90deg)
+  background-color black
+  transform-origin right center 0
+  &.book-light
+    background-color beige
+
+
+// 2. book with pages
+.book-btn
+  display inline-block
+  text-transform uppercase
+  text-decoration none
+  border 2px solid black
+  margin-top 100px
+  font-size .7em
+  font-weight 700
+  padding .1em .4em
+  margin-left 40px
+  text-align center
+  transition color .3s, border-color .3s
+
+.book-btn:hover
+  border-color #db4800
+  color #db4800
+
+.book
+  position relative
+  width 160px
+  height 220px
+  perspective 1000px
+  transform-style preserve-3d
+  margin 20px
+  margin-bottom 40px
+  margin-left 60px
+
+.book ul
+  list-style none
+  color transparent
+
+.hardcover_front li:first-child
+  background-color #eee
+  backface-visibility hidden
+
+.hardcover_front li:last-child
+.hardcover_back li:first-child
+.hardcover_back li:last-child
+  background #fffbec
+
+.book_spine li:first-child
+  background #eee
+
+.book_spine li:last-child
+  background #333
+
+.hardcover_front li:first-child:after
+.hardcover_front li:first-child:before
+.hardcover_front li:last-child:after
+.hardcover_front li:last-child:before
+.hardcover_back li:first-child:after
+.hardcover_back li:first-child:before
+.hardcover_back li:last-child:after
+.hardcover_back li:last-child:before
+.book_spine li:first-child:after
+.book_spine li:first-child:before
+.book_spine li:last-child:after
+.book_spine li:last-child:before
+  background #999
+
+.page > li
+  background linear-gradient(to right, #e1ddd8 0, #fffbf6 100%)
+  box-shadow inset 0 -1px 2px rgba(50,50,50,0.1),inset -1px 0 1px rgba(150,150,150,0.2)
+  border-radius 0 5px 5px 0
+
+
+.hardcover_front
+  transform rotateY(-34deg) translateZ(8px)
+  z-index 100
+
+.hardcover_back
+  transform rotateY(-15deg) translateZ(-8px)
+
+
+.page
+  for i in (1..5)
+    li:nth-child({i})
+      transform rotateY(-26deg - i * 2)
+
+.hardcover_front
+.hardcover_back
+.book_spine
+.hardcover_front li
+.hardcover_back li
+.book_spine li
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  transform-style preserve-3d
+
+
+.hardcover_front
+.hardcover_back
+  transform-origin 0 100%
+
+
+.hardcover_front
+  transition: all .8s ease,z-index .6s
+
+.hardcover_front li:first-child
+  cursor: default
+  user-select none
+  transform translateZ(2px)
+
+.hardcover_front li:last-child
+  transform rotateY(180deg) translateZ(2px)
+
+.hardcover_back li:first-child
+  transform translateZ(2px)
+
+.hardcover_back li:last-child
+  transform translateZ(-2px)
+
+.hardcover_front li:first-child:after,
+.hardcover_front li:first-child:before,
+.hardcover_front li:last-child:after,
+.hardcover_front li:last-child:before,
+.hardcover_back li:first-child:after,
+.hardcover_back li:first-child:before,
+.hardcover_back li:last-child:after,
+.hardcover_back li:last-child:before,
+.book_spine li:first-child:after,
+.book_spine li:first-child:before,
+.book_spine li:last-child:after,
+.book_spine li:last-child:before
+  position absolute
+  top 0
+  left 0
+
+.hardcover_front li:first-child:after,
+.hardcover_front li:first-child:before
+  width 4px
+  height 100%
+
+.hardcover_front li:first-child:after
+  transform rotateY(90deg) translateZ(-2px) translateX(2px)
+
+
+.hardcover_front li:first-child:before
+  transform rotateY(90deg) translateZ(158px) translateX(2px)
+
+
+.hardcover_front li:last-child:after,
+.hardcover_front li:last-child:before
+  width 4px
+  height 160px
+
+.hardcover_front li:last-child:after
+  transform rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(-2px) translateY(-78px)
+
+.hardcover_front li:last-child:before
+  box-shadow 0 0 30px 5px #333
+  transform rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(-2px) translateY(-78px)
+
+.hardcover_back li:first-child:after,
+.hardcover_back li:first-child:before
+  width 4px
+  height 100%
+
+
+.hardcover_back li:first-child:after
+  transform rotateY(90deg) translateZ(-2px) translateX(2px)
+
+.hardcover_back li:first-child:before
+  transform rotateY(90deg) translateZ(158px) translateX(2px)
+
+.hardcover_back li:last-child:after,
+.hardcover_back li:last-child:before
+  width 4px
+  height 160px
+
+.hardcover_back li:last-child:after
+  transform rotateX(90deg) rotateZ(90deg) translateZ(80px) translateX(2px) translateY(-78px)
+
+
+.hardcover_back li:last-child:before
+  box-shadow 10px -1px 80px 20px #666
+  transform rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(2px) translateY(-78px)
+
+.book_spine
+  transform rotateY(60deg) translateX(-5px) translateZ(-12px)
+  width 16px
+  z-index 0
+
+.book_spine li:first-child
+  transform translateZ(2px)
+
+.book_spine li:last-child
+  transform translateZ(-2px)
+
+.book_spine li:first-child:after,
+.book_spine li:first-child:before
+  width 4px
+  height 100%
+
+.book_spine li:first-child:after
+  transform rotateY(90deg) translateZ(-2px) translateX(2px)
+
+.book_spine li:first-child:before
+  transform rotateY(-90deg) translateZ(-12px)
+
+.book_spine li:last-child:after,.book_spine li:last-child:before
+  width 4px
+  height 16px
+
+.book_spine li:last-child:after
+  transform rotateX(90deg) rotateZ(90deg) translateZ(8px) translateX(2px) translateY(-6px)
+
+.book_spine li:last-child:before
+  box-shadow 5px -1px 100px 40px rgba(0,0,0,0.2)
+  transform rotateX(90deg) rotateZ(90deg) translateZ(-210px) translateX(2px) translateY(-6px)
+
+.page,.page>li
+  position absolute
+  top 0
+  left 0
+  transform-style preserve-3d
+
+
+.page
+  width 100%
+  height 98%
+  top 1%
+  left 3%
+  z-index 10
+
+.page>li
+  width 100%
+  height 100%
+  transform-origin left center
+  transition-property transform
+  transition-timing-function ease
+
+.page>li:nth-child(1)
+  transition-duration .6s
+
+.page>li:nth-child(2)
+  transition-duration .6s
+
+.page>li:nth-child(3)
+  transition-duration .4s
+
+.page>li:nth-child(4)
+  transition-duration .5s
+
+.page>li:nth-child(5)
+  transition-duration .6s
+
+@media screen and (min-width: 768px)
+  .book:hover>.hardcover_front
+    transform rotateY(-145deg) translateZ(0)
+    z-index 0
+
+  .book:hover>.page li:nth-child(1)
+    transform rotateY(-30deg)
+    transition-duration 1.5s
+
+  .book:hover>.page li:nth-child(2)
+    transform rotateY(-35deg)
+    transition-duration 1.8s
+
+  .book:hover>.page li:nth-child(3)
+    transform rotateY(-118deg)
+    transition-duration 1.6s
+
+  .book:hover>.page li:nth-child(4)
+    transform rotateY(-130deg)
+    transition-duration 1.4s
+
+  .book:hover>.page li:nth-child(5)
+    transform rotateY(-140deg)
+    transition-duration 1.2s
+
+.coverDesign
+  position absolute
+  top 0
+  left 0
+  bottom 0
+  right 0
+  overflow hidden
+  backface-visibility hidden
+
+.coverDesign::after
+  background-image linear-gradient(-135deg,rgba(255,255,255,0.45) 0,transparent 100%)
+  position absolute
+  top 0
+  left 0
+  bottom 0
+  right 0
+
+.coverDesign h1
+  color #fff
+  font-size 2.2em
+  letter-spacing .05em
+  text-align center
+  margin 54% 0 0 0
+  text-shadow -1px -1px 0 rgba(0,0,0,0.1)
+
+.coverDesign p
+  color #f8f8f8
+  font-size 1em
+  text-align center
+  text-shadow -1px -1px 0 rgba(0,0,0,0.1)
+
+.yellow
+  background-color #f1c40f
+  background-image linear-gradient(to bottom,#f1c40f 58%,#e7ba07 0)
+
+.blue
+  background-color #3498db
+  background-image linear-gradient(to bottom,#3498db 58%,#2a90d4 0)
+
+.grey
+  background-color #f8e9d1
+  background-image linear-gradient(to bottom,#f8e9d1 58%,#e7d5b7 0)
+
+.ribbon
+  background #c0392b
+  color #fff
+  display block
+  font-size .7em
+  position absolute
+  top 11px
+  right 1px
+  width 40px
+  height 20px
+  line-height 20px
+  letter-spacing .15em
+  text-align center
+  transform rotateZ(45deg) translateZ(1px)
+  backface-visibility hidden
+  z-index 10
+
+
+.ribbon::before,
+.ribbon::after
+  position absolute
+  top -20px
+  width 0
+  height 0
+  border-bottom 20px solid #c0392b
+  border-top 20px solid transparent
+
+.ribbon::before
+  left -20px
+  border-left 20px solid transparent
+
+.ribbon::after
+  right -20px
+  border-right 20px solid transparent
+
+.book figcaption
+  padding-left 40px
+  padding-top 40px
+  text-align left
+  position absolute
+  top 0
+  left 160px
+  width 500px
+
+  h1
+    margin 0
+  span
+    color #245f78
+    padding .6em 0 .2em 0
+    display block
+  figcaption p
+    color black
+    line-height 1.3
+
+@media screen and (max-width: 767px)
+  .align>li
+    width 100%
+    min-height 440px
+    height auto
+    padding 0
+    margin 0 0 30px 0
+
+  .book
+    margin-left 60px
+    display block
+    margin-bottom 280px
+
+  .book figcaption
+    min-width 320px
+    top 250px
+    padding-left 0
+    left -60px
+    display block
+
+@media screen and (max-width: 550px)
+  .book
+    height250px
+
+  .book figcaption
+    width 320px

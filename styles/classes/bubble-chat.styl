@@ -1,0 +1,46 @@
+$bubble-tip-size = 8px
+.bubble-chat
+  display block
+  box-sizing border-box
+  width 100%
+  padding 0 (2 * $bubble-tip-size)
+  clearfix()
+.narration
+  clear both
+  display block
+.bubble
+  position relative
+  display block
+  width 85%
+  margin 10px 0
+  padding 4px 7px 7px 7px
+  background-color white
+  border-radius 5px
+  &.bubble-left
+    float left
+    text-align left
+  &.bubble-right
+    float right
+    text-align right
+    &:before
+      left inherit
+      right - (2 * $bubble-tip-size)
+      border-color transparent transparent transparent white
+  &:before
+    content ""
+    position absolute
+    border-width $bubble-tip-size
+    border-style solid
+    border-color transparent white transparent transparent
+    left - (2 * $bubble-tip-size)
+    top "calc(50% - %s)" % ($bubble-tip-size)
+    width 0
+    height 0
+.bubble-author
+  display block
+  text-transform uppercase
+  font-weight bold
+  font-size 75%
+  for author-color, i in blueviolet brown cornflowerblue crimson darkmagenta forrestgreen limegreen darkgray
+    &.bubble-author-{i}
+      color author-color

@@ -1,618 +1,76 @@
 // Import CSS from "node_modules" and "bower_components"
 // thanks to Stylus' "import css" and "paths" options
-// @import 'highlight.js/styles/monokai-sublime.css'
-@import 'bespoke-markdownit/node_modules/highlight.js/styles/monokai-sublime.css'
+@import 'highlight.js/styles/monokai-sublime.css'
+// @import 'bespoke-markdownit/node_modules/highlight.js/styles/monokai-sublime.css'
 
-@import './caniuse.css';
+// variables
+$page-header-height = 1vw
+$page-header-height-portrait = 1.25vh
+$page-header-height-expanded = 6vw
+$page-header-height-expanded-portrait = 12vh
+$background-color = #d6def8
 
-///
-/// Variables
-$page-header-height = 5vh
-
-
-///
-/// General tags
+// general tags
 html, body
   height 100%
   overflow hidden
 
 body
-  background-color #FFD5D5
+  background-color $background-color
 
-img.full-width
-  width 100%
-img.large-width
-  width 600px
-img.medium-width
-  width 400px
-img.small-width
-  width 200px
-img.full-height
-  height 100%
-img.huge-height
-  height 600px
-img.large-height
-  height 400px
-img.medium-height
-  height 300px
-img.small-height
-  height 200px
-img.block
-  display block
-
-.center-aligned
-  text-align center
-
-del
-  color gray
-
-$dt-width = 160px
-dt
-  float left
-  clear left
-  width $dt-width
-  overflow hidden
-  text-overflow ellipsis
-  white-space nowrap
-  text-align right
-dd
-  margin-left ($dt-width + 20px)
-dt, dd
-  font-size 1.25em
-  margin-bottom .5em
-dl
-  clearfix()
-
-.bullet-old
-  color gray
-
-figcaption
-  background-color whitesmoke
-  padding 5px
-  margin-bottom 3px
-
-$table-border-color = gray
-table
-  border 2px solid $table-border-color
-
-tr
-  background-color rgba(255,255,255,.7)
-  &:nth-of-type(even)
-    background-color rgba(191,213,200,.7)
-
-td, th
-  padding .3em .5em
-  border 1px solid $table-border-color
-
-th
-  color white
-  background-color #333
-
-blockquote
-  position relative
-  margin 0.25em 0
-  padding 0.25em 40px
-  background whitesmoke
-  box-shadow 4px 4px 4px silver
-  line-height 1.45
-  font-size 18px
-  font-family Georgia, serif
-  font-style italic
-  color #383838
-  &::before
-    content "\201C"
-    display block
-    position absolute
-    left -0.25em
-    top -0.25em
-    font-size 80px
-    color #7a7a7a
-  & cite
-    display block
-    margin-top 5px
-    font-size 75%
-    color #999
-    &::before
-      content "\2014 \2009"
-
-.horizontal-list
-  list-style none
-
-  &> li
-    display inline-block
-    width 25%
-    margin 0 4.5% 0 0
-    vertical-align middle
-    &:last-of-type
-      margin 0
-
-for num in (2..5)
-  .multi-column-list-{num}
-    column-count num
-    list-style-position: inside;
-
-.bullet.bullet.bullet-no-anim.bespoke-bullet-inactive
-  transform none
-  transition none
-
-kbd
-  padding .1em .6em
-  font-size .8em
-  border 1px solid #ccc
-  font-family Consolas, Menlo, Monaco, monospace
-  background-color #f7f7f7
-  color #333
-  box-shadow 0 4px 0 rgba(0,0,0,0.2), 0 0 0 2px #fff inset
-  border-radius 3px
-  display inline-block
-  margin 0 .1em
-  text-shadow 0 1px 0 #fff
-  line-height 1.3
-  white-space nowrap
-  position relative
-  top 0
-  transition top 40ms ease-out, box-shadow 40ms ease-out
-  &:hover
-    top 4px
-    box-shadow 0 0 0 rgba(0,0,0,0.2), 0 0 0 2px #fff inset
-
-
-/// Header and content layout
+// header and presentation-container layout
 #page-header
-  height $page-header-height
   padding 0
+  font-size $page-header-height
   transition height 200ms ease-out, transform 200ms ease-out
-  transform translate3d(0, -($page-header-height/2), 0)
+  transform translate3d(0, -($page-header-height / 2), 0)
   &:hover
-    height 12vh
     transform translate3d(0, 0, 0)
+    + #presentation-container
+      transform translate3d(0, $page-header-height-expanded, 0)
+
+@media screen and (orientation: portrait)
+  #page-header
+    font-size $page-header-height-portrait
+    &:hover + #presentation-container
+      transform translate3d(0, $page-header-height-expanded-portrait, 0)
 
 #page-title
-  display inline-block
-  height 10vh
   margin 0
-  font-size 7vh
   vertical-align top
 
 #page-author
   display inline-block
   float right
-  margin 8px;
+  margin 8px
 
 #page-author-name
   display none
 
 .page-author-picture
   width 60px
-  height 60px
-  border-radius 30px
+  height @width
+  border-radius 50%
 
 #presentation-container
-  position relative
-  height "calc(100vh - %s)" % $page-header-height
-
-
-/// Tutorial
-$tutorial-right = 20px
-.tutorial
-  position absolute
-  right $tutorial-right
-  bottom 80px
-  padding .5em .75em
-  border-radius 20px
-  background-color rgba(255, 255, 255, .7)
-  font-family 'Cookie', cursive
-  font-size 2em
-  transition opacity 300ms ease-out
-  opacity 0
-  pointer-events none
-  user-select none
-  &.tutorial-on
-    opacity 1
-    animation bounce 1s ease-out 0s infinite alternate
-
-@keyframes bounce {
-  from {
-    right: $tutorial-right;
-  }
-  to {
-    right: $tutorial-right * 2;
-  }
-}
-
-/// Presentation
-$book-gutter-width = 30px
-$book-height = 250px
-
-.book-cover-container
-  position relative
-  perspective 400px
-  transform-style preserve-3d
-  transform rotateY(0)
-  transform-origin center center
-  transition transform 300ms ease-out
-
-  &:hover
-    transform rotateY(40deg)
-
-
-.book-cover
-  height $book-height
-
-.book-left
   position absolute
   top 0
-  left - $book-gutter-width
-  width $book-gutter-width
-  height $book-height
-  transform rotateY(-90deg)
-  background-color black
-  transform-origin right center 0
-  &.book-light
-    background-color beige
-
-
-.layered-paragraph
-  background-color rgba(215, 215, 250, 0.5);
-
-$portrait-size = 100px
-.portrait,
-.portrait img
-  display inline-block
-  width $portrait-size
-  height $portrait-size
-  border-radius ($portrait-size / 2)
-  figcaption
-    background-color transparent
-
-.floating-portrait-container
-  position relative
-  *
-    margin 0
-    @extend .portrait
-    animation floating 2s ease-in-out 0s infinite alternate
-
-  &::after
-    content: " ";
-    position: absolute;
-    width: 100%;
-    height: 20%;
-    left: 0;
-    right: 0;
-    bottom: -20%;
-    background: radial-gradient(ellipse closest-side, rgba(21, 21, 21, 0.25) 0%,rgba(255,255,255,0) 100%);
-    z-index: -1;
-    animation floated-element-shadow 2s ease-in-out 0s infinite alternate
-
-.flips
-  *
-    margin 0
-  transition transform 600ms ease-out
-  &:hover
-    transform rotateY(720deg)
-
-@keyframes floating
-  from
-    transform translateY(0)
-  to
-    transform translateY(-25%)
-
-@keyframes floated-element-shadow
-  from
-    transform scaleX(1.0)
-  to
-    transform scaleX(0.5)
-
-.list-horizontal
-  list-style-type none
-  clearfix()
-.list-horizontal li
-  float left
-
-$bubble-tip-size = 8px
-
-.bubble-chat
-  display block
-  box-sizing border-box
+  height "calc(100vh - %s)" % $page-header-height
   width 100%
-  padding 0 (2 * $bubble-tip-size)
-  clearfix()
-.narration
-  clear both
-  display block
-.bubble
-  position relative
-  display block
-  width 85%
-  margin 10px 0
-  padding 4px 7px 7px 7px
-  background-color white
-  border-radius 5px
-  &.bubble-left
-    float left
-    text-align left
-  &.bubble-right
-    float right
-    text-align right
-    &:before
-      left inherit
-      right - (2 * $bubble-tip-size)
-      border-color transparent transparent transparent white
-  &:before
-    content ""
-    position absolute
-    border-width $bubble-tip-size
-    border-style solid
-    border-color transparent white transparent transparent
-    left - (2 * $bubble-tip-size)
-    top "calc(50% - %s)" % ($bubble-tip-size)
-    width 0
-    height 0
-.bubble-author
-  display block
-  text-transform uppercase
-  font-weight bold
-  font-size 75%
-  for author-color, i in blueviolet brown cornflowerblue crimson darkmagenta forrestgreen limegreen darkgray
-    &.bubble-author-{i}
-      color author-color
-
-for num in (2..5)
-  .layout-split-{num}
-    flex-direction row
-    display flex
-    justify-content center
-    align-items stretch
-    height 100%
-    width 100%
-    & > section
-      width 100%  * (1/num)
-      flex-grow 1
-      text-align center
+  transform translate3d(0, $page-header-height, 0)
+  transition transform 300ms ease
 
 
+@require backdrops
+@require tutorial
+@import './caniuse.css';
 
-@require book
 
 @media print
   #page-header
     display none
   #presentation-container
     height auto
-  .book-cover
-    height 150px
-  .list-horizontal
-    padding-left 0
-    figure
-      margin 1em
-  dt
-    width 120px
-  dd
-    margin-left 130px
-  dt, dd
-    font-size inherit
-
   // gambiarra: alguns slides excedem a altura. Por agora, usar overflow:hidden
   .bespoke-slide
     overflow-y hidden
-
-
-
-
-// for code not to exceed the slide width..
-// TODO: need to put this in the theme
-pre
-  max-width 760px
-
-pre code span
-  word-wrap break-word
-  word-break break-all
-
-
-.figure-slides
-  position relative
-  width 100%
-  height 500px
-
-.figure-step
-  position absolute
-  top 0
-  left 0
-
-
-// Switches (toggle buttons)
-input.switch:empty
-  display block
-  margin-left -999px
-
-
-input.switch:empty ~ label
-  position relative
-  float left
-  line-height 1.6em
-  text-indent 4em
-  margin 0.2em 0
-  cursor pointer
-  user-select none
-
-input.switch:empty ~ label:before,
-input.switch:empty ~ label:after
-  position absolute
-  display block
-  top 0
-  bottom 0
-  left 0
-  content ' '
-  width 3.6em
-  background-color #c33
-  border-radius 0.3em
-  box-shadow inset 0 0.2em 0 rgba(0,0,0,0.3)
-  transition all 100ms ease-in
-
-input.switch:empty ~ label:after
-  width 1.4em
-  top 0.1em
-  bottom 0.1em
-  margin-left 0.1em
-  background-color #fff
-  border-radius 0.15em
-  box-shadow inset 0 -0.2em 0 rgba(0,0,0,0.2)
-
-input.switch:checked ~ label:before
-  background-color #393
-
-input.switch:checked ~ label:after
-  margin-left 2.1em
-
-// bookmarklets (links looking like buttons)
-a.bookmarklet
-  border-radius 5px
-  border 2px solid silver
-  padding 4px 7px
-  background-color rgba(255,255,255,.1)
-  transition all 200ms ease-out
-  &:hover
-    text-decoration none
-    background-color #b66c7e
-    color #ddd
-    border-color #333
-    cursor move
-
-
-// pulling images left or right
-$image-margin-to-text = 20px
-img[alt$="right"]
-  float right
-img[alt$="left"]
-  float left
-.push-right
-  float right
-  margin-left $image-margin-to-text
-.push-left
-  float left
-  margin-right $image-margin-to-text
-
-
-
-// backdrop slides
-.blastoff.bespoke-backdrop-active
-  background-image url(../images/icanhaz-blastoff.gif)
-  background-size cover
-  width 100%
-  height 100%
-
-.oldtimes.bespoke-backdrop-active
-  background-image url(../images/old-movie-texture.gif)
-  background-size cover
-  width 100%
-  height 100%
-
-.resolution
-  opacity  0
-  transition all 100ms cubic-bezier(0.175, 0.885, 0.320, 1.275)
-  transform translateY(100%)
-  &.resolution-shown
-    opacity 1
-    transform translateY(0)
-
-
-//-------------------------------------------------------------------
-// specific slides
-// "html apis" class
-.gmap
-  width 100%
-  height 300px
-  box-sizing border-box
-
-
-#dnd-example-container
-  display block
-  width 100%
-  text-align center
-
-.anim-dashes
-  background-color silver
-  background-image repeating-linear-gradient(45deg, transparent, transparent 10px, #ffffff 10px, #ffffff 20px)
-  width 392px
-  margin-left auto
-  margin-right auto
-  padding 2px
-  border-radius 5px
-
-.anim-dashes-blank
-  background-color white
-  border-radius 5px
-  width 100%
-  height 100%
-
-@keyframes dashes
-  from
-    background-position: 0 0
-  to
-    background-position: 196px 0
-
-
-#dnd-target
-  height 200px
-  margin auto
-  position relative
-  opacity .6
-  transition all 200ms
-  &.dnd-over
-    animation dashes 5s linear infinite
-    border-color red
-    background-color: red
-    opacity .9
-
-#dnd-sources
-  display block
-  & > ul
-    width 100%
-    padding 0
-  & > ul li
-    display inline-block
-
-.dnd-draggable
-  width 64px
-  height 64px
-  text-indent -9999px
-  overflow hidden
-  cursor move
-  user-select none
-
-  &#johnny
-    background-image url(../../images/toshl-johnny.png)
-  &#dmitry
-    background-image url(../../images/toshl-dmitry.png)
-  &#ales
-    background-image url(../../images/toshl-ales.png)
-  &#andraz
-    background-image url(../../images/toshl-andraz.png)
-  &#logar
-    background-image url(../../images/toshl-logar.png)
-
-  &.dnd-destroying
-    position absolute
-    top 50%
-    margin-top -32px
-    left 50%
-    margin-left -32px
-    animation dying 2s
-
-    &:nth-child(2)
-      left calc(50% - 160px)
-    &:nth-child(3)
-      left calc(50% - 80px)
-    &:nth-child(4)
-      left 50%
-    &:nth-child(5)
-      left calc(50% + 80px)
-    &:nth-child(6)
-      left calc(50% + 160px)
-
-@keyframes dying
-  from
-    transform none
-  to
-    transform scale(.3) rotate(1080deg)
-    opacity 0
