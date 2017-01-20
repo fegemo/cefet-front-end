@@ -14,10 +14,8 @@ var bespoke = require('bespoke'),
     markdownItAbbr = require('markdown-it-abbr'),
     markdownItContainer = require('markdown-it-container'),
     markdownItDecorate = require('markdown-it-decorate'),
-    // markdown = require('bespoke-meta-markdown'),
     forms = require('bespoke-forms'),
     backdrop = require('bespoke-backdrop'),
-    qrcode = require('bespoke-qrcode'),
     easter = require('./easter'),
     tutorial = require('./tutorial'),
     caniuseWidget = require('./caniuse');
@@ -25,9 +23,6 @@ var bespoke = require('bespoke'),
 // Bespoke.js
 bespoke.from('article', [
   markdown({
-    alert: function(message, index) {
-      alert(message + ' from slide no ' + index);
-    },
     backdrop: function(slide, value) {
       slide.setAttribute('data-bespoke-backdrop', value);
     },
@@ -119,14 +114,12 @@ bespoke.from('article', [
   touch(),
   overview({ insertStyles: false }),
   bullets('.bullet'),
-  // bullets('li:not(.bullet-old), .bullet, dt:not(.bullet-old), dd:not(.bullet-old)'),
-  // scale(),
+  scale('transform'),
+  progress(), // progress must be after scale
   hash(),
-  progress(),
   state(),
   forms(),
   backdrop(),
-  qrcode(),
   tutorial(document.getElementsByClassName('tutorial')[0])
 ]);
 

@@ -24,7 +24,7 @@
     "bespoke-markdownit": "^1.0.0",
     "bespoke-progress": "^1.0.0",
     "bespoke-qrcode": "^1.0.0",
-    "bespoke-scale": "^1.0.1",
+    "bespoke-scale": "fegemo/bespoke-scale",
     "bespoke-simple-overview": "^1.0.0",
     "bespoke-state": "^1.0.0",
     "bespoke-theme-beachday": "^1.0.0",
