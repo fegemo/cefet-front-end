@@ -199,6 +199,7 @@
   <div class="passo">3<br>Programar</div>
 
 ---
+<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
 ## Display: **table-***
 
 - <div class="caniuse" data-feature="css-table" style="float: right;"></div>

@@ -97,6 +97,7 @@
 
 
 ---
+<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
 ## Professor, já posso usar **Geolocation**??
 
 <div class="caniuse" data-feature="geolocation"></div>
