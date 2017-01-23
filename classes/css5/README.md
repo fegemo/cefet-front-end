@@ -260,6 +260,7 @@ mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
 <iframe width="100%" height="440" src="http://jsfiddle.net/fegemo/2a5450ds/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
 ## Compatibilidade nos navegadores
 
 <div class="caniuse" data-feature="css-transitions"></div>

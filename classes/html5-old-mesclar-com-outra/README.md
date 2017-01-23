@@ -109,6 +109,7 @@
   ```
 
 ---
+<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
 ## Suporte **hoje**
 
 <div class="caniuse" data-feature="webm"></div>

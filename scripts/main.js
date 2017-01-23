@@ -17,8 +17,7 @@ var bespoke = require('bespoke'),
     forms = require('bespoke-forms'),
     backdrop = require('bespoke-backdrop'),
     easter = require('./easter'),
-    tutorial = require('./tutorial'),
-    caniuseWidget = require('./caniuse');
+    tutorial = require('./tutorial');
 
 // Bespoke.js
 bespoke.from('article', [
@@ -124,9 +123,6 @@ bespoke.from('article', [
 ]);
 
 easter();
-
-// Can I Use widget
-window.canIUseDataLoaded = caniuseWidget.canIUseDataLoaded;
 
 // Used to load gmaps api async (it requires a callback to be passed)
 window.noop = function() {};
