@@ -1,10 +1,21 @@
 $bubble-tip-size = 8px
 .bubble-chat
   display block
-  box-sizing border-box
+  height 300px
   width 100%
-  padding 0 (2 * $bubble-tip-size)
-  clearfix()
+  padding-top 0
+  padding-right (2 * $bubble-tip-size + 15px)
+  padding-bottom 0
+  padding-left (2 * $bubble-tip-size)
+  overflow hidden
+  background-image linear-gradient(to right, #ff9380, #7dec59)
+  box-shadow 3px 7px 7px rgba(black, 0.15)
+  transition transform 300ms ease, box-shadow 300ms ease
+  &:hover
+    transform translate3d(0, -10px, 0)
+    box-shadow 20px 16px 16px rgba(black, 0.15) //, -20px 16px 16px rgba(black, 0.15)
+    overflow auto
+    padding-right (2 * $bubble-tip-size)
 .narration
   clear both
   display block
@@ -44,3 +55,7 @@ $bubble-tip-size = 8px
   for author-color, i in blueviolet brown cornflowerblue crimson darkmagenta forrestgreen limegreen darkgray
     &.bubble-author-{i}
       color author-color
+.bubble-portrait
+  width 80px
+  height @width
+  border-radius 50%

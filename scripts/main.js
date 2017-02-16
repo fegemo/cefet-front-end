@@ -14,6 +14,7 @@ var bespoke = require('bespoke'),
     markdownItAbbr = require('markdown-it-abbr'),
     markdownItContainer = require('markdown-it-container'),
     markdownItDecorate = require('markdown-it-decorate'),
+    markdownItEmoji = require('markdown-it-emoji'),
     forms = require('bespoke-forms'),
     backdrop = require('bespoke-backdrop'),
     easter = require('./easter'),
@@ -66,6 +67,18 @@ bespoke.from('article', [
     },
     layout: function(slide, value) {
       slide.classList.add('layout-' + value);
+    },
+    state: function(slide, value) {
+      slide.setAttribute('data-bespoke-state', value);
+    },
+    preventSelection: function(slide, unselectableElementsSelector) {
+      var els = slide.querySelectorAll(unselectableElementsSelector);
+      els.forEach(function(el) {
+        el.onselectstart = function() { return false };
+        el.onmousedown = function() { return false };
+        el.setAttribute('unselectable', 'on');
+        el.style.userSelect = 'none';
+      });
     }
   }, [
     [
@@ -106,13 +119,14 @@ bespoke.from('article', [
     markdownItAnchor,
     markdownItDefList,
     markdownItAbbr,
-    markdownItDecorate
+    markdownItDecorate,
+    markdownItEmoji
   ]),
   beachday({ insertFonts: false }),
   keys(),
   touch(),
   overview({ insertStyles: false }),
-  bullets('.bullet'),
+  bullets('.bullet, .bulleted li, .bulleted dd, .bulleted-dt dt, .bulleted-dt dd'),
   scale('transform'),
   progress(), // progress must be after scale
   hash(),
