@@ -1,8 +1,21 @@
 .bubble-chat {
   display: block;
-  box-sizing: border-box;
+  height: 300px;
   width: 100%;
-  padding: 0 16px;
+  padding-top: 0;
+  padding-right: 31px;
+  padding-bottom: 0;
+  padding-left: 16px;
+  overflow: hidden;
+  background-image: linear-gradient(to right, #ff9380, #7dec59);
+  box-shadow: 3px 7px 7px rgba(0,0,0,0.15);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.bubble-chat:hover {
+  transform: translate3d(0, -10px, 0);
+  box-shadow: 20px 16px 16px rgba(0,0,0,0.15);
+  overflow: auto;
+  padding-right: 16px;
 }
 .narration {
   clear: both;
@@ -70,4 +83,9 @@
 }
 .bubble-author.bubble-author-7 {
   color: #a9a9a9;
+}
+.bubble-portrait {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
