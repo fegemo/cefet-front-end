@@ -24,14 +24,14 @@ existe o [nvm][nvm].
 
 O restante do tutorial assumindo uma instalação no Linux. Os passos macro são:
 
-- Instalar o node.js
-- Instalar o gulp globalmente
-- Clonar o projeto para o computador
-- Instalar as dependências do projeto (e.g., o bespoke e seus plugins)
-- Executar o projeto em modo de desenvolvimento
-- Publicar os slides em produção
+1. Instalar o node.js
+1. Instalar o gulp globalmente
+1. Clonar o projeto para o computador
+1. Instalar as dependências do projeto (e.g., o bespoke e seus plugins)
+1. Executar o projeto em modo de desenvolvimento
+1. Publicar os slides em produção
 
-## Instalando o Node.js via [`nvm`][nvm]
+## (1) Instalando o Node.js via [`nvm`][nvm]
 
 1. Executar o seguinte comando no terminal para instalar o nvm:
   ```bash
@@ -49,7 +49,7 @@ O restante do tutorial assumindo uma instalação no Linux. Os passos macro são
   - O npm será explicado mais adiante, mas, por ora, basta saber que ele é
     instalado junto com o Node.js
 
-## Instalar o gulp
+## (2) Instalando o gulp
 
 Ao instalar o Node.js, basicamente dois executáveis (de linha de comando) são
 instalador:
@@ -66,10 +66,65 @@ npm install gulp-cli -g
 Nota: o `-g` significa "instalar globalmente", em vez de "instalar no
 diretório atual".
 
-## Clonar o projeto
+## (3) Clonando o projeto
 
-Para 
+Para ter os arquivos no computador de trabalho, é necessário clonar seu 
+repositório git. Para isso, é necessário ter o git instalado e isso pode
+ser feito a partir do [site oficial do git][git] ou de repositório apt:
 
+```
+sudo apt-get install git -y
+```
+
+Com o git instalado, basta clonar este repositório via terminal:
+
+```
+git clone https://github.com/fegemo/cefet-front-end.git
+```
+
+Esse comando criará uma pasta chamada `cefet-front-end` com os arquivos do 
+projeto, dentro da pasta que estava aberta no terminal.
+
+## (4) Instalando as dependências
+
+Esta aplicação possui algumas dependências, como a biblioteca
+bespoke.js e alguns de seus plugins, o stylus (para pré-processar
+código e transformá-lo em CSS) e algumas outras.
+
+Todas as dependências do projeto estão descritas no arquivo 
+`package.json` que, além dos nomes e das versões das dependências,
+também contém alguns metadados deste projeto como o nome dos
+seus autores, o nome e uma descrição do projeto.
+
+Para instalar as dependências, basta pedir ao `npm`:
+
+```
+cd cefet-front-end
+npm install
+```
+
+Esse comando irá baixar todas as dependências (e suas próprias dependências,
+recursivamente) e colocá-las em uma pasta chamada `node_modules`, dentro da
+pasta do projeto (i.e., `cefet-front-end`).
+
+## (5) Executando o projeto
+
+Para ver os slides em ação, é necessário usar o gulp para executar uma tarefa
+chamada `dev`. Isso pode ser feito executando, dentro da pasta do projeto:
+
+```
+gulp dev
+```
+
+Quando isso acontece, uma pasta `dist` é criada no projeto e ela recebe 
+todos os arquivos necessários para a exibição dos slides, com suas devidas
+transformações (e.g., arquivos `.styl` se transformar em `.css`).
+
+Nesse momento, uma série de subtarefas são executadas e as seguintes 
+coisas acontecem:
+
+1. Imagens (dentro do diretório `images`) são copiadas para `dist/`
+1. 
 
 [bespoke]:
 [stylus]:
@@ -77,3 +132,4 @@ Para
 [nodejs]:
 [nodist]:
 [nvm]: https://github.com/creationix/nvm
+[git]: 
