@@ -1,0 +1,79 @@
+# Configuração do ambiente de desenvolvimento
+
+Os slides são uma aplicação exclusivamente de _front-end_ (páginas estáticas)
+que utilizam um _micro-framework_ JavaScript chamado [bespoke.js][bespoke]
+para fazer apresentações de slides.
+
+Como a aplicação não possui _back-end_, tudo é renderizado pelo próprio
+navegador em tempo de execução da página. Além disso, em vez de codificar
+os estilos em CSS diretamente, o projeto usa um pré-processador chamado
+[stylus][stylus].
+
+Como precisa haver esse **pré-processamento** dos arquivos (e.g.,
+transformar arquivos `.styl` em arquivos `.css`), usamos um gerenciador de
+tarefas chamado [gulp][gulp]. Por sua vez, o gulp é escrito em JavaScript e
+executa na plataforma [Node.js][nodejs], que basicamente é um ambiente para
+se executar código JavaScript fora de um navegador.
+
+O Node.js pode ser instalado por seu [site oficial][nodejs], mas é
+mais interessante ter um programa que gerencia múltiplas versões do Node.js -
+assim, quando uma nova versão do Node.js sai, não é necessário desinstalar a
+última para instalar a nova, além de ser possível ter múltiplas
+versões instaladas. Para Windows existe o [nodist][nodist] e para o Linux
+existe o [nvm][nvm].
+
+O restante do tutorial assumindo uma instalação no Linux. Os passos macro são:
+
+- Instalar o node.js
+- Instalar o gulp globalmente
+- Clonar o projeto para o computador
+- Instalar as dependências do projeto (e.g., o bespoke e seus plugins)
+- Executar o projeto em modo de desenvolvimento
+- Publicar os slides em produção
+
+## Instalando o Node.js via [`nvm`][nvm]
+
+1. Executar o seguinte comando no terminal para instalar o nvm:
+  ```bash
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+  ```
+1. Instalar a última versão do Node.js via nvm
+  ```bash
+  nvm install node
+  ```
+1. Verificar a instalação do Node.js e do npm
+  ```
+  node --version
+  npm --version
+  ```
+  - O npm será explicado mais adiante, mas, por ora, basta saber que ele é
+    instalado junto com o Node.js
+
+## Instalar o gulp
+
+Ao instalar o Node.js, basicamente dois executáveis (de linha de comando) são
+instalador:
+
+- o `node` (`.exe`, no Windows), que é o "executador de JavaScript"
+- o `npm` (idem), que é um instalador de "bibliotecas" (dependências)
+
+Para instalar o gulp, basta pedir o `npm` para fazê-lo:
+
+```
+npm install gulp-cli -g
+```
+
+Nota: o `-g` significa "instalar globalmente", em vez de "instalar no
+diretório atual".
+
+## Clonar o projeto
+
+Para 
+
+
+[bespoke]:
+[stylus]:
+[gulp]:
+[nodejs]:
+[nodist]:
+[nvm]: https://github.com/creationix/nvm
