@@ -23,10 +23,11 @@
 <!-- {dl:.content} -->
 
 ---
-<!-- {"slideHash": "slides"} -->
+<!-- {"slideHash": "slides", "layout": "regular"} -->
 # Aulas (página 1)
 
-- [Introdução à Programação Web](classes/intro/) (25/02/2016)
+- [Introdução à Programação Web](classes/intro/)
+<!--
 - [HTML 1 - Linguagem](classes/html1/) (01/03/2016)
 - [HTML 2 - Imagens e Plantas Carnívoras (Prática)](classes/html2/) (03/03/2016)
 - [HTML 3 - Multimídia](classes/html3/) (08/03/2016)
@@ -35,7 +36,6 @@
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)
 - [Javascript 1 - Linguagem](classes/js1/) (22/03/2016)
 
----
 # Aulas (página 2)
 
 - [CSS 3 - _Layout_](classes/css3/) (29/03/2016)
@@ -47,25 +47,13 @@
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
 - [HTML 5 - Formulários e Monstros (Prática)](classes/html5/) (26/04/2016)
 
----
 # Aulas (página 3)
 
-- [Node.js 1 - Servidores Web](classes/ssn1/) (03/05/2016)
-- [Node.js 2 - NPM, arquivos e _learnyounode_ (Prática)](classes/ssn2/)
-  (05/05/2016)
-- [Node.js 3 - Express](classes/ssn3/) (10/05/2016)
-- [Node.js 4 - HTML Dinâmico e o Geiser (Prática)](classes/ssn4/) (12/05/2016)
-- [Node.js 5 - Sessão e Biscoitos](classes/ssn5/) (17/05/2016)
-- [Node.js 6 - Bancos de Dados e Zumbis (Prática)](classes/ssn6/) (19/05/2016)
-- [Node.js 7 - REST APIs](classes/ssn7/) (24/05/2016)
 - [CSS 6 - _Responsive Design_](classes/css6/) (31/05/2016)
 - [CSS 5 - Animações e _Edukids Animals_ (Prática)](classes/css5/) (02/06/2015)
 - [Javascript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
 
----
-# Aulas (página 4)
-
-- [Server-side Node.js - Parte 8 (Prática WebSockets)](classes/ssn8/) (18/06/2015)
+-->
 
 ---
 <!--
@@ -78,9 +66,10 @@
 
 ## Objetivos
 
-1. Criar páginas **HTML com uso de CSS e Javascript**
-1. Desenvolver **sistemas web dinâmicos** com banco de dados e Node.js
-1. Fazer trabalhos práticos legais
+1. **Criar páginas web** _estáticas_ com HTML, CSS e JavaScript
+1. Criar páginas seguindo **requisitos de *layout*** diversos
+1. Criar **páginas web interativas** usando JavaScript
+1. **Integrar páginas** web estáticas com servidores **via AJAX**
 1. Tornar-se um **ninja** Javascript
 
 <!-- {ol:.content} -->
@@ -101,14 +90,14 @@ Veja a bibliografia básica e a complementar.
 <!-- {p:.content} -->
 ---
 <!-- { "styles": ["styles/classes/books.min.css"] } -->
-## **Livro texto** da parte 1
+## **Livro texto** sobre HTML e CSS
 
 ::: figure .book
 - ![](images/book-head-first-html-css.jpg) <!-- {.full-width.full-height} -->
 - .
 <!-- {ul:.hardcover_front} -->
 - .
-- [Sobre](http://headfirstlabs.com/books/hfhtml/) <!-- {a:.book-btn target="_blank"} -->
+- [Sobre](http://www.altabooks.com.br/use-a-cabeca-html-e-css.html) <!-- {a:.book-btn target="_blank"} -->
 - .
 - .
 - .
@@ -122,23 +111,23 @@ Veja a bibliografia básica e a complementar.
 :::
 
 **Título**
-	 ~ Head First HTML and CSS, Second Edition
+	 ~ Use a Cabeça HTML e CSS, 2ª edição (traduzida)
 
 **Autores**
-	 ~ Elisabeth Robson, ~~Gordon~~ Eric Freeman
+	 ~ Elisabeth Robson, Eric Freeman
 
 **Editora**
-   ~ O'Reilly Media, 2012
+   ~ O'Reilly Media, 2015 (tradução)
 
 ---
-## **Livro texto** da parte 2
+## **Livro texto** sobre JavaScript
 
 ::: figure .book
-- ![](images/book-nodejs-in-action.jpg) <!-- {.full-width.full-height} -->
+- ![](images/book-head-first-programming-javascript.jpg) <!-- {.full-width.full-height} -->
 - .
 <!-- {ul:.hardcover_front} -->
 - .
-- [Sobre](https://www.manning.com/books/node-js-in-action) <!-- {a:.book-btn target="_blank"} -->
+- [Sobre](http://www.altabooks.com.br/use-a-cabeca-programacao-javascript.html) <!-- {a:.book-btn target="_blank"} -->
 - .
 - .
 - .
@@ -152,19 +141,50 @@ Veja a bibliografia básica e a complementar.
 :::
 
 **Título**
-  ~ Node.js in Action, First Edition
+  ~ Use a Cabeça: Programação JavaScript, 1ª edição
 
-**Autores**
-  ~ Mike Cantelon, Marc Harter, T.J. Holowaychuk, Nathan Rajlich
+**Autor**
+  ~ Eric Freeman
 
 **Editora**
-  ~ Manning
+  ~ O'Reilly Media, 2016 (tradução)
+
+
+---
+## **Livro texto** sobre APIs do HTML5
+
+::: figure .book
+- ![](images/book-head-first-html5-programming.jpg) <!-- {.full-width.full-height} -->
+- .
+<!-- {ul:.hardcover_front} -->
+- .
+- [Sobre](http://www.altabooks.com.br/use-a-cabeca-programacao-em-html5.html) <!-- {a:.book-btn target="_blank"} -->
+- .
+- .
+- .
+<!-- {ul:.page} -->
+- .
+- .
+<!-- {ul:.hardcover_back} -->
+- .
+- .
+<!-- {ul:.book_spine} -->
+:::
+
+**Título**
+  ~ Use a Cabeça: Programação em HTML5, 1ª edição
+
+**Autor**
+  ~ Eric Freeman
+
+**Editora**
+  ~ O'Reilly Media, 2014 (tradução)
 
 ---
 # Bibliografia Complementar
 
 ---
-## Dive into HTML5
+## Mergulhe no HTML5
 
 <div class="book-cover-container">
   <img class="book-cover" src="images/book-dive-into-html5.png">
@@ -186,18 +206,6 @@ Veja a bibliografia básica e a complementar.
 - **Editora** O'Reilly Media, 2008
 
 ---
-## Head First HTML5 Programming
-
-<div class="book-cover-container">
-  <img class="book-cover" src="images/book-head-first-html5-programming.jpg">
-  <div class="book-left"></div>
-</div>
-
-- **Título**	Head First HTML5 Programming
-- **Autores**	~~Gordon~~ Eric Freeman, Elisabeth Robson
-- **Editora** O'Reilly Media, 2011
-
----
 <!--
 {
   "slideHash": "avaliacao",
@@ -206,27 +214,9 @@ Veja a bibliografia básica e a complementar.
 -->
 # Avaliação
 
-## Esta é a distribuição de pontos por bimestre
+## Distribuição de pontos (aproximada) por bimestre
 
-- ~10 Atividades práticas: **20** pontos
-- Questionários marotos: **10** pontos
-- 1 Prova Final: **15** pontos
-- 1 Seminário: **15** pontos
-- Projeto Prático: **15** pontos
+- ~08 Atividades práticas: **80%** da nota
+- 01 Prova: **20%** pontos
 
 <!-- {ul:.content} -->
-
----
-# Prova (15 pontos)
-
-- Prova (15 pontos) - data: <abbr title="To be defined">TBD</abbr> (ao final)
-- Exame especial (100 pontos) - data: <abbr title="To be defined">TBD</abbr>
-
----
-# Trabalhos (55 pontos)
-
-- [TP0: Git][tp0] (3 pontos, data: 01/03/2015 10:40)
-- Seminário: APIs HTML5  (15 pontos, data: TBD)
-- Projeto: (40 pontos em 2 entregas, data TBD)
-
-[tp0]: assignments/tp0
