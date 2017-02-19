@@ -120,16 +120,51 @@ Quando isso acontece, uma pasta `dist` é criada no projeto e ela recebe
 todos os arquivos necessários para a exibição dos slides, com suas devidas
 transformações (e.g., arquivos `.styl` se transformar em `.css`).
 
-Nesse momento, uma série de subtarefas são executadas e as seguintes 
-coisas acontecem:
+Nesse momento, uma série de subtarefas são executadas com o intuito de copiar (e, em alguns casos, transformar) arquivos para a pasta `dist/` (distribuição): 
 
-1. Imagens (dentro do diretório `images`) são copiadas para `dist/`
-1. 
+1. Imagens (dentro do diretório `images/`) são copiadas para `dist/`
+1. Videos (pasta `videos/`) copiados para `dist/`
+1. Scripts (pasta `scripts/`) copiados para `dist/`
+1. Estilos (pasta `styles/`) são transformados pelo Stylus (`.styl`) em arquivos CSS (`.css`) e então copiados para `dist/`
+1. Arquivos anexos (e.g., algum arquivo `.zip`) copiados para `dist/`
+1. Fontes (`fonts/`), ícone de favoritos (`favicon/`), páginas de exemplo (`sample/`), arquivos html (`html/`) também são copiados para `dist/`
+1. As pastas dentro de `classes/`, que possuem os arquivos no [formato Markdown][markdown] com o conteúdo dos slides. Cada pasta refere-se a uma aula e possui apenas 1 arquivo chamado `README.md`
 
-[bespoke]:
-[stylus]:
-[gulp]:
-[nodejs]:
-[nodist]:
+Além da cópia/transformação dos arquivos para `dist`, a tarefa `dev` (de `gulp dev`) também faz outras três coisas:
+
+1. Abre um servidor web na porta 8081 que fica servindo os arquivos. Ou seja, basta acessar `http://localhost:8081/` para visualizá-los.
+1. Abre o navegador padrão com os slides abertos.
+1. Inicia uma observação dos arquivos fonte de forma que sempre que há uma alteração em um dos arquivos (e.g., modifica e salva um arquivo `README.md`), o gulp copia/transforma o arquivo novamente e automaticamente atualiza o navegador, refletindo as alterações.
+
+## Publicando os slides
+
+Quando finalizada uma alteração, para torná-la acessível publicamente (e.g., em https://fegemo.github.io/cefet-front-end/), é necessário enviar a nova versão para um *branch* com um especial para o GitHub chamado `gh-pages` (de GitHub Pages¹).
+
+Para fazer isso, é necessário fazer *commit* das alterações e então executar uma outra tarefa gulp chamada `deploy`:
+
+1. Fazendo *commit* das alterações:
+  ```
+  git add -A
+  git commit -m "Descreve o que foi feito nas alterações"
+  ```
+1. Instruindo o gulp a invocar o git para publicar a nova versão em produção:
+  ```
+  gulp deploy
+  ```
+  - Esta tarefa pode demorar um pouquinho
+1. Subindo as últimas alterações do código fonte (*commits*) para o GitHub:
+  ```
+  git push -u origin master
+  ```
+
+¹ [GitHub Pages][gh-pages] é um serviço gratuito do GitHub que permite que cada repositório lá hospedado possa ter um pequeno site estático explicativo sobre o repositório, tipicamente contendo uma documentação do projeto. Este projeto utiliza esse espaço para colocar os slides "em produção", acessível publicamente.
+
+[bespoke]: http://markdalgleish.com/projects/bespoke.js/
+[stylus]: http://stylus-lang.com/
+[gulp]: http://gulpjs.com/
+[nodejs]: https://nodejs.org/en/
+[nodist]: https://github.com/marcelklehr/nodist
 [nvm]: https://github.com/creationix/nvm
-[git]: 
+[git]: https://git-scm.com/
+[markdown]: https://daringfireball.net/projects/markdown/
+[gh-pages]: https://pages.github.com/
