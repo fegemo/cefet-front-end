@@ -61,6 +61,70 @@ body
   transition transform 300ms ease
 
 
+// title animation
+$title-animation-duration = 600ms
+$title-animation-delay = 450ms
+$title-animation-easing = cubic-bezier(0, 0, 0.7, 1.58)
+
+.title-part-left
+.title-part-top
+.title-part-right
+.subtitle
+  opacity 0
+  display inline-block
+
+.title-part-left
+  animation appear-from-left $title-animation-duration $title-animation-easing 0s 1 forwards
+  animation-delay $title-animation-delay * 2
+  transform translateX(-2em)
+
+.title-part-top
+  animation appear-from-top $title-animation-duration $title-animation-easing 0s 1 forwards
+  animation-delay $title-animation-delay * 3
+  transform translateY(-1em)
+
+.title-part-right
+  animation appear-from-right $title-animation-duration $title-animation-easing 0s 1 forwards
+  animation-delay $title-animation-delay * 4
+  transform translateX(2em)
+
+.subtitle
+  animation appear-from-bottom $title-animation-duration $title-animation-easing 0s 1 forwards
+  animation-delay $title-animation-delay * 5
+  transform translateY(100%)
+
+@keyframes appear-from-left
+  from
+    transform translateX(-2em)
+    opacity .25
+  to
+    transform translateX(0)
+    opacity 1
+
+@keyframes appear-from-top
+  from
+    transform translateY(-1em)
+    opacity .25
+  to
+    transform translateY(0)
+    opacity 1
+
+@keyframes appear-from-right
+  from
+    transform translateX(2em)
+    opacity .25
+  to
+    transform translateX(0)
+    opacity 1
+
+@keyframes appear-from-bottom
+  from
+    transform translateY(100%)
+    opacity .25
+  to
+    transform translateX(0)
+    opacity 1
+
 @require backdrops
 @require move-to-theme
 @require tutorial
