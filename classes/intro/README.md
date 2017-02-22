@@ -7,7 +7,7 @@
 
 1. Web == Internet? 
 1. O que é a Web
-1. Como surgiu a Web
+1. As proezas de Tim
 1. Minha primeira página web
 
 ---
@@ -21,7 +21,30 @@
 
 <!-- {ul:.content} -->
 ---
-## Alguns personagens
+<!-- {"layout": "regular"} -->
+# Fatos importantes
+
+Surgimento:
+  ~ A **Internet** <!-- {.alternate-color} --> surgiu em 1969 com o nome 
+    de ARPANET
+  ~ A **Web** surgiu entre 1989 e 1993
+
+Criadores:
+  ~ A **Internet** <!-- {.alternate-color} --> foi criada por pesquisadores 
+    nos EUA
+  ~ A **Web** foi criada por um pesquisador na Europa 
+  
+Fato:
+  ~ A **Internet** <!-- {.alternate-color} --> é a maior rede de computadores
+  ~ A **Web** é "um dos programas" (o maior) na Internet
+  
+Dúvidas: 
+  ~ ![](../../images/philosoraptor.jpg) <!-- {.portrait.push-right} --> 
+    (a) Internet é com "I" ou com "i"?
+  ~ (b) Como surgiu a Internet?
+
+---
+# Alguns personagens
 
 - ::: figure .portrait text-align: center;
   ![](../../images/larry-roberts.jpg)
@@ -144,7 +167,7 @@ confiabilidade**.
 
 
 ::: figure .embedded-caption
-<figcaption class="caption-bottom centered">Em 1986</figcaption>
+<figcaption class="caption-bottom centered">A Internet em 1986</figcaption>
 
 ![Diagrama lógico da ARPANET em 1986](../../images/arpanet-1986.png)
 :::
