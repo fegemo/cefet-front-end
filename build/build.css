@@ -135,6 +135,33 @@ body {
   transform: translate3d(0, 1vw, 0);
   transition: transform 300ms ease;
 }
+.title-part-left,
+.title-part-top,
+.title-part-right,
+.subtitle {
+  opacity: 0;
+  display: inline-block;
+}
+.title-part-left {
+  animation: appear-from-left 600ms cubic-bezier(0, 0, 0.7, 1.58) 0s 1 forwards;
+  animation-delay: 900ms;
+  transform: translateX(-2em);
+}
+.title-part-top {
+  animation: appear-from-top 600ms cubic-bezier(0, 0, 0.7, 1.58) 0s 1 forwards;
+  animation-delay: 1350ms;
+  transform: translateY(-1em);
+}
+.title-part-right {
+  animation: appear-from-right 600ms cubic-bezier(0, 0, 0.7, 1.58) 0s 1 forwards;
+  animation-delay: 1800ms;
+  transform: translateX(2em);
+}
+.subtitle {
+  animation: appear-from-bottom 600ms cubic-bezier(0, 0, 0.7, 1.58) 0s 1 forwards;
+  animation-delay: 2250ms;
+  transform: translateY(100%);
+}
 .blastoff.bespoke-backdrop-active {
   background-image: url("../images/icanhaz-blastoff.gif");
   background-size: cover;
@@ -155,6 +182,9 @@ body {
 .resolution.resolution-shown {
   opacity: 1;
   transform: translateY(0);
+}
+strong.alternate-color {
+  color: #7b9c02;
 }
 .tutorial {
   position: absolute;
@@ -406,5 +436,45 @@ h3.caniuse-title {
   }
   .bespoke-slide {
     overflow-y: hidden;
+  }
+}
+@keyframes appear-from-left {
+  from {
+    transform: translateX(-2em);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes appear-from-top {
+  from {
+    transform: translateY(-1em);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes appear-from-right {
+  from {
+    transform: translateX(2em);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes appear-from-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0.25;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

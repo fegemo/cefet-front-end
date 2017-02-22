@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
-# Laboratório de **Programação** Web
-## Plano de Ensino<br>por **Flávio Coutinho** e **Daniel Hasan**
+# <span class="title-part-left">Laboratório de</span> <span class="title-part-top">**Programação**</span> <span class="title-part-right">Web</span>
+## <span class="subtitle">Plano de Ensino<br>por **Flávio Coutinho** e **Daniel Hasan**</span>
 
 ---
 <!-- {"layout": "section-header"} -->
@@ -27,6 +27,7 @@
 # Aulas (página 1)
 
 - [Introdução à Programação Web](classes/intro/)
+
 <!--
 - [HTML 1 - Linguagem](classes/html1/) (01/03/2016)
 - [HTML 2 - Imagens e Plantas Carnívoras (Prática)](classes/html2/) (03/03/2016)
