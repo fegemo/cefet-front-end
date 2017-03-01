@@ -62,6 +62,12 @@ bespoke.from('article', [
       s.innerHTML = styleString;
       document.head.appendChild(s);
     },
+    elementStyles: function(slideEl, elementsAndTheirStyles) {
+      Object.keys(elementsAndTheirStyles).forEach(selector => {
+        Array.from(slideEl.querySelectorAll(selector))
+        .forEach(el => el.setAttribute('style', elementsAndTheirStyles[selector]));
+      });
+    },
     slideHash: function(slide, value) {
       slide.setAttribute('data-bespoke-hash', value);
     },

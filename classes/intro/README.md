@@ -5,13 +5,13 @@
 ---
 # Roteiro
 
-1. Web == Internet?
-1. O que é a Web
-1. As proezas de Tim
-1. Minha primeira página web
+1. [Web == Internet?](#web-igual-internet)
+1. [O que é a Web](#o-que-e-a-web)
+1. [As proezas de Tim](#as-proezas-de-tim)
+1. [Minha primeira página web](#minha-primeira-pagina-web)
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "web-igual-internet"} -->
 # Web == Internet?
 ## A Web é a mesma coisa que a Internet?
 
@@ -153,7 +153,7 @@ Dúvidas:
   informação em "formato de teia"
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "o-que-e-a-web"} -->
 # O que é a Web
 ## Definição e Composição
 
@@ -607,7 +607,7 @@ ovelha.inicializa();
     ```
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "as-proezas-de-tim"} -->
 # Como surgiu a Web
 ## O que levou ao seu surgimento
 
@@ -822,7 +822,7 @@ Content-Length: 131
   - 2009: SPDY
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "minha-primeira-pagina-web"} -->
 # Minha Primeira Página Web
 ## Como cria-las, o que elas comem, seu habitat etc.
 
@@ -847,3 +847,84 @@ Content-Length: 131
 
   ~~salgadinhos~~
     ~ fim!
+
+---
+# Atividade Prática (1/3)
+
+**Enunciado**
+  ~ Você vai recriar a página das raças raras de ovelhas.
+  ~ Para isso, você deve baixar [um arquivo compactado][codigo-seminal-ovelhas]
+    que contém as imagens, um arquivo CSS e dois arquivos JavaScript.
+
+**Pré-Atividade**
+  ~ 1. **Baixe** e **descompacte** os arquivos em uma pasta (e.g.,
+       "Documentos/Ovelhas")
+    1. Abra o bloco de notas e, com ele vazio,
+       salve um novo arquivo, nessa pasta, com o nome `racas-raras.html`
+
+[codigo-seminal-ovelhas]: https://github.com/fegemo/cefet-web-ovelhas/archive/exercicio.zip
+---
+<!-- {"preventSelection": "code", "elementStyles": {"pre": "height: 250px"} } -->
+# Atividade Prática (2/3)
+
+- **Atividades**
+  - Digite a estrutura básica de um documento HTML
+    ```html
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Raças Raras de Ovelhas</title>
+        <link rel="stylesheet" href="estilos.css">
+        <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+      </head>
+      <body>
+        <h1>Raças <strong>Raras</strong> de Ovelhas</h1>
+        <p>O interessante animal da espécie <em>Ovis aries</em> (vulga ovelha) é
+          tipicamente produzido (pela natureza) em raças distintas. Em cada uma
+          delas, os indivíduos ovelhísticos possuem características fisiológicas e
+          comportamentais diferentes.</p>
+        <p>A seguir, veja alguns exemplos dessas raças.</p>
+        <h2>Algod-ovelha</h2>
+        <img src="imagens/algod-ovelha.jpg" class="circular foto-ovelha">
+        <p>Em vez de lã, esta ovelha é uma exímia produtora de algodão e
+          muito apreciada pela indústria têxtil chinesa.</p>
+        <p>Pessoas pagam milhões para poder criar destas em suas casas.</p>
+        <h2>Pirá-tovelha</h2>
+        <img src="imagens/pira-tovelha.jpg" class="circular foto-ovelha">
+        <p>Ovelha marinha-saqueadora frequentemente vista nas ilhas caribenhas
+          (seu habitat) navegando embarcações de madeira.</p>
+        <p>Ao avistar uma destas, gire o leme completamente a estibordo, ice as
+          velas e fuja para terra firme.</p>
+        <h2>Ovelhopixel</h2>
+        <img src="imagens/ovelhopixel.png" class="circular foto-ovelha">
+        <p>Uma ovelha digital formada por um conjunto de quadradinhos coloridos.</p>
+        <p>Ela precisa se recarregar de tempos em tempos.</p>
+        <h2>Outras</h2>
+        <ul>
+          <li>Robôvelha</li>
+          <li>Ninjo-velha</li>
+          <li>Legovelha</li>
+        </ul>
+        <script src="shake.js"></script>
+        <script src="ovelhita.js"></script>
+      </body>
+    </html>
+    ```
+    - Repare que não é possível copiar/colar ;)
+
+---
+# Atividade Prática (3/3)
+
+**Testando**
+  ~ De tempos em tempos, **abra o arquivo no navegador** (_e.g._, dando dois
+    cliques) no arquivo para ver como está ficando
+  ~ Para saber se está certo, compare a sua página com a do professor: http://fegemo.github.io/cefet-web-ovelhas/racas-raras.html <!-- {target="_blank"}-->
+
+**Entrega**
+  ~ Você deve **mostrar ao professor** o seu exercício para ganhar o visto.
+  ~ Além disso, você deve compactar a pasta com todos os seus arquivos em
+    um arquivo `.zip` e então **enviar esse arquivo via [Moodle][moodle]**
+
+[moodle]: http://ava.cefetmg.br
