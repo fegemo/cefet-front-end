@@ -5,7 +5,7 @@
 ---
 # Roteiro
 
-1. Web == Internet? 
+1. Web == Internet?
 1. O que é a Web
 1. As proezas de Tim
 1. Minha primeira página web
@@ -25,153 +25,55 @@
 # Fatos importantes
 
 Surgimento:
-  ~ A **Internet** <!-- {.alternate-color} --> surgiu em 1969 com o nome 
+  ~ A **Internet** <!-- {.alternate-color} --> surgiu em 1969 com o nome
     de ARPANET
   ~ A **Web** surgiu entre 1989 e 1993
 
 Criadores:
-  ~ A **Internet** <!-- {.alternate-color} --> foi criada por pesquisadores 
+  ~ A **Internet** <!-- {.alternate-color} --> foi criada por pesquisadores
     nos EUA
-  ~ A **Web** foi criada por um pesquisador na Europa 
-  
+  ~ A **Web** foi criada por um pesquisador na Europa
+
 Fato:
   ~ A **Internet** <!-- {.alternate-color} --> é a maior rede de computadores
   ~ A **Web** é "um dos programas" (o maior) na Internet
-  
-Dúvidas: 
-  ~ ![](../../images/philosoraptor.jpg) <!-- {.portrait.push-right} --> 
+
+Dúvidas:
+  ~ ![](../../images/philosoraptor.jpg) <!-- {.portrait.push-right} -->
     (a) Internet é com "I" ou com "i"?
   ~ (b) Como surgiu a Internet?
-
----
-# Alguns personagens
-
-- ::: figure .portrait text-align: center;
-  ![](../../images/larry-roberts.jpg)
-  **Larry Roberts**, "pai" da ARPANET
-  :::
-- ::: figure .portrait
-  ![](../../images/vint-cerf.jpg)
-  **Vint Cerf**, "pai" dos protocolos TCP/IP
-  :::
-- ::: figure .portrait
-  ![](../../images/bob-kahn.jpg)
-  **Bob Khan**, "pai" dos protocolos TCP/IP
-  :::
-- ::: figure .portrait
-  ![](../../images/tim-berners-lee.jpg)
-  **Tim Berners-Lee**, "pai" da Web
-  :::
-
-<!-- {ul:.multi-column-list-4 style="list-style-type: none;"} -->
-
----
-<!-- {"layout": "regular"} -->
-## Linha do Tempo
-
-1969
-  ~ Larry Roberts estabelece 1º link da **ARPANET**
-
----
-<!-- {"layout": "regular"} -->
-## ARPANET
-
-Havia **pouquíssimos computadores** com capacidade de pesquisa nos EUA e muitos
-pesquisadores que deveriam ter acesso a eles estavam **geograficamente
-separados**.
-_(Charles Herzfeld, diretor da ARPA)_
-
-- _Advanced Research Projects Agency Network_ (ARPANET)
-- Uma das primeiras redes baseadas em trocas de pacotes
-- A primeira rede a utilizar a família de protocolos TCP/IP
-
----
-<!-- {
-"styles": ["../../styles/classes/bubble-chat.min.css"]
-} -->
-
-22:30 de 29 de outubro de 1969
-
-
-<div class="bubble-chat">
-  <div class="narration">We set up a telephone connection between us and the
-    guys at <abbr title="Stanford Research Institute">SRI</abbr>... We 
-    typed the L and we asked on the phone:</div>
-  <img class="bubble-portrait push-left" src="../../images/leonard-kleinrock.jpg">
-  <div class="bubble bubble-left">    
-    <div class="bubble-author bubble-author-0">Leonard Kleinrock</div>
-    <div>"Do you see the L?"</div>
-  </div>
-  <img class="bubble-portrait push-right" src="../../images/stanford-research-institute.jpg">
-  <div class="bubble bubble-right">
-    <div class="bubble-author bubble-author-1">Guys at SRI</div>
-    <div>"Yes, we see the L," came the response.</div>
-  </div>
-  <div class="narration">We typed the O, and we asked,</div>
-  <img class="bubble-portrait push-left" src="../../images/leonard-kleinrock.jpg">
-  <div class="bubble bubble-left">
-    <div class="bubble-author bubble-author-0">Leonard Kleinrock</div>
-    <div>"Do you see the O."</div>
-  </div>
-  <img class="bubble-portrait push-right" src="../../images/stanford-research-institute.jpg">
-  <div class="bubble bubble-right">
-    <div class="bubble-author bubble-author-1">Guys at SRI</div>
-    <div>"Yes, we see the O."</div>
-  </div>
-  <div class="narration">Then we typed the G, and the system crashed...
-    Yet a revolution had begun...
-</div>
-</div>
-
-
-_Fonte: [Estradas e Encruzilhadas da História da Internet (em inglês)][roads-crossroads]_
-
-[roads-crossroads]: http://netvalley.com/intval1.html
-
-*[SRI]: Stanford Reasearch Institute*
-
----
-Em **1969**, a ARPANET era uma conexão **entre 4 universidades apenas**.
- 
-![A configuração da ARPANET em 1969 era de apenas 4 universidades](../../images/arpanet-1969.jpg)
-![](../../images/arpanet-1969-geo.jpg)
-
-A partir de 1969 e durante a década de 1970, a ARPANET cresceu e se 
-conectou com várias outras grandes redes.
-
----
-Contudo, **a falta de padrão de protocolos** de rede impedia o avanço.
-Além disso, **os protocolos em vigência deixavam a REDE como responsável pela
-confiabilidade**.
 
 ---
 <!-- {"layout": "regular"} -->
 ## Linha do Tempo (1/2)
 
-1969 <!-- {.bullet-old} -->
-  ~ Larry Roberts estabelece 1º link da **ARPANET** <!-- {dd:.bullet-old} -->
-  
+1969
+  ~ Larry Roberts estabelece 1º link da **ARPANET**
+
 1974
   ~ Bob Kahn e Vint Cerf **especificam os protocolos TCP/IP**
-  
+
 1983
   ~ Bob Kahn e Vint Cerf implantam a **família de protocolos
     TCP/IP na ARPANET**
-    
+
 1974 - 1990
   ~ Outras **grandes redes se conectaram a ARPANET**
     (CSNET, NIPRNET, SPAN, NSN, ESNet, NSFNET, MILNET, SATNET, WIDEBRAND)
 
+*[CSNET]: Computer Science Network*
+*[MILNET]: Military Network*
+*[NSFNET]: National Science Foundation Network*
+
 ---
 <!-- {"layout": "centered"} -->
-
 
 ::: figure .embedded-caption
 <figcaption class="caption-bottom centered">A Internet em 1986</figcaption>
 
 ![Diagrama lógico da ARPANET em 1986](../../images/arpanet-1986.png)
 :::
-    
+
 ---
 <!-- {"layout": "regular"} -->
 ## Linha do Tempo (2/2)
@@ -244,10 +146,10 @@ confiabilidade**.
 
 - O que mais se aproximava de **troca organizada de documentos** era o
   **Gopher**
-- O Gopher considerou que a melhor forma para apresentar a 
+- O Gopher considerou que a melhor forma para apresentar a
   informação era de **forma hierárquica**
   - Contudo, hierarquizar a informação não é fácil, nem para fazer, nem para ler
-- A _World Wide Web_ (WWW), proposta por Tim Berners-Lee, apresenta a 
+- A _World Wide Web_ (WWW), proposta por Tim Berners-Lee, apresenta a
   informação em "formato de teia"
 
 ---
@@ -268,15 +170,15 @@ confiabilidade**.
   - Normalmente falamos apenas: a **Web**
 
 1ª definição
-  ~ É o que estamos vendo e interagindo quando abrimos um navegador 
+  ~ É o que estamos vendo e interagindo quando abrimos um navegador
     (Chrome, Firefox etc.)
 
 2ª definição
-  ~ Um conjunto de documentos de **hipermídia** **interconectados**, tipicamente 
+  ~ Um conjunto de documentos de **hipermídia** **interconectados**, tipicamente
     acessados pela Internet. Esses documentos são as **páginas web**.
-    - **Hipermídia**: conteúdo digital que envolve texto, imagens, sons, 
+    - **Hipermídia**: conteúdo digital que envolve texto, imagens, sons,
       vídeos etc.
-    - **Interconectado**: um documento contém "links" (referências) a outros 
+    - **Interconectado**: um documento contém "links" (referências) a outros
       (daí a ideia de teia :spider_web:)
 
 <!-- {dl:.bulleted} -->
@@ -294,9 +196,9 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 <!-- {blockquote:.centered} -->
 
 "Arcabouço arquitetural"
-  ~ Conjunto de regras para a descrição, visualização e transmissão das 
+  ~ Conjunto de regras para a descrição, visualização e transmissão das
     páginas web
-  
+
 "Conteúdo relacionado"
   ~ As páginas podem conter referências (_links_, ou melhor, _hyperlinks_) para
     outras páginas
@@ -344,8 +246,8 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
   </head>
   <body>
     <h1>Raças <strong>Raras</strong> de Ovelhas</h1>
-    <p>O interessante animal da espécie <em>Ovis aries</em> (vulga ovelha) é 
-      tipicamente produzido (pela natureza) em raças distintas. Em cada uma 
+    <p>O interessante animal da espécie <em>Ovis aries</em> (vulga ovelha) é
+      tipicamente produzido (pela natureza) em raças distintas. Em cada uma
       delas, os indivíduos ovelhísticos possuem características fisiológicas e
       comportamentais diferentes.</p>
     <p>A seguir, veja alguns exemplos dessas raças.</p>
@@ -358,7 +260,7 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
     <img src="pira-tovelha.jpg" alt="" class="circular foto-ovelha">
     <p>Ovelha marinha-saqueadora frequentemente vista nas ilhas caribenhas
       (seu habitat) navegando embarcações de madeira.</p>
-    <p>Ao avistar uma destas, gire o leme completamente a estibordo, ice as 
+    <p>Ao avistar uma destas, gire o leme completamente a estibordo, ice as
       velas e fuja para terra firme.</p>
     <h2>Ovelhopixel</h2>
     <img src="ovelhopixel.png" alt="" class="circular foto-ovelha">
@@ -457,10 +359,10 @@ ul {
 }
 ```
 
-## ![Logomarca do JavaScript](../../images/logo-javascript.svg) <!-- {.emoji} --> `ovelhita.`**`js`** 
+## ![Logomarca do JavaScript](../../images/logo-javascript.svg) <!-- {.emoji} --> `ovelhita.`**`js`**
 
 ```js
-const ANIMACOES = ['parado', 'andando', 'correndo', 'rolando', 'virando', 
+const ANIMACOES = ['parado', 'andando', 'correndo', 'rolando', 'virando',
   'adormecendo', 'dormindo', 'despencando', 'despencado', 'pendurada'];
 
 const ESTADOS = {
@@ -490,19 +392,19 @@ const vibraTela = () => {
 
 let ovelha = {
   el: document.querySelector('#ovelha'),
-  
+
   // estado inicial
   estado: ESTADOS.reflexiva,
   tempoNoEstado: 0,
   estadosAnteriores: [],
   orientacao: 1,
-  
+
   // define qual animação será tocada
   defineAnimacao: function(nomeAnimacao) {
     ANIMACOES.forEach((anim) => this.el.classList.remove(anim));
     this.el.classList.add(nomeAnimacao);
   },
-  
+
   // define se a ovelha está olhando para esquerda ou direita
   defineOrientacao: function(novaOrientacao) {
     if (novaOrientacao <= 0) {
@@ -512,7 +414,7 @@ let ovelha = {
     }
     this.orientacao = novaOrientacao;
   },
-  
+
   largura: 40,
   altura: 40,
   // coordenadas definem a posição do centro da ovelha
@@ -527,7 +429,7 @@ let ovelha = {
       this.el.style.bottom = `${y - this.altura/2}px`;
     }
   },
-  
+
   // invocada quando quisermos trocar o estado
   mudaEstado: function(novoEstado) {    
     switch (novoEstado) {
@@ -535,7 +437,7 @@ let ovelha = {
         this.velocidadeY = 0;
         break;
     }
-    
+
     this.estadosAnteriores.unshift(this.estado);
     while (this.estadosAnteriores.length > 3) {
       this.estadosAnteriores.pop();
@@ -543,19 +445,19 @@ let ovelha = {
     this.estado = novoEstado;
     this.tempoNoEstado = 0;
   },
-  
+
   sorteiaProximoEstado: function() {
     return ESTADOS[this.estado.proximo[Math.floor(Math.random() * this.estado.proximo.length)]];
   },
-  
+
   bateuNaTela: function() {
     return (this.x - this.largura/2 < 0 || this.x + this.largura/2 > window.innerWidth);
   },
-  
+
   saiuDaTela: function() {
     return (this.x + this.largura/2 < 0 || this.x - this.largura/2 > window.innerWidth);
   },
-  
+
   revolucionaNaTela: function() {
     let newX;
     if (this.x - this.largura/2 < 0) {
@@ -565,23 +467,23 @@ let ovelha = {
     }
     this.definePosicao(newX);    
   },
-  
+
   passouDoChao: function() {
     return (this.y - this.altura/2 < 0);
   },
-  
+
   tempoAntes: 0,
   atualiza: function(tempo) {
     let delta = tempo - this.tempoAntes;
     this.tempoNoEstado += delta;
-    
+
     switch (this.estado) {
       case ESTADOS.reflexiva:
         if (this.tempoNoEstado > 1000) {
           this.mudaEstado(this.sorteiaProximoEstado());
         }
         break;
-        
+
       case ESTADOS.dormindo:
         if (this.tempoNoEstado > 4000) {
           this.mudaEstado(this.sorteiaProximoEstado());
@@ -600,7 +502,7 @@ let ovelha = {
           this.mudaEstado(ESTADOS.virando);
         }
         break;
-        
+
       case ESTADOS.correndo:
         this.definePosicao(this.x += this.orientacao * .085 * delta);
         if (this.tempoNoEstado > 2500) {
@@ -611,7 +513,7 @@ let ovelha = {
           this.revolucionaNaTela();
         }
         break;
-      
+
       case ESTADOS.virando:
         // 500ms é o mesmo tempo definido na animação em CSS
         if (this.tempoNoEstado > 500) {
@@ -619,7 +521,7 @@ let ovelha = {
           this.mudaEstado(this.sorteiaProximoEstado());
         }
         break;
-        
+
       case ESTADOS.rolando:
         // rola até bater na tela
         this.definePosicao(this.x += this.orientacao * .085 * delta);
@@ -627,7 +529,7 @@ let ovelha = {
           this.mudaEstado(this.sorteiaProximoEstado());
         }
         break;
-      
+
       case ESTADOS.despencando:
         // vai caindo até atingir o chão
         this.definePosicao(this.x, this.y += this.velocidadeY * .085 * delta);
@@ -639,7 +541,7 @@ let ovelha = {
         }
         break;        
     }
-    
+
     if (!this.deveParar) {
       requestAnimationFrame(this.atualiza.bind(this));
     }
@@ -661,26 +563,26 @@ ovelha.inicializa();
 ## As três linguagens
 
 - ![Logomarca do HTML](../../images/logo-html.svg)
-  
+
   Linguagem:
     ~ HTML: Hypertext Markup Language
-  
+
   O que faz:
     ~ Conteúdo e estrutura da página (*e.g.*, o texto, imagens)
-    
+
 - ![Logomarca do CSS](../../images/logo-css.svg)
-  
+
   Linguagem:
     ~ CSS: Cascading Stylesheets
-    
+
   O que faz:
     ~ Apresentação (estilos) da página (*e.g.*, core, tamanhos, detalhes)
-    
+
 - ![Logomarca do JavaScript](../../images/logo-javascript.svg)
-  
+
   Linguagem:
     ~ JavaScript
-    
+
   O que faz:
     ~ Comportamento dinâmico na página (*e.g.*, a ovelhita)
 
@@ -693,7 +595,7 @@ ovelha.inicializa();
 
 ![Estrutura de pasta e arquivos da página de ovelhas](../../images/cefet-web-ovelhas-estrutura-pasta.png)
 
-- O arquivo HTML referencia (usa, inclui) os arquivos de imagem, os arquivos 
+- O arquivo HTML referencia (usa, inclui) os arquivos de imagem, os arquivos
   de estilo e os de script. Por exemplo:
   - Incluindo imagem:
     ```html
@@ -703,7 +605,7 @@ ovelha.inicializa();
     ```html
     <link href="estilos.css" rel="stylesheet">
     ```
-    
+
 ---
 <!-- {"layout": "section-header"} -->
 # Como surgiu a Web
@@ -725,8 +627,8 @@ ovelha.inicializa();
 - ::: figure .floating-portrait-container.push-right
   ![Tim Berners-Lee](../../images/tim-berners-lee.jpg) <!-- {.portrait} -->
   :::
-  **Físico**, trabalhando no CERN, **Tim Berners-Lee** percebeu a necessidade 
-  dos físicos de compartilhar informação e a falta de máquinas ou formatos 
+  **Físico**, trabalhando no CERN, **Tim Berners-Lee** percebeu a necessidade
+  dos físicos de compartilhar informação e a falta de máquinas ou formatos
   comuns
 - **Em 1989**, Tim escreveu uma proposta: _"a large hypertext database with typed
   links"_
@@ -742,7 +644,7 @@ ovelha.inicializa();
 <!-- {"layout": "regular"} -->
 ## As 5 Façanhas de Tim
 
-- Ao final de 1990, Tim (:heart:) havia escrito os **5 componentes básicos 
+- Ao final de 1990, Tim (:heart:) havia escrito **os 5 componentes básicos
   da Web**: <!-- {ul:.bulleted} -->
   1. O _HyperText Markup Language_ (HTML)
   1. O primeiro navegador ou _web browser_ (WorldWideWeb)
@@ -756,7 +658,7 @@ ovelha.inicializa();
 
 ---
 <!-- {"layout": "main-point", "state": "emphatic"} -->
-## Tim, o coração valente, tinha uma dúvida :one:
+## Tim, o coração valente, tinha uma dúvida
 
 ![](../../images/tim-berners-lee.jpg) <!-- {.portrait.push-left} -->
 Quero que **qualquer pessoa**, em **qualquer computador** (arquitetura, sistema
@@ -818,7 +720,7 @@ Alternativas
 
 ---
 <!-- {"layout": "main-point", "state": "emphatic"} -->
-## Tim, o coração valente, tinha uma dúvida :two:
+## Tim, o coração valente, tinha uma dúvida
 
 ![](../../images/tim-berners-lee.jpg) <!-- {.portrait.push-left} -->
 Agora que especifiquei um formato de arquivo robusto, preciso de um **programa
@@ -832,7 +734,7 @@ arquivo html para outro.
 
 ---
 <!-- {"layout": "main-point", "state": "emphatic"} -->
-## Tim, o coração valente, tinha uma dúvida :three:
+## Tim, o coração valente, tinha uma dúvida
 
 ![](../../images/tim-berners-lee.jpg) <!-- {.portrait.push-left} -->
 Até agora, consigo visualizar os arquivos `.html` no meu computador, usando um
@@ -849,7 +751,7 @@ deixar o computador ligado**, em qualquer parte do mundo.
 - Funções:
   - armazenar, processar e entregar páginas web para clientes
   - receber dados de clientes (*upload*, formulários)
-  - gerar páginas HTML dinamicamente 
+  - gerar páginas HTML dinamicamente
 - Exemplos hoje em dia:
   - **Apache**
   - Tomcat
@@ -869,6 +771,7 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
 **conversar**?
 
 ---
+<!-- {"layout": "regular"} -->
 ## **HTTP**
 
 - É um **protocolo** na camada de aplicação
@@ -880,7 +783,7 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
   ![](../../images/http-diagram-informal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
   ![](../../images/http-diagram-informal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
   :::
-  
+
 ---
 ### **Navegador requisita** algo e **Servidor responde**
 
@@ -933,7 +836,7 @@ Content-Length: 131
 
 ![](../../images/kit-aventureiro.jpg)
 - O **KIT AVENTUREIRO** deve conter:
-  
+
   01 editor de texto <!-- {dl:.width-50.bulleted-dt} -->
     ~ Pode ser o **bloco de notas** mesmo ;)
     ~ Mas existem outras ferramentas

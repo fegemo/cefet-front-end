@@ -19,7 +19,7 @@
 
 [Avaliação](#avaliacao)
   ~ O formato e os itens de distribuição dos pontos
-  
+
 <!-- {dl:.content} -->
 
 ---
