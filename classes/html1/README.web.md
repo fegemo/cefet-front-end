@@ -12,28 +12,37 @@
   - Sua primeiro navegador (WorldWideWeb)
 
 ---
-# Atividade de Hoje
+# Hoje vamos falar sobre
 
-Você tem um novo _hobby_: **criar plantas carnívoras**. Você encontrou um
-documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
-**criar uma página web com seu conteúdo**.
-<!--Além disso, você também tem
-uma **pequena loja de sementes** dessas plantas e deseja divulgá-la em uma
-página web.-->
-
-![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!-- {.portrait} -->
-
-
----
-# Para isso, hoje vamos...
-- Conhecer Estrutura básica de um arquivo `html`
-- Aprender Tags `html`: imagens, hiperlinks, citações, ênfase, destaque etc.
-- Entender um pouco de estilo `css`: _color_, _margin_, _text-align_ etc.
-
+1. Funcionamento da Web
+1. Estrutura básica de um arquivo `html`
+1. Tags `html`
+1. Um pouco de estilo `css`
 
 ---
 # Funcionamento da Web
 
+---
+## Servidores Web e Navegadores
+
+![Como servidores web se comunicam com navegadores](../../images/how-web-works.png)
+
+---
+## O que um **servidor web** faz?
+
+![Um servidor web atendendo a requisições de arquivos html de um navegador](../../images/web-servers.png)
+
+- Ele fica escutando, em determinada porta (geralmente 80), requisições de
+  arquivo realizadas por navegadores
+
+---
+## O que um **servidor web** faz (cont.)?
+
+- Vários tipos de requisições
+  - Arquivos **html**
+  - Arquivos de imagem
+  - Vídeos etc.
+- Envia resposta com o recurso solicitado de volta ao navegador
 
 ---
 ## O que um **navegador** faz?
@@ -75,12 +84,65 @@ página web.-->
 - Indentação e espaçamento são livres e não afetam o resultado
 - Um arquivo html é _plain-text_, ou puramente textual
   - em contraposição a um arquivo binário, por exemplo
-<!-- - Questionário Maroto: [Elementos HTML básicos](https://moodle.cefetmg.br/mod/quiz/view.php?id=17713)
--->
+- Questionário Maroto: [Elementos HTML básicos](https://moodle.cefetmg.br/mod/quiz/view.php?id=17713)
+
 ---
 ## Estrutura (cont.)
 
 ![Bonecas russas mostrando a estrutura aninhada de um arquivo HTML](../../images/matrioskas.png)
+
+---
+## Exemplo de _tag_: &lt;p&gt;...&lt;p&gt;
+
+- Para marcar onde um parágrafo começa e onde ele termina
+  ```html
+  <p>
+      You'll find us right in the center of
+      downtown Webville. Come join us!
+  </p>
+  ```
+- Resultado: apenas um bloco de texto, como esperávamos
+  <iframe width="100%" height="120" src="http://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+
+---
+## Exemplo de tag: &lt;p&gt;...&lt;p&gt; (cont.)
+
+- **Quebras de linha são feitas automaticamente** dentro de um parágrafo e não
+  necessariamente no mesmo lugar que você quebrou a linha no seu código fonte
+```html
+<p>
+  "Um dos maiores problemas encontrados em viajar no tempo não é
+  vir a se tornar acidentalmente seu próprio pai ou mãe. Não há
+  nenhum problema em tornar-se seu próprio pai ou mãe com que
+  uma família de mente aberta e bem ajustada não possa lidar."
+</p>
+```
+
+---
+## Exemplo de tag: &lt;p&gt;...&lt;p&gt; (cont.)
+
+- Resultado: um bloco de texto com quebras de linha onde foram necessárias.
+  <iframe width="100%" height="300" src="http://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+## Anatomia de uma _tag_
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.png)
+
+- _tag_ de fechamento: `</h1>`
+  - É idêntica à _tag_ de abertura, porém com uma barra antes do nome da _tag_
+- Chamamos `<TAG>CONTEÚDO</TAG>` de um **elemento** da página
+- Tags de abertura podem ter **atributos**:
+  ```html
+  <img src="bob-esponja.png">
+  ```
+  - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
+  - Não deve haver espaço entre seu nome e seu valor: `<img src = "...">` (errado!)
+---
+## Voltando ao arquivo completo...
+
+<iframe width="100%" height="500" src="//jsfiddle.net/fegemo/weft22qL/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 ---
 ## A _tag_ &lt;html&gt;
 
@@ -115,7 +177,7 @@ página web.-->
 
 - Do inglês: corpo
 - Contém **todo o conteúdo da página**: _tags_ de
-  - parágrafos (`<p>...</p>`)
+  - parágrafos
   - títulos e subtítulos (`<h1>...</h1>`)
   - imagens (`<img>`), etc.
 - Trecho de código
@@ -128,131 +190,6 @@ página web.-->
 <html>
 ```
 
----
-## Exemplo de _tag_: &lt;p&gt;...&lt;&#47;p&gt;
-
-- Para marcar onde um parágrafo começa e onde ele termina
-  ```html
-  <p>
-      You'll find us right in the center of
-      downtown Webville. Come join us!
-  </p>
-  ```
-- Resultado: apenas um bloco de texto, como esperávamos
-  <iframe width="100%" height="120" src="http://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
----
-## Exemplo de tag: &lt;p&gt;...&lt;&#47;p&gt; (cont.)
-
-- **Quebras de linha são feitas automaticamente** dentro de um parágrafo e não
-  necessariamente no mesmo lugar que você quebrou a linha no seu código fonte
-```html
-<p>
-  "Um dos maiores problemas encontrados em viajar no tempo não é
-  vir a se tornar acidentalmente seu próprio pai ou mãe. Não há
-  nenhum problema em tornar-se seu próprio pai ou mãe com que
-  uma família de mente aberta e bem ajustada não possa lidar."
-</p>
-```
-
----
-## Exemplo de tag: &lt;p&gt;...&lt;&#47;p&gt; (cont.)
-
-- Resultado: um bloco de texto com quebras de linha onde foram necessárias.
-  <iframe width="100%" height="300" src="http://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-## Exemplo de _tag_ h1...h6:
-
-  - Para marcar seções, subseções, subsubseções...
-```html
-    <h1>Seção</h1>
-    Este é o corpo da seção
-    <h2>Subseção</h2>
-    Este é o corpo da subseção
-```
-<iframe width="100%" height="250" src="http://jsfiddle.net/danielhasan/kndxz5kx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-## Exemplo de _tag_ img:
-
-  - Para exibir imagens...
-```html
-    <img src="https://fegemo.github.io/ovelhas/racas/pira-tovelha.jpg">
-```
-
-
-<img src="../../images/pira-tovelha.jpg">
-
-  - Neste exemplo, você utilizou o **endereço completo** da imagem
-  - Podemos usar também seu endereço **absoluto** ou **relativo**
----
-## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
-
-  - A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
-  - Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
-  - Ou seu **endereço relativo**: `pira-tovelha.jpg` (relativo à página atual)
-    ```html
-        <img src="pira-tovelha.jpg">
-    ```
----
-## Endereço Absoluto e Relativo:
-  - Caminho do  HTML: `/ovelhas/racas/raras.html`
-  - A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
-  - Endereço Absoluto:
-  ```html
-     <img src="/ovelhas/racas/pira-tovelha.jpg`">
-  ```
-
-  - Endereço Relativo:
-  ```html
-    <img src="pira-tovelha.jpg">
-  ```        
----
-## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
-
-  - A imagem está em outra pasta: `/ovelhas/racas/img/pira-tovelha.jpg`
-  - **Endereço absoluto**: `/ovelhas/racas/img/pira-tovelha.jpg`
-  - **Endereço relativo**: `img/pira-tovelha.jpg`
-  ```html
-     <img src="img/pira-tovelha.jpg`">
-  ```
----
-## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
-
-  - A imagem está em outra pasta (um nível abaixo): `/ovelhas/pira-tovelha.jpg`
-  - **Endereço absoluto**: `/ovelhas/pira-tovelha.jpg`
-  - **Endereço relativo**: `../pira-tovelha.jpg`
-  ```html
-     <img src="../pira-tovelha.jpg`">
-  ```
----
-## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
-
-  - A imagem está dois níveis abaixo: `/pira-tovelha.jpg`
-  - **Endereço absoluto**: `/pira-tovelha.jpg`
-  - **Endereço relativo**: `../../pira-tovelha.jpg`
-  ```html
-  <img src="../../pira-tovelha.jpg`">
-  ```
----
-## Anatomia de uma _tag_
-
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.png)
-
-- _tag_ de fechamento: `</h1>`
-  - É idêntica à _tag_ de abertura, porém com uma barra antes do nome da _tag_
-- Chamamos `<TAG>CONTEÚDO</TAG>` de um **elemento** da página
-- Tags de abertura podem ter **atributos**:
-  ```html
-  <img src="bob-esponja.png">
-  ```
-  - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
-  - Não deve haver espaço entre seu nome e seu valor: `<img src = "...">` (errado!)
 ---
 ## Como o navegador decide **como vai exibir** as _tags_ html?
 
