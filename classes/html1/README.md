@@ -38,10 +38,35 @@ página web.-->
 ---
 ## O que um **navegador** faz?
 
-![Um navegador recebendo uma resposta html e mostrando na tela](../../images/web-browser.png)
-
 - Quando o usuário "vai" até um novo endereço (URL), o navegador solicita esse
   **recurso** ao servidor
+  - O **Navegador requisita** algo e **Servidor responde**
+
+```http
+GET /index.html HTTP/1.1
+Host: www.twitter.com
+```
+![](../../images/http-diagram-informal-2.png) <!-- {.half-width.centered} --> <!-- {p:.no-margin} -->
+```http
+HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter</title>
+</head>
+<body>
+  Olá mundo, este é um tweet.
+</body>
+</html>
+```
+
+
+
 
 ---
 ## O que um **navegador** faz (cont.)?
@@ -239,6 +264,23 @@ página web.-->
   ```html
   <img src="../../pira-tovelha.jpg`">
   ```
+---
+## _Tag_ de **_Hyperlink_**
+  - [Link para fora da página](http://www.google.com):
+  ```html
+  <a href="http://www.google.com">Link para fora da página</a>
+  ```
+  - [Link para um arquivo](../../images/flavio-avatar.jpg) que o navegador sabe
+    abrir (_e.g._, uma imagem):
+  ```html
+  <a href="images/flavio-avatar.jpg">Link para um arquivo</a>
+  ```
+  - [Link para um arquivo](../../attachments/exemplo.zip) que o navegador não sabe abrir (_e.g._, `.zip`):
+  ```html
+  <a href="attachments/exemplo.zip">Link para um arquivo</a>
+  ```
+
+
 ---
 ## Anatomia de uma _tag_
 
