@@ -186,6 +186,13 @@ body {
 strong.alternate-color {
   color: #7b9c02;
 }
+.show-active-slide-and-previous .bespoke-before-1 {
+  transform: translate3d(-30%, 0, -250px) rotateY(10deg);
+  opacity: 1;
+}
+.show-active-slide-and-previous .bespoke-active {
+  transform: translate3d(30%, 0, -250px) rotateY(-10deg);
+}
 .tutorial {
   position: absolute;
   right: 1vw;
