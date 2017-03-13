@@ -154,7 +154,7 @@ Content-Length: 131
 ```
 
 ---
-## Exemplo de _tag_: &lt;p&gt;...&lt;&#47;p&gt;
+## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;)
 
 - Para marcar onde um parágrafo começa e onde ele termina
   ```html
@@ -167,7 +167,7 @@ Content-Length: 131
   <iframe width="100%" height="120" src="http://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
 ---
-## Exemplo de tag: &lt;p&gt;...&lt;&#47;p&gt; (cont.)
+## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;) (cont.)
 
 - **Quebras de linha são feitas automaticamente** dentro de um parágrafo e não
   necessariamente no mesmo lugar que você quebrou a linha no seu código fonte
@@ -181,13 +181,13 @@ Content-Length: 131
 ```
 
 ---
-## Exemplo de tag: &lt;p&gt;...&lt;&#47;p&gt; (cont.)
+## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;) (cont.)
 
 - Resultado: um bloco de texto com quebras de linha onde foram necessárias.
   <iframe width="100%" height="300" src="http://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-## Exemplo de _tag_ h1...h6:
+## _Tag_ de Seções e Subseções (h1, h2, ..., h6):
 
   - Para marcar seções, subseções, subsubseções...
 ```html
@@ -199,21 +199,18 @@ Content-Length: 131
 <iframe width="100%" height="250" src="http://jsfiddle.net/danielhasan/kndxz5kx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-## Exemplo de _tag_ img:
+## _Tag_ de Imagem (&lt;img&gt;):
 
   - Para exibir imagens...
 ```html
     <img src="https://fegemo.github.io/ovelhas/racas/pira-tovelha.jpg">
 ```
-
-
-<img src="../../images/pira-tovelha.jpg">
-
-  - Neste exemplo, você utilizou o **endereço completo** da imagem
-  - Podemos usar também seu endereço **absoluto** ou **relativo**
+![Pira-tovelha](../../images/pira-tovelha.jpg =100x){:height="30px" width="36px"}
+  - Neste exemplo, você utilizou o **endereço URL** da imagem
+  - Quando a imagem estiver no seu servidor (computador), podemos usar também seu endereço **absoluto** ou **relativo**
 ---
 ## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
 
   - A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
   - Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
@@ -227,7 +224,7 @@ Content-Length: 131
   - A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
   - Endereço Absoluto:
   ```html
-     <img src="/ovelhas/racas/pira-tovelha.jpg`">
+     <img src="/ovelhas/racas/pira-tovelha.jpg">
   ```
 
   - Endereço Relativo:
@@ -236,7 +233,8 @@ Content-Length: 131
   ```        
 ---
 ## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right} -->
 
   - A imagem está em outra pasta: `/ovelhas/racas/img/pira-tovelha.jpg`
   - **Endereço absoluto**: `/ovelhas/racas/img/pira-tovelha.jpg`
@@ -246,7 +244,8 @@ Content-Length: 131
   ```
 ---
 ## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right} -->
 
   - A imagem está em outra pasta (um nível abaixo): `/ovelhas/pira-tovelha.jpg`
   - **Endereço absoluto**: `/ovelhas/pira-tovelha.jpg`
@@ -256,7 +255,8 @@ Content-Length: 131
   ```
 ---
 ## Endereço Absoluto e Relativo:
-<img src="../../images/pira-tovelha_page.png">
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!-- {.push-right} -->
 
   - A imagem está dois níveis abaixo: `/pira-tovelha.jpg`
   - **Endereço absoluto**: `/pira-tovelha.jpg`
@@ -264,6 +264,21 @@ Content-Length: 131
   ```html
   <img src="../../pira-tovelha.jpg`">
   ```
+---
+## Endereço Absoluto e Relativo:
+
+  - Caminho do  HTML: `/ovelhas/racas/raras.html`
+
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)<!-- {.push-left} -->
+
+| End. Absoluto             	| End. Relativo 	|
+|---------------------------	|---------------	|
+| /ovelhas/racas/c.jpg      	| c.jpg         	|
+| /ovelhas/racas/xpto/d.jpg 	| xpto/d.jpg    	|
+| /ovelhas/b.jpg            	| ../b.jpg      	|
+| /a.jpg                    	| ../../a.jpg   	|
+
+
 ---
 ## _Tag_ de **_Hyperlink_**
   - [Link para fora da página](http://www.google.com):
