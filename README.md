@@ -26,7 +26,8 @@
 <!-- {"slideHash": "slides", "layout": "regular"} -->
 # Aulas (página 1)
 
-- [Introdução à Programação Web](classes/intro/)
+- [Introdução à Programação Web](classes/intro/) (06/03/2016)
+- [HTML 1 - Linguagem e Plantas Carnívoras](classes/html1/) (13/03/2016)
 
 <!--
 - [HTML 1 - Linguagem](classes/html1/) (01/03/2016)
