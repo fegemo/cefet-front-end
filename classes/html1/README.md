@@ -267,8 +267,6 @@ Content-Length: 131
 ---
 ## Endereço Absoluto e Relativo:
 
-  - Caminho do  HTML: `/ovelhas/racas/raras.html`
-
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)<!-- {.push-left} -->
 
 | End. Absoluto             	| End. Relativo 	|
@@ -278,7 +276,7 @@ Content-Length: 131
 | /ovelhas/b.jpg            	| ../b.jpg      	|
 | /a.jpg                    	| ../../a.jpg   	|
 
-
+<!-- {table:.push-right} -->
 ---
 ## _Tag_ de **_Hyperlink_**
   - [Link para fora da página](http://www.google.com):
