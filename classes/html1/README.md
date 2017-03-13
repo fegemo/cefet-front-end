@@ -1,15 +1,19 @@
-# HTML
+<!-- {"layout": "title"} -->
+# HTML (parte 1)
+## Plantas Carnívoras, Ingredientes do HTML (_tags_) e Temperando com CSS
 
 ---
-## Na última aula...
+<!-- {"layout": "regular"} -->
+# Na última aula...
 
 - Conversamos sobre a história da Internet e da Web
-- Vimos as proezas de Tim (Berners-Lee), o coração valente, ao criar
-  ![Foto de Tim Berners-Lee](../../images/tim-berners-lee.jpg) <!-- {.portrait.push-right} -->
-  - Seu primeiro protocolo (http)
-  - Seu primeiro formato de arquivo (html)
-  - Seu primeiro servidor http (CERN httpd)
-  - Sua primeiro navegador (WorldWideWeb)
+- ![Foto de Tim Berners-Lee](../../images/tim-berners-lee.jpg) <!-- {.portrait.push-right} --> Vimos as proezas de Tim (Berners-Lee), o coração valente, ao criar:
+  - O protocolo HTTP
+  - A linguagem HTML
+  - Um servidor web (CERN httpd)
+  - O primeiro navegador (WorldWideWeb)
+  - ~~A linguagem CSS~~ (não foi o Tim :scream:)
+  - ~~A linguagem JavaScript~~ (não foi o Tim :scream:)
 
 ---
 # Atividade de Hoje
@@ -17,23 +21,34 @@
 Você tem um novo _hobby_: **criar plantas carnívoras**. Você encontrou um
 documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
 **criar uma página web com seu conteúdo**.
-<!--Além disso, você também tem
-uma **pequena loja de sementes** dessas plantas e deseja divulgá-la em uma
-página web.-->
 
-![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!-- {.portrait} -->
-
+![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png)
 
 ---
+<!-- {"layout": "regular"} -->
 # Para isso, hoje vamos...
-- Conhecer Estrutura básica de um arquivo `html`
-- Aprender Tags `html`: imagens, hiperlinks, citações, ênfase, destaque etc.
-- Entender um pouco de estilo `css`: _color_, _margin_, _text-align_ etc.
 
+- Conhecer Estrutura básica de um arquivo HTML
+- Aprender algumas _tags_ HTML para:
+  - parágrafos `<p>...</p>`
+  - títulos `<h1>...</h1>`, ou `<h2>...</h2>` etc. (até `<h6>...</h6>`)
+  - imagens `<img src="...">`
+  - hiperlinks `<a href="">...</a>`
+- Entender um pouco de estilo CSS:
+  - `color`, `background-color`
+  - `margin`, `text-align`
 
 ---
+<!-- {"layout": "section-header"} -->
 # Funcionamento da Web
+## Como o navegador conversa com o servidor
 
+- Modelo de **requisição e resposta**
+  1. **Navegador** requisita uma página
+  1. **Servidor** responde
+- **URL**: como identificar um recurso
+
+<!-- {ul:.content} -->
 
 ---
 ## O que um **navegador** faz?
@@ -65,26 +80,31 @@ Content-Length: 131
 </html>
 ```
 
-
-
-
 ---
 ## O que um **navegador** faz (cont.)?
 
 - URL: Unique **Resource** Locator
-  - É o endereço de coisas na Internet - páginas, imagens, arquivos, etc.
-
-    ![](../../images/url-1.png)
+  - É o **endereço de coisas** na Internet - **páginas, imagens, arquivos**, etc.   
+    ![](../../images/url-1.png) <!-- {.block} -->
 - Assim que a resposta é recebida, o navegador a exibe na tela, caso **consiga**
   - Por exemplo, os navegadores não conseguem exibir um arquivo .zip
 
 ---
+<!-- {"layout": "section-header"} -->
 # Estrutura Básica do **HTML**
+## .
+
+- O que é uma _tag_
+- Anatomia da _tag_
+- Um arquivo HTML completo
+
+<!-- {ul:.content} -->
 
 ---
 ![Exemplo de um arquivo html](../../images/exemplo-html.png)
 
 ---
+<!-- {"state":"show-active-slide-and-previous"} -->
 ![Exemplo de um arquivo html no navegador](../../images/exemplo-html-resultado.png)
 
 - Demonstração: criando uma página no "blocão"
@@ -97,15 +117,15 @@ Content-Length: 131
   - Existem dezenas de tags (umas 50? 60?) e cada uma tem um propósito e um
     resultado visual
   - A grande maioria delas precisam ser fechadas (e.g., `<p>...</p>`)
-- Indentação e espaçamento são livres e não afetam o resultado
+- **Indentação e espaçamento** são livres e não afetam o resultado
 - Um arquivo html é _plain-text_, ou puramente textual
   - em contraposição a um arquivo binário, por exemplo
-<!-- - Questionário Maroto: [Elementos HTML básicos](https://moodle.cefetmg.br/mod/quiz/view.php?id=17713)
--->
+
 ---
 ## Estrutura (cont.)
 
 ![Bonecas russas mostrando a estrutura aninhada de um arquivo HTML](../../images/matrioskas.png)
+
 ---
 ## A _tag_ &lt;html&gt;
 
@@ -164,7 +184,7 @@ Content-Length: 131
   </p>
   ```
 - Resultado: apenas um bloco de texto, como esperávamos
-  <iframe width="100%" height="120" src="http://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+  <iframe width="100%" height="120" src="https://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
 ---
 ## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;) (cont.)
@@ -184,7 +204,7 @@ Content-Length: 131
 ## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;) (cont.)
 
 - Resultado: um bloco de texto com quebras de linha onde foram necessárias.
-  <iframe width="100%" height="300" src="http://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+  <iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 ## _Tag_ de Seções e Subseções (h1, h2, ..., h6):
@@ -201,73 +221,87 @@ Content-Length: 131
 ---
 ## _Tag_ de Imagem (&lt;img&gt;):
 
-  - Para exibir imagens...
-```html
-    <img src="https://fegemo.github.io/ovelhas/racas/pira-tovelha.jpg">
-```
-![Pira-tovelha](../../images/pira-tovelha.jpg =100x){:height="30px" width="36px"}
-  - Neste exemplo, você utilizou o **endereço URL** da imagem
-  - Quando a imagem estiver no seu servidor (computador), podemos usar também seu endereço **absoluto** ou **relativo**
+- Para exibir imagens...
+  ```html
+  <img src="https://fegemo.github.io/ovelhas/racas/pira-tovelha.jpg">
+  ```
+  ![Pira-tovelha](../../images/pira-tovelha.jpg)  <!-- {height="100px"} -->
+- Neste exemplo, você utilizou o **endereço URL** da imagem
+- Quando a imagem estiver no seu servidor (computador), podemos usar
+  também seu endereço **absoluto** ou **relativo**
+
 ---
 ## Endereço Absoluto e Relativo:
+
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
 
-  - A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
-  - Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
-  - Ou seu **endereço relativo**: `pira-tovelha.jpg` (relativo à página atual)
-    ```html
-        <img src="pira-tovelha.jpg">
-    ```
----
-## Endereço Absoluto e Relativo:
-  - Caminho do  HTML: `/ovelhas/racas/raras.html`
-  - A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
-  - Endereço Absoluto:
+- A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
+- Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
+- Ou seu **endereço relativo**: `pira-tovelha.jpg` (relativo à página atual)
   ```html
-     <img src="/ovelhas/racas/pira-tovelha.jpg">
+  <img src="pira-tovelha.jpg">
   ```
 
-  - Endereço Relativo:
-  ```html
-    <img src="pira-tovelha.jpg">
-  ```        
 ---
 ## Endereço Absoluto e Relativo:
+
+- Caminho do  HTML: `/ovelhas/racas/raras.html`
+- A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
+- Endereço Absoluto:
+  ```html
+  <img src="/ovelhas/racas/pira-tovelha.jpg">
+  ```
+- Endereço Relativo:
+  ```html
+  <img src="pira-tovelha.jpg">
+  ```
+
+---
+## Endereço Absoluto e Relativo:
+
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right} -->
 
-  - A imagem está em outra pasta: `/ovelhas/racas/img/pira-tovelha.jpg`
-  - **Endereço absoluto**: `/ovelhas/racas/img/pira-tovelha.jpg`
-  - **Endereço relativo**: `img/pira-tovelha.jpg`
+- A imagem está em outra pasta: `/ovelhas/racas/img/pira-tovelha.jpg`
+- **Endereço absoluto**: `/ovelhas/racas/img/pira-tovelha.jpg`
+- **Endereço relativo**: `img/pira-tovelha.jpg`
   ```html
-     <img src="img/pira-tovelha.jpg`">
+  <img src="img/pira-tovelha.jpg">
   ```
+
 ---
 ## Endereço Absoluto e Relativo:
+
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right} -->
 
-  - A imagem está em outra pasta (um nível abaixo): `/ovelhas/pira-tovelha.jpg`
-  - **Endereço absoluto**: `/ovelhas/pira-tovelha.jpg`
-  - **Endereço relativo**: `../pira-tovelha.jpg`
+- A imagem está em outra pasta (um nível abaixo): `/ovelhas/pira-tovelha.jpg`
+- **Endereço absoluto**: `/ovelhas/pira-tovelha.jpg`
+- **Endereço relativo**: `../pira-tovelha.jpg`
   ```html
-     <img src="../pira-tovelha.jpg`">
+  <img src="../pira-tovelha.jpg`">
   ```
+
 ---
 ## Endereço Absoluto e Relativo:
+
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!-- {.push-right} -->
 
-  - A imagem está dois níveis abaixo: `/pira-tovelha.jpg`
-  - **Endereço absoluto**: `/pira-tovelha.jpg`
-  - **Endereço relativo**: `../../pira-tovelha.jpg`
+- A imagem está dois níveis abaixo: `/pira-tovelha.jpg`
+- **Endereço absoluto**: `/pira-tovelha.jpg`
+- **Endereço relativo**: `../../pira-tovelha.jpg`
   ```html
   <img src="../../pira-tovelha.jpg`">
   ```
+
 ---
+<!-- {"layout": "2-column-content"} -->
 ## Endereço Absoluto e Relativo:
 
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)<!-- {.push-left} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)
+
+<!-- {p:style="width: 20%"} -->
 
 | End. Absoluto             	| End. Relativo 	|
 |---------------------------	|---------------	|
@@ -276,23 +310,23 @@ Content-Length: 131
 | /ovelhas/b.jpg            	| ../b.jpg      	|
 | /a.jpg                    	| ../../a.jpg   	|
 
-<!-- {table:.push-right} -->
+<!-- {table:style="width: 75%"} -->
 ---
 ## _Tag_ de **_Hyperlink_**
-  - [Link para fora da página](http://www.google.com):
+
+- [Link para fora da página](http://www.google.com):
   ```html
   <a href="http://www.google.com">Link para fora da página</a>
   ```
-  - [Link para um arquivo](../../images/flavio-avatar.jpg) que o navegador sabe
-    abrir (_e.g._, uma imagem):
+- [Link para um arquivo](../../images/flavio-avatar.jpg) que o navegador sabe
+  abrir (_e.g._, uma imagem):
   ```html
   <a href="images/flavio-avatar.jpg">Link para um arquivo</a>
   ```
-  - [Link para um arquivo](../../attachments/exemplo.zip) que o navegador não sabe abrir (_e.g._, `.zip`):
+- [Link para um arquivo](../../attachments/exemplo.zip) que o navegador não sabe abrir (_e.g._, `.zip`):
   ```html
   <a href="attachments/exemplo.zip">Link para um arquivo</a>
   ```
-
 
 ---
 ## Anatomia de uma _tag_
@@ -308,6 +342,7 @@ Content-Length: 131
   ```
   - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
   - Não deve haver espaço entre seu nome e seu valor: `<img src = "...">` (errado!)
+
 ---
 ## Como o navegador decide **como vai exibir** as _tags_ html?
 
@@ -320,8 +355,18 @@ Content-Length: 131
 - Vamos conhecer agora uma segunda linguagem: CSS
 
 ---
+<!-- {"layout": "section-header"} -->
 # Um pouco de estilo
 ## Conhecendo CSS - Cascading Stylesheets
+
+- A _tag_ `<style>...</style>`
+- Definindo as propriedades de:
+  - Cor do texto: `color`
+  - Cor do fundo: `background-color`
+  - Margem (espaçamento): `margin`
+  - Fonte: `font-family`
+
+<!-- {ul^1:.content} -->
 
 ---
 ## Definindo o estilo
@@ -329,28 +374,42 @@ Content-Length: 131
 - Adicionamos um novo elemento: `<style>...</style>`
 - Podemos colocá-lo no &lt;head&gt; ou no &lt;body&gt;, mas a **melhor prática é
   no cabeçalho**
-```html
-<html>
-  <head>
-    <title>Título da página</title>
-    <style>
+  ```html
+  <html>
+    <head>
+      <title>Título da página</title>
+      <style>
 
-    </style>
-  </head>
-  ...
-```
+      </style>
+    </head>
+    <body>
+    ...
+  ```
 
 ---
 ## Definindo o estilo (cont.)
 
 ```css
 body {
-  background-color: #d2b48c;
+  background-color: teal;
+  color: white;
   margin-left: 20%;
   margin-right: 20%;
-  border: 2px dotted black;
-  padding: 10px 10px 10px 10px;
-  font-family: sans-serif;
+  font-family: "Arial", sans-serif;
+}
+
+h1 {
+  color: yellow;
+  font-family: "Courier New", monospace;
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}
+
+h2 {
+  color: pink;
 }
 ```
 
@@ -359,38 +418,92 @@ body {
 ---
 ## Definindo o estilo (cont.)
 
-<iframe width="100%" height="500" src="//jsfiddle.net/fegemo/9po3sd1m/2/embedded/result,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="500" src="//jsfiddle.net/fegemo/ojmwh8gb/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-## Entendendo o estilo
+## Entendendo o estilo: **cores**
 
-- Define a cor (_color_) do fundo (_background_) para marrom (definido em
-  hexadecimal):
-  ```css
-  background-color: #d2b48c;
+- ```css
+  body {
+    background-color: teal;    
+  }
   ```
-- Define as margens laterais da página:
-  ```css
-  margin-left: 20%;
-  margin-right: 20%;
+  Define a **cor** (_color_) **do fundo** (_background_) para azul ocre (_teal_)
+  - Mas também poderia ser: `orange`, `red`, `green`, `black` etc.
+- ```css
+  body {
+    color: white;
+  }
   ```
+  Define a **cor do texto** como branco
 
 ---
+## Entendendo o estilo: **margens laterais**
+
+- ![](../../images/margin-left.png) <!-- {.push-right} -->
+  ```css
+  body {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  ```
+  Define as **margens** (espaço) laterais da página
+  - Também existem: `margin-top` (cima) e `margin-bottom` (baixo)
+
+---
+## Entendendo o estilo: **fonte**
+
+- ![](../../images/font-families.png) <!-- {.push-right} -->
+  ```css
+  body {
+    font-family: "Arial", sans-serif;
+  }
+  ```
+  Define a **fonte** do texto **da página**
+- ```css
+  h1 {
+    font-family: "Courier New", monospace;
+  }
+  ```
+  Define a **fonte** sendo usada para o texto de **todos `<h1>` na página**
+
+---
+## Entendendo o estilo: **alinhamento do texto**
+
+- ![](../../images/text-align-justify.png) <!-- {.push-right} -->
+  ```css
+  p {
+    text-align: justify;
+  }
+  ```
+- ![](../../images/text-align-left.png) <!-- {.push-right} -->
+  ```css
+  text-align: left; /* valor padrão */
+  ```
+- ![](../../images/text-align-right.png) <!-- {.push-right} -->
+  ```css
+  text-align: right;
+  ```
+- ![](../../images/text-align-center.png) <!-- {.push-right} -->
+  ```css
+  text-align: center;
+  ```
+
+<!--
 ## Entendendo o estilo (cont.)
 
-- Coloca uma borda preta (_black_) com largura de 2px e pontilhada (_dotted_):
+- Coloca uma **borda** preta (_black_) com largura de 2px e pontilhada (_dotted_):
   ```css
   border: 2px dotted black;
   ```
-- Altera a fonte para `sans-serif` (parecida com Arial):
+- Altera a **fonte** para `sans-serif` (parecida com Arial):
   ```css
   font-family: sans-serif;
   ```
 
----
 ## Entendendo o estilo (cont.)
 
-- Define um espaço de preenchimento de 10px entre a borda e o conteúdo
+- Define um **espaço de preenchimento** de 10px entre a borda e o conteúdo
   ```css
   padding: 10px 10px 10px 10px;
   ```
@@ -402,7 +515,6 @@ body {
   - Se usarmos a propriedade de atalho, definimos valores para as propriedades
     originais na ordem acima (cima, direita, baixo, esquerda)
 
----
 ## Mais sobre atalhos
 
 - Os **resultados são idênticos** de se fazer:
@@ -418,7 +530,7 @@ body {
 - ```css
   padding: 10px;
   ```
-
+-->
 ---
 # Referências
 

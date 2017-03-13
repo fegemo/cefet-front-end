@@ -24,13 +24,12 @@
 
 ---
 <!-- {"slideHash": "slides", "layout": "regular"} -->
-# Aulas (página 1)
+# Aulas
 
-- [Introdução à Programação Web](classes/intro/) (06/03/2016)
-- [HTML 1 - Linguagem e Plantas Carnívoras](classes/html1/) (13/03/2016)
+- [Introdução à Programação Web](classes/intro/)
+- [HTML parte 1](classes/html1/) - Plantas Carnívoras, Ingredientes do HTML (_tags_) e Temperando com CSS
 
 <!--
-- [HTML 1 - Linguagem](classes/html1/) (01/03/2016)
 - [HTML 2 - Imagens e Plantas Carnívoras (Prática)](classes/html2/) (03/03/2016)
 - [HTML 3 - Multimídia](classes/html3/) (08/03/2016)
 - [CSS 1 - Seletores e Ninjas (Prática)](classes/css1/) (10/03/2016)
