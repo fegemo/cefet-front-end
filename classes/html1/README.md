@@ -16,30 +16,36 @@
   - ~~A linguagem JavaScript~~ (não foi o Tim :scream:)
 
 ---
-# Atividade de Hoje
+# Atividade de Hoje ![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!--{style="height:1em;"}-->
 
 Você tem um novo _hobby_: **criar plantas carnívoras**. Você encontrou um
 documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
-**criar uma página web com seu conteúdo**.
+**criar uma página web**.
+<!-- {p:style="width: 50%"} -->
 
-![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png)
+
+
+---
+<!-- {"state":"show-active-slide-and-previous"} -->
+![](../../images/piranha-plant-exercise.png)
 
 ---
 <!-- {"layout": "regular"} -->
 # Para isso, hoje vamos...
 
-- Conhecer Estrutura básica de um arquivo HTML
-- Aprender algumas _tags_ HTML para:
-  - parágrafos `<p>...</p>`
-  - títulos `<h1>...</h1>`, ou `<h2>...</h2>` etc. (até `<h6>...</h6>`)
-  - imagens `<img src="...">`
-  - hiperlinks `<a href="">...</a>`
-- Entender um pouco de estilo CSS:
-  - `color`, `background-color`
-  - `margin`, `text-align`
+1. Rever o [funcionamento](#funcionamento-web) dos servidores e navegadores
+1. Conhecer a [estrutura básica](#estrutura-basica-html) de um arquivo HTML
+1. Aprender algumas [_tags_ HTML para texto](#tags-html):
+   - parágrafos `<p>...</p>`
+   - títulos `<h1>...</h1>`, ou `<h2>...</h2>` etc. (até `<h6>...</h6>`)
+   - imagens `<img src="...">`
+   - hiperlinks `<a href="">...</a>`
+1. Entender um pouco de [estilo CSS](#estilo-css):
+   - `color`, `background-color`
+   - `margin`, `text-align`
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "funcionamento-web"} -->
 # Funcionamento da Web
 ## Como o navegador conversa com o servidor
 
@@ -90,24 +96,23 @@ Content-Length: 131
   - Por exemplo, os navegadores não conseguem exibir um arquivo .zip
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "estrutura-basica-html"} -->
 # Estrutura Básica do **HTML**
-## .
+## . <!-- {style="visibility: hidden;"} -->
 
-- O que é uma _tag_
-- Anatomia da _tag_
 - Um arquivo HTML completo
+  - _Tag_ `<html>...</html>`
+  - _Tag_ `<head>...</head>`
+  - _Tag_ `<body>...</body>`
 
-<!-- {ul:.content} -->
+<!-- {ul^1:.content} -->
 
 ---
 ![Exemplo de um arquivo html](../../images/exemplo-html.png)
 
 ---
-<!-- {"state":"show-active-slide-and-previous"} -->
+<!-- {"state": "show-active-slide-and-previous"} -->
 ![Exemplo de um arquivo html no navegador](../../images/exemplo-html-resultado.png)
-
-- Demonstração: criando uma página no "blocão"
 
 ---
 ## Estrutura
@@ -122,11 +127,6 @@ Content-Length: 131
   - em contraposição a um arquivo binário, por exemplo
 
 ---
-## Estrutura (cont.)
-
-![Bonecas russas mostrando a estrutura aninhada de um arquivo HTML](../../images/matrioskas.png)
-
----
 ## A _tag_ &lt;html&gt;
 
 - Envolve todas* as outras _tags_
@@ -139,20 +139,24 @@ Content-Length: 131
 ## A _tag_ &lt;head&gt;
 
 - Do inglês: cabeça
-- Contém **meta-informação** sobre este arquivo `html`
-  - Título da página (obrigatório)
-  - Descrição da página
+- Contém **meta-informação** sobre este arquivo `html`, por exemplo:
+  - **Título da página** no topo do navegador (obrigatório)
+  - **Codificação** (_encoding_) da página
   - Ícone
   - Inclusão de arquivos (`.css`, `.js`)
 - Trecho de código
-
 ```html
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Este é o título que aparece na aba</title>
     ...
   </head>
-  ...
+  <body>
+    ...
+  </body>
+</html>
 ```
 
 ---
@@ -174,23 +178,34 @@ Content-Length: 131
 ```
 
 ---
-## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;)
+<!-- {"layout": "section-header", "slideHash": "tags-html"} -->
+# Algumas _tags_ HTML
+## . <!-- {style="visibility: hidden"} -->
 
-- Para marcar onde um parágrafo começa e onde ele termina
-  ```html
-  <p>
-      You'll find us right in the center of
-      downtown Webville. Come join us!
-  </p>
-  ```
-- Resultado: apenas um bloco de texto, como esperávamos
-  <iframe width="100%" height="120" src="https://jsfiddle.net/fegemo/ofs1csr0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+- Anatomia de uma _tag_
+- Parágrafo
+- Títulos e subtítulos
+- Imagens
+- Hiperlinks
+
+<!-- {ul:.content} -->
 
 ---
-## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;) (cont.)
+## Anatomia de uma _tag_
 
-- **Quebras de linha são feitas automaticamente** dentro de um parágrafo e não
-  necessariamente no mesmo lugar que você quebrou a linha no seu código fonte
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.png)
+
+- Tags de abertura podem ter **atributos**:
+  ```html
+  <img src="bob-esponja.png">
+  ```
+  - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
+  - **Não deve haver espaço** entre seu nome e seu valor: `<img src = "...">`
+
+---
+## _Tag_ de **<u>Parágrafo</u>** (`<p>...</p>`)
+
+- **Quebras de linha** são feitas automaticamente
 ```html
 <p>
   "Um dos maiores problemas encontrados em viajar no tempo não é
@@ -199,149 +214,124 @@ Content-Length: 131
   uma família de mente aberta e bem ajustada não possa lidar."
 </p>
 ```
+<iframe width="100%" src="https://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-## _Tag_ de Parágrafo (&lt;p&gt;...&lt;&#47;p&gt;) (cont.)
+<!-- {"layout": "2-column-content"} -->
+## _Tag_ de **<u>Títulos</u>** e **<u>Subtítulos</u>** (`h1`, `h2` ... `h6`)
 
-- Resultado: um bloco de texto com quebras de linha onde foram necessárias.
-  <iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-## _Tag_ de Seções e Subseções (h1, h2, ..., h6):
-
-  - Para marcar seções, subseções, subsubseções...
 ```html
-    <h1>Seção</h1>
-    Este é o corpo da seção
-    <h2>Subseção</h2>
-    Este é o corpo da subseção
+<h1>Título de 1º nível</h1>
+<p>Este é o corpo da seção</p>
+<h2>Subtítulo (2º nível)</h2>
+<p>Este é o corpo da subseção</p>
 ```
-<iframe width="100%" height="250" src="http://jsfiddle.net/danielhasan/kndxz5kx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="100%" height="260" src="//jsfiddle.net/fegemo/wxd5s6be/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+- Há a possibilidade de ter **6 <u>níveis</u> de títulos**
+  - Mas a quantidade de títulos é infinita
 
 ---
-## _Tag_ de Imagem (&lt;img&gt;):
+## _Tag_ de **<u>Imagem</u>** (`<img>`)
 
 - Para exibir imagens...
   ```html
-  <img src="https://fegemo.github.io/ovelhas/racas/pira-tovelha.jpg">
+  <img src="http://fegemo.github.io/kraken-typing/imgs/kraken.png">
   ```
-  ![Pira-tovelha](../../images/pira-tovelha.jpg)  <!-- {height="100px"} -->
-- Neste exemplo, você utilizou o **endereço URL** da imagem
-- Quando a imagem estiver no seu servidor (computador), podemos usar
-  também seu endereço **absoluto** ou **relativo**
+  ![Mascote do programa GitKraken](https://fegemo.github.io/kraken-typing/imgs/site/logo-gitkraken.png)  <!-- {.block.centered height="100px"} -->
+- Neste exemplo, usamos **a URL da imagem hospedada em outro
+  site** na Internet
+  - **URLs externas** devem ser sempre absolutas (mostar o caminho completo)
+- **URLs internas** (endereços, ou caminhos) podem ser **absolutas** ou **relativas**
 
 ---
-## Endereço Absoluto e Relativo:
+## Exemplo 1: Arquivo HTML e imagem **na mesma pasta**
 
-![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
-
-- A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
-- Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
-- Ou seu **endereço relativo**: `pira-tovelha.jpg` (relativo à página atual)
-  ```html
-  <img src="pira-tovelha.jpg">
-  ```
-
----
-## Endereço Absoluto e Relativo:
-
-- Caminho do  HTML: `/ovelhas/racas/raras.html`
-- A imagem está na mesma pasta: `/ovelhas/racas/pira-tovelha.jpg`
-- Endereço Absoluto:
-  ```html
-  <img src="/ovelhas/racas/pira-tovelha.jpg">
-  ```
-- Endereço Relativo:
-  ```html
-  <img src="pira-tovelha.jpg">
-  ```
+- ![Página exibindo a descrição e imagem da Pirá-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-right style="height: 140px;"} -->
+  Arquivo HTML está em:<br>`/ovelhas/racas/raras.html`
+- A imagem está em:<br>`/ovelhas/racas/pira-tovelha.jpg`
+  - Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
+    ```html
+    <img src="/ovelhas/racas/pira-tovelha.jpg">
+    ```
+  - Ou seu **endereço relativo**: `pira-tovelha.jpg` (relativo à página atual)
+    ```html
+    <img src="pira-tovelha.jpg">
+    ```
 
 ---
-## Endereço Absoluto e Relativo:
+## Exemplo 2: Imagem 1 pasta adentro
 
-![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right} -->
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-left style="height: 140px"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right style="height: 140px"} -->
 
-- A imagem está em outra pasta: `/ovelhas/racas/img/pira-tovelha.jpg`
 - **Endereço absoluto**: `/ovelhas/racas/img/pira-tovelha.jpg`
+  ```html
+  <img src="/ovelhas/racas/img/pira-tovelha.jpg">
+  ```
 - **Endereço relativo**: `img/pira-tovelha.jpg`
   ```html
   <img src="img/pira-tovelha.jpg">
   ```
 
 ---
-## Endereço Absoluto e Relativo:
+## Exemplo 3: Imagem 1 pasta acima
 
-![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right} -->
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)<!-- {.push-left style="height: 140px"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right style="height: 140px"} -->
 
-- A imagem está em outra pasta (um nível abaixo): `/ovelhas/pira-tovelha.jpg`
 - **Endereço absoluto**: `/ovelhas/pira-tovelha.jpg`
+  ```html
+  <img src="/ovelhas/pira-tovelha.jpg">
+  ```
 - **Endereço relativo**: `../pira-tovelha.jpg`
   ```html
-  <img src="../pira-tovelha.jpg`">
+  <img src="../pira-tovelha.jpg">
   ```
 
 ---
-## Endereço Absoluto e Relativo:
+## Exemplo 4: Imagem 2 pastas acima
 
-![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!-- {.push-right} -->
+![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)<!-- {.push-left style="height: 140px"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!--{.push-right style="height: 140px"} -->
 
-- A imagem está dois níveis abaixo: `/pira-tovelha.jpg`
 - **Endereço absoluto**: `/pira-tovelha.jpg`
+  ```html
+  <img src="/pira-tovelha.jpg">
+  ```
 - **Endereço relativo**: `../../pira-tovelha.jpg`
   ```html
-  <img src="../../pira-tovelha.jpg`">
+  <img src="../../pira-tovelha.jpg">
   ```
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## Endereço Absoluto e Relativo:
+## Sumarizando: **URLs absolutas e relativas**
 
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)
 
 <!-- {p:style="width: 20%"} -->
 
-| End. Absoluto             	| End. Relativo 	|
+| Endereço Absoluto          	| End. Relativo 	|
 |---------------------------	|---------------	|
-| /ovelhas/racas/c.jpg      	| c.jpg         	|
-| /ovelhas/racas/xpto/d.jpg 	| xpto/d.jpg    	|
-| /ovelhas/b.jpg            	| ../b.jpg      	|
-| /a.jpg                    	| ../../a.jpg   	|
+| /ovelhas/racas/c.jpg      	| `c.jpg`        	|
+| /ovelhas/racas/xpto/d.jpg 	| `xpto/d.jpg`   	|
+| /ovelhas/b.jpg            	| `../b.jpg`     	|
+| /a.jpg                    	| `../../a.jpg`  	|
 
 <!-- {table:style="width: 75%"} -->
 ---
 ## _Tag_ de **_Hyperlink_**
 
-- [Link para fora da página](http://www.google.com):
+- [Link externo (para fora da página)](http://www.google.com):
   ```html
   <a href="http://www.google.com">Link para fora da página</a>
   ```
-- [Link para um arquivo](../../images/flavio-avatar.jpg) que o navegador sabe
-  abrir (_e.g._, uma imagem):
+- [Link interno](../../attachments/exemplo.zip) que o navegador sabe
   ```html
-  <a href="images/flavio-avatar.jpg">Link para um arquivo</a>
+  <a href="downloads/exemplo.zip">Link interno para um arquivo</a>
   ```
-- [Link para um arquivo](../../attachments/exemplo.zip) que o navegador não sabe abrir (_e.g._, `.zip`):
-  ```html
-  <a href="attachments/exemplo.zip">Link para um arquivo</a>
-  ```
-
----
-## Anatomia de uma _tag_
-
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.png)
-
-- _tag_ de fechamento: `</h1>`
-  - É idêntica à _tag_ de abertura, porém com uma barra antes do nome da _tag_
-- Chamamos `<TAG>CONTEÚDO</TAG>` de um **elemento** da página
-- Tags de abertura podem ter **atributos**:
-  ```html
-  <img src="bob-esponja.png">
-  ```
-  - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
-  - Não deve haver espaço entre seu nome e seu valor: `<img src = "...">` (errado!)
 
 ---
 ## Como o navegador decide **como vai exibir** as _tags_ html?
@@ -355,7 +345,7 @@ Content-Length: 131
 - Vamos conhecer agora uma segunda linguagem: CSS
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "estilo-css"} -->
 # Um pouco de estilo
 ## Conhecendo CSS - Cascading Stylesheets
 
