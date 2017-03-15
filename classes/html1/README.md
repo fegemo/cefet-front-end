@@ -322,15 +322,16 @@ Content-Length: 131
 
 <!-- {table:style="width: 75%"} -->
 ---
-## _Tag_ de **_Hyperlink_**
+## _Tag_ de **_Hyperlink_** (`<a href="">...</a>`)
 
-- [Link externo (para fora da página)](http://www.google.com):
+- [Link externo](http://www.google.com) (para fora da página):
   ```html
-  <a href="http://www.google.com">Link para fora da página</a>
+  <a href="http://www.google.com">Link externo</a>
   ```
-- [Link interno](../../attachments/exemplo.zip) que o navegador sabe
+- [Link interno](../../attachments/exemplo.zip) (para algo hospedado no
+  próprio computador)
   ```html
-  <a href="downloads/exemplo.zip">Link interno para um arquivo</a>
+  <a href="downloads/exemplo.zip">Link interno</a>
   ```
 
 ---
@@ -369,7 +370,7 @@ Content-Length: 131
     <head>
       <title>Título da página</title>
       <style>
-
+        /* escrever código CSS aqui dentro */
       </style>
     </head>
     <body>
