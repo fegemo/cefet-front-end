@@ -27,10 +27,12 @@
 # Aulas
 
 - [Introdução à Programação Web](classes/intro/)
-- [HTML parte 1](classes/html1/) - Plantas Carnívoras, Ingredientes do HTML (_tags_) e Temperando com CSS
+- [HTML parte 1](classes/html1/) - Plantas Carnívoras, Ingredientes do HTML
+  (_tags_) e Temperando com CSS
+- [HTML parte 2](classes/html2/) - Coding Dojo :japanese_castle:, Mais _tags_
+  HTML e Entendendo regras CSS
 
 <!--
-- [HTML 2 - Imagens e Plantas Carnívoras (Prática)](classes/html2/) (03/03/2016)
 - [HTML 3 - Multimídia](classes/html3/) (08/03/2016)
 - [CSS 1 - Seletores e Ninjas (Prática)](classes/css1/) (10/03/2016)
 - [CSS 2 - Especificidade](classes/css2/) (15/03/2016)

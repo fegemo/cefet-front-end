@@ -14,3 +14,37 @@ strong.alternate-color
   &.bespoke-before-1
     transform translate3d(-30%, 0, -250px) rotateY(10deg)
     opacity 0
+
+div.result
+  border-radius 0.25em
+  background-color #c4e3ff
+  padding 0.5em
+  border 1px dashed darken(#c4e3ff, 30%)
+  position relative
+  margin-left 1.5em
+  padding-top 1em
+  margin-top 0.5em
+  & > p
+    margin 0
+  &::before
+    content attr(data-before)
+    position absolute
+    top -0.5em
+    left -2em
+    font-size .75em
+    line-height 1.5em
+    border 1px solid #FF5722
+    background-color #FF8A65
+    padding 0 .5em
+    display inline-block
+    transform rotate(-3deg)
+    font-weight bold
+    color white
+
+
+ul.no-list-icon
+ol.no-list-icon
+  list-style-type none
+
+.no-padding
+  padding 0

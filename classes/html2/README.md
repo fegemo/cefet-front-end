@@ -1,129 +1,293 @@
-# HTML - Parte 2
+<!-- {"layout": "title"} -->
+# HTML (parte 2)
+## Coding Dojo :japanese_castle:, Mais _tags_ HTML e Entendendo regras CSS
 
 ---
-# Hoje vamos
+<!-- {"layout": "regular"} -->
+# Na última aula...
 
-- Aprender sobre plantas carnívoras \o/
-- Praticar `html`: imagens, hiperlinks, tabelas, citações, ênfase, destaque etc.
-- Praticar `css`: _color_, _margin_, _text-align_ etc.
 
 ---
-# Atividade de Hoje
+<!-- {"layout": "section-header"} -->
+# _Tags_ de importância
+## Destacando partes do texto
 
-Você tem um novo _hobby_: **criar plantas carnívoras**. Você encontrou um
-documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
-**criar uma página web com seu conteúdo**. Além disso, você também tem
-uma **pequena loja de sementes** dessas plantas e deseja divulgá-la em uma
-página web.
+- _Tag_ `<strong></strong>`
+- _Tag_ `<em></em>`
+- _Tags_ `<del></del>` e `<ins></ins>`
+- _Tag_ `<mark></mark>`
 
-![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!-- {.portrait} -->
-
----
-## Passos para o exercício
-
-1. Instalar o git na máquina, caso ele não esteja instalado
-1. **Criar um _fork_** do repositório do professor em [`https://github.com/fegemo/cefet-web-piranha-plant`](https://github.com/fegemo/cefet-web-piranha-plant)
-  e **cloná-lo para sua área de trabalho**
-1. Fazer o exercício e fazer _commits_ e _push_ no seu repositório
-  - O arquivo `REAMDE.md` do repositório contém as instruções do exercício
-1. Enviar, via **Moodle**, o link do seu repositório até o final da aula
+<!-- {ul:.content} -->
 
 ---
-## _Tags_ que indicam **Importância**
+<!-- {"layout": "regular"} -->
+## (1) _Tag_ **`<strong></strong>`** :muscle:
 
-- <div>
-    <strong>estou em destaque (tipicamente negrito)</strong>
-  </div>
-
+- Usada para marcar **texto com alta importância**, seriedade ou urgência:
   ```html
-  <strong>estou em destaque (tipicamente negrito)</strong>
+  <p><strong>Não se esqueça!</strong> Tragam seus fones de ouvido.</p>
   ```
-- <div>
-    <em>tenho ênfase (tipicamente itálico)</em>
-  </div>
-
-  ```html
-  <em>tenho ênfase (tipicamente itálico)</em>
-  ```
-- <div>
-    <del>fui riscado! (tipicamente riscado)</del>
-  </div>
-
-  ```html
-  <del>fui riscado! (tipicamente riscado)</del>
-  ```
+- Por padrão, elementos `<strong>` são desenhados em **negrito**:
+  ::: result
+  <strong style="color: inherit">Não se esqueça!</strong> Tragam seus fones de ouvido.
+  :::
 
 ---
-## _Tags_ de **Citação**
+<!-- {"layout": "regular"} -->
+## (2) _Tag_ **`<em></em>`**
 
-- Citação **"em linha"**:
-  <div>
-    Romário disse: <q>o Pelé calado é um poeta.</q>
-  </div>
-
+- Usada para **dar ênfase** (tipo "acentuar") **ao texto**. A ideia é
+  alterar como uma frase deve ser lida:
   ```html
-  Romário disse: <q>o Pelé calado é um poeta.</q>
+  <p>Gatos são animais <em>bonitinhos</em>.</p>
   ```
-- Citação **"em bloco"**:
-  <div>
-    <blockquoter>Tô quebrado, peixe</blockquoter> - Romário negando-se a
-    pagar mais de R$ 3 mil de pensão
-  </div>
-
-  ```html
-  <blockquote>Tô quebrado, peixe</blockquote> - Romário
-  negando-se a pagar mais de R$ 3 mil de pensão
-  ```
+  - Ao enfatizar _"bonitinhos"_, a frase está reafirmando a caractística dos
+    gatos
+- Por padrão, elementos `<em>` são desenhados em **itálico**:
+  ::: result
+  Gatos são animais <em>bonitinhos</em>.
+  :::
 
 ---
-## _Tag_ de **_Hyperlink_** (1/3)
+<!-- {"layout": "regular"} -->
+## (3) _Tags_ **`<del></del>`** e **`<ins></ins>`** :pencil:
 
-- [Link para fora da página](http://www.google.com):
-
+- Usadas para indicar **texto que foi removido** ou **inserido**:
   ```html
-  <a href="http://www.google.com">Link para fora da página</a>
+  <p>O jardineiro é Jesus.</p>
+  <p>E as árvores... somos <del>nós</del> <ins>nozes</ins>.</p>
   ```
-- [Link para um arquivo](../../images/flavio-avatar.jpg) que o navegador sabe
-  abrir (_e.g._, uma imagem):
-
-  ```html
-  <a href="images/flavio-avatar.jpg">Link para um arquivo</a>
-  ```
-- [Link para um arquivo](../../attachments/exemplo.zip) que o navegador não
-  sabe abrir (_e.g._, `.zip`):
-
-  ```html
-  <a href="attachments/exemplo.zip">Link para um arquivo</a>
-  ```
+- Por padrão, elementos `<del>` são **riscados** e `<ins>` são **sublinhados**:
+  ::: result
+  O jardineiro é Jesus.<br>
+  E as árvores... somos <del>nós</del> <ins>nozes</ins>.
+  :::
 
 ---
-## _Tag_ de _Hyperlink_ (2/3)
+<!-- {"layout": "regular"} -->
+## (4) _Tag_ **`<mark></mark>`** :part_alternation_mark:
 
-- [Link para email](mailto:adamastor@fazenda.mg.br) - abre o programa de email
-  do usuário:
-
+- Usada para **realçar parte do texto** considerada **importante para o
+  leitor**. Tipo quando usandos caneta marcadora de texto:
   ```html
-  <a href="mailto:adamastor@...">Link para cliente de email</a>
+  <p><mark>HTML, CSS e JavaScript</mark> são as três linguagens da Web.</p>
   ```
-  - Repare o **`mailto:`** antes do endereço de email
-- [Link para telefone](tel:+553130143045):
-
-  ```html
-  <a href="tel:+553133196870">3319-6870</a>
-  ```
+- Por padrão, elementos `<mark>` possuem o **fundo com a cor amarela**:
+  ::: result
+  <mark>HTML, CSS e JavaScript</mark> são as três linguagens da Web.
+  :::
 
 ---
-## _Tag_ de _Hyperlink_ (1/3)
+<!-- {"layout": "section-header"} -->
+# _Tags_ de listas
+## Enumerando coisas
 
-- [Link para uma outra página](/classes/html1/index.html) do próprio site:
+- Lista ordenada
+- Lista não-ordenada
+- ~~[Lista de termos e definições][dl]~~ (_veja você mesmo_)
 
+[dl]: https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/dl
+<!-- {ul:.content} -->
+
+---
+## Listas de itens
+
+- Lista **numerada**:
+  - ```html
+    <ol>
+      <li>Linux</li>
+      <li>Windows</li>
+    </ol>
+    ```
+    <!-- {li:style="flex-grow: 1;"} -->
+  - ::: result
+    <ol>
+      <li>Linux</li>
+      <li>Windows</li>
+    </ol>
+    :::
+    <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
+    <!-- {li:style="flex-grow: 1;"} -->
+    <!-- {ul^1:style="width: 100%;"} -->
+- Lista **<u>não</u>-numerada**:
+  - ```html
+    <ul>
+      <li>Uva</li>
+      <li>Maçã</li>
+    </ul>
+    ```
+    <!-- {li:style="flex-grow: 1;"} -->
+  - ::: result
+    <ul>
+      <li>Uva</li>
+      <li>Maçã</li>
+    </ul>
+    :::
+    <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
+    <!-- {li:style="flex-grow: 1;"} -->
+    <!-- {ul^1:style="width: 100%;"} -->
+
+---
+<!-- {"layout": "section-header"} -->
+# Elementos _block_ _vs._ _inline_
+## Quebrar ou não quebrar linha? :thought_balloon:
+
+
+![](../../images/philosoraptor.jpg) <!-- {.portrait.centered} -->
+
+Pergunta
+~  Por que um **parágrafo** está sempre **abaixo do outro**, mas
+  um elemento **`<strong>`** pode ficar **ao lado** de outro texto?
+
+<!-- {dl:.content} -->
+
+---
+## Fazendo um *teste*
+
+1. Colocando dois `<p>` seguidos
+   - ```html
+     <p>Primeiro</p> <p>Segundo</p>
+     ```
+     <!-- {li:style="flex-grow: 1;"} -->
+   - ::: result
+     <p>Primeiro</p> <p>Segundo</p>
+     :::
+     <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
+     <!-- {li:style="flex-grow: 1;"} -->
+     <!-- {ol:style="width: 100%;"} -->
+1. Colocando dois `<strong>` seguidos
+   - ```html
+     <strong>Primeiro</strong> <strong>Segundo</strong>
+     ```
+     <!-- {li:style="flex-grow: 1;"} -->
+   - ::: result
+     <strong style="color: inherit;">Primeiro</strong> <strong style="color: inherit;">Segundo</strong>
+     :::
+     <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
+     <!-- {li:style="flex-grow: 1;"} -->
+     <!-- {ol:style="width: 100%;"} -->
+
+Por quê isso acontece?
+
+---
+## Elementos _block_ e elementos _inline_
+
+- Ao desenhar uma página, o navegador precisa decidir **como <u>dispor</u>
+  os elementos**
+- Alguns elementos são do tipo `block`, outros são `inline`:
+
+  Elementos `block`
+    ~ são dispotos um <u>abaixo do outro</u>
+
+  Elementos `inline`
+    ~ são dispostos um <u>à direita do outro</u>
+
+---
+## Elementos **`block`**
+
+![](../../images/flow1.png)
+
+---
+## Elementos **`inline`**
+
+![](../../images/flow2.png)
+
+---
+## `block` e `inline`, juntos
+
+![](../../images/flow3.png)
+
+---
+<!-- {"layout": "2-column-content"} -->
+## De volta ao **`<p>` _vs._ `<strong>`**...
+
+- São elementos `block`:
+  - **`<p>`**
+  - `<h1>...<h6>`
+  - `<ul>`, `<ol>`, `<li>`
+  - e outros...
+
+1. São elementos `inline`:
+   - **`<strong>`**
+   - `<em>`
+   - `<del>`, `<ins>`
+   - `<mark>`
+   - `<em>`
+   - `<a>`
+   - `<img>`
+   - e outros...
+
+---
+<!-- {"layout": "section-header"} -->
+# Mais tipos de **hiperlinks**
+## Ligações internas entre recursos e para emails
+
+- Hiperlinks para:
+  - Outras páginas do site
+  - Emails
+  - Telefones
+  - Dentro de uma parte da página
+- Atributo _target_
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+## *Relembrando* hiperlinks
+
+- [Link externo](http://www.google.com) (para fora da página):
   ```html
-  <a href="outra_pagina.html">Outra página</a>
+  <a href="http://www.google.com">Link externo</a>
   ```
-- [Link para dentro da página](#uma-secao-do-site) - rola até a seção:
+- [Link interno](../../attachments/exemplo.zip) (para algo hospedado no
+  próprio computador)
+  ```html
+  <a href="downloads/exemplo.zip">Link interno</a>
+  ```
+
+Mas como criar um link para **outra página do site**?
+
+---
+<!-- {"layout": "regular"} -->
+## Mais hiperlinks
+
+- [Link para uma **outra página**](/classes/html1/index.html) do próprio site:
 
   ```html
-  <a href="#um-id-de-elemento">Link para dentro da página</a>
+  <a href="outra-pagina.html">Outra página</a>
+  ```
+- [Link para **enviar um email**](mailto:coutinho@decom.cefetmg.br) para alguém:
+
+  ```html
+  <a href="mailto:coutinho@decom.cefetmg.br">Me envie um email</a>
+  ```
+  - Ao clicar no link, o navegador abre o email do usuário
+
+Como fazer para o link **abrir em outra aba**?
+
+---
+<!-- {"layout": "regular"} -->
+## O **atributo `target="..."`** dos links
+
+A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
+  os seguintes valores:
+
+  `_self`
+    ~ O recurso "linkado" **abre <u>na própria aba</u>** (valor padrão)
+    ~ _Exemplo_: `<a href="..." target="_self">Sobre mim</a>`
+
+  `_blank`
+    ~ O recurso "linkado" abre em **uma <u>nova</u> aba**
+    ~ _Exemplo_: `<a href="..." target="_blank">Salgadinhos</a>`
+
+---
+<!-- {"layout": "dd2-column-content"} -->
+## Link para dentro de uma página
+
+- <video style="float: right; width: 400px; height: 331px;" controls autoplay loop="0" src="../../videos/link-interno.mp4"></video>
+  Para criar um link para dentro da própria página:
+  ```html
+  <a href="#um-id-de-elemento">Link interno</a>
   ```
   - Repare o `#um-id-de-elemento`
 
@@ -131,178 +295,131 @@ página web.
     <h2 id="um-id-de-elemento">Um título</h2>
     ```
     - Ao clicar no link, o navegador vai rolar a barra até que esse `<h2></h2>`
-      fique visível e no topo do navegador
+      fique visível e no topo do navegador (**mas o que é esse `id`?**)
 
 ---
-## _Tags_ de **Lista de Itens** (1/2)
+<!-- {"layout": "regular"} -->
+## O `id` de um elemento HTML
 
-- Lista **não ordenada** (bolinhas):
-  <ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
-  </ul>
-
+- É possível **definir um nome** que **identifique um elemento** da página
+- Todo elemento HTML pode ter um atributo `id`. Exemplos:
   ```html
-  <ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
-  </ul>
+  <img src="..." id="logomarca-da-empresa">
   ```
-
----
-## Tag de Lista de itens (2/2)
-
-- Lista **ordenada** (números):
-  <ol>
-    <li>Item</li>
-    <li>Item</li>
-  </ol>
-
   ```html
-  <ol>
-    <li>Item</li>
-    <li>Item</li>
-  </ol>
+  <h1 id="titulo-principal">Origem da Polícia Intergalática</h1>
   ```
+  ```html
+  <p id="titulo-principal">Origem da Polícia Intergalática</h1>
+  ```
+  - O atributo `id` deve ser único na página
+  - Podemos usar o `id` para estilizar elementos em CSS!
 
 ---
-## _Tags_ de **Tabela**
+<!-- {"layout": "section-header"} -->
+# Entendendo **regras CSS**
+## Como funcionam as regras
 
-- Tabelas são criadas com as tags:
-  - **`table`**, para marcar a tabela
-  - **`tr`**, linha
-  - **`td`**, célula
-  - `th`, célula do cabeçalho
-  - `thead`¹, marca as linhas do **cabeçalho**
-  - `tbody`¹, marca as linhas do **corpo**
-  - `tfoot`¹, marca as linhas do **rodapé**
-- [Referência na Mozilla Developer Network][mdn-table]
-- ¹: elementos opcionais, mas desejáveis
+- Formato de uma regra
+- Estilizando elementos um a um
+- Colocando bordas
+- Centralizando imagens
 
-[mdn-table]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
+<!-- {ul:.content} -->
 
 ---
-![Uma descrição das tags que formam uma tabela](../../images/table.png)
+## Sintaxe: **regra**
+
+![Uma regra CSS mostrando](../../images/css-rule.png)
 
 ---
-## Exemplo: **tabela simples** (1/3)
+<!-- {"state":"show-active-slide-and-previous"} -->
+## Sintaxe: **seletor** e **declaração**
 
-```html
-<table>
-  <tr>
-    <th>Fruta</th>
-    <th>Preço</th>
-  </tr>
-  <tr>
-    <td>Goiaba</td>
-    <td>R$ 1,89/Kg</td>
-  </tr>
-</table>
-```
-- Apenas uma tabelinha 2x2
-- Exemplo: http://jsfiddle.net/fegemo/wL3zg2y1/11/
+![Regra CSS](../../images/css-selector.png)
 
 ---
-## Exemplo: **mesclando células horizontais** (2/3)
+## Sintaxe: **propriedade** e **valor**
 
-```html
-<table>
-  <tr>
-    <th colspan="2">Pessoas</th>
-  </tr>
-  <tr>
-    <td>2005046102</td><td>Epaminondas</td>
-  </tr>
-</table>
-```
-- **`colspan="X"`** faz com que aquela **célula ocupe `X` colunas**
-  - Para mesclar células "para baixo", usamos **`rowspan="Y"`**, onde `Y` é o
-    **número de linhas** que a célula vai ocupar
-- Exemplos: de [`colspan`](https://jsfiddle.net/fegemo/o6gsb0t9/) e
-  de [`rowspan`](https://jsfiddle.net/fegemo/65rvt05m/)
+![Regra CSS](../../images/css-property-value.png)
 
 ---
-## Exemplo: **legenda, cabeçalho e rodapé** (3/3)
+## Seletor de <u>_tag_</u> e de `id`
 
-```html
-<table>
-  <caption>Alunos de Web</caption>
-  <thead>
-    <tr>
-      <th colspan="2">Pessoas</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2005046102</td><td>Epaminondas</td>
-    </tr>
-  </tbody>
-</table>
-```
-- Exemplo: http://jsfiddle.net/fegemo/wL3zg2y1/7/
+- Regras se aplicam a "todos os elementos selecionados"
+- Se usarmos um seletor que é **o nome de uma _tag_**...
+  ```css
+  p { /* usamos 'p', que é o nome da tag de parágrafo */
+    margin-left: 5%;
+  }
+  ```
+  - ...selecionamos **todos os elementos da página <u>com aquela _tag_</u>**
+    (_e.g._, todos os parágrafos)
 
 ---
-## Agora, algumas **propriedades <u>CSS</u>** (1/3)
+## Seletor de _tag_ e de <u>`id`</u>
 
-```css
-p {
-  color: #ff0033;       /* cor do texto: vermelho */
-  font-family: "Arial", sans-serif;
-  text-align: center;   /* left, right, justify */
-}
-
-body {
-  /* imagem de fundo para a página */
-  background-image: url(imagens/fundo-da-pagina.png);
-
-  /* faz o conteúdo da página começar a 10%
-    da largura lateralmente */
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-```
+- Se usarmos um seletor **que começa com o símbolo `#`** (_hashtag_)...
+  ```css
+  #titulo-principal {
+    font-family: 'Verdana', sans-serif;
+  }
+  ```
+  - ...selecionamos **apenas o elemento que possua aquele <u>atributo `id`</u>**
+    (_e.g._, um `<h1 id="titulo-principal">...</h1>`)
 
 ---
-## Mais algumas propriedades (2/3)
+## Colocando bordas
 
-```css
-/* coloca uma borda azul em toda <img> */
-img {
-  border: 1px solid blue; /* azul, sólida, de 1px */
-}
-
-/* muda a cor de todos <h1></h1> e <h2></h2> */
-h1, h2 {
-  color: brown;   /* cor do texto: marrom */
-}
-```
+- A **propriedade `border`** é um atalho para `border-width`, `border-style` e
+  `border-color`
+  - Exemplo (os dois são **equivalentes**):
+    ```css
+    p {
+      border-width: 1px;    /* largura de 1 pixel */
+      border-style: solid;  /* borda toda colorida */
+      border-color: red;    /* cor vermelha */
+    }
+    ```
+    ```css
+    p {  /* preferimos esta forma, que é mais sucinta */
+      border: 1px solid red;
+    }
+    ```
 
 ---
-## Mais ainda (3/3)
+## Estilos de borda
 
-```css
-table {
-  /* tira espaço entre as bordas */
-  border-collapse: collapse;
+- Há diversos estilos de borda:
+  - `border-style: solid` <!-- {code:style="border: 4px solid red"} -->
+  - `border-style: double` <!-- {code:style="border: 4px double red"} -->
+  - `border-style: groove` <!-- {code:style="border: 4px groove red"} -->
+  - `border-style: outset` <!-- {code:style="border: 4px outset red"} -->
+  - `border-style: dotted` <!-- {code:style="border: 4px dotted red"} -->
+  - `border-style: dashed` <!-- {code:style="border: 4px dashed red"} -->
+  - `border-style: inset` <!-- {code:style="border: 4px inset red"} -->
+  - `border-style: ridges` <!-- {code:style="border: 4px ridges red"} -->
 
-  /* centraliza a tabela e define uma largura */
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-}
+<!-- {ul:.multi-column-list-2} -->
 
-td, th {
-  border: 1px solid silver;
-}
-```
+---
+## Centralizando imagens
+
+- Para centralizar uma iamgem, é necessário definir "margens
+  laterais automáticas":
+  ```css
+  #imagem-principal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ```
+  - As margens "automáticas" fazem com que o navegador divida o espaçamento
+    horizontal igualmente nos dois lados
+  - `display: block` é necessário porque `<img>` é `inline`, mas o navegador
+    não permite definir margens para elementos `inline`
 
 ---
 # Referências
 
 1. Capítulos 1, 2 e 3 do livro
-1. Darwin, C. [Insectivorous Plants][darwin-carnivoras]. John Murray, 1875.
-1. [Artigo sobre plantas carnívoras do site InfoEscola][info-escola]
-
-[info-escola]: http://www.infoescola.com/plantas/plantas-carnivoras/
-[darwin-carnivoras]: http://darwin-online.org.uk/content/frameset?itemID=F1217&viewtype=text&pageseq=1
