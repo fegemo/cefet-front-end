@@ -1,33 +1,32 @@
 Passo 1: Titulo e <meta charset="utf-8">
-Passo 2: ?
+	Fav Icon
 
 
-Passo 3
+Passo 2
 - Titulo (1o nível):
 	- Cor da fonte: Azul (blue)
 	- Centralizado
 - Fundo da página: Azul claro (lightblue)
 - Parágrafo: Justificado, Arial
 
-passo 4:
+passo 3:
 	Título (2o nível)
 	Cor da fonte: Azul 
 	Alinhamento: Esquerda
 	
-
-passo 5:
-	Colocar imagens
-
-passo 6:
-	Mark, strong, del e emphasis (metodo de aprendizado e hackerspaces)
-
-Passo 7:
+Passo 4:
 	Primeiro paragrafo será diferente dos demais:
 	1px de borda, pontilhada e preta
 	Espançamento entre o texto e a borda: 5px
 	Cor de fundo do paragrafo: "Azure"
 
-Passo 8:
+passo 5:
+	Mark, strong, del e emphasis (metodo de aprendizado e hackerspaces)
+
+passo 6:
+	Colocar imagens centralizadas
+
+Passo 7		:
 	Link da Wikipedia:
 		https://pt.wikipedia.org/wiki/Coding_Dojo
 	Voltar ao topo
