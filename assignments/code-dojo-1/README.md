@@ -79,11 +79,13 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 - Título (primeiro nível):
 	- Cor da fonte: Azul (`blue`)
 	- Centralizado
+  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo2.png) <!-- {.push-right style="height: 240px;"} -->
+
 - Fundo da página: Azul claro (`lightblue`)
+- Margem (esquerda e direita): 30%
 - Abrir a página `Coding Dojo` da Wikipédia
   - Crie um parágrafo utilizando o texto da Wikipédia de "Coding dojo é..." até "a partir do trabalho dos pilotos anteriores."
 - Parágrafo: Justificado, Arial
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo2.png) <!-- {.push-right style="height: 240px;"} -->
 ---
 ## Título (segundo nível) e estilos da página
 
@@ -97,6 +99,16 @@ Exercício: fazer uma página explicando o que é Coding Dojo
   - Segundo parágrafo: use o texto da Wikipédia de "Independente do desafio..." até "ligeiramente mais complexo."
 
 ---
+## Alteração no primeiro parágrafo
+
+  - Apenas o primeiro parágrafo deve ser:
+  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo4.png) <!-- {.push-right style="height: 300px;"} -->
+    - Cor de fundo: Azure
+    - Borda: pontilhada, 1 pixel e preto
+    - Espançamento entre o texto e a borda: 3px
+      - Espançamento possível usando a propriedade `padding`
+
+---
 ## Outras alterações no texto...
 
   - Deixar a primeira aparição da palavra **Coding Dojo** com uma grafia mais forte
@@ -104,6 +116,7 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 	- Marcar a definição de **Coding Dojo** no texto
 	- Deixar enfatizado os textos: "método de aprendizagem" e "hackspaces"
   - Escrever e riscar a palavra "yoda"
+
 
 ---
 ## Inserção da Imagem
