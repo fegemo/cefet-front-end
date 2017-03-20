@@ -52,9 +52,10 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 ---
 ## Criação da Página
 
-- No início do html, especifique a versão do html: `<!DOCTYPE html>`
+
 - Crie uma pasta na área de trabalho
 - Crie um arquivo html
+- No início do html, especifique a versão do html: `<!DOCTYPE html>`
 - Escreva as tags principais no arquivo (html, head  e body)
 - Exiba o título `Coding Dojo`
 
