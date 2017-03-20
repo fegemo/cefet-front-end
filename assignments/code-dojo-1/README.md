@@ -29,11 +29,12 @@ Codificação **em grupo**, em que o aluno pode desempenhar um dos três papeis:
 ## Regras do Coding Dojo
 
 - O valor da prática será perdido por:
-  - Indisciplina
+  - Indisciplina e desrespeito
   - Aluno atrasado
   - Recusar a participação como piloto/copiloto
     - Ou não querer sair do computador, quando solicitado
-  - Tentar fazer algo não relacionado ao exercício
+    - Ou, ainda, tentar assumir a posição de piloto quando não é a sua vez
+  - Fazer algo não relacionado ao exercício
   - Parar de participar por:
     - Usar outro computador
     - Uso de celular
