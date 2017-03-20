@@ -310,7 +310,7 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
   <h1 id="titulo-principal">Origem da Polícia Intergalática</h1>
   ```
   ```html
-  <p id="titulo-principal">Origem da Polícia Intergalática</h1>
+  <p id="titulo-principal">Origem da Polícia Intergalática</p>
   ```
   - O atributo `id` deve ser único na página
   - Podemos usar o `id` para estilizar elementos em CSS!
