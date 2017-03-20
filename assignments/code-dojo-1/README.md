@@ -52,19 +52,24 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 ---
 ## Criação da Página
 
-
+- No início do html, especifique a versão do html: `<!DOCTYPE html>`
 - Crie uma pasta na área de trabalho
 - Crie um arquivo html
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo1.png) <!-- {.push-right style="height: 200px;"} -->
-- Neste arquivo, faça as tags principais
-- No início do html, especifique a versão do html: `<!DOCTYPE html>`
-- Exiba o título
+- Escreva as tags principais no arquivo (html, head  e body)
+- Exiba o título `Coding Dojo`
+
+---
+## Criação da Página
+
+
+
 - Utilize a propriedade charset da tag `meta` (dentro do `head`) para garantir que o html seja lido da forma correta:
 `<meta charset="utf-8">`
 - Exiba um ícone para a página
+![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo1.png) <!-- {.push-right style="height: 200px;"} -->
   - Ícone pode ser encontrado no arquivo `imgs-coding-dojo.zip`, disponibilizado no Moodle
   - Salve todas as imagens em uma pasta separada
-- Exiba o texto ao lado
+- Para testar, escreva e exiba a frase `Coding dojo é legal`
 
 ---
 ## Título (primeiro nível) e estilos da página
