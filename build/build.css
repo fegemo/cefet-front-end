@@ -197,6 +197,41 @@ strong.alternate-color {
   transform: translate3d(-30%, 0, -250px) rotateY(10deg);
   opacity: 0;
 }
+div.result {
+  border-radius: 0.25em;
+  background-color: #c4e3ff;
+  padding: 0.5em;
+  border: 1px dashed #3da3ff;
+  position: relative;
+  margin-left: 1.5em;
+  padding-top: 1em;
+  margin-top: 0.5em;
+}
+div.result > p {
+  margin: 0;
+}
+div.result::before {
+  content: attr(data-before);
+  position: absolute;
+  top: -0.5em;
+  left: -2em;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  border: 1px solid #ff5722;
+  background-color: #ff8a65;
+  padding: 0 0.5em;
+  display: inline-block;
+  transform: rotate(-3deg);
+  font-weight: bold;
+  color: #fff;
+}
+ul.no-list-icon,
+ol.no-list-icon {
+  list-style-type: none;
+}
+.no-padding {
+  padding: 0;
+}
 .tutorial {
   position: absolute;
   right: 1vw;

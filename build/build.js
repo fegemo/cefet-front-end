@@ -29267,6 +29267,41 @@ bespoke.from('article', [
         }
       }
     ],
+    [
+      markdownItContainer,
+      'result',
+      {
+        validate: function(params) {
+          return params.trim().match(/^result.*$/);
+        },
+        render: function(tokens, idx, options, env, self) {
+          // formato:
+          // ::: result .primeira-classe.segunda.terceira background-color: white; color: black;
+          // ...conteúdo markdown...
+          // :::
+          // as classes devem estar "coladas" uma na outra e são opcionais
+          // após as classes, é possível definir uma string de estilos, que
+          // também é opcional. Se a string de estilos for definida, é
+          // necessário definir pelo menos 1 classe (ou então colocar apenas um
+          // ponto final sem nome de classe)
+          var m = tokens[idx].info.trim().match(/^result\s+([^\s]*)\s*(.*)?$/),
+            className = '',
+            styleString = '';
+
+          if (tokens[idx].nesting === 1) {
+            // opening tag
+            if (!!m && Array.isArray(m)) {
+              className = (m[1] || '').trim().replace(/\./g, ' ');
+              styleString = (m[2] || '').trim();
+            }
+            return '<div class="result ' + className + '" style="' + styleString + '" data-before="Resultado">\n';
+          } else {
+            // closing tag
+            return '</div>\n';
+          }
+        }
+      }
+    ],
     markdownItAnchor,
     markdownItDefList,
     markdownItAbbr,
