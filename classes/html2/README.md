@@ -4,11 +4,45 @@
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula...
+# Na última aula... (1/2)
 
+- Aprendemos:
+  1. Que **plantas carnívoras** ~~se vestem de papai noel~~ são legais
+  1. A **estrutura de um arquivo HTML**
+     ```html
+     <!DOCTYPE html>
+     <html>
+       <head>...</head> <!-- meta-informação sobre a página -->
+       <body>...</body> <!-- tudo que é visível -->
+     </html>
+     ```
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (2/2)
+
+- Também vimos:
+  1. Algumas **_tags_ básicas**, como `<p>`, `<img>`, `<h1...6>`, `<a href="">`
+  1. A usar um **pouquinho de CSS**: `color`, `margin`,
+     `background-color`, `font-family`
 
 ---
-<!-- {"layout": "section-header"} -->
+# Atividade de Hoje
+
+![Coding Dojo](../../images/coding-dojo.png)
+
+Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
+
+---
+# Hoje veremos
+
+- [_Tags_ que indicam importância](#tags-de-importancia)
+- [_Tags_ de listas](#tags-de-listas) de itens
+- [Elementos _inline_ _vs._ _block_](#elementos-inline-vs-block)
+- [Mais tipos de hiperlinks](#mais-tipos-de-hiperlinks)
+- [Entendendo regras CSS](#entendendo-regras-css)
+
+---
+<!-- {"layout": "section-header", "slideHash": "tags-de-importancia"} -->
 # _Tags_ de importância
 ## Destacando partes do texto
 
@@ -78,7 +112,7 @@
   :::
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "tags-de-listas"} -->
 # _Tags_ de listas
 ## Enumerando coisas
 
@@ -128,8 +162,8 @@
     <!-- {ul^1:style="width: 100%;"} -->
 
 ---
-<!-- {"layout": "section-header"} -->
-# Elementos _block_ _vs._ _inline_
+<!-- {"layout": "section-header", "slideHash": "elementos-inline-vs-block"} -->
+# Elementos _inline_ _vs._ _block_
 ## Quebrar ou não quebrar linha? :thought_balloon:
 
 
@@ -218,7 +252,7 @@ Por quê isso acontece?
    - e outros...
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "mais-tipos-de-hiperlinks"} -->
 # Mais tipos de **hiperlinks**
 ## Ligações internas entre recursos e para emails
 
@@ -310,13 +344,13 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
   <h1 id="titulo-principal">Origem da Polícia Intergalática</h1>
   ```
   ```html
-  <p id="titulo-principal">Origem da Polícia Intergalática</p>
+  <ul id="melhores-pokemon">...</ul>
   ```
   - O atributo `id` deve ser único na página
-  - Podemos usar o `id` para estilizar elementos em CSS!
+  - Podemos **usar o `id` para <u>estilizar elementos</u> em CSS**!
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "entendendo-regras-css"} -->
 # Entendendo **regras CSS**
 ## Como funcionam as regras
 
@@ -365,8 +399,37 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
     font-family: 'Verdana', sans-serif;
   }
   ```
-  - ...selecionamos **apenas o elemento que possua aquele <u>atributo `id`</u>**
+  - ...selecionamos **<u>apenas o</u> elemento que possua aquele <u>atributo `id`</u>**
     (_e.g._, um `<h1 id="titulo-principal">...</h1>`)
+
+---
+<!-- {"layout": "2-column-content"} -->
+## Exemplo: estilizando apenas um título `<h2>`
+
+```html
+    ...
+    <style>
+      #ponche-vermelho {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Receitas para Monstros</h1>
+    <h2 id="ponche-vermelho">
+      Ponche Vermelho</h2>
+    <h2>Joelhos de Lagartixa</h2>
+    <h2>Orelhas Verdes Fritas</h2>
+  </body>
+</html>
+```
+
+::: result
+<h1 style="font: unset; font-size: 125%;">Receitas para Monstros</h1>
+<h2 style="color: red; font: unset;">Ponche Vermelho</h2>
+<h2 style="color: unset; font: unset;">Joelhos de Lagartixa</h2>
+<h2 style="color: unset; font: unset;">Orelhas Verdes Fritas</h2>
+:::
 
 ---
 ## Colocando bordas
@@ -398,14 +461,14 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
   - `border-style: dotted` <!-- {code:style="border: 4px dotted red"} -->
   - `border-style: dashed` <!-- {code:style="border: 4px dashed red"} -->
   - `border-style: inset` <!-- {code:style="border: 4px inset red"} -->
-  - `border-style: ridges` <!-- {code:style="border: 4px ridges red"} -->
+  - `border-style: ridge` <!-- {code:style="border: 4px ridge red"} --> <!-- {ul:.multi-column-list-2} -->
+- Veja a descrição dos [estilos de bordas na MDN](https://developer.mozilla.org/pt-BR/docs/Web/CSS/border-style)
 
-<!-- {ul:.multi-column-list-2} -->
 
 ---
 ## Centralizando imagens
 
-- Para centralizar uma iamgem, é necessário definir "margens
+- Para centralizar uma imagem, é necessário definir "margens
   laterais automáticas":
   ```css
   #imagem-principal {
