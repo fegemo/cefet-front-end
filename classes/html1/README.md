@@ -203,6 +203,7 @@ Content-Length: 131
   - **Não deve haver espaço** entre seu nome e seu valor: `<img src = "...">`
 
 ---
+<!-- {"slideHash": "tag-paragrafo"} -->
 ## _Tag_ de **<u>Parágrafo</u>** (`<p>...</p>`)
 
 - **Quebras de linha** são feitas automaticamente
@@ -217,7 +218,7 @@ Content-Length: 131
 <iframe width="100%" src="https://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "2-column-content"} -->
+<!-- {"layout": "2-column-content","slideHash": "tag-titutlo"} -->
 ## _Tag_ de **<u>Títulos</u>** e **<u>Subtítulos</u>** (`h1`, `h2` ... `h6`)
 
 ```html
@@ -233,6 +234,7 @@ Content-Length: 131
   - Mas a quantidade de títulos é infinita
 
 ---
+<!-- {"slideHash": "tag-imagem"} -->
 ## _Tag_ de **<u>Imagem</u>** (`<img>`)
 
 - Para exibir imagens...
@@ -246,6 +248,7 @@ Content-Length: 131
 - **URLs internas** (endereços, ou caminhos) podem ser **absolutas** ou **relativas**
 
 ---
+<!-- {"slideHash": "end-relativo-absoluto"} -->
 ## Exemplo 1: Arquivo HTML e imagem **na mesma pasta**
 
 - ![Página exibindo a descrição e imagem da Pirá-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-right style="height: 140px;"} -->
@@ -322,6 +325,7 @@ Content-Length: 131
 
 <!-- {table:style="width: 75%"} -->
 ---
+<!-- {"slideHash": "tag-hiperlink"} -->
 ## _Tag_ de **_Hyperlink_** (`<a href="">...</a>`)
 
 - [Link externo](http://www.google.com) (para fora da página):
@@ -412,6 +416,7 @@ h2 {
 <iframe width="100%" height="500" src="//jsfiddle.net/fegemo/ojmwh8gb/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"slideHash": "css-cores"} -->
 ## Entendendo o estilo: **cores**
 
 - ```css
@@ -429,6 +434,7 @@ h2 {
   Define a **cor do texto** como branco
 
 ---
+<!-- {"slideHash": "css-margens"} -->
 ## Entendendo o estilo: **margens laterais**
 
 - ![](../../images/margin-left.png) <!-- {.push-right} -->
@@ -442,6 +448,7 @@ h2 {
   - Também existem: `margin-top` (cima) e `margin-bottom` (baixo)
 
 ---
+<!-- {"slideHash": "css-fonte"} -->
 ## Entendendo o estilo: **fonte**
 
 - ![](../../images/font-families.png) <!-- {.push-right} -->
@@ -459,6 +466,7 @@ h2 {
   Define a **fonte** sendo usada para o texto de **todos `<h1>` na página**
 
 ---
+<!-- {"slideHash": "css-alinhamentoTexto"} -->
 ## Entendendo o estilo: **alinhamento do texto**
 
 - ![](../../images/text-align-justify.png) <!-- {.push-right} -->
