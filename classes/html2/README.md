@@ -332,7 +332,7 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
       fique visível e no topo do navegador (**mas o que é esse `id`?**)
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "id-de-um-elemento-html"} -->
 ## O `id` de um elemento HTML
 
 - É possível **definir um nome** que **identifique um elemento** da página
@@ -378,6 +378,7 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
 ![Regra CSS](../../images/css-property-value.png)
 
 ---
+<!-- {"slideHash": "seletor-de-tag-e-id"} -->
 ## Seletor de <u>_tag_</u> e de `id`
 
 - Regras se aplicam a "todos os elementos selecionados"

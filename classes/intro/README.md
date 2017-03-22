@@ -92,7 +92,7 @@ Dúvidas:
     geral
 
 ---
-<!-- {"layout": "main-point", "state": "emphatic"} -->
+<!-- {"layout": "main-point", "state": "emphatic", "slideHash": "internet-pre-web"} -->
 # Dúvida...
 ## Mas se a Web surgiu apenas em 1989, o que era a Internet antes dela?
 
@@ -206,7 +206,8 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 <!-- {dl:.width-40} -->
 
 ---
-<!-- { "layout": "2-column-highlight-and-list" } -->
+<!-- { "layout": "2-column-highlight-and-list" , "slideHash": "o-que-compoe-web"} -->
+
 ## O que **compõe** uma página web?
 
 <figure style="height: 80%">
