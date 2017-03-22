@@ -433,7 +433,9 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
 :::
 
 ---
-## Colocando bordas
+<!-- {"slideHash": "colocando-bordas"} -->
+## Colocando bordas         
+
 
 - A **propriedade `border`** é um atalho para `border-width`, `border-style` e
   `border-color`
@@ -467,6 +469,7 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
 
 
 ---
+<!-- {"slideHash": "centralizando-imagens"} -->
 ## Centralizando imagens
 
 - Para centralizar uma imagem, é necessário definir "margens
