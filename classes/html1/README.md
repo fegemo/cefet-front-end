@@ -218,7 +218,7 @@ Content-Length: 131
 <iframe width="100%" src="https://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "2-column-content","slideHash": "tag-titutlo"} -->
+<!-- {"layout": "2-column-content","slideHash": "tag-titulo"} -->
 ## _Tag_ de **<u>Títulos</u>** e **<u>Subtítulos</u>** (`h1`, `h2` ... `h6`)
 
 ```html
