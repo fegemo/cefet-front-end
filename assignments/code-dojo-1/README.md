@@ -148,6 +148,7 @@ Exercício: fazer uma página explicando o que é Coding Dojo
   garantir que o html seja lido da forma correta: `<meta charset="utf-8">`
 - Crie um título para a página
 - Exiba o ícone para a página (mesmo da página anterior)
+- Conforme na imagem ao lado, a página deverá possuir uma borda dupla azul e margem de topo (margin-top) de 5% e margem nas laterais de 30%.
 
 ---
 ## Adicione texto, título e link à nova página
