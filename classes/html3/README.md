@@ -3,7 +3,7 @@
 ## Na última aula...
 
 - _Tags_ de importância:`<strong>`, `<em>`, `<mark>`, `<del>` e `<ins>`
-- Listas ordenadas (`<ol>`) e não ordenadas (`<il>`)
+- Listas ordenadas (`<ol>`) e não ordenadas (`<ul>`)
 - Podemos **criar hiperlinks** com o elemento `<a href="caminho-do-recurso">nome</a>` até para própria páginas
 referenciando o `id` do elemento
 
