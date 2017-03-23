@@ -1,65 +1,48 @@
 # HTML - Parte 3
 ---
-## Aquecimento: Festa a fantasia das tags
-
-![Desenho de máscara de festa a fantasia](../../images/who-am-i.png)
-
-Um grupo de elementos HTML, usando fantasia, está fazendo uma festa com a
-temática "Quem sou eu?". Eles dão uma dica e você tenta adivinhar que
-elemento está falando.
-
-Baixe o [exercício][exer-who-am-i] ou pegue uma cópia com o professor.
-
-[exer-who-am-i]: https://docs.google.com/document/d/1_l-GYO7LDB9N6LUwNT4qtxj3ij2xs3hVgp8F0ULqJD4/edit?usp=sharing
----
 ## Na última aula...
 
-- Podemos **criar hiperlinks** com o elemento `<a href="caminho-do-recurso">nome</a>`
-- Para **incluir imagens**, podemos usar a tag `<img src="caminho-do-arquivo">`
-- Citações são criadas com `<q>` ou `<blockquote>`
+- _Tags_ de importância:`<strong>`, `<em>`, `<mark>`, `<del>` e `<ins>`
+- Listas ordenadas (`<ol>`) e não ordenadas (`<il>`)
+- Podemos **criar hiperlinks** com o elemento `<a href="caminho-do-recurso">nome</a>` até para própria páginas
+referenciando o `id` do elemento
+
+
+---
+## Na última aula...
+- Mais sobre **hiperlinks**:
+  - Links para emails: `<a href="mailto:hasan@decom.cefetmg.br">Me mande emails :)</a>`
+  - Link interno da página referenciando o `id` do elemento
+  - O atributo `target` para abrir uma página em outra aba
 - Alguns elementos são `inline` e outros são `block`
   - **`inline`**: não fazem quebra de linha (e.g, `<q>`, `<strong>` etc.)
   - **`block`**: fazem quebra de linha (e.g., `<blockquote>`, `<p>` etc.)
 
-
 ---
-![Uma descrição das tags que formam uma tabela](../../images/table.png)
-
----
-## Na última aula... (cont.)
-
-- É possível declarar regras em CSS de três formas
-  1. _Inline_ (**na mesma linha**)
-  ```html
-  <p style="color: #fff">...</p>
+## Na última aula...
+  - Formato de uma regra **CSS**
+  - Estilizando elementos um a um utilizando o seu **id** e o seletor iniciando com **#**
+  - Colocação de bordas por meio da propriedade `border`, `border-width`, `border-style` e `border-color`
+  - Para **centralizar imagens**, tranformamos a imagem em _block_ e deixamos suas margens automáticas:
+  ```css
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
   ```
-  2. _Embedded_ (**embutido**)
-  ```html
-  <style>
-    p {
-      color: #fff;
-    }
-  </style>
-  ```
-  - continua...
 
----
-## Na última aula... (cont.)
-3. _Linked_ (arquivo **referenciado**)
-  ```html
-  <link rel="stylesheet" href="arquivo-de-estilos.css" />
-  ```
+
 
 ---
 # Hoje veremos
 
-1. HTML: Tabelas
-1. Depurando páginas web
-1. Um pouco mais sobre **imagens**
-1. Mapas de imagens
-1. Meta _tags_
-1. Codificação (_encoding_)
-1. DOCTYPE (versão do HTML)
+1. HTML: Tabelas e seus elementos
+1. Mais sobre bordas em **CSS**
+1. A propriedade `border-collapse` em tabelas
+1. _Margin_ vs _Padding_
+1. Definição da largura de um elemento
+1. Mais propriedades **CSS** para fontes e textos
 
 ---
 # Tabelas
@@ -172,13 +155,31 @@ Nesta aula iremos:
 - `<thead>`, `<tbody>` e `<tfoot>` devem marcar as linhas de corpo, cabeçalho e rodapé, respectivamente.
   - Útil para:
     - aplicarmos **estilos** diferentes no **corpo**, **cabeçalho** e **rodapé**
-    - impressão: caso a tabela seja maior que a página, o cabeçalho sera impresso em todas as páginas
+    - impressão: caso a tabela seja maior que a página, o cabeçalho será impresso em todas as páginas
 
 ---
 ## Utilização de corpo, cabeçalho e rodapé em nosso exemplo
 
 <iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/10/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+---
+## Mesclando mesclando células **horizontais** e **verticais**
+
+```html
+<table>
+  <tr>
+    <th colspan="2">Pessoas</th>
+  </tr>
+  <tr>
+    <td>2005046102</td><td>Epaminondas</td>
+  </tr>
+</table>
+```
+- **`colspan="X"`** faz com que aquela **célula ocupe `X` colunas**
+  - Para mesclar células "para baixo", usamos **`rowspan="Y"`**, onde `Y` é o
+    **número de linhas** que a célula vai ocupar
+- Exemplos: de [`colspan`](https://jsfiddle.net/fegemo/o6gsb0t9/) e
+  de [`rowspan`](https://jsfiddle.net/fegemo/65rvt05m/)
 
 ---
 <!-- {"layout": "section-header", "slideHash": "entendendo-regras-css"} -->
@@ -237,6 +238,7 @@ p {
 ---
 ## Margem e _Padding_ - Exemplo
   <iframe width="65%" height="250px" src="https://jsfiddle.net/danielhasan/vs1w9khr/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 ---
 ## Largura de elementos
   - Podemos especificar a largura dos elementos _**blocks**_ por meio da propriedade **width**
@@ -244,8 +246,8 @@ p {
       p {
         width: 100px;
       }
-
   ```
+
   <iframe width="65%"  src="https://jsfiddle.net/danielhasan/t1joy5v6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 ---
 ## Outras propriedades do texto
@@ -261,6 +263,14 @@ p {
 ## Outras propriedades do texto - Exemplo
 
   <iframe width="65%" height="400px"  src="https://jsfiddle.net/danielhasan/x2m8fnL6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+---
+## Utilização do CSS para a tabela do nosso exemplo...
+
+
+<iframe width="50%" height="225px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 
 
 ---
