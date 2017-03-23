@@ -141,7 +141,7 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 
 - Crie uma pasta chamada `outrasPaginas` e, dentro dela, um arquivo HTML
   chamado `links.html`
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo8.png) <!-- {.push-right style="height: 200px;"} -->
+![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo8.png) <!-- {.push-right style="height: 125px;"} -->
 - No início do HTML, especifique a versão: `<!DOCTYPE html>`
 - Crie as _tags_ principais desta página
 - Utilize o atributo `charset` da _tag_ `meta` (dentro do `head`) para
@@ -150,9 +150,11 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 - Exiba o ícone para a página (mesmo da página anterior)
 - Conforme na imagem ao lado, a página deverá possuir uma borda dupla azul e margem de topo (margin-top) de 5% e margem nas laterais de 30%.
 
+
 ---
 ## Adicione texto, título e link à nova página
 
+- Deixe um espançamento entre a borda e o texto de 10 pixels (use a propriedade `padding`)
 - Crie uma lista não numerada de itens
 ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo9.png) <!-- {.push-right style="height: 300px;"} -->
 - Cada item é um link:
