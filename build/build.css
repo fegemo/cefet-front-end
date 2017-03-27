@@ -183,6 +183,20 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+.piratas.bespoke-backdrop {
+  background-image: url("../images/piratas-e-seus-tesouros.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: none;
+  transform: scale(0.35);
+}
+.piratas.bespoke-backdrop.bespoke-backdrop-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 500ms ease 400ms;
+}
 strong.alternate-color {
   color: #7b9c02;
 }
