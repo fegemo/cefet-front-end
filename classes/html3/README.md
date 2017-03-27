@@ -168,7 +168,7 @@ Nesta aula iremos:
 
 ---
 <!-- {"slideHash": "meclando-celulas-horizontais-e-verticais"} -->
-## Mesclando mesclando células **horizontais** e **verticais**
+## Mesclando células **horizontais** e **verticais**
 
 ```html
 <table>
