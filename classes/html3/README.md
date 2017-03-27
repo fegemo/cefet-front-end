@@ -354,8 +354,8 @@ body {
 - `background-size: contain`: imagem redimensionada para aparecer completamente
 
 ---
-## Ocupando toda a altura do navegador
 <!-- {"slideHash": "ocupando-toda-altura-navegador"} -->
+## Ocupando toda a altura do navegador
 
 ![](../../images/ocupando-toda-altura-disponivel.png)
 
