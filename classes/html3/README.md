@@ -299,6 +299,7 @@ p {
 <!-- {"backdrop": "piratas"} -->
 
 ---
+<!-- {"slideHash": "piratas-instrucoes"} -->
 # Gerenciador de Tesouros
 
 1. [Baixe as imagens e o ícone](https://github.com/fegemo/cefet-front-end-pirates/archive/master.zip) que serão usados
@@ -311,6 +312,7 @@ p {
    1. Veja [instruções detalhadas aqui](https://github.com/fegemo/cefet-front-end-pirates/blob/master/README.md)
 
 ---
+<!-- {"slideHash": "imagem-de-fundo"} -->
 # Imagem de fundo
 
 ```css
@@ -353,6 +355,7 @@ body {
 
 ---
 ## Ocupando toda a altura do navegador
+<!-- {"slideHash": "ocupando-toda-altura-navegador"} -->
 
 ![](../../images/ocupando-toda-altura-disponivel.png)
 
@@ -376,6 +379,7 @@ body {
   ```
 
 ---
+<!-- {"slideHash": "textos-sombreados"} -->
 ## Textos <span style="text-shadow: 2px 2px purple; color: hotpink;">sombreados</span>
 
 ![](../../images/text-shadow-none.png)
