@@ -37,14 +37,15 @@ referenciando o `id` do elemento
 ---
 # Hoje veremos
 
-1. HTML: Tabelas e seus elementos
-1. Mais sobre bordas em **CSS**
-1. A propriedade `border-collapse` em tabelas
-1. _Margin_ vs _Padding_
-1. Definição da largura de um elemento
-1. Mais propriedades **CSS** para fontes e textos
+1. [HTML: Tabelas e seus elementos](#tabelas)
+1. [Mais sobre bordas em **CSS**](#bordas)
+1. [A propriedade `border-collapse` em tabelas](#propriedade-border-collapse)
+1. [_Margin_ vs _Padding_](#margin-e-padding)
+1. [Definição da largura de um elemento](#largura-de-elementos)
+1. [Mais propriedades **CSS** para fontes e textos](#outras-propriedades-do-texto)
 
 ---
+<!-- {"slideHash": "tabelas"} -->
 # Tabelas
 
 
@@ -89,6 +90,7 @@ Nesta aula iremos:
 [mdn-table]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
 
 ---
+<!-- {"slideHash": "tags-basicas-de-tabela"} -->
 ## _Tags_ Básicas de Tabela
 
 [![Exemplo de Tabela Exibindo suas Tags](../../images/tags-html.png)]
@@ -105,6 +107,7 @@ Nesta aula iremos:
 
 - OBS: Como ainda não aplicamos o **estilo**, ainda não possuimos **borda**
 ---
+<!-- {"slideHash": "caption"} -->
 ## __Tag__ Caption
   - Tag que define a legenda de uma tabela
     ```html
@@ -125,6 +128,7 @@ Nesta aula iremos:
 
 - OBS: Como ainda não aplicamos o **estilo**, ainda não possuimos **borda**
 ---
+<!-- {"slideHash": "tag-de-cabecalho-e-rodape"} -->
 ## Tag de cabeçalho, corpo e rodapé
 
 
@@ -163,6 +167,7 @@ Nesta aula iremos:
 <iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/10/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"slideHash": "meclando-celulas-horizontais-e-verticais"} -->
 ## Mesclando mesclando células **horizontais** e **verticais**
 
 ```html
@@ -182,11 +187,12 @@ Nesta aula iremos:
   de [`rowspan`](https://jsfiddle.net/fegemo/65rvt05m/)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "entendendo-regras-css"} -->
+<!-- {"layout": "section-header", "slideHash": "mais-regras-css"} -->
 # Mais **regras CSS**
 
-- Mais sobre Bordas: `border-top`, `border-down`, `border-left` e `border-right`
+- Mais sobre Bordas: `border-top`, `border-bottom`, `border-left` e `border-right`
 - A propriedade `border-collapse` em tabelas
+- _Margin_ e _Padding_
 - Propriedade de largura: `width`
 - Fontes: `font-size`, `font-style`, `font-weight` e `text-decoration`
 
@@ -212,9 +218,10 @@ Nesta aula iremos:
     }
     ```
 ---
+<!-- {"slideHash": "bordas"} -->
 ## Bordas
 - De forma similar, podemos fazer com que exiba apenas a borda do **topo**, **esquerda**, **direita** ou **abaixo**
-- Para isso, usamos as propriedades  `border-top`, `border-down`, `border-left` e `border-right`
+- Para isso, usamos as propriedades  `border-top`, `border-bottom`, `border-left` e `border-right`
 
 ```css
 p {
@@ -224,6 +231,7 @@ p {
 ```
 - Também podemos usar a forma mais extensa. Por exemplo, `border-top-width`, `border-top-style` e `border-top-color` definem, respectivamente, a largura, o estilo e a cor da borda do topo.
 ---
+<!-- {"slideHash": "propriedade-border-collapse"} -->
 ## Propriedade **border-collapse**
   - Ao adicionarmos a borda nas celulas de uma tabela o resultado ficaria assim:
 <iframe width="65%" height="150px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/23/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -231,6 +239,7 @@ p {
   - Para mudarmos isso, adicionamos `border-collapse:collapse` à regra CSS da tabela:
   <iframe width="65%" height="200px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/24/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 ---
+<!-- {"slideHash": "margin-e-padding"} -->
 ## Margem e _Padding_
 ![Desenho de máscara de festa a fantasia](../../images/margin_and_padding.png)
 - **Padding**: Espançamento entre o texto e a borda
@@ -240,6 +249,7 @@ p {
   <iframe width="65%" height="250px" src="https://jsfiddle.net/danielhasan/vs1w9khr/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"slideHash": "largura-de-elementos"} -->
 ## Largura de elementos
   - Podemos especificar a largura dos elementos _**blocks**_ por meio da propriedade **width**
   ```css
@@ -250,6 +260,7 @@ p {
 
   <iframe width="65%"  src="https://jsfiddle.net/danielhasan/t1joy5v6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 ---
+<!-- {"slideHash": "outras-propriedades-do-texto"} -->
 ## Outras propriedades do texto
 
 - `font-size`: Define o tamanho da fonte
