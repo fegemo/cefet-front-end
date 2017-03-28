@@ -1,42 +1,74 @@
-# HTML - Parte 3
+<!-- {"layout": "title"} -->
+# HTML (parte 3)
+## Tabelas, Tesouros :crown: e Piratas
+
 ---
-## Na última aula...
+<!-- {"layout": "regular"} -->
+# Na última aula... (1/4)
 
 - _Tags_ de importância:`<strong>`, `<em>`, `<mark>`, `<del>` e `<ins>`
 - Listas ordenadas (`<ol>`) e não ordenadas (`<ul>`)
-- Podemos **criar hiperlinks** com o elemento `<a href="caminho-do-recurso">nome</a>` até para própria páginas
-referenciando o `id` do elemento
-
+- Podemos **criar hiperlinks** com o elemento
+  `<a href="caminho-do-recurso">nome</a>`
+  - Link interno da página referenciando o `id` do elemento:
+    ```html
+    <a href="#banda-calypso">Ir para banda Calypso</a>
+    ...
+    <h2 id="banda-calypso">Calypso</a>
+    ```
 
 ---
-## Na última aula...
+<!-- {"layout": "regular"} -->
+# Na última aula... (2/4)
+
 - Mais sobre **hiperlinks**:
-  - Links para emails: `<a href="mailto:hasan@decom.cefetmg.br">Me mande emails :)</a>`
-  - Link interno da página referenciando o `id` do elemento
+  - Link para email:
+    `<a href="mailto:hasan@decom.cefetmg.br">Me mande emails</a>`
   - O atributo `target` para abrir uma página em outra aba
+    ```html
+    <a href="http://www.pudim.com.br" target="_blank">Site legal</a>
+    ```
 - Alguns elementos são `inline` e outros são `block`
   - **`inline`**: não fazem quebra de linha (e.g, `<q>`, `<strong>` etc.)
   - **`block`**: fazem quebra de linha (e.g., `<blockquote>`, `<p>` etc.)
 
 ---
-## Na última aula...
-  - Formato de uma regra **CSS**
-  - Estilizando elementos um a um utilizando o seu **id** e o seletor iniciando com **#**
-  - Colocação de bordas por meio da propriedade `border`, `border-width`, `border-style` e `border-color`
-  - Para **centralizar imagens**, tranformamos a imagem em _block_ e deixamos suas margens automáticas:
+<!-- {"layout": "regular"} -->
+# Na última aula... (3/4)
+
+- ![Regra e seletor CSS](../../images/css-selector-and-rule.png) <!-- {.push-right} -->
+  Formato de uma regra **CSS**
+  - **Regra**: conjunto de declarações aplicadas em alguém
+  - **Seletor**: a quem se aplica uma regra
+  - **Declaração**: um par de &lt;propriedade, valor&gt;
+- **Estilizando elementos um a um** utilizando o seu **id** e o seletor
+  iniciando com **#**
+
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (4/4)
+
+- Colocação de bordas por meio da propriedade `border`, ou então
+  `border-width`, `border-style` e `border-color`
+- ![](../../images/margin-auto.png) <!-- {.push-right} -->
+  Para **centralizar imagens**:
   ```css
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
   ```
-
-
 
 ---
 # Hoje veremos
 
+1. [Tabelas simples](#tabelas-simples)
+1. [Tabelas completas](#tabelas-completas)
+1. [Estilizando tabelas](#estilizando-tabelas)
+1. [Piratas e seus tesouros](#piratas-e-seus-tesouros) 👑
+
+<!--
 1. [HTML: Tabelas e seus elementos](#tabelas)
 1. [Mais sobre bordas em **CSS**](#bordas)
 1. [A propriedade `border-collapse` em tabelas](#propriedade-border-collapse)
@@ -44,94 +76,137 @@ referenciando o `id` do elemento
 1. [Definição da largura de um elemento](#largura-de-elementos)
 1. [Mais propriedades **CSS** para fontes e textos](#outras-propriedades-do-texto)
 1. [Piratas e seus tesouros](#piratas-e-seus-tesouros) 👑
+ -->
+
 
 ---
 <!-- {"slideHash": "tabelas"} -->
 # Tabelas
 
-
-<iframe width="50%" height="225px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="470" height="270" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 Nesta aula iremos:
-- fazer a estrutura desta tabela via **HTML**
-- estilizar esta tabela via **CSS**
+ - fazer a estrutura desta tabela via **HTML**
+ - estilizar esta tabela via **CSS**
 
 ---
 ## O que uma tabela possui?
 
-<iframe width="50%" height="225px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="470" height="270" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-
----
-## O que uma tabela possui? (cont.)
-
-<iframe width="50%" height="225px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
+- Que partes compõem uma tabela? <!-- {ul:.bulleted} -->
   - Linhas e colunas, sendo:
     - uma linha com o **cabeçalho**
     - última linha com o **rodapé**
   - Legenda
-  - Em HTML, utilizamos _Tags_ para indicar os elementos de uma tabela.
+- Em HTML, utilizamos _tags_ para indicar os elementos de uma tabela
+
 
 ---
-## _Tags_ de **Tabela**
+<!-- {"layout": "section-header", "slideHash": "tabelas-simples"} -->
+# Tabelas simples
+## Linhas e células
 
-- Tabelas são criadas com as tags:
-  - **`table`**, para marcar a tabela
-  - **`tr`**, linha
-  - **`td`**, célula
-  - `th`¹, célula do cabeçalho
-  - `caption`¹, legenda
-  - `thead`¹, marca as linhas do **cabeçalho**
-  - `tbody`¹, marca as linhas do **corpo**
-  - `tfoot`¹, marca as linhas do **rodapé**
-- ¹: elementos opcionais, mas desejáveis
-- [Referência sobre tabelas na Mozilla Developer Network][mdn-table]
+- Elementos:
+  - `<table></table>`
+  - `<tr></tr>`
+  - `<td></td>` e `<th></th>`
 
-[mdn-table]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
+<!-- {ul^1:.content} -->
 
 ---
-<!-- {"slideHash": "tags-basicas-de-tabela"} -->
-## _Tags_ Básicas de Tabela
+<!-- {"layout": "regular", "slideHash": "tags-basicas-de-tabela"} -->
+## **_Tags_ básicas** de uma Tabela
 
-[![Exemplo de Tabela Exibindo suas Tags](../../images/tags-html.png)]
-
-  - A **tabela** inicia-se com `<table>` e finaliza com `</table>`
-  - Cada **linha** possui a _tag_ `<tr>` correspondente, finalizada com `</tr>`
-  - A _tag_ `<td>` armazena os dados de uma **célula** da tabela
+- ![Exemplo de Tabela Exibindo suas Tags](../../images/tags-html.png) <!-- {.push-right} -->
+  Tabelas simples são criadas com as tags:
+  - **`<table>...</table>`**
+  - **`<tr>...</tr>`**, linha da tabela
+  - **`<td></td>`**, célula de dados
+  - **`<th></th>`**, célula do cabeçalho
+- A **tabela** inicia-se com `<table>` e finaliza com `</table>`
+- Cada **linha** possui a _tag_ `<tr>` correspondente, finalizada com `</tr>`
+- A _tag_ `<td>...</td>` armazena os dados de uma **célula** da tabela
   - Para o **cabeçalho**, ao invés de `<td>`, utiliza-se a _tag_ `<th>`
-  - As _tags_ `<td>` e `<th>` **devem** estar dentro de uma linha (`<tr>`)
+- As _tags_ `<td>` e `<th>` **devem** estar dentro de uma linha (`<tr>`)
 
 ---
-## Apresentação da tabela do nosso exemplo
-<iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/17/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<video src="../../videos/coding-simple-table.mp4" width="802" height="456" controls style="margin: 0 auto;"></video>
 
-- OBS: Como ainda não aplicamos o **estilo**, ainda não possuimos **borda**
+- Repare que, por padrão, as células `<th>` ficam em <span style="font-weight: bold;">negrito</span>
+
 ---
-<!-- {"slideHash": "caption"} -->
-## __Tag__ Caption
-  - Tag que define a legenda de uma tabela
-    ```html
-    <table>
-      <caption>Quadro 01: Alunos Matriculados</caption>
-      <tr>
-        <th>Matrícula</th><th>Nome</th>
-      </tr>
-      <tr>
-        <td>201792829293</td><td>Alice Fernandez</td>
-      </tr>
-    </table>
-    ```
-    - Exemplo: https://jsfiddle.net/danielhasan/8tr4z959/
+<!-- {"slideHash": "meclando-celulas-horizontais-e-verticais", "layout": "2-column-content"} -->
+## Mesclando células **horizontais** e **verticais**
+
+
+```html
+<table>
+  <tr>
+    <th colspan="2">Pessoas</th>
+  </tr>
+  <tr>
+    <td>2005046102</td>
+    <td>Epaminondas</td>
+  </tr>
+</table>
+```
+
+- ![](../../images/table-colspan.png) <!-- {.push-right} -->
+  **`colspan="X"`** faz com que aquela **célula ocupe `X` colunas**
+  - Para mesclar células "para baixo", usamos **`rowspan="Y"`**, onde `Y` é o
+    **número de linhas** que a célula vai ocupar
+- Exemplos: de [`colspan`](https://jsfiddle.net/fegemo/o6gsb0t9/) e
+  de [`rowspan`](https://jsfiddle.net/fegemo/65rvt05m/)
+
 ---
-## Apresentação da tabela (com caption) do nosso exemplo
+## A tabela do nosso exemplo
+
+<iframe width="65%" height="375" src="https://jsfiddle.net/danielhasan/nmrbhqkb/17/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+- OBS: Como ainda não alteramos o **estilo**, ainda não há **borda**
+
+---
+<!-- {"layout": "section-header", "slideHash": "tabelas-completas"} -->
+# Tabelas completas
+## Cabeçalho, Corpo e Rodapé
+
+- Elementos:
+  - `<caption>...</caption>`
+  - `<thead>...</thead>`
+  - `<tbody>...</tbody>`
+  - `<tfoot>...</tfoot>`
+
+<!-- {ul^1:.content} -->
+
+---
+<!-- {"slideHash": "caption", "layout": "regular"} -->
+## _Tag_ `caption` para colocar **legenda**
+
+- Coloca uma legenda na tabela:
+  ```html
+  <table>
+    <caption>Quadro 01: Alunos Matriculados</caption>
+    <tr>
+      <th>Matrícula</th><th>Nome</th>
+    </tr>
+    <tr>
+      <td>201792829293</td><td>Alice Fernandez</td>
+    </tr>
+  </table>
+  ```
+  - Exemplo: https://jsfiddle.net/danielhasan/8tr4z959/
+
+---
+## Tabela do nosso exemplo <ins>(com caption)</ins>
+
 <iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/19/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-- OBS: Como ainda não aplicamos o **estilo**, ainda não possuimos **borda**
----
-<!-- {"slideHash": "tag-de-cabecalho-e-rodape"} -->
-## Tag de cabeçalho, corpo e rodapé
+- OBS: Como ainda não alteramos o **estilo**, ainda não há **borda**
 
+---
+<!-- {"slideHash": "tag-de-cabecalho-e-rodape", "layout": "2-column-content", "embeddedStyles": "pre.hljs { max-height: 100%; }"} -->
+## _Tags_ de **cabeçalho**, **corpo** e **rodapé** da tabela
 
 ```html
 <table>
@@ -157,47 +232,31 @@ Nesta aula iremos:
 </table>
 ```
 - Exemplo: https://jsfiddle.net/danielhasan/z62vg9xq/5/
-- `<thead>`, `<tbody>` e `<tfoot>` devem marcar as linhas de corpo, cabeçalho e rodapé, respectivamente.
+- `<thead>`, `<tbody>` e `<tfoot>` devem **marcar _as linhas_** que compõem o
+  corpo, o cabeçalho e o rodapé
   - Útil para:
-    - aplicarmos **estilos** diferentes no **corpo**, **cabeçalho** e **rodapé**
-    - impressão: caso a tabela seja maior que a página, o cabeçalho será impresso em todas as páginas
+    - aplicarmos **estilos** diferentes no **corpo**, **cabeçalho** e
+      **rodapé**
+    - impressão: se a tabela for maior que a página, o cabeçalho
+      aparecerá em todas as páginas
 
 ---
-## Utilização de corpo, cabeçalho e rodapé em nosso exemplo
+## Tabela do nosso exemplo <ins>(completa)</ins>
 
 <iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/10/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
----
-<!-- {"slideHash": "meclando-celulas-horizontais-e-verticais"} -->
-## Mesclando células **horizontais** e **verticais**
-
-```html
-<table>
-  <tr>
-    <th colspan="2">Pessoas</th>
-  </tr>
-  <tr>
-    <td>2005046102</td><td>Epaminondas</td>
-  </tr>
-</table>
-```
-- **`colspan="X"`** faz com que aquela **célula ocupe `X` colunas**
-  - Para mesclar células "para baixo", usamos **`rowspan="Y"`**, onde `Y` é o
-    **número de linhas** que a célula vai ocupar
-- Exemplos: de [`colspan`](https://jsfiddle.net/fegemo/o6gsb0t9/) e
-  de [`rowspan`](https://jsfiddle.net/fegemo/65rvt05m/)
+- ~~OBS:~~ chegou a hora de estilizar!
 
 ---
-<!-- {"layout": "section-header", "slideHash": "mais-regras-css"} -->
-# Mais **regras CSS**
+<!-- {"layout": "section-header", "slideHash": "estilizando-tabelas"} -->
+# Estilizando tabelas
+## Deixando-as mais atrativas
 
-- Mais sobre Bordas: `border-top`, `border-bottom`, `border-left` e `border-right`
-- A propriedade `border-collapse` em tabelas
-- _Margin_ e _Padding_
+- Colocando bordas
 - Propriedade de largura: `width`
+- Margem e _padding_
+- A propriedade `border-collapse` em tabelas
 - Fontes: `font-size`, `font-style`, `font-weight` e `text-decoration`
-
-<!-- {ul:.content} -->
 
 ---
 <!-- {"layout": "regular", "backdrop": "oldtimes"} -->
@@ -218,51 +277,75 @@ Nesta aula iremos:
       border: 1px solid red;
     }
     ```
+
 ---
 <!-- {"slideHash": "bordas"} -->
 ## Bordas
-- De forma similar, podemos fazer com que exiba apenas a borda do **topo**, **esquerda**, **direita** ou **abaixo**
-- Para isso, usamos as propriedades  `border-top`, `border-bottom`, `border-left` e `border-right`
 
-```css
-p {
-  border-top: 1px solid red;
-  border-bottom: 2px dotted blue;
-}
-```
-- Também podemos usar a forma mais extensa. Por exemplo, `border-top-width`, `border-top-style` e `border-top-color` definem, respectivamente, a largura, o estilo e a cor da borda do topo.
+- De forma similar, podemos fazer com que exiba apenas a borda do
+  **topo**, **direita**, **abaixo** ou **esquerda**
+- Para isso, usamos:  `border-top`, `border-right`, `border-bottom` e
+  `border-left`
+  - ```css
+    p {
+      border-top: 1px solid red;
+      border-bottom: 2px dotted blue;
+    }
+    ```
+    <!-- {li:style="flex-grow: 1;"} -->
+  - ::: result
+    <p style="border-top: 1px solid red; border-bottom: 2px dotted blue;">Sou o mestre das bordas!</p>
+    :::
+    <!-- {ul^0:.layout-split-2.no-list-icon.no-padding} -->
+    <!-- {li:style="flex-grow: 1;"} -->
+- Também podemos usar a forma mais extensa. Por exemplo, `border-top-width`,
+  `border-top-style` e `border-top-color` definem, respectivamente, a largura,
+  o estilo e a cor da borda do topo
+
 ---
 <!-- {"slideHash": "propriedade-border-collapse"} -->
-## Propriedade **border-collapse**
-  - Ao adicionarmos a borda nas celulas de uma tabela o resultado ficaria assim:
-<iframe width="65%" height="150px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/23/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+## Colocando **bordas na tabela**
 
-  - Para mudarmos isso, adicionamos `border-collapse:collapse` à regra CSS da tabela:
-  <iframe width="65%" height="200px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/24/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- <iframe width="65%" height="150" src="https://jsfiddle.net/danielhasan/nmrbhqkb/23/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
+
+  Ao adicionarmos a borda nas células de uma tabela o resultado ficaria assim:
+
+- <iframe width="65%" height="200px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/24/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
+
+  Para mudarmos isso, adicionamos `border-collapse: collapse` à regra CSS
+  da tabela
+  - Este é o **comportamento desejado** praticamente **sempre** para as bordas
+
 ---
 <!-- {"slideHash": "margin-e-padding"} -->
 ## Margem e _Padding_
-![Desenho de máscara de festa a fantasia](../../images/margin_and_padding.png)
-- **Padding**: Espançamento entre o texto e a borda
-- **Margem**: Espançamento por fora da borda
+![Desenho de máscara de festa a fantasia](../../images/margin-and-padding.png)
+- **Padding**: Espaçamento interno: entre o texto e a borda
+- **Margem**: Espaçamento externo: por fora da borda
+
 ---
 ## Margem e _Padding_ - Exemplo
-  <iframe width="65%" height="250px" src="https://jsfiddle.net/danielhasan/vs1w9khr/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="65%" height="250" src="https://jsfiddle.net/danielhasan/vs1w9khr/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 <!-- {"slideHash": "largura-de-elementos"} -->
 ## Largura de elementos
-  - Podemos especificar a largura dos elementos _**blocks**_ por meio da propriedade **width**
-  ```css
-      p {
-        width: 100px;
-      }
-  ```
 
-  <iframe width="65%"  src="https://jsfiddle.net/danielhasan/t1joy5v6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- Podemos especificar a largura dos elementos _**block**_ por meio da
+  propriedade **width**
+
+```css
+p {
+  width: 100px;
+}
+```
+
+<iframe width="65%"  src="https://jsfiddle.net/danielhasan/t1joy5v6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 ---
 <!-- {"slideHash": "outras-propriedades-do-texto"} -->
-## Outras propriedades do texto
+## Outras propriedades CSS para texto
 
 - `font-size`: Define o tamanho da fonte
 - `font-weight`: Define a espessura da fonte.
@@ -271,10 +354,11 @@ p {
   - Valores: `normal` e `italic`
 - `text-decoration`: Sublinha, risca ou coloca um risco acima do texto:
   - Valores: `none` (nenhum), `underline` (sublinhado), `overline` (acima do texto), `line-through` (riscado)
----
-## Outras propriedades do texto - Exemplo
 
-  <iframe width="65%" height="400px"  src="https://jsfiddle.net/danielhasan/x2m8fnL6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+---
+## Outras propriedades CSS para texto - Exemplo
+
+<iframe width="65%" height="400px"  src="https://jsfiddle.net/danielhasan/x2m8fnL6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 
 ---
