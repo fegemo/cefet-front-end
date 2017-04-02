@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
-# HTML - Parte 3
-## Ferramentas, Multimídia e a Cabeça (_i.e._, `head`)
+# CSS: Parte 1
+## Ferramentas de Edição, codificação e versões de HTML
 
 ---
 ## Na última aula...
@@ -93,18 +93,22 @@
   - Muitas **_hotkeys_ \o/**
   - **Atenção:** As _hotkeys_ e sugestões no _Atom_ **só** irão funcionar após salvar o arquvo como **html**
 ---
+<!-- {"layout": "2-column-content"} -->
 ## _Hotkeys_ Úteis - Criação de um Novo Arquivo HTML
-- Crie o arquivo e salve como **html**
-- Digite `html` e pressione `tab`
-- Aparecerá a estrutura básica do html
+<video src="../../videos/atom-html.mp4" height="340" controls style="margin: 0 auto;"></video>
+  - Crie o arquivo e salve como **html**
+  - Digite `html` e pressione `tab`
+  - Aparecerá a estrutura básica do html
 
+
+<!--
 ---
 ## _Hotkeys_ Úteis - Criação de uma estrutura de _tags_
 - Caso desejarmos criar uma **lista ordenada** (tag `ol`) com 10 itens (tag `il`).
   - Digitamos `ol>il*10` e pressionamos `tab`
 - Se desejarmos criar uma tabela (tag `table`) com 3 linhas (tag `tr`)  e, em cada linha, 2 células
   - Digitamos `table>tr*3>td*2`
-
+-->
 ---
 ## _Hotkeys_ Úteis - Visualização prévia do código
 
