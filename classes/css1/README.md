@@ -436,7 +436,7 @@
   ::: result
   - Azul, branco e verde <!-- {li:style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00);"} -->
   :::
-
+  
 ---
 <!-- {"layout": "section-header", "slideHash": "abelhas-e-suas-castas"} -->
 # Abelhas :honeybee: e suas castas
@@ -519,7 +519,6 @@
     width: 200px;
   }
   ```
-
 ---
 ## Exemplo de `float` (2º passo)
 
