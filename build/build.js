@@ -29208,9 +29208,9 @@ bespoke.from('article', [
       document.head.appendChild(s);
     },
     elementStyles: function(slideEl, elementsAndTheirStyles) {
-      Object.keys(elementsAndTheirStyles).forEach(selector => {
+      Object.keys(elementsAndTheirStyles).forEach(function(selector) {
         Array.from(slideEl.querySelectorAll(selector))
-        .forEach(el => el.setAttribute('style', elementsAndTheirStyles[selector]));
+        .forEach(function(el) { return el.setAttribute('style', elementsAndTheirStyles[selector]); });
       });
     },
     slideHash: function(slide, value) {
