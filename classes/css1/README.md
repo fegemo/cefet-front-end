@@ -373,6 +373,11 @@
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
 
 ---
+## Notações RGB e Hexadecimal
+
+![](../../images/colors-notations.png)
+
+---
 ## Cores
 
 - Exemplos de cores:
@@ -389,9 +394,10 @@
   ```
 
 ---
-## Notações RGB e Hexadecimal
+<!-- {"slideHash": "escolhendo-cores"} -->
+## Escolhendo cores (<kbd>F12</kbd>)
 
-![](../../images/colors-notations.png)
+<video src="../../videos/escolhendo-cores.mp4" height="460" controls style="margin: 0 auto;"></video>
 
 ---
 ## Gradientes
