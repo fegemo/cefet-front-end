@@ -101,14 +101,6 @@
   - Aparecerá a estrutura básica do html
 
 
-<!--
----
-## _Hotkeys_ Úteis - Criação de uma estrutura de _tags_
-- Caso desejarmos criar uma **lista ordenada** (tag `ol`) com 10 itens (tag `il`).
-  - Digitamos `ol>il*10` e pressionamos `tab`
-- Se desejarmos criar uma tabela (tag `table`) com 3 linhas (tag `tr`)  e, em cada linha, 2 células
-  - Digitamos `table>tr*3>td*2`
--->
 ---
 ## _Hotkeys_ Úteis - Visualização prévia do código
 
@@ -182,7 +174,7 @@
 ---
 ## Codificação em uma Página web
 
-- Geralmente, tem-se utilizado UTF-8 nas páginas Web. Porém, nem todas as páginas Web sao UTF-8.
+- Geralmente, tem-se utilizado UTF-8 nas páginas Web. Porém, nem todas as páginas Web são UTF-8.
 
 - Por isso, precisamos especificar qual codificação usamos
 
@@ -256,7 +248,7 @@
 ---
 <!-- {"layout": "section-header"} -->
 # CSS
-
+## Seletor de classe, incluindo arquivo e mais cores
 
 - Seletor de Classes
 - Incluindo arquivo **CSS**
@@ -362,8 +354,7 @@
      }     /* ainda há mistura de código */
    </style>
    ```
-- Desvantagem: caso duas ou mais páginas compartilham o mesmo estilo, será necessário copiar esse estilo para a outra
-  - Dificuldade na manutenção da página e alteração de layout
+
 ---
 # Referenciando o CSS usando a tag _link_
 - Podemos referenciar um CSS da seguinte forma
@@ -372,7 +363,14 @@
    ```
    - Reaproveitamento de código CSS em qualquer arquivo
    - _Caching_ do arquivo CSS: o arquivo é baixado apenas uma vez e usado sempre que necessário
-    - útil se o site tem várias páginas :thumbsup
+    - útil se o site tem várias páginas
+---
+## Referenciando o CSS usando a tag _link_: Atalho Atom
+- Esqueceu toda a sintaxe (forma de escrita)?
+- Digite apenas `link` e, logo após, aperte `tab`:
+
+<video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
+
 ---
 <!-- {"embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
@@ -410,22 +408,52 @@
 - Assim como `color`,
   [`gradient`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient) é
   um tipo de dados em CSS
-  - **Herda de
-    [`image`](https://developer.mozilla.org/en-US/docs/Web/CSS/image)**,
-    não de `color`
-    - Ou seja, `linear-gradient` é um **valor válido para `background-image`**,
+
+- `linear-gradient` é um **valor válido para `background-image`**,
       e não para `background-color`
-- Podemos definir um gradiente (degradê) linear usando dois valores
-  ```css
-  linear-gradient( 45deg, blue, red );
-  linear-gradient( to left top, blue, red);
-  linear-gradient( 90deg, blue, white 20%, red ); /* exemplo abaixo */
-  ```
-  <div style="background-image: linear-gradient(90deg, blue, white 20%, red)">
-    Conteúdo
-  </div>
+
 
 ---
+## Exemplo de Uso (1/3)
+
+- ```css
+    p{
+      background-image: linear-gradient( 45deg, blue, #00FF00 );
+    }
+    ```
+::: result
+- 45 graus, iniciando com azul e terminando como verde <!-- {li:style="background-image: linear-gradient( 45deg, blue, #00FF00 )"} -->
+:::
+
+---
+## Exemplo de Uso (2/3)
+- ```css
+      p{
+        background-image: linear-gradient( to left top, yellow, blue );
+      }
+    ```
+::: result
+- Começa amarelo e termina azul no canto esquerdo superior  <!-- {li:style="background-image: linear-gradient( to left top, yellow, blue )"} -->
+:::
+
+
+
+---
+## Exemplo de Uso (3/3)
+- ```css
+        p{
+          background-image: linear-gradient( 90deg, blue, white 20%, #00FF00 );
+        }
+
+  ```
+::: result
+- Azul, branco e verde <!-- {li:style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00);"} -->
+:::
+
+
+---
+
+
 # Referências
 
 1. Capítulos 5 e 6 do livro
