@@ -1,49 +1,40 @@
 <!-- {"layout": "title"} -->
-# CSS: Parte 1
-## Ferramentas de Edição, codificação e versões de HTML
+# CSS parte 1
+## Seletores de classe, Flutuação e Abelhas :honeybee:
 
 ---
-## Na última aula...
-
-- Podemos **criar hiperlinks** com o elemento `<a href="caminho-do-recurso">nome</a>`
-- Para **incluir imagens**, podemos usar a tag `<img src="caminho-do-arquivo">`
-- Citações são criadas com `<q>` ou `<blockquote>`
-- Alguns elementos são `inline` e outros são `block`
-  - **`inline`**: não fazem quebra de linha (e.g, `<q>`, `<strong>` etc.)
-  - **`block`**: fazem quebra de linha (e.g., `<blockquote>`, `<p>` etc.)
-
----
-## Na última aula... (cont.)
+# Na última aula...
 
 - Tabelas são criadas com as tags
-  - **`table`**, para marcar a tabela
-  - `thead`, cabeçalho
-  - `tbody`, corpo
-  - `tfoot`, rodapé
-  - **`tr`**, linha
-  - **`td`**, célula
-  - `th`, célula do cabeçalho
+  - **`<table>...</table>`**, para marcar a tabela
+  - `<thead>...</thead>`, cabeçalho, contém linhas
+  - `<tbody>...</tbody>`, corpo, contém linhas
+  - `<tfoot>...</tfoot>`, rodapé, contém linhas
+  - **`<tr>...</tr>`**, linha da tabela
+  - **`<td>...</td>`**, célula de dados
+  - `<th>...</th>`, célula do cabeçalho
+  - `<caption>...</caption>`, legenda
 - [Referência na Mozilla Developer Network][mdn-table]
 
 [mdn-table]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
 
-
-
 ---
 # Hoje veremos
 
-# Roteiro de hoje
-1. Editores de Texto
-1. DOCTYPE e Codificação
-1. CSS: Incluindo CSS; Seletor de classe; Cores em Hexa e Gradientes
+1. [Editores de Texto](#editores-de-texto)
+1. [DOCTYPE e Codificação](#doctype-e-codificacao)
+1. [Reaproveitando código CSS](#reaproveitando-codigo-css)
+1. [Abelhas :honeybee: e suas castas](#abelhas-e-suas-castas)
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "editores-de-texto"} -->
 # Editores de texto
 ## Ferramentas para edição e melhoria da produtividade
 
 - Editores de texto
 - _Hotkeys_
+
+<!-- {ul:.content} -->
 
 ---
 <!-- {"layout": "regular"} -->
@@ -52,31 +43,16 @@
 - Na hora de escrever/editar código HTML, CSS e JavaScript, queremos ter:
   - **Destacamento (_highlighting_) de código fonte**
   - **Indentação** automática
-  - **Auto-completar** tags HTML, propriedades CSS etc.
-![Auto-completar no Atom](../../images/auto-complete-atom.png) <!-- {.push-right} -->
-
-- É desejável:
-  - Suporte a controle de versão (_e.g._, git)
-  - _Linting_ (verificação estática de erros no código)
-
----
-<!-- {"layout": "regular"} -->
-## Exemplos com **_Seal of Approval_** do Professor
-
-
+  - ![Auto-completar no Atom](../../images/auto-complete-atom.png) <!-- {.push-right} -->
+    **Auto-completar** tags HTML, propriedades CSS etc.
+- Editores indicados:
   - [Atom][atom] (gratuito, do GitHub)
   - [Sublime Text 3][sublime] (pago, faz vista grossa com quem não paga)
   - [VSCode][vscode] (gratuito, do tio Bill)
-<!--- IDE:
-  - [WebStorm][webstorm] (pago, da JetBrains)
-  - [Visual Studio Express][visual] (gratuito, do tio Bill)
--->
+
 [atom]: https://atom.io/
 [sublime]: https://www.sublimetext.com/3
 [vscode]: https://code.visualstudio.com/
-[notepad]: https://notepad-plus-plus.org/
-[webstorm]: https://www.jetbrains.com/webstorm/
-[visual]: https://www.visualstudio.com/features/modern-web-tooling-vs
 
 ---
 <!-- {"layout": "regular"} -->
@@ -85,21 +61,22 @@
 - [![Página inicial do editor de texto Atom right](../../images/atom-homepage.png)](https://atom.io)
   Benefícios:
   - **Gratuito**
-  <!--- Mais **leve** do que um IDE-->
   - Altamente **personalizável**
-  <!-- Exemplo de **"web fora do navegador"** - É baseado no Chromium e no Node.js
-  - Suporte nativo a **Git**-->
-  - Suporte para versionamento de código (nativo **Git**)
-  - Muitas **_hotkeys_ \o/**
-  - **Atenção:** As _hotkeys_ e sugestões no _Atom_ **só** irão funcionar após salvar o arquvo como **html**
+  - Muitas **_hotkeys_ (teclas de atalho) \o/**
+  - **Atenção:** as _hotkeys_ e sugestões no _Atom_ **só** irão funcionar
+    após salvar o arquivo como **html**
+
 ---
 <!-- {"layout": "2-column-content"} -->
-## _Hotkeys_ Úteis - Criação de um Novo Arquivo HTML
-<video src="../../videos/atom-html.mp4" height="340" controls style="margin: 0 auto;"></video>
-  - Crie o arquivo e salve como **html**
-  - Digite `html` e pressione `tab`
-  - Aparecerá a estrutura básica do html
+## _Hotkeys_ Úteis - Criando um Novo Arquivo HTML
 
+<video src="../../videos/atom-html.mp4" height="340" controls style="margin: 0 auto;"></video>
+
+- Crie o arquivo e salve com a extensão **`.html`** (_e.g._, `index.html`)
+- Digite `html` e pressione <kbd>tab</kbd>
+- Aparecerá a estrutura básica do html
+- Isso funciona para todas as _tags_. Exemplo:
+  - Digite `em` e pressione <kbd>tab</kbd>
 
 ---
 ## _Hotkeys_ Úteis - Visualização prévia do código
@@ -110,16 +87,17 @@
 
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "doctype-e-codificacao"} -->
 # Codificação e DOCTYPE
 
-
-- Representacação do arquivo: Codificação
+- Codificação do arquivo
   - Como um texto é armazenado em seu computador?
-  - ASCII
-  - UNICODE e UTF-8
-- Representação versão do HTML:
+    - ASCII
+    - UNICODE e UTF-8
+- Versão do HTML:
   - DOCTYPE
+
+<!-- {ul^3:.content} -->
 
 ---
 <!-- {"layout": "2-column-content"} -->
@@ -130,12 +108,14 @@
 - Porém, internamente, eles são armazenados no formato **numérico** em **binário**
 
 - Na web há vários tipos de codificações:
-  - ASCII, UNICODE, ...
+  - (1) ASCII, (2) UNICODE, ...
 
 ---
-## Codificação ASCII
-- ASCII é um dos mais antigos padrões de codificação
-- Cada caractere (letra) é representada por um número.
+<!-- {"layout": "regular"} -->
+## Codificação **ASCII**
+
+- ASCII é um dos **mais antigos** padrões de codificação
+- Cada caractere (letra) é representada por um número
 - Esta codificação possui:
   - Letras do alfabeto latino/romano
   - Pontuações
@@ -144,53 +124,61 @@
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## Tabela ASCII
+## **Tabela ASCII**
+
 | Código| Letra 	|
-|-------|---------|
-| ...   |   ...   |
+|:-----:|:-------:|
+| ⋮    |   ⋮     |
 | 32    | Espaço 	|
 | 33    |     ! 	|
 | 34    |     "   |
-| ...   |    ...  |
+| ⋮    |    ⋮    |
 | 65    |    A    |
 | 66    |    B    |
 | 67    |    C    |
+| ⋮    |    ⋮    |
 
 | Código| Letra 	|
-|-------|---------|
-| ...   |   ...   |
+|:-----:|:-------:|
+| ⋮    |   ⋮     |
 | 97    |    a    |
 | 98    |    b    |
 | 99    |    c    |
+| ⋮    |    ⋮    |
+
 ---
-## Codificação Unicode e UTF-8
+## Codificação **Unicode** e UTF-8
 
 - Unicode provê o suporte multilíngua
   - Diversos alfabetos, não apenas o romano/latino
 
-- **UTF-8** é uma codificação que usa uma sequência de **8 bytes** para armazenar códigos UNICODE
+- **UTF-8** é uma codificação que usa uma sequência de **8 bytes** para
+  armazenar códigos UNICODE
 
 
 ---
 ## Codificação em uma Página web
 
-- Geralmente, tem-se utilizado UTF-8 nas páginas Web. Porém, nem todas as páginas Web são UTF-8.
+- Geralmente, tem-se utilizado UTF-8 nas páginas Web. Porém, nem todas as
+  páginas Web são UTF-8.
 
 - Por isso, precisamos especificar qual codificação usamos
 
 - Usa-se a `<meta>` _tag_ com nome `charset` para isso:
   ```html
-  <meta name="charset" content="ISO-8859-1">
+  <meta name="charset" content="ISO-8859-1"> <!-- romano/latino -->
+  <meta name="charset" content="utf-8">      <!-- utf-8 -->
   ```
 
 ---
-## Codificação em uma Página web (cont)
+## Codificação em uma Página web (cont.)
+
 - A codificação de uma página deve ser especificada de forma explícita
     - Senão, UTF-8 é inferido
 - Opções de codificação são gerenciadas pela IANA e [podem ser vistas aqui](http://www.iana.org/assignments/character-sets/character-sets.xhtml)
-- ![Uma página web com caracteres não reconhecidos devido a um problema de codificação](../../images/encoding-error.png) <!-- {.push-right style="height: 200px"} -->
+
+- ![Uma página web com caracteres não reconhecidos devido a um problema de codificação](../../images/encoding-error.png) <!-- {.push-right style="height: 300px"} -->
   Erro de codificação:
-  - Deve-se manter a mesma codificação nos arquivos, declarado no HTML e (se for o caso) no banco de dados
 
 ---
 # DOCTYPE - Versão do HTML
@@ -198,9 +186,9 @@
 <!-- {"layout": "regular"} -->
 ## DOCTYPE
 
-- Especifica para o navegador qual a versão do `html` que estamos usando
+- Especifica para o navegador qual a versão do HTML que estamos usando
 - Aparece como a primeira "tag" em um arquivo `html`
-- Formato
+- Formato:
   ```html
   <!DOCTYPE ... >
   ```
@@ -231,8 +219,8 @@
   ```
   ![Bebezinho fazendo cara de que gostou do que foi falado](../../images/baby-success.jpg)
 
----
-<!-- {"layout": "regular"} -->
+<!--
+<!- {"layout": "regular"} ->
 ## E se colocarmos um DOCTYPE inválido?
 
 - O navegador possui o conceito de _strict mode_ e o de _quirks mode_
@@ -244,28 +232,31 @@
 - [Artigo sobre o _quirks mode_ no site quirksmode.org][quirks-mode] :)
 
 [quirks-mode]: http://www.quirksmode.org/css/quirksmode.html
+-->
+---
+<!-- {"layout": "section-header", "slideHash": "reaproveitando-codigo-css"} -->
+# Reaproveitando código CSS
+## Seletor de classe, incluindo arquivo e mais sobre cores
+
+- Seletor de classes
+- Incluindo arquivos **CSS**
+- Cores e Gradientes
+
+<!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "section-header"} -->
-# CSS
-## Seletor de classe, incluindo arquivo e mais cores
-
-- Seletor de Classes
-- Incluindo arquivo **CSS**
-- Cores e Gradiente
-
-
----
-## Relembrando...Sintaxe: **seletor** e **declaração**
+## Relembrando... **seletor** e **declaração**
 
 ![Regra CSS](../../images/css-selector.png)
 
 ---
-## Sintaxe: **propriedade** e **valor**
+<!-- {"state":"show-active-slide-and-previous"} -->
+## **propriedade** e **valor**
 
 ![Regra CSS](../../images/css-property-value.png)
 
 ---
+<!-- {"layout": "regular"} -->
 ## Problema: **selecionando** elementos
 
 - Como fazemos para selecionar (_e.g._):
@@ -274,100 +265,106 @@
   1. apenas **uma imagem em especial**?
 - Uma solução possível é usar os atributos universais¹ HTML chamados
   **`class`** e **`id`** para identificar os elementos e estilizá-los
-  - ¹: atributos que qualquer elemento pode ter
 
+  > **Atributos universais¹**: aqueles que qualquer elemento pode ter
+  >
 
 ---
-## Seletor de Classe
+<!-- {"layout": "regular"} -->
+## Selecionar **por nome de _tag_**
 
-- Até agora, estilizamos elementos `html` de duas formas:
+- Até agora, estilizamos elementos HTML de duas formas:
 - **Primeira forma:** Selecionando a tag:
   ```css
   p {
     color: blue;
   }
   ```
-  - Isso faz com que **todos** os parágrafos sejam estilizados com a cor azul
+  - Isso faz com que **todos os parágrafos** sejam estilizados com a cor azul
 
 ---
-## Classe (Cont.)
+<!-- {"layout": "regular"} -->
+## Selecionar **por `id`**
 
-- **Segunda forma:** selecionando um elemento em específico
-  - Supondo que temos um parágrafo `<p id="primParagrafo">Oi!</p>`:
+- **Segunda forma:** selecionando 01 elemento em específico
+  - Supondo que temos: `<p id="resumo">Este é o resumo da notícia...</p>`:
   ```css
-  #primParagrafo {
+  #resumo {
     color: blue;
   }
   ```
-  - Deixando  de cor azul apenas o parágrafo cujo seu id é  `primParagrafo`.
-  - Como fazemos, então, para estilizar apenas um ou um subconjunto de
-    parágrafos da forma como queremos?
+  - Deixando de cor azul apenas o parágrafo cujo `id` é `resumo`.
+  - Como fazemos, então, para estilizar não apenas 01, mas **um subconjunto de
+    elementos** da forma como queremos?
     - Resposta: usando **classes**
 
 ---
-## Classe (cont.)
+<!-- {"layout": "regular"} -->
+## Selecionar **por classe**
 
-- Dada a seguinte estrutura de um &lt;body&gt;&lt;/body&gt;:
+- Dada a seguinte estrutura de um `<body></body>`:
   ```html
   <p>Primeiro</p>
   <p>Segundo</p>
   <p>Terceiro</p>
   ```
-- Para criar uma regra `CSS` para, digamos, os dois primeiros parágrafos, podemos
-  alterar a estrutura `html` para:
+- Para criar uma regra CSS para, digamos, os dois primeiros parágrafos, podemos
+  alterar a estrutura HTML para:
   ```html
   <p class="destacado">Primeiro</p>
   <p class="destacado">Segundo</p>
-  <p>Terceiro</p>
+  <p>Terceiro</p> <!-- continua no próximo slide -->
   ```
-- continua...
 
 ---
-## Classe (cont.)
+## Selecionar por classe (cont.)
 
-- E, em um arquivo `CSS`, podemos escrever o nome da _tag_, seguido por um ponto
+- E, em um arquivo CSS, podemos escrever o nome da _tag_, seguido por um ponto
    "`.`", seguido pelo nome da classe:
-
-```css
+  ```css
   p.destacado {
     font-weight: bold; /* negrito */
   }
-```
-
-- Ou, se quisermos usar a classe `destacado` para outros elementos que não
+  ```
+- Ou, se quisermos usar a classe `destacado` para outros elementos além de
   `<p></p>`, podemos omitir o nome da _tag_:
-
-```css
+  ```css
   .destacado {
     font-weight: bold;
   }
-```
+  ```
 
 ---
 # Incluindo arquivo CSS
 
-- Por enquanto, colocamos o CSS dentro do HTML
+- Por enquanto, colocamos o CSS **dentro do arquivo HTML**
    ```html
    <style> /* reaproveitamento de código CSS dentro do arquivo */
      p {
        color: #fff;
-     }     /* ainda há mistura de código */
+     }     /* misturamos código CSS dentro do arquivo HTML */
    </style>
    ```
+   - Mas **isto é uma prática ruim**! :scream:
 
 ---
-# Referenciando o CSS usando a tag _link_
-- Podemos referenciar um CSS da seguinte forma
-   ```html
-   <link rel="stylesheet" href="arquivo-de-estilos.css" />
-   ```
-   - Reaproveitamento de código CSS em qualquer arquivo
-   - _Caching_ do arquivo CSS: o arquivo é baixado apenas uma vez e usado sempre que necessário
-    - útil se o site tem várias páginas
+## Referenciando o **CSS usando a tag _link_**
+
+- Um arquivo HTML podoe referenciar um CSS assim:
+  ```html
+  <link rel="stylesheet" href="arquivo-de-estilos.css">
+  ```
+  - Mais de um arquivo HTML pode usar esse CSS
+    - **Reaproveitamento** de código CSS
+  - **_Caching_** do arquivo CSS: o arquivo é baixado apenas uma vez e
+    usado sempre que necessário
+    - Útil se o site tem várias páginas
+
 ---
-## Referenciando o CSS usando a tag _link_: Atalho Atom
+## Referenciando o CSS : **Atalho do Atom**
+
 - Esqueceu toda a sintaxe (forma de escrita)?
-- Digite apenas `link` e, logo após, aperte `tab`:
+- Digite apenas `link` e, logo após, aperte <kbd>tab</kbd>:
 
 <video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
 
@@ -375,85 +372,185 @@
 <!-- {"embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
 
-
 ---
-## Cor
-
-- Em `CSS`, existe um [tipo de dados `color`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
-- Um valor de `color` pode ser dado por:
-  - uma palavra-chave
-  - um valor do espaço cúbico RGB (em hexadecimal, `rgb()` ou `rgba()`)
-  - um valor do espaço cilíndrico HSL (`hsl()` ou `hsla()`)
-
----
-## Cor (cont.)
+## Cores
 
 - Exemplos de cores:
-  ```css
-  #ff0033
+  ```
+  #ff0033                   /* Cor RGB em hexadecimal */
   #F03                      /* Mesmo que anterior */
   rgb(255, 0, 51)
   rgb(100%, 0%, 20%)
   hsl(60, 100%,50%)
-  rgba(255,0,0,0.1)         /* 10% opaque red */  
-  hsla(240,100%,50%,0.05)   /* 5% opaque blue */
-  rebeccapurple
+  rgba(255,0,0,0.1)         /* Vermelho 10% opaco */  
+  hsla(240,100%,50%,0.05)   /* Azul 5% opaco */
+  brown
+  gold
   ```
 
-  <div style="font-size: 1.5em; color: #663399; font-family: Calligraffitti, cursive">Rebecca Purple</div>
+---
+## Notações RGB e Hexadecimal
+
+![](../../images/colors-notations.png)
 
 ---
 ## Gradientes
 
-- Assim como `color`,
-  [`gradient`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient) é
-  um tipo de dados em CSS
-
 - `linear-gradient` é um **valor válido para `background-image`**,
       e não para `background-color`
+  - Veja a documentação do que é um [`gradient`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient)
 
 
 ---
 ## Exemplo de Uso (1/3)
 
 - ```css
-    p{
-      background-image: linear-gradient( 45deg, blue, #00FF00 );
-    }
-    ```
-::: result
-- 45 graus, iniciando com azul e terminando como verde <!-- {li:style="background-image: linear-gradient( 45deg, blue, #00FF00 )"} -->
-:::
+  p {
+    background-image: linear-gradient( 45deg, blue, #00FF00 );
+  }
+  ```
+  ::: result
+  - 45 graus, iniciando com azul e terminando como verde <!-- {li:style="background-image: linear-gradient( 45deg, blue, #00FF00 )"} -->
+  :::
 
 ---
 ## Exemplo de Uso (2/3)
+
 - ```css
-      p{
-        background-image: linear-gradient( to left top, yellow, blue );
-      }
-    ```
-::: result
-- Começa amarelo e termina azul no canto esquerdo superior  <!-- {li:style="background-image: linear-gradient( to left top, yellow, blue )"} -->
-:::
-
-
+  p {
+    background-image: linear-gradient( to left top, yellow, blue );
+  }
+  ```
+  ::: result
+  - Começa amarelo e termina azul no canto esquerdo superior  <!-- {li:style="background-image: linear-gradient( to left top, yellow, blue )"} -->
+  :::
 
 ---
 ## Exemplo de Uso (3/3)
-- ```css
-        p{
-          background-image: linear-gradient( 90deg, blue, white 20%, #00FF00 );
-        }
 
+- ```css
+  p {
+    background-image: linear-gradient( 90deg, blue, white 20%, #00FF00 );
+  }
   ```
-::: result
-- Azul, branco e verde <!-- {li:style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00);"} -->
-:::
+  ::: result
+  - Azul, branco e verde <!-- {li:style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00);"} -->
+  :::
+
+---
+<!-- {"layout": "section-header", "slideHash": "abelhas-e-suas-castas"} -->
+# Abelhas :honeybee: e suas castas
+## :honey_pot: :honey_pot: :honey_pot: :honey_pot: :honey_pot:
+
+- A atividade das abelhas
+- Flutuando coisas
+- Pesquisando novas propriedades CSS/elementos HTML
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"backdrop": "pratica-abelhas"} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Abelhas :honeybee: e suas castas
+
+1. [Baixe as imagens e páginas](https://github.com/fegemo/cefet-front-end-bees/archive/master.zip)
+   que serão usados
+   1. Descompacte o arquivo `cefet-front-end-bees-master.zip` na área de trabalho
+      - Isto criará uma pasta com o nome `cefet-front-end-bees-master` lá
+   1. **Renomeie** a pasta criada na área de trabalho para `site-abelhas`
+      - Esta é a **pasta raiz** do site - onde devem ficar os arquivos `.html`
+   1. Veja [instruções detalhadas aqui](https://github.com/fegemo/cefet-front-end-bees/blob/master/README.md)
+
+---
+<!-- {"layout": "regular", "slideHash": "flutuando-coisas"} -->
+# Flutuando coisas
+
+> ![](../../images/float-magazine.png) <!-- {.push-right style="height: 200px;"} -->
+  **Jornais e revistas** costumam colocar **imagens junto ao texto** para
+  fazer uma bela diagramação do conteúdo
+> <cite>Coutinho, 2017</cite>
+> Isso se chama **deixar o elemento** (_e.g._, imagem) **flutuando**
+> <cite>Hasan, 2017</cite>
+
+- Na web também queremos fazer isso!
+
+---
+## Como flutuar elementos usando CSS?
+
+![](../../images/pratica-abelhas-operarias.png)
 
 
 ---
+## Propriedade `float`
+
+- Usado para alterar o fluxo tradicional da página
+  - Em CSS:  
+    ```css
+    img#abelha-operaria {
+      float: left; /* right, none */
+    }              /* none é o valor padrão - sem flutuação*/
+    ```
+  - No HTML:
+    ```html
+    <img id="abelha-operaria" src="...">
+    <p>Texto ...</p>
+    ```
+
+---
+## Propriedade `float` (cont.)
+
+- ![](../../images/float-p1.png) <!-- {.push-right} -->
+  Um elemento flutuante é removido do fluxo tradicional e
+  - os elementos `block` depois dele fingem que ele não está ali
+  - os elementos `inline` depois dele respeitam seu formato
+- Vamos fazer com que o parágrafo com `id="amazing"`
+  flutue à direita **nos próximos 2 slides**...
+
+---
+## Exemplo de `float` (1º passo)
 
 
+- ![](../../images/float-p2.png)  <!-- {.push-right} -->
+  Alterando a largura de um parágrafo para 200px
+  ```css
+  p#amazing {
+    width: 200px;
+  }
+  ```
+
+---
+## Exemplo de `float` (2º passo)
+
+- ![](../../images/float-p3.png)  <!-- {.push-right} -->
+  Flutuando o parágrafo à direita
+  ```css
+  p#amazing {
+    width: 200px;
+    float: right;
+  }
+  ```
+  - Repare que:
+    - Elementos declarados <u>antes</u> do parágrafo flutuante
+      **não são alterados**
+    - Elementos declarados <u>depois</u>:
+      - Se forem `block`, **ignoram** o elemento flutuante
+      - Se forem `inline`, **respeitam** o elemtno flutuante
+
+---
+# Arredondando bordas
+
+- ![](../../images/borda-arredondada.png) <!-- {.push-right} -->
+  Como arredondar bordas?
+  - Há muitas propriedades CSS que não teremos tempo de ver no curso
+  - Contudo, a Web é uma ótima fonte de informação
+  - Pesquise ["como arredondar bordas em CSS" no Google][border-radius-google],
+    por exemplo
+
+[border-radius-google]: http://lmgtfy.com/?q=como+arredondar+bordas+em+css
+
+---
 # Referências
 
 1. Capítulos 5 e 6 do livro

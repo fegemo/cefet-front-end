@@ -197,6 +197,20 @@ body {
   transform: scale(1);
   transition: all 500ms ease 400ms;
 }
+.pratica-abelhas.bespoke-backdrop {
+  background-image: url("../images/pratica-abelhas.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: none;
+  transform: scale(0.35);
+}
+.pratica-abelhas.bespoke-backdrop.bespoke-backdrop-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 500ms ease 400ms;
+}
 strong.alternate-color {
   color: #7b9c02;
 }
