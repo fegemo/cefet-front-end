@@ -299,7 +299,7 @@
     - Resposta: usando **classes**
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular","slideHash": "css-seletor-por-classe"} -->
 ## Selecionar **por classe**
 
 - Dada a seguinte estrutura de um `<body></body>`:
@@ -335,6 +335,7 @@
   ```
 
 ---
+<!-- {"slideHash": "incluindo-css"} -->
 # Incluindo arquivo CSS
 
 - Por enquanto, colocamos o CSS **dentro do arquivo HTML**
@@ -369,7 +370,7 @@
 <video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
+<!-- {"slideHash": "cores-e-gradientes","embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
 
 ---
@@ -517,18 +518,18 @@
 ---
 ## Exemplo de `float` (1º passo)
 
-- ![](../../images/float-p2.png)  <!-- {.push-right style="max-height: 440px;"} -->
+
+- ![](../../images/float-p2.png)  <!-- {.push-right} -->
   Alterando a largura de um parágrafo para 200px
   ```css
   p#amazing {
     width: 200px;
   }
   ```
-
 ---
 ## Exemplo de `float` (2º passo)
 
-- ![](../../images/float-p3.png)  <!-- {.push-right style="max-height: 440px;"} -->
+- ![](../../images/float-p3.png)  <!-- {.push-right} -->
   Flutuando o parágrafo à direita
   ```css
   p#amazing {
@@ -544,6 +545,7 @@
       - Se forem `inline`, **respeitam** o elemtno flutuante
 
 ---
+<!-- {"slideHash": "arredondando-bordas"} -->
 # Arredondando bordas
 
 - ![](../../images/borda-arredondada.png) <!-- {.push-right} -->
