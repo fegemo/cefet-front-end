@@ -518,18 +518,18 @@
 ---
 ## Exemplo de `float` (1º passo)
 
-
-- ![](../../images/float-p2.png)  <!-- {.push-right} -->
+- ![](../../images/float-p2.png)  <!-- {.push-right style="max-height: 440px;"} -->
   Alterando a largura de um parágrafo para 200px
   ```css
   p#amazing {
     width: 200px;
   }
   ```
+
 ---
 ## Exemplo de `float` (2º passo)
 
-- ![](../../images/float-p3.png)  <!-- {.push-right} -->
+- ![](../../images/float-p3.png)  <!-- {.push-right style="max-height: 440px;"} -->
   Flutuando o parágrafo à direita
   ```css
   p#amazing {
