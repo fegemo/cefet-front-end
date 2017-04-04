@@ -81,7 +81,7 @@
 ---
 ## _Hotkeys_ Úteis - Visualização prévia do código
 
-- Pressione <kbd>Ctrl+Shift+M</kbd>
+- Pressione <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
 
 <video src="../../videos/coding-simple-table.mp4" height="400" controls style="margin: 0 auto;"></video>
 
@@ -101,12 +101,12 @@
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## Codificação - Como o texto é armazenado em seu computador?
+## Como o texto é armazenado em seu computador?
 
 ![Exemplo de Codificação de Texto](../../images/codificacao.png)<!-- {.push-right style="height: 300px"} -->
 - Arquivos HTMLs são representados como arquivos textuais
 - Porém, internamente, eles são armazenados no formato **numérico** em **binário**
-
+- Codificação é um **<u>mapeamento</u> de letras para números**
 - Na web há vários tipos de codificações:
   - (1) ASCII, (2) UNICODE, ...
 
@@ -152,7 +152,7 @@
 - Unicode provê o suporte multilíngua
   - Diversos alfabetos, não apenas o romano/latino
 
-- **UTF-8** é uma codificação que usa uma sequência de **8 bytes** para
+- **UTF-8** é uma codificação que usa uma sequência de **8 bits** para
   armazenar códigos UNICODE
 
 
@@ -164,10 +164,10 @@
 
 - Por isso, precisamos especificar qual codificação usamos
 
-- Usa-se a `<meta>` _tag_ com nome `charset` para isso:
+- Usa-se a `<meta>` _tag_ com o atributo `charset` para isso:
   ```html
-  <meta name="charset" content="ISO-8859-1"> <!-- romano/latino -->
-  <meta name="charset" content="utf-8">      <!-- utf-8 -->
+  <meta charset="ISO-8859-1"> <!-- ASCII romano/latino -->
+  <meta charset="utf-8">      <!-- utf-8 -->
   ```
 
 ---
