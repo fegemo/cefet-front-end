@@ -299,7 +299,7 @@
     - Resposta: usando **classes**
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular","slideHash": "css-seletor-por-classe"} -->
 ## Selecionar **por classe**
 
 - Dada a seguinte estrutura de um `<body></body>`:
@@ -335,6 +335,7 @@
   ```
 
 ---
+<!-- {"slideHash": "incluindo-css"} -->
 # Incluindo arquivo CSS
 
 - Por enquanto, colocamos o CSS **dentro do arquivo HTML**
@@ -369,7 +370,7 @@
 <video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
+<!-- {"slideHash": "cores-e-gradientes","embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
 
 ---
@@ -442,7 +443,7 @@
   ::: result
   - Azul, branco e verde <!-- {li:style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00);"} -->
   :::
-  
+
 ---
 <!-- {"layout": "section-header", "slideHash": "abelhas-e-suas-castas"} -->
 # Abelhas :honeybee: e suas castas
@@ -544,6 +545,7 @@
       - Se forem `inline`, **respeitam** o elemtno flutuante
 
 ---
+<!-- {"slideHash": "arredondando-bordas"} -->
 # Arredondando bordas
 
 - ![](../../images/borda-arredondada.png) <!-- {.push-right} -->
