@@ -387,7 +387,8 @@ p {
 # Gerenciador de Tesouros
 
 1. [Baixe as imagens e o ícone](https://github.com/fegemo/cefet-front-end-pirates/archive/master.zip) que serão usados
-1. **Crie uma pasta** na área de trabalho com o nome `tesouro-piratas`
+1. Descompacte o arquivo `cefet-front-end-pirates-master.zip` na área de trabalho
+1. Renomeie a pasta criada na área de trabalho para `tesouro-piratas`
 1. **Crie um arquivo `index.html`** na mesma pasta e siga os passos:
    1. Faça a **estrutura básica** e coloque o ícone e a imagem de fundo
    1. Coloque o **título (`h1`) e o parágrafo**, deixando espaço para tabela
