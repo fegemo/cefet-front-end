@@ -56,9 +56,12 @@
     1. selecionar **"Inspecionar elemento"**
 
 ---
-## Usando as ferramentas - Exemplo
+## Usando as ferramentas - Exemplo - Alterando/testando propriedades
 
 <video src="../../videos/desenv-chrome.mp4" height="400" controls style="margin: 0 auto;"></video>
+
+---
+## Usando as ferramentas - Exemplo - "Criei uma regra e ela não funcionou"
 
 ---
 <!-- {"layout": "section-header", "slideHash": "estilizando-tabelas"} -->
