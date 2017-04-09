@@ -1,23 +1,45 @@
+<!-- {"layout": "title"} -->
 # CSS - Parte 2
+## História, a Cascata e outros Seletores, Ferramentas e Ninjas
 
 ---
-# Roteiro de hoje
-
-1. Ferramentas do Desenvolvedor
-1. História CSS
-1. A cascata
-1. Seletores
-1. **Os Ninjas**
+# Na última aula... (1/3)
 
 ---
+# Na última aula... (2/3)
+
+---
+# Na última aula... (3/3)
+
+---
+# Hoje veremos
+
+1. [Ferramentas do Desenvolvedor](#ferramentas-do-desenvolvedor)
+1. [História do CSS](#historia-do-css)
+1. [A cascata](#a-cascata)
+1. [Outros seletores](#outros-seletores)
+1. [**Os Ninjas**](#os-ninjas)
+
+---
+<!-- {"layout": "section-header", "slideHash": "ferramentas-do-desenvolvedor"} -->
 # Ferramentas do Desenvolvedor
+## Investigando erros e experimentando propriedades
+
+- Ferramenta do Google Chrome
+- Alterando/testando propriedades
+- Investigando erros
+  1. :mega: "Criei uma regra e ela não funcionou"
+  1. :mega: "Apliquei uma propriedade e ela não apareceu"
+  1. :mega: "Coloquei uma imagem ou arquivo CSS e não apareceu"
+
+<!-- {ul:.content} -->
 
 ---
 ## Ferramentas do Desenvolvedor
 
-- Os navegadores possuem **excelentes ferramentas de suporte** ao programador
+- Os navegadores possuem **excelentes ferramentas** para o programador
 
-![Ferramentas do desenvolvedor do Chromium right](../../images/chrome-dev-tools.png)
+![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png)
 
 ---
 ## Usando as Ferramentas
@@ -37,47 +59,6 @@
 ## Usando as ferramentas - Exemplo
 
 <video src="../../videos/desenv-chrome.mp4" height="400" controls style="margin: 0 auto;"></video>
----
-# Propriedade **alt** da imagem e a _tag_ **iframe**
----
-# Atributo **alt** da imagem e o **iframe**
----
-# Propriedade **alt** da imagem
-
-  - Descreve, textualmente a imagem
-  - É recomendável que todas as imagens utilizem esta propriedade
-  - Útil quando:
-    - ocorreu algum erro no endereço imagem;
-    - conexões lentas;
-    - utiliza-se um leitor de tela.
-
-
----
-## Propriedade **alt** da imagem - Exemplo
-
-- Exemplo (imagem com endereço errado)
-
-```html
-      <img alt="Imagem de uma ovelha pirata" src="imagem-inexistente.jpg">
-```
-
-:::result
-  <img alt="Imagem de uma ovelha pirata" src="img-inexistente.jpg">
-:::
----
-## Tag **IFrame**
-
-- Usada para embutir outra página web dentro da atual
-- Exemplo:
-```html
-      <iframe src="www.terra.com.br"></iframe>
-```
-
-:::result
-  <iframe src="http://www.terra.com.br"></iframe>
-:::
-
-
 
 ---
 <!-- {"layout": "section-header", "slideHash": "estilizando-tabelas"} -->
@@ -381,6 +362,50 @@ p  a {
 1. Você pode modificar o HTML das páginas para colocar `class` e `id` nos
   elementos para os quais essa alteração seja necessária
 1. Siga os passos descritos no [arquivo README.md do exercício](https://github.com/fegemo/cefet-web-ninjas/blob/gh-pages/README.md)
+
+
+---
+# Atributo **alt** da imagem e a _tag_ **iframe**
+---
+# Atributo **alt** da imagem e o **iframe**
+---
+# Propriedade **alt** da imagem
+
+  - Descreve, textualmente a imagem
+  - É recomendável que todas as imagens utilizem esta propriedade
+  - Útil quando:
+    - ocorreu algum erro no endereço imagem;
+    - conexões lentas;
+    - utiliza-se um leitor de tela.
+
+
+---
+## Propriedade **alt** da imagem - Exemplo
+
+- Exemplo (imagem com endereço errado)
+
+```html
+      <img alt="Imagem de uma ovelha pirata" src="imagem-inexistente.jpg">
+```
+
+:::result
+  <img alt="Imagem de uma ovelha pirata" src="img-inexistente.jpg">
+:::
+---
+## Tag **IFrame**
+
+- Usada para embutir outra página web dentro da atual
+- Exemplo:
+```html
+      <iframe src="www.terra.com.br"></iframe>
+```
+
+:::result
+  <iframe src="http://www.terra.com.br"></iframe>
+:::
+
+
+
 
 ---
 # Referências
