@@ -260,6 +260,15 @@ ol.no-list-icon {
 .no-padding {
   padding: 0;
 }
+.invisible {
+  visibility: hidden;
+}
+.layout-regular-block {
+  display: block;
+}
+.layout-regular-block blockquote {
+  display: inline-block;
+}
 .tutorial {
   position: absolute;
   right: 1vw;
@@ -511,6 +520,9 @@ h3.caniuse-title {
   .bespoke-slide {
     overflow-y: hidden;
   }
+}
+pre.hljs {
+  margin: auto;
 }
 @keyframes appear-from-left {
   from {
