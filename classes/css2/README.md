@@ -3,13 +3,46 @@
 ## História, a Cascata e outros Seletores, Ferramentas e Ninjas :dash:
 
 ---
-# Na última aula... (1/3)
+# Na última aula... (1/4)
+## Ferramentas de Produtividade
+- Boas ferramentas possuem: Destacamento de código fonte, identação e autocompletar
+- Atalhos interessantes no **Atom**
+  - Uso do <kbd>tab</kbd> após uma _tag_ para completar com a tag desejada (eg. `html`)
+  - Visualização prévia do código: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
 
 ---
-# Na última aula... (2/3)
+# Na última aula... (2/4)
+## Codificação e DOCTYPE
+- Codificação do arquivo
+  - Como um texto é armazenado em seu computador?
+    - ASCII
+    - UNICODE e UTF-8
+    ![Exemplo de Codificação de Texto](../../images/codificacao.png)<!-- {.push-right style="height: 300px"} -->
+- Versão do HTML:
+  - DOCTYPE
 
 ---
-# Na última aula... (3/3)
+# Na última aula... (3/4)
+## CSS
+
+- **Seletores de classe**: uso de `.curiosidades` para selecionar
+uma classe curiosidade (previamente definido na tag pelo atributo `class` )
+- **Incluindo arquivos CSS**:
+```html
+<link rel="stylesheet" href="arquivo-de-estilos.css">
+```
+  - Vantagem: Reaproveita o estilo para diversas páginas
+
+---
+# Na última aula... (4/4)
+
+  - **Cores e gradientes** :
+  ```css
+    p {
+      background-image: linear-gradient( 45deg, blue, #00FF00 );
+    }
+```
+![](../../images/colors-notations.png) <!-- {.push-right style="max-height: 200px;"} -->
 
 ---
 # Hoje veremos
