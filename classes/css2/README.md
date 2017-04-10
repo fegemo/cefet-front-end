@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # CSS - Parte 2
-## História, a Cascata e outros Seletores, Ferramentas e Ninjas
+## História, a Cascata e outros Seletores, Ferramentas e Ninjas :dash:
 
 ---
 # Na última aula... (1/3)
@@ -37,9 +37,12 @@
 ---
 ## Ferramentas do Desenvolvedor
 
-- Os navegadores possuem **excelentes ferramentas** para o programador
-
 ![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png)
+
+---
+## Exemplo: Alterando/testando propriedades
+
+<video src="../../videos/desenv-chrome.mp4" height="400" controls style="margin: 0 auto;"></video>
 
 ---
 ## Usando as Ferramentas
@@ -48,29 +51,37 @@
   - Tecla de atalho no Chrome: <kbd>Ctrl-U</kbd>
   - Ou então:
     1. clicar com **botão direito** do Mouse **na página**
-    1. selecionar **"Ver código fonte"**
+    1. selecionar **"Exibir código fonte da página"**
 - Ativando o depurador:
-  - Tecla de atalho padrão: <kbd>Ctrl-Shift-I</kbd> ou <kbd>F12</kbd>
+  - Tecla de atalho padrão: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> ou <kbd>F12</kbd>
   - Ou então:
     1. clicar com **botão direito** do Mouse **na página**
-    1. selecionar **"Inspecionar elemento"**
+    1. selecionar **"Inspecionar"**
 
 ---
-## Usando as ferramentas - Exemplo - Alterando/testando propriedades
+### Investigando - _"Criei uma regra e ela não funcionou"_
 
-<video src="../../videos/desenv-chrome.mp4" height="400" controls style="margin: 0 auto;"></video>
-
----
-## Usando as ferramentas - Exemplo - "Criei uma regra e ela não funcionou"
+<video src="../../videos/tools-investigate-wrong-selector.webm" height="500" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "estilizando-tabelas"} -->
-# CSS
-##
+### Investigando - _"Nova propriedade não funcionou"_
+
+<video src="../../videos/tools-investigate-wrong-property.webm" height="500" controls style="margin: 0 auto;"></video>
+
+---
+### Investigando - _"Arquivo não apareceu"_
+
+<video src="../../videos/tools-investigate-wrong-path.webm" height="500" controls style="margin: 0 auto;"></video>
+
+---
+<!-- {"layout": "section-header", "slideHash": "historia-do-css"} -->
+# História do CSS
+## . <!-- {.invisible} -->
 
 - História
 - Cascata
 - Outros seletores
+
 ---
 ## História
 
