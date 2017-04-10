@@ -15,9 +15,10 @@
 # Hoje veremos
 
 1. [Ferramentas do Desenvolvedor](#ferramentas-do-desenvolvedor)
-1. [História do CSS](#historia-do-css)
-1. [A cascata](#a-cascata)
-1. [Outros seletores](#outros-seletores)
+1. [Aprofundando em CSS](#aprofundando-em-css)
+   - História
+   - A cascata
+   - Outros seletores
 1. [**Os Ninjas**](#os-ninjas)
 
 ---
@@ -74,7 +75,7 @@
 <video src="../../videos/tools-investigate-wrong-path.webm" height="500" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "historia-do-css"} -->
+<!-- {"layout": "section-header", "slideHash": "aprofundando-em-css"} -->
 # Aprofundando<br>em **CSS**
 ## CSS: Folhas de Estilo em **Cascata**
 
@@ -174,9 +175,10 @@
 ---
 ## Seletores
 
-- Até agora, já sabemos selecionar elementos:
+- ![Regra CSS](../../images/css-selector-no-margin.png) <!-- {.push-right} -->
+  Até agora, já sabemos selecionar elementos:
   1. Pelo **nome de sua _tag_**: `p { color: white; }`
-  1. Por (uma de) suas **classes**: `.email-spam { color: red; }`
+  1. Por (uma de) suas **classes**: `.spam { color: red; }`
   1. Por seu **id**: `#manchete-principal { color: green; }`
 - Contudo, a vida não para por aí...
   - Há 20+ tipos de seletores (dos quais já vimos 3)
@@ -184,31 +186,51 @@
     consultá-los (Google) depois ;)
 
 ---
+<!-- {"layout": "regular"} -->
+## Desafio #1
+
+> Colorir de laranja **apenas os <u>links dentro da lista</u> não ordenada**:
+> ![](../../images/css-selectors-descendant-challenge.png) <!-- {.centered} -->
+
+- Poderíamos usar uma classe (`.marca-de-sabao`) nos links da lista
+  - Mas há uma forma melhor!
+  - É possível **fazer isso sem alterar o HTML**!
+
+---
 ## Seletor: **Descendente**
 
-- Formato: `X Y`
-- Exemplo
+- Exemplo:
   ```css
-  li a {
+  ul a {
     text-decoration: none;
   }
   ```
-- Descrição: seleciona todos os elementos `a` que têm um `li` como antecedente
+  - Descrição: seleciona todos hiperlinks `a` que têm um `ul` como
+    antecedente (pai, avô, bisavô etc.)
+- Formato: `X Y` _(antecessor, espaço, elemento selecionado)_
 
 ---
 ## Seletor: **Filho** direto
 
-- Formato: `X` &gt; `Y`
-- Exemplo
+- Exemplo:
   ```css
   #menu-principal > ul {
     padding: 20px;
   }
   ```
-- Descrição: seleciona todos os elementos `ul` que têm `#menu-principal` como
-  elemento pai
+  - Descrição: seleciona todos os `ul` que têm `#menu-principal` como pai
+- Formato: `X > Y` _(pai, sinal de maior, elemento selecionado)_
+
 ---
 ## Exemplo: **Filho direto** vs **Descendente**
+
+```html
+<p>
+  <strong>Ola! <a href="http://www.google.com">Este é meu link! </a></strong>
+  <a href="http://www.terra.com.br">Esta é uma outra pagina</a>
+</p>
+<a href="http://google.com">Este é outro link</a>
+```
 ```css
 p > a {
   text-decoration: line-through;
@@ -217,131 +239,135 @@ p  a {
   color: red;
 }
 ```
-```html
-  <p>
-    <strong>Ola! <a href="http://www.google.com">Este é meu link! </a></strong>
-    <a href="http://www.terra.com.br">Esta é uma outra pagina</a>
-  </p>
-  <a href="http://google.com">Este é outro link</a>
-```
+
 :::result
 <p >
   <strong style="color:black;">Ola! <a style="color:red;" href="http://www.google.com">Este é meu link! </a></strong>
   <a style="color:red;text-decoration: line-through;" href="http://www.terra.com.br">Esta é uma outra pagina</a>
 </p>
-  <a style="color:blue" href="http://google.com">Este é outro link</a>
+<a style="color:blue" href="http://google.com">Este é outro link</a>
 :::
+
 ---
 ## Seletor: por **Atributo**
 
-- Formato: `X[atributo]`
-- Exemplo
+- Exemplo:
   ```css
   img[alt] {
     border: 1px solid blue;
   }
   ```
-- Descrição: seleciona toda `img` que contém o atributo `alt`
+  - Descrição: seleciona toda `img` que contém o atributo `alt`
+- Formato: `X[atributo]` _(elem. selecion., nome do atributo entre colchetes)_
 
 ---
 ## Seletor: por **valor** de **atributo**
 
-- Formato: `X[atributo="valor"]`
-- Exemplo
+- Exemplo:
   ```css
   a[href="http://google.com/"] {
     color: blue;
   }
   ```
-- Descrição: seleciona todo `a` que tem um atributo `href` igual a http://google.com/
+  - Descrição: seleciona todo `a` que tem um atributo `href`
+    igual a http://google.com/
+- Formato: `X[atributo="valor"]`
 
 ---
 ## Seletor: por **trecho de valor** de **atributo**
 
-- Formato: `X[atributo*="trecho"]`
-- Exemplo
+- Exemplo:
   ```css
   a[href*="goo"] {
     color: white;
   }
   ```
-- Descrição: seleciona todo `a` cujo atributo `href` contenha a _string_ `"goo"`
+  - Descrição: seleciona todo `a` cujo atributo `href` **contenha
+    a _string_** `"goo"`
+- Formato: `X[atributo*="trecho"]`
 
 ---
 ## Seletor: por **trecho inicial de valor** de **atributo**
 
-- Formato: `X[atributo^="trecho"]`
-- Exemplo
+- Exemplo:
   ```css
   a[href^="http"] {
     background: url(globo.png) no-repeat;
   }
   ```
-- Descrição: seleciona todo `a` cujo atributo `href` comece com a _string_
-  `"http"`
+  - Descrição: seleciona todo `a` cujo atributo `href` **comece com a _string_**
+    `"http"`
+- Formato: `X[atributo^="trecho"]`
 
 ---
 ## Seletor: por **trecho final de valor** de **atributo**
 
-- Formato: `X[atributo$="trecho"]`
-- Exemplo
+- Exemplo:
   ```css
   img[src$=".jpg"] {
      color: red;
   }  
   ```
-- Descrição: seleciona toda `img` cujo atributo `src` termine com a _string_
-  `".jpg"`
+  - Descrição: seleciona toda `img` cujo atributo `src` **termine com a
+    _string_** `".jpg"`
+- Formato: `X[atributo$="trecho"]`
 
 ---
 ## Seleção de trechos de atributos
+
 ```css
-  a[href$=".br"] {
-    background-image: linear-gradient(45deg, green, yellow);
-  }
-  img[alt*="ninja"] {
-    border: 3px solid black;
-  }
-  a[href^="http"] {
-    color: purple;
-  }
+a[href$=".br"] {
+  background-image: linear-gradient(45deg, green, yellow);
+}
+img[alt*="ninja"] {
+  border: 3px solid black;
+}
+a[href^="http"] {
+  color: purple;
+}
 ```
+
 ```html
-    <img src="img/a.png" alt="esta é uma ovelha">
-    <img src="img/b.png" alt="este é um ninja">
-    <a href="http://www.terra.com.br">Um site brasuca<a>
-    <a href="http://www.cnn.com">Um site gringo<a>
+<img src="img/a.png" alt="esta é uma ovelha">
+<img src="img/b.png" alt="este é um ninja">
+<a href="http://www.terra.com.br">Um site brasuca<a>
+<a href="http://www.cnn.com">Um site gringo<a>
 ```
+
 :::result
-  <img style="height:50px;" src="../../images/algod-ovelha.jpg" alt="esta é uma ovelha">
-  <img style="height:50px;border: 3px solid black;" src="../../images/print-ninja-logo.png" alt="este é um ninja">
-  <a style="color:purple;background-image: linear-gradient(45deg, green, yellow);" href="http://www.terra.com.br">Um site brasuca<a>
-  <a style="color:purple;" href="http://www.cnn.com">Um site gringo<a>
+<img style="height:50px;" src="../../images/algod-ovelha.jpg" alt="esta é uma ovelha">
+<img style="height:50px;border: 3px solid black;" src="../../images/print-ninja-logo.png" alt="este é um ninja">
+<a style="color:purple;background-image: linear-gradient(45deg, green, yellow);" href="http://www.terra.com.br">Um site brasuca<a>
+<a style="color:purple;" href="http://www.cnn.com">Um site gringo<a>
 :::
+
 ---
 ## Seletor: **hover**
 
-- Formato: `X:hover`
-- Exemplo
+- Exemplo:
   ```css
-  tr:hover {
+  a:hover {
     background-color: red;
   }
   ```
-- Descrição: seleciona o estado "com mouse em cima" do elemento (no caso, `tr`s)
+  - Descrição: seleciona o estado **"com mouse em cima"** do elemento
+    (no caso, `a`s)
+- Formato: `X:hover`
 
 ---
 ## Seletor: **Negação**
 
-- Formato: `X:not(seletor)`
-- Exemplo
+- Exemplo:
   ```css
   p:not(.destacado) {
     color: gray;
   }
   ```
 - Descrição: seleciona todos os elementos (`p`) que não passem pelo teste do
-  `seletor` (têm a classe `destacado`)
+  `seletor`
+  - Ou seja, no exemplo, seleciona todos os **parágrafos que
+    não possuam a classe `.destacado`**
+- Formato: `X:not(seletor)`
 
 ---
 ## Outros seletores
@@ -361,73 +387,68 @@ p  a {
 
 [css-selectors-30]: https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048
 
+---
+<!-- {"layout": "section-header"} -->
+# Os Ninjas :dash:
+## Conheça essa gente ligeira
 
+- Atividade de hoje
+- Atributos `alt` das imagens
+- Embutindo páginas com `<iframe></iframe>`
+
+<!-- {ul:.content} -->
 
 ---
 ## Atividade de Hoje
 
-1. Instalar o git na máquina, caso ele não esteja instalado
-1. **Criar um _fork_** do repositório do professor em [`https://github.com/fegemo/cefet-web-ninjas`](https://github.com/fegemo/cefet-web-ninjas)
-  e **cloná-lo para sua área de trabalho**
-1. Fazer o exercício e fazer _commits_ e _push_ no seu repositório
-1. Enviar, via **Moodle**, o link do seu repositório até o final da aula
-
----
-## Exercício
-
 ![](../../images/print-ninja-logo.png)
 
-1. Você deve estilizar as duas páginas web do repositório usando os
-  conhecimentos que vimos nas aulas anteriores
-1. Lembre-se das boas práticas - prefira usar CSS _linked_ (_i.e._, em arquivo
-  separado)
+1. Você deve estilizar as duas páginas web dos ninjas usando os
+   conhecimentos que vimos nas aulas anteriores
+1. Lembre-se das boas práticas - use CSS em arquivo externo
 1. Você pode modificar o HTML das páginas para colocar `class` e `id` nos
-  elementos para os quais essa alteração seja necessária
-1. Siga os passos descritos no [arquivo README.md do exercício](https://github.com/fegemo/cefet-web-ninjas/blob/gh-pages/README.md)
+   elementos para os quais essa alteração seja necessária
+   - Mas considere **usar os seletores <u>mais apropriados</u>**
+1. Siga os passos descritos no [arquivo README.md do exercício](https://github.com/fegemo/cefet-front-end-ninjas/blob/master/README.md)
 
-
----
-# Atributo **alt** da imagem e a _tag_ **iframe**
 ---
 # Atributo **alt** da imagem e o **iframe**
----
-# Propriedade **alt** da imagem
-
-  - Descreve, textualmente a imagem
-  - É recomendável que todas as imagens utilizem esta propriedade
-  - Útil quando:
-    - ocorreu algum erro no endereço imagem;
-    - conexões lentas;
-    - utiliza-se um leitor de tela.
-
 
 ---
-## Propriedade **alt** da imagem - Exemplo
+# Atributo **alt** da imagem
 
-- Exemplo (imagem com endereço errado)
+- Descreve textualmente a imagem
+- É recomendável que todas as imagens utilizem esta propriedade
+- Útil quando:
+  - ocorreu algum erro no endereço imagem;
+  - conexões lentas;
+  - utiliza-se **um leitor de tela** para navegar na página.
 
-```html
-      <img alt="Imagem de uma ovelha pirata" src="imagem-inexistente.jpg">
-```
+---
+## Atributo **alt** da imagem - Exemplo
 
-:::result
+- Exemplo (imagem com endereço errado):
+  ```html
+  <img alt="Imagem de uma ovelha pirata" src="imagem-inexistente.jpg">
+  ```
+  :::result
   <img alt="Imagem de uma ovelha pirata" src="img-inexistente.jpg">
-:::
+  :::
+
 ---
-## Tag **IFrame**
+## Elemento **iframe**
 
-- Usada para embutir outra página web dentro da atual
+- Usada para **embutir outra página** web dentro da atual
 - Exemplo:
-```html
-      <iframe src="www.terra.com.br"></iframe>
-```
-
-:::result
-  <iframe src="http://www.terra.com.br"></iframe>
-:::
-
-
-
+  ```html
+  <iframe src="www.terra.com.br"></iframe>
+  ```
+  :::result
+  <iframe src="http://www.terra.com.br" width="100%"></iframe>
+  :::
+  - Usos comuns:
+    - Colocar um vídeo do Youtube na página
+    - Colocar um mapa do Google Maps na página
 
 ---
 # Referências
