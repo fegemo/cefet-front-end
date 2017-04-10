@@ -59,28 +59,30 @@
     1. selecionar **"Inspecionar"**
 
 ---
-### Investigando - _"Criei uma regra e ela não funcionou"_
+### Investigando - _"Criei **uma regra** e ela **não funcionou**"_
 
 <video src="../../videos/tools-investigate-wrong-selector.webm" height="500" controls style="margin: 0 auto;"></video>
 
 ---
-### Investigando - _"Nova propriedade não funcionou"_
+### Investigando - _"Nova **propriedade não funcionou**"_
 
 <video src="../../videos/tools-investigate-wrong-property.webm" height="500" controls style="margin: 0 auto;"></video>
 
 ---
-### Investigando - _"Arquivo não apareceu"_
+### Investigando - _"**Arquivo não apareceu**"_
 
 <video src="../../videos/tools-investigate-wrong-path.webm" height="500" controls style="margin: 0 auto;"></video>
 
 ---
 <!-- {"layout": "section-header", "slideHash": "historia-do-css"} -->
-# História do CSS
-## . <!-- {.invisible} -->
+# Aprofundando<br>em **CSS**
+## CSS: Folhas de Estilo em **Cascata**
 
 - História
-- Cascata
+- A cascata
 - Outros seletores
+
+<!-- {ul:.content} -->
 
 ---
 ## História
@@ -116,19 +118,19 @@
 ## Cascata
 
 - CSS é a sigla para _**Cascading** Style Sheets_
-- Algumas propriedades são herdadas dos elementos ascendentes
-  - ```css
-    body {
-      color: red;
-    }
-    ```
-    - Todo o texto que estiver dentro de &lt;body&gt;, mesmo que dentro de
-      parágrafos ou outros elementos, ficarão vermelhos
+- Algumas propriedades são **herdadas** dos elementos ascendentes
+  ```css
+  body {
+    color: #ff0000; /* mesmo que 'red' */
+  }
+  ```
+  - Todo o texto que estiver dentro de `<body>...</body>`, mesmo que dentro de
+    parágrafos ou outros elementos, ficarão vermelhos (!)
 
 ---
 ## Exemplo da Cascata
 
-<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - Nota: clique nas abas "HTML", "CSS" e "Result". Para editar o código, clique
   em "Edit in JSFiddle"
@@ -146,6 +148,9 @@
     border: inherit;
   }
   ```
+  ::: result
+  <p style="border: 1px solid red;">Este é um <em style="border: inherit">parágrafo</em> (&lt;em&gt; em 'parágrafo')</p>
+  :::
 
 ---
 ## Cascata (cont.)
@@ -156,20 +161,23 @@
     font-weight: bold;
   }
   em {
-    font-weight: normal;
-  }
+    font-weight: normal;  /* ou, então, font-weight: initial */
+  }                       /* initial é o valor padrão para aquela tag */
   ```
+  ::: result
+  <p style="font-weight: bold;">Este é um <em style="font-weight: normal">parágrafo</em> (&lt;em&gt; em 'parágrafo')</p>
+  :::
 
 ---
-# Seletores
+# Outros Seletores
 
 ---
 ## Seletores
 
 - Até agora, já sabemos selecionar elementos:
   1. Pelo **nome de sua _tag_**: `p { color: white; }`
-  1. Por (uma de) suas **classes**: `.spam { color: red; }`
-  1. Por seu **id**: `#topo-da-pagina { color: green; }`
+  1. Por (uma de) suas **classes**: `.email-spam { color: red; }`
+  1. Por seu **id**: `#manchete-principal { color: green; }`
 - Contudo, a vida não para por aí...
   - Há 20+ tipos de seletores (dos quais já vimos 3)
   - Não é necessário decorar todos, apenas saber que existem para poder
