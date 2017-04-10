@@ -29,20 +29,21 @@
 uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 - **Incluindo arquivos CSS**:
 ```html
-<link rel="stylesheet" href="arquivo-de-estilos.css">
+<link rel="stylesheet" href="estilos.css">
 ```
   - Vantagem: Reaproveita o estilo para diversas páginas
+
 
 ---
 # Na última aula... (4/4)
 
-  - **Cores e gradientes** :
+- **Cores e gradientes** :
   ```css
-    p {
-      background-image: linear-gradient( 45deg, blue, #00FF00 );
-    }
-```
-![](../../images/colors-notations.png) <!-- {.push-right style="max-height: 200px;"} -->
+  p {
+    background-image: linear-gradient( 45deg, blue, #00FF00 );
+  }
+  ```
+  ![](../../images/colors-notations.png) <!-- {.push-right style="max-height: 200px;"} -->
 
 ---
 # Hoje veremos
@@ -52,7 +53,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
    - História
    - A cascata
    - Outros seletores
-1. [**Os Ninjas**](#os-ninjas)
+1. [Os Ninjas](#os-ninjas)
 
 ---
 <!-- {"layout": "section-header", "slideHash": "ferramentas-do-desenvolvedor"} -->
@@ -128,9 +129,9 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 
 1994
   ~ ::: figure .floating-portrait-container.push-right
-    ![Foto de Håkon Wium Lie](../../images/howcome.jpg)
+      ![Foto de Håkon Wium Lie](../../images/howcome.jpg)
     :::
-    Håkon propõe uma linguagem para dar conta da responsabilidade
+    Håkon Wium Lie propõe uma linguagem para dar conta da responsabilidade
     de alterar a aparência de páginas web chamada CSS
 
 1996
@@ -445,9 +446,6 @@ a[href^="http"] {
 1. Siga os passos descritos no [arquivo README.md do exercício](https://github.com/fegemo/cefet-front-end-ninjas/blob/master/README.md)
 
 ---
-# Atributo **alt** da imagem e o **iframe**
-
----
 # Atributo **alt** da imagem
 
 - Descreve textualmente a imagem
@@ -456,7 +454,9 @@ a[href^="http"] {
   - ocorreu algum erro no endereço imagem;
   - conexões lentas;
   - utiliza-se **um leitor de tela** para navegar na página.
-
+- Deve descrever bem a imagem
+  - É a única descrição da imagem que uma pessoa cega tem ao acessar a página
+  - Assista [como uma pessoa cega navega na Web](https://www.youtube.com/watch?v=zNVrNo7MxsA)
 ---
 ## Atributo **alt** da imagem - Exemplo
 
