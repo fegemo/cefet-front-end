@@ -474,10 +474,10 @@ a[href^="http"] {
 - Usada para **embutir outra página** web dentro da atual
 - Exemplo:
   ```html
-  <iframe src="www.terra.com.br"></iframe>
+  <iframe src="https://www.terra.com.br"></iframe>
   ```
   :::result
-  <iframe src="http://www.terra.com.br" width="100%"></iframe>
+  <iframe src="https://www.terra.com.br" width="100%"></iframe>
   :::
   - Usos comuns:
     - Colocar um vídeo do Youtube na página
