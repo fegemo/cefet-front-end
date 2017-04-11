@@ -260,14 +260,14 @@ ol.no-list-icon {
 .no-padding {
   padding: 0;
 }
-.invisible {
+.figure-slides > p {
+  margin: 0;
+}
+.figure-slides.clean .bespoke-bullet:not(.bespoke-bullet-current) {
   visibility: hidden;
 }
-.layout-regular-block {
-  display: block;
-}
-.layout-regular-block blockquote {
-  display: inline-block;
+.bullet-no-anim {
+  transition: none;
 }
 .tutorial {
   position: absolute;
