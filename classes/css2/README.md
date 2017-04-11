@@ -1,18 +1,22 @@
 <!-- {"layout": "title"} -->
-# CSS - Parte 2
+# CSS (Parte 2)
 ## História, a Cascata e outros Seletores, Ferramentas e Ninjas :dash:
 
 ---
 # Na última aula... (1/4)
 ## Ferramentas de Produtividade
-- Boas ferramentas possuem: Destacamento de código fonte, identação e autocompletar
+
+- Boas ferramentas possuem: Destacamento de código fonte,
+  indentação e autocompletar
 - Atalhos interessantes no **Atom**
-  - Uso do <kbd>tab</kbd> após uma _tag_ para completar com a tag desejada (eg. `html`)
+  - Uso do <kbd>tab</kbd> após uma _tag_ para completar com a tag
+    desejada (eg. `html`)
   - Visualização prévia do código: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
 
 ---
 # Na última aula... (2/4)
 ## Codificação e DOCTYPE
+
 - Codificação do arquivo
   - Como um texto é armazenado em seu computador?
     - ASCII
@@ -94,7 +98,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 ## Usando as Ferramentas
 
 - Visualizando o código fonte:
-  - Tecla de atalho no Chrome: <kbd>Ctrl-U</kbd>
+  - Tecla de atalho no Chrome: <kbd>Ctrl+U</kbd>
   - Ou então:
     1. clicar com **botão direito** do Mouse **na página**
     1. selecionar **"Exibir código fonte da página"**
@@ -433,7 +437,7 @@ a[href^="http"] {
 [css-selectors-30]: https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "os-ninjas"} -->
 # Os Ninjas :dash:
 ## Conheça essa gente ligeira
 
