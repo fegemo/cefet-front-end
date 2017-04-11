@@ -37,7 +37,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 ---
 # Na última aula... (4/4)
 
-- **Cores e gradientes** :
+- **Cores e gradientes**:
   ```css
   p {
     background-image: linear-gradient( 45deg, blue, #00FF00 );
@@ -73,6 +73,17 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 ## Ferramentas do Desenvolvedor
 
 ![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png)
+
+---
+# O HTML visto como uma árvore
+
+
+::: figure .figure-slides.clean
+![Uma árvore com os elementos HTML](../../images/html-tree-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
 ## Exemplo: Alterando/testando propriedades

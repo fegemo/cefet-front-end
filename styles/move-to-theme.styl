@@ -49,11 +49,13 @@ ol.no-list-icon
 .no-padding
   padding 0
 
-.invisible
-  visibility hidden
 
+.figure-slides
+  & > p
+    margin 0
+  &.clean
+    .bespoke-bullet:not(.bespoke-bullet-current)
+      visibility hidden
 
-.layout-regular-block
-  display block
-  blockquote
-    display inline-block
+.bullet-no-anim
+  transition none
