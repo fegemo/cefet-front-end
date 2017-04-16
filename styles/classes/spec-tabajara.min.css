@@ -1,1 +1,53 @@
-#spec-tabajara-input{padding:4px 8px;font-family:monospace;font-size:30px;border:1px solid silver;box-shadow:3px 3px 3px rgba(0,0,0,.1)}#spec-tabajara-button{font-size:24px;border-radius:2px;border:1px solid silver;padding:10px 25px;background-color:#f5f5f5}#spec-tabajara>div{margin-bottom:20px;text-align:center}.spec-class{width:150px;height:150px;display:inline-block;float:left;text-align:center}.spec-class:nth-child(1){background-color:#6495ed;border:2px solid #286ce6;color:#0e3479;transform-origin:100% 100%;transform:rotate3d(0,0,1,-30deg);border-radius:75px 75px 0 75px}.spec-class:nth-child(2){background-color:coral;border:2px solid #ff4e0d;color:#862400;border-radius:75px 75px 0 0}.spec-class:nth-child(3){background-color:#9932cc;border:2px solid #7a28a3;color:#3d1452;transform-origin:0 100%;transform:rotate3d(0,0,1,30deg);border-radius:75px 75px 75px 0}.spec-class .spec-output{display:block;margin-top:.125em;height:1.5em;font-size:50px}
+#spec-tabajara-input {
+  padding: 4px 8px;
+  font-family: monospace;
+  font-size: 30px;
+  border: 1px solid #c0c0c0;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+}
+#spec-tabajara-button {
+  font-size: 24px;
+  border-radius: 2px;
+  border: 1px solid #c0c0c0;
+  padding: 10px 25px;
+  background-color: #f5f5f5;
+}
+#spec-tabajara > div {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.spec-class {
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  float: left;
+  text-align: center;
+}
+.spec-class:nth-child(1) {
+  background-color: #6495ed;
+  border: 2px solid #286ce6;
+  color: #0e3479;
+  transform-origin: 100% 100%;
+  transform: rotate3d(0, 0, 1, -30deg);
+  border-radius: 75px 75px 0 75px;
+}
+.spec-class:nth-child(2) {
+  background-color: #ff7f50;
+  border: 2px solid #ff4e0d;
+  color: #862400;
+  border-radius: 75px 75px 0 0;
+}
+.spec-class:nth-child(3) {
+  background-color: #9932cc;
+  border: 2px solid #7a28a3;
+  color: #3d1452;
+  transform-origin: 0 100%;
+  transform: rotate3d(0, 0, 1, 30deg);
+  border-radius: 75px 75px 75px 0;
+}
+.spec-class .spec-output {
+  display: block;
+  margin-top: 0.125em;
+  height: 1.5em;
+  font-size: 50px;
+}
