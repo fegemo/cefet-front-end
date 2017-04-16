@@ -171,6 +171,58 @@ body {
 .clearer {
   clear: both;
 }
+.markdown-it-container,
+div.result,
+div.did-you-know {
+  position: relative;
+}
+.markdown-it-container > p,
+div.result > p,
+div.did-you-know > p {
+  margin: 0;
+}
+.markdown-it-container::before,
+div.result::before,
+div.did-you-know::before {
+  content: attr(data-before);
+}
+div.result {
+  margin-left: 1.5em;
+  padding-top: 1em;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  background-color: #c4e3ff;
+  border: 1px dashed #3da3ff;
+  border-radius: 0.25em;
+}
+div.result::before {
+  border: 1px solid #ff5722;
+  background-color: #ff8a65;
+  color: #fff;
+  display: inline-block;
+  transform: rotate(-3deg);
+  font-weight: bold;
+  position: absolute;
+  top: -0.5em;
+  left: -2em;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  padding: 0 0.5em;
+}
+div.did-you-know {
+  background-image: url("../images/question-mark-bg.png");
+  border-left: 4px solid #800080;
+  box-shadow: 5px 5px 5px #c0c0c0;
+  padding-right: 1em;
+}
+div.did-you-know::before {
+  display: block;
+  margin: 4px;
+  background-color: #fff;
+  font-family: "Purisa", "Comic Sans MS", cursive;
+  font-weight: bold;
+  color: #800080;
+}
 .blastoff.bespoke-backdrop-active {
   background-image: url("../images/icanhaz-blastoff.gif");
   background-size: cover;
@@ -235,34 +287,6 @@ strong.alternate-color {
   transform: translate3d(-30%, 0, -250px) rotateY(10deg);
   opacity: 0;
 }
-div.result {
-  border-radius: 0.25em;
-  background-color: #c4e3ff;
-  padding: 0.5em;
-  border: 1px dashed #3da3ff;
-  position: relative;
-  margin-left: 1.5em;
-  padding-top: 1em;
-  margin-top: 0.5em;
-}
-div.result > p {
-  margin: 0;
-}
-div.result::before {
-  content: attr(data-before);
-  position: absolute;
-  top: -0.5em;
-  left: -2em;
-  font-size: 0.75em;
-  line-height: 1.5em;
-  border: 1px solid #ff5722;
-  background-color: #ff8a65;
-  padding: 0 0.5em;
-  display: inline-block;
-  transform: rotate(-3deg);
-  font-weight: bold;
-  color: #fff;
-}
 ul.no-list-icon,
 ol.no-list-icon {
   list-style-type: none;
@@ -273,6 +297,9 @@ ol.no-list-icon {
 .centered {
   margin-left: auto;
   margin-right: auto;
+}
+.center-aligned {
+  text-align: center;
 }
 .figure-slides > p {
   margin: 0;
