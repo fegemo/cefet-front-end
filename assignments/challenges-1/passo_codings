@@ -1,0 +1,66 @@
+Passo 1: Titulo e <meta charset="utf-8">
+	Fav Icon
+
+
+Passo 2
+- Titulo (1o nível):
+	- Cor da fonte: Azul (blue)
+	- Centralizado
+- Fundo da página: Azul claro (lightblue)
+- Parágrafo: Justificado, Arial
+
+passo 3:
+	Título (2o nível)
+	Cor da fonte: Azul 
+	Alinhamento: Esquerda
+	
+Passo 4:
+	Primeiro paragrafo será diferente dos demais:
+	1px de borda, pontilhada e preta
+	Espançamento entre o texto e a borda: 5px
+	Cor de fundo do paragrafo: "Azure"
+
+passo 5:
+	Mark, strong, del e emphasis (metodo de aprendizado e hackerspaces)
+
+passo 6:
+	Colocar imagens centralizadas
+
+Passo 7		:
+	Link da Wikipedia:
+		https://pt.wikipedia.org/wiki/Coding_Dojo
+	Voltar ao topo
+
+Passo 9:
+	=> Borda
+	Pagina nova em outrasPaginas/links.html
+	cor de fundo: azul claro (lightblue)
+	margem de 5% (acima e abaixo) e 30% (lateral)
+	Borda: azul, 5px e duplicada
+	espançamento entre o texto e a borda: 10px
+	e
+		<meta charset="utf-8">
+	Fav ico
+Passo 10:
+		
+	h1{
+				text-align:center;
+				color:blue;
+			}
+			p{
+				text-align:justify;
+				font-family:"Arial";
+
+			}
+passo 11: voltar a pagina inicial
+		<p><a href="../principal.html">Voltar</a></p>
+
+Pag. 12: Links Interessantes
+
+Aprimoramento:
+	Centralizar a imagem:
+				img{
+					display: block;
+					margin: auto;
+				}
+
