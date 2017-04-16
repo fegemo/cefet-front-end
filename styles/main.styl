@@ -125,6 +125,15 @@ $title-animation-easing = cubic-bezier(0, 0, 0.7, 1.58)
     transform translateX(0)
     opacity 1
 
+.bordered
+  border 1px solid rgba(0, 0, 0, .5)
+
+.rounded
+  border-radius 4px
+
+.clearer
+  clear both
+
 @require backdrops
 @require move-to-theme
 @require tutorial
@@ -142,3 +151,5 @@ $title-animation-easing = cubic-bezier(0, 0, 0.7, 1.58)
 
 pre.hljs
   margin auto
+  & + pre.hljs
+    margin-top 1em
