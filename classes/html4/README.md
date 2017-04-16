@@ -1,46 +1,23 @@
 <!-- {"layout": "title"} -->
-# HTML - Parte 4
-## Div/Span, Box Model, Float e os Unicórnios
+# HTML (parte 4)
+## Div/Span, Box Model, Float e ???
 
 ---
-# Roteiro
+# Na última aula... (1/3)
 
-1. Conhecer a verdadeira história sobre os unicórnios
-1. Conhecer `div` e `span`
-1. Entender o _Box Model_
+---
+# Na última aula... (2/3)
+
+---
+# Na última aula... (3/3)
+
+---
+# Hoje veremos
+
+1. `div` e `span`
+1. O _Box Model_
 1. Flutuar conteúdo com `float`
-
----
-# _Unicorns are real_ (Exercício)
-
-![Little Pony](../../images/little-pony.png) <!-- {.portrait} -->
-
----
-## Exercício
-
-1. Criar uma página para expor a verdade sobre os pôneis.
-   - Seu amigo _designer_ criou um _layout_ no Photoshop para sua página e você
-     deve criá-la de forma a reproduzir esse _layout_ na sua página `html`
-   - Você pode ver o _layout_ na página seguinte
-   - Você vai precisar usar novas tags e conceitos: `div`, `span`, _Box Model_ e
-     `float`. Portanto, continue navegando até o final dos slides antes de
-     colocar as mãos na massa ;)
----
-## Comp / Specs
-
-[![](../../images/unicorns-comp-thumb.png)](../../images/unicorns-comp.png)
-[![](../../images/unicorns-specs-thumb.png)](../../images/unicorns-specs.png)
-
-*[Comp]: Comprehensive Layout*
-*[Specs]: Specifications*
-
----
-## Passos para o exercício
-
-1. Instalar o git na máquina (sugestão: https://windows.github.com/)
-1. Criar um _fork_ do repositório do professor em `https://github.com/fegemo/cefet-web-unicorns`
-1. Fazer o exercício e fazer _commits_ e _push_ no seu repositório
-1. Enviar, via **Moodle**, o link do seu repositório até o final da aula
+1. ???
 
 ---
 <!-- {"layout": "section-header"} -->
@@ -220,42 +197,61 @@ h1, h2 {
 ## Como os elementos são "vistos" pelo navegador
 
 - Componentes da caixa
+- `width` e `height`
 - Alterando o _box-model_
 
 ---
+<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
 
-- `CSS` enxerga todo elemento de conteúdo como uma "caixa"
-- A "caixa" é formada por
-  - Espaço do conteúdo
-  - Espaço de preenchimento (`padding`)
-  - Bordas (`border`)
-  - Espaço externo (`margin`)
+- ![](../../images/box-model.png) <!-- {.push-right} -->
+  O navegador enxerga todo elemento de conteúdo como uma "caixa"
+- A "caixa" é formada por:
+  - Espaço do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
+  - Espaço de _preenchimento (`padding`)_ <!-- {em:.box-model-part style="background: #c2ce89;"} -->
+  - Bordas _(`border`)_ <!-- {em:.box-model-part style="background: #fddc9a;"} -->
+  - Espaço _externo (`margin`)_ <!-- {em:.box-model-part style="background: #f9cc9d;"} -->
+
+<!-- {ul^1:style="margin-bottom: 0;"} -->
+
+![](../../images/box-model-sample.png) <!-- {p:.centered.no-margin} -->
 
 ---
-## _Box Model_ (cont.)
+<!-- {"layout": "regular"} -->
+## Visualizando a caixa de um elemento
 
-![](../../images/box-model.gif)
+<mark>MOSTRAR FERRAMENTA DESENVOLVEDOR - A CAIXA</mark>
 
 ---
-## _Box Model_ (cont.)
+<!-- {"layout": "regular"} -->
+## _Box Model_: **largura** e **altura**
 
-- Quando define-se a largura (`width`) ou altura (`height`) de um elemento,
-  está se definindo a dimensão do **conteúdo da caixa**
+- Quando definimos a **largura** (`width`) ou **altura** (`height`) de
+  um elemento, estamos definindo o tamanho
+  do _conteúdo da caixa_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
 - Elementos `inline` ignoram os valores de
   - `width` e `height`
   - `padding-top`, `padding-bottom`
   - `margin-top`, `margin-bottom`
 
+<mark>Colocar essa nuance dos `inline` de outra forma... Tipo um "você sabia?"</mark>
+
 ---
+<!-- {"layout": "regular"} -->
 ## Alterando o _box model_
 
 - É possível alterar o significado da `width` e `height` que damos a um elemento
    usando a propriedade `box-sizing`
   - `box-sizing: content-box`
-    - `width` = largura do conteúdo
-  - `box-sizing: border-box`
-    - `width` = conteúdo + padding + border
+    - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
+    - Este é o valor padrão
+  - `box-sizing: border-box` :thumbsup:
+    - `width` = _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} --> +
+      _padding_ <!-- {.box-model-part style="background: #c2ce89;"} --> +
+      _border_ <!-- {.box-model-part style="background: #fddc9a;"} -->
+    - Esta forma é mais intuitiva :thumbsup:
+
+<mark>Este slide precisa de um exemplo</mark>
 
 ---
 <!-- {"layout": "section-header", "embeddedStyles": ".guia-do-mochileiro { position: fixed; bottom: -225px; left: calc(50% + 20px); transition: all 200ms ease-out; } .guia-do-mochileiro-container { cursor: help; } .guia-do-mochileiro-container:hover .guia-do-mochileiro { bottom: -10px; box-shadow: 6px 3px 6px rgba(0, 0, 0, .5), -6px 3px 6px rgba(0, 0, 0, .5); }"} -->
