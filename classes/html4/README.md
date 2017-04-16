@@ -3,13 +3,46 @@
 ## Div/Span, Box Model, Float e ???
 
 ---
+<!-- {"layout": "2-column-content-zigzag"} -->
 # Na última aula... (1/3)
 
+- Vimos a **ferramenta do desenvolvedor** do Google Chrome
+  - Usamos para **investigar erros** e **experimentar propriedades**
+
+![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png) <!-- {.medium-width.centered} -->
+
+![Uma árvore com os elementos HTML](../../images/html-tree-1.png) <!-- {.medium-width.centered} -->
+
+- Podemos enxergar o HTML da página como uma "árvore" de elementos
+
 ---
-# Na última aula... (2/3)
+# ![Foto de Håkon Wium Lie](../../images/howcome.jpg) <!-- {.portrait.push-right} --> Na última aula... (2/3)
+
+- CSS foi criada por Håkon Wium Lie em 1994
+- Entendemos o que é **a cascata** no CSS:
+  - <iframe width="60%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+
+    Algumas **propriedades são herdadas** dos elementos ancestrais (_e.g._,
+     cor do texto), outras não (_e.g._, a borda)
 
 ---
 # Na última aula... (3/3)
+
+- Além de selecionar por _tag_, id ou classe, há diversos **outros seletores**:
+
+  descend./filho
+    ~ `p strong`: todo `<strong>` com um antescedente `<p>`
+    ~ `p > strong`: todo `<strong>` filho direto de `<p>`
+
+  atributo
+    ~ `img[alt]`: toda `<img>` que tem atributo `alt="..."`
+    ~ `a[href$=".html"]`: todo `<a>` apontando para um `.html` etc.
+
+  estado do link
+    ~ `a:link`, `a:visited`, `a:hover`, `a:active`
+
+  negação
+    ~ `img:not([alt])`: `<img>` sem o atributo `alt`
 
 ---
 # Hoje veremos
@@ -200,6 +233,8 @@ h1, h2 {
 - `width` e `height`
 - Alterando o _box-model_
 
+<!-- {ul:.content} -->
+
 ---
 <!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
@@ -217,10 +252,10 @@ h1, h2 {
 ![](../../images/box-model-sample.png) <!-- {p:.centered.no-margin} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Visualizando a caixa de um elemento
 
-<mark>MOSTRAR FERRAMENTA DESENVOLVEDOR - A CAIXA</mark>
+<video src="../../videos/tools-box-model.mp4" height="440" controls class="centered"></video>
+
 
 ---
 <!-- {"layout": "regular"} -->
@@ -228,20 +263,29 @@ h1, h2 {
 
 - Quando definimos a **largura** (`width`) ou **altura** (`height`) de
   um elemento, estamos definindo o tamanho
-  do _conteúdo da caixa_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
-- Elementos `inline` ignoram os valores de
+  do _conteúdo da caixa_, <!-- {em:.box-model-part style="background: #8bb4c0;"} -->
+  e não da caixa inteira
+  ![](../../images/box-model-product.png) <!-- {.push-right} -->
+  ```css
+  .produto {
+    width: 50px;
+    padding: 10px;
+  }
+  ```
+
+::: did-you-know
+- Elementos `inline` ignoram os valores de:
   - `width` e `height`
   - `padding-top`, `padding-bottom`
   - `margin-top`, `margin-bottom`
-
-<mark>Colocar essa nuance dos `inline` de outra forma... Tipo um "você sabia?"</mark>
+:::
 
 ---
 <!-- {"layout": "regular"} -->
 ## Alterando o _box model_
 
 - É possível alterar o significado da `width` e `height` que damos a um elemento
-   usando a propriedade `box-sizing`
+   usando a propriedade `box-sizing`:
   - `box-sizing: content-box`
     - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
     - Este é o valor padrão
