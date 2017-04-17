@@ -22,7 +22,8 @@
     - Uso de celular
     - Usar a internet
     - Conversa
-
+---
+# Exercício 1: _tags_, elementos _block_ e _inline_
 ---
 ## Exercício 1: Festa a fantasia das _tags_
 
@@ -72,6 +73,8 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 [Próximo Exercício](#exercicio2)
 ---
 <!-- {"slideHash": "exercicio2"} -->
+# Exercício 2: _floats_ e _clear_
+---
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário
 
 - Será apresentado uma página com alguns *DIVs*
@@ -100,18 +103,6 @@ para que tais _DIVs_ mudem de posição.
 1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/r7anp9j6/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
-<!-- Turma 2
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/4qweybhd/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/ptwkjkse/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
--->
-<!-- Turma 3
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/b48zmgaL/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/8Lopqq7b/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
--->
-
-
 
 
 ---
@@ -123,16 +114,6 @@ para que tais _DIVs_ mudem de posição.
 1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=3}-->
 
-<!-- Turma 2
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/tfwny1Lx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/wvd16psh/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
--->
-<!-- Turma 3
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
--->
 
 
 ---
@@ -155,14 +136,6 @@ para que tais _DIVs_ mudem de posição.
 1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/ptwkjkse/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
-<!-- Turma 3
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/b48zmgaL/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/8Lopqq7b/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
--->
-
-
-
 
 ---
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
@@ -172,12 +145,6 @@ para que tais _DIVs_ mudem de posição.
 
 1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/wvd16psh/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=3}-->
-
-<!-- Turma 3
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
-
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
--->
 
 
 ---
@@ -231,6 +198,8 @@ para que tais _DIVs_ mudem de posição.
 
 ---
 <!-- {"slideHash": "exercicio3"} -->
+# Exercício 3: HTML
+---
 ## Exercício 3: Programador sem café
 
 ![Uma xícara com um delicioso café](../../images/cafe.png)<!-- {.push-left style="height: 120px;"} -->
@@ -242,6 +211,8 @@ código de forma que ele fique correto.
 
 
 ---
+# Exercício 4: Tabela
+---
 ## Exercício 4: Tabela
 Considerando o HTML dado pelo professor, Considere que deseja-se apresentar a tabela e o div da seguinte forma:
 
@@ -252,6 +223,8 @@ Para isso, indique as alterações **no HTML** necessárias para
 que seja apresentado a tabela **exatamente** da forma acima.
 
 ---
+# Exercício 5: CSS 1
+---
 ## Exercício 5: CSS 1
 
 <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
@@ -260,6 +233,8 @@ que seja apresentado a tabela **exatamente** da forma acima.
 
 
 
+---
+# Exercício 6: CSS 2
 ---
 ## Exercício 6: CSS 2
 
@@ -270,3 +245,7 @@ que seja apresentado a tabela **exatamente** da forma acima.
     - margem direita de 10 pixels
     - largura de 100 pixels
     - Fique a esquerda da tabela
+---
+# Referências
+
+1. Capítulos 3 do livro (Exercícios - programador sem café e festa a fantasia das _tags_)
