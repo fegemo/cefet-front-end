@@ -186,7 +186,8 @@ para que tais _DIVs_ mudem de posição.
 <!-- Turma 2 -->
 1. <iframe id="xpto" width="100%" height="280" src="http://jsfiddle.net/danielhasan/3zfjyn58/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="280" src="http://jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=5}-->
+1. <iframe width="100%" height="280" src="http://jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   
+<!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=5}-->
 [Próximo Exercício](#exercicio3)
 
 
