@@ -18,7 +18,7 @@
   - Aluno atrasado
   - Fazer algo não relacionado ao exercício
   - Parar de participar por:
-    - Usar outro computador
+    - Usar computador quando não autorizado
     - Uso de celular
     - Usar a internet
     - Conversa
