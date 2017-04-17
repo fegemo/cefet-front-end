@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.15)  15 APR 2017 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.2.15)  17 APR 2017 12:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -126,7 +126,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \exam@n=\count119
 \exam@m=\count120
 
-Randomizer initialized to 1522797378.
+Randomizer initialized to 872936760.
 \@toklist=\toks18
 \c@first=\count121
 \c@last=\count122
@@ -1153,20 +1153,20 @@ ABD: EveryShipout initializing macros
 
 
 Package pgf Warning: File "cefetLogo" not found when defining mask "cefetLogo".
- Tried all extensions in ".pdf:.jpg:.jpeg:.png:" on input line 110.
+ Tried all extensions in ".pdf:.jpg:.jpeg:.png:" on input line 108.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
 
  []
 
 
-Overfull \hbox (219.97807pt too wide) in paragraph at lines 110--110
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
+
+ []
+
+
+Overfull \hbox (219.97807pt too wide) in paragraph at lines 108--108
 []$[]$ $[]$ 
  []
 
@@ -1192,70 +1192,43 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
  (PNG copy)>]
 
 Package pgf Warning: File "cefetLogo" not found when defining mask "cefetLogo".
- Tried all extensions in ".pdf:.jpg:.jpeg:.png:" on input line 110.
+ Tried all extensions in ".pdf:.jpg:.jpeg:.png:" on input line 108.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--110
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
 
  []
 
 
-Overfull \hbox (219.97807pt too wide) in paragraph at lines 110--110
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
+
+ []
+
+
+Overfull \hbox (219.97807pt too wide) in paragraph at lines 108--108
 []$[]$ $[]$ 
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2015/12/03 v1.1r UTF-8 support for inputenc
-) (./progSemCafeB.html
-
-! Package inputenc Error: Unicode char �\expandafter (U+4F1)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12 ...seja válida você deve levar, no mínimo,
-                                                   10 amigos
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `utf8'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12 ...seja válida você deve levar, no mínimo,
-                                                   10 amigos
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
-) [1 <../../images/cefetLogo.png (PNG copy)>] (./challenges1.aux) ) 
+) (./progSemCafeB.html)
+[1 <../../images/cefetLogo.png (PNG copy)>] (./challenges1.aux) ) 
 Here is how much of TeX's memory you used:
- 14888 strings out of 493029
- 253227 string characters out of 6136234
- 375327 words of memory out of 5000000
- 18125 multiletter control sequences out of 15000+600000
+ 14885 strings out of 493029
+ 253195 string characters out of 6136234
+ 374300 words of memory out of 5000000
+ 18122 multiletter control sequences out of 15000+600000
  6138 words of font info for 23 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 48i,6n,64p,411b,1982s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/
-texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on challenges1.pdf (2 pages, 138221 bytes).
+ 48i,6n,64p,411b,1978s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/te
+xmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on challenges1.pdf (2 pages, 137046 bytes).
 PDF statistics:
  41 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream
