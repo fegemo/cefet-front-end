@@ -298,9 +298,6 @@ ol.no-list-icon {
   margin-left: auto;
   margin-right: auto;
 }
-.center-aligned {
-  text-align: center;
-}
 .figure-slides > p {
   margin: 0;
 }
@@ -417,6 +414,36 @@ ol.no-list-icon {
 .delay-2000::after {
   animation-delay: 2000ms !important;
   transition-delay: 2000ms !important;
+}
+.delay-2200,
+.delay-2200::before,
+.delay-2200::after {
+  animation-delay: 2200ms !important;
+  transition-delay: 2200ms !important;
+}
+.delay-2400,
+.delay-2400::before,
+.delay-2400::after {
+  animation-delay: 2400ms !important;
+  transition-delay: 2400ms !important;
+}
+.delay-2600,
+.delay-2600::before,
+.delay-2600::after {
+  animation-delay: 2600ms !important;
+  transition-delay: 2600ms !important;
+}
+.delay-2800,
+.delay-2800::before,
+.delay-2800::after {
+  animation-delay: 2800ms !important;
+  transition-delay: 2800ms !important;
+}
+.delay-3000,
+.delay-3000::before,
+.delay-3000::after {
+  animation-delay: 3000ms !important;
+  transition-delay: 3000ms !important;
 }
 .tutorial {
   position: absolute;

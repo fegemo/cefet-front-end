@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # HTML (parte 4)
-## Div/Span, Box Model, Float e ???
+## Div/Span, Box Model, Float e Desafios
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
@@ -47,14 +47,14 @@
 ---
 # Hoje veremos
 
-1. `div` e `span`
-1. O _Box Model_
-1. Flutuar conteúdo com `float`
-1. ???
+1. [`div` e `span`](#div-e-span)
+1. [O _Box Model_](#o-box-model)
+1. [Revisitando o `float`](#revisitando-o-float)
+1. [Desafios](#desafios)
 
 ---
-<!-- {"layout": "section-header"} -->
-# `div` e `span`
+<!-- {"layout": "section-header", "slideHash": "div-e-span"} -->
+# **div** e **span**
 ## Agrupando outros elementos HTML
 
 - Agrupando para estilizar
@@ -236,7 +236,7 @@ h1, h2 {
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
+<!-- {"layout": "regular", "slideHash": "o-box-model", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
 
 - ![](../../images/box-model.png) <!-- {.push-right} -->
@@ -256,7 +256,6 @@ h1, h2 {
 
 <video src="../../videos/tools-box-model.mp4" height="440" controls class="centered"></video>
 
-
 ---
 <!-- {"layout": "regular"} -->
 ## _Box Model_: **largura** e **altura**
@@ -265,41 +264,69 @@ h1, h2 {
   um elemento, estamos definindo o tamanho
   do _conteúdo da caixa_, <!-- {em:.box-model-part style="background: #8bb4c0;"} -->
   e não da caixa inteira
-  ![](../../images/box-model-product.png) <!-- {.push-right} -->
-  ```css
-  .produto {
-    width: 50px;
-    padding: 10px;
-  }
-  ```
 
-::: did-you-know
-- Elementos `inline` ignoram os valores de:
-  - `width` e `height`
-  - `padding-top`, `padding-bottom`
-  - `margin-top`, `margin-bottom`
+::: figure .figure-slides
+![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-3.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-4.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-5.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 :::
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular-block"} -->
+## **Dimensionando** um elemento
+
+::: did-you-know .push-right width: 350px; margin-right: 6px;
+Elementos `inline` ignoram os valores de:
+- `width`
+- `height`
+- `padding-top`
+- `padding-bottom`
+- `margin-top`
+- `margin-bottom`
+:::
+- Se sabemos a dimensão total de um elemento, que também contém
+  `padding` e/ou `border`, como calcular seus (`width`, `height`)?
+
+::: figure .figure-slides.push-right
+![](../../images/box-model-determine-dimensions-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+![](../../images/box-model-determine-dimensions-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+:::
+- Contudo, fazer essa conta "nós mesmos" pode resultar em erros... <!-- {ul:.bullet} -->
+  - É possível mudar isso!
+
+---
+<!-- {"layout": "regular-block"} -->
 ## Alterando o _box model_
 
+::: did-you-know .push-right width: 260px; margin-right: 6px;
+As **margens** de um elemento formam um **espaçamento externo** e não contam
+espaço dentro da caixa.
+:::
+
 - É possível alterar o significado da `width` e `height` que damos a um elemento
-   usando a propriedade `box-sizing`:
-  - `box-sizing: content-box`
+   **usando _a propriedade `box-sizing`_** <!-- {em:.underline.upon-activation.delay-3000} -->:
+  - `box-sizing: content-box` (valor padrão)
     - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
-    - Este é o valor padrão
-  - `box-sizing: border-box` :thumbsup:
+  - `box-sizing: border-box`
     - `width` = _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} --> +
       _padding_ <!-- {.box-model-part style="background: #c2ce89;"} --> +
       _border_ <!-- {.box-model-part style="background: #fddc9a;"} -->
-    - Esta forma é mais intuitiva :thumbsup:
+    - Esta forma é mais intuitiva :thumbsup: :thumbsup: :thumbsup:
 
-<mark>Este slide precisa de um exemplo</mark>
+
+::: figure .figure-slides.centered margin: 0 auto
+![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-border-box-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-border-box-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+:::
 
 ---
-<!-- {"layout": "section-header", "embeddedStyles": ".guia-do-mochileiro { position: fixed; bottom: -225px; left: calc(50% + 20px); transition: all 200ms ease-out; } .guia-do-mochileiro-container { cursor: help; } .guia-do-mochileiro-container:hover .guia-do-mochileiro { bottom: -10px; box-shadow: 6px 3px 6px rgba(0, 0, 0, .5), -6px 3px 6px rgba(0, 0, 0, .5); }"} -->
-# Flutuando com **float**
+<!-- {"layout": "section-header", "slideHash": "revisitando-o-float", "embeddedStyles": ".guia-do-mochileiro { position: fixed; bottom: -225px; left: calc(50% + 20px); transition: all 200ms ease-out; } .guia-do-mochileiro-container { cursor: help; } .guia-do-mochileiro-container:hover .guia-do-mochileiro { bottom: -10px; box-shadow: 6px 3px 6px rgba(0, 0, 0, .5), -6px 3px 6px rgba(0, 0, 0, .5); }"} -->
+# Revisitando o **float**
 
 > Para voar, basta errar o chão.
 > <cite>Douglas Adams no Guia do Mochileiro das Galáxias</cite> ![](../../images/guia-do-mochileiro.jpg) <!-- {.guia-do-mochileiro} -->
@@ -438,6 +465,13 @@ h1, h2 {
 
 ![](../../images/exemplo-float-problema-remocao-5.png)
 <!-- {p:.no-margin.bullet style="margin-top: 1.5em;"} -->
+
+---
+<!-- {"layout": "section-header", "slideHash": "desafios"} -->
+# Desafios
+## Atividade de hoje
+
+<mark>Escrever uma intro aqui</mark>
 
 ---
 # Referências
