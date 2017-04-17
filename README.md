@@ -37,12 +37,15 @@
 - [CSS parte 2](classes/css2/) - História, a Cascata e outros Seletores,
   Ferramentas e Ninjas :dash:
 
+---
+<!-- {"layout": "regular"} -->
+# Aulas (página 2)
+
+- [HTML parte 4](classes/html4/) - Div/Span, Box Model, Float e Desafios
+
 <!--
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)
 - [Javascript 1 - Linguagem](classes/js1/) (22/03/2016)
-
-# Aulas (página 2)
-
 - [CSS 3 - _Layout_](classes/css3/) (29/03/2016)
 - [CSS 4 - _Layout_ e o Coral 55 (Prática)](classes/css4/) (31/03/2016)
 - [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
