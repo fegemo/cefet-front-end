@@ -471,7 +471,11 @@ espaço dentro da caixa.
 # Desafios
 ## Atividade de hoje
 
-<mark>Escrever uma intro aqui</mark>
+- Atividade em grupo
+- O professor irá projetar uma pergunta/desafio 
+- Cada grupo deverá responder no papel a pergunta/desafio
+- O professor irá corrigir e pontuar os grupos que acertaram
+- O grupo que conseguir maior pontuação será o vencedor
 
 ---
 # Referências
