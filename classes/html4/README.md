@@ -469,13 +469,13 @@ espaço dentro da caixa.
 ---
 <!-- {"layout": "section-header", "slideHash": "desafios"} -->
 # Desafios
-## Atividade de hoje
+## Atividade de hoje<br>([link](../../assignments/challenges-1/))
 
-- Atividade em grupo
-- O professor irá projetar uma pergunta/desafio 
-- Cada grupo deverá responder no papel a pergunta/desafio
-- O professor irá corrigir e pontuar os grupos que acertaram
-- O grupo que conseguir maior pontuação será o vencedor
+- Atividade **em grupo**
+- O professor projetará uma **pergunta/desafio**
+- Cada grupo deverá **responder** no papel a pergunta/desafio
+- O professor corrigirá e pontuará os grupos que acertarem
+- O grupo que conseguir **maior pontuação será o vencedor**
 
 ---
 # Referências
