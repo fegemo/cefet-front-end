@@ -41,7 +41,7 @@ elemento está falando e se eles são **inline** ou **block**.
 Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 
   1. Sou o título #1
-  1. Estou sempre pronto a me ligar à outra página<!--a,inline-->
+  1. Estou sempre pronto a me ligar a outra página<!--a,inline-->
   1. Enfatize texto comigo<!--em,inline-->
   1. Sou um item que mora dentro da lista<!--il,block-->
 <!-- {ol: .alpha-list}-->
@@ -53,7 +53,7 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 
   1. Defino que um texto foi inserido<!--ins,inline-->
-  1. Estou sempre pronto a me ligar à outra página<!--a,inline-->
+  1. Estou sempre pronto a me ligar a outra página<!--a,inline-->
   1. Mantenho meus itens de lista em ordem<!--ol,block-->
   1. Imagem é tudo. Sede não é nada.<!--img,inline-->
 <!-- {ol: .alpha-list}-->
@@ -65,7 +65,7 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 
   1. Imagem é tudo. Sede não é nada.<!--img,inline-->
-  1. Estou sempre pronto a me ligar à outra página<!--a,inline-->
+  1. Estou sempre pronto a me ligar a outra página<!--a,inline-->
   1. Defino que um texto foi removido<!--del,inline-->
   1. Enfatize texto comigo<!--em,inline-->
 <!-- {ol: .alpha-list}-->
@@ -77,18 +77,20 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 ---
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário
 
-- Será apresentado uma página com alguns *DIVs*
+- Será apresentada uma página com alguns *DIVs*
 - Você deverá definir as propriedades _float_ e _clear_, quando necessário,
-para que tais _DIVs_ mudem de posição.
+  para que tais _DIVs_ mudem de posição.
 - As demais propriedades já estarão definidas
-- Você deverá colocar _float_/_clear_ **apenas** que façam diferença na apresentação
+- Você deverá colocar _float_/_clear_ **apenas** que façam diferença
+  na apresentação
 
 
 ---
 ## Ex. 2: Defina _floats_ e _clear_  (cont.)
-  - Considere que possua 4 elementos div dentro de um interno da seguinte forma:
 
-  <iframe width="100%" height="350" src="http://jsfiddle.net/danielhasan/7qs7g33x/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+- Considere que há 4 elementos `div` dentro de outro `div` externo, assim:
+
+  <iframe width="100%" height="320" src="//jsfiddle.net/danielhasan/7qs7g33x/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
 
 
@@ -98,9 +100,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 1 -->
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/g2wpjea7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/g2wpjea7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/r7anp9j6/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/r7anp9j6/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
 
@@ -109,9 +111,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 1 -->
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=3}-->
 
 
@@ -120,9 +122,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 1 -->
-1. <iframe id="xpto" width="100%" height="300" src="http://jsfiddle.net/danielhasan/ybpnj4x4/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="300" src="//jsfiddle.net/danielhasan/ybpnj4x4/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="300" src="http://jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="300" src="//jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=5}-->
 [Próximo Exercício](#exercicio3)
 
@@ -131,9 +133,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 2 -->
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/4qweybhd/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/4qweybhd/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/ptwkjkse/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+1. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/ptwkjkse/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
 
@@ -141,9 +143,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 2 -->
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/tfwny1Lx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/tfwny1Lx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/wvd16psh/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   
+1. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/wvd16psh/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=3}-->
 
 
@@ -151,9 +153,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 2 -->
-1. <iframe id="xpto" width="100%" height="280" src="http://jsfiddle.net/danielhasan/3zfjyn58/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="280" src="//jsfiddle.net/danielhasan/3zfjyn58/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="280" src="http://jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   
+1. <iframe width="100%" height="280" src="//jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>   
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=5}-->
 [Próximo Exercício](#exercicio3)
 
@@ -164,9 +166,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 3 -->
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/b48zmgaL/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/b48zmgaL/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/8Lopqq7b/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+1. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/8Lopqq7b/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
 
@@ -177,9 +179,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 3 -->
-1. <iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="400" src="http://jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=3}-->
 
 
@@ -188,9 +190,9 @@ para que tais _DIVs_ mudem de posição.
 ## Exercício 2: Defina _floats_ e _clear_ quando necessário (cont.)
 
 <!-- Turma 3 -->
-1. <iframe id="xpto" width="100%" height="350" src="http://jsfiddle.net/danielhasan/23zqmmze/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe id="xpto" width="100%" height="350" src="//jsfiddle.net/danielhasan/23zqmmze/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-1. <iframe width="100%" height="350" src="http://jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
+1. <iframe width="100%" height="350" src="//jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list start=5}-->
 [Próximo Exercício](#exercicio3)
 
@@ -212,11 +214,14 @@ código de forma que ele fique correto.
 
 ---
 # Exercício 4: Tabela
----
-## Exercício 4: Tabela
-Considerando o HTML dado pelo professor, Considere que deseja-se apresentar a tabela e o div da seguinte forma:
 
-<iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+---
+<!-- {"layout": "regular-block"} -->
+## Exercício 4: Tabela
+Considerando o HTML dado pelo professor, deseja-se apresentar a tabela e
+a `div` da seguinte forma:
+
+<iframe id="xpto" width="60%" height="400" src="//jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" style="float:right"></iframe>  
 
 
 Para isso, indique as alterações **no HTML** necessárias para
@@ -227,7 +232,7 @@ que seja apresentado a tabela **exatamente** da forma acima.
 ---
 ## Exercício 5: CSS 1
 
-<iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+<iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
 1. Escreva a regra para que os tipos de pratos (entradas, prato principal e sobremesa) fiquem com fundo `lightyellow` e o texto centralizado. Crie um seletor de tal forma que **não seja necessário alterar o html** e que **apenas** as três linhas informadas fiquem no formato especificado.
 
@@ -238,10 +243,10 @@ que seja apresentado a tabela **exatamente** da forma acima.
 ---
 ## Exercício 6: CSS 2
 
-<iframe id="xpto" width="100%" height="400" src="http://jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+<iframe id="xpto" width="100%" height="200" src="//jsfiddle.net/danielhasan/mq2pyrfx/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
 - Escreva a regra para que o `div` de promoção fique:
-    - com um espançamento entre o texto e a borda de 5 pixels;
+    - com um espaçamento entre o texto e a borda de 5 pixels;
     - margem direita de 10 pixels
     - largura de 100 pixels
     - Fique a esquerda da tabela
