@@ -293,6 +293,8 @@ Elementos `inline` ignoram os valores de:
 ::: figure .figure-slides.push-right
 ![](../../images/box-model-determine-dimensions-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
 ![](../../images/box-model-determine-dimensions-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+![](../../images/box-model-determine-dimensions-3.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+![](../../images/box-model-determine-dimensions-4.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
 :::
 - Contudo, fazer essa conta "nós mesmos" pode resultar em erros... <!-- {ul:.bullet} -->
   - É possível mudar isso!
