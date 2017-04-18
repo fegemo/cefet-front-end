@@ -225,7 +225,7 @@ h1, h2 {
   :::
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "o-box-model"} -->
 # O _Box Model_
 ## Como os elementos são "vistos" pelo navegador
 
@@ -236,7 +236,7 @@ h1, h2 {
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular", "slideHash": "o-box-model", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
+<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
 
 - ![](../../images/box-model.png) <!-- {.push-right} -->
@@ -471,7 +471,7 @@ espaço dentro da caixa.
 ---
 <!-- {"layout": "section-header", "slideHash": "desafios"} -->
 # Desafios
-## Atividade de hoje<br>([link](../../assignments/challenges-1/))
+## Atividade de hoje
 
 - Atividade **em grupo**
 - O professor projetará uma **pergunta/desafio**
