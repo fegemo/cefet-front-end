@@ -394,7 +394,7 @@ espaço dentro da caixa.
 <!-- {"layout": "regular"} -->
 ## Exemplo: **flutuando** uma imagem
 
-<iframe width="100%" height="460" src="http://jsfiddle.net/fegemo/7cofhyLc/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="460" src="//jsfiddle.net/fegemo/7cofhyLc/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - Repare os **parágrafos** (`block`) e o **texto** dentro deles (`inline`)...
 
@@ -412,7 +412,7 @@ espaço dentro da caixa.
 <!-- {"layout": "2-column-content"} -->
 ## Exemplo: **interrompendo** uma flutuação
 
-<iframe width="100%" height="460" src="http://jsfiddle.net/fegemo/vxb79m2c/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="460" src="//jsfiddle.net/fegemo/vxb79m2c/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - A **propriedade `clear`** pode ser:
   - `left` ou `right`: interrompe apenas as flutuações à esquerda ou à direita
