@@ -42,6 +42,7 @@
 # Aulas (página 2)
 
 - [HTML parte 4](classes/html4/) - Div/Span, Box Model, Float e Desafios
+- [CSS parte 3](classes/css3/) - Layout, Fontes, Multimídia e Unicórnios 🦄
 
 <!--
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)

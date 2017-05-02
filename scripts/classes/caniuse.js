@@ -35,7 +35,7 @@ var canIUse = (function () {
         * op_mob    - Opera Mobile
         * safari    - Apple Safari
     */
-    var BROWSERS = ['chrome', 'firefox', 'ie', 'opera', 'safari'];
+    var BROWSERS = ['chrome', 'firefox', 'ie', 'edge', /*'opera',*/ 'safari'];
 
     //  Customise HTML here
     var TMPL_TITLE = '<h2>{title}</h2>', // feature title {title}
@@ -46,8 +46,8 @@ var canIUse = (function () {
         TMPL_SUPPORT_WRAPPER = '<ul class="agents">{items}</ul>', // support wrapper {items}
         TMPL_SUPPORT = '<li title="{browser} - {support}" class="icon-{browsercode} {supportcode}"><span class="version">{version}{prefixed}</span></li>',
         TMPL_PREFIX_NOTE = '<p>* requer prefixo.</p>',
-        TMPL_LEGEND = '<ul class="legend"><li>Legenda:</li><li class="y">Sim</li><li class="n">Não</li><li class="a">Parcial</li><li class="p">Polyfill</li></ul>',
-        TMPL_FOOTER = '<p class="stats">Dados de <a href="http://caniuse.com/#feat={feature}" target="_blank">caniuse.com</a></p>',
+        TMPL_LEGEND = '<ul class="legend"><li>Legen.:</li><li class="y">Sim</li><li class="n">Não</li><li class="a">Parcial</li><li class="p">Polyfill</li></ul>',
+        TMPL_FOOTER = '<p class="stats">Dados de <a href="https://caniuse.com/#feat={feature}" target="_blank">caniuse.com</a></p>',
         TMPL_LOADING = '<h2>Carregando</h2>',
         TMPL_ERROR = '<h2>Erro</h2><p>Feature "{feature}" não encontrada!</p>';
 
@@ -297,7 +297,7 @@ var canIUse = (function () {
         var url = '',
             script = document.createElement('SCRIPT');
 
-        url = 'http://query.yahooapis.com/v1/public/yql?q=' +
+        url = 'https://query.yahooapis.com/v1/public/yql?q=' +
             'select * from json where url = \'' + SOURCE_DATA_URL + '\'' +
             '&format=json&jsonCompat=new&callback=canIUseDataLoaded';
 

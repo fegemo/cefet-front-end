@@ -185,6 +185,14 @@ gulp.task('fonts', function() {
     .pipe(connect.reload());
 });
 
+gulp.task('audios', function() {
+  var destination = 'dist/audios';
+  return gulp.src('audios/**/*')
+    .pipe(changed(destination))
+    .pipe(gulp.dest(destination))
+    .pipe(connect.reload());
+});
+
 gulp.task('videos', function() {
   var destination = 'dist/videos';
   return gulp.src('videos/**/*')
@@ -230,6 +238,7 @@ gulp.task('build', ['js', 'js-classes',
   'css', 'css-classes',
   'images',
   'fonts',
+  'audios',
   'videos',
   'attachments',
   'favicon',

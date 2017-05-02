@@ -1,453 +1,503 @@
-# CSS - Parte 3
+<!-- {"layout": "title"} -->
+# CSS (Parte 3)
+## Layout, Fontes, Multimídia e Unicórnios 🦄
 
 ---
-## Na última aula (cont.)
+<!-- {"layout": "2-column-content-zigzag"} -->
+# Na última aula... (1/4)
 
-- Podemos precisar agrupar alguns elementos logicamente semelhantes ou por
-  questões de estilização
-- Podemos usar os elementos `div` (`block`) e `span` (`inline`) para criar
-  grupos
-  ```html
-  <div>
-    <h1>Título</h1>
-    <h2>Subtítulo</h2>
+- Vimos que existem os elementos `<div>...</div>` e `<span>...</span>` que
+  não possuem interpretação visual, mas **servem para agruparmos e
+  estilizarmos** outros elementos ou texto
+
+  ![](../../images/coelhos-vampiros-desired.png) <!-- {.bordered} -->
+
+```html
+<body>
+  <div id="topo-da-pagina">  
+    <h1>Coelhos Vampiros</h1>
+    <h2>De onde vêm, onde vivem ...</h2>
   </div>
-  ```
+  <p>Sexta-feira, no Globo Repórter</p>
+</body>
+```
+
 
 ---
-# Na última aula...
+# Na última aula... (2/4)
 
-- Aprendemos sobre o **_box model_**
-  - Todo elemento de conteúdo (dentor do `body`) é representado por uma caixa
-  - Podemos especificar, para a caixa:
-    - O espaço do conteúdo (`width`, `height`)
-    - Um espaço de preenchimento (`padding`)
-    - Uma borda (`border`)
-    - Um espaço externo (`margin`)
-  - Quando definimos `width` ou `height`, estamos definindo o tamanho do
-    **conteúdo**, e não da caixa inteira
-  - É possível alterar o significado de `width` e `height` usando `box-sizing`
+- ![](../../images/box-model.png) <!-- {.push-right} -->
+  Entendemos o _Box Model_ (modelo da caixa) que é **como o navegador enxerga
+  os elementos**
+  - Há espaço para _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->,
+    _`padding`_ <!-- {em:.box-model-part style="background: #c2ce89;"} -->,
+    _`border`_ <!-- {em:.box-model-part style="background: #fddc9a;"} --> e
+    _`margin`_ <!-- {em:.box-model-part style="background: #f9cc9d;"} -->
 
 ---
-## Na última aula (cont.)
+# Na última aula... (3/4)
 
-- Aprendemos que os elementos podem flutuar
+- Quando se define `width` ou `height` para um elemento, reserva-se
+  aquele espaço para o _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
+  - O tamanho total do elemento pode ficar maior que isso
+- Podemos alterar isso, dizendo que o valor definido para `width` ou `height`
+  deve caber _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} --> +
+  _`padding`_ <!-- {em:.box-model-part style="background: #c2ce89;"} --> +
+  _`border`_ <!-- {em:.box-model-part style="background: #fddc9a;"} -->:
   ```css
-  img#principal {
-    float: left; /* right, none */
+  .produto {
+    width: 50px;
+    box-sizing: border-box; /* o padrão é content-box */
   }
   ```
-  - Elementos flutuantes alteram o fluxo dos elementos posteriores
-    - `blocks` fingem que os flutuantes não estão ali
-    - `inlines` adequam sua forma aos flutuantes
-- [Questionário Maroto](https://moodle.cefetmg.br/mod/quiz/view.php?id=18171)
+
 
 ---
-# Roteiro de hoje
+# Na última aula... (4/4)
 
-1. Divitite - doença e cura com **_tags_ semânticas**
-1. A propriedade **display**
-1. Alterando a visibilidade
-1. _Pseudo-classes_ e _pseudo-elements_
-1. **Layout e posicionamento**
+- É possível que um elemento interrompa uma flutuação à esquerda (`left`),
+  à direita (`right`) ou em ambos os lados (`both`) usando `clear`
+
+  <iframe width="50%" height="340" src="//jsfiddle.net/fegemo/vxb79m2c/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+
+  - A **propriedade `clear`** pode ser:
+    - `left` ou `right`: interrompe apenas as flutuações à esquerda ou à direita
+    - `both`: interrompe **ambos** lados
+    - `none`: **não interrompe** (valor padrão)
 
 ---
-# Divitite e _Tags_ Semânticas
+# Hoje veremos
+
+1. [Formatos de imagens](#formatos-de-imagens)
+1. [Vídeo e Áudio](#video-e-audio)
+1. [Web fonts](#web-fonts)
+1. [Unicórnios](#unicornios) 🦄
 
 ---
-## Divitite
+<!-- {"layout": "section-header", "slideHash": "formatos-de-imagens"} -->
+# Formatos de imagens
+## Usando diferentes formatos
 
-- Sintomas
-  - Um acúmulo grande de elementos `div` e `span` aninhados
-- Muitas páginas Web usam `div`/`span` como, por exemplo:
+- JPEG
+- GIF
+- PNG
+- SVG
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular"} -->
+## Imagens
+
+- Usamos a tag `<img src="...">`, que é um **elemento _void_**
+  - Ou seja, não tem conteúdo nem tag de fechamento
+- Formato geral
   ```html
-  <div id="header">...</div>
-  <div id="footer">...</div>
-  <div class="article">...</div>
-  <span class="time">...</div>
-  <div id="navigation">...</div>
+  <img src="imagens/nome-do-arquivo.jpg" alt="Descrição bacana">
   ```
+  - [Referência na Mozilla Developer Network][mdn-img]
+- Mas que **formatos** <!-- {.underline.upon-activation} --> de imagens existem?
+
+[mdn-img]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
 
 ---
-![](../../images/divitities.png)
+<!-- {"layout": "regular"} -->
+## Imagens: **formato**
+
+- Existem vários formatos de imagens suportados por navegadores
+  <!-- {ul:.bulleted} -->
+  - **JPEG** <!-- {strong:.alternate-color} --> (ou JPG), bom para **fotos**
+    tiradas do mundo real, que possuem muita variação de cor. Não possui
+    transparência
+  - **GIF** <!-- {strong:.alternate-color} -->, **transparência** de 1 bit e
+    suporta **animações** de quadros
+    - Apenas 256 cores na imagem (muito pouco!!)
+  - **PNG** <!-- {strong:.alternate-color} -->, **transparência** de 8 bits
+    e suporta **mais cores** que GIF
+    - Bom formato para imagens com pouca variação de cor
+  - **SVG** <!-- {strong:.alternate-color} -->, imagens **vetoriais** que não
+    perdem qualidade se **ampliadas**
+
+*[JPEG]: Joint Photographic Experts Group*
+*[GIF]: Graphics Interchange Format*
+*[PNG]: Portable Network Graphics*
+*[SVG]: Scalable Vector Graphics*
 
 ---
-## A cura da Divitite: **_tags_ semânticas**
+<!-- {"layout": "2-column-content-zigzag"} -->
+## Transparências: PNG _vs_ GIF
 
-- O Dr. html5 propôs elementos idênticos às `divs`/`spans`, mas que possuem
-  sentido para o navegador. Por exemplo:
+**GIF**: Um pixel é totalmente transparente ou totalmente opaco
+
+::: figure .no-margin
+![Exemplo de transparência usando GIF](../../images/gif-transparency-2.gif)
+![Exemplo de transparência usando GIF](../../images/gif-transparency.gif)
+:::
+
+**PNG**: Opacidade pode variar entre 0 (transparente) e 255 (opaco), ou
+0% e 100%
+
+::: figure .no-margin
+![Exemplo de transparência usando PNG](../../images/png-transparency-2.png)
+![Exemplo de transparência usando PNG](../../images/png-transparency.png)
+:::
+
+---
+<!-- {"layout": "2-column-content-zigzag"} -->
+## Imagens **vetoriais** (_e.g._, SVG)
+
+Imagem _bitmap_ (JPG, GIF, PNG) original (pequena) e aumentada
+(fica "**estourada**")
+
+::: figure .no-margin.center-aligned
+![Exemplo de transparencia usando PNG](../../images/imagem-bitmap.png)
+![Exemplo de transparencia usando PNG](../../images/imagem-bitmap.png)<!-- {style="width: 100px"} -->
+:::
+
+Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
+
+::: figure .no-margin.center-aligned
+![Exemplo de transparencia usando PNG](../../images/imagem-vetorial.svg)
+![Exemplo de transparencia usando PNG](../../images/imagem-vetorial.svg)<!-- { style="width: 100px"} -->
+:::
+
+---
+<!-- {"layout": "section-header", "slideHash": "multimidia"} -->
+# Vídeo e Áudio
+## Usando elementos multimídia
+
+- Vídeo
+- Áudio
+
+<!-- {ul:.content} -->
+
+---
+# Formatos de Vídeo
+
+- Existem diversos **formatos de arquivo**:
+  - AVI (.avi)
+  - WebM (.webm)
+  - MP4 (.mp4, .m4v)
+  - Ogg (.ogg)
+  - Flash Video (.flv)
+  - ASF (.asf) <!-- {ul:.multi-column-list-2} -->
+- Nem todo navegador consegue exibir todos os formatos!
+  - Às vezes, devemos disponibilizar mais de um formato do vídeo
+
+---
+## O elemento **video**
+
+- Para exibir um vídeo, existe um elemento similar ao de imagem:
   ```html
-  <header></header>
-  <footer></footer>
-  <article></article>
-  <time></time>
-  <nav></nav>
+  <video src="videos/fendadobiquini.mp4"></video>
   ```
-
----
-## Elementos semânticos (1/3)
-
-- [`<header></header>`](http://www.w3.org/TR/html-markup/header.html) `(block)`
-  - Cabeçalho da página ou de seções (`section`) ou artigos (`article`)
-- [`<footer></footer>`](http://www.w3.org/TR/html-markup/footer.html) `(block)`
-  - Análogo ao `header`, porém recomendado para que contenha informação típica
-    de um rodapé de página
-- [`<article></article>`](http://www.w3.org/TR/html-markup/article.html)
-  `(block)`
-  - Um componente "completo" (ou auto-contido) da página
-    - Em um blog, seria um _post_
-    - Em uma loja, seria um produto
-
----
-## Elementos semânticos (2/3)
-
-- [`<section></section>`](http://www.w3.org/TR/html-markup/section.html)
-  `(block)`
-  - Uma seção lógica da página, tipicamente contendo um título
-- [`<nav></nav>`](http://www.w3.org/TR/html-markup/nav.html) `(block)`
-  - Uma seção da página que contenha _links_ de navegação
-  - Exemplos:
-    - O menu principal da página
-    - Tabela de conteúdo (TOC) com
-      _links_ internos
-
-*[TOC]: Table of Contents*
-
----
-## Elementos semânticos (3/3)
-
-- [`<aside></aside>`](http://www.w3.org/TR/html-markup/aside.html) `(block)`
-  - Uma seção de conteúdo periférico na página
-  - Exemplos:
-    - Barras laterais
-    - _Widgets_ periféricos
-    - Conteúdo à parte do principal
-- [`<time></time>`](http://www.w3.org/TR/html-markup/time.html) `(inline)`
-  - Representa uma data e/ou horário
-- [`<mark></mark>`](http://www.w3.org/TR/html-markup/mark.html) `(inline)`
-  - Representa uma marcação no texto
-    (tipo <mark style="background-color: yellow">caneta marcadora</mark>)
-
----
-## Elementos semânticos **pré-html5**
-
-- [`<address></address>`](http://www.w3.org/TR/html-markup/address.html)
-- [`<abbr title=""></abbr>`](http://www.w3.org/TR/html-markup/abbr.html)
-- [`<blockquote></blockquote>`](http://www.w3.org/TR/html-markup/blockquote.html),
-  [`<q></q>`](http://www.w3.org/TR/html-markup/q.html)
-- [`<cite></cite>`](http://www.w3.org/TR/html-markup/cite.html)
-- [`<code></code>`](http://www.w3.org/TR/html-markup/code.html)
-- [`<kbd></kbd>`](http://www.w3.org/TR/html-markup/kbd.html)
-- E outros...
-
----
-# A propriedade **display**
-
----
-## A propriedade **display** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/display))
-
-- Define o **tipo de visualização** de um elemento e também seu
-  **comportamento** no fluxo da página
-- Os valores mais comuns
-  - `block`, para definir um elemento com comportamento `block`
-  - `inline`, similarmente, para `inline`
-  - `inline-block`, similar a `block`, porém sem quebra de linha
-  - `none`, sem renderização
-- Ao todo, são 25 valores, dos quais apenas 15 são suportados pelos principais
-  navegadores (Outubro/2014)
-
----
-## A propriedade **display** (cont.)
-
-- É possível, por exemplo:
-  ```css
-  div { display: inline; }
-  span { display: block; }
-  ```
-
-  - Mas é claro que você não vai fazer isso... :)
-- Para **remover um elemento do fluxo e não renderizá-lo** de forma alguma:
-  ```css
-  a[href*="xxx"] { display: none; }
-  ```
-
----
-## Display: **inline-block**
-
-- Une a capacidade de se definir dimensões de `block` e a possibilidade de ter
-  um fluxo lateral (sem quebra de linha), como `inline`
-- Exemplo:
-  ```html
-  <div class="passo">1<br>Instalar</div>
-  <div class="passo">2<br>Aprender</div>
-  <div class="passo">3<br>Programar</div>
-  ```
-  ```css
-  .passo { display: inline-block;
-           width: 150px;
-           height: 100px; /* ... */ }
-  ```
-
----
-## Display: **inline-block**
-
 - Resultado:
 
-  <style>.passo { display: inline-block; width: 150px; height: 150px; border: 2px inset rebeccapurple; background: rgba(255, 255, 255, .5); font-size: 26px; font-family: "Comic Sans MS"; text-align: center; line-height: 50px; border-radius: 75px; }</style>
-  <div class="passo">1<br>Instalar</div>
-  <div class="passo">2<br>Aprender</div>
-  <div class="passo">3<br>Programar</div>
+  <video src="../../videos/fendadobiquini.mp4" width="320" height="240" class="push-left" style="margin-right: 2em;"></video>
+  - O `<video>` abre e fecha (_i.e._, `</video>`)
+  - O elemento `<vídeo>` surgiu no HTML5
+  - O que estiver dentro da _tag_ `<video>...</video>` é exibido caso
+    o navegador não consiga exibi-lo
+  - Por padrão, não há controles para o vídeo
+
+---
+## Querida, onde está o controle?
+
+- O atributo `controls` associa um conjunto de controles ao `<video>`
+  ```html
+  <video src="videos/fendadobiquini.mp4" controls></video>
+  ```
+- Resultado:
+
+  <video src="../../videos/fendadobiquini.mp4" width="320" height="240" controls class="push-left" style="margin-right: 2em;"></video>
+  - Repare que `controls` é um atributo que não requer um valor
+    - Isso se chama **atributo booleano**
+
+---
+## Opções (atributos) de **video**
+
+`controls`
+  ~ mostra um conjunto de controles
+
+`autoplay`
+  ~ começa a executar o vídeo assim que a página carregar
+
+`muted`
+  ~ tira o som
+
+`preload="..."`
+  ~ começa a baixar o vídeo assim que a página carrega
+  ~ `preload="none"`: não pré-carrega
+  ~ `preload="metadata"`: pré-carrega apenas metadados
+  ~ `preload="auto"`: pré-carrega todo o vídeo
+
+`loop="x"`
+  ~ quantas vezes o vídeo deve ser executado (0 = infinitas)
+
+`poster="http://..."`
+  ~ URL de uma imagem mostrada antes do vídeo ser executado
+
+- Também há os atributos `width="x"` e `height="y"`
+
+---
+<!-- {"layout": "regular"} -->
+## Suporte dos navegadores por formato
+
+- Nem todos navegadores suportam **os mesmos formatos de vídeo**
+- Assim, usamos uma outra forma do elemento `<video>`:
+  ```html
+  <video width="320" height="240" controls>
+    <source src="bob-esponja.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="bob-esponja.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="bob-esponja.ogv" type="video/ogg; codecs=theora,vorbis">
+    Seu navegador não suporta o elemento video.
+  </video>
+  ```
+- O navegador tentará abrir o vídeo `bob-esponja.mp4` (_i.e._, o primeiro)
+  - se não conseguir, tentará o arquivo `bob-esponja.webm` (2º)
+  - caso ainda não consiga, tentará o `bob-esponja.ogv` (3º)
+  - se, mesmo assim, não conseguir, será exibido o texto
 
 ---
 <!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
-## Display: **table-***
+## Suporte **hoje** (formatos de vídeo)
 
-- <div class="caniuse" data-feature="css-table" style="float: right;"></div>
+<span class="caniuse" data-feature="webm" style="width: 30%"></span>
+<span class="caniuse" data-feature="mpeg4" style="width: 30%"></span>
+<span class="caniuse" data-feature="ogv" style="width: 30%"></span>
 
-  Alguns valores são para a criação de _layouts_ em formato de tabelas:
-  - `table`, `table-cell`, `table-column`, `table-column-group`, 
-    `table-footer-group`, `table-header-group`, `table-row`, 
-    `table-row-group`, `inline-table`
-- [Exemplos de uso](http://colintoh.com/blog/display-table-anti-hero)
+<!-- {p:.center-aligned} -->
 
 ---
-## Display: **flex**
+## Audio
 
-- Um novo tipo de fluxo de "caixa flexível" que facilita _layouts_ fluidos
-  - Propriedades:
-    ```css
-    .container { display: flex; }
-    .filho { flex: 1 }
-    ```
-- Exemplo:
-  <iframe width="100%" height="150" src="//jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-## Display: **flex** (cont.)
-
-- Possibilita trocar o fluxo com a propriedade
-  [`flex-direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction)
-  nos contâineres:
-  ```css
-  .container.vertical { display: flex; flex-direction: column; }
-  .filho { flex: 1 }
+- `<audio>` funciona **exatamente** da mesma forma que `<video>`
+  - [Referência na MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
+- Formatos mais comuns: **MP3** <!-- {strong:.alternate-color} --> e
+  **OGG**  <!-- {strong:.alternate-color} -->
+- Exemplo: <!-- {style="display: flex; flex-direction: row;"} -->
+  ```html
+  <audio src="banjo-kazooie.mp3" controls loop="0"></audio>
   ```
-  - Exemplo:
-    <iframe width="100%" height="230" src="//jsfiddle.net/fegemo/f5odrgk9/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+  <audio src="../../audios/banjo-kazooie-short.mp3" controls loop="0"></audio>
+
+*[MP3]: MPEG-1/2 Audio Layer 3*
 
 ---
-## Display: **flex** (cont. 2)
+## Suporte **hoje** (formatos de áudio)
 
-- Possibilita definir uma ordem arbitrária para os filhos com a propriedade
-  [`order`](https://developer.mozilla.org/en-US/docs/Web/CSS/order):
-  ```css
-  .filho:first-child  { order: 3 }
-  .filho:nth-child(2) { order: 2 }
-  .filho:last-child   { order: 1 }
-  ```
-  - Exemplo:
-    <iframe width="100%" height="150" src="//jsfiddle.net/fegemo/f5odrgk9/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<span class="caniuse" data-feature="mp3" style="width: 40%"></span>
+<span class="caniuse" data-feature="ogg-vorbis" style="width: 45%"></span>
+
+<!-- {p:.center-aligned} -->
 
 ---
-## Display: **flex** - _can I use, plx?_
+<!-- {"layout": "section-header", "slideHash": "web-fonts"} -->
+# _Web Fonts_
+## Usando fontes não-instaladas
 
-<div class="caniuse" data-feature="flexbox"></div>
+- Formatos de fontes
+- A regra `@font-face`
+- Google Fonts
 
-- Um **jogo** para aprender a usar flexbox:
-  [Flexbox Froggy](http://flexboxfroggy.com/)
-
----
-# Alterando a visibilidade
-
----
-## Usando **display**
-
-- É possível tornar um elemento invisível usando `display: none;`
-- O elemento é **removido do fluxo**, ou seja, o espaço onde ele seria
-  posicionado é liberado
-- ```css
-  img#logotipo {
-    display: none;
-  }
-  ```
+<!-- {ul:.content} -->
 
 ---
-## A propriedade **visibility** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility))
+# Web Fonts
 
-- Usada para alterar a visibilidade de elementos
-- ```css
-  img#logotipo {
-    visibility: hidden; /* visible */
-  }
-  ```
-- Os elementos invisíveis (`hidden`) continuam ocupando espaço
-- Descendentes de elementos invisíveis herdam o valor `hidden`, mas podem
-  tornar-se visíveis usando `visibility: visible;`
-
----
-## Visibilidade **+ JavaScript**
-
-- Um comportamento bastante comum é o de alterar a visibilidade
-  (`display` ou `visibility`) de um elemento de acordo com a interação do
-  usuário:
-  ```css
-  .oculto { visibility: hidden; }
-  ```
-  ```js
-  var button = document.getElementById('botao-alterna');
-  button.addEventListener(function() {
-    document.getElementById('titulo').classList.toggle('oculto');
-  });
-  ```
-  <button onclick="javascript: document.getElementById('visibilidade-javascript').classList.toggle('oculto');">Alterna vibilidade do título</button>
-  <style>
-    .oculto { visibility: hidden; }
-  </style>
+- Motivação:
+  - Utilizar **fontes que não estão instaladas** no computador
+- Passos:
+  1. Escolher a fonte
+  1. Gerar **todos os formatos** para que funcione em todos os principais
+     navegadores
+     - `.ttf`
+     - `.otf`
+     - `.eot`
+     - `.woff`
+     - `.woff2` <!-- {ul:.multi-column-list-5} -->
+  1. Publicar a fonte na Internet (ou no seu próprio site)
 
 ---
-## A propriedade **overflow** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow))
+## Web Fonts (cont.)
 
-- Controla se conteúdo que extrapola o elemento deve ser cortado, se deve ser
-  mostrado ou se deve ser criada uma barra de rolagem
-- ```css
-  div {
-    overflow: scroll; /* visible, hidden, scroll, auto */
-  }
-  ```
+1. Descrever a fonte no arquivo CSS usando `@font-face {...}`:
+   ```css
+   @font-face {
+     font-family: "Emblema One";    /* dando um nome à fonte */
+     src: url("fonts/EmblemaOne-Regular.woff2") format('woff2'), /* 1º formato */
+          url("fonts/EmblemaOne-Regular.woff")  format('woff'),  /* 2º formato */
+          url("fonts/EmblemaOne-Regular.ttf")   format('ttf');   /* 3º formato */
+   }
+   ```
+2. Usar a fonte:
+   ```css
+   h1 {
+     font-family: "Emblema One", sans-serif;
+   }
+   ```
+   - Sempre coloque uma segunda opção (_e.g._, `sans-serif`)
 
----
-# _Pseudo-classes_ e _Pseudo-elements_
-
----
-## _Pseudo-**classes**_
-
-- Indicam um estado de um elemento. Exemplos:
-  ```css
-  .link-para-comprar:hover {
-    text-decoration: underline;
-  }
-  ```
-- Algumas das _pseudo-classes_ mais comuns:
-  - `:focus` - contém o foco
-  - `:hover` - mouse em cima
-  - `:last-child` - último
-  - `:not()` - exceto que
-  - `:nth-child()` - n-ésimo
-  - `:checked` - caixa marcada <!-- {ul:.multi-column-list-2} -->
-- [Lista com todas](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
-  na MDN
 
 ---
-## _Pseudo-**elements**_
+<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
+## **Formatos de fonte** e os navegadores
 
-- Indicam partes de um elemento. Exemplos:
-  ```css
-  p::selection {
-    color: white;
-    background-color: hotpink;
-  }
-  ```
-  <style>
-    .different-selection::selection { background-color: hotpink; color: white; }
-  </style>
-  `<p>`<span class="different-selection">Me selecione, bem aqui &larr;</span>`</p>`
-- Pode-se usar tanto `::pseudo-element` quanto `:pseudo-element`
+<span class="caniuse" data-feature="woff2" style="width: 45%"></span>
+<span class="caniuse" data-feature="woff" style="width: 45%"></span>
+
+- **WOFF2** é até 50% menor que **WOFF**
+- **TTF** é suportado em todos navegadores
 
 ---
-## _Pseudo-**elements**_ comuns
+## Usando fontes "mais facinho"
 
-- Os _pseudo-elements_ mais comuns:
-  - `::selection` - seleção de texto
-  - `::placeholder` - descrição de `input`
-  - **`::after` - conteúdo "pós-conteúdo"**
-  - **`::before` - conteúdo "pré-conteúdo"**
-  - `::first-letter` - primeira letra
-- [Lista com todos](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
-  na MDN
+- ![](../../images/google-fonts.png) <!-- {.push-right.small-width} -->
+  Gerar os formatos de fonte necessários pode dar trabalho
+- Outra alternativa é usar **sites que provêem diversas fontes** para
+  serem usadas
+  - Exemplos:
+    1. [**Google Fonts**][google-fonts] <!-- {strong:.alternate-color} -->
+    1. [Dafont][dafont]
+    1. [FontSpace][font-space]
+  - Além de ter vários formatos das fontes, eles fornecem o código CSS
 
----
-## Exemplo de **::before**
-
-- Por exemplo, como colocar um texto de "leia mais" ao final de cada notícia?
-  ```css
-  .novidade::before {
-    content: "Novidade!";
-    display: inline-block;
-    background: orange;
-    /* ... */
-  }
-  ```
-  - Resultado:
-    <iframe width="100%" height="120" src="//jsfiddle.net/fegemo/76wdcLao/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+[google-fonts]: https://fonts.google.com/
+[dafont]: http://www.dafont.com/pt/
+[font-space]: http://www.fontspace.com/
 
 ---
-# Layout e posicionamento
+## Utilização do Google Fonts
+
+<video src="../../videos/web-fonts-google.mp4" width="802" height="456" controls style="margin: 0 auto;"></video>
 
 ---
-## Layout e posicionamento
+<!-- {"layout": "section-header", "slideHash": "unicornios"} -->
+# _Unicorns are real_
+## Conheça a verdade
 
-- Além do fluxo normal visto na última aula, também podemos dar
-  **fluxos alternativos** aos elementos
-  - Propriedades envolvidas:
-    - ```css
-      position: static; /* relative, absolute, fixed */
-      top: 0px;         /* uma dimensão */
-      right: 0px;       /* uma dimensão */
-      bottom: 0px;      /* uma dimensão */
-      left: 0px;        /* uma dimensão */
-      z-index: 1;       /* um inteiro */
-      ```
+- ![Little Pony](../../images/little-pony.png) <!-- {.portrait.push-right} -->
+  Atividade de hoje
+- _Layouts_ no Photoshop
+- Quebrando linhas no texto
+- Relembrando o _Box Model_
+
+<!-- {ul:.content} -->
 
 ---
-## **top, right, bottom e left**
-
-- Usadas para definir a posição (ou _offset_) do elemento
-- Sua interpretação depende de qual valor de `position` estamos usando para
-  aquele elemento
+<!-- {"backdrop": "pratica-unicornios"} -->
 
 ---
-## **position**
+<!-- {"layout": "regular"} -->
+# Atividade de Hoje
 
-- `static`
-  - Comportamento padrão. O elemento é **posicionado no fluxo normal (padrão)**.
-  - As propriedades `left`, `right`, `top`, `bottom` e `z-index`
-    **são ignoradas**
-- `absolute`
-  - O elemento **não tem espaço reservado para ele**. Em vez disso, ele fica
-    exatamente na posição especificada por `left`, `right`, `top`, `bottom`
-    relativo ao seu mais próximo antecessor-posicionado
-  - Margens se aplicam, porém elas não fazem _margin collapse_ com outras
+- Criar uma página para expor a verdade sobre esses pôneis.
+  - Seu amigo _designer_ criou um _layout_ no Photoshop para sua página e você
+    deve criá-la de forma a reproduzir esse _layout_ na sua página HTML
+  - Você pode ver o _layout_ na página seguinte
+  - Você vai precisar lembrar: `div`, `span`, _Box Model_,
+    `float` e `clear`
 
 ---
-## **position** (cont.)
+<!-- {"layout": "regular"} -->
+# _Layouts_ no Photoshop
 
-- `relative`
-  - O elemento continua no **fluxo normal**, a menos que tenha suas propriedades
-    `left`, `right`, `top` e `bottom` ajustadas.
-  - A posição do elemento será **ajustada com relação à sua posição original**
-    (caso ele fosse `static`)
-  - Os elementos posteriores **não são ajustados** para ocupar eventuais
-    "buracos" na página
-- `fixed`
-  - Bem semelhante ao `absolute`, porém o elemento é ajustado na posição
-    `left`, `right`, `top`, `bottom` **no espaço da tela** (_viewport_), e não
-    da página
+- ![](../../images/psd-to-html-css.png) <!-- {.push-right} -->
+  **Designers usam editores de imagens** (como o Photoshop) para
+  **criar páginas web bonitas**
+  - O Photoshop gera uma imagem, que precisa ser "cortada" e transformada
+    em uma página HTML e código CSS
+- O designer tipicamente cria um (a) **_layout_** e uma (b) **especificação** da
+  página, **para orientar o programador**
+  1. (a) Também chamada de _comp_ ou _comprehensive layout_
+  2. (b) Também chamada de _specs_
 
 ---
-## **z-index**
+## Comp / Specs
 
-- Define a ordem "no eixo Z" com a qual elementos que se tocam deve ser exibida
-- Útil apenas para elementos `position: absolute` ou `position: fixed`
+[![](../../images/unicorns-comp-lpw.png)](../../images/unicorns-comp-lpw.png) <!-- {style="max-width: 25%"} -->
+[![](../../images/unicorns-specs-lpw.png)](../../images/unicorns-specs-lpw.png) <!-- {style="max-width: 25%"} -->
+
+*[Comp]: Comprehensive Layout*
+*[Specs]: Specifications*
+
+<!-- {p:.center-aligned} -->
+
+---
+<!-- {"slideHash": "quebra-de-linha"} -->
+# Quebra de linha (tag `<br>`)
+
+- A _tag_ `<br>` funciona para quebrarmos linha em um parágrafo
+  - `<br>` vem de _break line_
+- Utilize-a para **quebrar linhas**, porém, **não** para separar parágrafos
+  ou outros elementos
+- Exemplo: escrevendo um poema
+
+<iframe width="100%" height="460" src="//jsfiddle.net/danielhasan/v3zkLwp2/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+---
+<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }", "backdrop": "oldtimes"} -->
+## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
+
+- ![](../../images/box-model.png) <!-- {.push-right} -->
+  O navegador enxerga todo elemento de conteúdo como uma "caixa"
+- A "caixa" é formada por:
+  - Espaço do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
+  - Espaço de _preenchimento (`padding`)_ <!-- {em:.box-model-part style="background: #c2ce89;"} -->
+  - Bordas _(`border`)_ <!-- {em:.box-model-part style="background: #fddc9a;"} -->
+  - Espaço _externo (`margin`)_ <!-- {em:.box-model-part style="background: #f9cc9d;"} -->
+
+<!-- {ul^1:style="margin-bottom: 0;"} -->
+
+![](../../images/box-model-sample.png) <!-- {p:.centered.no-margin} -->
+
+---
+<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+## _Box Model_: **largura** e **altura**
+
+- Quando definimos a **largura** (`width`) ou **altura** (`height`) de
+  um elemento, estamos definindo o tamanho
+  do _conteúdo da caixa_, <!-- {em:.box-model-part style="background: #8bb4c0;"} -->
+  e não da caixa inteira
+
+::: figure .figure-slides
+![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-3.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-4.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-5.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+:::
+
+---
+<!-- {"layout": "regular-block", "slideHash": "alterando-o-box-model", "backdrop": "oldtimes"} -->
+## Alterando o _box model_
+
+::: did-you-know .push-right width: 260px; margin-right: 6px;
+As **margens** de um elemento formam um **espaçamento externo** e não contam
+espaço dentro da caixa.
+:::
+
+- É possível alterar o significado da `width` e `height` que damos a um elemento
+   **usando _a propriedade `box-sizing`_** <!-- {em:.underline.upon-activation.delay-3000} -->:
+  - `box-sizing: content-box` (valor padrão)
+    - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
+  - `box-sizing: border-box`
+    - `width` = _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} --> +
+      _padding_ <!-- {.box-model-part style="background: #c2ce89;"} --> +
+      _border_ <!-- {.box-model-part style="background: #fddc9a;"} -->
+    - Esta forma é mais intuitiva :thumbsup: :thumbsup: :thumbsup:
+
+
+::: figure .figure-slides.centered margin: 0 auto
+![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-border-box-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+![](../../images/box-model-product-border-box-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
+:::
 
 ---
 # Referências
 
-- Capítulo 12 do livro
-- [Capítulo _semantics_](http://diveintohtml5.info/semantics.html) do livro
-  diveintohtml5.org
-- [Propriedade **display** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/display)
-- [Propriedade **visibility** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility)
-- [Propriedade **overflow** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)
-- [Propriedade **position** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
-- [Um breve e interessante tutorial sobre posicionamento](http://learnlayout.com/position.html)
-- Jogo [Flexbox Froggy](http://flexboxfroggy.com/)
+1. Capítulos 5 e 6 do livro
