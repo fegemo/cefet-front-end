@@ -273,6 +273,20 @@ div.did-you-know::before {
   transform: scale(1);
   transition: all 500ms ease 400ms;
 }
+.pratica-unicornios.bespoke-backdrop {
+  background-image: url("../images/unicorns-comp-lpw.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: none;
+  transform: scale(0.35);
+}
+.pratica-unicornios.bespoke-backdrop.bespoke-backdrop-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 500ms ease 400ms;
+}
 strong.alternate-color {
   color: #7b9c02;
 }
@@ -444,6 +458,9 @@ ol.no-list-icon {
 .delay-3000::after {
   animation-delay: 3000ms !important;
   transition-delay: 3000ms !important;
+}
+abbr[title] {
+  border-bottom: initial;
 }
 .tutorial {
   position: absolute;
@@ -636,6 +653,12 @@ h3.caniuse-title {
   /* alternate windows icon: content: "\e007" */
 
 }
+.caniuse .agents li.icon-edge:before,
+.caniuse .agents li.icon-windows:before {
+  content: "\e007";
+  /* alternate windows icon: content: "\e007" */
+
+}
 .caniuse .agents li.icon-ios_saf:before {
   content: "\e005";
 }
@@ -663,6 +686,10 @@ h3.caniuse-title {
   background: #dc6f26;
 }
 .caniuse .agents li.icon-ie:hover,
+.caniuse .agents li.icon-windows:hover {
+  background: #1a4cbd;
+}
+.caniuse .agents li.icon-edge:hover,
 .caniuse .agents li.icon-windows:hover {
   background: #1a4cbd;
 }
