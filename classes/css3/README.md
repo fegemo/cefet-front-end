@@ -442,7 +442,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }", "backdrop": "oldtimes"} -->
+<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }", "backdrop": "oldtimes", "slideHash": "box-model"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
 
 - ![](../../images/box-model.png) <!-- {.push-right} -->
