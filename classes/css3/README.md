@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # CSS (Parte 3)
-## Layout, Fontes, Multimídia e Unicórnios 🦄
+## Fontes, Multimídia e Unicórnios 🦄
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
@@ -162,7 +162,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 :::
 
 ---
-<!-- {"layout": "section-header", "slideHash": "multimidia"} -->
+<!-- {"layout": "section-header", "slideHash": "video-e-audio"} -->
 # Vídeo e Áudio
 ## Usando elementos multimídia
 
@@ -397,6 +397,11 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
   - Você pode ver o _layout_ na página seguinte
   - Você vai precisar lembrar: `div`, `span`, _Box Model_,
     `float` e `clear`
+- [Baixe os arquivos][unicorns-seminal] contendo o HTML e estilize a
+  página pra que ela fique idêntica ao _layout_ do _designer_
+  - Leia as instruções detalhadas no arquivo `README.md`
+
+[unicorns-seminal]: https://github.com/fegemo/cefet-front-end-unicorns/archive/master.zip
 
 ---
 <!-- {"layout": "regular"} -->
