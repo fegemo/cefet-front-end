@@ -3,6 +3,59 @@
 ## Fontes, Multimídia e Unicórnios 🦄
 
 ---
+## Revisão da Prova - Erros Comuns (1/5)
+- Endereço absoluto vs relativo
+
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)<!-- {.push-left} -->
+| Endereço Absoluto          	| End. Relativo 	|
+|---------------------------	|---------------	|
+| /ovelhas/racas/c.jpg      	| `c.jpg`        	|
+| /ovelhas/racas/xpto/d.jpg 	| `xpto/d.jpg`   	|
+| /ovelhas/b.jpg            	| `../b.jpg`     	|
+| /a.jpg                    	| `../../a.jpg`  	|
+
+---
+## Revisão da Prova - Erros Comuns (2/5)
+
+- Escreva uma (única) regra em CSS para colorir de vermelho apenas links que estejam dentro de tabelas. Os demais links deverão continuar da mesma forma.
+
+```css
+       table a{
+         color: red;
+       }
+```
+---
+## Revisão da Prova - Erros Comuns (3/5)
+
+- **Regra CSS** para fazer com que uma **linha** da tabela mude sua **cor de fundo** quando o **mouse passar em cima dela** ([jsFiddle][jsFiddle]).
+
+
+[jsFiddle]: https://jsfiddle.net/fegemo/nc2txkng/
+
+![Questão exibindo as 4 possíveis alternativas de respostas.](../../images/linha-branca-tabela.png)
+
+---
+## Revisão da Prova - Erros Comuns (4/5)
+- Lista de item dentro de um parágrafo
+  - o parágrafo deve possuir apenas elementos _inline_
+- Item de Lista definido sem sua respectiva lista
+- Tags abertas e não fechadas:
+  - Sempre que abrir uma `tag`, feche-a.
+  - Idente bem o código
+  - Lembrem-se de usar mais recursos do editor/navegador:
+    - Ao criar um arquivo, digite `html` e depois <kbd>tab</kbd>
+    - No navegador, entre em exibir código fonte
+
+---
+## Revisão da Prova - Erros Comuns (5/5)
+  - Tags abertas e não fechadas:
+    - Sempre que abrir uma `tag`, feche-a.
+    - Idente bem o código
+    - Lembrem-se de usar os recursos do editor/navegador:
+      - Ao criar um arquivo, digite `html` e depois <kbd>tab</kbd>
+      - No navegador, entre em exibir código fonte
+
+---
 <!-- {"layout": "2-column-content-zigzag"} -->
 # Na última aula... (1/4)
 
