@@ -1,56 +1,62 @@
 <!-- {"layout": "title"} -->
 # CSS - Parte 3
-## Divitite e tags semanticas,  SEO e Acessibilidade, display, pseudo-elements
+## Divitite e tags semânticas,  SEO e Acessibilidade, display, pseudo-elements
 
 ---
 ## Na última aula (1/3)
 
-- Podemos precisar **agrupar elementos** <u>logicamente semelhantes</u> ou por
-  <u>questões de estilização</u>
-- Podemos usar os elementos `<div>...</div>` (_block_) e `<span>...</span>`
-  (_inline_):
-  ```html
-  <div id="cabecalho-da-pagina">
-    <h1>Título</h1>
-    <h2>Subtítulo</h2>
-  </div>
-  ```
-  ```html
-  <p class="artista-musica">
-    <span>MC Hammer</span>: <span>Can't Touch This</span>
-  </p>
-  ```
+- Formatos de Imagens
+  - **JPEG** <!-- {strong:.alternate-color} --> (ou JPG), bom para **fotos**
+    tiradas do mundo real, que possuem muita variação de cor. Não possui
+    transparência
+  - **GIF** <!-- {strong:.alternate-color} -->, **transparência** de 1 bit e
+    suporta **animações** de quadros
+    - Apenas 256 cores na imagem (muito pouco!!)
+  - **PNG** <!-- {strong:.alternate-color} -->, **transparência** de 8 bits
+    e suporta **mais cores** que GIF
+    - Bom formato para imagens com pouca variação de cor
+  - **SVG** <!-- {strong:.alternate-color} -->, imagens **vetoriais** que não
+    perdem qualidade se **ampliadas**
+
+
 
 ---
 # Na última aula... (2/3)
-
-- ![](../../images/box-model.gif) <!-- {.push-right} -->
-  Aprendemos sobre o **_box model_**
-  - Todo elemento de conteúdo (dentro do `body`) é representado por uma caixa
-  - Podemos especificar, para a caixa:
-    - O espaço do conteúdo (`width`, `height`)
-    - Um espaço de preenchimento (`padding`)
-    - Uma borda (`border`)
-    - Um espaço externo (`margin`)
-  - Quando definimos `width` ou `height`, estamos definindo o tamanho do
-    **conteúdo**, e não da caixa inteira
-  - É possível alterar o significado de `width` e `height` usando `box-sizing`
+```html
+<video src="videos/fendadobiquini.mp4" controls></video>
+```
+- Para aumentar a compatibilidade:
+  ```html
+  <video width="320" height="240" controls>
+    <source src="bob-esponja.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="bob-esponja.webm" type="video/webm; codecs=vp8,vorbis">
+    Seu navegador não suporta o elemento video.
+  </video>
+  ```
+- O navegador tentará abrir o vídeo `bob-esponja.mp4` (_i.e._, o primeiro)
+  - se não conseguir, tentará o arquivo `bob-esponja.webm` (2º)
+  - se, mesmo assim, não conseguir, será exibido o texto
 
 ---
 # Na última aula (3/3)
 
-- ![](../../images/float-p3.png) <!-- {.push-right} -->
-  Aprendemos que os elementos podem flutuar
-  ```css
-  img#principal {
-    float: left; /* right, none */
-  }
-  ```
-  - Elementos flutuantes alteram o fluxo dos elementos posteriores
-    - `blocks` fingem que os flutuantes não estão ali
-    - `inlines` adequam sua forma aos flutuantes
-
-<!-- - [Questionário Maroto](https://moodle.cefetmg.br/mod/quiz/view.php?id=18171) -->
+- WebFonts:
+  1. Descrever a fonte no arquivo CSS usando `@font-face {...}`:
+     ```css
+     @font-face {
+       font-family: "Emblema One";    /* dando um nome à fonte */
+       src: url("fonts/EmblemaOne-Regular.woff2") format('woff2'), /* 1º formato */
+            url("fonts/EmblemaOne-Regular.woff")  format('woff'),  /* 2º formato */
+            url("fonts/EmblemaOne-Regular.ttf")   format('ttf');   /* 3º formato */
+     }
+     ```
+  2. Usar a fonte:
+     ```css
+     h1 {
+       font-family: "Emblema One", sans-serif;
+     }
+     ```
+     - Sempre coloque uma segunda opção (_e.g._, `sans-serif`)
 
 ---
 # Hoje veremos...
