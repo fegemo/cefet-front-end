@@ -83,9 +83,6 @@
   <div id="navigation">...</div>
   ```
 
----
-<!-- {"backdrop": "divitite"} -->
-
 
 ---
 ## A cura da Divitite: **_tags_ semânticas**
@@ -145,6 +142,11 @@
 - [`<mark></mark>`](http://www.w3.org/wiki/HTML/Elements/mark) `(inline)`
   - Representa uma marcação no texto
     (tipo <mark style="background-color: yellow">caneta marcadora</mark>)
+---
+## Exmplo de uso - Elementos semânticos
+
+  <iframe width="90%" height="80%" src="//jsfiddle.net/fegemo/eehL6wry/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+
 
 ---
 ## Elementos semânticos **pré-html5**
