@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # CSS - Parte 3
-## Divitite e tags semânticas,  SEO e Acessibilidade, display, pseudo-elements
+## Divitite e tags semânticas, display, _pseudo-elements_ e Assombrações :ghost:
 
 ---
 ## Na última aula (1/3)
@@ -17,8 +17,6 @@
     - Bom formato para imagens com pouca variação de cor
   - **SVG** <!-- {strong:.alternate-color} -->, imagens **vetoriais** que não
     perdem qualidade se **ampliadas**
-
-
 
 ---
 # Na última aula... (2/3)
@@ -61,13 +59,44 @@
 ---
 # Hoje veremos...
 
-1. Divitite - doença e cura com **_tags_ semânticas**
-1. A propriedade **display**
-1. Alterando a visibilidade
-1. _Pseudo-classes_ e _pseudo-elements_=
+1. [Divitite - doença e cura com **_tags_ semânticas**](#divitite-e-tags-semanticas)
+1. [A propriedade **display**](#a-propriedade-display)
+1. [_Pseudo-classes_ e _pseudo-elements_](#pseudo-classes-e-pseudo-elements)
+1. [Assombrações](#assombracoes) :ghost:
 
 ---
+<!-- {"layout": "section-header", "slideHash": "divitite-e-tags-semanticas"} -->
 # Divitite e _Tags_ Semânticas
+## Inflamação das `<div>`s
+
+Motivação
+  ~ SEO e Acessibilidade na Web
+
+Doença
+  ~ a **divitite**
+
+Cura
+  ~ **_tags_ semânticas**
+
+<!-- {dl:.content} -->
+---
+# SEO e Acessibilidade na Web
+
+SEO
+  ~ Sigla para _Search Engine Optimization_, ou Otimização para Motores de Busca
+  ~ É um conjunto de técnicas para **aumentar a possibilidade de um site
+    aparecer no topo** dos resultados do **Google** (e outros motores de busca)
+
+Acessibilidade
+  ~ Possibilidade de uma pessoa consumir conteúdo das páginas web independente
+    de condições físicas
+  ~ Pessoas cegas usam um programa especial (o **"leitor de tela"**) que **lê o
+    código HTML em voz alta** para elas
+
+*[SEO]: Search Engine Optimization*
+
+---
+<!-- {"backdrop": "divitite"} -->
 
 ---
 ## Divitite
@@ -87,7 +116,8 @@
 ---
 ## A cura da Divitite: **_tags_ semânticas**
 
-- O Dr. html5 propôs elementos idênticos às `divs`/`spans`, mas que **possuem
+- O dr. HTML5 ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} -->
+  propôs elementos idênticos às `divs`/`spans`, mas que **possuem
   sentido para o navegador**. Por exemplo:
   ```html
   <header></header>   <!-- em vez de <div id="header"></div> -->
@@ -98,6 +128,7 @@
   ```
 
 ---
+<!-- {"slideHash": "elementos-semanticos"} -->
 ## Elementos semânticos (1/3)
 
 - [`<main></main>`](http://www.w3.org/wiki/HTML/Elements/main) `(block)`
@@ -143,25 +174,40 @@
   - Representa uma marcação no texto
     (tipo <mark style="background-color: yellow">caneta marcadora</mark>)
 ---
-## Exmplo de uso - Elementos semânticos
+## Exemplo de uso - Elementos semânticos
 
   <iframe width="90%" height="80%" src="//jsfiddle.net/fegemo/eehL6wry/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
 
 
 ---
-## Elementos semânticos **pré-html5**
+## Elementos semânticos **pré-HTML5**
 
-- [`<address></address>`](http://www.w3.org/wiki/HTML/Elements/address)
-- [`<abbr title=""></abbr>`](http://www.w3.org/wiki/HTML/Elements/abbr)
-- [`<blockquote></blockquote>`](http://www.w3.org/wiki/HTML/Elements/blockquote),
-  [`<q></q>`](http://www.w3.org/wiki/HTML/Elements/q)
-- [`<cite></cite>`](http://www.w3.org/wiki/HTML/Elements/cite)
-- [`<code></code>`](http://www.w3.org/wiki/HTML/Elements/code)
-- [`<kbd></kbd>`](http://www.w3.org/wiki/HTML/Elements/kbd)
+- [`<address></address>`](http://www.w3.org/wiki/HTML/Elements/address), para endereços
+- [`<abbr title=""></abbr>`](http://www.w3.org/wiki/HTML/Elements/abbr), para abreviações
+- [`<blockquote></blockquote>`](http://www.w3.org/wiki/HTML/Elements/blockquote), para citação em bloco
+  e [`<q></q>`](http://www.w3.org/wiki/HTML/Elements/q), para citação em linha
+- [`<cite></cite>`](http://www.w3.org/wiki/HTML/Elements/cite), para referência
+- [`<code></code>`](http://www.w3.org/wiki/HTML/Elements/code), para código fonte
+- [`<kbd></kbd>`](http://www.w3.org/wiki/HTML/Elements/kbd), para teclas do teclado
 - E outros...
 
 ---
+<!-- {"layout": "section-header", "slideHash": "a-propriedade-display"} -->
 # A propriedade **display**
+## e seus diversos valores
+
+- Valores:
+  - `block`
+  - `inline`
+  - `inline-block`
+  - `none`
+  - `table`
+  - `table-row`
+  - `table-cell`
+  - `flex` ![Logomarca do CSS](../../images/logo-css.svg) <!-- {.emoji} -->
+- Alterando a visibilidade
+
+<!-- {ul^1:.content} -->
 
 ---
 ## A propriedade **display** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/display))
@@ -198,27 +244,22 @@
   possibilidade de **ter um <u>fluxo lateral</u>** (sem quebra de linha), como
   `inline`. Exemplo:
   ```html
-  <div class="passo">1<br>Instalar</div>
-  <div class="passo">2<br>Aprender</div>
-  <div class="passo">3<br>Programar</div>
+  <div class="passo">Instalar</div>
+  <div class="passo">Aprender</div>
+  <div class="passo">Programar</div>
   ```
   ```css
   .passo {
     display: inline-block;
     width: 150px;
-    height: 100px; /* ... */
+    height: 150px; /* ... */
   }
   ```
 
 ---
-## Display: **inline-block**
+## Resultado do display **inline-block**
 
-- Resultado:
-
-  <style>.passo { display: inline-block; width: 150px; height: 150px; border: 2px inset rebeccapurple; background: rgba(255, 255, 255, .5); font-size: 26px; font-family: "Comic Sans MS"; text-align: center; line-height: 50px; border-radius: 75px; }</style>
-  <div class="passo">1<br>Instalar</div>
-  <div class="passo">2<br>Aprender</div>
-  <div class="passo">3<br>Programar</div>
+<iframe width="600" height="300" src="//jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 <!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
@@ -240,6 +281,7 @@
 
 - Com `display: none`
 - Com `visibility: hidden`
+- Com `opacity: 0`
 
 <!-- {ul:.content} -->
 
@@ -268,21 +310,42 @@
 - Descendentes de elementos invisíveis herdam o valor `hidden`, mas podem
   tornar-se visíveis usando `visibility: visible;`
 
-
-
 ---
+## A propriedade **opacity** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity))
+
+- Usada para definir a opacidade (transparência) de elementos
+- ```css
+  video {
+    opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
+  }
+  ```
+- Os elementos transparentes continuam ocupando espaço, mas deixam transparecer
+  quem está "atrás" deles
+
+
+<!--
 ## A propriedade **overflow** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow))
 
 - Controla se conteúdo que extrapola o elemento deve ser cortado, se deve ser
   mostrado ou se deve ser criada uma barra de rolagem
-- ```css
+  ```css
   div {
     overflow: scroll; /* visible, hidden, scroll, auto */
   }
   ```
-
+-->
 ---
+<!-- {"layout": "section-header", "slideHash": "pseudo-classes-e-pseudo-elements"} -->
 # _Pseudo-classes_ e _Pseudo-elements_
+## Mais alguns seletores
+
+_Pseudo-class_
+  ~ permitem **selecionar** elementos em **diferentes situações**
+
+_Pseudo-element_
+  ~ permitem **estilizar** certas **partes de elementos**
+
+<!-- {dl:.content} -->
 
 ---
 ## _Pseudo-**classes**_
@@ -296,9 +359,9 @@
 - Algumas das _pseudo-classes_ mais comuns:
   - `:focus` - contém o foco
   - `:hover` - mouse em cima
-  - `:last-child` - último
+  - `:last-child` - último filho
   - `:not()` - exceto que
-  - `:nth-child()` - n-ésimo
+  - `:nth-child()` - n-ésimo filho
   - `:checked` - caixa marcada <!-- {ul:.multi-column-list-2} -->
 - [Lista com todas](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
   na MDN
@@ -328,13 +391,15 @@
   - **`::before` - conteúdo "pré-conteúdo"**
   - **`::after` - conteúdo "pós-conteúdo"**
   - `::first-letter` - primeira letra
+  - `::first-line` - primeira linha
 - [Lista com todos](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
   na MDN
 
 ---
+<!-- {"slideHash": "exemplo-de-before"} -->
 ## Exemplo de **::before**
 
-- Por exemplo, como colocar um texto de "leia mais" ao final de cada notícia?
+- Por exemplo, como colocar um texto de "Novidade!" antes de cada notícia?
   ```css
   .novidade::before {
     content: "Novidade!";
@@ -346,6 +411,51 @@
     <iframe width="100%" height="120" src="//jsfiddle.net/fegemo/76wdcLao/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"layout": "section-header", "slideHash": "assombracoes"} -->
+# Assombrações :ghost:
+## Faça o **Blog Assombrado**
+
+- Atividade de hoje
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"backdrop": "assombrado"} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Atividade de Hoje
+
+- Completar a página inicial do "Blog Assombrado"
+- [Baixe os arquivos][assombrado-seminal] contendo o HTML e faça os exercícios
+  - O resultado final tem que ser semelhante ao [desta imagem](../../images/assombrado.jpg)
+  - Leia as instruções detalhadas no arquivo `README.md`. No geral:
+    1. Converter as `<div>`s e `<span>`s em _tags_ semânticas
+       - Pode haver algumas que não possuem _tags_ semânticas
+    1. Estilizar o menu principal
+    1. Colocar "Novidade!" antes dos 2 posts mais recentes
+
+[assombrado-seminal]: https://github.com/fegemo/cefet-front-end-assombrado/archive/master.zip
+
+---
+<!-- {"layout": "regular", "slideHash": "transformando-lista-em-menu"} -->
+## Transformando uma lista em **um menu**
+
+- É muito comum que um site tenha um "menu principal" que é uma **lista de itens
+  na horizontal** <!-- {.underline.upon-activation} -->. #comofaz?
+  1. ![](../../images/ul-default-padding.png) <!-- {.push-right} --> **Tirar
+     o `padding-left`** da `<ul>`
+  1. Transformar **`<li>`s em `inline-block`**
+  1. Tirar "bolinha" do item:
+     ```css
+     #menu-principal li {
+       list-style: none;
+     }
+     ```
+  1. Colocar uma **margem lateral** entre os `<li>`s
+  1. Estilizar o `<li>` no estado de `:hover` para mostrar que ele é "clicável"
+
+---
 # Referências
 
 - Capítulo 12 do livro
@@ -353,4 +463,4 @@
   diveintohtml5.org
 - [Propriedade **display** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/display)
 - [Propriedade **visibility** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility)
-- [Propriedade **overflow** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)
+- [Propriedade **opacity** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity)

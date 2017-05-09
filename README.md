@@ -43,6 +43,8 @@
 
 - [HTML parte 4](classes/html4/) - Div/Span, Box Model, Float e Desafios
 - [CSS parte 3](classes/css3/) - Layout, Fontes, Multimídia e Unicórnios 🦄
+- [HTML parte 5](classes/html5/) - Divitite e as _Tags_ Semânticas, display,
+  pseudo-coisas e Assombrações :ghost:
 
 <!--
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)
@@ -54,7 +56,6 @@
 - [Javascript 3 - Padrões de Projeto](classes/js3/) (12/04/2016)
 - [Javascript 4 - JSON e AJAX (Prática)](classes/js4/) (14/05/2016)
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
-- [HTML 5 - Formulários e Monstros (Prática)](classes/html5/) (26/04/2016)
 
 # Aulas (página 3)
 
