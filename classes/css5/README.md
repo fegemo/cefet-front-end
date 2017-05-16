@@ -1,648 +1,405 @@
-# CSS - Parte 5
+<!-- {"layout": "title"} -->
+# CSS - Parte 4
+## Especificidade de seletores, Layout e posicionamento e centralizando coisas
 
 ---
-<!--
-{
-  "embeddedStyles": ".righteous { font-family: Righteous, cursive; color: #e90c0c }"
-}
--->
+<!-- {"layout": "regular"} -->
+# Na última aula (1/4)
+
+- **_Tags_ Semânticas**:
+  - O HTML5 ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} -->
+    propôs elementos idênticos às `divs`/`spans`, mas que **possuem
+    sentido para o navegador**. Por exemplo:
+    ```html
+    <header></header>   <!-- em vez de <div id="header"></div> -->
+    <footer></footer>   <!-- em vez de <div id="footer"></div> -->
+    <article></article> <!-- em vez de <div id="article"></div> -->
+    <time></time>       <!-- em vez de <span id="time"></span> -->
+    <nav></nav>         <!-- em vez de <div id="navigation"></div> -->
+    ```
+    - E várias outras...
+
+---
+# Na última aula  (2/4)
+
+- **Propriedade `display`**
+
+  <iframe width="600" height="300" src="//jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+# Na última aula (3/4)
+
+- **Alterando a visibilidade**:
+  - `display:none`: o elemento é removido do fluxo
+  - `visibility: hidden;`: o elemento fica escondido, mas ainda ocupa espaço
+  - `opacity`: define a opacidade:
+    ```css
+      video {
+        opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
+      }
+    ```
+
+---
+## Na última aula (4/4)
+- **_Pseudo-classes_ e _Pseudo-elements_**:
+
+  _Pseudo-class_
+    ~ permitem **selecionar** elementos em **diferentes situações**.  
+    ~ Exemplos: `:focus` (contém o foco), `:hover` (mouse em cima)
+
+  _Pseudo-element_
+    ~ permitem **estilizar** certas **partes de elementos**
+    ~ Exemplos: `::selection` (seleção de texto) `::first-letter` (primeira letra)
+
+---
 # Roteiro de hoje
 
-1. Finalizar o jogo **EduKids Animals** <!-- {.righteous} -->
-1. Sprites
-1. Transições
-1. Transformações
-1. Animações
+1. Especificidade de seletores
+1. Layout e posicionamento
+1. Centralizando coisas
+1. Mais Assombrações :heavy_plus_sign::ghost:
 
 ---
-## EduKids Animals <!-- {.righteous} -->
+<!-- {"layout": "section-header"} -->
+# Especificidade de seletores
+## Aplicando regras
 
-![Desenho de um urso](../../images/urso.jpg) <!-- {.portrait} -->
+- Mais de uma regra definindo a mesma propriedade
+- Regras de especificidade
+- Especificator Tabajara(tm)
+<!-- {ul:.content} -->
 
 ---
 ## Motivação
 
-Seu irmão e sua cunhada acabam de fazer 3 anos de casados e vão viajar em um
-cruzeiro. Resta a você, desejar boa viagem e cuidar do seu sobrinho de 2
-anos.
+- Dadas <u>mais de uma regra `CSS` definindo a mesma propriedade</u> para
+  um elemento, qual prevalece?
+  - Como determinar qual a cor do elemento?
+    ```html
+    <style>
+      h4 { color: black; }
+      h4 { color: white; }      
+    </style>
 
-Com um comportamento de anjinho (#sqn), o pequeno Joãozinho vai precisar ser
-entretido por um bom tempo. Você, como um ótimo tio e programador exímio,
-decide que é hora de criar um jogo Web para, além de entreter seu
-mini-sobrinho, ensiná-lo como falar o nome de alguns animais.
-
----
-## O jogo
-
-[![](../../images/edukids-thumb.png)](../../images/edukids.png)
+    <h4>Arthur Dent</h4> <!-- qual a cor de Arthur Dent? -->
+    ```
 
 ---
-## O jogo, como está
+## Mais Difícil...
 
-- Funcionamento do jogo:
-  - Assim que apertar **play**, o jogo começa
-  - A cada ~2s, um animal é sorteado e começa a ficar agitado, com fome
-  - Você deve clicar no animal agitado para alimentá-lo antes que ele coma
-    alguém
-    - Fazendo isso, ganha-se 1 ponto
-  - Se um animal não é clicado, perde-se 2 pontos
-  - Se um animal que estava sossegado é perturbado fora de hora, perde-se 1
-    ponto
-- Essa funcionalidade **já está implementada**
+```html
+<style>
+  .destaque { color: red; }
+  #titulo   { color: green; }
+  h4        { color: blue; }
+</style>
 
----
-## O que está **faltando**
-
-1. O jogo ainda não dá um _feedback_ visual interessante para o jogador
-   - Apenas o nome do animal aparece escrito e seu sobrinho ainda não sabe ler
-1. O arquivo javascript `jogo.js` controla o jogo. Ele tem um temporizador que
-   fica **adicionando e removendo classes dos elementos** dos animais
-   - `agitado`, quando o animal está com fome
-   - `alimentado`, quando o animal acabou de comer
-   - `perturbado`, quando um animal sossegado é perturbado
-   - `instinto-selvagem`, quando um animal com fome não é alimentado a tempo
+<h4 id="titulo" class="destaque">Ford Prefect</h4>
+```
+- E agora??
+- Os **3 seletores <u>se aplicam</u>** ao elemento! <!-- {ul:.bulleted} -->
+  - Mas com **prioridades diferentes**
+  - (↑) mais específico o seletor da regra → (↑) maior sua prioridade
+    - Neste caso, <h4 style="display: inline; color: green;">Ford Prefect (`green`)</h4>
 
 ---
-## Pede-se: fazer os **3 exercícios** abaixo
+<!-- {"layout": "regular"} -->
+## Regras gerais de especificidade
 
-1. Criar uma **transição para quando o mouse estiver em cima dos botões**
-   _play/stop_ (para que o elemento se revele lentamente)
-1. Você deve implementar uma **metáfora visual** para cada um dos 4 estados dos
-   animais. Algumas sugestões:
-   - `agitado`, animal piscando (opacidade variando)
-   - `alimentado`, uma borda verde no animal e o animal fica girando de alegria
-   - `perturbado`, animal vai crescendo, ou fica pulsando
-   - `instinto-selvagem`, animal dá um salto e cresce, com uma borda vermelha
-1. Criar uma **imagem _sprite_**   com as imagens dos ícones de "começar/parar" o jogo
-   de forma a fazer com que a página carregue mais rápido
+Regra 1 <!-- {dl:.bulleted} -->
+  ~ Cada seletor tem uma **pontuação de especificidade**
 
----
-## Entrega do exercício
+Regra 2
+  ~ Se dois seletores selecionam o mesmo elemento, mas com pontuações
+    diferentes, ganha aquele com pontuação maior
 
-1. O jogo já está funcionando 85% e você pode acessar [seu repositório no
-   GitHub](https://github.com/fegemo/cefet-web-edukids)
-1. Crie um _fork_ do repositório e trabalhe em cima dele
-1. Terminar o jogo (slide anterior) e dar **_commit_ e _push_**
-1. Enviar, via **Moodle**, o link do seu repositório até o final da aula
+Regra 3
+  ~ Se dois seletores selecionam o mesmo elemento e têm a mesma
+    pontuação, ganha o que foi declarado por último
+
+Regra 4
+  ~ Estilo Inline &gt;&gt; Arquivo Externo &gt;&gt; Incorporado
+
+Regra 5
+  ~ ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag
 
 ---
-# _Sprites_
+<!-- {"layout": "regular"} -->
+## Cálculo da **pontuação de especificidade**
+
+- [Especificação na W3C sobre _CSS3 Selectors_](http://www.w3.org/TR/css3-selectors/#specificity)
+- Algoritmo
+  1. Contar o número de IDs no seletor (variável `a`)
+  1. Contar o número de classes, atributos e pseudo-classes no seletor (`b`)
+  1. Contar o número de tags e pseudo-elementos no seletor (`c`)
+  1. Concatenar os três números (`abc`)
 
 ---
-## Por que preciso de mais isso?
+## Exemplos
 
-- Para melhorar o desempenho da sua página e reduzir a transferência de dados
-  (3G, 4G etc.)
-- Para cada imagem que temos em uma página:
-  1. O navegador faz uma requisição GET `http` para o servidor
-  1. O navegador espera pela resposta
-  1. O navegador baixa a respota, que contém meta-informação (os cabeçalhos)
-     do protocolo `http`, o arquivo de image (e os cabeçalhos do arquivo de
-     imagem)
-- Tipicamente, um navegador não faz mais que 5 requisições por domínio ao mesmo
-  tempo
-  - [Estudo do Steve Souders sobre o assunto](http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/)
+```css
+/* seletor { propriedades }  abc */
+li { }                    /* 001 */
+.destaque { }             /* 010 */
+li.destaque { }           /* 011 */
 
----
-## _**Sprites** to the rescue_
+#rodape { }               /* 100 */
+#rodape #logo { }         /* 200 */
 
-- _Sprite_ é um arquivo de imagem que possuem várias imagens agrupadas
-  - Muito comum em jogos digitais<br>
-    ![Imagem do terrível monstro verde, mostrando 3 quadros de animação](../../images/terrivel-eating.png) <!-- {style="width: 150px; image-rendering: pixelated;"} -->
-  - Pode ser usado para criar animações, mas também para agrupar as imagens
-- Benefício para páginas web
-  - Apenas uma _round-trip_ de requisição/resposta `http`
-  - Menos tempo para carregar imagens
-  - Menor transferência de dados
-  - Maior paralelização das requisições `http`
+a[href^="www"] { }        /* 011 */
+p strong em { }           /* 003 */
+```
 
 ---
-## **Relembrando**: duas formas para incluir imagens
+## Exercício
 
-- Em páginas Web, temos **duas formas de mostrar imagens**:
+- Qual é a cor do texto?
   ```html
-  <img src="images/monstro-comendo.png">
-  ```
-  ```css
-  #cabecalho { background-image: url("images/bolhas.png"); }
-  ```
-- Para decidir sobre a forma de uso de imagens, devemos ponderar:
-  - Se a imagem fizer sentido como conteúdo da página, optamos por `img`
-  - Se a imagem trata-se de aparência, optamos por `background-image`
-    - Quando imprimimos uma página, as `background-image`s não aparecem!
-
----
-## Usando _sprites_ em páginas
-
-- Também existem duas formas para usar _sprites_:
-  1. Tradicional
-     - Para ser usado em contextos em que pode-se usar a propriedade
-       `background-image`
-  1. Semântico
-     - Usado em contextos de imagens semânticas
-
----
-## Usando _sprites_: forma **tradicional**
-
-- ```html
-  <div id="monstro"></div>
-  ```
-  ```css
-  #monstro {
-    width: 24px;
-    height: 32px;
-    background-image: url('images/terrivel-eating.png');
-    background-position: -48px 0;  /* 3º quadro */
-  }
-  ```
-
-<div style="width: 24px;height: 32px;background-image: url('../../images/terrivel-eating.png');background-position: -48px 0;"></div>
-
----
-## Usando _sprites_: forma **semântica**
-
-- ```html
-  <figure id="monstro">
-    <img src="images/monstro-comendo.png">
-  </figure>
-  ```
-  ```css
-  #monstro {
-    width: 24px; height: 32px;
-    overflow: hidden; position: relative; }
-  #monstro img {
-    position: absolute;
-    left: -48px; top: 0;  }
-  ```
-
-<figure style="width: 24px;height: 32px;overflow: hidden;position: relative;margin-top:-10px;">
-  <img src="../../images/terrivel-eating.png" style="position: absolute;left: -48px;top: 0;">
-</figure>
-
----
-# Transições
-
----
-## Pra que isso?
-
-![](../../images/o-que-queremos-animacoes.png)
-
----
-## Transições CSS
-
-- Muitas vezes queremos criar pequenas animações em nossas páginas
-  - Mudança da cor do botão quando passamos o mouse em cima
-  - Um elemento se expandindo para revelar mais conteúdo
-  - Um painel sumindo gradativamente, em vez de desaparecendo
-- CSS3 especifica uma nova propriedade: `transition`
-
----
-## Como usar
-
-- ```css
-  a:link  { color: #f00; }
-  a:hover { color: #000; }
-  a       { transition: color 600ms linear; }
-  ```
   <style>
-    a.transition-link {
-      transition: color 600ms linear;
-      -webkit-transition: color 600ms linear;
-      -moz-transition: color 600ms linear;
-      -ms-transition: color 600ms linear;
-    }
-    a.transition-link:link  { color: red; }
-    a.transition-link:hover { color: #000; text-decoration: none; }
+    #a .b .c { color: red; }
+    .d .e .f { color: green; }
+    .g .h #i { color: blue; }
   </style>
-  <a href="#" class="transition-link">Heyyy, hover me</a>
-- Escolhemos que propriedade `CSS` queremos animar, por quanto tempo e qual a
-  função de interpolação
-
----
-## Propriedades que podemos animar
-
-- Nem todas as propriedades são animáveis e elas podem variar entre navegadores
-- Algumas que são animáveis:
-  - `transform`
-  - `opacity`
-  - `color`
-  - `background-color`
-  - `left`
-  - `right`
-  - `top`
-  - `bottom`
-  - `background-position`
-  - `border-radius`
-  - `margin`
-  - `padding`
-  - `width`
-  - `height`
-  - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties) <!-- {ul:.multi-column-list-3}-->
-
-
----
-## A propriedade **transition** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
-
-- É um atalho para:
-  - `transition-duration: 0s`, a duração da transição
-  - `transition-property: all`, que propriedades `CSS` devem sofrer transição
-  - `transition-timing-function: ease`, a função de interpolação
-  - `transition-delay: 0s`, tempo de atraso até que se comece a transição
-- Sintaxe formal:
+  <p id="a" class="d g">
+      <strong class="b e h">
+          <em id="i" class="c f">Qual é a minha cor?</em>
+      </strong>
+  </p>
   ```
-  transition: [ none | <single-transition-property> ] || <time>
-                || <timing-function> || <time>;
-  ```
+  - [Resposta](https://jsfiddle.net/fegemo/bw1xt1az/) no JSFiddle
 
 ---
-## Função de interpolação (_**timing-function**_)
+<!--
+{
+  "scripts": ["../../scripts/classes/spec-tabajara.min.js"],
+  "styles": ["../../styles/classes/spec-tabajara.min.css"]
+}
+-->
 
-<iframe width="100%" height="440" src="http://jsfiddle.net/fegemo/2a5450ds/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+## **Specificator Tabajara**
 
----
-<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
-## Compatibilidade nos navegadores
-
-<div class="caniuse" data-feature="css-transitions"></div>
-
----
-## Compatibilidade: uso de prefixos
-
-- Novas funcionalidades do CSS3 tem sido construídas sob um **prefixo** que
-  varia por navegador
-- Exemplo, no caso da propriedade `transition`:
-  ```css
-  #monster {
-    -webkit-transition: top 1s ease-out; /* chrome, safari, android */
-       -moz-transition: top 1s ease-out; /* firefox */
-        -ms-transition: top 1s ease-out; /* internet explorer */
-         -o-transition: top 1s ease-out; /* opera */
-            transition: top 1s ease-out;
-  }
-  ```
-
----
-## Compatibilidade: uso de prefixos
-
-- Dessa forma, evita-se problemas devido a divergências na implementação da
-  especificação do CSS3 entre navegadores
-  - Por exemplo, o Firefox vai ignorar propriedades desconhecidas a ele
-    (`-webkit-*, -ms-*, -o-*`)
-- Como saber se precisa de prefixos?
-  - Site [caniuse.com](http://caniuse.com/#feat=css-transitions)
-- Atualmente, todos os navegadores suportam a propriedade `transition`
-  sem o uso de prefixos
+<article id="spec-tabajara">
+  <div>
+    <input type="text" id="spec-tabajara-input" placeholder="seletor...">
+  </div>
+  <div>
+    <button id="spec-tabajara-button">Calcular</button>
+  </div>
+  <div>
+    <div class="spec-class">
+      <div id="spec-tabajara-output-a" class="spec-output">0</div>
+      <div>A IDs</div>
+    </div>
+    <div class="spec-class">
+      <div id="spec-tabajara-output-b" class="spec-output">0</div>
+      <div>Classes, atributos e pseudo-classes</div>
+    </div>
+    <div class="spec-class">
+      <div id="spec-tabajara-output-c" class="spec-output">0</div>
+      <div>Elementos, pseudo-elementos</div>
+    </div>
+  </div>
+</article>
 
 ---
-# Transformações
+<!-- {"layout": "section-header"} -->
+# Layout e posicionamento
+## Aplicando fluxos alternativos aos elementos
+
+- Posicionamento: `top`, `right`, `bottom` e `left`
+- Tipos de `position`:`absolute`, `relative`, `fixed` e `static`
+- `z-index`
+<!-- {ul:.content} -->
 
 ---
-## Por que?
+## Posição estática
 
-![](../../images/o-que-queremos-transforms.png)
-
----
-## A propriedade **transform**  ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform))
-
-- Define uma **transformação geométrica** aplicada aos "vértices" de um
-  elemento **`block`** (ou **`inline-block`**)
-- Exemplo:
+- Valor padrão - usa o posicionamento do fluxo padrão
   ```html
-  <p>Yay, sem Photoshop!</p>
+  <div class="estatico">Conteúdo</div>
   ```
   ```css
-  p { transform: rotate(-10deg); }
-  ```
-- Resultado:
-  <p style="-webkit-transform: rotate(-10deg); -moz-transform: rotate(-10deg); -ms-transform: rotate(-30deg); -o-transform: rotate(-10deg); transform: rotate(-10deg); background-color: white">Yay, sem Photoshop!</p>
-
----
-## A propriedade **transform** (cont.)
-
-- Diversas matrizes de transformação podem ser atribuídas como valor para a
-  propriedade `transform`:
-  - `translate(x,y)`
-  - `translate3d(x,y,z)`
-  - `translateX(x)`
-  - `translateY(y)`
-  - `translateZ(z)`
-  - `scale(x,y)`
-  - `scale3d(x,y,z)`
-  - `scaleX(x)`
-  - `scaleY(y)`
-  - `scaleZ(z)`
-  - `rotate(ang)`
-  - `rotat3d(x,y,z,ang)`
-  - `rotateX(ang)`
-  - `rotateY(ang)`
-  - `rotateZ(ang)`
-  - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) <!-- {ul:.multi-column-list-3}-->
-
----
-## Combinando **transition** e **transform**
-
-- ```html
-  <a href="#">Effects like a boss</a>
-  ```
-  ```css
-  a {
-    display: inline-block;
-    transition:transform .2s cubic-bezier(.37,1.89,.59,.73);
-  }
-  a:hover {
-    transform: scale(1.4);
+  .estatico {
+    position: static;
   }
   ```
+- <div style="display:inline-block;float:right;height:1em;font-size:.4em;"><input type="checkbox" checked id="button-estatico" class="switch" onclick="javascript: (function() { var b = document.getElementById('estatico'); b.classList.toggle('estatico');}())" />
+    <label for="button-estatico">`.estatico`</label>
+  </div>
+  Resultado
+  <style>.estatico {position: static;}</style>
+  <div id="estatico" class="estatico" style="border: 3px dashed rebeccapurple">Conteúdo</div>
 
+
+---
+## Layout e posicionamento
+
+- Podemos dar
+  **fluxos alternativos** aos elementos
+  - Propriedades envolvidas:
+    ```css
+    position: static; /* relative, absolute, fixed */
+    top: 0px;         /* uma dimensão */
+    right: 0px;       /* uma dimensão */
+    bottom: 0px;      /* uma dimensão */
+    left: 0px;        /* uma dimensão */
+    z-index: 1;       /* um inteiro */
+    ```
+
+---
+## **top, right, bottom e left**
+
+- Usadas para definir a posição (ou o deslocamento) de um elemento
+- Sua interpretação depende de qual valor de `position` estamos usando para
+  aquele elemento
+
+---
+## **position**
+
+- `static`
+  - Comportamento padrão. O elemento é **posicionado no fluxo normal (padrão)**.
+  - As propriedades `left`, `right`, `top`, `bottom` e `z-index`
+    **são ignoradas**
+- `absolute`
+  - O elemento **não tem espaço reservado para ele**. Em vez disso, ele fica
+    exatamente na posição especificada por `left`, `right`, `top`, `bottom`
+    relativo ao seu mais próximo antecessor-posicionado (não _static_)
+  - Margens se aplicam, porém elas não fazem _margin collapse_ com outras
+
+---
+## **position** (cont.)
+
+- `relative`
+  - O elemento continua no **fluxo normal**, a menos que tenha suas propriedades
+    `left`, `right`, `top` e `bottom` ajustadas.
+  - A posição do elemento será **ajustada com relação à sua posição original**
+    (caso ele fosse `static`)
+  - Os elementos posteriores **não são ajustados** para ocupar eventuais
+    "buracos" na página
+- `fixed`
+  - Bem semelhante ao `absolute`, porém o elemento é ajustado na posição
+    `left`, `right`, `top`, `bottom` **no espaço da tela** (_viewport_), e não
+    da página
+---
+## **position** -- Exemplo
 <style>
-a.combinando {
+.minibola{
   display: inline-block;
-  transition:transform .2s cubic-bezier(.37,1.89,.59,.73);
-}
-a.combinando:hover {
-  transform: scale(1.4);
-}
-</style>
-<a href="#" class="combinando">Effects like a boss</a>
 
----
-## Compatibilidade nos navegadores
+  width:48px;
 
-<div class="caniuse" data-feature="transforms2d"></div>
+  padding: 4px 15px;
+  border: 2px solid rebeccapurple;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 70px;
 
----
-# Animações
-
----
-## O que queremos?
-
-- Criar animações mais complexas do que uma interpolação entre dois valores de
-  uma propriedade
-- Sem usar Javascript!!
-  - Maior desempenho
-  - Fácil de fazer (de forma declarativa em vez de imperativa)
-  - Permite que o navegador controle a animação, possibilitando que ele utilize
-    dos recursos de hardware gráficos presentes ou mesmo pausando a computação
-    de animações que não estão visíveis
-
----
-## A propriedade **animation** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/animation))
-
-- Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
-  animações de propriedades CSS de forma similar a `transition`
-  ```html
-  <img src="images/urso.jpg" id="urso">
-  ```
-  ```css
-  #urso {
-    position: relative;
-    animation: flutuando .5s ease-in-out 0s infinite alternate;
-  }
-  @keyframes flutuando {
-    from { top: 0;     }
-    to   { top: -30px; }
-  }
-  ```
-<style>
-.urso-flutuante {
-  position: relative;
-  -webkit-animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
-  -moz-animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
-  -ms-animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
-  -o-animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
-  animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
-  transition: opacity 200ms ease-out;
-}
-.urso-flutuante:hover {
-  opacity: 0.25;
-}
-@-webkit-keyframes urso-flutuando {
-  from { top: 0;     }
-  to   { top: -30px; }
-}
-@-moz-keyframes urso-flutuando {
-  from { top: 0;     }
-  to   { top: -30px; }
-}
-@-ms-keyframes urso-flutuando {
-  from { top: 0;     }
-  to   { top: -30px; }
-}
-@keyframes urso-flutuando {
-  from { top: 0;     }
-  to   { top: -30px; }
-}
-  </style>
-  <div style="position: absolute; top: 50%; left: 50%; margin-top: -75px; margin-left: -75px;">
-  <img src="../../images/urso.jpg" style="width: 150px; border-radius: 75px;" class="urso-flutuante">
-  </div>
-
----
-## Criando uma animação
-
-- Uma animação CSS é composta por
-  1. Uma definição de quadros de animação (`@keyframes`) e
-  1. Uma configuração de parâmetros da animação (`animation`)
-- Os `@keyframes` definem o valor das propriedades que variam ao longo da
-  animação
-- A `animation` configura o tempo da animação, a ordem de execução e o nome da
-  sequência de quadros a ser usada
-
----
-## A propriedade **animation** (cont.)
-
-- É um atalho para:
-  - `animation-name: none`, nome dado ao **`@keyframes`** a ser usado
-  - `animation-duration: 0s`, duração
-  - `animation-timing-function: ease`, função de interpolação
-  - `animation-delay: 0s`, tempo de atraso
-  - `animation-iteration-count: 1`, quantas vezes rodar (pode ser `infinite`)
-  - `animation-direction: normal`, em que sentido executar
-    - `normal`, `reverse`, `alternate`, `alternate-reverse`
-  - `animation-fill-mode: none`, o que fazer com o resultado da animação após
-    terminar
-  - `animation-play-state: running`, estado da animação
-
----
-## Definindo **@keyframes**
-
-<style>
-@-webkit-keyframes terra-ao-longo-do-dia {
-  0%   { background: #6c5228; }
-  33%  { background: #48a037; }
-  66%  { background: #48a037; }
-  100% { background: #6c5228;	}
-}
-@keyframes terra-ao-longo-do-dia {
-  0%   { background: #6c5228; }
-  33%  { background: #48a037; }
-  66%  { background: #48a037; }
-  100% { background: #6c5228;	}
-}
-.terra {
-  position: absolute;
-  bottom: 0;
-  height: 65px;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  -webkit-animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
-  -moz-animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
-  -ms-animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
-  animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
-}</style>
-
-- ```css
-  @keyframes piscando {
-    from { opacity: 1.0; }
-    to   { opacity: 0.7; }
-  }
-  ```
-  ```css
-  @keyframes terra-ao-longo-do-dia {
-  	0%   { background: #6c5228; }  33%  { background: #48a037; }
-  	66%  { background: #48a037; }  100% { background: #6c5228; }
-  }
-  ```
-  <div class="terra"> </div>
-
----
-## Definindo **@keyframes** (cont.)
-
-<style>
-.estrela-mario-1:hover {
-  -webkit-animation: girando 1s ease-in-out 0s infinite alternate;
-  -moz-animation: girando 1s ease-in-out 0s infinite alternate;
-  -ms-animation: girando 1s ease-in-out 0s infinite alternate;
-  animation: girando 1s ease-in-out 0s infinite alternate;
-}
-@-webkit-keyframes girando {
-  from { transform: rotate(15deg); }
-  to   { transform: rotate(-15deg); }
-}
-@-moz-keyframes girando {
-  from { transform: rotate(15deg); }
-  to   { transform: rotate(-15deg); }
-}@-ms-keyframes girando {
-  from { transform: rotate(15deg); }
-  to   { transform: rotate(-15deg); }
-}
-@keyframes girando {
-  from { transform: rotate(15deg); }
-  to   { transform: rotate(-15deg); }
-}</style>
-
-- ```css
-  .estrela-mario-1:hover {
-    animation: girando 1s ease-in-out 0s infinite alternate;
-  }
-  @keyframes girando {
-    from { transform: rotate(15deg); }
-    to   { transform: rotate(-15deg); }
-  }
-  ```
-  <img class="estrela-mario-1" src="../../images/mario-star.png">
-
----
-## Definindo **@keyframes** (cont.)
-
-<style>
-.estrela-mario-2:hover {
-  -webkit-animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
-  -moz-animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
-  -ms-animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
-  animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
-}
-
-@-webkit-keyframes pirando {
-  from { opacity: 1; top: 0;      width: 100px; left: 0     }
-  to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
-}
-@-moz-keyframes pirando {
-  from { opacity: 1; top: 0;      width: 100px; left: 0     }
-  to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
-}
-@-ms-keyframes pirando {
-  from { opacity: 1; top: 0;      width: 100px; left: 0     }
-  to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
-}
-@keyframes pirando {
-  from { opacity: 1; top: 0;      width: 100px; left: 0     }
-  to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
-}
-
-@-webkit-keyframes girando-costas {
-  from { transform: rotateY(0); }
-  to   { transform: rotateY(3600deg); }
-}
-@-moz-keyframes girando-costas {
-  from { transform: rotateY(0); }
-  to   { transform: rotateY(3600deg); }
-}
-@-ms-keyframes girando-costas {
-  from { transform: rotateY(0); }
-  to   { transform: rotateY(3600deg); }
-}
-@keyframes girando-costas {
-  from { transform: rotateY(0); }
-  to   { transform: rotateY(3600deg); }
 }
 </style>
 
-- ```css
-  .estrela-mario-2:hover {
-    animation: pirando 600ms ease-in 3s 1 forwards,
-               girando-costas 3600ms ease-in 1 forwards;
+
+  - Considere que:
+    - O div representado pelo **quadrado pontilhado** está como **position:relative**
+    - O div <span class="minibola"> 2 </span> possui as propriedades: **top:-20px** e **left: 30px**
+
+<iframe width="90%" height="50%" src="//jsfiddle.net/fegemo/jnjvsqy4/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+---
+## **z-index**
+<style>
+  .quadrado{
+    height: 100px;
+    width: 140px;
+    border: 1px dashed black;
+    position:absolute;
   }
-  ```
-  <div style="position:relative;">
-    <img class="estrela-mario-2" src="../../images/mario-star.png" style="position:absolute;">
+  .q1{
+    background-color:lightblue;
+    z-index:1;
+  }
+  .q2{
+    background-color:lightyellow;
+    top:45px;
+    left: 20px;
+    z-index:2;
+  }
+  .q3{
+    background-color:lightgreen;
+    top:75px;
+    left: 30px;
+    z-index:3;
+
+
+    }
+</style>
+- Define a ordem "no eixo Z" com a qual elementos que se tocam deve ser exibida
+:::result
+  <div style="width:200px;height:170px;">
+    <div class="quadrado q1">
+      z-index=1
+    </div>
+    <div class="quadrado q2">
+      z-index=2
+    </div>
+    <div class="quadrado q3">
+      z-index=3
+    </div>
+
   </div>
+:::
+
+- Útil apenas para elementos `position: absolute` ou `position: fixed`
+
 
 ---
-## Definindo **@keyframes** (cont.)
+<!-- {"layout": "section-header"} -->
+# Centralizando as coisas
+## Centralizando elementos de acordo com o seu tipo
 
-- ```css
-  @keyframes pirando {
-    from { opacity: 1; top: 0;      width: 100px; left: 0     }
-    to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
-  }
-  @keyframes girando-costas {
-    from { transform: rotateY(0); }
-    to   { transform: rotateY(3600deg); }
-  }
+- Centralizando conteúdo `inline`
+- Centralizando conteúdo com largura definida
+- Centralizando um elemento com `position` `absolute` ou `fixed`
+<!-- {ul:.content} -->
+
+
+
+---
+## Centralizando horizontalmente
+
+- Existem várias formas para centralizar elementos que se aplicam a situações
+  diferentes
+- Centralizando conteúdo `inline`:
+  ```css
+  .centraliza { text-align: center; }
+  ```
+- Centralizando um elemento com largura definida
+  ```css
+  .centraliza-definida { margin: 0 auto; }
   ```
 
 ---
-## **animation** ou **transition**?
+## Centralizando horizontalmente (cont.)
 
-- **`transition`** é uma interpolação entre dois valores de uma propriedade
-- **`animation`** é uma interpolação entre dois ou mais valores, opcionalmente
-  acontecendo mais de uma vez e em ordem alternada
-- Sempre optamos pelo mais simples
-  - No caso, `transition`, quando possível
+- Centralizando um elemento com `position` `absolute` ou `fixed`
+  ```css
+  .centraliza-position { left: (LARGURA_P - LARGURA_E)/2; }
+  ```
+  ![](../../images/box-element-dimensions.png) <!-- {.push-right} -->
+
+  - Onde `LARGURA_P` é a largura do recipiente e `LARGURA_E` é a largura
+    conhecida do elemento que queremos centralizar
 
 ---
-## Compatibilidade nos navegadores
+## Centralizando horizontalmente (cont.)
 
-<div class="caniuse" data-feature="css-animation">Carregando das **Internetchas...**</div>
+- Centralizando um elemento com `position` `absolute` ou `fixed` em um
+  recipiente fluido (largura pode variar)
+  ```css
+  .centraliza-fluido { left: 50%; margin-left: -(LARGURA_E / 2); }
+  ```
+- [Um guia sobre como centralizar qualquer elemento no site designshack.net](http://designshack.net/articles/css/how-to-center-anything-with-css/)
+  ![](../../images/box-element-dimensions.png) <!-- {.push-right} -->
 
 ---
 # Referências
 
-- [Mozilla Developer Network](https://developer.mozilla.org/)
-- [caniuse.com](http://caniuse.com/)
-
----
-# Slide **_easter egg_**!!
-
-- Em 01/04/2015, a Google lançou um espelho para seu buscador, o com.google.
-  Ele se parecia com isto:
-  [com.google](../../images/comgoogle.png)
-
-- Usando transformações e animações, fica facinho fazer um desses!!
-  <a class="bookmarklet" href="javascript:(function(){ if (document.body.style.transform === '') { document.body.style.transform='rotateY(180deg)'; } else { document.body.style.transform = '';}})()">Paradinha do Google</a>
-  <a class="bookmarklet" href="javascript:(function(){ if (!document.getElementById('aew-anim')) { document.getElementsByTagName('html')[0].style.overflowX='hidden'; var s= document.createElement('style'); s.id='aew-anim'; s.innerText='@-webkit-keyframes aew { from { transform: skewX(-2deg); } to { transform: skewX(2deg); }}'; document.head.appendChild(s); } if (document.body.style.webkitAnimation === '') { document.body.style.transform='skewX(10deg)';document.body.style.transformOrigin='-50% 0';document.body.style.webkitAnimation='aew 400ms ease-in-out infinite alternate'; } else { document.body.style.webkitAnimation='';document.body.style.transform='';}})()">Rabo do cachorro</a>
-
-  - Modo de uso de um **_bookmarklet_**: arraste o link para sua barra de favoritos e
-    simplesmente clique no favorito quando estiver em uma página
+- [Propriedade **position** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+- [Um breve e interessante tutorial sobre posicionamento](http://learnlayout.com/position.html)
