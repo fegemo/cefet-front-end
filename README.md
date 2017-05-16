@@ -46,7 +46,7 @@
 - [HTML parte 5](classes/html5/) - Divitite e as _Tags_ Semânticas, display,
   pseudo-coisas e Assombrações :ghost:
 - [CSS parte 4](classes/css4/) - Posicionamento e mais
-  Assombrações :heavy_plus_sign::ghost:
+  Assombrações :ghost::ghost::ghost:
 
 <!--
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)
