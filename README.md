@@ -45,12 +45,12 @@
 - [CSS parte 3](classes/css3/) - Layout, Fontes, Multimídia e Unicórnios 🦄
 - [HTML parte 5](classes/html5/) - Divitite e as _Tags_ Semânticas, display,
   pseudo-coisas e Assombrações :ghost:
+- [CSS parte 4](classes/css4/) - Posicionamento e mais
+  Assombrações :heavy_plus_sign::ghost:
 
 <!--
 - [HTML 4 - Box Model e Unicórnios (Prática)](classes/html4/) (20/03/2016)
 - [Javascript 1 - Linguagem](classes/js1/) (22/03/2016)
-- [CSS 3 - _Layout_](classes/css3/) (29/03/2016)
-- [CSS 4 - _Layout_ e o Coral 55 (Prática)](classes/css4/) (31/03/2016)
 - [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
 - [Javascript 2 - DOM, Eventos e RPG (Prática)](classes/js2/) (07/04/2016)
 - [Javascript 3 - Padrões de Projeto](classes/js3/) (12/04/2016)
