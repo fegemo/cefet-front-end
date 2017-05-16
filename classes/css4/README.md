@@ -353,7 +353,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   .fixo { position: fixed; right: 0; bottom: 10px; }
   ```
 - Resultado:
-  <iframe width="100%" height="240" src="http://jsfiddle.net/fegemo/s01Lc3a8/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+  <iframe width="100%" height="240" src="https://jsfiddle.net/fegemo/s01Lc3a8/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
@@ -471,4 +471,4 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 # Referências
 
 - [Propriedade **position** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
-- [Um breve e interessante tutorial sobre posicionamento](http://learnlayout.com/position.html)
+- [Um breve e interessante tutorial sobre posicionamento](https://learnlayout.com/position.html)
