@@ -1,66 +1,145 @@
 <!-- {"layout": "title"} -->
 # CSS - Parte 4
-## Especificidade de seletores, Layout e posicionamento e centralizando coisas
+## Especificidade de seletores, Centralizando coisas e a Lanchonete do Coral 55 :palm_tree:
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula (1/4)
+# Na última aula (1/2)
 
-- **_Tags_ Semânticas**:
-  - O HTML5 ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} -->
-    propôs elementos idênticos às `divs`/`spans`, mas que **possuem
-    sentido para o navegador**. Por exemplo:
-    ```html
-    <header></header>   <!-- em vez de <div id="header"></div> -->
-    <footer></footer>   <!-- em vez de <div id="footer"></div> -->
-    <article></article> <!-- em vez de <div id="article"></div> -->
-    <time></time>       <!-- em vez de <span id="time"></span> -->
-    <nav></nav>         <!-- em vez de <div id="navigation"></div> -->
-    ```
-    - E várias outras...
+| position | Descrição | Exemplos de uso | top, right, bottom, left | z-index |
+|------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
+| `static` | Fluxo normal | Elementos **sem posicionamento especial** | ignorados | ignorado |
+| `relative` | Fluxo normal, deslocado | Elementos que podem se **deslocar um pouco**; **contextos para elementos absolutos** | **deslocamentos** nas 4 direções | determina ordem |
 
 ---
-# Na última aula  (2/4)
+# Na última aula  (2/2)
 
-- **Propriedade `display`**
-
-  <iframe width="600" height="300" src="//jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-# Na última aula (3/4)
-
-- **Alterando a visibilidade**:
-  - `display:none`: o elemento é removido do fluxo
-  - `visibility: hidden;`: o elemento fica escondido, mas ainda ocupa espaço
-  - `opacity`: define a opacidade:
-    ```css
-      video {
-        opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
-      }
-    ```
-
----
-## Na última aula (4/4)
-- **_Pseudo-classes_ e _Pseudo-elements_**:
-
-  _Pseudo-class_
-    ~ permitem **selecionar** elementos em **diferentes situações**.  
-    ~ Exemplos: `:focus` (contém o foco), `:hover` (mouse em cima)
-
-  _Pseudo-element_
-    ~ permitem **estilizar** certas **partes de elementos**
-    ~ Exemplos: `::selection` (seleção de texto) `::first-letter` (primeira letra)
+| position | Descrição | Exemplos de uso | top, right, bottom, left | z-index |
+|------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
+| `absolute` | Removido do fluxo, posicionado em um (x,y) relativo a um contexto | Elementos que queremos **determinar os valores (x,y)** para posicioná-los exatamente em algum lugar | **posições** referentes às 4 direções | determina ordem |
+| `fixed` | Removido do fluxo, em um (x,y) na janela | Idem, mas a **posição é fixa na janela** | **posições** para as 4 direções | determina ordem |
 
 ---
 # Roteiro de hoje
 
-1. Especificidade de seletores
-1. Layout e posicionamento
-1. Centralizando coisas
-1. Mais Assombrações :heavy_plus_sign::ghost:
+1. [Lanchonete do Coral 55](#lanchonete-do-coral-55) :palm_tree:
+1. [Especificidade de seletores](#especificidade-de-seletores)
+1. [Centralizando coisas](#centralizando-as-coisas)
 
 ---
-<!-- {"layout": "section-header"} -->
+<!--
+{
+  "embeddedStyles": ".ravie { font-family: Ravie, serif; color: #e90c0c; }",
+  "layout": "section-header",
+  "slideHash": "lanchonete-do-coral-55"
+}
+-->
+# Lanchonete do Coral 55  <!-- {.ravie style="font-size: 2em"} -->
+## Conhecendo o menu da lanchonete
+
+- Atividade de hoje
+- Layout e posicionamento
+- Propriedade `line-height`
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"backdrop": "coral-55"} -->
+
+---
+## Comp / Specs
+
+[![](../../images/coral55-comp.png)](../../images/coral55-comp.png) <!-- {style="width: 49%"} -->
+[![](../../images/coral55-specs.png)](../../images/coral55-specs.png) <!-- {style="width: 49%"} -->
+
+*[Comp]: Comprehensive Layout*
+*[Specs]: Specifications*
+
+---
+# Atividade de hoje
+
+1. O objetivo é treinar **_layout_ e posicionamento** em `CSS`
+   - `position` (`static`, `relative`, `absolute`, `fixed`), `float` etc.
+   - O HTML está pronto, faltando o CSS da página
+1. O _layout_ que usamos no exercício dos Unicórnios se chama **fluido**. Hoje,
+   você vai fazer um **_layout_ de largura fixa**
+   - O conteúdo da página deve ter `800px` de largura e deve estar centralizado
+1. [Baixe os arquivos][coral-55-seminal]. Instruções detalhadas estão no
+   arquivo README.md.
+
+[coral-55-seminal]: https://github.com/fegemo/cefet-front-end-coral-55/
+
+---
+## _Layout_ e posicionamento
+
+- Em alguns _layouts_ podemos **usar elementos posicionados** de maneira
+  diferente do tradicional `static` quando:
+  1. Deseja-se posicionar um elemento em cima do outro
+  1. Deseja-se especificar coordenadas (x,y) de um elemento
+  1. Deseja-se que um elemento seja removido do fluxo (e não ocupe espaço)
+- Veja como está estruturado o HTML e como você pode estilizar as partes
+
+---
+<!-- {
+  "layout": "regular",
+  "embeddedStyles": ".code pre { margin-left: 153px; } .code::before { content: 'H T M L'; display: inline-block; height: 4em; width: 1em; font-family: monospace; font-size: 110px; float: right; margin-left: 20px;}"
+} -->
+
+<div class="code">
+
+```html
+<body>
+  <div id="recipiente">
+    <header><!-- titulos --></header>
+    <main id="conteudo">
+      <section id="lateral">
+        <!-- siri, peixe, bolhas -->
+      </section>
+      <section id="cardapio">
+        <article><!-- ... --></article>
+        <article><!-- ... --></article>
+        <!-- mais itens do menu -->
+      </section>
+    </main>
+    <footer><!-- cartoes --></footer>
+  </div>
+  <aside id="ticket"><!-- ... --></aside>
+</body>
+```
+
+</div>
+
+---
+<!-- {"state": "show-active-slide-and-previous"} -->
+
+::: figure .figure-slides
+![](../../images/coral-55-annotation-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![](../../images/coral-55-annotation-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
+
+---
+## A propriedade **line-height** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height))
+
+- Define a altura de uma linha de texto.
+- Inicialmente, `line-height: 1em;`, mas qualquer valor de medida de tamanho
+  pode ser usado
+  - Exemplo:
+    ```css
+    .espacamento-simples { line-height: 1em; }
+    .espacamento-duplo   { line-height: 2em; }
+    ```
+
+    <p style="float: left; width: 45%; line-height: 1em; height: 100px; overflow: auto; border: 3px solid black">
+      Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit. Curabitur mauris eros, fermentum eget dolor sit amet.</p>
+
+    <p style="float: right; width: 45%; line-height: 2em; height: 100px; overflow: auto; border: 3px solid black">
+    Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit. Curabitur mauris eros, fermentum eget dolor sit amet.</p>
+
+
+---
+<!-- {"layout": "section-header", "slideHash": "especificidade-de-seletores"} -->
 # Especificidade de seletores
 ## Aplicando regras
 
@@ -134,6 +213,12 @@ Regra 5
   1. Contar o número de tags e pseudo-elementos no seletor (`c`)
   1. Concatenar os três números (`abc`)
 
+```css
+#posts-recentes .post.novidade > h2 {
+  /* id: 1, classes: 2, tag: 1 */
+  /* pontuação: 121 */
+}
+```
 ---
 ## Exemplos
 
@@ -171,6 +256,7 @@ p strong em { }           /* 003 */
 ---
 <!--
 {
+  "slideHash": "specificator-tabajara",
   "scripts": ["../../scripts/classes/spec-tabajara.min.js"],
   "styles": ["../../styles/classes/spec-tabajara.min.css"]
 }
@@ -188,215 +274,152 @@ p strong em { }           /* 003 */
   <div>
     <div class="spec-class">
       <div id="spec-tabajara-output-a" class="spec-output">0</div>
-      <div>A IDs</div>
+      <div>(a) IDs</div>
     </div>
     <div class="spec-class">
       <div id="spec-tabajara-output-b" class="spec-output">0</div>
-      <div>Classes, atributos e pseudo-classes</div>
+      <div>(b) Classes, atributos e pseudo-classes</div>
     </div>
     <div class="spec-class">
       <div id="spec-tabajara-output-c" class="spec-output">0</div>
-      <div>Elementos, pseudo-elementos</div>
+      <div>(c) Elementos, pseudo-elementos</div>
     </div>
   </div>
 </article>
 
 ---
-<!-- {"layout": "section-header"} -->
-# Layout e posicionamento
-## Aplicando fluxos alternativos aos elementos
-
-- Posicionamento: `top`, `right`, `bottom` e `left`
-- Tipos de `position`:`absolute`, `relative`, `fixed` e `static`
-- `z-index`
-<!-- {ul:.content} -->
-
----
-## Posição estática
-
-- Valor padrão - usa o posicionamento do fluxo padrão
-  ```html
-  <div class="estatico">Conteúdo</div>
-  ```
-  ```css
-  .estatico {
-    position: static;
-  }
-  ```
-- <div style="display:inline-block;float:right;height:1em;font-size:.4em;"><input type="checkbox" checked id="button-estatico" class="switch" onclick="javascript: (function() { var b = document.getElementById('estatico'); b.classList.toggle('estatico');}())" />
-    <label for="button-estatico">`.estatico`</label>
-  </div>
-  Resultado
-  <style>.estatico {position: static;}</style>
-  <div id="estatico" class="estatico" style="border: 3px dashed rebeccapurple">Conteúdo</div>
-
-
----
-## Layout e posicionamento
-
-- Podemos dar
-  **fluxos alternativos** aos elementos
-  - Propriedades envolvidas:
-    ```css
-    position: static; /* relative, absolute, fixed */
-    top: 0px;         /* uma dimensão */
-    right: 0px;       /* uma dimensão */
-    bottom: 0px;      /* uma dimensão */
-    left: 0px;        /* uma dimensão */
-    z-index: 1;       /* um inteiro */
-    ```
-
----
-## **top, right, bottom e left**
-
-- Usadas para definir a posição (ou o deslocamento) de um elemento
-- Sua interpretação depende de qual valor de `position` estamos usando para
-  aquele elemento
-
----
-## **position**
-
-- `static`
-  - Comportamento padrão. O elemento é **posicionado no fluxo normal (padrão)**.
-  - As propriedades `left`, `right`, `top`, `bottom` e `z-index`
-    **são ignoradas**
-- `absolute`
-  - O elemento **não tem espaço reservado para ele**. Em vez disso, ele fica
-    exatamente na posição especificada por `left`, `right`, `top`, `bottom`
-    relativo ao seu mais próximo antecessor-posicionado (não _static_)
-  - Margens se aplicam, porém elas não fazem _margin collapse_ com outras
-
----
-## **position** (cont.)
-
-- `relative`
-  - O elemento continua no **fluxo normal**, a menos que tenha suas propriedades
-    `left`, `right`, `top` e `bottom` ajustadas.
-  - A posição do elemento será **ajustada com relação à sua posição original**
-    (caso ele fosse `static`)
-  - Os elementos posteriores **não são ajustados** para ocupar eventuais
-    "buracos" na página
-- `fixed`
-  - Bem semelhante ao `absolute`, porém o elemento é ajustado na posição
-    `left`, `right`, `top`, `bottom` **no espaço da tela** (_viewport_), e não
-    da página
----
-## **position** -- Exemplo
-<style>
-.minibola{
-  display: inline-block;
-
-  width:48px;
-
-  padding: 4px 15px;
-  border: 2px solid rebeccapurple;
-  background: rgba(255, 255, 255, .5);
-  border-radius: 70px;
-
-}
-</style>
-
-
-  - Considere que:
-    - O div representado pelo **quadrado pontilhado** está como **position:relative**
-    - O div <span class="minibola"> 2 </span> possui as propriedades: **top:-20px** e **left: 30px**
-
-<iframe width="90%" height="50%" src="//jsfiddle.net/fegemo/jnjvsqy4/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
----
-## **z-index**
-<style>
-  .quadrado{
-    height: 100px;
-    width: 140px;
-    border: 1px dashed black;
-    position:absolute;
-  }
-  .q1{
-    background-color:lightblue;
-    z-index:1;
-  }
-  .q2{
-    background-color:lightyellow;
-    top:45px;
-    left: 20px;
-    z-index:2;
-  }
-  .q3{
-    background-color:lightgreen;
-    top:75px;
-    left: 30px;
-    z-index:3;
-
-
-    }
-</style>
-- Define a ordem "no eixo Z" com a qual elementos que se tocam deve ser exibida
-:::result
-  <div style="width:200px;height:170px;">
-    <div class="quadrado q1">
-      z-index=1
-    </div>
-    <div class="quadrado q2">
-      z-index=2
-    </div>
-    <div class="quadrado q3">
-      z-index=3
-    </div>
-
-  </div>
-:::
-
-- Útil apenas para elementos `position: absolute` ou `position: fixed`
-
-
----
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "centralizando-as-coisas"} -->
 # Centralizando as coisas
-## Centralizando elementos de acordo com o seu tipo
+## Centralizando elementos em diferentes cenários
 
-- Centralizando conteúdo `inline`
-- Centralizando conteúdo com largura definida
-- Centralizando um elemento com `position` `absolute` ou `fixed`
+- Centralizando horizontalmente
+- Centralizando verticalmente
+
 <!-- {ul:.content} -->
 
+---
+<!-- {"layout": "regular"} -->
+# Centralizando **horizontalmente** <!-- {.underline.upon-activation} -->
 
+- Existem várias formas para centralizar elementos que se aplicam a **situações
+  diferentes**:
+  1. Centralizar o conteúdo _inline_ de um elemento
+  1. Centralizar um elemento `block` ou `inline-block` com largura definida
+  1. Centralizar um elemento com `position: absolute` ou `fixed`...
+     1. ...quando ele tem largura fixa
+     1. ...quando ele é fluido
+  1. E outras formas...
 
 ---
-## Centralizando horizontalmente
+<!-- {"layout": "regular"} -->
+## (1) Centralizando conteúdo _inline_
 
-- Existem várias formas para centralizar elementos que se aplicam a situações
-  diferentes
-- Centralizando conteúdo `inline`:
+- Para **centralizar os filhos `inline`** de um elemento:
   ```css
-  .centraliza { text-align: center; }
+  .centraliza-os-filhos {
+    text-align: center;   /* usar a propriedade text-align: center */
+  }
   ```
-- Centralizando um elemento com largura definida
-  ```css
-  .centraliza-definida { margin: 0 auto; }
-  ```
+  - Exemplos:
+    - centralizar texto (que é _inline_) dentro de um título h1
+    - centralizar uma imagem (_inline_) dentro de um parágrafo
+    - centralizar `<span>` (_inline_ ou `inline-block`) dentro de uma `<div>`:
+      <iframe width="100%" height="100" src="//jsfiddle.net/fegemo/hko474g8/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-## Centralizando horizontalmente (cont.)
+<!-- {"layout": "regular"} -->
+## (2) Centralizando um elemento _block_
 
-- Centralizando um elemento com `position` `absolute` ou `fixed`
+- Para **centralizar um elemento `block`**:
   ```css
-  .centraliza-position { left: (LARGURA_P - LARGURA_E)/2; }
+  .centraliza-block {
+    margin: 0 auto; /* margin-left: auto, margin-right: auto, top/bottom: 0 */
+  }
+  ```
+  - Exemplos:
+    - centralizar uma imagem com `display: block`
+    - centralizar uma `<div>` dentro de outra
+    - centralizar uma `<table>` dentro de seu container:
+      <iframe width="100%" height="130" src="//jsfiddle.net/fegemo/3a21w96j/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "regular"} -->
+## (3.1) Centralizando um elemento `absolute`
+
+- Centralizando um elemento com `position: absolute` ou `fixed` quando a
+  **largura do seu container é conhecida**:
+  ```css
+  .centraliza-elemento-absoluto {
+    left: (LARGURA_P - LARGURA_E)/2;
+  }
   ```
   ![](../../images/box-element-dimensions.png) <!-- {.push-right} -->
 
   - Onde `LARGURA_P` é a largura do recipiente e `LARGURA_E` é a largura
-    conhecida do elemento que queremos centralizar
+    do elemento que queremos centralizar
 
 ---
-## Centralizando horizontalmente (cont.)
+<!-- {"layout": "regular"} -->
+## (3.2) Centralizando um elemento `absolute`
 
-- Centralizando um elemento com `position` `absolute` ou `fixed` em um
-  recipiente fluido (largura pode variar)
+- Centralizando um elemento com `position: absolute` ou `fixed` **em um
+  recipiente fluido** (largura pode variar):
   ```css
-  .centraliza-fluido { left: 50%; margin-left: -(LARGURA_E / 2); }
+  .centraliza-elemento-com-pai-fluido {
+    left: 50%;
+    margin-left: -(LARGURA_E / 2);  /* margin-left negativa!! */
+  }
   ```
-- [Um guia sobre como centralizar qualquer elemento no site designshack.net](http://designshack.net/articles/css/how-to-center-anything-with-css/)
-  ![](../../images/box-element-dimensions.png) <!-- {.push-right} -->
+- Mais: [Um guia sobre como centralizar qualquer elemento no site designshack.net](http://designshack.net/articles/css/how-to-center-anything-with-css/)
+
+---
+<!-- {"layout": "regular"} -->
+# Centralizando **verticalmente**  <!-- {.underline.upon-activation} -->
+
+- Assim como a centralização horizontal, a vertical depende do cenário:
+  1. Centralizar um elemento com `position: absolute` ou `fixed`
+  1. Centralizar um elemento `inline` com 1 única linha
+  1. E outras formas...
+
+---
+<!-- {"layout": "regular", "slideHash": "centralizando-verticalmente-absolute-fixed"} -->
+## (1) Centralizando vertic. um elemento `absolute`
+
+- É feito de forma análoga à centralização horizontal de um elemento com
+  `position: absolute` ou `fixed`:
+  1. Container com altura conhecida:
+     ```css
+     .centraliza-elemento-absoluto {
+       top: (ALTURA_P - ALTURA_E)/2;
+     }
+     ```
+  1. Container fluido:
+     ```css
+     .centraliza-elemento-absoluto {
+       top: 50%;
+       margin-top: -(ALTURA_E / 2);
+     }
+     ```
+
+---
+<!-- {"layout": "regular"} -->
+## (2) Centralizando vertic. elemento `inline`
+
+- Para **centralizar verticalmente um conteúdo `inline`**
+  1. <iframe width="380" height="171" src="//jsfiddle.net/fegemo/23311u59/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+     Se ele possui apenas 1 linha:
+
+     ```css
+     .centraliza-vertical-1-linha {
+       line-height: ALTURA_E;
+     }
+     ```
+     - Onde `ALTURA_E` é a altura do conteúdo do elemento sendo centralizado
+  1. Se ele possuir mais de 1 linha:
+     - Usar `display: table` - veja tutorial
+      ["_Vertically center multi-lined text_"][multi-line-text-center]
+
+[multi-line-text-center]: https://css-tricks.com/vertically-center-multi-lined-text/
 
 ---
 # Referências
