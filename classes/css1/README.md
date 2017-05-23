@@ -35,7 +35,7 @@
 - _Hotkeys_
 
 <!-- {ul:.content} -->
- 
+
 ---
 <!-- {"layout": "regular"} -->
 ## Como ser mais **produtivo**
@@ -370,7 +370,7 @@
 <video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"slideHash": "cores-e-gradientes","embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
+  <!-- {"slideHash": "cores-e-gradientes","embeddedStyles": ".color-text { color: #afaf03; } .gradient-text { background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}" } -->
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
 
 ---
@@ -401,6 +401,7 @@
 <video src="../../videos/escolhendo-cores.mp4" height="460" controls style="margin: 0 auto;"></video>
 
 ---
+<!-- {"slideHash": "gradientes"} -->
 ## Gradientes
 
 - `linear-gradient` é um **valor válido para `background-image`**,

@@ -481,7 +481,7 @@ body {
   ```
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "cores-transparentes"} -->
 ## Cores semitransparentes
 
 - É possível usar cores com transparência, que deixam
