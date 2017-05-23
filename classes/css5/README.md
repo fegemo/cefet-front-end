@@ -118,6 +118,7 @@
 :::
 
 ---
+<!-- {"slideHash": "line-height"} -->
 ## A propriedade **line-height** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height))
 
 - Define a altura de uma linha de texto.
@@ -298,7 +299,7 @@ p strong em { }           /* 003 */
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "centralizacao-horizontal"} -->
 # Centralizando **horizontalmente** <!-- {.underline.upon-activation} -->
 
 - Existem várias formas para centralizar elementos que se aplicam a **situações
