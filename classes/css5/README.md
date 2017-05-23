@@ -67,7 +67,7 @@
 1. [Baixe os arquivos][coral-55-seminal]. Instruções detalhadas estão no
    arquivo README.md.
 
-[coral-55-seminal]: https://github.com/fegemo/cefet-front-end-coral-55/
+[coral-55-seminal]: https://github.com/fegemo/cefet-front-end-coral-55/archive/master.zip
 
 ---
 ## _Layout_ e posicionamento
