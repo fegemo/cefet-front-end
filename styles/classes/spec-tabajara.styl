@@ -1,9 +1,10 @@
 #spec-tabajara-input
   padding: 4px 8px;
   font-family: monospace;
-  font-size: 30px;
+  font-size: 24px;
   border: 1px solid silver;
   box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+  width 30em
 
 #spec-tabajara-button
   font-size: 24px;
@@ -16,34 +17,32 @@
   margin-bottom 20px
   text-align center
 
+#spec-tabajara > div:last-of-type
+  display flex
+  justify-content space-around
+
 .spec-class
-  width 150px
+  width 220px
   height @width
-  display inline-block
-  float left
   text-align center
+  font-size 85%
+  border-radius 1em
+  padding 0.5em
 
   &:nth-child(1)
     background-color cornflowerblue
     border 2px solid darken(@background-color, 20%)
     color darken(@background-color, 60%)
-    transform-origin 100% 100%
-    transform rotate3d(0, 0, 1, -30deg)
-    border-radius (@width/2) (@width/2) 0 (@width/2)
 
   &:nth-child(2)
     background-color coral
     border 2px solid darken(@background-color, 20%)
     color darken(@background-color, 60%)
-    border-radius (@width/2) (@width/2) 0 0
 
   &:nth-child(3)
     background-color darkorchid
     border 2px solid darken(@background-color, 20%)
     color darken(@background-color, 60%)
-    transform-origin 0 100%
-    transform rotate3d(0, 0, 1, 30deg)
-    border-radius (@width/2) (@width/2) (@width/2) 0
 
 
   .spec-output
