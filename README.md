@@ -49,10 +49,11 @@
   Assombrações :ghost::ghost::ghost:
 - [CSS parte 5](classes/css5/) - Especificidade, Centralizando coisas e
   a Lanchonete do Coral 55 :palm_tree:
+- [Javascript parte 1](classes/js1/) - Características, Escrevendo código,
+  Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 
 <!--
-- [Javascript 1 - Linguagem](classes/js1/) (22/03/2016)
 - [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
 - [Javascript 2 - DOM, Eventos e RPG (Prática)](classes/js2/) (07/04/2016)
 - [Javascript 3 - Padrões de Projeto](classes/js3/) (12/04/2016)

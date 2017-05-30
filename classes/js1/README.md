@@ -1,103 +1,169 @@
+<!-- {"layout": "title"} -->
 # Javascript - Parte 1
+## Características, Escrevendo código, Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
+
+<!--
+{"layout": "regular"}
+# Na última aula (/)
+
+- Especificidade
+
+
+{"layout": "regular"}
+# Na última aula (/)
+
+- Centralizando
+
+
+
+{"layout": "regular"}
+# Na última aula (/)
+
+-->
+---
+# Hoje veremos...
+
+1. [Resolvendo Equações!](#resolvendo-equacoes)
+1. [Características da linguagem](#caracteristicas-da-linguagem)
+1. [Escrevendo código](#escrevendo-codigo)
+1. [Clicando em um botão](#clicando-em-um-botao)
 
 ---
-# Roteiro
+<!-- {"layout": "section-header", "slideHash": "resolvendo-equacoes"} -->
+# Resolvendo Equações!
+## ~~para roubar na prova~~
 
-1. História
-1. Características da linguagem
-1. Como usar em páginas web
-1. Operadores
-1. Variáveis
-1. Tipos de dados
-1. _Statements_
-1. Funções
+- Atividade de hoje
+- Elementos HTML para:
+  - Entrada de números (`<input>`)
+  - Rótulos (`<label>...</label>`)
+  - Botão (`<button>...</button>`)
 
----
-# História
-
-1989 - 1993 <!-- {.bullet-old} -->
-  ~ Tim Berners-Lee cria a WWW em CERN (*European Organization for 
-    Nuclear Research*) e a deixa aberta ao público geral <!-- {dd:.bullet-old} -->
-
-1994 <!-- {.bullet-old} -->
-  ~ Håkon propõe uma linguagem para dar conta da responsabilidade de 
-    alterar a aparência de páginas web chamada CSS <!-- {dd:.bullet-old} -->
-  
-1995 (maio)
-  ~ ![Foto de Brendan Eich](../../images/brendan-eich.png) <!-- {.portrait.push-right} -->
-    Brendan Eich, funcionário do Netscape, criou (em 10 dias!!) uma 
-    linguagem para alterar páginas web dinamicamente - o _Mocha_
-
-1995 (setembro)
-  ~ _LiveScript_ (novo nome) é lançado com a versão beta do Netscape 2.0
-  
-1995 (dezembro)
-  ~ Nome alterado para JavaScript na versão 2.0 oficial para
-    aproveitar a fama do Java
+<!-- {ul^1:.content} -->
 
 ---
-## História (cont.)
-
-1996 (agosto)
-  ~ Microsoft adota o JavaScript sob o nome de JScript no navegador 
-    Internet Explorer 3.0
-    
-1996 (novembro)
-  ~ A Netscape submeteu o JavaScript para a 
-    _Ecma international_ para padronização. A especificação recebeu o nome de
-     _ECMAScript_
-  
-1997 (junho)
-  ~ A _Ecma International_ publicou a primeira versão, o ECMA-262
-
-1998
-  ~ Versão 2 do ECMAScript
-
-1999 (junho)
-  ~ Versão 3 do ECMAScript
-
-2009
-  ~ Versão 5 do ECMAScript
-
-2013 - 2017
-  ~ Versão 6 e 7 do ECMAScript, que mudaram de nome para es2015 e 
-    es2016 respectivamente
-    
-*[ECMA]: European Computer Manufacturers Association*
-*[Ecma]: European Computer Manufacturers Association*
+<!-- {"backdrop": "matematica"} -->
 
 ---
-## JavaScript nos anos 90
+<!-- {"layout": "regular"} -->
+# Atividade de hoje
 
-[![](../../images/pocketdragon.png)](http://fegemo.github.io/pocketdragon/)
+1. O objetivo é começar a usar JavaScript nas páginas
+1. Você deve criar código JavaScript para calcular as raízes reais de uma
+   **equação de segundo grau** na forma `ax² + bx + c = 0`
+1. [Baixe os arquivos][matematica-seminal]. Instruções detalhadas estão no
+   arquivo README.
+1. Será necessário utilizar novos elementos HTML:
+   - Campo de entrada de dados numéricos
+   - Rótulo (ou _label_)
+   - Botão
+
+[matematica-seminal]: https://github.com/fegemo/cefet-front-end-math/archive/master.zip
 
 ---
+<!-- {"layout": "regular", "slideHash": "campo-de-entrada-numerica"} -->
+## **Campo de entrada** de dados numéricos
+
+- Usuários podem digitar valores em elementos `<input type="...">`: <input>
+- Há vários tipos, como `text`, `date`, `number`
+  - Hoje vamos usar **o `type="number"`**:
+    ```html
+    <input type="number" id="qtde-de-pasteis" value="4">
+    ```
+    ::: result
+    <input type="number" value="4">
+    :::
+  - É possível estilizá-los para, por exemplo, definir a largura:
+    ```css
+    input[type="number"] {  /* apenas <input>s do tipo "number" */
+      width: 40px;
+    }
+    ```
+
+<!-- {ul^0:.bulleted} -->
+
+---
+<!-- {"layout": "regular"} -->
+## **Entrada** de dados numéricos - **atributos** <!-- {.underline.upon-activation} -->
+
+- Existem alguns atributos do `<input type="number">`:
+  - `value="..."`: **valor inicial**
+    ::: result
+    <input type="number" value="4" style="width: 4em;"> \<input type="number" **value="4"**\>
+    :::
+  - `min="..."`, `max="..."`: valor **mínimo/máximo** permitido
+    ::: result
+    <input type="number" min="3" max="5" style="width: 4em;"> \<input type="number" **min="3" max="5"**\>
+    :::
+  - `step="..."`: **quanto aumentar/diminuir** ao clicar nas setinhas
+    ::: result
+    <input type="number" step="0.2" style="width: 4em;"> \<input type="number" **step="0.2"**\>
+    :::
+
+<!-- {ul^0:.bulleted} -->
+
+---
+<!-- {"layout": "regular"} -->
+## **Rótulo** para o campo de entrada
+
+- Além do campo de entrada de dados, é comum colocarmos um texto indicando
+  o que deve ser colocado nele, tipo: <label>Pastéis: <input type="number" value="4" style="width: 2em;"></label>
+  - Chamamos isso de **rótulo, ou _label_** e usamos `<label>...</label>`
+  - Quando clicado, **o rótulo move o foco** para o `<input>`
+  - É necessário especificar a que `<input>` ele se refere e isso pode ser feito de duas formas:
+    1. ```html
+       <label>Pastéis: <input type="number" value="4"></label>
+       ```
+    1. ```html
+       <label for="qtde-de-pasteis">Pastéis:</label>
+       <input type="number" value="4" id="qtde-de-pasteis">
+       ```
+---
+<!-- {"layout": "regular", "slideHash": "botoes-de-acao"} -->
+## **Botões** de ação
+
+- É possível criar botões com o elemento `<button>texto</button>`, em que:
+  - `texto` é o que aparece dentro do botão:
+    ```html
+    <button id="delicia">Sou um delicioso botão</button>
+    ```
+    ::: result
+    <button>Sou um delicioso botão</button> - mas não acontece nada?!
+    :::
+  - Para atribuir comportamento ao clique do botão, **é necessário usar
+    JavaScript!**
+    ```js
+    let botaoDeliciaEl = document.querySelector('#delicia');
+    botaoDeliciaEl.addEventListener('click', function() {
+      window.alert(':3');
+    });     // veremos como!!
+    ```
+
+---
+<!-- {"layout": "section-header", "slideHash": "caracteristicas-da-linguagem"} -->
 # Características da linguagem
+## O que é JavaScript e como usar
+
+- Características da linguagem
+- Incluindo código JavaScript na página
+
+<!-- {ul:.content} -->
 
 ---
-## O que é Javascript?
+# O que é JavaScript?
 
-- Linguagem imperativa, com tipagem dinâmica, interpretada
-- Há um interpretador embutido em cada navegador:
-  - Chrome &#8594; V8
-  - Firefox &#8594; SpiderMonkey
-  - Opera &#8594; Carakan &#8594; V8 (2013)
-  - Safari &#8594; SquirrelFish
-  - Internet Explorer &#8594; Chakra
-  - Edge &#8594; Chakra
-
----
-## O que é Javascript?
-
-- Linguagem **orientada a objetos**, mas não existem classes
-- Programação dirigida por **eventos**
-- Sintaxe parecida com C, C++, C# e Java
+- Uma linguagem **orientada a objetos**
+- Uma linguagem fracamente tipada
+  - Não é necessário definir tipos das variáveis
+- Uma linguagem dinâmica
+  - Uma variável pode ter um tipo agora, mas mudar depois
+- Usa programação dirigida por **eventos**
+- Possui sintaxe parecida com C, C++, C# e Java
   - Javascript **não** é Java
-  - Ter "Java" no nome foi uma jogada de marketing da Netscape
-- Memória auto-gerenciada (_garbage collector_)
-- _case-sensitive_
+  - Ter "Java" no nome foi apenas uma **jogada de marketing** :scream:
 
 ---
+<!-- {"slideHash": "incluindo-js"} -->
 # Como usar em uma página Web
 
 ---
@@ -105,37 +171,159 @@
 
 - O navegador executa o código assim que vê o elemento `<script></script>` e
   faz _download_ do arquivo apontado
-- As formas de incluir código Javascript em uma página são semelhantes às de
-  inclusão de CSS:
-  - Externa
-      ```html
-        ...
-        <script src="executa-no-inicio.js"></script>
-      </head>
-      <body>
-        ...
-        <script src="executa-no-fim-da-pagina.js"></script>
-      </body>
-      ```
+- **Há 3 formas para incluir**:
+  1. **Arquivo externo** :thumbsup::thumbsup::thumbsup:
+     ```html
+       ...  <!-- dentro do HEAD -->
+       <script src="executa-no-inicio.js"></script>
+     </head>
+     <body>
+       ...
+       <!-- última coisa antes de fechar /BODY -->
+       <script src="executa-no-fim-da-pagina.js"></script>
+     </body>
+     ```
 
 ---
 ## Inclusão em páginas
 
-- Embutida
-  ```html
-  <script>
-    // código javascript aqui
-  </script>
+2. Código embutido :thumbsdown:
+   ```html
+   <script>
+     // código javascript aqui
+   </script>
+   ```
+   - Evitar isto, para não ferir o **princípio da separação
+     de responsabilidades** entre as 3 linguagens da Web
+3. *Inline* :thumbsdown::thumbsdown::thumbsdown:
+   ```html
+   <button onclick="javascript: window.alert('papagaio');">Mensagem</button>
+   ```
+   - Além de ferir o **princípio**, não tem como reaproveitar o mesmo código
+     para outros elementos
+
+<!-- {ol:.bulleted} -->
+
+---
+<!-- {"layout": "section-header", "slideHash": "escrevendo-codigo"} -->
+# Escrevendo código
+## A sintaxe da linguagem
+
+- Criando variáveis com `let`
+- Tipos de dados (_Number_ e _String_)
+- Operadores
+- `if/else`
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Criando **variáveis** com `let`
+
+- Usamos a palavra-chave `let` para criar variáveis:
+  ```js
+  let alunosMatriculados = 20;
+  let qtdeHorasAula = 66.5;
+  let nomeAula = 'js1';
   ```
-- *Inline*
-  ```html
-  <button onclick="javascript: alert();">Mensagem</button>
+- Não é necessário (nem possível) informar o seu **tipo de dados**
+  - Ele é **inferido automaticamente**
+- `let` pode ser lido como "seja", tipo
+  "<span style="text-decoration: underline">seja uma variável 'nomeAula'
+  com o valor 'js1'</span>"
+
+---
+<!-- {"layout": "regular"} -->
+# Tipos de dados
+
+- JavaScript é **fracamente tipada**:
+  - Não é necessário declarar o tipo, ele é inferido:
+    ```js
+    let nota = 10;            // tipo numérico
+    let aluno = 'Adamastor';  // tipo string
+    ```
+- JavaScript é **dinâmica**:
+  - Uma variável pode mudar seu tipo no meio do caminho:
+    ```js
+    let nota = 10;            // nota é númerico
+    nota = 'Dó';              // agora virou string
+    ```
+
+---
+<!-- {"layout": "regular"} -->
+## Tipos de dados (cont.)
+
+- Há seis **tipos primitivos** de dados:
+  - `Boolean`
+  - `Number`
+  - `String`
+  - `Null`
+  - `Undefined`
+  - `Symbol` ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} --> <!-- {ul:.multi-column-list-3} -->
+- Um **tipo complexo** de dados:
+  - `Object`
+  - Há outros derivados de `Object`...
+- Hoje vamos conhecer os tipos _Boolean_, _Number_ e _String_
+  - O tipo **_Boolean_**
+    - Exemplo:
+      ```js
+      let abelhinhaEstaVoando = true;   // poderia ser false
+      ```
+
+---
+<!-- {"layout": "regular"} -->
+## O tipo **_Number_**
+
+- Em JavaScript **há apenas 01 tipo numérico**: de 64bits
+- Não há um tipo para representar inteiros
+  - 1 e 1.0 são o mesmo valor
+- Um número pode ser expresso das seguintes formas:
+  ```js
+  let a = 5;
+  let b = 5.674;            // 5 vírgula 674
+  let c = a + b;            // 10.674
+  let d = Math.pow(2, 4);   // 16 (2 elevado a 4)
+  let e = Math.sqrt(25);    // 5 (raiz quadrada de 25)
+  let f = Math.random();    // [0,1] - algo entre 0 e 1
   ```
 
 ---
+<!-- {"layout": "regular"} -->
+## O tipo **_String_**
+
+- Armazena um texto
+- Não existe o tipo `char` como em C/C++, apenas _String_ :wink:
+- Usamos áspas **simples** ou duplas
+  ```js
+  "Abc" === 'Abc'   // simples é mais legal!! mas basta ser consistente
+  ```
+- Possui uma propriedade chamada `length`:
+  ```js
+  console.log('Cachorro'.length); // 8
+  ```
+
+---
+<!-- {"layout": "regular"} -->
+## String (cont.)
+
+- É possível concatenar para criar novas strings:
+  ```js
+  console.log('c' + 'a' + 't');   // imprime 'cat'
+  ```
+- Strings possuem métodos, [vários deles](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+  - Exemplos:
+    ```js
+    'barba negra'.toUpperCase() === 'BARBA NEGRA'
+    'Mississippi'.indexOf('ss') === 2
+    'Orinoco'.replace('noco', '') === 'Ori'
+    '$'.repeat(3) === '$$$'
+    ```
+
+---
+<!-- {"slideHash": "operadores"} -->
 # Operadores
 
-- Semelhantes aos de C, Java e C#:
+- Semelhantes aos de C/C++ e Java:
   - Aritméticos
     - **`+`** soma
     - **`-`** subtração
@@ -149,9 +337,9 @@
     - **`+=  /=  %=`** composta
   - Relacionais
     - **`==`** igualdade
-    - **`===`** igualdade forte
+    - **`===`** igualdade forte (!!)
     - **`!=`** desigualdade
-    - **`!==`** desigualdade forte
+    - **`!==`** desigualdade forte  (!!)
     - **&lt;  &lt;=** menor/menor igual
     - **&gt;  &gt;=** maior/maior igual
   - Lógicos
@@ -160,312 +348,44 @@
     - **`||`** ou
 
 <!-- {ul^4:.multi-column-list-2} -->
-  
----
-# Variáveis
 
 ---
-## Sintaxe
+<!-- {"layout": "regular"} -->
+## O que significa `===` (igualdade forte)?
 
-- Criamos variáveis com a palavra-chave `var`
+- Se compararmos '1' com 1 (uma _String_ com um _Number_) usando `==`:
   ```js
-  var aula = 'js1';
-  var num_alunos = 20;
+  console.log('1' == 1);    // imprime true
   ```
-- Para criar nomes de variáveis (e funções, parâmetros, propriedades etc.):
-  - Começar com os símbolos $, \_ ou qualquer caractere unicode que represente uma letra (&larr; _tricky_)
-  - Quaisquer combinações do conjunto anterior mais caracteres unicode que representem números e alguns
-    tipos de pontuação
-    - [Validador de nomes de variáveis JavaScript](https://mothereff.in/js-variables)
-
----
-## Nomes reservados
-
-- Alguns nomes, entretanto, são reservados da linguagem e não podem ser usados
-
-<pre style="font-size: 1em; background: white; border-radius: 10px; padding: 20px">
-  abstract
-  boolean break byte
-  case catch char class const continue
-  debugger default delete do double
-  else enum export extends
-  false final finally float for function
-  goto
-  if implements import in instanceof int interface
-  long
-  native new null
-  package private protected public
-  return
-  short static super switch synchronized
-  this throw throws transient true try typeof
-  var volatile void
-  while with
-</pre>
-
----
-# Tipos de dados
-
----
-## Tipos de dados
-
-- Como dito, Javascript é **fracamente tipada** ou **dinâmica**
-  - Não é necessário declarar o tipo, ele é reconhecido dinamicamente
-    ```js
-    var nota = 10;            // tipo numérico
-    var aluno = 'Adamastor';  // tipo string
-    ```
-  - Uma mesma variável pode ter tipos diferentes em momentos diferentes
-    ```js
-    var nota = 10;            // nota é númerico
-    var nota = 'Dó';          // agora virou string
-    ```
-
----
-## Tipos de dados (cont.)
-
-- Seis tipos de dados **primitivos**:
-  - `Boolean`
-  - `Number`
-  - `String`
-  - `Null`
-  - `Undefined`
-  - `Symbol` (ECMAScript 6) <!-- {ul:.multi-column-list-2} -->
-- Um tipo **complexo**
-  - `Object`
-- Podemos usar o operador `typeof` para determinar o tipo de uma variável
-  naquele momento
+  - A comparação `==` tenta converter um elemento no tipo do outro e depois
+    compara
+  - Neste caso, converte `1` em `'1'` e só então compara
+- Para que essa conversão não aconteça, usamos `===` :thumbsup::
   ```js
-  var nota = 10;
-  console.assert(typeof nota === 'number');
-  var nota = 'Dó';
-  console.assert(typeof nota === 'string');
+  console.log('1' === 1);   // imprime false
+  ```
+  - Isto é mais rápido para o computador, porque ele não faz a conversão
+  - Prefira esta forma!! :wink:
+
+---
+<!-- {"slideHash": "funcoes-matematicas"} -->
+## Funções matemáticas
+
+- Além dos operadores matemáticos (_e.g._, `+, -, /, *`), existem
+  outras funções matemáticas acessíveis via `Math`:
+  ```js
+  let pi = Math.PI;       // a constante pi
+  let a = Math.sin(1);    // seno de 1 radianos
+  let b = Math.cos(pi);   // cosseno de pi radianos
+  let c = Math.pow(5, 2); // 5 elevado a 2
+  let d = Math.sqrt(100); // raiz quadrada de 100
+  let e = Math.random();  // algo entre [0, 1]
   ```
 
 ---
-## Boolean
+# if/else
 
-- Representa uma entidade lógica e pode ter dois valores:
-  - `true`
-  - `false`
-- Exemplo:
-  ```js
-  var isPlaying = true;   // poderia ser false
-  /* ... */
-  if (isPlaying) {
-    /* ... */
-  }
-  ```
-
----
-## Number
-
-- Em Javascript **há apenas um tipo numérico**: 64bits (precisão dupla)
-- Não há um tipo para representar inteiros
-  - 1 e 1.0 são o mesmo valor
-- De forma literal, pode ser expressado com parte inteira, decimal e expoente
-  - Exemplos:
-    ```js
-    5
-    5.674
-    4e2       // 4 vezes 10 elevado a 2 (400)
-    25e-2     // 25 vezes 10 elevado a -2 (0.25)
-    ```
-
----
-## Number (cont.)
-
-- Valores especiais
-  - `NaN` - _not a number_
-    - Retornado quando uma operação ilegal é executada (e.g., `numero + string`)
-  - `Infinity`
-- Números têm métodos, por exemplo:
-  - [`toPrecision`][toPrecision], retorna uma string com o **número arredondado com o certo número de casas decimais**
-  - [`toFixed`][toFixed], retorna uma string com o número arredondado com certo número de casas decimais **em formato decimal**
-  - [`toExponential`][toExponential], retorna uma string com o número arredondando no **formato de notação científica**
-
-[toFixed]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
-[toPrecision]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision
-[toExponential]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential
-
----
-## String
-
-- Cadeia de caracteres
-- Não existe o tipo "caractere"
-  - Seria apenas uma string com 1 caractere
-- Forma literal: áspas simples ou duplas
-  ```js
-  "Abc" === 'Abc'
-  ```
-- Propriedade `length`
-  ```js
-  'Cachorro'.length === 8
-  ```
-
----
-## String (cont.)
-
-- Strings são imutáveis (como String em Java), mas criar novas strings é
-  simples via concatenação
-  ```js
-  'c' + 'a' + 't' === 'cat'
-  ```
-- Strings têm métodos, [vários deles](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-  - Exemplos:
-  ```js
-  'barba negra'.toUpperCase() === 'BARBA NEGRA'
-  'Mississippi'.indexOf('ss') === 2
-  'Orinoco'.replace('noco', '') === 'Ori'
-  'a'.repeat(3) === 'aaa'
-  ```
-
----
-## Null
-
-- O tipo Null contém apenas um valor
-  - `null`
-- Usado quando uma variável **não tem um valor aplicável àquele momento**
-  ```js
-  var x = null;
-  console.assert(typeof x === 'null');
-  ```
-
----
-## Undefined
-
-- O tipo Undefined é o tipo atribuído a variáveis que não foram associadas a
-  nenhum valor
-- Tem um único valor
-  - `undefined`
-- Exemplo:
-  ```js
-  var x;
-  if (typeof x === 'undefined') {
-    // será executado
-  }
-  ```
-
----
-## Object
-
-- É um **"container" de propriedades**
-  - Propriedade: (**nome &#8594; valor**)
-    - Nome: qualquer string
-    - Valor: qualquer valor Javascript exceto `undefined`
-- É como se cada objeto fosse um dicionário (Java, C#), só que as chaves
-  devem sempre ser strings
-- Não existem classes
-  - Mas um objeto pode "herdar" de outro (!!!)
-- Novas propriedades podem ser atribuídas mesmo após a instanciação (!!!)
-
----
-## Instanciando um Object de 2 formas
-
-- Forma literal (preferida):
-  ```js
-  var jogador = {
-    pontos: 1420,
-    vidas: 2
-  };
-  ```
-  ```js
-  var jogador = {};           // um objeto vazio
-  jogador['pontos'] = 1420;   // acesso à propriedade via índice
-  jogador.vidas = 2;          // acesso via ponto
-  ```
-
----
-## Instanciando um Object (cont.)
-
-- Forma usando operador `new` (menos legal):
-  ```js
-  var jogador = new Object();
-  jogador['pontos'] = 1420;
-  jogador['vidas'] = 2;
-  ```
-
----
-## Objetos dentro de objetos
-
-```js
-var flight = {
-    airline: "Oceanic",
-    number: 815,
-    departure: {
-        IATA: "SYD",
-        time: "2004-09-22 14:55",
-        city: "Sydney"
-    },
-    arrival: {
-        IATA: "LAX",
-        time: "2004-09-23 10:42",
-        city: "Los Angeles"
-    }
-};
-```
-- `departure` e `arrival` são objetos são membros de `flight` e são objetos por si mesmos
-
----
-## Outros tipos
-
-- O Javascript possui **outros tipos complexos, que são baseados em Object**:
-  - `Function` (sim! funções são objetos)
-  - `RegExp`
-  - `Array`
-
----
-# Arrays
-
-- Arrays são vetores unidimensionais, heterogêneos
-- Os itens dos vetores **não** precisam ter o mesmo tipo
-  ```js
-  var listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
-  ```
-- Propriedades:
-  - `length`
-    ```js
-    console.assert(listaDeCoisas.length === 5);
-    ```
-
----
-## Arrays (cont.)
-
-- Indexação: usa-se os símbolos `[` e `]` para acessar um item do array
-  ```js
-  console.assert(listaDeCoisas[1] === 35);
-  listaDeCoisas[0] = '';
-  console.assert(listaDeCoisas[0] === '');
-  ```
-- Arrays possuem métodos, [vários](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array):
-  ```js
-  var fruits = [];
-  fruits.push('kiwi', 'apple', 'banana');
-  console.log(fruits.length); // 3
-  ```
----
-## Métodos de Arrays
-
-- Inserindo e removendo elementos
-  ```js
-  fruits.push('papaya');        // insere 'papaya' no final
-  fruits.pop();                 // remove o último ('papaya')
-  fruits.unshift('tangerine');  // insere 'tangerine' no início
-  fruits.shift();               // remove o primeiro ('tangerine')
-  ```
-- E alguns outros:
-  ```js
-  fruits.reverse()              // inverte a ordem dos itens
-  fruits.sort();                // ['apple', 'banana', 'kiwi']
-  fruits.splice(2, 1);          // Remove 1 elemento, a partir do 3º
-  ```
-
----
-# _Statements_
-
----
-## if/else
-
-- Similar a C, Java
+- Similar a C/C++, Java:
   ```js
   if (hora < 12) {
     manha = true;
@@ -481,207 +401,192 @@ var flight = {
   ```
 
 ---
-## for
+<!-- {"layout": "section-header", "slideHash": "clicando-em-um-botao"} -->
+# Clicando em um botão
+## Dando comportamento à página
 
-- Forma tradicional:
-  ```js
-  for (var i = 0; i !== 10; i++) {
-    console.log(i);
-  }
-  ```
-- Percorre items do objeto (indesejada):
-  ```js
-  var cores = ['azul', 'rosa', 'branco'];
-  for (var i in cores) {
-    console.log(cores[i]);
-  }
-  ```
+- Funções em JavaScript
+- Conhecendo o DOM
+- Selecionando um elemento
+- Criando um evento de clique
+
+<!-- {ul:.content} -->
 
 ---
-## for (cont.)
+<!-- {"layout": "regular"} -->
+# Nosso plano...
 
-- Forma modernosa:
-  ```js
-  var cores = ['azul', 'rosa', 'branco'];
-  cores.forEach(function(cor) {
-    console.log(cor);
-  });
-  ```
-- Forma moderníssima (ES6):
-  ```js
-  var cores = ['azul', 'rosa', 'branco'];
-  for (var cor of cores) {
-    console.log(cor);
-  }
-  ```
+- Para fazer algo acontecer quando um botão for pressionado, precisamos,
+  em JavaScript:
+  1. **Recuperar o elemento HTML** do botão e colocá-lo em uma variável
+  1. Atribuir uma função ao **evento de clique** do botão
+  1. Na **função, escrever o código que será executado** quando o botão
+     for clicado
+- Sendo assim, vamos aprender cada passo, começando com
+  **como criar uma função**
 
 ---
-## while/do..while
-
-```js
-var i = 1;
-while (i != 10) {
-  console.log(i);
-  i++;
-}
-```
-
-```js
-var i = 0;
-do {
-  i++;
-  console.log(i);
-} while (i != 10);
-
-```
-
----
+<!-- {"layout": "regular"} -->
 # Funções
 
----
-## Funções (cont.)
-
-- São declaradas de forma literal, usando a palavra `function`:
+- São declaradas usando a palavra `function`, de duas formas:
   ```js
-  function add(a, b) {
-    return a + b;
+  function dizOla(nome) {
+    console.log('olá ' + nome);
   }
+  dizOla('enfermeira');   // imprime 'olá enfermeira'
   ```
+  - Não é necessário declarar o tipo do parâmetro - apenas o nome
+
+---
+<!-- {"layout": "regular"} -->
+# Funções - forma alternativa
+
+- É possível criar uma **função anônima** e **atribuí-la a uma variável**:
   ```js
-  // Cria uma variável chamada add e armazena nela uma
-  // função (anônima) que soma dois números
-  var add = function(a, b) {
-    return a + b;
+  let dizOla = function(nome) {   // uma função anônima atribuída
+    console.log('olá ' + nome);   // à variável dizOla
   };
+  dizOla('submundo');             // imprime 'olá submundo'
   ```
+  - Funciona exatamente **da mesma forma**!
 
 ---
-## Parâmetros
+<!-- {"layout": "regular"} -->
+## Funções - **retorno**
 
-- Uma função declara que parâmetros ela utiliza, mas ela pode ser chamada com
-  mais ou menos argumentos
+- A função pode retornar um valor:
   ```js
-  function votar(governador, presidente) {
-    console.log(governador);
-    console.log(presidente);
+  function elevaAoCubo(numero) {            
+    return Math.pow(numero, 3);             
   }
-
-  votar('pink', 'cérebro');       // imprime os dois
-  votar('mickey')                 // imprime mickey e undefined
-  votar('gohan', 'goku', 'krill') // imprime os 2 primeiros
+  elevaAoCubo(2);     // retorna 8
+  elevaAoCubo(3);     // retorna 27
   ```
-
----
-## Parâmetros (cont.)
-
-- Toda função tem acesso a um objeto `arguments` que contém todos os valores
-  passados como argumentos na chamada da função
   ```js
-  function media() {
-    for (var i = 0, acum = 0; i !== arguments.length; i++) {
-      acum += arguments[i];
-    }
-    return acum / arguments.length;
+  function hipotenusa(cateto1, cateto2) {
+    let somaDosQuadrados = Math.pow(cateto1, 2) + Math.pow(cateto2, 2);
+    return Math.sqrt(somaDosQuadrados);
   }
-  media();          // NaN
-  media(1);         // 1
-  media(5, 15);     // 10
+  hipotenusa(3, 4);   // retorna 5
   ```
 
 ---
-## Funções (cont.)
+<!-- {"layout": "regular"} -->
+# Conhecendo o DOM
 
-- Funções podem ser definidas dentro de outras funções
-  - As funções internas tem acesso ao escopo das externas (_closure_)
-- Quando uma função é armazenada em uma propriedade de um objeto, chamamos ela
-  de método:
+- O DOM é uma **visão dos elementos** HTML da página **como uma árvore**:
+  <img src="../../images/dom-tree.png" style="float:right;width:50%;">
+  <pre style="float:right;width:50%;margin:0;"><code class="hljs lang-html">&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;HTML&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Add your content here--&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+
+
+*[DOM]: Document Object Model*
+
+---
+<!-- {"layout": "regular"} -->
+## O objeto **document**
+
+- O objeto `document` dá acesso ao **Document Object Model**, ou DOM
+- Por exemplo, para pegar um elemento a partir de seu `id` e colocá-lo em
+  uma variável:
   ```js
-  var passaro = {
-    nome: 'Abelardo',
-    voando: false;
-    voar: function() {
-      // pegar impulso e saltar
-    }
-  };
-  passaro.voar();     // chamando o método
+  let botaoDeliciaEl = document.querySelector('#botao-delicia');
   ```
+  - Agora é possível fazer várias coisas com o botão, como:
+    1. **Associar um evento de clique**
+       - Veja nos próximos slides
+    1. Pegar ou alterar seus atributos
+    1. Alterar seu texto
+    1. Alterar seu estilo
 
 ---
-## Métodos
+<!-- {"layout": "regular", "slideHash": "recuperando-elemento-dom"} -->
+# Selecionando um elemento
 
-- Um **objeto especial chamado `this`** é disponibilizado para os métodos e são
-  uma referência ao objeto "dono" do método
-  ```js
-  var passaro = {
-    nome: 'Abelardo',
-    voando: false;
-    voar: function() {
-      this.voando = true;
-    }
-  ```
-
----
-## Valor de retorno
-
-- Uma função (ou método) **sempre retorna um valor**
-- Se não houver um `return` na função, esse valor é `undefined`
-  - Mas em certas circunstâncias, também pode ser o valor de `this`
-
----
-## Escopo
-
-- Escopo em linguagens de programação são uma definição de visibilidade e tempo
-  de vida de variáveis e parâmetros
-- Javascript **não tem escopo de bloco**, apenas de **função**
-  - Variáveis e parâmetros são visíveis em todo lugar dentro da função onde
-    foram declarados, mas não fora dela
+- A função `document.querySelector(seletor)` permite que, a partir de um código
+  JavaScript, recuperemos um elemento do DOM
+  - Ela recebe um único **argumento** que é um **seletor CSS**. Exemplo:
     ```js
-    function construir(tipo) {
-      if (tipo === 'casa') {
-        var imovel = new Casa();
-      }
-      return imovel;
-    }
-    construir('casa');          // Ok, retorna a casa
+    let logoEl = document.querySelector('#logomarca');
+    let tabelaEl = document.querySelector('#tesouros-pirata');
+    let principalEl = document.querySelector('main');
     ```
+    - Ela retorna um elemento HTML que pode ter suas propriedades alteradas!
+  - Também existe `document.querySelectorAll(seletor)` (repare o **`all`**),
+    que retorna mais de um elemento, mas veremos ele depois
 
 ---
-## Funções são objetos
+<!-- {"layout": "regular"} -->
+# Criando um evento de clique
 
-1. Funções são objetos, então podem ser usadas em variáveis, objetos e arrays
+- Para **executar alguma coisa quando um botão** (ou qualquer elemento, na verdade)
+  **é clicado**, precisamos **registrar uma função para ser chamada** quando um
+  clique for feito nele:
   ```js
-  var operacoes = [add, subtract, multiply];
-  operacoes[0](4, 5);   // retorna 9
+  // recupera o elemento do botão no DOM
+  let botaoDeliciaEl = document.querySelector('#botao-delicia');
+
+  // atrela uma função ao evento de 'click' do botão
+  botaoDeliciaEl.addEventListener('click', function() { /* ... */ });
+  ```
+  - Chamamos essa função de **_callback_**
+
+---
+<!-- {"layout": "regular"} -->
+## Exemplo de _callback_
+
+- Uma _callback_ é só um nome especial para quando uma função passada
+  como argumento:
+  ```js
+  // recupera o elemento do botão no DOM
+  let botaoDeliciaEl = document.querySelector('#botao-delicia');
+
+  // atrela uma callback ao evento de 'click' do botão
+  botaoDeliciaEl.addEventListener('click', function() {
+    alert('O botão delícia foi clicado!!');
+    // pode fazer várias coisas aqui
+  });
   ```
 
 ---
-## Funções são objetos (cont.)
+<!-- {"layout": "regular"} -->
+## Implementando a função **antes**
 
-1. Elas podem ser passadas como parâmetro ou retornadas de outras funções
+- É possível implementar a função **antes da linha onde ela é atribuída ao
+  evento** de clique:
   ```js
-  function currifica(f, parametro1) {
-    return function(parametro2) {
-      return f(parametro1, parametro2);
-    }
+  // define a função 'mostraMensagem'
+  function mostraMensagem() {
+    alert('O botão delícia foi clicado!!');
   }
-  var add1 = currifica(add, 1);
-  add1(10);     // retorna 11;
+
+  // atrela uma função ao evento de 'click' do botão
+  botaoDeliciaEl.addEventListener('click', mostraMensagem);
   ```
+  - Isso costuma deixar o código mais legível e organizado :thumbsup:
 
 ---
-## Funções são objetos (cont.)
+<!-- {"layout": "regular", "slideHash": "valor-do-input"} -->
+# Pegando um valor de um `input`
 
-1. Como elas são objetos, elas podem ter propriedades ou mesmo métodos
+- Para **pegar o valor** digitado em um `<input>`:
   ```js
-  function fibonacci(n) {
-    if (fibonacci.cache[n]) return fibonacci.cache[n];
-    else {
-      var f = fibonacci(n-1) + fibonacci(n-2);
-      fibonacci.cache[n] = f;
-      return f;
-    }
-  }
-  fibonacci.cache = { 1: 1,  2: 1 };
+  let qtdePasteisEl = document.querySelector('#qtde-de-pasteis');
+  let quantidade = qtdePasteisEl.value;
+  console.log(quantidade);    // imprime valor que estava no input
+  ```
+- Para **definir o valor** mostrado no `<input>` usando JavaScript:
+  ```js
+  let qtdePasteisEl = document.querySelector('#qtde-de-pasteis');
+  qtdePasteisEl.value = 25;
   ```
 
 ---
