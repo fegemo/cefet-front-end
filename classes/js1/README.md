@@ -247,7 +247,7 @@
 ## A sintaxe da linguagem
 
 - Criando variáveis com `let`
-- Tipos de dados (_Number_ e _String_)
+- Tipos de dados (_Boolean_, _Number_ e _String_)
 - Operadores
 - `if/else`
 
@@ -325,7 +325,7 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "o-tipo-string"} -->
 ## O tipo **_String_**
 
 - Armazena um texto
@@ -509,7 +509,7 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "conhecendo-o-dom"} -->
 # Conhecendo o DOM
 
 - O DOM é uma **visão dos elementos** HTML da página **como uma árvore**:
