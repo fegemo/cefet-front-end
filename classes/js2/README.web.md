@@ -1,5 +1,4 @@
-# Javascript parte 2
-## Arranjos, Alterando Estilos e Exploração Espacial :alien:
+# Javascript - Parte 2
 
 ---
 # Roteiro de hoje

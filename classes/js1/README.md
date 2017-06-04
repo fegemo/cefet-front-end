@@ -1,25 +1,51 @@
 <!-- {"layout": "title"} -->
-# Javascript - Parte 1
+# JavaScript (parte 1)
 ## Características, Escrevendo código, Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
-<!--
-{"layout": "regular"}
-# Na última aula (/)
+---
+<!-- {"layout": "regular"} -->
+# Na última aula (1/2)
 
-- Especificidade
+- Quando **mais de uma regra CSS se aplica**, uma delas prevalece
+  - O navegador calcula uma pontuação de especificidade (**`abc`**<!--{strong:.alternate-color}-->) do seletor
+    de cada regra:
+    - **`a`**<!--{strong:.alternate-color}-->: quantidade de **ids** no seletor
+    - **`b`**<!--{strong:.alternate-color}-->: quantidade de **classes, atributos e pseudo-classes** no seletor
+    - **`c`**<!--{strong:.alternate-color}-->: quantidade de **pseudo-elementos** no seletor
+  - Quanto maior esse número, maior a precedência da regra ser aplicada
+
+---
+<!-- {"layout": "regular"} -->
+## Na última aula (2/2)
+
+- Exemplo: qual a cor do `<h2>` que seja filho direto de alguém com as classes `.post` e `.novidade` que, por sua vez, esteja dentro de um `#posts-recentes`?
+  ```css
+  /* id: 1, classes: 2, tag: 1; pontuação: 121 */
+  #posts-recentes .post.novidade > h2 {
+    color: blue;
+  }
+  /* id: 0, classes: 0, tag: 1; pontuação: 001 */
+  h2 {
+    color: green;
+  }
+  ```
+  - Azul!
 
 
-{"layout": "regular"}
-# Na última aula (/)
+---
+<!-- {"layout": "regular", "embeddedStyles": ".html-tree { margin: 0 auto; } .html-tree img { max-height: 320px; }"} -->
+# Em alguma aula anterior <!-- {style="padding-bottom: 0.2em"} -->
+## O HTML visto como uma árvore
 
-- Centralizando
+::: figure .figure-slides.clean.html-tree
+![Uma árvore com os elementos HTML](../../images/html-tree-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
 
 
 
-{"layout": "regular"}
-# Na última aula (/)
-
--->
 ---
 # Hoje veremos...
 
@@ -59,6 +85,11 @@
    - Botão
 
 [matematica-seminal]: https://github.com/fegemo/cefet-front-end-math/archive/master.zip
+
+---
+<!-- {"fullPageElement": "#input-video", "playMediaOnActivation": {"selector": "#input-video" }} -->
+
+<video src="//fegemo.github.io/cefet-front-end-large-assets/videos/pastel-parte-1.mp4" controls id="input-video"></video>
 
 ---
 <!-- {"layout": "regular", "slideHash": "campo-de-entrada-numerica"} -->
@@ -118,6 +149,7 @@
        <label for="qtde-de-pasteis">Pastéis:</label>
        <input type="number" value="4" id="qtde-de-pasteis">
        ```
+
 ---
 <!-- {"layout": "regular", "slideHash": "botoes-de-acao"} -->
 ## **Botões** de ação
@@ -203,6 +235,11 @@
      para outros elementos
 
 <!-- {ol:.bulleted} -->
+
+---
+<!-- {"fullPageElement": "#inclusion-video", "playMediaOnActivation": {"selector": "#inclusion-video" }} -->
+
+<video src="//fegemo.github.io/cefet-front-end-large-assets/videos/pastel-parte-2.mp4" controls id="inclusion-video"></video>
 
 ---
 <!-- {"layout": "section-header", "slideHash": "escrevendo-codigo"} -->
@@ -418,10 +455,10 @@
 
 - Para fazer algo acontecer quando um botão for pressionado, precisamos,
   em JavaScript:
+  1. Criar uma **função com o código que será executado** quando o botão
+  for clicado
   1. **Recuperar o elemento HTML** do botão e colocá-lo em uma variável
-  1. Atribuir uma função ao **evento de clique** do botão
-  1. Na **função, escrever o código que será executado** quando o botão
-     for clicado
+  1. Atribuir a função ao **evento de clique** do botão
 - Sendo assim, vamos aprender cada passo, começando com
   **como criar uma função**
 
@@ -519,7 +556,7 @@
     let tabelaEl = document.querySelector('#tesouros-pirata');
     let principalEl = document.querySelector('main');
     ```
-    - Ela retorna um elemento HTML que pode ter suas propriedades alteradas!
+    - Ela retorna um elemento HTML que pode ser alterado
   - Também existe `document.querySelectorAll(seletor)` (repare o **`all`**),
     que retorna mais de um elemento, mas veremos ele depois
 
@@ -575,19 +612,26 @@
 
 ---
 <!-- {"layout": "regular", "slideHash": "valor-do-input"} -->
-# Pegando um valor de um `input`
+# Usando o valor de um `input`
 
-- Para **pegar o valor** digitado em um `<input>`:
+- Para **_pegar_ <!-- {.underline.upon-activation.delay-600} --> o valor**
+  digitado em um `<input>`:
   ```js
   let qtdePasteisEl = document.querySelector('#qtde-de-pasteis');
   let quantidade = qtdePasteisEl.value;
   console.log(quantidade);    // imprime valor que estava no input
   ```
-- Para **definir o valor** mostrado no `<input>` usando JavaScript:
+- Para **_definir_ <!-- {.underline.upon-activation.delay-1800} --> o valor**
+  mostrado no `<input>` usando JavaScript:
   ```js
   let qtdePasteisEl = document.querySelector('#qtde-de-pasteis');
   qtdePasteisEl.value = 25;
   ```
+
+---
+<!-- {"fullPageElement": "#writing-video", "playMediaOnActivation": {"selector": "#writing-video" }} -->
+
+<video src="//fegemo.github.io/cefet-front-end-large-assets/videos/pastel-parte-3.mp4" controls id="writing-video"></video>
 
 ---
 # Referências
