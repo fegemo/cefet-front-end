@@ -561,7 +561,7 @@
     que retorna mais de um elemento, mas veremos ele depois
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "evento-clique"} -->
 # Criando um evento de clique
 
 - Para **executar alguma coisa quando um botão** (ou qualquer elemento, na verdade)
