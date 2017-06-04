@@ -85,6 +85,51 @@ bespoke.from('article', [
         el.setAttribute('unselectable', 'on');
         el.style.userSelect = 'none';
       });
+    },
+    fullScreenElement: function(slide, elementSelector) {
+      let el = slide.querySelector(elementSelector);
+      let requestFullScreenName = document.documentElement.requestFullScreen ?
+        'requestFullScreen' : `${['webkit', 'moz'].find(p => document.documentElement[`${p}RequestFullScreen`])}RequestFullScreen`;
+      let exitFullScreenName = document.exitFullScreen ?
+        'exitFullScreen' : `${['webkitExit', 'webkitCancel', 'mozExit', 'mozCancel']
+          .find(p => document[`${p}FullScreen`])}FullScreen`;
+
+      if (requestFullScreenName && exitFullScreenName) {
+        this.on('activate', function(e) {
+          if (e.slide === slide) {
+            el[requestFullScreenName]();
+          }
+        });
+        this.on('deactivate', function(e) {
+          if (e.slide === slide) {
+            document[exitFullScreenName]();
+          }
+        });
+      }
+    },
+    fullPageElement: function(slide, elementSelector) {
+      let el = slide.querySelector(elementSelector);
+      el.style.width = window.getComputedStyle(slide).width;
+      el.style.height = window.getComputedStyle(slide).height;
+      el.style.position = 'absolute';
+      el.style.left = el.style.top = '0';
+    },
+    playMediaOnActivation: function(slide, { selector, delay = '1500'}) {
+      let els = slide.querySelectorAll(selector);
+      this.on('activate', function(e) {
+        if (e.slide === slide) {
+          setTimeout(() => {
+            Array.from(els).forEach(e => e.play ? e.play() : null);
+          }, delay);
+        }
+      });
+      this.on('deactivate', function(e) {
+        if (e.slide === slide) {
+          setTimeout(() => {
+            Array.from(els).forEach(e => e.pause ? e.pause() : null);
+          }, delay);
+        }
+      });
     }
   }, [
     [
