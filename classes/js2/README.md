@@ -1,4 +1,5 @@
-# Javascript - Parte 2
+# Javascript parte 2
+## Arranjos, Alterando Estilos e Exploração Espacial :alien:
 
 ---
 # Roteiro de hoje
@@ -36,7 +37,7 @@
      ou <kbd>Ctrl+Shift+I</kbd>)
   1. Na aba console, digite `window`, depois ponto ("`.`") e veja a
      quantidade de propriedades do objeto
-  1. Execute o comando para abrir uma janela com [a página do pudim](http://opudim.com.br)
+  1. Execute o comando para abrir uma janela com [a página do pudim](http://pudim.com.br)
      - Se a nova janela não abrir, provavelmente ela foi bloqueada pelo
        navegador ;)
 
@@ -45,13 +46,13 @@
 
 - Mais algumas utilidades de **window**
   ```js
-  window.setTimeout(f, 200);   // chama daqui a 200ms, 1x. retorna id
-  window.setInterval(f, 1000); // chama a cada 1s, forever. retorna id
+  window.setTimeout(f, 200);   // chama daqui a 200ms, 1x. retorna um id do timer
+  window.setInterval(f, 1000); // chama a cada 1s, forever. retorna um id
   window.clearTimeout(id);
   window.clearInterval(id);
   ```
   ```js
-  window.eval('window.alert("eval is evil!");'); // nao fazer em casa
+  window.eval('window.alert("eval is evil!");');    // nao fazer em casa
   ```
 
 ---
@@ -73,13 +74,13 @@
 
 - Mais alguns objetos:
   - `window.Math`
-    - Funções matemáticas
+    - **Funções matemáticas**
   - `window.JSON`
     - Funções de conversão entre string e JSON
   - `window.localStorage`
-    - Cache de informações locais à página
+    - _Cache_ de informações locais à página
   - `window.sessionStorage`
-    - Cache com duração de apenas uma sessão
+    - _Cache_ com duração de apenas uma sessão
   - `window.location`
     - Informações acerca do endereço da página
 
@@ -89,14 +90,14 @@
 ## Convenção
 
 - Como o objeto `window` é o único objeto que o navegador expõe para os
-  scripts, **podemos acessar suas propriedades sem usar `"window."`**.
+  scripts, **podemos acessar suas propriedades <u>sem usar `"window."`</u>** :scream:.
   Por exemplo:
   ```js
   window.console.log('Nintendo pwns Sony');
   ```
   É o mesmo que:
   ```js
-  console.log('Nintendo pwns Sony');
+  console.log('Nintendo pwns Sony');    // sucesso!!
   ```
 - Vamos falar muito agora sobre **`window.document`**, ou apenas `document`
 
@@ -111,37 +112,37 @@
 - O objeto `document` dá acesso ao **Document Object Model**, ou DOM
 - O DOM é uma representação da estrutura dos elementos html na forma de
   árvore
-  
-  <img src="../../images/dom-tree.png" style="float:right;width:50%;">
+  <img src="../../images/dom-tree.png" style="float:right;width:50%;display:block;">
   <pre style="float:right;width:50%;margin:0;"><code class="hljs lang-html">&lt;!DOCTYPE html&gt;
-  &lt;html lang="en"&gt;
-  &lt;head&gt;
-  &lt;title&gt;HTML&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-  &lt;!-- Add your content here--&gt;
-  &lt;/body&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;title&gt;HTML&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;!-- Add your content here --&gt;
+    &lt;/body&gt;
   &lt;/html&gt;</code></pre>
 
 ---
 ## DOM
 
-- Cada elemento do DOM é chamado de **nó** (_node_) (em referência à
-  estrutura de árvore)
+- Cada elemento do DOM é chamado de **nó** (_node_) (estrutura de árvore)
 - O tipo de cada elemento "herda" de um tipo chamado `HTMLElement`
-- É possível acessar os atributos html dos elementos
-  - id
+- É possível acessar os atributos HTML dos elementos:
+  - `id`
     ```js
     console.log(botaoAzul.id);
     ```
   - classes, etc.
     ```js
-    console.log(botaoAzul.className);   // className -- class
+    console.log(botaoAzul.className); // className equivale a class
+                                      // - não pode 'class' pq é reservado em js
     ```
 
 *[DOM]: Document Object Model*
 
 ---
+<!-- {"backdrop": "old-paper"} -->
 ## Buscando nós na árvore
 
 - Há diversas formas para se recuperar nós específicos da árvore
@@ -153,11 +154,12 @@
   ```
 - Exemplo:
   ```js
-  var botao = document.getElementById('botao-compartilhar');
-  botao.onclick = function() { /* ... */ };
+  const botaoEl = document.getElementById('botao-compartilhar-no-face');
+  botaoEl.onclick = function() { /* ... */ };   // onclick é bem old...
   ```
 
 ---
+<!-- {"backdrop": "old-paper"} -->
 ## Buscando nós em uma sub-árvore
 
 - É possível fazer consultas a nós a partir de uma sub-árvore:
@@ -165,12 +167,26 @@
   no.getElementsByTagName(nomeDaTag);
   no.getElementsByClassName(classe);
   ```
-- Exemplo: recuperar todas as imagens com a classe `icone` dentro do menu de
-  navegação
+- Exemplo: recuperar todas as imagens com a classe `icone` dentro do menu:
   ```js
-  var navegacao = document.getElementById('menu-principal');
-  var icones = navegacao.getElementsByClassName('icone');
+  const navegacaoEl = document.getElementById('menu-principal');
+  const iconesEl = navegacao.getElementsByClassName('icone');
   ```
+
+---
+<!-- {"backdrop": "shiny"}-->
+## Buscando nós na árvore ![](../../images/logo-html.svg) <!-- {style="height: 1em;"}-->
+
+- Existem dois comandos melhores para fazer consultas no DOM:
+  ```js
+  let iconesNavegacaoEl = document.querySelectorAll('#menu-principal .icone');
+  let botaoEnviarEl = document.querySelector('#botao-enviar');
+  ```
+  - São melhores porque:
+    - **Interface unificada** de busca
+    - Usa os mesmos **seletores de CSS**
+    - Inspirado na biblioteca **jQuery**
+
 
 ---
 ## Caminhando pela árvore
@@ -191,7 +207,6 @@
   ```
 
 ---
-## Ponteiros entre nós
 
 ::: figure .figure-slides
 ![](../../images/dom-traversal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
@@ -226,19 +241,19 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 ## Criando elementos dinamicamente
 
 - É possível criar elementos dinamicamente, de duas formas:
-  1. Instanciando elementos e os adicionando à árvore
-    ```js
-    var conteudo = document.getElementById('conteudo');
-    var dado = document.createElement('img');
-    dado.src = 'images/d12.png';
-    conteudo.appendChild(dado);
-    ```
+  1. Instanciando elementos e os adicionando à árvore:
+     ```js
+     let conteudoEl = document.getElementById('conteudo');
+     let dadoEl = document.createElement('img');
+     dado.src = 'images/d12.png';
+     conteudo.appendChild(dado);
+     ```
   1. Definindo a propriedade de `innerHTML` de um elemento da árvore para uma
-     string descrevendo uma estrutura `html`
-    ```js
-    var conteudo = document.getElementById('conteudo');
-    conteudo.innerHTML = '<img src="images/d12.png">';
-    ```
+     string descrevendo uma estrutura `html`:
+     ```js
+     let conteudoEl = document.getElementById('conteudo');
+     conteudoEl.innerHTML = '<img src="images/d12.png">';
+     ```
 
 ---
 ## Criando elementos dinamicamente (cont.)
@@ -246,13 +261,13 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 - Além de `no.appendChild(elemento)`, também é possível incluir novos elementos
   na árvore usando:
   ```js
-  no.insertBefore(novoElemento);   // novoElemento vira irmão de no
-  no.replaceChild(novo, antigo);   // novo vira filho de no e
-                                   // exclui o elemento antigo
+  no.insertBefore(novoEl);            // novoEl vira irmão de 'no'
+  no.replaceChild(novoEl, antigoEl);  // novoEl vira filho de 'no' e
+                                      // exclui o elemento antigo
   ```
 - Para remover um elemento da árvore
   ```js
-  no.removeChild(elemento);
+  no.removeChild(paraRemoverEl);
   ```
 
 ---
@@ -263,38 +278,34 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
   <a href="/contato" title="" id="link-contato">
   ```
   ```js
-  var lingua = 'port';
-  var texto = {
+  let lingua = 'port';
+  const texto = {
     'port': 'Página de Contato',
     'ingl': 'Contact Us'
   }
-  var linkContato = document.getElementById('link-contato');
-  linkContato.title = texto[lingua];
+  const linkContatoEl = document.getElementById('link-contato');
+  linkContatoEl.title = texto[lingua];
   ```
 
 ---
 ## Alterando o estilo de elementos
 
-- Há 3 formas para alterar o estilo de elementos:
-  1. Alterando a propriedade `class`
-    ```js
-    elemento.className = 'selecionado titulo';  // 2 classes
-    ```
-  1. Adicionando ou removendo classes individuais
-    ```js
-    no.classList.add('selecionado');  // adiciona .selecionado
-    no.classList.remove('oculta');    // remove .oculta
-    ```
-  1. Alterando a propriedade `style`
-    ```js
-    botao.style.width = '80%';        // define largura como 80%
-    botao.style.paddingTop = '2px';   // padding-top vira paddingTop
-    ```
+- Há 2 formas para alterar o estilo de elementos:
+  1. Alterando a propriedade `style`:
+     ```js
+     botaoEl.style.width = '80%';           // define largura como 80%
+     botaoEl.style.paddingTop = '2px';      // padding-top vira paddingTop
+     ```
+  1. Adicionando ou removendo classes :thumbsup::thumbsup::
+     ```js
+     botaoEl.classList.add('selecionado');  // adiciona .selecionado
+     botaoEl.classList.remove('oculta');    // remove .oculta
+     ```
 
 ---
 ## Nomes das propriedades de estilo em JS
 
-- Repare a mudança das propriedades CSS para JS:
+- Repare a mudança das propriedades **CSS para JS**:
   ```js
   botao.style.backgroundColor = '#ccc';
   ```
@@ -311,9 +322,9 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 ---
 ## Eventos
 
-- Eventos são atrelados a nós específicos e causam a invocação de uma função
+- Eventos são **atrelados a nós específicos** e causam a invocação de uma função
   "manipuladora" (_event handler_ ou apenas _handler_)
-- Eventos de mouse
+- Eventos de mouse:
   - `click`
   - `dblclick`
   - `mousedown`
@@ -321,7 +332,7 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
   - `mousemove`
   - `mouseover`
   - `mouseout` <!-- {ul:.multi-column-list-4}-->
-- Eventos de entrada
+- Eventos de entrada de dados:
   - `change`
   - `blur`
   - `focus`
@@ -334,38 +345,17 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 ---
 ## _Event handlers_
 
-- Há basicamente três formas de atribuir _handlers_ a eventos
-  - Forma clássica
+- Há 2 formas de atribuir _handlers_ a eventos
+  - Forma clássica (e feia :thumbsdown:)
     ```js
     button.onclick = function(e) { /*...*/ };
     ```
     - Foi a única forma por muitos anos
     - Permite apenas um _handler_ por tipo de evento
-  - Forma Internet Explorer 6-8:
+  - Forma bacana :thumbsup::
     ```js
-    button.attachEvent('onclick', function(e) { /*...*/ });
+    button.addEventListener('click', function(e) { /*...*/ });
     ```
-  - Forma W3C (**é a que devemos usar**)
-    ```js
-    button.addEventListener('click', function(e) { /*...*/ }, false);
-    ```
-
----
-## Forma adequada para criar _event handlers_
-
-- Já que a forma W3C passou a ser implementada no IE apenas à partir de v9.0, a forma mais adequada para incluir _event handlers_ é:
-  ```js
-  function adicionarManipuladorEvento(no, tipo, f) {
-    if (no.addEventListener) {
-      no.addEventListener(tipo, f, false);
-    } else if (no.attachEvent) {
-      no.attachEvent('on' + tipo, f);
-    } else {
-      no['on' + tipo] = f;
-    }
-  }
-  ```
-- Mas para nossas aulas, o professor liberou `addEventListener` =)
 
 ---
 # Eventos: tópicos avançados
@@ -374,9 +364,9 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 ## _Event Bubbling_ (Borbulhas de Amor)
 
 - Quando um evento é disparado em um elemento (e.g., clique), não apenas ele
-  mas os _handlers_ do mesmo tipo de todos os ancestrais do elemento são
-  acionados
-- Isso é chamado de _event bubbling_
+  mas **os _handlers_ do mesmo tipo <u>de todos os ancestrais do elemento</u>
+  também são acionados**
+- Isso é chamado de **_event bubbling_**
 - Exemplo vivo: [http://jsfiddle.net/fegemo/r61r5sLy/3/](http://jsfiddle.net/fegemo/r61r5sLy/)
   - Repare que há 3 `divs`, uma dentro da outra e cada uma tem um
     _click handler_
@@ -387,7 +377,7 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
 - Considere que você tem 100 objetos arrastáveis (_drag'n'drop_)
   - Você pode colocar um _handler_ em cada um (100x)
   - Ou você pode colocar o _handler_ no container deles (1x) e usar a informação
-    do evento (e.target) para saber qual objeto arrastável foi clicado
+    do evento (`evt.target`) para saber qual objeto arrastável foi clicado
 
 
 ---
@@ -422,75 +412,60 @@ caminhaNoDOM(document.body, imprimeNomeDaTag);
       e.preventDefault();
     }
   }
-  botaoEnviar.addEventListener('submit', validaFormulario);
+  botaoEnviarEl.addEventListener('submit', validaFormulario);
   ```
 
 ---
 # Exercícios
 
-- Hoje temos 3 exercícios. Os dois primeiros podem ser feitos em um editor
-  _online_,  como o [jsfiddle](http://jsfiddle.net/) ou [codepen](http://codepen.io/).
-- Você deve "entregá-los" pelo Moodle, postando o _link_ para seus exercícios
-  (sejam eles repositórios no GitHub ou códigos no _jsfiddle_ ou no _codepen_)
+- Hoje temos 2 atividades práticas:
+  1. Exploração Espacial :alien: (obrigatória)
+  1. RPG Dice Rollator _Tabajara_ :game_die: (opcional +50%)
 
 ---
-## Exercício 1
-
-- Acesse o [código base no jsfiddle](http://jsfiddle.net/fegemo/umq0bgre/)
-- Você deve criar um código em Javascript para fazer os botões "+" expadirem
-  ou retrairem o texto dos parágrafos, de acordo com o contexto
-  - Uma classe CSS `.expandido` contém as propriedades necessárias para que
-    o parágrafo seja exibido de forma completa.
-  
+<!-- {"backdrop": "space"} -->
 ---
-## Exercício 2
+## Atividade 1: Exploração Espacial :alien:
 
-- Crie uma galeria de imagens similar à exibida abaixo.
-
-
-![](../../images/galeria-imagens.jpg)
+- Crie a página da **Exploração Espacial** :alien:
+  - [Repositório no GitHub](https://github.com/fegemo/cefet-web-space)
+    para fazer seu _fork_
+- Há 2 exercícios:
+  1. Você deve criar um código em Javascript para **fazer os botões "+"
+     expadirem ou retrairem o texto dos parágrafos**
+     - Fazer no arquivo `exercicio1.js`
+  1. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
+     - Fazer no arquivo `exercicio2.js`
 
 ---
-## Exercício 2 (cont.)
-
-- Funcionamento
-  - Botões mostram a próxima imagem ou a anterior
-  - Quando chegar na última imagem, voltar para a primeira
-- Ponto de partida: http://jsfiddle.net/fegemo/bL5b2xnn/
-  - Você deve criar um _fork_ no jsfiddle e entregar o link via Moodle
-- Dikentinhas:
-  - Você pode fazer de pelo menos 2 formas:
-    1. Ter apenas uma `<img>` e trocar o `src` dela para o da imagem corrente
-    1. Ter uma `<img>` para cada imagem exibidas numa linha e transladar de
-       acordo com a imagem corrente
-
----
-## Exercício 3 - <span style="font-family: monospace">Dice Rollator <span style="font-family: cursive">Tabajara</span></span>
+## Atividade 2: <span style="font-family: monospace">Dice Rollator <span style="font-family: cursive">Tabajara</span></span>
 
 ![](../../images/tela-dice-rollator.jpg)
 
 ---
-## Exercício 3 - <span style="font-family: monospace">Dice Rollator <span style="font-family: cursive">Tabajara</span></span> (cont.)
+## Atividade 2 - <span style="font-family: monospace">Dice Rollator <span style="font-family: cursive">Tabajara</span></span> (cont.)
 
 - Crie o _Dice Rollator Tabajara_, um sistema de rolagem de dados
-  - [Repositório no GitHub](https://github.com/fegemo/cefet-web-dice-rollator) para fazer seu fork
+  - [Repositório no GitHub](https://github.com/fegemo/cefet-web-dice-rollator)
+    para fazer seu _fork_
+  - Fazer no arquivo `principal.js`
 - Há dados de 4, 6, 8, 10, 12 e 20 lados
 - O usuário escolhe a quantidade de dados que quer jogar, de cada tipo
 - Ao apertar o botão "Rolar", os resultados devem aparecer na parte de baixo da
   página
 
 ---
-## Dicas para o exercício 3
+## Dicas para o Dice Rollator
 
 - Você não precisa fazer nenhuma alteração nos arquivos CSS e HTML, apenas no
-  arquivo JS (principal.js)
+  arquivo JavaScript
 - Para obter um número aleatório entre 0 e 1:
   ```js
-  var resultado = window.Math.random(); // ou Math.random();
+  let resultado = Math.random();
   ```
   - Para obter um número inteiro, de 1 a `maximo`:
     ```js
-    var resultado = Math.ceil(Math.random() * maximo);
+    let resultado = Math.ceil(Math.random() * maximo);
     ```
 
 ---
