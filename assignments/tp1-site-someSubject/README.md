@@ -13,16 +13,14 @@ Seu site deve conter:
    - um logotipo propriamente dito ou
    - o nome da disciplina e tópico (como subtítulo) escrita em uma fonte diferente
 1. Apenas um arquivo _CSS_ para todo o site.
-  - Para estilizar seu HTML, utilize mais seletores de classes e _tags_. Use
-  seletores por _id_ apenas se realmente necessário.
-1. Você deverá usar:
-  - Alguns elementos não estáticos "flutuando na página" ([ver slides][posicionamento])
-  - _Tags_ semanticas ([ver slides][tags_semanticas])
-  - Usar Javascript (criado por vocês) para, por exemplo, resolver uma fórmula matemática
-  - Alguma fonte não instalada ([ver slides][webfonts])
-  - Tabela com uma célula ocupando mais de uma coluna ou linha
-  - Utilizar, em algum momento, pseudo-elements ou pseudo-classes ([ver slides][pseudo-coisas])
-  - Exibição de um vídeo sobre o tema ([ver slides][video])
+    - Para estilizar seu HTML, utilize mais seletores de classes e _tags_. Use seletores por _id_ apenas se realmente necessário.
+1. Alguns elementos não estáticos "flutuando na página" ([ver slides][posicionamento])
+1. _Tags_ semanticas ([ver slides][tags_semanticas])
+1. Usar Javascript (criado por vocês) para, por exemplo, resolver uma fórmula matemática
+1. Alguma fonte não instalada ([ver slides][webfonts])
+1. Tabela com uma célula ocupando mais de uma coluna ou linha
+1. Utilizar, em algum momento, pseudo-elements ou pseudo-classes ([ver slides][pseudo-coisas])
+1. Exibição de um vídeo sobre o tema ([ver slides][video])
 1. _Layout_ e _design_ agradáveis - não precisa ser profissional, mas também não
   pode ter carinha de site da década de 90
 
