@@ -1,7 +1,8 @@
 # Trabalho Prático 1 - Site Sobre um tópico de interesse em alguma Disciplina
 
 Ao sair da aula de sua disciplina favorita, você decidiu fazer uma página
-sobre ela para ajudar os demais alunos.
+sobre um determinado tópico da mesma para motivar e ajudar os demais alunos.
+
 
 ## Funcionalidade Básica
 
