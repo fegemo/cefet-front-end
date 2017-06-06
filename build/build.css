@@ -223,6 +223,10 @@ div.did-you-know::before {
   font-weight: bold;
   color: #800080;
 }
+.push-code-right pre {
+  float: right;
+  clear: right;
+}
 .blastoff.bespoke-backdrop-active {
   background-image: url("../images/icanhaz-blastoff.gif");
   background-size: cover;
@@ -378,6 +382,20 @@ div.did-you-know::before {
 }
 .matematica.bespoke-backdrop-active {
   background-image: url("../images/matematica.png");
+  background-size: cover;
+  background-position: 50% 0%;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  height: 100%;
+}
+.space.bespoke-backdrop {
+  opacity: 0;
+  transform: translate3d(0, 5%, 0);
+  transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
+}
+.space.bespoke-backdrop-active {
+  background-image: url("../images/cefet-web-space.png");
   background-size: cover;
   background-position: 50% 0%;
   opacity: 1;

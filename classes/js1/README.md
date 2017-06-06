@@ -17,7 +17,6 @@
 ---
 <!-- {"layout": "regular"} -->
 ## Na última aula (2/2)
-
 - Exemplo: qual a cor do `<h2>` que seja filho direto de alguém com as classes `.post` e `.novidade` que, por sua vez, esteja dentro de um `#posts-recentes`?
   ```css
   /* id: 1, classes: 2, tag: 1; pontuação: 121 */
