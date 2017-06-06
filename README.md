@@ -52,15 +52,18 @@
 - [Javascript parte 1](classes/js1/) - Características, Escrevendo código,
   Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
+---
+<!-- {"layout": "regular"} -->
+# Aulas (página 3)
+
+- [Javascript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração Espacial :alien:
 
 <!--
 - [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
-- [Javascript 2 - DOM, Eventos e RPG (Prática)](classes/js2/) (07/04/2016)
 - [Javascript 3 - Padrões de Projeto](classes/js3/) (12/04/2016)
 - [Javascript 4 - JSON e AJAX (Prática)](classes/js4/) (14/05/2016)
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
 
-# Aulas (página 3)
 
 - [CSS 6 - _Responsive Design_](classes/css6/) (31/05/2016)
 - [CSS 5 - Animações e _Edukids Animals_ (Prática)](classes/css5/) (02/06/2015)

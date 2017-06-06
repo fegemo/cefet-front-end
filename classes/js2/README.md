@@ -1,472 +1,549 @@
-# Javascript parte 2
-## Arranjos, Alterando Estilos e Exploração Espacial :alien:
+<!-- {"layout": "title"} -->
+# Javascript (parte 2)
+## Arranjos, Alterando o DOM e Exploração Espacial :alien:
 
 ---
-# Roteiro de hoje
+<!-- {"layout": "regular"} -->
+# Na última aula... (1/4)
 
-1. Javascript no navegador
-1. O DOM
-1. Eventos
-1. Exercícios
+- Vimos novos elementos HTML para interação com o usuário:
+  ```html
+  <label for="numero-de-pasteis">Pastéis: </label>
+  <input type="number" value="1" id="numero-de-pasteis"> <!-- não fecha -->
 
----
-# Javascript no navegador
-
----
-## O objeto global: **window**
-
-- O navegador **expõe um único objeto** por janela (ou por frame, ou por
-  iframe) chamado `window`
-- Ele possui informações e utilidades sobre a janela (frame, iframe) corrente.
-  Exemplos:
-  ```js
-  window.alert('mensagenzinha feia');  // retorna undefined
-  window.confirm('janela pedindo confirmacao'); // true, false
-  window.prompt('escreva seu nome, champz', 'b. verde'); // string
+  <button id="calcular">Calcular Conta</button>
   ```
+  - Para atribuir algum comportamento ao clique do `<button>`, é necessário
+    usar JavaScript
+
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (2/4)
+
+- Assim como em CSS, há 3 formas para incluir código JavaScript
+  1. **Arquivo externo** com `<script src="arquivo.js"></script>` :thumbsup:
+  1. Embutido na _tag_ `<script>...</script>` :thumbsdown:
+  1. Inline em atributos `onclick` :thumbsdown::thumbsdown::thumbsdown:
+- A preferida é **arquivo externo**, porque ela:
+  - Promove **reutilização de código JavaScript** por mais de um arquivo HTML
+  - Respeita o princípio da **separação de responsabilidades**
+
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (3/4)
+
+- Definimos **funções** com `function`: <!-- {ul:.push-code-right} -->
   ```js
-  // url, título, opções
-  window.open('/popup.html', 'Enquete', 'resizable,scrollbars');
+  function nome(parametros) {
+    // comandos aqui
+  }
   ```
-
----
-## Momento interativo
-
-- Vamos testar essas funções do objeto `window`
-  1. Abra as ferramentas de desenvolvedor do seu navegador (<kbd>F12</kbd>
-     ou <kbd>Ctrl+Shift+I</kbd>)
-  1. Na aba console, digite `window`, depois ponto ("`.`") e veja a
-     quantidade de propriedades do objeto
-  1. Execute o comando para abrir uma janela com [a página do pudim](http://pudim.com.br)
-     - Se a nova janela não abrir, provavelmente ela foi bloqueada pelo
-       navegador ;)
-
----
-## O objeto global: **window** (cont.)
-
-- Mais algumas utilidades de **window**
+- Vimos os **tipos de dados** _Boolean_, _Number_, _String_
+- Criamos **variáveis** com `let`:
   ```js
-  window.setTimeout(f, 200);   // chama daqui a 200ms, 1x. retorna um id do timer
-  window.setInterval(f, 1000); // chama a cada 1s, forever. retorna um id
-  window.clearTimeout(id);
-  window.clearInterval(id);
+  let gatos = 9;            // tipo Number
+  let nome = 'Adamastror';  // tipo String
+  let cineminha = true;     // tipo Boolean
   ```
+- Não é necessário (nem possível) definir o tipo de variáveis
+  - Porque ele é inferido automaticamente
+
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (4/4)
+
+- O DOM é a visão que o JavaScript tem dos elementos da página
+- Dá para recuperar/alterar elementos do DOM com o objeto `document`:
   ```js
-  window.eval('window.alert("eval is evil!");');    // nao fazer em casa
+  // cria uma variável e recupera o elemento da logo (id="#logomarca")
+  let logoEl = document.querySelector('#logomarca');
+
+  // atribui um evento de 'click' ao elemento da logo
+  logoEl.addEventListener('click', function() {
+    alert('Logo clicada!!');
+  });
   ```
-
----
-## Objetos notáveis dentro de **window**
-
-- Além de utilidades, o objeto `window` também possui outros objetos muito
-  importantes
-  - **`window.document`**
-   - Acesso à estrutura `html` da página
-  - `window.navigator`
-    - Acesso a características do navegador
-  - `window.console`
-    - Objeto de acesso à saída de terminal
-  - `window.history`
-    - Funções de manipulação do histórico da página (botões Voltar/Avançar)
-
----
-## Objetos notáveis dentro de **window** (cont.)
-
-- Mais alguns objetos:
-  - `window.Math`
-    - **Funções matemáticas**
-  - `window.JSON`
-    - Funções de conversão entre string e JSON
-  - `window.localStorage`
-    - _Cache_ de informações locais à página
-  - `window.sessionStorage`
-    - _Cache_ com duração de apenas uma sessão
-  - `window.location`
-    - Informações acerca do endereço da página
-
-*[JSON]: JavaScript Object Notation*
-
----
-## Convenção
-
-- Como o objeto `window` é o único objeto que o navegador expõe para os
-  scripts, **podemos acessar suas propriedades <u>sem usar `"window."`</u>** :scream:.
-  Por exemplo:
-  ```js
-  window.console.log('Nintendo pwns Sony');
-  ```
-  É o mesmo que:
-  ```js
-  console.log('Nintendo pwns Sony');    // sucesso!!
-  ```
-- Vamos falar muito agora sobre **`window.document`**, ou apenas `document`
-
----
-# O DOM
-
-![Foto do Don Corleone, do filme O Poderoso Chefão](../../images/don.png) <!-- {.portrait} -->
-
----
-## O objeto **document**
-
-- O objeto `document` dá acesso ao **Document Object Model**, ou DOM
-- O DOM é uma representação da estrutura dos elementos html na forma de
-  árvore
-  <img src="../../images/dom-tree.png" style="float:right;width:50%;display:block;">
-  <pre style="float:right;width:50%;margin:0;"><code class="hljs lang-html">&lt;!DOCTYPE html&gt;
-  &lt;html&gt;
-    &lt;head&gt;
-      &lt;title&gt;HTML&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-      &lt;!-- Add your content here --&gt;
-    &lt;/body&gt;
-  &lt;/html&gt;</code></pre>
-
----
-## DOM
-
-- Cada elemento do DOM é chamado de **nó** (_node_) (estrutura de árvore)
-- O tipo de cada elemento "herda" de um tipo chamado `HTMLElement`
-- É possível acessar os atributos HTML dos elementos:
-  - `id`
-    ```js
-    console.log(botaoAzul.id);
-    ```
-  - classes, etc.
-    ```js
-    console.log(botaoAzul.className); // className equivale a class
-                                      // - não pode 'class' pq é reservado em js
-    ```
 
 *[DOM]: Document Object Model*
 
 ---
-<!-- {"backdrop": "old-paper"} -->
-## Buscando nós na árvore
+# Hoje veremos
 
-- Há diversas formas para se recuperar nós específicos da árvore
+1. [Mais tipos de dados](#mais-tipos-de-dados)
+1. [Arranjos e estruturas de repetição](#arranjos-e-estruturas-de-repeticao)
+1. [Alterando o DOM](#alterando-elementos-do-dom)
+1. [Exploração Espacial](#exploracao-espacial) :alien:
+
+---
+<!-- {"layout": "section-header", "slideHash": "mais-tipos-de-dados"} -->
+# Mais tipos de dados
+## Os primitivos e o complexo
+
+- _Null_
+- _Undefined_
+- _Object_
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular"} -->
+# O tipo _Null_
+
+- O tipo Null contém apenas um valor
+  - `null`
+- Usado quando uma variável **não tem um valor aplicável naquele momento**
   ```js
-  document.getElementById(id);    // HTMLElement ou null
-  document.getElementsByTagName(nomeDaTag); // HTMLCollection
-  document.getElementsByClassName(classe);  // HTMLCollection
-  document.getElementsByName(nome);  // HTMLElement ou null
+  let x = null;
+  console.log(typeof x);    // imprime null
   ```
+
+---
+<!-- {"layout": "regular"} -->
+# O tipo _Undefined_
+
+- O tipo Undefined é o tipo atribuído a **variáveis que não foram associadas a
+  nenhum valor**
+- Tem um único valor
+  - `undefined`
 - Exemplo:
   ```js
-  const botaoEl = document.getElementById('botao-compartilhar-no-face');
-  botaoEl.onclick = function() { /* ... */ };   // onclick é bem old...
+  let x;
+  if (typeof x === 'undefined') {
+    // será executado, porque x não foi inicializado com algum valor
+  }
   ```
 
 ---
-<!-- {"backdrop": "old-paper"} -->
-## Buscando nós em uma sub-árvore
+# O tipo _Object_
 
-- É possível fazer consultas a nós a partir de uma sub-árvore:
+- É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right} -->
   ```js
-  no.getElementsByTagName(nomeDaTag);
-  no.getElementsByClassName(classe);
-  ```
-- Exemplo: recuperar todas as imagens com a classe `icone` dentro do menu:
+  let jogador = {
+    pontos: 1420,
+    vidas: 2
+  };
+  console.log(jogador.pontos);
+  // imprime 1420
+  ```  
+  - Propriedade: (**nome → valor**)
+    - Nome: uma String
+    - Valor: qualquer coisa, exceto `undefined`
+- No exemplo, o objeto tem 2 propriedades:
+  1. Nome: `pontos`, valor: `1420`
+  1. Nome: `vidas`, valor: `2`
+- Novas propriedades podem ser atribuídas mesmo após sua criação
+
+---
+## Instanciando um _Object_
+
+- Na forma literal:
   ```js
-  const navegacaoEl = document.getElementById('menu-principal');
-  const iconesEl = navegacao.getElementsByClassName('icone');
+  let jogador = {             // forma mais expressiva, curta e sexy
+    pontos: 1420,             // propriedades separadas por vírgula
+    vidas: 2
+  };
   ```
-
----
-<!-- {"backdrop": "shiny"}-->
-## Buscando nós na árvore ![](../../images/logo-html.svg) <!-- {style="height: 1em;"}-->
-
-- Existem dois comandos melhores para fazer consultas no DOM:
   ```js
-  let iconesNavegacaoEl = document.querySelectorAll('#menu-principal .icone');
-  let botaoEnviarEl = document.querySelector('#botao-enviar');
-  ```
-  - São melhores porque:
-    - **Interface unificada** de busca
-    - Usa os mesmos **seletores de CSS**
-    - Inspirado na biblioteca **jQuery**
-
-
----
-## Caminhando pela árvore
-
-- É possível fazer um caminhamento pela árvore toda ou começando a partir de
-  um nó específico
-  - Por exemplo: você pode querer visitar todos os nós para excluir textos
-    proibidos ('XXX', 'Aécio', 'Dilma', 'calor')
-- Se for necessário percorrer a árvore, pode-se usar **apontadores para filhos,
-  pais e irmãos de cada nó**
-  ```js
-  no.firstChild;        // primeiro filho
-  no.lastChild;         // último filho
-  no.childNodes;        // array de filhos
-  no.nextSibling;       // próximo irmão
-  no.previousSibling;   // irmão anterior
-  no.parentNode;        // nó pai
+  let jogador = {};           // um objeto vazio: { }
+  jogador.pontos = 1420;      // criou jogador.pontos com valor 1420
+  jogador.vidas = 2;          // criou jogador.vidas
   ```
 
----
-
-::: figure .figure-slides
-![](../../images/dom-traversal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![](../../images/dom-traversal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![](../../images/dom-traversal-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-:::
 
 ---
-## Exemplo: imprimindo o nome das _tags_
+<!-- {"layout": "2-column-content"} -->
+## Objetos dentro de objetos
 
 ```js
-function caminhaNoDOM(no, visitaNo) {
-  visitaNo(no);
-  no = no.firstChild;
-  while (no) {
-    caminhaNoDOM(no, visitaNo);
-    no = no.nextSibling;
-  }
-}
+let voo = {
+    companhia: 'Gol',
+    numero: 815,
+    decolagem: {
+        IATA: 'SYD',
+        horario: '2004-09-22 14:55',
+        cidade: 'Sydney'
+    },
+    chegada: {
+        IATA: 'LAX',
+        horario: '2004-09-23 10:42',
+        cidade: 'Los Angeles'
+    }
+};
+```
+- Aqui existem 3 objetos:
+  - O **`voo`**, com as propriedades:
+     - `companhia`
+     - `numero`
+     - **`decolagem`**
+     - **`chegada`**
+  - `decolagem` e `chegada` são objetos por si mesmos
 
-function imprimeNomeDaTag(no) {
-  // apenas imprime o nome da tag (e.g., BODY, H1, P)
-  console.log(no.tagName);
-}
+---
+## Outros tipos
 
-// chama o algoritmo de caminhamento com a função de visita
-// imprimindo o nome da tag corrente
-caminhaNoDOM(document.body, imprimeNomeDaTag);
+- O Javascript possui **outros tipos complexos, que são baseados em Object**:
+  - `Function` (sim! funções são objetos em JavaScript)
+  - `Date`
+    - Por exemplo, para imprimir o horário atual no console:
+      ```js
+      let agora = new Date();
+      console.log(agora);
+      ```
+  - `Array` (veremos na próxima seção)
+
+
+---
+<!-- {"layout": "section-header", "slideHash": "arranjos-e-estruturas-de-repeticao"} -->
+# Arranjos e Estruturas de repetição
+## .
+
+- Definindo _arrays_
+- Métodos de _arrays_
+- 3 sabores de `for`
+- _Loops_ `while`/`do { ... } while`
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Arrays
+
+- Arrays são vetores unidimensionais, **heterogêneos**
+  - Os itens dos vetores **não** precisam ter o mesmo tipo
+    ```js
+    let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
+    ```
+- Assim como a _String_, um _Array_ tem um **comprimento**:
+  - `length`
+    ```js
+    console.log(listaDeCoisas.length);  // imprime 5
+    ```
+
+---
+<!-- {"layout": "regular", "elementStyles": { "h2 + pre": "overflow: hidden; width: 100%;"}} -->
+## **Usando** Arrays
+
+```js
+let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 ```
 
----
-## Criando elementos dinamicamente
-
-- É possível criar elementos dinamicamente, de duas formas:
-  1. Instanciando elementos e os adicionando à árvore:
-     ```js
-     let conteudoEl = document.getElementById('conteudo');
-     let dadoEl = document.createElement('img');
-     dado.src = 'images/d12.png';
-     conteudo.appendChild(dado);
-     ```
-  1. Definindo a propriedade de `innerHTML` de um elemento da árvore para uma
-     string descrevendo uma estrutura `html`:
-     ```js
-     let conteudoEl = document.getElementById('conteudo');
-     conteudoEl.innerHTML = '<img src="images/d12.png">';
-     ```
-
----
-## Criando elementos dinamicamente (cont.)
-
-- Além de `no.appendChild(elemento)`, também é possível incluir novos elementos
-  na árvore usando:
+- Indexação: usa-se os símbolos `[` e `]` para acessar um item do array
   ```js
-  no.insertBefore(novoEl);            // novoEl vira irmão de 'no'
-  no.replaceChild(novoEl, antigoEl);  // novoEl vira filho de 'no' e
-                                      // exclui o elemento antigo
+  console.log(listaDeCoisas[1]);      // imprime 35
+  listaDeCoisas[0] = '';              // altera primeiro elemento
+  console.log(listaDeCoisas[0]);      // imprime string vazia
   ```
-- Para remover um elemento da árvore
+- Arrays possuem métodos, [vários](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array):
   ```js
-  no.removeChild(paraRemoverEl);
+  let frutas = [];                    // cria um array vazio
+  frutas.push('kiwi');                // colca 'kiwi' no array
+  console.log(frutas.length);         // imprime 1
   ```
 
 ---
-## Alterando atributos dos nós
+<!-- {"layout": "regular"} -->
+## **Métodos** de Arrays
 
-- É possível alterar atributos dos nós:
+- Inserindo e removendo elementos
+  ```js
+  frutas.push('mamão');         // insere 'mamão' no final do array
+  frutas.pop();                 // remove o último ('mamão')
+  frutas.unshift('tangerina');  // insere 'tangerina' no início
+  frutas.shift();               // remove o primeiro ('tangerina')
+  ```
+- E alguns outros:
+  ```js
+  frutas.reverse()              // inverte a ordem dos itens
+  frutas.sort();                // ['banana', 'kiwi', 'maçã']
+  frutas.splice(2, 1);          // Remove 1 elemento, a partir do 3º
+  ```
+
+---
+<!-- {"layout": "2-column-content", "slideHash": "for-formas-preferiveis"} -->
+# **for** <small>(formas **preferíveis**)</small>
+
+1. Usando `for (let item of array)` ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} --> :thumbsup::
+   ```js
+   let cores = ['azul', 'rosa'];
+   for (let cor of cores) {
+     console.log(cor);
+     // azul, rosa
+   }
+   ```
+- Usando `array.forEach` :thumbsup::
+  ```js
+  let cores = ['azul', 'rosa'];
+  cores.forEach(function(cor) {
+    console.log(cor);
+    // azul, rosa
+  });
+  ```
+
+---
+<!-- {"layout": "regular"} -->
+# **for** <small>(forma tradicional)</small>
+
+- Forma tradicional com `for (inicio; condicao; incremento)`:
+  ```js
+  for (let i = 0; i < 10; i++) {
+    console.log(i);               // 0, 1, 2 ... 9
+  }
+  ```
+- Percorrendo items de um _array_:
+  ```js
+  let cores = ['azul', 'rosa'];
+  for (let i = 0; i < cores.length; i++) {
+    console.log(cores[i]);        // azul, rosa
+  }
+  ```
+
+---
+<!-- {"layout": "2-column-content"} -->
+# while/do..while
+
+- Condição **primeiro**
+  ```js
+  let i = 1;
+  while (i !== 10) {
+    console.log(i);
+    i++;
+  }
+  ```
+1. Condição **depois**
+   ```js
+   let i = 0;
+   do {
+     i++;
+     console.log(i);
+   } while (i !== 10);
+   ```
+
+---
+<!-- {"layout": "section-header", "slideHash": "alterando-elementos-do-dom"} -->
+# Alterando o DOM
+## Mudando os elementos HTML
+
+- Selecionando vários elementos
+- Alterando o contéudo de um elemento
+- Alterando atributos
+- Colocando/removendo classes
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular", "slideHash": "selecionando-varios-elementos"} -->
+# Selecionando vários elementos
+
+- O `document.querySelector` retorna **apenas 1 elemento**
+- O `document.querySelectorAll` retorna **todos** que forem selecionados:
+  ```js
+  let inputs = document.querySelectorAll('input');  // retornou um 'NodeList'
+                                                    // com todos inputs da página
+
+  console.log('Quantidade de inputs: ' + inputs.length);
+  let primeiroInputEl = inputs[0];
+  ```
+
+---
+## Selecionando vários elementos (cont.)
+
+- Um `NodeList` é "praticamente um _array_" - ele possui os métodos essenciais:
+  ```js
+  let inputs = document.querySelectorAll('input');
+
+  // propriedade .length
+  console.log('Quantidade de elementos: ' + inputs.length);
+  // método 'forEach'
+  inputs.forEach(function(el) {
+    // ...
+  });
+  // pegando um elemento
+  let primeiroEl = inputs[0];
+  ```
+
+---
+<!-- {"slideHash": "alterando-o-conteudo"} -->
+# Alterando **o conteúdo**
+
+- ![Uma tag, composta por tag de abertura, conteúdo e tag de fechamento](../../images/anatomia-tag.png)
+  <!-- {.push-right style="width: 250px"} -->
+  É possível alterar o **conteúdo** de um elemento com `elemento.innerHTML`:
+  <iframe width="250" height="130" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
+  <iframe width="250" height="153" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/html/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
+
+  ```js
+  let contador = 0,
+    contadorEl = document.querySelector('#contador');
+  // quando clicado, (1) conta e (2) altera conteúdo
+  contadorEl.addEventListener('click', function() {
+    contador++;                       // (1) conta
+    contadorEl.innerHTML = contador;  // (2) altera
+  });
+  ```
+
+---
+# Alterando **atributos**
+
+- É possível alterar atributos dos elementos:
   ```html
-  <a href="/contato" title="" id="link-contato">
+  <img src="imgs/pikachu.png" id="pokemon-principal">
   ```
   ```js
-  let lingua = 'port';
-  const texto = {
-    'port': 'Página de Contato',
-    'ingl': 'Contact Us'
-  }
-  const linkContatoEl = document.getElementById('link-contato');
-  linkContatoEl.title = texto[lingua];
+  let pokemonEl = document.querySelector('#pokemon-lutando');
+  pokemonEl.src = 'imgs/bulbasaur.png';        // alteramos o 'src'
   ```
+  - Aqui, alteramos o atributo `src` da `img`, mas poderia ser qualquer um
+    - Por exemplo, em `input` costumamos pegar/alterar o `value`
 
 ---
-## Alterando o estilo de elementos
+<!-- {"slideHash": "colocando-removendo-classes"} -->
+# Colocando/removendo **classes**
 
-- Há 2 formas para alterar o estilo de elementos:
-  1. Alterando a propriedade `style`:
-     ```js
-     botaoEl.style.width = '80%';           // define largura como 80%
-     botaoEl.style.paddingTop = '2px';      // padding-top vira paddingTop
-     ```
-  1. Adicionando ou removendo classes :thumbsup::thumbsup::
-     ```js
-     botaoEl.classList.add('selecionado');  // adiciona .selecionado
-     botaoEl.classList.remove('oculta');    // remove .oculta
-     ```
-
----
-## Nomes das propriedades de estilo em JS
-
-- Repare a mudança das propriedades **CSS para JS**:
+- É possível colocar ou remover classes de elementos:
   ```js
-  botao.style.backgroundColor = '#ccc';
+  botaoEl.classList.add('selecionado');   // coloca .selecionado
+  imageEl.classList.remove('oculta');     // remove .oculta
+  pEl.classList.toggle('expandido');      // coloca ou tira .expandido
   ```
-- CSS &#8594; Javascript
-  - `background-color` &#8594; `backgroundColor`
-  - `border-radius` &#8594; `borderRadius`
-  - `font-size` &#8594; `fontSize`
-  - `list-style-type` &#8594; `listStyleType`
-  - `z-index` &#8594; `zIndex`
+  - <iframe width="250" height="160" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+    Isso pode ser usado, por exemplo, pra "marcar" elementos:
+  - Ou então pra fazer um menu lateral aparecer...
 
 ---
-# Eventos
+<!-- {"layout": "2-column-content-zigzag"} -->
+## Definindo "quem está selecionado"
+
+<iframe width="340" height="250" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
+
+- **Marca/desmarca** elemento. Ideia:
+  - No evento de `'click'`:
+    1. Alterna a classe `.selecionado` do elemento que foi "clicado"
+       - `el.classList.toggle('selecionado')`
+
+<iframe width="340" height="250" src="//jsfiddle.net/fegemo/8nsjhgga/embedded/result,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
+
+- **Apenas 1** elemento selecionado por vez. Ideia:
+  - No evento de `'click'`:
+    1. Tira a classe `.selecionado` de todos
+    1. "Re"coloca a classe no elemento "clicado"
 
 ---
-## Eventos
+<!-- {"layout": "2-column-content"} -->
+## Um menu lateral aparecer
 
-- Eventos são **atrelados a nós específicos** e causam a invocação de uma função
-  "manipuladora" (_event handler_ ou apenas _handler_)
-- Eventos de mouse:
-  - `click`
-  - `dblclick`
-  - `mousedown`
-  - `mouseup`
-  - `mousemove`
-  - `mouseover`
-  - `mouseout` <!-- {ul:.multi-column-list-4}-->
-- Eventos de entrada de dados:
-  - `change`
-  - `blur`
-  - `focus`
-  - `keydown`
-  - `keyup`
-  - `reset`
-  - `submit` <!-- {ul:.multi-column-list-4}-->
-- (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
+<iframe width="100%" height="400" src="//jsfiddle.net/fegemo/dj37kc7e/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
----
-## _Event handlers_
-
-- Há 2 formas de atribuir _handlers_ a eventos
-  - Forma clássica (e feia :thumbsdown:)
-    ```js
-    button.onclick = function(e) { /*...*/ };
-    ```
-    - Foi a única forma por muitos anos
-    - Permite apenas um _handler_ por tipo de evento
-  - Forma bacana :thumbsup::
-    ```js
-    button.addEventListener('click', function(e) { /*...*/ });
-    ```
-
----
-# Eventos: tópicos avançados
-
----
-## _Event Bubbling_ (Borbulhas de Amor)
-
-- Quando um evento é disparado em um elemento (e.g., clique), não apenas ele
-  mas **os _handlers_ do mesmo tipo <u>de todos os ancestrais do elemento</u>
-  também são acionados**
-- Isso é chamado de **_event bubbling_**
-- Exemplo vivo: [http://jsfiddle.net/fegemo/r61r5sLy/3/](http://jsfiddle.net/fegemo/r61r5sLy/)
-  - Repare que há 3 `divs`, uma dentro da outra e cada uma tem um
-    _click handler_
-
----
-## Por que borbulhar?
-
-- Considere que você tem 100 objetos arrastáveis (_drag'n'drop_)
-  - Você pode colocar um _handler_ em cada um (100x)
-  - Ou você pode colocar o _handler_ no container deles (1x) e usar a informação
-    do evento (`evt.target`) para saber qual objeto arrastável foi clicado
-
-
----
-## Cancelando a bolha
-
-- Um _handler_ deve cancelar o borbulhamento do evento caso queira que ele pare
-  de borbulhar. Utiliza-se `e.stopPropagation()`:
-  ```js
-  function fechaPainelModal(e) {
-    // "fecha" (torna invisível) o painel modal
-    modal.style.display = 'none';
-    // evita que o clique no botão fechar seja processado pelos
-    // handlers de cliques dos elementos ancestrais  
-    e.stopPropagation();
-  }
-  botaoFechar.addEventListener('click', fechaPainelModal);
+- No HTML:
+  ```html
+  <body>
+    <nav id="menu">...</nav>
+    <main>...</main>
+  </body>
   ```
-- Exemplo vivo: [http://jsfiddle.net/fegemo/r61r5sLy/3/](http://jsfiddle.net/fegemo/r61r5sLy/)
+- No JavaScript, alterna a classe `.menu-visivel` no `<body>`
+- No CSS, desloca tudo para a direita quando o `<body>` tem `.menu-visivel`
 
 ---
-## Impedindo a ação padrão
+<!-- {"layout": "section-header", "slideHash": "exploracao-espacial"} -->
+# Exploração Espacial :alien:
+## Conhecendo o além-atmosfera
 
-- Elementos de entrada (`input`) e alguns outros elementos possuem
-  **ações padrão**. Por exemplo:
-  - Botão `submit` &#8594; envia o formulário
-  - Botão `reset` &#8594; limpa os campos preenchidos
-- É possível cancelar a ação padrão usando `e.preventDefault()`:
-  ```js
-  function validaFormulario(e) {
-    if (nome === '' || senha === '') {
-      // Houve erros no formulário. Impedir o envio
-      e.preventDefault();
-    }
-  }
-  botaoEnviarEl.addEventListener('submit', validaFormulario);
-  ```
+- Atividade de hoje
+- Definindo constantes com `const`
+- Que elemento foi clicado?
+- Subindo na árvore do DOM
+- Alternando uma classe
 
----
-# Exercícios
-
-- Hoje temos 2 atividades práticas:
-  1. Exploração Espacial :alien: (obrigatória)
-  1. RPG Dice Rollator _Tabajara_ :game_die: (opcional +50%)
+<!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "space"} -->
+
 ---
-## Atividade 1: Exploração Espacial :alien:
+<!-- {"layout": "regular"} -->
+# Exploração Espacial :alien:
 
 - Crie a página da **Exploração Espacial** :alien:
-  - [Repositório no GitHub](https://github.com/fegemo/cefet-web-space)
-    para fazer seu _fork_
-- Há 2 exercícios:
-  1. Você deve criar um código em Javascript para **fazer os botões "+"
+  - [Baixe os arquivos][exploracao-espacial] e veja as instruções
+    detalhadas no arquivo README.md
+- Há 2 atividades:
+  1. Criar um código em JavaScript para **fazer os botões "+"
      expadirem ou retrairem o texto dos parágrafos**
-     - Fazer no arquivo `exercicio1.js`
+     - Fazer no arquivo `atividade1.js`
   1. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
-     - Fazer no arquivo `exercicio2.js`
+     - Fazer no arquivo `atividade2.js`
+
+[exploracao-espacial]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
 
 ---
-## Atividade 2: <span style="font-family: monospace">Dice Rollator <span style="font-family: cursive">Tabajara</span></span>
+<!-- {"slideHash": "definindo-constantes"} -->
+# Definindo constantes com **`const`**
 
-![](../../images/tela-dice-rollator.jpg)
-
----
-## Atividade 2 - <span style="font-family: monospace">Dice Rollator <span style="font-family: cursive">Tabajara</span></span> (cont.)
-
-- Crie o _Dice Rollator Tabajara_, um sistema de rolagem de dados
-  - [Repositório no GitHub](https://github.com/fegemo/cefet-web-dice-rollator)
-    para fazer seu _fork_
-  - Fazer no arquivo `principal.js`
-- Há dados de 4, 6, 8, 10, 12 e 20 lados
-- O usuário escolhe a quantidade de dados que quer jogar, de cada tipo
-- Ao apertar o botão "Rolar", os resultados devem aparecer na parte de baixo da
-  página
-
----
-## Dicas para o Dice Rollator
-
-- Você não precisa fazer nenhuma alteração nos arquivos CSS e HTML, apenas no
-  arquivo JavaScript
-- Para obter um número aleatório entre 0 e 1:
-  ```js
-  let resultado = Math.random();
-  ```
-  - Para obter um número inteiro, de 1 a `maximo`:
+- O `let` possui um irmão, mais conservador, chamado `const`
+  - Uma variável `let` **pode** apontar para outro valor
     ```js
-    let resultado = Math.ceil(Math.random() * maximo);
+    let personagemCoadjuvante = 'Luca Molusco';
+    personagemCoadjuvante = 'Seu Sirigueijo'; // Ok, funciona
     ```
+  - Uma variável `const` (ou constante) **não pode** apontar para outro valor
+    ```js
+    const cargoDoBobEsponja = 'cozinheiro';
+    cargoDoBobEsponja = 'chefe';              // TypeError: Assignment to
+                                              //   constant variable
+    ```
+
+---
+<!-- {"slideHash": "argumento-de-click"} -->
+# Que elemento foi clicado?
+
+- A _callback_ de eventos é executada com um **argumento com informações
+  sobre o evento**. Tipicamente damos o nome de `e`, `evt` ou `event`:
+  ```js
+  function imprimeId(e) {      // repare o argumento 'e' (evento)
+    let booClicadoEl = e.currentTarget; // <--- o elemento "alvo" do evento (img.boo)
+    console.log(booClicadoEl.id);       // imprime 'boo1' (id do boo clicado)
+  }
+
+  document.querySelectorAll('.boo').forEach(function(booEl) {   // pega os .boo e
+    booEl.addEventListener('click', imprimeId);                 // coloca o evento
+  });                                                           // 'click' neles
+  ```
+
+---
+<!-- {"slideHash": "subindo-na-arvore"} -->
+# Subindo na árvore do DOM
+
+- Todo elemento do DOM conhece, na árvore, quem é:
+  1. seu pai (**`elemento.parentNode`**)
+  1. seus filhos (`elemento.childNodes`)
+  1. irmão anterior e irmão posterior
+- Para pegar o "pai" de um elemento que foi clicado, por exemplo:
+  ```js
+  function clicouNoCaption(e) {
+    let clicadoEl = e.currentTarget;          // o <caption> foi clicado
+    let tabelaEl = clicadoEl.parentNode;      // <--- <tabel> é o pai do <caption>
+    console.log(tabelaEl.id);                 // imprime id da tabela
+  }
+  let captionEl = document.querySelector('table > caption');
+  captionEl.addEventListener('click', clicouNoCaption);
+  ```
+
+---
+<!-- {"slideHash": "alternando-uma-classe"} -->
+# Alternando uma classe
+
+- Às vezes queremos colocar/remover uma classe em um elemento **alternadamente**
+- Para isso, existe o `document.classList.toggle('nome-da-classe')`
+- Além de colocar/remover a classe, **o método retorna**:
+  - `true` se tiver colocado a classe
+  - `false` se tiver removido a classe
+- Exemplo:
+  ```js
+  let colocou = booEl.classList.toggle('selecionado');
+  console.log(colocou);         // imprime 'true', porque colocou .selecionado
+  colocou = booEl.classList.toggle('selecionado');
+  console.log(colocou);         // imprime 'false', porque tirou .selecionado
+  ```
 
 ---
 # Referências
