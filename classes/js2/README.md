@@ -108,9 +108,7 @@
 - Exemplo:
   ```js
   let x;
-  if (typeof x === 'undefined') {
-    // será executado, porque x não foi inicializado com algum valor
-  }
+  console.log(typeof x);    // imprime undefined
   ```
 
 ---
@@ -182,13 +180,13 @@ let voo = {
 ## Outros tipos
 
 - O Javascript possui **outros tipos complexos, que são baseados em Object**:
-  - `Function` (sim! funções são objetos em JavaScript)
   - `Date`
     - Por exemplo, para imprimir o horário atual no console:
       ```js
       let agora = new Date();
       console.log(agora);
       ```
+  - `Function` (sim! funções são objetos em JavaScript)
   - `Array` (veremos na próxima seção)
 
 
@@ -214,7 +212,7 @@ let voo = {
     let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
     ```
 - Assim como a _String_, um _Array_ tem um **comprimento**:
-  - `length`
+  - Propriedade `length`:
     ```js
     console.log(listaDeCoisas.length);  // imprime 5
     ```
@@ -259,6 +257,24 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
+<!-- {"layout": "regular"} -->
+# **for** <small>(forma tradicional)</small>
+
+- Forma tradicional com `for (inicio; condicao; incremento)`:
+  ```js
+  for (let i = 0; i < 10; i++) {
+    console.log(i);               // 0, 1, 2 ... 9
+  }
+  ```
+- Percorrendo items de um _array_:
+  ```js
+  let cores = ['azul', 'rosa'];
+  for (let i = 0; i < cores.length; i++) {
+    console.log(cores[i]);        // azul, rosa
+  }
+  ```
+
+---
 <!-- {"layout": "2-column-content", "slideHash": "for-formas-preferiveis"} -->
 # **for** <small>(formas **preferíveis**)</small>
 
@@ -277,24 +293,6 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
     console.log(cor);
     // azul, rosa
   });
-  ```
-
----
-<!-- {"layout": "regular"} -->
-# **for** <small>(forma tradicional)</small>
-
-- Forma tradicional com `for (inicio; condicao; incremento)`:
-  ```js
-  for (let i = 0; i < 10; i++) {
-    console.log(i);               // 0, 1, 2 ... 9
-  }
-  ```
-- Percorrendo items de um _array_:
-  ```js
-  let cores = ['azul', 'rosa'];
-  for (let i = 0; i < cores.length; i++) {
-    console.log(cores[i]);        // azul, rosa
-  }
   ```
 
 ---
@@ -347,17 +345,34 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 ---
 ## Selecionando vários elementos (cont.)
 
-- Um `NodeList` é "praticamente um _array_" - ele possui os métodos essenciais:
+- Para **atribuir um evento a todos** os elementos retornados:
+  ```js
+  let imagens = document.querySelectorAll('img');  // retornou um 'NodeList'
+
+  // INCORRETO: um NodeList não possui um método "addEventListener"
+  imagens.addEventListener('click', function() { });
+
+  // CORRETO: cada item do NodeList (array) é um elemento HTML, logo,
+  // possui a propriedade "addEventListener"
+  for (let i = 0; i < imagens.length; i++) {
+    imagens[i].addEventListener('click', function() { });
+  }
+  ```
+
+---
+## Selecionando vários elementos (cont.)
+
+- Um `NodeList` é **"praticamente um _array_"** - ele possui os métodos essenciais:
   ```js
   let inputs = document.querySelectorAll('input');
 
-  // propriedade .length
+  // propriedade .length (igual um array)
   console.log('Quantidade de elementos: ' + inputs.length);
-  // método 'forEach'
+  // método 'forEach' (igual um array)
   inputs.forEach(function(el) {
     // ...
   });
-  // pegando um elemento
+  // pegando um elemento como se fosse um array
   let primeiroEl = inputs[0];
   ```
 
@@ -386,7 +401,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 
 - É possível alterar atributos dos elementos:
   ```html
-  <img src="imgs/pikachu.png" id="pokemon-principal">
+  <img src="imgs/pikachu.png" id="pokemon-lutando">
   ```
   ```js
   let pokemonEl = document.querySelector('#pokemon-lutando');
@@ -482,7 +497,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 - O `let` possui um irmão, mais conservador, chamado `const`
   - Uma variável `let` **pode** apontar para outro valor
     ```js
-    let personagemCoadjuvante = 'Luca Molusco';
+    let personagemCoadjuvante = 'Lula Molusco';
     personagemCoadjuvante = 'Seu Sirigueijo'; // Ok, funciona
     ```
   - Uma variável `const` (ou constante) **não pode** apontar para outro valor
