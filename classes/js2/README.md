@@ -42,7 +42,7 @@
 - Criamos **variáveis** com `let`:
   ```js
   let gatos = 9;            // tipo Number
-  let nome = 'Adamastror';  // tipo String
+  let nome = 'Adamastor';   // tipo String
   let cineminha = true;     // tipo Boolean
   ```
 - Não é necessário (nem possível) definir o tipo de variáveis
