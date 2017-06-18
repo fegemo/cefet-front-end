@@ -56,11 +56,13 @@
 <!-- {"layout": "regular"} -->
 # Aulas (página 3)
 
-- [Javascript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração Espacial :alien:
+- [Javascript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração
+  Espacial :alien:
+- [Javascript parte 3](classes/js3/) - História, Estilizando
+  elementos, Eventos de mouse, Depurando
 
 <!--
 - [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
-- [Javascript 3 - Padrões de Projeto](classes/js3/) (12/04/2016)
 - [Javascript 4 - JSON e AJAX (Prática)](classes/js4/) (14/05/2016)
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
 
