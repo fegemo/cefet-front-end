@@ -367,19 +367,23 @@ window.setInterval(atualizaAbel, 33);
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {
+  "layout": "regular",
+  "scripts": ["../../scripts/classes/mouse-events.min.js"],
+  "styles": ["../../styles/classes/mouse-events.min.css"]
+} -->
 ## Eventos
 
 - Eventos são **associados a elementos específicos** e causam a invocação
   de uma função "manipuladora" (_event handler_ ou apenas _handler_)
 - Eventos relacionados ao mouse:
-  - `click` (clique simples)
-  - `dblclick` (clique duplo)
-  - `mousedown` (pressionou um botão)
-  - `mouseup` (liberou um botão)
-  - `mousemove` (movimentou)
-  - `mouseover` (sobrevoou um elem.)
-  - `mouseout` (saiu de um elemento) <!-- {ul:.multi-column-list-2}-->
+  - `click` (clique simples) **.**
+  - `dblclick` (clique duplo) **.**
+  - `mousedown` (press. um botão) **.**
+  - `mouseup` (liberou um botão) **.**
+  - `mousemove` (movimentou) **.**
+  - `mouseover` (sobrevoou um elem.) **.**
+  - `mouseout` (saiu de um elemento) **.** <!-- {ul:.multi-column-list-2#mouse-events}-->
 
 
 ---
