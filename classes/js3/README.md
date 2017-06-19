@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# Javascript (parte 3)
+# JavaScript (parte 3)
 ## História, Estilizando elementos, Eventos de mouse, Depurando
 
 ---
