@@ -1,4 +1,5 @@
 # HTML (parte 6)
+## Elementos de dados e ação, eventos de formulários
 
 ---
 # Roteiro
@@ -238,16 +239,31 @@
 ---
 - Lembrando que: eventos são **atrelados a nós específicos** e causam a invocação de uma função
   "manipuladora" (_event handler_ ou apenas _handler_)
-  - Eventos de entrada de dados:
-  - `change`
-  - `blur`
-  - `focus`
-  - `keydown`
-  - `keyup`
-  - `reset`
-  - `submit` <!-- {ul:.multi-column-list-4}-->
+- Eventos de entrada de dados:
+  - `change` (Modificou)
+  - `blur` (Perdeu foco)
+  - `focus` (ganhou foco)
+  - `keydown` (pressionou uma tecla)
+  - `keyup` (liberou uma tecla)
+  - `reset`(limpou o formulário)
+  - `submit` (enviou o formulário)<!-- {ul:.multi-column-list-2}-->
 - (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
+---
+<!-- {"layout": "regular"} -->
+## Exemplo: **keyup**, **keydown** **change**, **blur** e **focus**
 
+<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/hrgby1gg/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "regular"} -->
+## Exemplo de Eventos: **reset** e **submit**
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/hrgby1gg/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+---
+<!-- {"layout": "regular"} -->
+## Exemplo de Eventos: **reset** e **submit**
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/hrgby1gg/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 ---
 # Referências
 
