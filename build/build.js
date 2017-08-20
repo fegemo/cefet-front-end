@@ -175,6 +175,13 @@ module.exports = function() {
 },{}],5:[function(require,module,exports){
 module.exports = function() {
   return function(deck) {
+    var activateSlide = function(index) {
+      var indexToActivate = -1 < index && index < deck.slides.length ? index : 0;
+      if (indexToActivate !== deck.slide()) {
+        deck.slide(indexToActivate);
+      }
+    };
+
     var parseHash = function() {
       var hash = window.location.hash.slice(1),
         slideNumberOrName = parseInt(hash, 10);
@@ -184,7 +191,7 @@ module.exports = function() {
           activateSlide(slideNumberOrName - 1);
         } else {
           deck.slides.forEach(function(slide, i) {
-            if (slide.getAttribute('data-bespoke-hash') === hash) {
+            if (slide.getAttribute('data-bespoke-hash') === hash || slide.id === hash) {
               activateSlide(i);
             }
           });
@@ -192,18 +199,11 @@ module.exports = function() {
       }
     };
 
-    var activateSlide = function(index) {
-      var indexToActivate = -1 < index && index < deck.slides.length ? index : 0;
-      if (indexToActivate !== deck.slide()) {
-        deck.slide(indexToActivate);
-      }
-    };
-
     setTimeout(function() {
       parseHash();
 
       deck.on('activate', function(e) {
-        var slideName = e.slide.getAttribute('data-bespoke-hash');
+        var slideName = e.slide.getAttribute('data-bespoke-hash') || e.slide.id;
         window.location.hash = slideName || e.index + 1;
       });
 
@@ -471,7 +471,7 @@ module.exports = function(metadataCallbacks, pluginsArray) {
   };
 };
 
-},{"highlight.js":18,"lodash.isempty":191,"lodash.isfunction":192,"markdown-it":204}],8:[function(require,module,exports){
+},{"highlight.js":18,"lodash.isempty":194,"lodash.isfunction":195,"markdown-it":207}],8:[function(require,module,exports){
 module.exports = function(options) {
   return function (deck) {
     var progressParent = document.createElement('div'),
@@ -692,7 +692,7 @@ module.exports.insertCss = insertCss;
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"bespoke-classes":3,"insert-css":188}],13:[function(require,module,exports){
+},{"bespoke-classes":3,"insert-css":191}],13:[function(require,module,exports){
 module.exports = function(options) {
   return function(deck) {
     var axis = options == 'vertical' ? 'Y' : 'X',
@@ -1187,15 +1187,17 @@ https://highlightjs.org/
     }
   }
 
-  function inherit(parent, obj) {
+  function inherit(parent) {  // inherit(parent, override_obj, override_obj, ...)
     var key;
     var result = {};
+    var objects = Array.prototype.slice.call(arguments, 1);
 
     for (key in parent)
       result[key] = parent[key];
-    if (obj)
+    objects.forEach(function(obj) {
       for (key in obj)
         result[key] = obj[key];
+    });
     return result;
   }
 
@@ -1306,6 +1308,15 @@ https://highlightjs.org/
 
   /* Initialization */
 
+  function expand_mode(mode) {
+    if (mode.variants && !mode.cached_variants) {
+      mode.cached_variants = mode.variants.map(function(variant) {
+        return inherit(mode, {variants: null}, variant);
+      });
+    }
+    return mode.cached_variants || (mode.endsWithParent && [inherit(mode)]) || [mode];
+  }
+
   function compileLanguage(language) {
 
     function reStr(re) {
@@ -1371,15 +1382,9 @@ https://highlightjs.org/
       if (!mode.contains) {
         mode.contains = [];
       }
-      var expanded_contains = [];
-      mode.contains.forEach(function(c) {
-        if (c.variants) {
-          c.variants.forEach(function(v) {expanded_contains.push(inherit(c, v));});
-        } else {
-          expanded_contains.push(c === 'self' ? mode : c);
-        }
-      });
-      mode.contains = expanded_contains;
+      mode.contains = Array.prototype.concat.apply([], mode.contains.map(function(c) {
+        return expand_mode(c === 'self' ? mode : c)
+      }));
       mode.contains.forEach(function(c) {compileMode(c, mode);});
 
       if (mode.starts) {
@@ -1678,6 +1683,7 @@ https://highlightjs.org/
           } else if (options.tabReplace) {
             return p1.replace(/\t/g, options.tabReplace);
           }
+          return '';
       });
   }
 
@@ -1982,6 +1988,7 @@ hljs.registerLanguage('haxe', require('./languages/haxe'));
 hljs.registerLanguage('hsp', require('./languages/hsp'));
 hljs.registerLanguage('htmlbars', require('./languages/htmlbars'));
 hljs.registerLanguage('http', require('./languages/http'));
+hljs.registerLanguage('hy', require('./languages/hy'));
 hljs.registerLanguage('inform7', require('./languages/inform7'));
 hljs.registerLanguage('ini', require('./languages/ini'));
 hljs.registerLanguage('irpf90', require('./languages/irpf90'));
@@ -1992,6 +1999,7 @@ hljs.registerLanguage('julia', require('./languages/julia'));
 hljs.registerLanguage('kotlin', require('./languages/kotlin'));
 hljs.registerLanguage('lasso', require('./languages/lasso'));
 hljs.registerLanguage('ldif', require('./languages/ldif'));
+hljs.registerLanguage('leaf', require('./languages/leaf'));
 hljs.registerLanguage('less', require('./languages/less'));
 hljs.registerLanguage('lisp', require('./languages/lisp'));
 hljs.registerLanguage('livecodeserver', require('./languages/livecodeserver'));
@@ -2011,6 +2019,7 @@ hljs.registerLanguage('perl', require('./languages/perl'));
 hljs.registerLanguage('mojolicious', require('./languages/mojolicious'));
 hljs.registerLanguage('monkey', require('./languages/monkey'));
 hljs.registerLanguage('moonscript', require('./languages/moonscript'));
+hljs.registerLanguage('n1ql', require('./languages/n1ql'));
 hljs.registerLanguage('nginx', require('./languages/nginx'));
 hljs.registerLanguage('nimrod', require('./languages/nimrod'));
 hljs.registerLanguage('nix', require('./languages/nix'));
@@ -2076,7 +2085,7 @@ hljs.registerLanguage('xquery', require('./languages/xquery'));
 hljs.registerLanguage('zephir', require('./languages/zephir'));
 
 module.exports = hljs;
-},{"./highlight":17,"./languages/1c":19,"./languages/abnf":20,"./languages/accesslog":21,"./languages/actionscript":22,"./languages/ada":23,"./languages/apache":24,"./languages/applescript":25,"./languages/arduino":26,"./languages/armasm":27,"./languages/asciidoc":28,"./languages/aspectj":29,"./languages/autohotkey":30,"./languages/autoit":31,"./languages/avrasm":32,"./languages/awk":33,"./languages/axapta":34,"./languages/bash":35,"./languages/basic":36,"./languages/bnf":37,"./languages/brainfuck":38,"./languages/cal":39,"./languages/capnproto":40,"./languages/ceylon":41,"./languages/clean":42,"./languages/clojure":44,"./languages/clojure-repl":43,"./languages/cmake":45,"./languages/coffeescript":46,"./languages/coq":47,"./languages/cos":48,"./languages/cpp":49,"./languages/crmsh":50,"./languages/crystal":51,"./languages/cs":52,"./languages/csp":53,"./languages/css":54,"./languages/d":55,"./languages/dart":56,"./languages/delphi":57,"./languages/diff":58,"./languages/django":59,"./languages/dns":60,"./languages/dockerfile":61,"./languages/dos":62,"./languages/dsconfig":63,"./languages/dts":64,"./languages/dust":65,"./languages/ebnf":66,"./languages/elixir":67,"./languages/elm":68,"./languages/erb":69,"./languages/erlang":71,"./languages/erlang-repl":70,"./languages/excel":72,"./languages/fix":73,"./languages/flix":74,"./languages/fortran":75,"./languages/fsharp":76,"./languages/gams":77,"./languages/gauss":78,"./languages/gcode":79,"./languages/gherkin":80,"./languages/glsl":81,"./languages/go":82,"./languages/golo":83,"./languages/gradle":84,"./languages/groovy":85,"./languages/haml":86,"./languages/handlebars":87,"./languages/haskell":88,"./languages/haxe":89,"./languages/hsp":90,"./languages/htmlbars":91,"./languages/http":92,"./languages/inform7":93,"./languages/ini":94,"./languages/irpf90":95,"./languages/java":96,"./languages/javascript":97,"./languages/json":98,"./languages/julia":99,"./languages/kotlin":100,"./languages/lasso":101,"./languages/ldif":102,"./languages/less":103,"./languages/lisp":104,"./languages/livecodeserver":105,"./languages/livescript":106,"./languages/llvm":107,"./languages/lsl":108,"./languages/lua":109,"./languages/makefile":110,"./languages/markdown":111,"./languages/mathematica":112,"./languages/matlab":113,"./languages/maxima":114,"./languages/mel":115,"./languages/mercury":116,"./languages/mipsasm":117,"./languages/mizar":118,"./languages/mojolicious":119,"./languages/monkey":120,"./languages/moonscript":121,"./languages/nginx":122,"./languages/nimrod":123,"./languages/nix":124,"./languages/nsis":125,"./languages/objectivec":126,"./languages/ocaml":127,"./languages/openscad":128,"./languages/oxygene":129,"./languages/parser3":130,"./languages/perl":131,"./languages/pf":132,"./languages/php":133,"./languages/pony":134,"./languages/powershell":135,"./languages/processing":136,"./languages/profile":137,"./languages/prolog":138,"./languages/protobuf":139,"./languages/puppet":140,"./languages/purebasic":141,"./languages/python":142,"./languages/q":143,"./languages/qml":144,"./languages/r":145,"./languages/rib":146,"./languages/roboconf":147,"./languages/rsl":148,"./languages/ruby":149,"./languages/ruleslanguage":150,"./languages/rust":151,"./languages/scala":152,"./languages/scheme":153,"./languages/scilab":154,"./languages/scss":155,"./languages/smali":156,"./languages/smalltalk":157,"./languages/sml":158,"./languages/sqf":159,"./languages/sql":160,"./languages/stan":161,"./languages/stata":162,"./languages/step21":163,"./languages/stylus":164,"./languages/subunit":165,"./languages/swift":166,"./languages/taggerscript":167,"./languages/tap":168,"./languages/tcl":169,"./languages/tex":170,"./languages/thrift":171,"./languages/tp":172,"./languages/twig":173,"./languages/typescript":174,"./languages/vala":175,"./languages/vbnet":176,"./languages/vbscript":178,"./languages/vbscript-html":177,"./languages/verilog":179,"./languages/vhdl":180,"./languages/vim":181,"./languages/x86asm":182,"./languages/xl":183,"./languages/xml":184,"./languages/xquery":185,"./languages/yaml":186,"./languages/zephir":187}],19:[function(require,module,exports){
+},{"./highlight":17,"./languages/1c":19,"./languages/abnf":20,"./languages/accesslog":21,"./languages/actionscript":22,"./languages/ada":23,"./languages/apache":24,"./languages/applescript":25,"./languages/arduino":26,"./languages/armasm":27,"./languages/asciidoc":28,"./languages/aspectj":29,"./languages/autohotkey":30,"./languages/autoit":31,"./languages/avrasm":32,"./languages/awk":33,"./languages/axapta":34,"./languages/bash":35,"./languages/basic":36,"./languages/bnf":37,"./languages/brainfuck":38,"./languages/cal":39,"./languages/capnproto":40,"./languages/ceylon":41,"./languages/clean":42,"./languages/clojure":44,"./languages/clojure-repl":43,"./languages/cmake":45,"./languages/coffeescript":46,"./languages/coq":47,"./languages/cos":48,"./languages/cpp":49,"./languages/crmsh":50,"./languages/crystal":51,"./languages/cs":52,"./languages/csp":53,"./languages/css":54,"./languages/d":55,"./languages/dart":56,"./languages/delphi":57,"./languages/diff":58,"./languages/django":59,"./languages/dns":60,"./languages/dockerfile":61,"./languages/dos":62,"./languages/dsconfig":63,"./languages/dts":64,"./languages/dust":65,"./languages/ebnf":66,"./languages/elixir":67,"./languages/elm":68,"./languages/erb":69,"./languages/erlang":71,"./languages/erlang-repl":70,"./languages/excel":72,"./languages/fix":73,"./languages/flix":74,"./languages/fortran":75,"./languages/fsharp":76,"./languages/gams":77,"./languages/gauss":78,"./languages/gcode":79,"./languages/gherkin":80,"./languages/glsl":81,"./languages/go":82,"./languages/golo":83,"./languages/gradle":84,"./languages/groovy":85,"./languages/haml":86,"./languages/handlebars":87,"./languages/haskell":88,"./languages/haxe":89,"./languages/hsp":90,"./languages/htmlbars":91,"./languages/http":92,"./languages/hy":93,"./languages/inform7":94,"./languages/ini":95,"./languages/irpf90":96,"./languages/java":97,"./languages/javascript":98,"./languages/json":99,"./languages/julia":100,"./languages/kotlin":101,"./languages/lasso":102,"./languages/ldif":103,"./languages/leaf":104,"./languages/less":105,"./languages/lisp":106,"./languages/livecodeserver":107,"./languages/livescript":108,"./languages/llvm":109,"./languages/lsl":110,"./languages/lua":111,"./languages/makefile":112,"./languages/markdown":113,"./languages/mathematica":114,"./languages/matlab":115,"./languages/maxima":116,"./languages/mel":117,"./languages/mercury":118,"./languages/mipsasm":119,"./languages/mizar":120,"./languages/mojolicious":121,"./languages/monkey":122,"./languages/moonscript":123,"./languages/n1ql":124,"./languages/nginx":125,"./languages/nimrod":126,"./languages/nix":127,"./languages/nsis":128,"./languages/objectivec":129,"./languages/ocaml":130,"./languages/openscad":131,"./languages/oxygene":132,"./languages/parser3":133,"./languages/perl":134,"./languages/pf":135,"./languages/php":136,"./languages/pony":137,"./languages/powershell":138,"./languages/processing":139,"./languages/profile":140,"./languages/prolog":141,"./languages/protobuf":142,"./languages/puppet":143,"./languages/purebasic":144,"./languages/python":145,"./languages/q":146,"./languages/qml":147,"./languages/r":148,"./languages/rib":149,"./languages/roboconf":150,"./languages/rsl":151,"./languages/ruby":152,"./languages/ruleslanguage":153,"./languages/rust":154,"./languages/scala":155,"./languages/scheme":156,"./languages/scilab":157,"./languages/scss":158,"./languages/smali":159,"./languages/smalltalk":160,"./languages/sml":161,"./languages/sqf":162,"./languages/sql":163,"./languages/stan":164,"./languages/stata":165,"./languages/step21":166,"./languages/stylus":167,"./languages/subunit":168,"./languages/swift":169,"./languages/taggerscript":170,"./languages/tap":171,"./languages/tcl":172,"./languages/tex":173,"./languages/thrift":174,"./languages/tp":175,"./languages/twig":176,"./languages/typescript":177,"./languages/vala":178,"./languages/vbnet":179,"./languages/vbscript":181,"./languages/vbscript-html":180,"./languages/verilog":182,"./languages/vhdl":183,"./languages/vim":184,"./languages/x86asm":185,"./languages/xl":186,"./languages/xml":187,"./languages/xquery":188,"./languages/yaml":189,"./languages/zephir":190}],19:[function(require,module,exports){
 module.exports = function(hljs){
   var IDENT_RE_RU = '[a-zA-Zа-яА-Я][a-zA-Z0-9_а-яА-Я]*';
   var OneS_KEYWORDS = 'возврат дата для если и или иначе иначеесли исключение конецесли ' +
@@ -4446,7 +4455,7 @@ module.exports = function(hljs) {
       hljs.inherit(STRINGS, {className: 'meta-string'}),
       {
         className: 'meta-string',
-        begin: '<', end: '>',
+        begin: /<[^\n>]*>/, end: /$/,
         illegal: '\\n',
       },
       hljs.C_LINE_COMMENT_MODE,
@@ -6843,7 +6852,7 @@ module.exports = function(hljs) {
               'getpath getPreviousTradingDay getPreviousWeekDay getRow getscalar3D getscalar4D getTrRow getwind glm gradcplx gradMT ' +
               'gradMTm gradMTT gradMTTm gradp graphprt graphset hasimag header headermt hess hessMT hessMTg hessMTgw hessMTm ' +
               'hessMTmw hessMTT hessMTTg hessMTTgw hessMTTm hessMTw hessp hist histf histp hsec imag indcv indexcat indices indices2 ' +
-              'indicesf indicesfn indnv indsav indx integrate1d integrateControlCreate intgrat2 intgrat3 inthp1 inthp2 inthp3 inthp4 ' +
+              'indicesf indicesfn indnv indsav integrate1d integrateControlCreate intgrat2 intgrat3 inthp1 inthp2 inthp3 inthp4 ' +
               'inthpControlCreate intquad1 intquad2 intquad3 intrleav intrleavsa intrsect intsimp inv invpd invswp iscplx iscplxf ' +
               'isden isinfnanmiss ismiss key keyav keyw lag lag1 lagn lapEighb lapEighi lapEighvb lapEighvi lapgEig lapgEigh lapgEighv ' +
               'lapgEigv lapgSchur lapgSvdcst lapgSvds lapgSvdst lapSvdcusv lapSvds lapSvdusv ldlp ldlsol linSolve listwise ln lncdfbvn ' +
@@ -6883,7 +6892,9 @@ module.exports = function(hljs) {
               'utctodtv utrisol vals varCovMS varCovXS varget vargetl varmall varmares varput varputl vartypef vcm vcms vcx vcxs ' +
               'vec vech vecr vector vget view viewxyz vlist vnamecv volume vput vread vtypecv wait waitc walkindex where window ' +
               'writer xlabel xlsGetSheetCount xlsGetSheetSize xlsGetSheetTypes xlsMakeRange xlsReadM xlsReadSA xlsWrite xlsWriteM ' +
-              'xlsWriteSA xpnd xtics xy xyz ylabel ytics zeros zeta zlabel ztics',
+              'xlsWriteSA xpnd xtics xy xyz ylabel ytics zeros zeta zlabel ztics cdfEmpirical dot h5create h5open h5read h5readAttribute ' +
+              'h5write h5writeAttribute ldl plotAddErrorBar plotAddSurface plotCDFEmpirical plotSetColormap plotSetContourLabels ' +
+              'plotSetLegendFont plotSetTextInterpreter plotSetXTicCount plotSetYTicCount plotSetZLevels powerm strjoin strtrim sylvester',
     literal: 'DB_AFTER_LAST_ROW DB_ALL_TABLES DB_BATCH_OPERATIONS DB_BEFORE_FIRST_ROW DB_BLOB DB_EVENT_NOTIFICATIONS ' +
              'DB_FINISH_QUERY DB_HIGH_PRECISION DB_LAST_INSERT_ID DB_LOW_PRECISION_DOUBLE DB_LOW_PRECISION_INT32 ' +
              'DB_LOW_PRECISION_INT64 DB_LOW_PRECISION_NUMBERS DB_MULTIPLE_RESULT_SETS DB_NAMED_PLACEHOLDERS ' +
@@ -7974,6 +7985,108 @@ module.exports = function(hljs) {
 };
 },{}],93:[function(require,module,exports){
 module.exports = function(hljs) {
+  var keywords = {
+    'builtin-name':
+      // keywords
+      '!= % %= & &= * ** **= *= *map ' +
+      '+ += , --build-class-- --import-- -= . / // //= ' +
+      '/= < << <<= <= = > >= >> >>= ' +
+      '@ @= ^ ^= abs accumulate all and any ap-compose ' +
+      'ap-dotimes ap-each ap-each-while ap-filter ap-first ap-if ap-last ap-map ap-map-when ap-pipe ' +
+      'ap-reduce ap-reject apply as-> ascii assert assoc bin break butlast ' +
+      'callable calling-module-name car case cdr chain chr coll? combinations compile ' +
+      'compress cond cons cons? continue count curry cut cycle dec ' +
+      'def default-method defclass defmacro defmacro-alias defmacro/g! defmain defmethod defmulti defn ' +
+      'defn-alias defnc defnr defreader defseq del delattr delete-route dict-comp dir ' +
+      'disassemble dispatch-reader-macro distinct divmod do doto drop drop-last drop-while empty? ' +
+      'end-sequence eval eval-and-compile eval-when-compile even? every? except exec filter first ' +
+      'flatten float? fn fnc fnr for for* format fraction genexpr ' +
+      'gensym get getattr global globals group-by hasattr hash hex id ' +
+      'identity if if* if-not if-python2 import in inc input instance? ' +
+      'integer integer-char? integer? interleave interpose is is-coll is-cons is-empty is-even ' +
+      'is-every is-float is-instance is-integer is-integer-char is-iterable is-iterator is-keyword is-neg is-none ' +
+      'is-not is-numeric is-odd is-pos is-string is-symbol is-zero isinstance islice issubclass ' +
+      'iter iterable? iterate iterator? keyword keyword? lambda last len let ' +
+      'lif lif-not list* list-comp locals loop macro-error macroexpand macroexpand-1 macroexpand-all ' +
+      'map max merge-with method-decorator min multi-decorator multicombinations name neg? next ' +
+      'none? nonlocal not not-in not? nth numeric? oct odd? open ' +
+      'or ord partition permutations pos? post-route postwalk pow prewalk print ' +
+      'product profile/calls profile/cpu put-route quasiquote quote raise range read read-str ' +
+      'recursive-replace reduce remove repeat repeatedly repr require rest round route ' +
+      'route-with-methods rwm second seq set-comp setattr setv some sorted string ' +
+      'string? sum switch symbol? take take-nth take-while tee try unless ' +
+      'unquote unquote-splicing vars walk when while with with* with-decorator with-gensyms ' +
+      'xi xor yield yield-from zero? zip zip-longest | |= ~'
+   };
+
+  var SYMBOLSTART = 'a-zA-Z_\\-!.?+*=<>&#\'';
+  var SYMBOL_RE = '[' + SYMBOLSTART + '][' + SYMBOLSTART + '0-9/;:]*';
+  var SIMPLE_NUMBER_RE = '[-+]?\\d+(\\.\\d+)?';
+
+  var SHEBANG = {
+    className: 'meta',
+    begin: '^#!', end: '$'
+  };
+
+  var SYMBOL = {
+    begin: SYMBOL_RE,
+    relevance: 0
+  };
+  var NUMBER = {
+    className: 'number', begin: SIMPLE_NUMBER_RE,
+    relevance: 0
+  };
+  var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null});
+  var COMMENT = hljs.COMMENT(
+    ';',
+    '$',
+    {
+      relevance: 0
+    }
+  );
+  var LITERAL = {
+    className: 'literal',
+    begin: /\b([Tt]rue|[Ff]alse|nil|None)\b/
+  };
+  var COLLECTION = {
+    begin: '[\\[\\{]', end: '[\\]\\}]'
+  };
+  var HINT = {
+    className: 'comment',
+    begin: '\\^' + SYMBOL_RE
+  };
+  var HINT_COL = hljs.COMMENT('\\^\\{', '\\}');
+  var KEY = {
+    className: 'symbol',
+    begin: '[:]{1,2}' + SYMBOL_RE
+  };
+  var LIST = {
+    begin: '\\(', end: '\\)'
+  };
+  var BODY = {
+    endsWithParent: true,
+    relevance: 0
+  };
+  var NAME = {
+    keywords: keywords,
+    lexemes: SYMBOL_RE,
+    className: 'name', begin: SYMBOL_RE,
+    starts: BODY
+  };
+  var DEFAULT_CONTAINS = [LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL, SYMBOL];
+
+  LIST.contains = [hljs.COMMENT('comment', ''), NAME, BODY];
+  BODY.contains = DEFAULT_CONTAINS;
+  COLLECTION.contains = DEFAULT_CONTAINS;
+
+  return {
+    aliases: ['hylang'],
+    illegal: /\S/,
+    contains: [SHEBANG, LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL]
+  }
+};
+},{}],94:[function(require,module,exports){
+module.exports = function(hljs) {
   var START_BRACKET = '\\[';
   var END_BRACKET = '\\]';
   return {
@@ -8029,7 +8142,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],94:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 module.exports = function(hljs) {
   var STRING = {
     className: "string",
@@ -8095,7 +8208,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 module.exports = function(hljs) {
   var PARAMS = {
     className: 'params',
@@ -8171,7 +8284,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],96:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 module.exports = function(hljs) {
   var JAVA_IDENT_RE = '[\u00C0-\u02B8a-zA-Z_$][\u00C0-\u02B8a-zA-Z_$0-9]*';
   var GENERIC_IDENT_RE = JAVA_IDENT_RE + '(<' + JAVA_IDENT_RE + '(\\s*,\\s*' + JAVA_IDENT_RE + ')*>)?';
@@ -8279,7 +8392,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],97:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
   var KEYWORDS = {
@@ -8450,7 +8563,7 @@ module.exports = function(hljs) {
     illegal: /#(?!!)/
   };
 };
-},{}],98:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module.exports = function(hljs) {
   var LITERALS = {literal: 'true false null'};
   var TYPES = [
@@ -8487,7 +8600,7 @@ module.exports = function(hljs) {
     illegal: '\\S'
   };
 };
-},{}],99:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 module.exports = function(hljs) {
   // Since there are numerous special names in Julia, it is too much trouble
   // to maintain them by hand. Hence these names (i.e. keywords, literals and
@@ -8665,13 +8778,13 @@ module.exports = function(hljs) {
 
   return DEFAULT;
 };
-},{}],100:[function(require,module,exports){
-module.exports = function (hljs) {
+},{}],101:[function(require,module,exports){
+module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
       'abstract as val var vararg get set class object open private protected public noinline ' +
       'crossinline dynamic final enum if else do while for when throw try catch finally ' +
-      'import package is in fun override companion reified inline ' +
+      'import package is in fun override companion reified inline lateinit init' +
       'interface annotation data sealed internal infix operator out by constructor super ' +
       // to be deleted soon
       'trait volatile transient native default',
@@ -8839,7 +8952,7 @@ module.exports = function (hljs) {
     ]
   };
 };
-},{}],101:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 module.exports = function(hljs) {
   var LASSO_IDENT_RE = '[a-zA-Z_][\\w.]*';
   var LASSO_ANGLE_RE = '<\\?(lasso(script)?|=)';
@@ -9002,7 +9115,7 @@ module.exports = function(hljs) {
     ].concat(LASSO_CODE)
   };
 };
-},{}],102:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -9025,7 +9138,47 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],103:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
+module.exports = function (hljs) {
+  return {
+    contains: [
+      {
+        className: 'function',
+        begin: '#+' + '[A-Za-z_0-9]*' + '\\(',
+        end:' {',
+        returnBegin: true,
+        excludeEnd: true,
+        contains : [
+          {
+            className: 'keyword',
+            begin: '#+'
+          },
+          {
+            className: 'title',
+            begin: '[A-Za-z_][A-Za-z_0-9]*'
+          },
+          {
+            className: 'params',
+            begin: '\\(', end: '\\)',
+            endsParent: true,
+            contains: [
+              {
+                className: 'string',
+                begin: '"',
+                end: '"'
+              },
+              {
+                className: 'variable',
+                begin: '[A-Za-z_][A-Za-z_0-9]*'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+};
+},{}],105:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE        = '[\\w-]+'; // yes, Less identifiers may begin with a digit
   var INTERP_IDENT_RE = '(' + IDENT_RE + '|@{' + IDENT_RE + '})';
@@ -9165,7 +9318,7 @@ module.exports = function(hljs) {
     contains: RULES
   };
 };
-},{}],104:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 module.exports = function(hljs) {
   var LISP_IDENT_RE = '[a-zA-Z_\\-\\+\\*\\/\\<\\=\\>\\&\\#][a-zA-Z0-9_\\-\\+\\*\\/\\<\\=\\>\\&\\#!]*';
   var MEC_RE = '\\|[^]*?\\|';
@@ -9268,7 +9421,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],105:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 module.exports = function(hljs) {
   var VARIABLE = {
     begin: '\\b[gtps][A-Z]+[A-Za-z0-9_\\-]*\\b|\\$_[A-Z]+',
@@ -9425,7 +9578,7 @@ module.exports = function(hljs) {
     illegal: ';$|^\\[|^=|&|{'
   };
 };
-},{}],106:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -9574,7 +9727,7 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],107:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 module.exports = function(hljs) {
   var identifier = '([-a-zA-Z$._][\\w\\-$.]*)';
   return {
@@ -9663,7 +9816,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],108:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 module.exports = function(hljs) {
 
     var LSL_STRING_ESCAPE_CHARS = {
@@ -9746,7 +9899,7 @@ module.exports = function(hljs) {
         ]
     };
 };
-},{}],109:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 module.exports = function(hljs) {
   var OPENING_LONG_BRACKET = '\\[=*\\[';
   var CLOSING_LONG_BRACKET = '\\]=*\\]';
@@ -9768,14 +9921,24 @@ module.exports = function(hljs) {
   return {
     lexemes: hljs.UNDERSCORE_IDENT_RE,
     keywords: {
-      keyword:
-        'and break do else elseif end false for if in local nil not or repeat return then ' +
-        'true until while',
+      literal: "true false nil",
+      keyword: "and break do else elseif end for goto if in local not or repeat return then until while",
       built_in:
-        '_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load ' +
-        'loadfile loadstring module next pairs pcall print rawequal rawget rawset require ' +
-        'select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug ' +
-        'io math os package string table'
+        //Metatags and globals:
+        '_G _ENV _VERSION __index __newindex __mode __call __metatable __tostring __len ' +
+        '__gc __add __sub __mul __div __mod __pow __concat __unm __eq __lt __le assert ' +
+        //Standard methods and properties:
+        'collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring' +
+        'module next pairs pcall print rawequal rawget rawset require select setfenv' +
+        'setmetatable tonumber tostring type unpack xpcall arg self' +
+        //Library methods and properties (one line per library):
+        'coroutine resume yield status wrap create running debug getupvalue' +
+        'debug sethook getmetatable gethook setmetatable setlocal traceback setfenv getinfo setupvalue getlocal getregistry getfenv' +
+        'io lines write close flush open output type read stderr stdin input stdout popen tmpfile' +
+        'math, log, max, acos, huge, ldexp, pi, cos, tanh, pow, deg, tan, cosh, sinh, random, randomseed, frexp, ceil, floor, rad, abs, sqrt, modf, asin, min, mod, fmod, log10, atan2, exp, sin, atan' +
+        'os, exit, setlocale, date, getenv, difftime, remove, time, clock, tmpname, rename, execute, package, preload, loadlib, loaded, loaders, cpath, config path, seeall' +
+        'string, sub, upper, len, gfind, rep, find, match, char, dump, gmatch, reverse, byte, format, gsub, lower' +
+        'table, setn, insert, getn, foreachi, maxn, foreach, concat, sort, remove'
     },
     contains: COMMENTS.concat([
       {
@@ -9802,7 +9965,7 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],110:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 module.exports = function(hljs) {
   var VARIABLE = {
     className: 'variable',
@@ -9847,7 +10010,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],111:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['md', 'mkdown', 'mkd'],
@@ -9955,7 +10118,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],112:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['mma'],
@@ -10013,7 +10176,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],113:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 module.exports = function(hljs) {
   var COMMON_CONTAINS = [
     hljs.C_NUMBER_MODE,
@@ -10101,7 +10264,7 @@ module.exports = function(hljs) {
     ].concat(COMMON_CONTAINS)
   };
 };
-},{}],114:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = 'if then else elseif for thru do while unless step in and or not';
   var LITERALS = 'true false unknown inf minf ind und %e %i %pi %phi %gamma';
@@ -10507,7 +10670,7 @@ module.exports = function(hljs) {
     illegal: /@/
   }
 };
-},{}],115:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords:
@@ -10732,7 +10895,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],116:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -10814,7 +10977,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],117:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 module.exports = function(hljs) {
     //local labels: %?[FB]?[AT]?\d{1,2}\w+
   return {
@@ -10900,7 +11063,7 @@ module.exports = function(hljs) {
     illegal: '\/'
   };
 };
-},{}],118:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords:
@@ -10919,7 +11082,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],119:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     subLanguage: 'xml',
@@ -10944,7 +11107,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],120:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports = function(hljs) {
   var NUMBER = {
     className: 'number', relevance: 0,
@@ -11019,7 +11182,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],121:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -11131,7 +11294,76 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],122:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
+module.exports = function(hljs) {
+  return {
+    case_insensitive: true,
+    contains: [
+      {
+        beginKeywords:
+          'build create index delete drop explain infer|10 insert merge prepare select update upsert|10',
+        end: /;/, endsWithParent: true,
+        keywords: {
+          // Taken from http://developer.couchbase.com/documentation/server/current/n1ql/n1ql-language-reference/reservedwords.html
+          keyword:
+            'all alter analyze and any array as asc begin between binary boolean break bucket build by call ' +
+            'case cast cluster collate collection commit connect continue correlate cover create database ' +
+            'dataset datastore declare decrement delete derived desc describe distinct do drop each element ' +
+            'else end every except exclude execute exists explain fetch first flatten for force from ' +
+            'function grant group gsi having if ignore ilike in include increment index infer inline inner ' +
+            'insert intersect into is join key keys keyspace known last left let letting like limit lsm map ' +
+            'mapping matched materialized merge minus namespace nest not number object offset on ' +
+            'option or order outer over parse partition password path pool prepare primary private privilege ' +
+            'procedure public raw realm reduce rename return returning revoke right role rollback satisfies ' +
+            'schema select self semi set show some start statistics string system then to transaction trigger ' +
+            'truncate under union unique unknown unnest unset update upsert use user using validate value ' +
+            'valued values via view when where while with within work xor',
+          // Taken from http://developer.couchbase.com/documentation/server/4.5/n1ql/n1ql-language-reference/literals.html
+          literal:
+            'true false null missing|5',
+          // Taken from http://developer.couchbase.com/documentation/server/4.5/n1ql/n1ql-language-reference/functions.html
+          built_in:
+            'array_agg array_append array_concat array_contains array_count array_distinct array_ifnull array_length ' +
+            'array_max array_min array_position array_prepend array_put array_range array_remove array_repeat array_replace ' +
+            'array_reverse array_sort array_sum avg count max min sum greatest least ifmissing ifmissingornull ifnull ' +
+            'missingif nullif ifinf ifnan ifnanorinf naninf neginfif posinfif clock_millis clock_str date_add_millis ' +
+            'date_add_str date_diff_millis date_diff_str date_part_millis date_part_str date_trunc_millis date_trunc_str ' +
+            'duration_to_str millis str_to_millis millis_to_str millis_to_utc millis_to_zone_name now_millis now_str ' +
+            'str_to_duration str_to_utc str_to_zone_name decode_json encode_json encoded_size poly_length base64 base64_encode ' +
+            'base64_decode meta uuid abs acos asin atan atan2 ceil cos degrees e exp ln log floor pi power radians random ' +
+            'round sign sin sqrt tan trunc object_length object_names object_pairs object_inner_pairs object_values ' +
+            'object_inner_values object_add object_put object_remove object_unwrap regexp_contains regexp_like regexp_position ' +
+            'regexp_replace contains initcap length lower ltrim position repeat replace rtrim split substr title trim upper ' +
+            'isarray isatom isboolean isnumber isobject isstring type toarray toatom toboolean tonumber toobject tostring'
+        },
+        contains: [
+          {
+            className: 'string',
+            begin: '\'', end: '\'',
+            contains: [hljs.BACKSLASH_ESCAPE],
+            relevance: 0
+          },
+          {
+            className: 'string',
+            begin: '"', end: '"',
+            contains: [hljs.BACKSLASH_ESCAPE],
+            relevance: 0
+          },
+          {
+            className: 'symbol',
+            begin: '`', end: '`',
+            contains: [hljs.BACKSLASH_ESCAPE],
+            relevance: 2
+          },
+          hljs.C_NUMBER_MODE,
+          hljs.C_BLOCK_COMMENT_MODE
+        ]
+      },
+      hljs.C_BLOCK_COMMENT_MODE
+    ]
+  };
+};
+},{}],125:[function(require,module,exports){
 module.exports = function(hljs) {
   var VAR = {
     className: 'variable',
@@ -11224,7 +11456,7 @@ module.exports = function(hljs) {
     illegal: '[^\\s\\}]'
   };
 };
-},{}],123:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['nim'],
@@ -11279,7 +11511,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],124:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports = function(hljs) {
   var NIX_KEYWORDS = {
     keyword:
@@ -11328,7 +11560,7 @@ module.exports = function(hljs) {
     contains: EXPRESSIONS
   };
 };
-},{}],125:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports = function(hljs) {
   var CONSTANTS = {
     className: 'variable',
@@ -11434,7 +11666,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],126:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports = function(hljs) {
   var API_CLASS = {
     className: 'built_in',
@@ -11525,7 +11757,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],127:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports = function(hljs) {
   /* missing support for heredoc-like string (OCaml 4.0.2+) */
   return {
@@ -11596,7 +11828,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],128:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports = function(hljs) {
 	var SPECIAL_VARS = {
 		className: 'keyword',
@@ -11653,7 +11885,7 @@ module.exports = function(hljs) {
 		]
 	}
 };
-},{}],129:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports = function(hljs) {
   var OXYGENE_KEYWORDS = 'abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue '+
     'create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false '+
@@ -11723,7 +11955,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],130:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports = function(hljs) {
   var CURLY_SUBCOMMENT = hljs.COMMENT(
     '{',
@@ -11771,7 +12003,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],131:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 module.exports = function(hljs) {
   var PERL_KEYWORDS = 'getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ' +
     'ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime ' +
@@ -11928,7 +12160,7 @@ module.exports = function(hljs) {
     contains: PERL_DEFAULT_CONTAINS
   };
 };
-},{}],132:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports = function(hljs) {
   var MACRO = {
     className: 'variable',
@@ -11980,7 +12212,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],133:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports = function(hljs) {
   var VARIABLE = {
     begin: '\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
@@ -12107,7 +12339,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],134:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -12198,7 +12430,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],135:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports = function(hljs) {
   var BACKTICK_ESCAPE = {
     begin: '`[\\s\\S]',
@@ -12279,7 +12511,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],136:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -12327,7 +12559,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],137:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -12357,7 +12589,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],138:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var ATOM = {
@@ -12445,7 +12677,7 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],139:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -12481,7 +12713,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],140:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var PUPPET_KEYWORDS = {
@@ -12596,7 +12828,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],141:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports = // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
 
 function(hljs) {
@@ -12654,10 +12886,24 @@ function(hljs) {
     ]
   };
 };
-},{}],142:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports = function(hljs) {
+  var KEYWORDS = {
+    keyword:
+      'and elif is global as in if from raise for except finally print import pass return ' +
+      'exec else break not with class assert yield try while continue del or def lambda ' +
+      'async await nonlocal|10 None True False',
+    built_in:
+      'Ellipsis NotImplemented'
+  };
   var PROMPT = {
     className: 'meta',  begin: /^(>>>|\.\.\.) /
+  };
+  var SUBST = {
+    className: 'subst',
+    begin: /\{/, end: /\}/,
+    keywords: KEYWORDS,
+    illegal: /#/
   };
   var STRING = {
     className: 'string',
@@ -12674,6 +12920,14 @@ module.exports = function(hljs) {
         relevance: 10
       },
       {
+        begin: /(fr|rf|f)'''/, end: /'''/,
+        contains: [PROMPT, SUBST]
+      },
+      {
+        begin: /(fr|rf|f)"""/, end: /"""/,
+        contains: [PROMPT, SUBST]
+      },
+      {
         begin: /(u|r|ur)'/, end: /'/,
         relevance: 10
       },
@@ -12686,6 +12940,14 @@ module.exports = function(hljs) {
       },
       {
         begin: /(b|br)"/, end: /"/
+      },
+      {
+        begin: /(fr|rf|f)'/, end: /'/,
+        contains: [SUBST]
+      },
+      {
+        begin: /(fr|rf|f)"/, end: /"/,
+        contains: [SUBST]
       },
       hljs.APOS_STRING_MODE,
       hljs.QUOTE_STRING_MODE
@@ -12704,16 +12966,10 @@ module.exports = function(hljs) {
     begin: /\(/, end: /\)/,
     contains: ['self', PROMPT, NUMBER, STRING]
   };
+  SUBST.contains = [STRING, NUMBER, PROMPT];
   return {
     aliases: ['py', 'gyp'],
-    keywords: {
-      keyword:
-        'and elif is global as in if from raise for except finally print import pass return ' +
-        'exec else break not with class assert yield try while continue del or def lambda ' +
-        'async await nonlocal|10 None True False',
-      built_in:
-        'Ellipsis NotImplemented'
-    },
+    keywords: KEYWORDS,
     illegal: /(<\/|->|\?)|=>/,
     contains: [
       PROMPT,
@@ -12746,7 +13002,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],143:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports = function(hljs) {
   var Q_KEYWORDS = {
   keyword:
@@ -12769,7 +13025,7 @@ module.exports = function(hljs) {
      ]
   };
 };
-},{}],144:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
       keyword:
@@ -12938,7 +13194,7 @@ module.exports = function(hljs) {
     illegal: /#/
   };
 };
-},{}],145:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*';
 
@@ -13008,7 +13264,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],146:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords:
@@ -13035,7 +13291,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],147:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENTIFIER = '[a-zA-Z-_][^\\n{]+\\{';
 
@@ -13102,7 +13358,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],148:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -13138,7 +13394,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],149:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports = function(hljs) {
   var RUBY_METHOD_RE = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?';
   var RUBY_KEYWORDS = {
@@ -13314,7 +13570,7 @@ module.exports = function(hljs) {
     contains: COMMENT_MODES.concat(IRB_DEFAULT).concat(RUBY_DEFAULT_CONTAINS)
   };
 };
-},{}],150:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -13375,30 +13631,34 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],151:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports = function(hljs) {
-  var NUM_SUFFIX = '([uif](8|16|32|64|size))\?';
+  var NUM_SUFFIX = '([ui](8|16|32|64|128|size)|f(32|64))\?';
   var KEYWORDS =
     'alignof as be box break const continue crate do else enum extern ' +
     'false fn for if impl in let loop match mod mut offsetof once priv ' +
     'proc pub pure ref return self Self sizeof static struct super trait true ' +
-    'type typeof unsafe unsized use virtual while where yield move default ' +
-    'int i8 i16 i32 i64 isize ' +
-    'uint u8 u32 u64 usize ' +
-    'float f32 f64 ' +
-    'str char bool'
+    'type typeof unsafe unsized use virtual while where yield move default';
   var BUILTINS =
-    // prelude
-    'Copy Send Sized Sync Drop Fn FnMut FnOnce drop Box ToOwned Clone ' +
+    // functions
+    'drop ' +
+    // types
+    'i8 i16 i32 i64 i128 isize ' +
+    'u8 u16 u32 u64 u128 usize ' +
+    'f32 f64 ' +
+    'str char bool ' +
+    'Box Option Result String Vec ' +
+    // traits
+    'Copy Send Sized Sync Drop Fn FnMut FnOnce ToOwned Clone Debug ' +
     'PartialEq PartialOrd Eq Ord AsRef AsMut Into From Default Iterator ' +
-    'Extend IntoIterator DoubleEndedIterator ExactSizeIterator Option ' +
-    'Result SliceConcatExt String ToString Vec ' +
+    'Extend IntoIterator DoubleEndedIterator ExactSizeIterator ' +
+    'SliceConcatExt ToString ' +
     // macros
     'assert! assert_eq! bitflags! bytes! cfg! col! concat! concat_idents! ' +
     'debug_assert! debug_assert_eq! env! panic! file! format! format_args! ' +
     'include_bin! include_str! line! local_data_key! module_path! ' +
     'option_env! print! println! select! stringify! try! unimplemented! ' +
-    'unreachable! vec! write! writeln! macro_rules!';
+    'unreachable! vec! write! writeln! macro_rules! assert_ne! debug_assert_ne!';
   return {
     aliases: ['rs'],
     keywords: {
@@ -13463,7 +13723,7 @@ module.exports = function(hljs) {
       },
       {
         className: 'class',
-        beginKeywords: 'trait enum struct', end: '{',
+        beginKeywords: 'trait enum struct union', end: '{',
         contains: [
           hljs.inherit(hljs.UNDERSCORE_TITLE_MODE, {endsParent: true})
         ],
@@ -13479,7 +13739,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],152:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var ANNOTATION = { className: 'meta', begin: '@[A-Za-z]+' };
@@ -13594,7 +13854,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],153:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports = function(hljs) {
   var SCHEME_IDENT_RE = '[^\\(\\)\\[\\]\\{\\}",\'`;#|\\\\\\s]+';
   var SCHEME_SIMPLE_NUMBER_RE = '(\\-|\\+)?\\d+([./]\\d+)?';
@@ -13693,7 +13953,10 @@ module.exports = function(hljs) {
   };
 
   var QUOTED_LIST = {
-    begin: /'/,
+    variants: [
+      { begin: /'/ },
+      { begin: '`' }
+    ],
     contains: [
       {
         begin: '\\(', end: '\\)',
@@ -13735,7 +13998,7 @@ module.exports = function(hljs) {
     contains: [SHEBANG, NUMBER, STRING, QUOTED_IDENT, QUOTED_LIST, LIST].concat(COMMENT_MODES)
   };
 };
-},{}],154:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var COMMON_CONTAINS = [
@@ -13789,7 +14052,7 @@ module.exports = function(hljs) {
     ].concat(COMMON_CONTAINS)
   };
 };
-},{}],155:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
   var VARIABLE = {
@@ -13887,7 +14150,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],156:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports = function(hljs) {
   var smali_instr_low_prio = ['add', 'and', 'cmp', 'cmpg', 'cmpl', 'const', 'div', 'double', 'float', 'goto', 'if', 'int', 'long', 'move', 'mul', 'neg', 'new', 'nop', 'not', 'or', 'rem', 'return', 'shl', 'shr', 'sput', 'sub', 'throw', 'ushr', 'xor'];
   var smali_instr_high_prio = ['aget', 'aput', 'array', 'check', 'execute', 'fill', 'filled', 'goto/16', 'goto/32', 'iget', 'instance', 'invoke', 'iput', 'monitor', 'packed', 'sget', 'sparse'];
@@ -13943,7 +14206,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],157:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports = function(hljs) {
   var VAR_IDENT_RE = '[a-z][a-zA-Z0-9_]*';
   var CHAR = {
@@ -13993,7 +14256,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],158:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['ml'],
@@ -14059,7 +14322,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],159:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports = function(hljs) {
   var CPP = hljs.getLanguage('cpp').exports;
 
@@ -14430,7 +14693,7 @@ module.exports = function(hljs) {
     illegal: /#/
   };
 };
-},{}],160:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 module.exports = function(hljs) {
   var COMMENT_MODE = hljs.COMMENT('--', '$');
   return {
@@ -14590,7 +14853,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],161:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -14673,7 +14936,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],162:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['do', 'ado'],
@@ -14711,7 +14974,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],163:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports = function(hljs) {
   var STEP21_IDENT_RE = '[A-Z_][A-Z0-9_.]*';
   var STEP21_KEYWORDS = {
@@ -14758,7 +15021,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],164:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var VARIABLE = {
@@ -15212,7 +15475,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],165:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports = function(hljs) {
   var DETAILS = {
     className: 'string',
@@ -15246,7 +15509,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],166:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports = function(hljs) {
   var SWIFT_KEYWORDS = {
       keyword: '__COLUMN__ __FILE__ __FUNCTION__ __LINE__ as as! as? associativity ' +
@@ -15363,7 +15626,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],167:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var COMMENT = {
@@ -15407,7 +15670,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],168:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     case_insensitive: true,
@@ -15443,7 +15706,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],169:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['tk'],
@@ -15504,7 +15767,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],170:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports = function(hljs) {
   var COMMAND = {
     className: 'tag',
@@ -15566,7 +15829,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],171:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports = function(hljs) {
   var BUILT_IN_TYPES = 'bool byte i16 i32 i64 double string binary';
   return {
@@ -15601,7 +15864,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],172:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports = function(hljs) {
   var TPID = {
     className: 'number',
@@ -15685,7 +15948,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],173:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 module.exports = function(hljs) {
   var PARAMS = {
     className: 'params',
@@ -15751,14 +16014,15 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],174:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
       'in if for while finally var new function do return void else break catch ' +
       'instanceof with throw case default try this switch continue typeof delete ' +
       'let yield const class public private protected get set super ' +
-      'static implements enum export import declare type namespace abstract',
+      'static implements enum export import declare type namespace abstract ' +
+      'as from extends async await',
     literal:
       'true false null undefined NaN Infinity',
     built_in:
@@ -15768,7 +16032,7 @@ module.exports = function(hljs) {
       'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
       'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
       'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require ' +
-      'module console window document any number boolean string void'
+      'module console window document any number boolean string void Promise'
   };
 
   return {
@@ -15809,7 +16073,35 @@ module.exports = function(hljs) {
         contains: [
           hljs.C_LINE_COMMENT_MODE,
           hljs.C_BLOCK_COMMENT_MODE,
-          hljs.REGEXP_MODE
+          hljs.REGEXP_MODE,
+          {
+            className: 'function',
+            begin: '(\\(.*?\\)|' + hljs.IDENT_RE + ')\\s*=>', returnBegin: true,
+            end: '\\s*=>',
+            contains: [
+              {
+                className: 'params',
+                variants: [
+                  {
+                    begin: hljs.IDENT_RE
+                  },
+                  {
+                    begin: /\(\s*\)/,
+                  },
+                  {
+                    begin: /\(/, end: /\)/,
+                    excludeBegin: true, excludeEnd: true,
+                    keywords: KEYWORDS,
+                    contains: [
+                      'self',
+                      hljs.C_LINE_COMMENT_MODE,
+                      hljs.C_BLOCK_COMMENT_MODE
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ],
         relevance: 0
       },
@@ -15878,7 +16170,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],175:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -15928,7 +16220,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],176:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['vb'],
@@ -15984,7 +16276,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],177:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     subLanguage: 'xml',
@@ -15996,7 +16288,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],178:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['vbs'],
@@ -16035,7 +16327,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],179:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports = function(hljs) {
   var SV_KEYWORDS = {
     keyword:
@@ -16134,7 +16426,7 @@ module.exports = function(hljs) {
     ]
   }; // return
 };
-},{}],180:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 module.exports = function(hljs) {
   // Regular expression for VHDL numeric literals.
 
@@ -16195,7 +16487,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],181:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     lexemes: /[!#@\w]+/,
@@ -16301,7 +16593,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],182:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     case_insensitive: true,
@@ -16437,7 +16729,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],183:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 module.exports = function(hljs) {
   var BUILTIN_MODULES =
     'ObjectLoader Animate MovieCredits Slides Filters Shading Materials LensFlare Mapping VLCAudioVideo ' +
@@ -16510,7 +16802,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],184:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports = function(hljs) {
   var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
   var TAG_INTERNALS = {
@@ -16613,7 +16905,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],185:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = 'for let if while then else return where group by xquery encoding version' +
     'module namespace boundary-space preserve strip default collation base-uri ordering' +
@@ -16684,9 +16976,9 @@ module.exports = function(hljs) {
     contains: CONTAINS
   };
 };
-},{}],186:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 module.exports = function(hljs) {
-  var LITERALS = {literal: '{ } true false yes no Yes No True False null'};
+  var LITERALS = 'true false yes no null';
 
   var keyPrefix = '^[ \\-]*';
   var keyName =  '[a-zA-Z_][\\w\\-]*';
@@ -16711,7 +17003,8 @@ module.exports = function(hljs) {
     relevance: 0,
     variants: [
       {begin: /'/, end: /'/},
-      {begin: /"/, end: /"/}
+      {begin: /"/, end: /"/},
+      {begin: /\S+/}
     ],
     contains: [
       hljs.BACKSLASH_ESCAPE,
@@ -16761,14 +17054,17 @@ module.exports = function(hljs) {
         begin: '^ *-',
         relevance: 0
       },
-      STRING,
       hljs.HASH_COMMENT_MODE,
-      hljs.C_NUMBER_MODE
-    ],
-    keywords: LITERALS
+      {
+        beginKeywords: LITERALS,
+        keywords: {literal: LITERALS}
+      },
+      hljs.C_NUMBER_MODE,
+      STRING
+    ]
   };
 };
-},{}],187:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 module.exports = function(hljs) {
   var STRING = {
     className: 'string',
@@ -16875,7 +17171,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],188:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 var inserted = {};
 
 module.exports = function (css, options) {
@@ -16899,7 +17195,7 @@ module.exports = function (css, options) {
     }
 };
 
-},{}],189:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 'use strict';
 
 
@@ -17538,7 +17834,7 @@ LinkifyIt.prototype.onCompile = function onCompile() {
 
 module.exports = LinkifyIt;
 
-},{"./lib/re":190}],190:[function(require,module,exports){
+},{"./lib/re":193}],193:[function(require,module,exports){
 'use strict';
 
 
@@ -17717,7 +18013,7 @@ module.exports = function (opts) {
   return re;
 };
 
-},{"uc.micro/categories/Cc/regex":266,"uc.micro/categories/P/regex":268,"uc.micro/categories/Z/regex":269,"uc.micro/properties/Any/regex":271}],191:[function(require,module,exports){
+},{"uc.micro/categories/Cc/regex":269,"uc.micro/categories/P/regex":271,"uc.micro/categories/Z/regex":272,"uc.micro/properties/Any/regex":274}],194:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -18304,7 +18600,7 @@ module.exports = isEmpty;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],192:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 /**
  * lodash 3.0.8 (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -18381,7 +18677,7 @@ function isObject(value) {
 
 module.exports = isFunction;
 
-},{}],193:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 // Enclose abbreviations in <abbr> tags
 //
 'use strict';
@@ -18531,7 +18827,7 @@ module.exports = function sub_plugin(md) {
   md.core.ruler.after('linkify', 'abbr_replace', abbr_replace);
 };
 
-},{}],194:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -18639,7 +18935,7 @@ anchor.defaults = {
 exports.default = anchor;
 module.exports = exports['default'];
 
-},{"string":265}],195:[function(require,module,exports){
+},{"string":268}],198:[function(require,module,exports){
 // Process block-level custom containers
 //
 'use strict';
@@ -18784,7 +19080,7 @@ module.exports = function container_plugin(md, name, options) {
   md.renderer.rules['container_' + name + '_close'] = render;
 };
 
-},{}],196:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 'use strict'
 /* eslint-disable no-cond-assign */
 
@@ -19016,7 +19312,7 @@ function spush (stack, token) {
   stack.last = token
 }
 
-},{}],197:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 // Process definition lists
 //
 'use strict';
@@ -19243,7 +19539,7 @@ module.exports = function deflist_plugin(md) {
   md.block.ruler.before('paragraph', 'deflist', deflist, { alt: [ 'paragraph', 'reference' ] });
 };
 
-},{}],198:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 'use strict';
 
 
@@ -19268,7 +19564,7 @@ module.exports = function emoji_plugin(md, options) {
   md.core.ruler.push('emoji', emoji_replace(md, opts.defs, opts.shortcuts, opts.scanRE, opts.replaceRE));
 };
 
-},{"./lib/data/full.json":199,"./lib/data/shortcuts":200,"./lib/normalize_opts":201,"./lib/render":202,"./lib/replace":203}],199:[function(require,module,exports){
+},{"./lib/data/full.json":202,"./lib/data/shortcuts":203,"./lib/normalize_opts":204,"./lib/render":205,"./lib/replace":206}],202:[function(require,module,exports){
 module.exports={
   "100": "💯",
   "1234": "🔢",
@@ -20636,7 +20932,7 @@ module.exports={
   "zambia": "🇿🇲",
   "zimbabwe": "🇿🇼"
 }
-},{}],200:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 // Emoticons -> Emoji mapping.
 //
 // (!) Some patterns skipped, to avoid collisions
@@ -20679,7 +20975,7 @@ module.exports = {
   wink:             [ ';)', ';-)' ]
 };
 
-},{}],201:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 // Convert input options to more useable format
 // and compile search regexp
 
@@ -20740,14 +21036,14 @@ module.exports = function normalize_opts(options) {
   };
 };
 
-},{}],202:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 'use strict';
 
 module.exports = function emoji_html(tokens, idx /*, options, env */) {
   return tokens[idx].content;
 };
 
-},{}],203:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 // Emojies & shortcuts replacement logic.
 //
 // Note: In theory, it could be faster to parse :smile: in inline chain and
@@ -20838,13 +21134,13 @@ module.exports = function create_rule(md, emojies, shortcuts, scanRE, replaceRE)
   };
 };
 
-},{}],204:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 'use strict';
 
 
 module.exports = require('./lib/');
 
-},{"./lib/":213}],205:[function(require,module,exports){
+},{"./lib/":216}],208:[function(require,module,exports){
 // HTML5 entities map: { name -> utf16string }
 //
 'use strict';
@@ -20852,7 +21148,7 @@ module.exports = require('./lib/');
 /*eslint quotes:0*/
 module.exports = require('entities/maps/entities.json');
 
-},{"entities/maps/entities.json":16}],206:[function(require,module,exports){
+},{"entities/maps/entities.json":16}],209:[function(require,module,exports){
 // List of valid html blocks names, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#html-blocks
 
@@ -20927,7 +21223,7 @@ module.exports = [
   'ul'
 ];
 
-},{}],207:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 // Regexps to match html elements
 
 'use strict';
@@ -20957,7 +21253,7 @@ var HTML_OPEN_CLOSE_TAG_RE = new RegExp('^(?:' + open_tag + '|' + close_tag + ')
 module.exports.HTML_TAG_RE = HTML_TAG_RE;
 module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
-},{}],208:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 // Utilities
 //
 'use strict';
@@ -21234,7 +21530,7 @@ exports.isPunctChar         = isPunctChar;
 exports.escapeRE            = escapeRE;
 exports.normalizeReference  = normalizeReference;
 
-},{"./entities":205,"mdurl":259,"uc.micro":270,"uc.micro/categories/P/regex":268}],209:[function(require,module,exports){
+},{"./entities":208,"mdurl":262,"uc.micro":273,"uc.micro/categories/P/regex":271}],212:[function(require,module,exports){
 // Just a shortcut for bulk export
 'use strict';
 
@@ -21243,7 +21539,7 @@ exports.parseLinkLabel       = require('./parse_link_label');
 exports.parseLinkDestination = require('./parse_link_destination');
 exports.parseLinkTitle       = require('./parse_link_title');
 
-},{"./parse_link_destination":210,"./parse_link_label":211,"./parse_link_title":212}],210:[function(require,module,exports){
+},{"./parse_link_destination":213,"./parse_link_label":214,"./parse_link_title":215}],213:[function(require,module,exports){
 // Parse link destination
 //
 'use strict';
@@ -21325,7 +21621,7 @@ module.exports = function parseLinkDestination(str, pos, max) {
   return result;
 };
 
-},{"../common/utils":208}],211:[function(require,module,exports){
+},{"../common/utils":211}],214:[function(require,module,exports){
 // Parse link label
 //
 // this function assumes that first character ("[") already matches;
@@ -21375,7 +21671,7 @@ module.exports = function parseLinkLabel(state, start, disableNested) {
   return labelEnd;
 };
 
-},{}],212:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 // Parse link title
 //
 'use strict';
@@ -21430,7 +21726,7 @@ module.exports = function parseLinkTitle(str, pos, max) {
   return result;
 };
 
-},{"../common/utils":208}],213:[function(require,module,exports){
+},{"../common/utils":211}],216:[function(require,module,exports){
 // Main parser class
 
 'use strict';
@@ -22013,7 +22309,7 @@ MarkdownIt.prototype.renderInline = function (src, env) {
 
 module.exports = MarkdownIt;
 
-},{"./common/utils":208,"./helpers":209,"./parser_block":214,"./parser_core":215,"./parser_inline":216,"./presets/commonmark":217,"./presets/default":218,"./presets/zero":219,"./renderer":220,"linkify-it":189,"mdurl":259,"punycode":261}],214:[function(require,module,exports){
+},{"./common/utils":211,"./helpers":212,"./parser_block":217,"./parser_core":218,"./parser_inline":219,"./presets/commonmark":220,"./presets/default":221,"./presets/zero":222,"./renderer":223,"linkify-it":192,"mdurl":262,"punycode":264}],217:[function(require,module,exports){
 /** internal
  * class ParserBlock
  *
@@ -22137,7 +22433,7 @@ ParserBlock.prototype.State = require('./rules_block/state_block');
 
 module.exports = ParserBlock;
 
-},{"./ruler":221,"./rules_block/blockquote":222,"./rules_block/code":223,"./rules_block/fence":224,"./rules_block/heading":225,"./rules_block/hr":226,"./rules_block/html_block":227,"./rules_block/lheading":228,"./rules_block/list":229,"./rules_block/paragraph":230,"./rules_block/reference":231,"./rules_block/state_block":232,"./rules_block/table":233}],215:[function(require,module,exports){
+},{"./ruler":224,"./rules_block/blockquote":225,"./rules_block/code":226,"./rules_block/fence":227,"./rules_block/heading":228,"./rules_block/hr":229,"./rules_block/html_block":230,"./rules_block/lheading":231,"./rules_block/list":232,"./rules_block/paragraph":233,"./rules_block/reference":234,"./rules_block/state_block":235,"./rules_block/table":236}],218:[function(require,module,exports){
 /** internal
  * class Core
  *
@@ -22197,7 +22493,7 @@ Core.prototype.State = require('./rules_core/state_core');
 
 module.exports = Core;
 
-},{"./ruler":221,"./rules_core/block":234,"./rules_core/inline":235,"./rules_core/linkify":236,"./rules_core/normalize":237,"./rules_core/replacements":238,"./rules_core/smartquotes":239,"./rules_core/state_core":240}],216:[function(require,module,exports){
+},{"./ruler":224,"./rules_core/block":237,"./rules_core/inline":238,"./rules_core/linkify":239,"./rules_core/normalize":240,"./rules_core/replacements":241,"./rules_core/smartquotes":242,"./rules_core/state_core":243}],219:[function(require,module,exports){
 /** internal
  * class ParserInline
  *
@@ -22376,7 +22672,7 @@ ParserInline.prototype.State = require('./rules_inline/state_inline');
 
 module.exports = ParserInline;
 
-},{"./ruler":221,"./rules_inline/autolink":241,"./rules_inline/backticks":242,"./rules_inline/balance_pairs":243,"./rules_inline/emphasis":244,"./rules_inline/entity":245,"./rules_inline/escape":246,"./rules_inline/html_inline":247,"./rules_inline/image":248,"./rules_inline/link":249,"./rules_inline/newline":250,"./rules_inline/state_inline":251,"./rules_inline/strikethrough":252,"./rules_inline/text":253,"./rules_inline/text_collapse":254}],217:[function(require,module,exports){
+},{"./ruler":224,"./rules_inline/autolink":244,"./rules_inline/backticks":245,"./rules_inline/balance_pairs":246,"./rules_inline/emphasis":247,"./rules_inline/entity":248,"./rules_inline/escape":249,"./rules_inline/html_inline":250,"./rules_inline/image":251,"./rules_inline/link":252,"./rules_inline/newline":253,"./rules_inline/state_inline":254,"./rules_inline/strikethrough":255,"./rules_inline/text":256,"./rules_inline/text_collapse":257}],220:[function(require,module,exports){
 // Commonmark default options
 
 'use strict';
@@ -22458,7 +22754,7 @@ module.exports = {
   }
 };
 
-},{}],218:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 // markdown-it default options
 
 'use strict';
@@ -22501,7 +22797,7 @@ module.exports = {
   }
 };
 
-},{}],219:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 // "Zero" preset, with nothing enabled. Useful for manual configuring of simple
 // modes. For example, to parse bold/italic only.
 
@@ -22565,7 +22861,7 @@ module.exports = {
   }
 };
 
-},{}],220:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 /**
  * class Renderer
  *
@@ -22902,7 +23198,7 @@ Renderer.prototype.render = function (tokens, options, env) {
 
 module.exports = Renderer;
 
-},{"./common/utils":208}],221:[function(require,module,exports){
+},{"./common/utils":211}],224:[function(require,module,exports){
 /**
  * class Ruler
  *
@@ -23256,7 +23552,7 @@ Ruler.prototype.getRules = function (chainName) {
 
 module.exports = Ruler;
 
-},{}],222:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 // Block quotes
 
 'use strict';
@@ -23269,6 +23565,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       ch,
       i,
       initial,
+      isOutdented,
       l,
       lastLineEmpty,
       lines,
@@ -23284,8 +23581,12 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       terminate,
       terminatorRules,
       token,
+      oldLineMax = state.lineMax,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   // check the block quote marker
   if (state.src.charCodeAt(pos++) !== 0x3E/* > */) { return false; }
@@ -23293,9 +23594,6 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   // we know that it's going to be a valid blockquote,
   // so no point trying to find the end of it in silent mode
   if (silent) { return true; }
-
-  oldIndent = state.blkIndent;
-  state.blkIndent = 0;
 
   // skip spaces after ">" and re-calculate offset
   initial = offset = state.sCount[startLine] + pos - (state.bMarks[startLine] + state.tShift[startLine]);
@@ -23377,13 +23675,21 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   //     >
   //     test
   //     ```
-  //  3. another tag
+  //  3. another tag:
   //     ```
   //     > test
   //      - - -
   //     ```
   for (nextLine = startLine + 1; nextLine < endLine; nextLine++) {
-    if (state.sCount[nextLine] < oldIndent) { break; }
+    // check if it's outdented, i.e. it's inside list item and indented
+    // less than said list item:
+    //
+    // ```
+    // 1. anything
+    //    > current blockquote
+    // 2. checking this line
+    // ```
+    isOutdented = state.sCount[nextLine] < state.blkIndent;
 
     pos = state.bMarks[nextLine] + state.tShift[nextLine];
     max = state.eMarks[nextLine];
@@ -23393,7 +23699,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       break;
     }
 
-    if (state.src.charCodeAt(pos++) === 0x3E/* > */) {
+    if (state.src.charCodeAt(pos++) === 0x3E/* > */ && !isOutdented) {
       // This line is inside the blockquote.
 
       // skip spaces after ">" and re-calculate offset
@@ -23473,7 +23779,13 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
     }
 
     if (terminate) {
-      if (oldIndent !== 0) {
+      // Quirk to enforce "hard termination mode" for paragraphs;
+      // normally if you call `tokenize(state, startLine, nextLine)`,
+      // paragraphs will look below nextLine for paragraph continuation,
+      // but if blockquote is terminated by another tag, they shouldn't
+      state.lineMax = nextLine;
+
+      if (state.blkIndent !== 0) {
         // state.blkIndent was non-zero, we now set it to zero,
         // so we need to re-calculate all offsets to appear as
         // if indent wasn't changed
@@ -23481,11 +23793,13 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
         oldBSCount.push(state.bsCount[nextLine]);
         oldTShift.push(state.tShift[nextLine]);
         oldSCount.push(state.sCount[nextLine]);
-        state.sCount[nextLine] -= oldIndent;
+        state.sCount[nextLine] -= state.blkIndent;
       }
 
       break;
     }
+
+    if (isOutdented) break;
 
     oldBMarks.push(state.bMarks[nextLine]);
     oldBSCount.push(state.bsCount[nextLine]);
@@ -23497,6 +23811,9 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
     state.sCount[nextLine] = -1;
   }
 
+  oldIndent = state.blkIndent;
+  state.blkIndent = 0;
+
   token        = state.push('blockquote_open', 'blockquote', 1);
   token.markup = '>';
   token.map    = lines = [ startLine, 0 ];
@@ -23506,6 +23823,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   token        = state.push('blockquote_close', 'blockquote', -1);
   token.markup = '>';
 
+  state.lineMax = oldLineMax;
   state.parentType = oldParentType;
   lines[1] = state.line;
 
@@ -23522,7 +23840,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":208}],223:[function(require,module,exports){
+},{"../common/utils":211}],226:[function(require,module,exports){
 // Code block (4 spaces padded)
 
 'use strict';
@@ -23558,7 +23876,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],224:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 // fences (``` lang, ~~~ lang)
 
 'use strict';
@@ -23569,6 +23887,9 @@ module.exports = function fence(state, startLine, endLine, silent) {
       haveEndMarker = false,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   if (pos + 3 > max) { return false; }
 
@@ -23651,7 +23972,7 @@ module.exports = function fence(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],225:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 // heading (#, ##, ...)
 
 'use strict';
@@ -23663,6 +23984,9 @@ module.exports = function heading(state, startLine, endLine, silent) {
   var ch, level, tmp, token,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   ch  = state.src.charCodeAt(pos);
 
@@ -23705,7 +24029,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":208}],226:[function(require,module,exports){
+},{"../common/utils":211}],229:[function(require,module,exports){
 // Horizontal rule
 
 'use strict';
@@ -23717,6 +24041,9 @@ module.exports = function hr(state, startLine, endLine, silent) {
   var marker, cnt, ch, token,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   marker = state.src.charCodeAt(pos++);
 
@@ -23749,7 +24076,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":208}],227:[function(require,module,exports){
+},{"../common/utils":211}],230:[function(require,module,exports){
 // HTML block
 
 'use strict';
@@ -23776,6 +24103,9 @@ module.exports = function html_block(state, startLine, endLine, silent) {
   var i, nextLine, token, lineText,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   if (!state.md.options.html) { return false; }
 
@@ -23822,7 +24152,7 @@ module.exports = function html_block(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/html_blocks":206,"../common/html_re":207}],228:[function(require,module,exports){
+},{"../common/html_blocks":209,"../common/html_re":210}],231:[function(require,module,exports){
 // lheading (---, ===)
 
 'use strict';
@@ -23832,6 +24162,9 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   var content, terminate, i, l, token, pos, max, level, marker,
       nextLine = startLine + 1, oldParentType,
       terminatorRules = state.md.block.ruler.getRules('paragraph');
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   oldParentType = state.parentType;
   state.parentType = 'paragraph'; // use paragraph to match terminatorRules
@@ -23904,7 +24237,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],229:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 // Lists
 
 'use strict';
@@ -24035,6 +24368,9 @@ module.exports = function list(state, startLine, endLine, silent) {
       token,
       isTerminatingParagraph = false,
       tight = true;
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   // limit conditions when list can interrupt
   // a paragraph (validation mode only)
@@ -24241,7 +24577,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":208}],230:[function(require,module,exports){
+},{"../common/utils":211}],233:[function(require,module,exports){
 // Paragraph
 
 'use strict';
@@ -24295,7 +24631,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
   return true;
 };
 
-},{}],231:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 'use strict';
 
 
@@ -24324,6 +24660,9 @@ module.exports = function reference(state, startLine, _endLine, silent) {
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine],
       nextLine = startLine + 1;
+
+  // if it's indented more than 3 spaces, it should be a code block
+  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   if (state.src.charCodeAt(pos) !== 0x5B/* [ */) { return false; }
 
@@ -24492,7 +24831,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
   return true;
 };
 
-},{"../common/utils":208}],232:[function(require,module,exports){
+},{"../common/utils":211}],235:[function(require,module,exports){
 // Parser state class
 
 'use strict';
@@ -24724,7 +25063,7 @@ StateBlock.prototype.Token = Token;
 
 module.exports = StateBlock;
 
-},{"../common/utils":208,"../token":255}],233:[function(require,module,exports){
+},{"../common/utils":211,"../token":258}],236:[function(require,module,exports){
 // GFM table, non-standard
 
 'use strict';
@@ -24922,7 +25261,7 @@ module.exports = function table(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":208}],234:[function(require,module,exports){
+},{"../common/utils":211}],237:[function(require,module,exports){
 'use strict';
 
 
@@ -24940,7 +25279,7 @@ module.exports = function block(state) {
   }
 };
 
-},{}],235:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 'use strict';
 
 module.exports = function inline(state) {
@@ -24955,7 +25294,7 @@ module.exports = function inline(state) {
   }
 };
 
-},{}],236:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 // Replace link-like texts with link nodes.
 //
 // Currently restricted by `md.validateLink()` to http/https/ftp
@@ -25090,7 +25429,7 @@ module.exports = function linkify(state) {
   }
 };
 
-},{"../common/utils":208}],237:[function(require,module,exports){
+},{"../common/utils":211}],240:[function(require,module,exports){
 // Normalize input string
 
 'use strict';
@@ -25112,7 +25451,7 @@ module.exports = function inline(state) {
   state.src = str;
 };
 
-},{}],238:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 // Simple typographyc replacements
 //
 // (c) (C) → ©
@@ -25221,7 +25560,7 @@ module.exports = function replace(state) {
   }
 };
 
-},{}],239:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 // Convert straight quotation marks to typographic ones
 //
 'use strict';
@@ -25416,7 +25755,7 @@ module.exports = function smartquotes(state) {
   }
 };
 
-},{"../common/utils":208}],240:[function(require,module,exports){
+},{"../common/utils":211}],243:[function(require,module,exports){
 // Core state object
 //
 'use strict';
@@ -25438,7 +25777,7 @@ StateCore.prototype.Token = Token;
 
 module.exports = StateCore;
 
-},{"../token":255}],241:[function(require,module,exports){
+},{"../token":258}],244:[function(require,module,exports){
 // Process autolinks '<protocol:...>'
 
 'use strict';
@@ -25512,7 +25851,7 @@ module.exports = function autolink(state, silent) {
   return false;
 };
 
-},{}],242:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 // Parse backticks
 
 'use strict';
@@ -25557,7 +25896,7 @@ module.exports = function backtick(state, silent) {
   return true;
 };
 
-},{}],243:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 // For each opening emphasis-like marker find a matching closing one
 //
 'use strict';
@@ -25603,7 +25942,7 @@ module.exports = function link_pairs(state) {
   }
 };
 
-},{}],244:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 // Process *this* and _that_
 //
 'use strict';
@@ -25732,7 +26071,7 @@ module.exports.postProcess = function emphasis(state) {
   }
 };
 
-},{}],245:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 // Process html entity - &#123;, &#xAF;, &quot;, ...
 
 'use strict';
@@ -25782,7 +26121,7 @@ module.exports = function entity(state, silent) {
   return true;
 };
 
-},{"../common/entities":205,"../common/utils":208}],246:[function(require,module,exports){
+},{"../common/entities":208,"../common/utils":211}],249:[function(require,module,exports){
 // Proceess escaped chars and hardbreaks
 
 'use strict';
@@ -25836,7 +26175,7 @@ module.exports = function escape(state, silent) {
   return true;
 };
 
-},{"../common/utils":208}],247:[function(require,module,exports){
+},{"../common/utils":211}],250:[function(require,module,exports){
 // Process html tags
 
 'use strict';
@@ -25885,7 +26224,7 @@ module.exports = function html_inline(state, silent) {
   return true;
 };
 
-},{"../common/html_re":207}],248:[function(require,module,exports){
+},{"../common/html_re":210}],251:[function(require,module,exports){
 // Process ![image](<src> "title")
 
 'use strict';
@@ -26039,7 +26378,7 @@ module.exports = function image(state, silent) {
   return true;
 };
 
-},{"../common/utils":208}],249:[function(require,module,exports){
+},{"../common/utils":211}],252:[function(require,module,exports){
 // Process [link](<to> "stuff")
 
 'use strict';
@@ -26191,7 +26530,7 @@ module.exports = function link(state, silent) {
   return true;
 };
 
-},{"../common/utils":208}],250:[function(require,module,exports){
+},{"../common/utils":211}],253:[function(require,module,exports){
 // Proceess '\n'
 
 'use strict';
@@ -26235,7 +26574,7 @@ module.exports = function newline(state, silent) {
   return true;
 };
 
-},{"../common/utils":208}],251:[function(require,module,exports){
+},{"../common/utils":211}],254:[function(require,module,exports){
 // Inline parser state
 
 'use strict';
@@ -26367,7 +26706,7 @@ StateInline.prototype.Token = Token;
 
 module.exports = StateInline;
 
-},{"../common/utils":208,"../token":255}],252:[function(require,module,exports){
+},{"../common/utils":211,"../token":258}],255:[function(require,module,exports){
 // ~~strike through~~
 //
 'use strict';
@@ -26486,7 +26825,7 @@ module.exports.postProcess = function strikethrough(state) {
   }
 };
 
-},{}],253:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 // Skip text characters for text token, place those to pending buffer
 // and increment current pos
 
@@ -26577,7 +26916,7 @@ module.exports = function text(state, silent) {
   return true;
 };*/
 
-},{}],254:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 // Merge adjacent text nodes into one, and re-calculate all token levels
 //
 'use strict';
@@ -26612,7 +26951,7 @@ module.exports = function text_collapse(state) {
   }
 };
 
-},{}],255:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 // Token class
 
 'use strict';
@@ -26811,7 +27150,7 @@ Token.prototype.attrJoin = function attrJoin(name, value) {
 
 module.exports = Token;
 
-},{}],256:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 
 'use strict';
 
@@ -26935,7 +27274,7 @@ decode.componentChars = '';
 
 module.exports = decode;
 
-},{}],257:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 
 'use strict';
 
@@ -27035,7 +27374,7 @@ encode.componentChars = "-_.!~*'()";
 
 module.exports = encode;
 
-},{}],258:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 
 'use strict';
 
@@ -27062,7 +27401,7 @@ module.exports = function format(url) {
   return result;
 };
 
-},{}],259:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 'use strict';
 
 
@@ -27071,7 +27410,7 @@ module.exports.decode = require('./decode');
 module.exports.format = require('./format');
 module.exports.parse  = require('./parse');
 
-},{"./decode":256,"./encode":257,"./format":258,"./parse":260}],260:[function(require,module,exports){
+},{"./decode":259,"./encode":260,"./format":261,"./parse":263}],263:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -27385,7 +27724,7 @@ Url.prototype.parseHost = function(host) {
 
 module.exports = urlParse;
 
-},{}],261:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -27923,7 +28262,7 @@ module.exports = urlParse;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],262:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 function count(self, substr) {
   var count = 0
   var pos = self.indexOf(substr)
@@ -27937,7 +28276,7 @@ function count(self, substr) {
 }
 
 module.exports = count
-},{}],263:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 function splitLeft(self, sep, maxSplit, limit) {
 
   if (typeof maxSplit === 'undefined') {
@@ -27966,7 +28305,7 @@ function splitLeft(self, sep, maxSplit, limit) {
 
 module.exports = splitLeft;
 
-},{}],264:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 function splitRight(self, sep, maxSplit, limit) {
 
   if (typeof maxSplit === 'undefined') {
@@ -27999,7 +28338,7 @@ function splitRight(self, sep, maxSplit, limit) {
 
 module.exports = splitRight;
 
-},{}],265:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 /*
 string.js - Copyright (C) 2012-2014, JP Richardson <jprichardson@gmail.com>
 */
@@ -29109,15 +29448,15 @@ string.js - Copyright (C) 2012-2014, JP Richardson <jprichardson@gmail.com>
 
 }).call(this);
 
-},{"./_count":262,"./_splitLeft":263,"./_splitRight":264}],266:[function(require,module,exports){
+},{"./_count":265,"./_splitLeft":266,"./_splitRight":267}],269:[function(require,module,exports){
 module.exports=/[\0-\x1F\x7F-\x9F]/
-},{}],267:[function(require,module,exports){
-module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804\uDCBD|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
-},{}],268:[function(require,module,exports){
-module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
-},{}],269:[function(require,module,exports){
-module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
 },{}],270:[function(require,module,exports){
+module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804\uDCBD|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
+},{}],271:[function(require,module,exports){
+module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
+},{}],272:[function(require,module,exports){
+module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
+},{}],273:[function(require,module,exports){
 'use strict';
 
 exports.Any = require('./properties/Any/regex');
@@ -29126,9 +29465,9 @@ exports.Cf  = require('./categories/Cf/regex');
 exports.P   = require('./categories/P/regex');
 exports.Z   = require('./categories/Z/regex');
 
-},{"./categories/Cc/regex":266,"./categories/Cf/regex":267,"./categories/P/regex":268,"./categories/Z/regex":269,"./properties/Any/regex":271}],271:[function(require,module,exports){
+},{"./categories/Cc/regex":269,"./categories/Cf/regex":270,"./categories/P/regex":271,"./categories/Z/regex":272,"./properties/Any/regex":274}],274:[function(require,module,exports){
 module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
-},{}],272:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 var cheet = require('cheet.js');
 
 module.exports = function() {
@@ -29142,7 +29481,7 @@ module.exports = function() {
   cheet('i d d q d', toggleResolution);
 };
 
-},{"cheet.js":15}],273:[function(require,module,exports){
+},{"cheet.js":15}],276:[function(require,module,exports){
 var bespoke = require('bespoke'),
     beachday = require('bespoke-theme-beachday'),
     keys = require('bespoke-keys'),
@@ -29409,7 +29748,7 @@ easter();
 // Used to load gmaps api async (it requires a callback to be passed)
 window.noop = function() {};
 
-},{"./easter":272,"./tutorial":274,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-simple-overview":10,"bespoke-state":11,"bespoke-theme-beachday":12,"bespoke-touch":13,"markdown-it-abbr":193,"markdown-it-anchor":194,"markdown-it-container":195,"markdown-it-decorate":196,"markdown-it-deflist":197,"markdown-it-emoji":198}],274:[function(require,module,exports){
+},{"./easter":275,"./tutorial":277,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-simple-overview":10,"bespoke-state":11,"bespoke-theme-beachday":12,"bespoke-touch":13,"markdown-it-abbr":196,"markdown-it-anchor":197,"markdown-it-container":198,"markdown-it-decorate":199,"markdown-it-deflist":200,"markdown-it-emoji":201}],277:[function(require,module,exports){
 var tutorial = {
     turnedOn: true,
 
@@ -29453,6 +29792,6 @@ module.exports = function(tutorialEl) {
   };
 };
 
-},{}]},{},[273])
+},{}]},{},[276])
 
 //# sourceMappingURL=build.js.map
