@@ -219,6 +219,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   :::
 
 ---
+<!-- {"slideHash": "outros-seletores"} -->
 # Outros Seletores
 
 ---
