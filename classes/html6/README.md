@@ -83,7 +83,7 @@
     a ele associado
   - Há duas formas de associação
     ```html
-    <label for="cidade">Cidade: </label><input name="cidade">
+    <label for="cidade">Cidade: </label><input id="cidade">
     <!-- ...ou... -->
     <label>Cidade: <input id="cidade"></label>
     ```
@@ -146,10 +146,10 @@
 - _Markup_:
   ```html
   <label>
-    <input id="cor" type="radio" value="azul">Azul
+    <input name="cor" type="radio" value="azul">Azul
   </label>
   <label>
-    <input id="cor" type="radio" value="verde">Verde
+    <input name="cor" type="radio" value="verde">Verde
   </label>
   ```
 ::: result
@@ -299,14 +299,14 @@ para o servidor
 
   - Foco: `blur` e `focus`
   - Teclado: `keydown` e `keyup`
-  - Modificação: `change`<!-- {ul:.content} -->
+  - Modificação: `change`, `input`<!-- {ul:.content} -->
 
 
 ---
 - Lembrando que: eventos são **atrelados a nós específicos** e causam a invocação de uma função
   "manipuladora" (_event handler_ ou apenas _handler_)
 - Eventos de entrada de dados:
-  - `change` (Modificou)
+  - `change` ou `input` (Modificou)
   - `blur` (Perdeu foco)
   - `focus` (ganhou foco)
   - `keydown` (pressionou uma tecla)
