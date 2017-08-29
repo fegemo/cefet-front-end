@@ -394,6 +394,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   </div>
 
 ---
+<!-- {"layout": "regular", "slideHash": "criando-uma-animacao"} -->
 ## Criando uma animação
 
 - Uma animação CSS é composta por
@@ -436,7 +437,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   left: 0;
   right: 0;
   z-index: -1;
-  animation: terra-ao-longo-do-dia 20s linear 4s 1 normal forwards;
+  animation: terra-ao-longo-do-dia 20s linear 4s infinite normal forwards;
 }</style>
 
 - ```css
@@ -477,7 +478,8 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   <img class="estrela-mario-1" src="../../images/mario-star.png">
 
 ---
-## Definindo **@keyframes** (cont.)
+<!-- {"layout": "regular", "slideHash": "mais-de-uma-animacao"} -->
+## **Mais de uma** animação
 
 <style>
 .estrela-mario-2:hover {
@@ -506,7 +508,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   </div>
 
 ---
-## Definindo **@keyframes** (cont.)
+## Mais de uma animação (cont.)
 
 ```css
 @keyframes pirando {
@@ -520,6 +522,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 ```
 
 ---
+<!-- {"layout": "regular", "slideHash": "animation-ou-transition"} -->
 ## **animation** ou **transition**?
 
 - **`transition`** é uma interpolação entre dois valores de uma propriedade
