@@ -59,7 +59,11 @@
 - [Javascript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração
   Espacial :alien:
 - [Javascript parte 3](classes/js3/) - História, Estilizando
-  elementos, Eventos de mouse, Depurando
+  elementos, Eventos de mouse, Depurando e o PhotoSnap :camera:
+- [HTML parte 6](classes/html6) - Elementos de dados e
+  o AvatarCreator :lipstick:
+- [CSS parte 6](classes/css6) - Transições, Animações e
+  os Animais :dog: :cat:
 
 <!--
 - [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
