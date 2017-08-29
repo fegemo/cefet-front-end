@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# CSS - Parte 4
+# CSS - Parte 5
 ## Especificidade de seletores, Centralizando coisas e a Lanchonete do Coral 55 :palm_tree:
 
 ---

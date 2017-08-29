@@ -426,6 +426,7 @@ window.setInterval(atualizaAbel, 33);
     <iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/1eoacrkm/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"slideHash": "posicao-mouse"} -->
 ## Pegando (x,y) do mouse
 
 - Todos os eventos de mouse informam a posição (x,y) do mouse

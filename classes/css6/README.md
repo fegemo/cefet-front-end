@@ -1,492 +1,552 @@
+<!-- {"layout": "title"} -->
 # CSS - Parte 6
+## Transformações, Transições, Animações e os Animais :dog: :cat:
 
 ---
+<!--
+{
+  "styles": ["https://fonts.googleapis.com/css?family=Righteous"],
+  "embeddedStyles": ".righteous { font-family: Righteous, cursive; color: #e90c0c }"
+}
+-->
 # Roteiro de hoje
 
-1. _Media Queries_
-1. _Responsive Design_
-1. Pré-processadores
-1. _Frameworks CSS_
+1. Finalizar o jogo **EduKids Animals** <!-- {.righteous} -->
+1. Transformações
+1. Transições
+1. Animações
+
 
 ---
-# _Media Queries_
-
----
-## _Media Queries_
-
-- O maior propósito da Web é ser disponibilizada nos mais diversos meios de
-  comunicação/dispositivos
-- Hoje em dia, podemos acessar a Web à partir de:
-  - computadores pessoais, _notebooks_
-  - _videogames_, _videogames_ portáteis
-  - televisores
-  - _smartphones_, _tablets_, telefones celulares "tradicionais", etc.
-- Com uma gama de **configurações diferentes** entre os dispositivos, estávamos
-  limitados a montar as páginas Web **que eram exibidas da mesma forma em todos
-  eles**
-- Especificadas no CSS3, as _media queries_ têm o propósito de possibilitar a
-  delimitação do escopo de regras CSS para **diferentes mídias**
-
----
-## _Media Queries_
-
-- Exemplos:
-  1. Arquivo com regras CSS para impressão
-    ```html
-    <link rel="stylesheet" media="print" href="p-impressao.css" />
-    ```
-  1. Dentro de um arquivo CSS, regras diferentes para o tamanho de uma imagem
-     se o dispositivo estiver orientado verticalmente (_portrait_) ou
-     horizontalmente (_landscape_)
-     ```css
-     img.produto {  width: 200px;  }
-     @media screen and (orientation: landscape) {
-       img.produto {  width: 100%;  }
-     }
-     ```
-
----
-## Anatomia de uma _media query_
-
-![](../../images/media-query-anatomia.png)
-
-- Formada por:
-  1. _Media types_
-  1. _Media features_
-  1. Operadores
-
----
-## Tipos de Mídia
-
-- `all`
-  - Qualquer dispositivo
-- `print`
-  - Para documentos paginados ou exibidos em modo de visualização de impressão
-- `screen`
-  - Dispositivos com telas coloridas  
-- `speech`
-  - Para sintetizadores de voz
-
----
-## Exemplo de uso de tipo de mídia
-
-- Arquivos externos:
-  ```html
-  <link rel="stylesheet" media="all" href="estilos-gerais.css" />
-  <link rel="stylesheet" media="screen" href="p-monitores.css" />
-  <link rel="stylesheet" media="print" href="p-impressao.css" />
-  ```
----
-## Exemplo de uso de tipo de mídia (cont.)
-
-- Dentro de um mesmo arquivo:
-  ```css
-  #artigo-principal {
-    background-color: #ccc;
-  }
-
-  @media print {
-    #artigo-principal {
-      background-color: transparent;
-    }
-  }
-  ```
-
----
-## Características de Mídia
-
-- **`width`, `height`**, `max-width`, `max-height`, `min-width`, `min-height`
-  - Largura e altura da janela do navegador
-- `aspect-ratio`
-  - Razão da largura pela altura da janela do navegador
-- `orientation`
-  - Orientação (`landscape` x `portrait`) do dispositivo
-- `resolution`
-  - Densidade de _pixels_ do dispositivo
-- [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/@media)
-
----
-## Exemplo de uso de características de mídia
-
-- Arquivos externos:
-  ```html
-  <!-- Arquivo de estilo para dispositivos pequenos -->
-  <link rel="..." media="all and (max-width: 640px)" href="small.css" />
-
-  <!-- Arquivo de estilo para dispositivos grandes -->
-  <link rel="..." media="all and (min-width: 641px)" href="large.css" />
-  ```
-
----
-## Exemplo de uso de características de mídia (cont.)
-
-- Dentro de um mesmo arquivo
-  ```css
-  div#logo {
-    background-image: url('img/logo.png');
-  }
-  /* 2dppx = 2 dots per pixel unit */
-  @media screen and (min-resolution: 2dppx) {
-    div#logo {
-      background-image: url('img/logo2x.png');
-    }
-  }
-  ```
-
----
-## _Retina display_ (da Apple)
-
-![](../../images/ipad-retina-display-comparison.png)
-
----
-## _Retina display_ (da Apple)
-
-![](../../images/ipad-retina-zoom.jpg)
-
----
-## Simulação de _**retina display**_
-
-![Desenho da estrela do jogo do Mario](../../images/mario-star-half.png) <!-- {style="width: 100px"} -->
-![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
-
-## Para testar em um dispositivo de **tela com alta densidade de pixels**:
-
-![Desenho da estrela do jogo do Mario](../../images/mario-star-double.png) <!-- {style="width: 100px"} -->
-![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
-
----
-# _Responsive Design_
-
----
-## _Responsive Design_
-
-- Não significa desenho responsável =)
-- É a idéia de que as páginas Web devem se adaptar à plataforma que a está
-  exibindo
-  - Melhorar a experiência de usuário
-  - Aproveitar características específicas de plataformas diferentes
-- Usa o recurso de _media queries_ do CSS3
-
----
-## Exemplo de site não-_responsive_
-
-[![](../../images/submarino.jpg)](http://www.submarino.com.br)
-
----
-## Exemplo de site _responsive_
-
-[![](../../images/muumilaakso.jpg)](http://muumilaakso.tampere.fi/)
-
----
-## Vários exemplos
-
-- [mediaqueri.es](http://mediaqueri.es)
-
-![](../../images/mediaqueries.jpg)
-
----
-## Como fazer
-
-- Para criar uma página _responsive_, você deve
-  1. Usar medidas fluidas (em porcentagem)
-  1. Definir os pontos de dimensão (largura, altura) em que sua página
-     "quebra" (os _breakpoints_)
-  1. Criar regras de estilos diferentes para cada conjunto de dimensões
-- Por exemplo, vamos criar uma página que mostra
-  - 4 produtos por linha em dispositivos grandes
-  - 3 produtos por linha em dispositivos médios
-  - 2 produtos por linha em dispositivos pequenos
-
----
-## Exemplo
-
-```css
-div.produto {  display: inline-block; }
-
-@media (min-width:801) and (max-width: 1024px) {
-  /* tela grande: 4 produtos por linha */
-  div.produto {  width: 25%;  }
+<!--
+{
+  "layout": "section-header",
+  "slideHash": "edukids-animals"
 }
+-->
+# EduKids Animals <!-- {.righteous} -->
+## Jogo para irmã(o)zinh@s
 
-@media (min-width:481px) and (max-width: 800px) {
-  /* tela média: 3 produtos por linha */
-  div.produto {  width: 33.333%;  }
-}
-
-@media (max-width: 480px) {
-  /* tela pequena: 2 produtos por linha */
-  div.produto {  width: 50%;  }
-}
-```
-
----
-## Exemplo vivo
-
-<iframe width="100%" height="450" src="http://jsfiddle.net/fegemo/Lw7prv0u/5/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-# _Frameworks_ CSS
-
----
-## _Frameworks_ CSS
-
-- Existem bases de código para estilização "básicas" de páginas Web
-  disponíveis
-- A idéia é: para fazer uma prototipação rápida, não levar muito tempo se
-  preocupando com escrever código CSS para tornar o produto bem apresentável
-- Dois _frameworks_ mais famosos:
-  - [(Twitter) Bootstrap](http)
-  - [Zurb Foundation](http)
-- Na prática, você vai incluir um arquivo CSS na sua página
-  ```html
-  <link rel="stylesheet" href="bootstrap.css">
-  <link rel="stylesheet" href="meus-estilos.css">
-  ```
-
----
-## Bootstrap
-
-![](../../images/bootstrap.png)
-
----
-## Bootstrap (cont.)
-
-- Foi criado por funcionários do Twitter
-- Usa **Less** para gerar CSS, mas também há um _port_ para Sass
-- É bastante _"jQuery-friendly"_, possuindo _plugins_ para coisas comuns
-  - Painéis modais
-  - Abas
-  - Carrossel, etc.
-
----
-## Zurb Foundation
-
-- Criado e mantido pela [Zurb](http://zurb.com/), uma empresa de criação na Web
-- Escrito em **Sass**
-- Também é _"jQuery-friendly"_, assim como Bootstrap
-- Usa a filosofia _mobile-first_
-- Incentiva a boa prática de não se utilizar "classes de apresentação"
-  (`.row`, `.column` etc.s)
-
----
-## Zurb Foundation (cont.)
-
-![](../../images/foundation.png)
-
----
-# Pré-processadores
+![Desenho de um urso](../../images/urso.jpg) <!-- {.portrait.centered style="box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.34);"} -->
 
 ---
 ## Motivação
 
-- Algumas tarefas em CSS são tediosas
-  - Criar imagens sprite e o CSS para configurar cada uma
-  - Escrever a mesma regra várias vezes usando prefixos de navegadores
-    diferentes
+Seus pais vão viajar e você deve cuidar do seu mini irmãozinho de 3 anos.
+
+Com um comportamento de anjinho (#sqn), o pequeno Joãozinho vai precisar ser
+entretido por um bom tempo. Você, como um ótimo irmã(ão) e programador(a)
+exímio, decide que é hora de criar um jogo Web para, além de entreter seu
+mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
 ---
-## Motivação (cont.)
+## O jogo
 
-- Além disso, o CSS não é muito DRY-
-  _friendly_
-  - Você acaba repetindo a mesma cor, as mesmas dimensões e outros valores
-    várias vezes
-    ```css
-    div.fundo { background-color: #3399ff; }
-    body { color: #3399ff; }
-    ```
-  - Escrevendo seletores mais complexos, também acabamos por ter que nos repetir
-    ```css
-    .animal { width: 200px; }
-    .animal img { width: 1800px; }
-    .animal figcaption { width: 100%; }
-    ```
-
-*[DRY]: Don't Repeat Yourself*
+[![](../../images/edukids-thumb.png)](../../images/edukids.png)
 
 ---
-## Problema
+## O jogo, como está
 
-- Queremos resolver alguns pontos fracos da linguagem CSS
-- Mas os navegadores só conhecem a linguagem para definir estilos e não há
-  movimentação de algum grupo criando outra linguagem
-- Uma solução:
-  - Criar uma linguagem mais poderosa e que resolva esses pontos fracos, mas
-    que se transforme em CSS para que os navegadores fiquem felizes
-
----
-## Pré-processadores CSS
-
-- São uma extensão à linguagem CSS cujo objetivo é trazer recursos não
-  presentes (ainda) na linguagem
-- O pré-processador irá processar o código fonte nessa nova linguagem e
-  transformá-lo em CSS, que é o que o navegador entende
-- Os mais populares:
-  - ![Logo do Sass](../../images/sass-logo.png) <!-- {style="width: 100%;"} -->
-  - ![Logo do Less](../../images/less-logo.png) <!-- {style="width: 100%;"} -->
-  - ![Logo do Stylus](../../images/stylus-logo.png) <!-- {style="width: 100%;"} --> <!-- {ul:.horizontal-list} -->
+- Funcionamento do jogo:
+  - Assim que apertar **play**, o jogo começa
+  - A cada ~2s, um animal é sorteado e começa a ficar agitado, com fome
+  - Você deve clicar no animal agitado para alimentá-lo antes que ele coma
+    alguém
+    - Fazendo isso, ganha-se 1 ponto
+  - Se um animal não é clicado, perde-se 2 pontos
+  - Se um animal que estava sossegado é perturbado fora de hora, perde-se 1
+    ponto
+- Essa funcionalidade **já está implementada**
 
 ---
-## O que eles oferecem?
+## O que está **faltando**
 
-- Criação de constantes
-  - Para poder reutilizar valores
-- Criação de variáveis
-  - Para constantes com efeito colateral - iteração
-- Criação de funções para geração de código
-  - Para evitar criar código repetido
-- Hierarquia de seletores
-  - Para evitar a repetição de partes de seletores
+1. O jogo ainda não dá um _feedback_ visual interessante para o jogador
+   - Apenas o nome do animal aparece escrito e seu irmão ainda não sabe ler
+1. O arquivo javascript `jogo.js` controla o jogo. Ele tem um temporizador que
+   fica **adicionando e removendo classes dos elementos** dos animais
+   - `com-fome`, quando o animal está com fome
+   - `satisfeito`, quando o animal acabou de comer
+   - `com-raiva`, quando um animal sossegado é perturbado
+   - `atacando`, quando um animal com fome não é alimentado a tempo
 
 ---
-## Constantes e Variáveis (em **Sass**)
+## Pede-se: fazer os **2 exercícios** abaixo
 
-- Código fonte
+1. Criar uma **transição para quando o mouse estiver em cima dos botões**
+   _play/stop_ (para que o elemento se revele lentamente)
+1. Você deve implementar uma **metáfora visual** para cada um dos 4 estados dos
+   animais. Algumas sugestões:
+   - `com-fome`, animal piscando (opacidade variando)
+   - `satisfeito`, uma borda verde no animal e o animal fica girando de alegria
+   - `com-raiva`, animal vai crescendo, ou fica pulsando
+   - `atacando`, animal dá um salto e cresce, com uma borda vermelha
+
+---
+<!--
+{
+  "layout": "section-header",
+  "slideHash": "transformacoes"
+}
+-->
+# Transformações
+## Alterando a geometria dos objetos
+
+- A propriedade `transform`
+  - Translação
+  - Escala
+  - Rotação
+- Efeitos 3D com `perspective`
+- Ponto de origem da transformação
+
+<!-- {ul^1:.content} -->
+
+---
+## Por que precisamos disso?
+
+![](../../images/o-que-queremos-transforms.png)
+
+---
+## A propriedade **transform** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform))
+
+- Define uma **transformação geométrica** aplicada aos "vértices" de um
+  elemento **`block`** (ou **`inline-block`**)
+- Exemplo:
+  ```html
+  <p>Yay, sem Photoshop!</p>
+  ```
   ```css
-  $font-stack: Helvetica, sans-serif;
-  $primary-color: #333;
+  p { transform: rotate(-3deg); }
+  ```
+- Resultado:
+  <p style="transform: rotate(-3deg); background-color: #bcdefb">Yay, sem Photoshop!</p>
+
+---
+## **transform** com translação
+
+- Diversas transformações podem ser atribuídas como valor para a
+  propriedade `transform`:
+  - **Translação**: faz um deslocamento do objeto no espaço
+    - `translate(x,y)`
+    - `translateX(x)`
+    - `translateY(y)`
+    - `translateZ(z)`
+    - `translate3d(x,y,z)` <!-- {ul:.multi-column-list-3}-->
+
+    <iframe width="100%" height="230" src="//jsfiddle.net/fegemo/hz1Lv6qr/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+## **transform** com escala
+
+- **Escala**: faz um dimensionamento do objeto
+  - `scale(x,y)`
+  - `scaleX(x)`
+  - `scaleY(y)`
+  - `scaleZ(z)`
+  - `scale3d(x,y,z)` <!-- {ul:.multi-column-list-3}-->
+
+  <iframe width="330" height="230" src="//jsfiddle.net/fegemo/2ad66123/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-left"></iframe>
+
+  - Unidades de medida:
+    - Usa-se um número, **sem unidade de medida**, que é o **fator de escala** <!--{ul^0:style="margin-left: 0px;"}-->
+    - `1` indica tamanho `100%`
+    - `2` indica dobro do original <!--{ul^1:style="margin-top: 2em; margin-left: 330px;"}-->
+
+---
+## **transform** com rotação
+
+- **Rotação**: altera o ângulo do sistema de coordenadas do objeto
+  - `rotate(ang)`
+  - `rotateZ(ang)`
+  - `rotateX(ang)`
+  - `rotateY(ang)`
+  - `rotate3d(x,y,z,ang)`
+  - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) <!-- {ul:.multi-column-list-3}-->
+
+  <iframe width="330" height="230" src="//jsfiddle.net/fegemo/aL80f02g/embedded/result,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-left"></iframe>
+
+  - Unidades de medida (sent. horário):
+    - `deg`: graus, exemplo: `rotate(20deg)`
+    - `turn`: voltas, exemplo: `rotate(-2.5turn)`
+    - `rad`: radianos, exemplo: `rotate(1rad)` <!--{ul^1:style="margin-top: 2em"}-->
+
+
+---
+<!-- {"layout": "regular"} -->
+## Efeitos 3D
+
+- Para ter um efeito de profundidade das coisas, precisamos definir
+  uma **projeção perspectiva**:
+
+  <iframe width="520" height="300" src="//jsfiddle.net/fegemo/1853cnsc/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+
+  ```css
   body {
-    font: 100% $font-stack;
-    color: $primary-color;
+    perspective: 400px;
+    /* quanto menor, maior
+       o efeito */
   }
   ```
-- "Compilado" para CSS:
+  - Aqui também usamos uma `animation`
+
+---
+<!-- {"layout": "regular"} -->
+## Ponto de origem da transformação
+
+- Normalmente a transformação é feita com base no centro do objeto
+- É possível **definir um ponto que ficará fixo** (será a origem da transformação)
+  usando `transform-origin`:
+  <iframe width="500" height="240" src="//jsfiddle.net/fegemo/2bcLx47t/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+
   ```css
-  body {
-    font: 100% Helvetica, sans-serif;
-    color: #333;
+  .porta {
+    transform-origin: left center;
+  }
+  .porta:hover {
+    transform: rotateY(-95deg);
   }
   ```
 
 ---
-## Constantes e Variáveis (em **Less**)
+<!--
+{
+  "layout": "section-header",
+  "slideHash": "transicoes"
+}
+-->
+# Transições
+## Interpolando valores de propriedades
 
-- Código fonte
-  ```css
-  @font-stack: Helvetica, sans-serif;
-  @primary-color: #333;
-  body {
-    font: 100% @font-stack;
-    color: @primary-color;
-  }
-  ```
-- "Compilado" para CSS:
-  ```css
-  body {
-    font: 100% Helvetica, sans-serif;
-    color: #333;
-  }
-  ```
+- A propriedade `transition`
+- Propriedades que podemos animar
+- Funções de interpolação
+- Transição com transformação
+
+<!-- {ul:.content} -->
 
 ---
-## Constantes e Variáveis (em **Stylus**)
+## Pra que isso?
 
-- Código fonte
-  ```css
-  font-stack Helvetica, sans-serif
-  primary-color #333
-  body
-    font 100% font-stack
-    color primary-color
-  ```
-- "Compilado" para CSS:
-  ```css
-  body {
-    font: 100% Helvetica, sans-serif;
-    color: #333;
-  }
-  ```
+![](../../images/o-que-queremos-animacoes.png)
 
 ---
-## Regras aninhadas
+## Transições CSS
 
-- Possibilita a não-repetição de seletores pela definição de regras aninhadas
-- Exemplo: Código fonte em **sass** e resultado:
-  ```css
-  ul {
-    list-style: none;
-    li {  display: inline-block;  }
-  }
-  ```
-  ```css
-  ul {  list-style: 0;  }
-  ul li {  display: inline-block;  }
-  ```
+- Muitas vezes queremos criar **pequenas animações** em nossas páginas
+  - Mudança da cor do botão quando passamos o mouse em cima
+  - Um elemento se expandindo para revelar mais conteúdo
+  - Um painel sumindo gradativamente, em vez de desaparecendo
+- Antigamente isso podia ser feito em JavaScript, com `setTimeout`
+- CSS3 especifica uma nova propriedade: `transition`
 
 ---
-## _Mixins_
+<!-- {"layout": "regular"} -->
+## Como usar
 
-- Uma espécie de função para reutilização de código fonte
-- Exemplo: Código fonte em **sass** e resultado:
-  ```css
-  @mixin border-radius($radius) {
-    -webkit-border-radius: $radius;
-       -moz-border-radius: $radius;
-        -ms-border-radius: $radius;
-            border-radius: $radius;
-  }
-  .box { @include border-radius(10px); }
-  ```
-  ```css
-  .box { -webkit-border-radius: 10px; /*... */ }
-  ```
-
----
-## Loops, Funções
-
-- Execução de funções para gerar CSS dinamicamente
-- Exemplo: Código fonte em **less** e resultado:
-  ```css
-  .generate-columns(@n, @i: 1) when (@i =< @n) {
-    .column-@{i} {
-      width: (@i * 100% / @n);
+- <style>
+    p.transition-link {
+      transition: color 600ms linear;
+      color: red;
     }
-    .generate-columns(@n, (@i + 1));
+    p.transition-link:hover { color: #000; }
+  </style>
+  <p class="transition-link">Heyyy, hover me</p>
+
+  ```css
+  p  { color: #f00; }
+  p  { color: #000; transition: color 600ms linear; }
+  ```
+- Escolhemos **que propriedade** `CSS` queremos animar, por **quanto tempo**
+  e qual a **função de interpolação**
+
+---
+<!-- {"layout": "regular"} -->
+## Propriedades que podemos animar
+
+- Nem todas as propriedades são animáveis e elas podem variar entre navegadores
+- Algumas que são animáveis:
+  - `transform` (⚡ _fast_)
+  - `opacity` (⚡ _fast_)
+  - `color`
+  - `background-color`
+  - `left`
+  - `right`
+  - `top`
+  - `bottom`
+  - `background-position`
+  - `border-radius`
+  - `margin`
+  - `padding`
+  - `width`
+  - `height`
+  - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties) <!-- {ul:.multi-column-list-3}-->
+
+
+---
+<!-- {"layout": "regular"} -->
+## A propriedade **transition** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
+
+- É um atalho para:
+  - `transition-property: all`, que propriedades `CSS` devem sofrer transição
+  - `transition-duration: 0s`, a duração da transição
+  - `transition-timing-function: ease`, a função de interpolação
+  - `transition-delay: 0s`, tempo de atraso até que se comece a transição
+- Sintaxe formal:
+  ```
+  transition: [ none | <single-transition-property> ] || <time>
+                || <timing-function> || <time>;
+  ```
+
+---
+## Função de interpolação (_**timing-function**_)
+
+<iframe width="100%" height="440" src="http://jsfiddle.net/fegemo/2a5450ds/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+## Combinando **transition** e **transform**
+
+- <style>
+  a.combinando {
+    display: inline-block;
+    transition:transform .2s cubic-bezier(.37,1.89,.59,.73);
   }
-  .generate-columns(4);
+  a.combinando:hover {
+    transform: scale(1.4);
+  }
+  </style>
+  <a href="#" class="combinando">Effects like a boss</a>
+
+  ```html
+  <a href="#">Effects like a boss</a>
   ```
   ```css
-  .column-1 {  width: 25%;  }  .column-2 {  width: 50%;  }
-  .column-3 {  width: 75%;  }  .column-4 {  width: 100%; }
+  a {
+    display: inline-block;
+    transition:transform .2s cubic-bezier(.37,1.89,.59,.73);
+  }
+  a:hover {
+    transform: scale(1.4);
+  }
   ```
 
 ---
-## Extensão de classes
+<!--
+{
+  "layout": "section-header",
+  "slideHash": "animacoes"
+}
+-->
+# Animações
+## Alterando propriedades continuamente
 
-- Similar ao _mixin_, para reutilização de código. Porém, **reutiliza o código
-  gerado**
-- Exemplo: Código fonte em **stylus** e resultado:
-  ```css
-  .message
-    padding 10px;   border 1px solid gray
-  .warning
-    @extend .message
-    color rebeccapurple
-  ```
-  ```css
-  .message,
-  .warning { padding: 10px; border: 1px solid #eee; }
-  .warning { color: rebeccapurple; }
-  ```
+- A propriedade `animation`
+- A regra-arroba `@keyframes`
+- Exemplos
+
+<!-- ul:.content -->
 
 ---
-## E muitos outros recursos
+## O que queremos?
 
-- Geração automática de imagens sprite e do código CSS para apontar para cada
-  imagem
-- Operadores
-- Interpolação
-- Condicionais (if/else)
-- Arquivos parciais, etc.
+- Criar animações mais complexas do que uma interpolação entre dois valores de
+  uma propriedade
+- Sem usar Javascript!!
+  - Maior desempenho
+  - Fácil de fazer (de forma declarativa em vez de imperativa)
+  - Permite que o navegador controle a animação, possibilitando que ele utilize
+    dos recursos de hardware gráficos presentes ou mesmo pausando a computação
+    de animações que não estão visíveis
+
+---
+## A propriedade **animation** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/animation))
+
+- Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
+  animações de propriedades CSS de forma similar a `transition`
+  ```html
+  <img src="images/urso.jpg" id="urso">
+  ```
+  ```css
+  #urso {
+    position: relative;
+    animation: flutuando .5s ease-in-out 0s infinite alternate;
+  }
+  @keyframes flutuando {
+    from { top: 0;     }
+    to   { top: -30px; }
+  }
+  ```
+<style>
+.urso-flutuante {
+  position: relative;
+  animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
+  transition: opacity 200ms ease-out;
+}
+.urso-flutuante:hover {
+  opacity: 0.25;
+}
+@keyframes urso-flutuando {
+  from { top: 0;     }
+  to   { top: -30px; }
+}
+  </style>
+  <div style="position: absolute; top: 50%; left: 50%; margin-top: -75px; margin-left: -75px;">
+  <img src="../../images/urso.jpg" style="width: 150px; border-radius: 75px;" class="urso-flutuante">
+  </div>
+
+---
+<!-- {"layout": "regular", "slideHash": "criando-uma-animacao"} -->
+## Criando uma animação
+
+- Uma animação CSS é composta por
+  1. Uma definição de quadros de animação (`@keyframes`) e
+  1. Uma configuração de parâmetros da animação (`animation`)
+- Os `@keyframes` definem o valor das propriedades que variam ao longo da
+  animação
+- A `animation` configura o tempo da animação, a ordem de execução e o nome da
+  sequência de quadros a ser usada
+
+---
+## A propriedade **animation** (cont.)
+
+- É um atalho para:
+  - `animation-name: none`, nome dado ao **`@keyframes`** a ser usado
+  - `animation-duration: 0s`, duração
+  - `animation-timing-function: ease`, função de interpolação
+  - `animation-delay: 0s`, tempo de atraso
+  - `animation-iteration-count: 1`, quantas vezes rodar (pode ser `infinite`)
+  - `animation-direction: normal`, em que sentido executar
+    - `normal`, `reverse`, `alternate`, `alternate-reverse`
+  - `animation-fill-mode: none`, o que fazer com o resultado da animação após
+    terminar
+  - `animation-play-state: running`, estado da animação
+
+---
+## Definindo **@keyframes**
+
+<style>
+@keyframes terra-ao-longo-do-dia {
+  0%   { background: #6c5228; }
+  33%  { background: #48a037; }
+  66%  { background: #48a037; }
+  100% { background: #6c5228;	}
+}
+.terra {
+  position: absolute;
+  bottom: 0;
+  height: 65px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  animation: terra-ao-longo-do-dia 20s linear 4s infinite normal forwards;
+}</style>
+
+- ```css
+  @keyframes piscando {
+    from { opacity: 1.0; }
+    to   { opacity: 0.7; }
+  }
+  ```
+  ```css
+  @keyframes terra-ao-longo-do-dia {
+  	0%   { background: #6c5228; }  33%  { background: #48a037; }
+  	66%  { background: #48a037; }  100% { background: #6c5228; }
+  }
+  ```
+  <div class="terra"> </div>
+
+---
+## Definindo **@keyframes** (cont.)
+
+<style>
+.estrela-mario-1:hover {
+  animation: girando 1s ease-in-out 0s infinite alternate;
+}
+@keyframes girando {
+  from { transform: rotate(15deg); }
+  to   { transform: rotate(-15deg); }
+}</style>
+
+- ```css
+  .estrela-mario-1:hover {
+    animation: girando 1s ease-in-out 0s infinite alternate;
+  }
+  @keyframes girando {
+    from { transform: rotate(15deg); }
+    to   { transform: rotate(-15deg); }
+  }
+  ```
+  <img class="estrela-mario-1" src="../../images/mario-star.png">
+
+---
+<!-- {"layout": "regular", "slideHash": "mais-de-uma-animacao"} -->
+## **Mais de uma** animação
+
+<style>
+.estrela-mario-2:hover {
+  animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
+}
+
+@keyframes pirando {
+  from { opacity: 1; top: 0;      width: 100px; left: 0     }
+  to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
+}
+
+@keyframes girando-costas {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(3600deg); }
+}
+</style>
+
+- ```css
+  .estrela-mario-2:hover {
+    animation: pirando 600ms ease-in 3s 1 forwards,
+               girando-costas 3600ms ease-in 1 forwards;
+  }
+  ```
+  <div style="position:relative;">
+    <img class="estrela-mario-2" src="../../images/mario-star.png" style="position:absolute;">
+  </div>
+
+---
+## Mais de uma animação (cont.)
+
+```css
+@keyframes pirando {
+  from { opacity: 1; top: 0;      width: 100px; left: 0     }
+  to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
+}
+@keyframes girando-costas {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(3600deg); }
+}
+```
+
+---
+<!-- {"layout": "regular", "slideHash": "animation-ou-transition"} -->
+## **animation** ou **transition**?
+
+- **`transition`** é uma interpolação entre dois valores de uma propriedade
+- **`animation`** é uma interpolação entre dois ou mais valores, opcionalmente
+  acontecendo mais de uma vez e em ordem alternada
+- Sempre optamos pelo mais simples
+  - No caso, `transition`, quando possível
 
 ---
 # Referências
 
-- [How to choose breakpoints](https://developers.google.com/web/fundamentals/layouts/rwd-fundamentals/how-to-choose-breakpoints), Google sobre _responsive design_
-- [Media Queries na MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries)
-- [mediaqueri.es](http://mediaqueri.es), Exemplos de sites _responsive_
-- [Sass](http://sass-lang.com/), site oficial
-- [Less](http://lesscss.org/), site oficial
-- [Stylus](http://learnboost.github.io/stylus/), site oficial
-- [Bootstrap](http://getbootstrap.com/), site oficial
-- [Zurb Foundation](http://foundation.zurb.com/), site oficial
+- [Mozilla Developer Network](https://developer.mozilla.org/)
+- [caniuse.com](http://caniuse.com/)
+
+---
+# Slide **_easter egg_**!!
+
+- Em 01/04/2015, a Google lançou um espelho para seu buscador, o com.google.
+  Ele se parecia com isto:
+  [com.google](../../images/comgoogle.png)
+
+- Usando transformações e animações, fica facinho fazer um desses!!
+  <a class="bookmarklet" href="javascript:(function(){ if (document.body.style.transform === '') { document.body.style.transform='rotateY(180deg)'; } else { document.body.style.transform = '';}})()">Paradinha do Google</a>
+  <a class="bookmarklet" href="javascript:(function(){ if (!document.getElementById('aew-anim')) { document.getElementsByTagName('html')[0].style.overflowX='hidden'; var s= document.createElement('style'); s.id='aew-anim'; s.innerText='@-webkit-keyframes aew { from { transform: skewX(-2deg); } to { transform: skewX(2deg); }}'; document.head.appendChild(s); } if (document.body.style.webkitAnimation === '') { document.body.style.transform='skewX(10deg)';document.body.style.transformOrigin='-50% 0';document.body.style.webkitAnimation='aew 400ms ease-in-out infinite alternate'; } else { document.body.style.webkitAnimation='';document.body.style.transform='';}})()">Rabo do cachorro</a>
+
+  - Modo de uso de um **_bookmarklet_**: arraste o link para sua barra de favoritos e
+    simplesmente clique no favorito quando estiver em uma página
