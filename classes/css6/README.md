@@ -241,7 +241,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
 ---
 <!-- {"layout": "regular"} -->
-## Como usar
+## Como usar `transition`
 
 - <style>
     p.transition-link {
@@ -253,11 +253,31 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   <p class="transition-link">Heyyy, hover me</p>
 
   ```css
-  p  { color: #f00; }
-  p  { color: #000; transition: color 600ms linear; }
+  p {
+    color: 'black';
+    transition: color 600ms linear;
+  }
+  p:hover {
+    color: 'red';
+  }
   ```
 - Escolhemos **que propriedade** `CSS` queremos animar, por **quanto tempo**
   e qual a **função de interpolação**
+
+---
+<!-- {"layout": "regular"} -->
+## A propriedade **transition** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
+
+- É um atalho para:
+  - `transition-property: all`, que propriedades `CSS` devem sofrer transição
+  - `transition-duration: 0s`, a duração da transição
+  - `transition-timing-function: ease`, a função de interpolação
+  - `transition-delay: 0s`, tempo de atraso até que se comece a transição
+- Sintaxe formal:
+  ```
+  transition: [ none | <single-transition-property> ] || <time>
+                || <timing-function> || <time>;
+  ```
 
 ---
 <!-- {"layout": "regular"} -->
@@ -281,26 +301,10 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   - `height`
   - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties) <!-- {ul:.multi-column-list-3}-->
 
-
----
-<!-- {"layout": "regular"} -->
-## A propriedade **transition** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
-
-- É um atalho para:
-  - `transition-property: all`, que propriedades `CSS` devem sofrer transição
-  - `transition-duration: 0s`, a duração da transição
-  - `transition-timing-function: ease`, a função de interpolação
-  - `transition-delay: 0s`, tempo de atraso até que se comece a transição
-- Sintaxe formal:
-  ```
-  transition: [ none | <single-transition-property> ] || <time>
-                || <timing-function> || <time>;
-  ```
-
 ---
 ## Função de interpolação (_**timing-function**_)
 
-<iframe width="100%" height="440" src="http://jsfiddle.net/fegemo/2a5450ds/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="440" src="https://jsfiddle.net/fegemo/2a5450ds/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 ## Combinando **transition** e **transform**
@@ -343,7 +347,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 - A regra-arroba `@keyframes`
 - Exemplos
 
-<!-- ul:.content -->
+<!-- {ul:.content} -->
 
 ---
 ## O que queremos?
@@ -455,7 +459,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   <div class="terra"> </div>
 
 ---
-## Definindo **@keyframes** (cont.)
+## Exemplo: estrelinha girando
 
 <style>
 .estrela-mario-1:hover {
@@ -466,32 +470,34 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   to   { transform: rotate(-15deg); }
 }</style>
 
-- ```css
-  .estrela-mario-1:hover {
-    animation: girando 1s ease-in-out 0s infinite alternate;
-  }
-  @keyframes girando {
-    from { transform: rotate(15deg); }
-    to   { transform: rotate(-15deg); }
-  }
-  ```
-  <img class="estrela-mario-1" src="../../images/mario-star.png">
+```css
+.estrela-mario-1:hover {
+  animation: girando 1s ease-in-out 0s infinite alternate;
+}
+@keyframes girando {
+  from { transform: rotate(15deg); }
+  to   { transform: rotate(-15deg); }
+}
+```
+
+![](../../images/mario-star.png) <!-- {.estrela-mario-1} -->
+
 
 ---
 <!-- {"layout": "regular", "slideHash": "mais-de-uma-animacao"} -->
-## **Mais de uma** animação
+## Exemplo: **Mais de uma** animação
 
 <style>
 .estrela-mario-2:hover {
-  animation: pirando 600ms ease-in 3s 1 forwards, girando-costas 3600ms ease-in 1 forwards;
+  animation: sumindo 600ms ease-in 3s 1 forwards, girando-de-costas 3600ms ease-in 1 forwards;
 }
 
-@keyframes pirando {
+@keyframes sumindo {
   from { opacity: 1; top: 0;      width: 100px; left: 0     }
   to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
 }
 
-@keyframes girando-costas {
+@keyframes girando-de-costas {
   from { transform: rotateY(0); }
   to   { transform: rotateY(3600deg); }
 }
@@ -499,23 +505,24 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
 - ```css
   .estrela-mario-2:hover {
-    animation: pirando 600ms ease-in 3s 1 forwards,
-               girando-costas 3600ms ease-in 1 forwards;
+    animation: sumindo 600ms ease-in 3s 1 forwards,
+               girando-de-costas 3600ms ease-in 1 forwards;
   }
   ```
-  <div style="position:relative;">
-    <img class="estrela-mario-2" src="../../images/mario-star.png" style="position:absolute;">
-  </div>
+
+<div style="position:relative;">
+  <img class="estrela-mario-2" src="../../images/mario-star.png" style="position:absolute;">
+</div>
 
 ---
 ## Mais de uma animação (cont.)
 
 ```css
-@keyframes pirando {
+@keyframes sumindo {
   from { opacity: 1; top: 0;      width: 100px; left: 0     }
   to   { opacity: 0; top: -200px; width: 20px;  left: 40px; }
 }
-@keyframes girando-costas {
+@keyframes girando-de-costas {
   from { transform: rotateY(0); }
   to   { transform: rotateY(3600deg); }
 }
