@@ -1,4 +1,5 @@
 # Javascript (parte 4)
+## Objetos, criação e remoção de elementos HTML dinamicamente
 ---
 # Na última aula... (1/3)
 ## Transformação
