@@ -1,13 +1,89 @@
 # Javascript (parte 4)
+---
+# Na última aula... (1/3)
+## Transformação
+- **Translação**: faz um deslocamento do objeto no espaço
+  - `translate(x,y)`
+  - `translateX(x)`
+  - `translateY(y)`
+  - `translateZ(z)`
+  - `translate3d(x,y,z)` <!-- {ul:.multi-column-list-3}-->
+- **Escala**: faz um dimensionamento do objeto
+  - `scale(x,y)`
+  - `scaleX(x)`
+  - `scaleY(y)`
+  - `scaleZ(z)`
+  - `scale3d(x,y,z)` <!-- {ul:.multi-column-list-3}-->
+- **Rotação**: altera o ângulo do sistema de coordenadas do objeto
+  - `rotate(ang)`
+  - `rotateZ(ang)`
+  - `rotateX(ang)`
+  - `rotateY(ang)`
+  - `rotate3d(x,y,z,ang)`<!-- {ul:.multi-column-list-3}-->
+---
+# Na última aula... (2/3)
+## Transição
 
+
+- Utilizando transição, perspectiva e mudando a origem da transformação (`transform-origin`):
+
+  <iframe width="470" height="240" src="//jsfiddle.net/fegemo/2bcLx47t/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+
+  ```css
+  .porta {
+    transform-origin: left center;
+    transition: transform ease-in-out 600ms;
+  }
+  .porta:hover {
+    transform: rotateY(-95deg);
+  }
+  ```
+
+---
+# Na última aula... (3/3)
+## Animação
+
+Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
+ animações de propriedades CSS de forma similar a `transition`
+ ```html
+ <img src="images/urso.jpg" id="urso">
+ ```
+ ```css
+ #urso {
+   position: relative;
+   animation: flutuando .5s ease-in-out 0s infinite alternate;
+ }
+ @keyframes flutuando {
+   from { top: 0;     }
+   to   { top: -30px; }
+ }
+ ```
+<style>
+.urso-flutuante {
+ position: relative;
+ animation: urso-flutuando .5s ease-in-out 0s infinite alternate;
+ transition: opacity 200ms ease-out;
+}
+.urso-flutuante:hover {
+ opacity: 0.25;
+}
+@keyframes urso-flutuando {
+ from { top: 0;     }
+ to   { top: -30px; }
+}
+ </style>
+ <div style="position: absolute; top: 50%; left: 50%; margin-top: -75px; margin-left: -75px;">
+ <img src="../../images/urso.jpg" style="width: 150px; border-radius: 75px;" class="urso-flutuante">
+ </div>
 ---
 # Roteiro
 
-1. Objeto Javascript
-1. Criando elementos dinamicamente
-1. Exemplo de uso (objeto+criação de elementos)
+1. [Objeto Javascript](#objeto-javascript)
+1. [Criando elementos dinamicamente](#criando-elementos-dinamicamente)
+1. [Exemplo de uso (Criação de elementos + form)](#form-mais-criacao-elemento)
 
 ---
+<!-- { "slideHash": "objeto-javascript"} -->
 # Conforme vimos: O tipo _Object_
 
 
@@ -155,21 +231,72 @@ let voo = {
 ```js
 let conteudoEl = document.querySelector('#conteudo');
 let dadoEl = document.createElement('img');
-dado.src = 'images/d12.png';
+dado.src = 'img/pira-tovelha.png';
 conteudo.appendChild(dado);
 ```
+---
+## Vinculação do elemento na árvore DOM (appendChild)
+
+::: figure .figure-slides.clean
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_1.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_2.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_3.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_4.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_5.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+:::
+---
+## Vinculação do elemento na árvore DOM (insertBefore)
+::: figure .figure-slides.clean
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_4.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_6.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_7.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+:::
+---
+## Vinculação do elemento na árvore DOM (replaceChild)
+::: figure .figure-slides.clean
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_4.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_6.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_8.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
-## Criando elementos dinamicamente (cont.)
+## Vinculação do elemento na árvore DOM - Resumindo...
 
-- Além de `no.appendChild(elemento)`, também é possível incluir novos elementos
-  na árvore usando:
-  ```js
-  no.insertBefore(novoEl);            // novoEl vira irmão de 'no'
-  no.replaceChild(novoEl, antigoEl);  // novoEl vira filho de 'no' e
-                                      // exclui o elemento antigo
-  ```
-- Para remover um elemento da árvore
-  ```js
-  no.removeChild(paraRemoverEl);
-  ```
+![Uma árvore com os elementos HTML](../../images/create_element_resumo.jpg)<!-- {.medium-width.centered } -->
+
+---
+## Criando nodos de texto
+```js
+let bodyEl = document.querySelector("body");
+let pEl = document.createElement("p");
+let txtEl = document.createTextNode("Olá parágrafo!");
+
+bodyEl.appendChild(pEl);
+pEl.appendChild(txtEl);
+
+```
+ou
+```js
+let bodyEl = document.querySelector("body");
+let pEl = document.createElement("p");
+pEl.innerHTML = "Olá parágrafo!"
+
+```
+---
+# Remoção de Elementos
+```html
+  <main>
+    <img id="urso" src="img/urso.png">
+  </main>
+```
+```js
+let mainEl = document.querySelector("main");
+let imgEl = document.querySelector("#urso");
+
+mainEl.removeChild(imgEl);
+
+```
+---
+<!-- { "slideHash": "form-mais-criacao-elemento"} -->
+## Exemplo: Forms + Criação de elementos dinamicamente
+  <iframe width="500" height="400" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
