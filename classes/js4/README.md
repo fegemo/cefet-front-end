@@ -1,30 +1,32 @@
+<!-- {"layout": "title"} -->
 # Javascript (parte 4)
-## Objetos, criação e remoção de elementos HTML dinamicamente
+## Usando objetos, Criando elementos HMTL e a Lista de Tarefas :notebook:
+
 ---
+<!-- {"layout": "regular"} -->
 # Na última aula... (1/3)
-## Transformação
+## Transformações <!-- {h1:style="padding-bottom: 0.15em"} -->
+
 - **Translação**: faz um deslocamento do objeto no espaço
   - `translate(x,y)`
   - `translateX(x)`
   - `translateY(y)`
-  - `translateZ(z)`
-  - `translate3d(x,y,z)` <!-- {ul:.multi-column-list-3}-->
+  - `translateZ(z)`<!-- {ul:.multi-column-list-4}-->
 - **Escala**: faz um dimensionamento do objeto
   - `scale(x,y)`
   - `scaleX(x)`
   - `scaleY(y)`
-  - `scaleZ(z)`
-  - `scale3d(x,y,z)` <!-- {ul:.multi-column-list-3}-->
+  - `scaleZ(z)` <!-- {ul:.multi-column-list-4}-->
 - **Rotação**: altera o ângulo do sistema de coordenadas do objeto
-  - `rotate(ang)`
+  - `rotate(ang)`,
   - `rotateZ(ang)`
   - `rotateX(ang)`
-  - `rotateY(ang)`
-  - `rotate3d(x,y,z,ang)`<!-- {ul:.multi-column-list-3}-->
----
-# Na última aula... (2/3)
-## Transição
+  - `rotateY(ang)`<!-- {ul:.multi-column-list-4}-->
 
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (2/3) <!-- {h1:style="padding-bottom: 0.15em; margin-top: -0.75em;"} -->
+## Transição <!-- {h1:style="padding-bottom: 0.15em"} -->
 
 - Utilizando transição, perspectiva e mudando a origem da transformação (`transform-origin`):
 
@@ -33,7 +35,7 @@
   ```css
   .porta {
     transform-origin: left center;
-    transition: transform ease-in-out 600ms;
+    transition: transform ease 600ms;
   }
   .porta:hover {
     transform: rotateY(-95deg);
@@ -41,11 +43,12 @@
   ```
 
 ---
-# Na última aula... (3/3)
-## Animação
+<!-- {"layout": "regular-block"} -->
+# Na última aula... (3/3) <!-- {h1:style="padding-bottom: 0.15em; margin-bottom: 0;"} -->
+## Animação <!-- {h1:style="padding-bottom: 0.15em"} -->
 
 Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
- animações de propriedades CSS de forma similar a `transition`
+ animações de propriedades CSS de forma similar a `transition` <!-- {p:style="margin-top: 0; margin-bottom: 0.15em;"} -->
  ```html
  <img src="images/urso.jpg" id="urso">
  ```
@@ -73,18 +76,31 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
  to   { top: -30px; }
 }
  </style>
- <div style="position: absolute; top: 50%; left: 50%; margin-top: -75px; margin-left: -75px;">
+
+ <div style="position: absolute; bottom: 2em; right: 1em; margin-top: -75px; margin-left: -75px;">
  <img src="../../images/urso.jpg" style="width: 150px; border-radius: 75px;" class="urso-flutuante">
  </div>
+
 ---
 # Roteiro
 
-1. [Objeto Javascript](#objeto-javascript)
-1. [Criando elementos dinamicamente](#criando-elementos-dinamicamente)
-1. [Exemplo de uso (Criação de elementos + form)](#form-mais-criacao-elemento)
+1. [Usando objetos em JavaScript](#usando-objetos-em-javascript)
+1. [Criando elementos HTML dinamicamente](#criando-elementos-html-dinamicamente)
+1. [Exemplo de uso (criação de elementos + form)](#form-mais-criacao-elemento)
 
 ---
-<!-- { "slideHash": "objeto-javascript"} -->
+<!-- { "layout": "section-header", "slideHash": "usando-objetos-em-javascript"} -->
+# Usando objetos em JavaScript
+## Saquinhos de propriedades
+
+- Revisando:
+  - O tipo _Object_
+  - Instanciando objetos
+- Vetores de objetos
+- Quando usar objetos <!-- {ul^1:.content} -->
+
+---
+<!-- {"backdrop": "oldtimes"} -->
 # Conforme vimos: O tipo _Object_
 
 
@@ -106,6 +122,7 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
 - Novas propriedades podem ser atribuídas mesmo após sua criação
 
 ---
+<!-- {"backdrop": "oldtimes"} -->
 ## Conforme vimos: Instanciando um _Object_
 
 - Na forma literal:
@@ -121,9 +138,22 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
   jogador.vidas = 2;          // criou jogador.vidas
   ```
 
+---
+<!-- {"layout": "regular"} -->
+## Instanciando um _object_ **usando `new`**
+
+- Além da forma literal, podemos criar objetos vazios usando a palavra `new`:
+  ```js
+  let jogador = new Object(); // isto é equivalente a
+  jogador.pontos = 1420;      // "let jogador = {};"
+  jogador.vidas = 2;
+  ```
+  - `Object` é uma função (que estamos invocando)
+  - Essa função está construindo um novo objeto
+  - Portanto, dizemos que **estamos usando uma <u>função construtora</u>**
 
 ---
-<!-- {"layout": "2-column-content"} -->
+<!-- {"layout": "2-column-content", "backdrop": "oldtimes"} -->
 ## Conforme vimos: Objetos dentro de objetos
 
 ```js
@@ -149,34 +179,76 @@ let voo = {
      - **`decolagem`**
      - **`chegada`**
   - `decolagem` e `chegada` são objetos por si mesmos
+
 ---
+<!-- {"layout": "2-column-content-30-70"} -->
 ## Vetores de Objetos
 
-- Como qualquer outro tipo, podemos fazer um vetor de Objetos:
 ```js  
-  let jogadores = [{
-                      nome: "Yoda",pontos: 1420,vidas: 2
-                    },
-                    {
-                        nome: "Leia",pontos: 3420,vidas: 5
-                    },
-                    {
-                        nome: "Luke", pontos: 5420, vidas: 7
-                    }];
-```
-
-- Posteriormente, podemos percorrer seus resultados:
-
-```js
-  for(let i = 0 ; i<jogadores.length ; i++){
-    console.log("Nome: "+jogadores[i].nome+"  vidas: "+jogadores[i].vidas);
+let jogadores = [
+  {
+    nome: 'Yoda',
+    pontos: 1420
+  },
+  {
+    nome: 'Leia',
+    pontos: 3420
+  },
+  {
+    nome: 'Luke',
+    pontos: 5420
   }
+];
+```
+- Como qualquer outro tipo, podemos fazer um vetor de _Objects_:
+- Posteriormente, **podemos percorrer o vetor**:
+  ```js
+  for (let i = 0; i < jogadores.length; i++) {
+    console.log('Nome: ' + jogadores[i].nome);
+    console.log('Pontos: ' + jogadores[i].pontos);
+  }
+  ```
+  - Também podemos usar
+    [`for of` e `vetor.forEach()`](../js2/#for-formas-preferiveis)
+    sem problemas!
+
+---
+<!-- {"layout": "2-column-content"} -->
+## Quando usar objetos?
+
+- Usamos objetos para:
+  1. **Agrupar informações** correlacionadas
+  1. **Reduzir** o número de **parâmetros**
+  1. Trabalhar com **vários objetos semelhantes**
+     - Em um vetor
+     ```js
+     let macunaima = { /* ... */ },
+      mentecapto = { /*... */ };
+     let biblioteca = [   // (3)
+       macunaima, mentecapto];
+     ```
+```js
+// poderíamos fazer assim: 👎
+let autorDoLivro = 'Mário de Andr.',
+  nomeDoLivro = 'Macunaíma',
+  anoDoLivro = 1985;
+
+// mas assim é melhor (1): 👍
+let livro = {
+  autor: 'Mário de Andrade',
+  nome: 'Macunaíma',
+  ano: 1985
+};
+
+function incluiNaBiblioteca(livro) {
+  // (2) ...
+}
 ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "criando-elementos-dinamicamente"} -->
-# **Criando** elementos dinamicamente <!-- {h1:style="padding-top: 0"} -->
-## Criando e removendo elementos HTML
+<!-- {"layout": "section-header", "slideHash": "criando-elementos-html-dinamicamente"} -->
+# **Criando Elementos** HTML Dinamicamente <!-- {h1:style="padding-top: 0"} -->
+## Criando e removendo elementos na página
 
 - De **2 formas** diferentes:
   1. Criando **elemento por elemento**
@@ -187,117 +259,169 @@ let voo = {
   1. **HTML dentro de uma string**:
      - `innerHTML`
 - Além disso, podemos:
-  - **remover elementos**: `removeChild`<!-- {ul^2:.content} -->
+  - **remover elementos**: `removeChild`<!-- {ul^3:.content} -->
 
 ---
 <!-- {"layout": "regular"} -->
 ## Criando elementos dinamicamente
 
 - É possível criar elementos dinamicamente, de duas formas:
-  1. Definindo a propriedade de `innerHTML` de um elemento da árvore para uma
-   string descrevendo uma estrutura `html` (conforme já vimos):
-   ```js
-   let conteudoEl = document.querySelector('#conteudo');
-   conteudoEl.innerHTML = '<img src="images/d12.png">';
-   ```
-  1. Instanciando elementos e os adicionando à árvore do DOM (veremos a seguir)
-
+  1. Definindo a propriedade de **`innerHTML` de um elemento** da árvore
+     para **uma string descrevendo uma estrutura HTML** (já vimos):
+     ```js
+     let listaEl = document.querySelector('#lista-de-dados');
+     listaEl.innerHTML = '<li><img src="images/d12.png"></li>';
+     ```
+  1. Instanciando elementos e os adicionando ao DOM, que é feito em
+     3 passos (detalhados a seguir):
+     ```js
+     // 1. Solicitamos ao document a criação de um elemento
+     // 2. Configuramo-lo (atributos, id, classes etc.)
+     // 3. Inserimo-lo na árvore
+     ```
 
 ---
+<!-- {"layout": "regular-block"} -->
 # Instanciação de elementos HTML
-## Claúsula **create**
-- A claúsula **create** cria um elemento HTML
-- Devemos especificar a _Tag_ do elemento que iremos criar
-- Exemplo - criação de uma imagem
+
+- A função **document.createElement** cria um elemento HTML
+  - Devemos especificar a _tag_ do elemento que iremos criar
+- Exemplo - criação de uma imagem:
   ```js
-  let imgEl = document.createElement('img');
-  imgEl.src = 'images/d12.png';
+  // 1. Solicitamos ao document a criação de um elemento
+  let dadoEl = document.createElement('img');         // cria uma <img>
+  // 2. Configuramo-lo (atributos, id, classes etc.)
+  ovelhaEl.src = 'images/ovelho-pixel.png';           // <img src="...">
+  ovelhaEl.classList.add('raca');                     // <img src="..." class="...">
   ```
   - Resultado:
-  ```HTML
-    <img src="images/d12.png">
-  ```
-- **Atenção**: Você **criou** o elemento, porém **não o adicionou** na árvore DOM
-  - Ou seja, ele ainda não faz parte da página
+    ```HTML
+    <img src="images/ovelho-pixel.png" class="raca">
+    ```
+- **Atenção**: Você **criou** o elemento, porém <u>**ainda não
+  o adicionou**</u> na árvore
 
 ---
-## Vinculação do elemento na árvore DOM
+<!-- {"layout": "regular"} -->
+## Inserção do elemento na árvore DOM
 
-  - Para vincularmos um elemento criado, primeiramente teremos que buscar o **pai** do elemento
-  - Logo após, podemos adicionar o elemento usando um dos seguintes comandos:
-    - `appendChild`
-    - `insertBefore`
-    - `replaceChild`
+- Para vincularmos um elemento criado, precisamos conhecer quem será seu
+  **pai**
+- Logo após, podemos adicionar o elemento usando um dos seguintes comandos:
+  1. `appendChild`: será o filho mais à direita
+  1. `insertBefore`: será o filho que vem logo antes de outro
+  1. `replaceChild`: substituirá um filho existente
 
 ```js
-let conteudoEl = document.querySelector('#conteudo');
-let dadoEl = document.createElement('img');
-dado.src = 'img/pira-tovelha.png';
-conteudo.appendChild(dado);
+let containerEl = document.querySelector('#ovelhas');
+let novaOvelhaEl = document.createElement('img');
+novaOvelhaEl.src = 'img/ovelho-pixel.png';
+containerEl.appendChild(novaOvelhaEl);
 ```
----
-## Vinculação do elemento na árvore DOM (appendChild)
 
-::: figure .figure-slides.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_1.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_2.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_3.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_4.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_5.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-:::
 ---
-## Vinculação do elemento na árvore DOM (insertBefore)
-::: figure .figure-slides.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_4.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_6.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_7.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-:::
----
-## Vinculação do elemento na árvore DOM (replaceChild)
-::: figure .figure-slides.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_4.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_6.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create_element_8.jpg)<!-- {.medium-width.centered .bullet.figure-step.bullet-no-anim} -->
+<!-- {"layout": "regular-block", "embeddedStyles": ".create-element img { width: 72%; }"} -->
+## Vinculação na árvore DOM com **(1) `appendChild`**
+
+::: figure .figure-slides.create-element.clean
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
-## Vinculação do elemento na árvore DOM - Resumindo...
+<!-- {"layout": "regular-block"} -->
+## Vinculação na árvore DOM com **(2) `insertBefore`**
 
-![Uma árvore com os elementos HTML](../../images/create_element_resumo.jpg)<!-- {.medium-width.centered } -->
+::: figure .figure-slides.create-element.clean
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
-## Criando nodos de texto
-```js
-let bodyEl = document.querySelector("body");
-let pEl = document.createElement("p");
-let txtEl = document.createTextNode("Olá parágrafo!");
+<!-- {"layout": "regular-block"} -->
+## Vinculação na árvore DOM com **(3) `replaceChild`**
 
-bodyEl.appendChild(pEl);
-pEl.appendChild(txtEl);
+::: figure .figure-slides.create-element.clean
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+:::
 
-```
-ou
-```js
-let bodyEl = document.querySelector("body");
-let pEl = document.createElement("p");
-pEl.innerHTML = "Olá parágrafo!"
-
-```
 ---
+## Resumindo: `appendChild`, `insertBefore` e `replaceChild`
+
+![Uma árvore com os elementos HTML](../../images/create-element-resumo.png)
+<!-- {.medium-width.centered} -->
+
+---
+<!-- {"layout": "regular-block"} -->
+## **Inserindo texto** nos elementos
+
+- Podemos colocar texto nos elementos de 2 formas:
+  1. Usando `document.createTextNode('texto aqui')`:
+     ```js
+     let bodyEl = document.querySelector('body');
+     let pEl = document.createElement('p');
+     let txtEl = document.createTextNode('Olá parágrafo!'); // <--
+     bodyEl.appendChild(pEl);                   // põe o parágrafo em <body>
+     pEl.appendChild(txtEl);                    // põe o texto no <p>
+     ```
+  1. Usando `elemento.innerHTML`:
+     ```js
+     let bodyEl = document.querySelector('body');
+     let pEl = document.createElement('p');
+     bodyEl.appendChild(pEl);                   // põe o parágrafo em <body>
+     pEl.innerHTML = 'Olá parágrafo!';          // define o innerHTML do <p>
+     ```
+
+---
+<!-- {"layout": "regular-block", "slideHash": "remocao-de-elementos"} -->
 # Remoção de Elementos
-```html
+
+- Usamos `containerEl.removeChild` ou, para remover todos, `innerHTML`:
+  ```html
   <main>
     <img id="urso" src="img/urso.png">
   </main>
-```
-```js
-let mainEl = document.querySelector("main");
-let imgEl = document.querySelector("#urso");
+  ```
+  ```js
+  let mainEl = document.querySelector('main');
+  let imgEl = document.querySelector('#urso');
 
-mainEl.removeChild(imgEl);
+  mainEl.removeChild(imgEl);      // remove a <img id="urso">
+  // ou...
+  mainEl.innerHTML = '';          // remove tudo o que estiver em <main></main>
+  ```
 
-```
 ---
 <!-- { "slideHash": "form-mais-criacao-elemento"} -->
 ## Exemplo: Forms + Criação de elementos dinamicamente
   <iframe width="500" height="400" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "section-header", "slideHash": "lista-de-tarefas"} -->
+# Lista de Tarefas :notebook:
+## Saiba o que procrastinar a seguir
+
+- Atividade de hoje
+
+
+---
+<!-- {"backdrop": "lista-de-tarefas"} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Lista de Tarefas :notebook:
+
+- Crie um sisteminha de gerenciamento de tarefas :notebook:
+  - [Baixe os arquivos][todos] e veja as instruções
+    detalhadas no arquivo `README.md`
+- Há 2 atividades:
+  1.
+  1.
+
+[todos]: https://github.com/fegemo/cefet-front-end-todo/archive/master.zip

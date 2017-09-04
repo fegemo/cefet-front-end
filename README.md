@@ -49,31 +49,32 @@
   Assombrações :ghost::ghost::ghost:
 - [CSS parte 5](classes/css5/) - Especificidade, Centralizando coisas e
   a Lanchonete do Coral 55 :palm_tree:
-- [Javascript parte 1](classes/js1/) - Características, Escrevendo código,
+- [JavaScript parte 1](classes/js1/) - Características, Escrevendo código,
   Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
 <!-- {"layout": "regular"} -->
 # Aulas (página 3)
 
-- [Javascript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração
+- [JavaScript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração
   Espacial :alien:
-- [Javascript parte 3](classes/js3/) - História, Estilizando
+- [JavaScript parte 3](classes/js3/) - História, Estilizando
   elementos, Eventos de mouse, Depurando e o PhotoSnap :camera:
 - [HTML parte 6](classes/html6) - Elementos de dados e
   o AvatarCreator :lipstick:
 - [CSS parte 6](classes/css6) - Transições, Animações e
   os Animais :dog: :cat:
+- [JavaScript parte 4](classes/js4/) - Usando objetos, Criando elementos HMTL
+  e a Lista de Tarefas :notebook:
 
 <!--
-- [Javascript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
-- [Javascript 4 - JSON e AJAX (Prática)](classes/js4/) (14/05/2016)
+- [JavaScript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
 
 
 - [CSS 6 - _Responsive Design_](classes/css6/) (31/05/2016)
 - [CSS 5 - Animações e _Edukids Animals_ (Prática)](classes/css5/) (02/06/2015)
-- [Javascript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
+- [JavaScript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
 
 -->
 
