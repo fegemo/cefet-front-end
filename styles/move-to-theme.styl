@@ -61,16 +61,28 @@ ol.no-list-icon
     width 48%
 
 
-.layout-2-column-content-30-70
+[class*="layout-2-column-content-"]
   display flex
-  flex-direction column
+  flex-direction row
   flex-wrap wrap
-  align-items flex-end
+  align-items flex-start
+  & > *:first-child
+    width 100%
+    align-self flex-end
+  & > pre
+    max-height calc(100% - 0.25em - 1.5em - 24px - 4em)
+
+.layout-2-column-content-30-70
   & > *:nth-child(2)
-    //flex 1
     width 30%
   & > *:last-child
     width 68%
+
+.layout-2-column-content-40-60
+  & > *:nth-child(2)
+    width 40%
+  & > *:last-child
+    width 58%
 
 // effects
 .underline

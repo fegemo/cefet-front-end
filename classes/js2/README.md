@@ -239,7 +239,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "metodos-de-arrays"} -->
 ## **Métodos** de Arrays
 
 - Inserindo e removendo elementos
