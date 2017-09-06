@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # Javascript (parte 4)
-## Usando objetos, Criando elementos HMTL e a Lista de Tarefas :notebook:
+## Usando objetos, Criando elementos HTML e a Lista de Tarefas :notebook:
 
 ---
 <!-- {"layout": "regular"} -->
@@ -181,7 +181,7 @@ let voo = {
   - `decolagem` e `chegada` são objetos por si mesmos
 
 ---
-<!-- {"layout": "2-column-content-30-70"} -->
+<!-- {"layout": "2-column-content-30-70", "slideHash": "vetores-de-objetos"} -->
 ## Vetores de Objetos
 
 ```js  
@@ -192,11 +192,11 @@ let jogadores = [
   },
   {
     nome: 'Leia',
-    pontos: 3420
+    pontos: 3010
   },
   {
     nome: 'Luke',
-    pontos: 5420
+    pontos: 5600
   }
 ];
 ```
@@ -211,6 +211,46 @@ let jogadores = [
   - Também podemos usar
     [`for of` e `vetor.forEach()`](../js2/#for-formas-preferiveis)
     sem problemas!
+
+---
+<!-- {"layout": "2-column-content-40-60", "slideHash": "passando-vetores-como-argumentos"} -->
+## Passando objetos como argumentos
+
+- Podemos passar objetos como **argumentos para funções**
+- A função é declarada como **recebendo 1 parâmetro** :arrow_lower_right:
+  - Não definimos o tipo do parâmetro!
+- Chamamos ela passando um **objeto como argumento** :arrow_lower_right:
+- Para um **vetor** percorremo-lo chamando a função para o
+  i-ésimo item :arrow_lower_right: <!-- {ul^1:.bulleted} -->
+
+```js
+let jogadores = [
+  { nome: 'Yoda', pontos: 1420 },
+  { nome: 'Leia', pontos: 3010 },
+  { nome: 'Luke', pontos: 5600 }
+];
+
+function passouDeFase(player) {
+  // a função recebe 1 parâmetro,
+  // que demos o nome de player
+  player.pontos += 1000;
+}
+
+// podemos chamar a função para 1 jogador:
+passouDeFase(jogadores[0]);   // Yoda
+
+// ...ou para todos eles, percorrendo o vetor:
+for (let i = 0; i < jogadores.length; i++) {
+  passouDeFase(jogadores[i]);
+}
+
+
+// equivalente, porém super-mega-ultra
+// ELEGANTE, usando vetor.forEach:
+jogadores.forEach(passouDeFase);  // 🌟🌟🌟
+
+
+```
 
 ---
 <!-- {"layout": "2-column-content"} -->
@@ -231,13 +271,13 @@ let jogadores = [
 // poderíamos fazer assim: 👎
 let autorDoLivro = 'Mário de Andr.',
   nomeDoLivro = 'Macunaíma',
-  anoDoLivro = 1985;
+  anoDoLivro = 1928;
 
 // mas assim é melhor (1): 👍
 let livro = {
   autor: 'Mário de Andrade',
   nome: 'Macunaíma',
-  ano: 1985
+  ano: 1928
 };
 
 function incluiNaBiblioteca(livro) {
@@ -324,11 +364,16 @@ containerEl.appendChild(novaOvelhaEl);
 ## Vinculação na árvore DOM com **(1) `appendChild`**
 
 ::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
@@ -336,9 +381,12 @@ containerEl.appendChild(novaOvelhaEl);
 ## Vinculação na árvore DOM com **(2) `insertBefore`**
 
 ::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
@@ -346,9 +394,12 @@ containerEl.appendChild(novaOvelhaEl);
 ## Vinculação na árvore DOM com **(3) `replaceChild`**
 
 ::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)
+<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
@@ -398,17 +449,17 @@ containerEl.appendChild(novaOvelhaEl);
   ```
 
 ---
-<!-- { "slideHash": "form-mais-criacao-elemento"} -->
-## Exemplo: Forms + Criação de elementos dinamicamente
-  <iframe width="500" height="400" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
 <!-- {"layout": "section-header", "slideHash": "lista-de-tarefas"} -->
 # Lista de Tarefas :notebook:
 ## Saiba o que procrastinar a seguir
 
 - Atividade de hoje
+  - Exercício 1
+  - Exemplo: albums de música
+  - Exercício 2
+  - Exemplo: lista telefônica
 
+<!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "lista-de-tarefas"} -->
@@ -421,7 +472,35 @@ containerEl.appendChild(novaOvelhaEl);
   - [Baixe os arquivos][todos] e veja as instruções
     detalhadas no arquivo `README.md`
 - Há 2 atividades:
-  1.
-  1.
+  1. Inserir elementos HTML para as tarefas pré-existentes no vetor `itensTodo`
+  1. Permitir o usuário inserir novas tarefas
 
 [todos]: https://github.com/fegemo/cefet-front-end-todo/archive/master.zip
+
+---
+<!-- {"layout": "regular"} -->
+## Exercício 1
+
+- ![](../../images/cefet-front-end-todo-tarefas-ja-existentes.png) <!-- {.push-right} -->
+  Já existem 2 tarefas no arquivo JavaScript `todo.js` (tchudú djeiés)
+  - Mas a página não está mostrando elas na lista de tarefas
+- Neste exercício, você deve criar uma função `insereTarefaNaPagina` que
+  recebe **01 objeto representando 01 tarefa** (repare o singular) como
+  parâmetro e cria os respectivos elementos HTML para mostrar essa
+  tarefa na página
+
+---
+<!-- { "slideHash": "albums-de-musica"} -->
+## Exemplo: Albums de música
+
+<iframe width="700" height="450" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+---
+## Exercício 2
+
+---
+<!-- { "slideHash": "form-mais-criacao-elemento"} -->
+## Exemplo: Agenda telefônica
+
+<iframe width="700" height="450" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

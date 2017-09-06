@@ -484,21 +484,35 @@ ol.no-list-icon {
 .layout-2-column-content-result > * {
   width: 48%;
 }
-.layout-2-column-content-30-70 {
+[class*="layout-2-column-content-"] {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  -ms-flex-direction: row;
+      flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-align: end;
-      align-items: flex-end;
+  -ms-flex-align: start;
+      align-items: flex-start;
+}
+[class*="layout-2-column-content-"] > *:first-child {
+  width: 100%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+[class*="layout-2-column-content-"] > pre {
+  max-height: calc(100% - 0.25em - 1.5em - 24px - 4em);
 }
 .layout-2-column-content-30-70 > *:nth-child(2) {
   width: 30%;
 }
 .layout-2-column-content-30-70 > *:last-child {
   width: 68%;
+}
+.layout-2-column-content-40-60 > *:nth-child(2) {
+  width: 40%;
+}
+.layout-2-column-content-40-60 > *:last-child {
+  width: 58%;
 }
 .underline {
   position: relative;
