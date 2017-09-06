@@ -86,7 +86,9 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
 
 1. [Usando objetos em JavaScript](#usando-objetos-em-javascript)
 1. [Criando elementos HTML dinamicamente](#criando-elementos-html-dinamicamente)
-1. [Exemplo de uso (criação de elementos + form)](#form-mais-criacao-elemento)
+1. [Lista de Tarefas](#lista-de-tarefas) :notebook:
+   - Exemplo 1: [Albums de música](#albums-de-musica)
+   - Exemplo 2: [Agenda telefônica](#agenda-telefonica)
 
 ---
 <!-- { "layout": "section-header", "slideHash": "usando-objetos-em-javascript"} -->
@@ -364,16 +366,11 @@ containerEl.appendChild(novaOvelhaEl);
 ## Vinculação na árvore DOM com **(1) `appendChild`**
 
 ::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
@@ -381,12 +378,9 @@ containerEl.appendChild(novaOvelhaEl);
 ## Vinculação na árvore DOM com **(2) `insertBefore`**
 
 ::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
@@ -394,12 +388,9 @@ containerEl.appendChild(novaOvelhaEl);
 ## Vinculação na árvore DOM com **(3) `replaceChild`**
 
 ::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)
-<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
@@ -482,7 +473,7 @@ containerEl.appendChild(novaOvelhaEl);
 ## Exercício 1
 
 - ![](../../images/cefet-front-end-todo-tarefas-ja-existentes.png) <!-- {.push-right} -->
-  Já existem 2 tarefas no arquivo JavaScript `todo.js` (tchudú djeiés)
+  Já existem 2 tarefas no arquivo JavaScript `tarefas.js`
   - Mas a página não está mostrando elas na lista de tarefas
 - Neste exercício, você deve criar uma função `insereTarefaNaPagina` que
   recebe **01 objeto representando 01 tarefa** (repare o singular) como
@@ -493,14 +484,25 @@ containerEl.appendChild(novaOvelhaEl);
 <!-- { "slideHash": "albums-de-musica"} -->
 ## Exemplo: Albums de música
 
-<iframe width="700" height="450" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
+<iframe width="700" height="450" src="//jsfiddle.net/fegemo/s1p824jd/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 ## Exercício 2
 
+- Agora você deve permitir que o usuário insira uma nova tarefa
+  1. No clique do botão:
+     1. Crie um objeto que representa a nova tarefa
+     1. Coloque esse objeto no vetor `tarefas`
+     1. Chame a função `insereTarefaNaPagina`, passando o objeto
+        da nova tarefa como argumento
+     1. Opcionais:
+        1. Limpe o `value` do campo de texto para que o usuário possa
+           inserir a próxima tarefa
+        1. Mova o foco da aplicação de volta para o campo de texto
+           chamando `campoDeTextoEl.focus()`
+
 ---
-<!-- { "slideHash": "form-mais-criacao-elemento"} -->
+<!-- { "slideHash": "agenda-telefonica"} -->
 ## Exemplo: Agenda telefônica
 
 <iframe width="700" height="450" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
