@@ -66,9 +66,10 @@
   os Animais :dog: :cat:
 - [JavaScript parte 4](classes/js4/) - Usando objetos, Criando elementos HMTL
   e a Lista de Tarefas :notebook:
+- [JavaScript parte 5](classes/js5/) - Web Storage, JSON e a Lista de
+  Tarefas :notebook: x2
 
 <!--
-- [JavaScript 5 - APIs do HTML5](classes/js5/) (05/05/2016)
 - Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
 
 
