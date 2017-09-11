@@ -635,6 +635,33 @@ ol.no-list-icon {
 abbr[title] {
   border-bottom: initial;
 }
+.nota {
+  border: 1px solid #b8860b;
+  list-style-type: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+  padding: 0.3em 0.5em;
+  background: linear-gradient(to right bottom, #ffffe0, #fff176);
+}
+.nota::before {
+  content: "\26A0";
+  margin-right: 1rem;
+  color: #000;
+  border: inherit;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  text-align: center;
+  line-height: 0.75em;
+  background: #fff;
+  font-size: 2em;
+  box-shadow: inherit;
+  box-sizing: border-box;
+}
+.nota strong {
+  color: #b8860b;
+}
 .tutorial {
   position: absolute;
   right: 1vw;

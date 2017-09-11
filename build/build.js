@@ -29143,27 +29143,28 @@ module.exports = function() {
 };
 
 },{"cheet.js":15}],273:[function(require,module,exports){
-var bespoke = require('bespoke'),
-    beachday = require('bespoke-theme-beachday'),
-    keys = require('bespoke-keys'),
-    touch = require('bespoke-touch'),
-    bullets = require('bespoke-bullets'),
-    scale = require('bespoke-scale'),
-    hash = require('bespoke-hash'),
-    overview = require('bespoke-simple-overview'),
-    progress = require('bespoke-progress'),
-    state = require('bespoke-state'),
-    markdown = require('bespoke-markdownit'),
-    markdownItAnchor = require('markdown-it-anchor'),
-    markdownItDefList = require('markdown-it-deflist'),
-    markdownItAbbr = require('markdown-it-abbr'),
-    markdownItContainer = require('markdown-it-container'),
-    markdownItDecorate = require('markdown-it-decorate'),
-    markdownItEmoji = require('markdown-it-emoji'),
-    forms = require('bespoke-forms'),
-    backdrop = require('bespoke-backdrop'),
-    easter = require('./easter'),
-    tutorial = require('./tutorial');
+let bespoke = require('bespoke'),
+  beachday = require('bespoke-theme-beachday'),
+  keys = require('bespoke-keys'),
+  touch = require('bespoke-touch'),
+  bullets = require('bespoke-bullets'),
+  scale = require('bespoke-scale'),
+  hash = require('bespoke-hash'),
+  overview = require('bespoke-simple-overview'),
+  progress = require('bespoke-progress'),
+  state = require('bespoke-state'),
+  markdown = require('bespoke-markdownit'),
+  markdownItAnchor = require('markdown-it-anchor'),
+  markdownItDefList = require('markdown-it-deflist'),
+  markdownItAbbr = require('markdown-it-abbr'),
+  markdownItContainer = require('markdown-it-container'),
+  markdownItDecorate = require('markdown-it-decorate'),
+  markdownItEmoji = require('markdown-it-emoji'),
+  forms = require('bespoke-forms'),
+  backdrop = require('bespoke-backdrop'),
+  // proceed = require('./bespoke-proceed'),
+  easter = require('./easter'),
+  tutorial = require('./tutorial');
 
 // Bespoke.js
 bespoke.from('article', [
@@ -29395,6 +29396,8 @@ bespoke.from('article', [
   touch(),
   overview({ insertStyles: false }),
   bullets('.bullet, .bulleted li, .bulleted dd, .bulleted-dt dt, .bulleted-dt dd'),
+  // still need to improve bespokeProceed: give feedback to user, switch to JSON comments etc.
+  // proceed(),
   scale('transform'),
   progress(), // progress must be after scale
   hash(),
