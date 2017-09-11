@@ -286,20 +286,20 @@ containerEl.appendChild(novaOvelhaEl);
   - Era o que você esperava?
   - Para corrigir isso, volte aos slides/vídeos da aula
 
-**Atenção**: Não avance os slides até fazer o exercício 4 (tentar salvar)
+**Atenção**: Não avance os slides até fazer o exercício 4
 <!-- {p:.nota} -->
 
 <!-- Tentativa de usar o bespokeProceed... preciso deixá-lo mais robusto para
 que ele dê feedback ao usuário (positivo e negativo) e também que ele
 use comentários JSON em vez de input[type=hidden] -->
 
-<!-- <input type="hidden" class="bespoke-proceed-condition" value="[ { &quot;operation&quot;: &quot;containsIgnoreCase&quot;, &quot;operands&quot;: [&quot;#recuperando-vetor-tarefas&quot;, &quot;[object Object]&quot;] } ]"> -->
+<input type="hidden" class="bespoke-proceed-condition" value="[ { &quot;operation&quot;: &quot;containsIgnoreCase&quot;, &quot;operands&quot;: [&quot;#recuperando-vetor-tarefas&quot;, &quot;[object Object]&quot;] } ]">
 
-<!-- - Resposta: <input type="text" id="recuperando-vetor-tarefas" maxlength="50"> -->
+- O que foi salvo em vez do vetor: <input type="text" id="recuperando-vetor-tarefas" maxlength="50">
 
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "formato-de-armazenamento", "backdrop": "shiny"} -->
 ## Formato de armazenamento
 
 - Como dito, o Web Storage armazena **apenas _Strings_**
@@ -319,6 +319,7 @@ use comentários JSON em vez de input[type=hidden] -->
     ```
 
 ---
+<!-- {"slideHash": "representando-objetos-em-strings"} -->
 ## Representando objetos em _Strings_
 
 - Na verdade, o JavaScript sabe **serializar e desserializar** objetos em
