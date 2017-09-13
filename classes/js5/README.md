@@ -202,7 +202,7 @@ containerEl.appendChild(novaOvelhaEl);
 
 - Após a página ter sido carregada (e.g., um _script_ ao final do _body_):
   ```js
-  let devoExpandirMenu = localStorage.get('menu-esta-expandido');
+  let devoExpandirMenu = localStorage.getItem('menu-esta-expandido');
 
   if (devoExpandirMenu === 'true') {        // lembre-se: tudo é salvo como String
     let menuEl = document.querySelector('#menu');
@@ -295,7 +295,7 @@ use comentários JSON em vez de input[type=hidden] -->
 
 <input type="hidden" class="bespoke-proceed-condition" value="[ { &quot;operation&quot;: &quot;containsIgnoreCase&quot;, &quot;operands&quot;: [&quot;#recuperando-vetor-tarefas&quot;, &quot;[object Object]&quot;] } ]">
 
-- O que foi salvo em vez do vetor: <input type="text" id="recuperando-vetor-tarefas" maxlength="50">
+- O que foi salvo toem vez do vetor: <input type="text" id="recuperando-vetor-tarefas" maxlength="50">
 
 
 ---
