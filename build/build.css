@@ -227,6 +227,24 @@ div.did-you-know::before {
   float: right;
   clear: right;
 }
+.code-split-2 {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+      align-items: flex-start;
+}
+.code-split-2 pre.hljs {
+  -ms-flex: 1;
+      flex: 1;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.code-split-2 pre.hljs:not(:last-of-type) {
+  border-right: 3px double #fff;
+}
+.code-split-2 pre.hljs + pre.hljs {
+  margin-top: 0;
+}
 .blastoff.bespoke-backdrop-active {
   background-image: url("../images/icanhaz-blastoff.gif");
   background-size: cover;
