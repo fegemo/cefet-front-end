@@ -239,7 +239,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "metodos-de-arrays"} -->
 ## **Métodos** de Arrays
 
 - Inserindo e removendo elementos
@@ -478,9 +478,9 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 <!-- {"layout": "regular"} -->
 # Exploração Espacial :alien:
 
-- Crie a página da **Exploração Espacial** :alien:
-  - [Baixe os arquivos][exploracao-espacial] e veja as instruções
-    detalhadas no arquivo README.md
+- Crie um sisteminha de gerenciamento de tarefas :notebook:
+  - [Baixe os arquivos][todos] e veja as instruções
+    detalhadas no arquivo `README.md`
 - Há 2 atividades:
   1. Criar um código em JavaScript para **fazer os botões "+"
      expadirem ou retrairem o texto dos parágrafos**
@@ -488,7 +488,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   1. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
      - Fazer no arquivo `atividade2.js`
 
-[exploracao-espacial]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
+[todos]: https://github.com/fegemo/cefet-front-end-todo/archive/master.zip
 
 ---
 <!-- {"slideHash": "definindo-constantes"} -->

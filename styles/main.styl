@@ -183,6 +183,18 @@ div.did-you-know
     float right
     clear right
 
+.code-split-2
+  display flex
+  align-items flex-start
+  pre.hljs
+    flex 1
+    margin-top 0
+    margin-bottom 0
+    &:not(:last-of-type)
+      border-right 3px double white
+  pre.hljs + pre.hljs
+    margin-top 0
+
 @require backdrops
 @require move-to-theme
 @require tutorial

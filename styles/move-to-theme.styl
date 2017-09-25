@@ -35,7 +35,7 @@ ol.no-list-icon
       visibility hidden
 
 .bullet-no-anim
-  transition opacity 200ms ease-out
+  transition none !important
 
 .layout-regular-block
   display block
@@ -60,6 +60,29 @@ ol.no-list-icon
     //flex 1
     width 48%
 
+
+[class*="layout-2-column-content-"]
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  align-items flex-start
+  & > *:first-child
+    width 100%
+    align-self flex-end
+  & > pre
+    max-height calc(100% - 0.25em - 1.5em - 24px - 4em)
+
+.layout-2-column-content-30-70
+  & > *:nth-child(2)
+    width 30%
+  & > *:last-child
+    width 68%
+
+.layout-2-column-content-40-60
+  & > *:nth-child(2)
+    width 40%
+  & > *:last-child
+    width 58%
 
 // effects
 .underline
@@ -100,3 +123,29 @@ for d in 200 400 600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000
 
 abbr[title]
   border-bottom initial
+
+
+.nota
+  border 1px solid darkgoldenrod
+  list-style-type none
+  border-radius 5px
+  box-shadow 3px 3px 3px rgba(0, 0, 0, .2)
+  padding 0.3em 0.5em
+  background linear-gradient(to right bottom, lightyellow, #FFF176)
+  &::before
+    content "\26A0"
+    margin-right 1rem
+    color black
+    border inherit
+    border-radius 50%
+    width 1em
+    height 1em
+    display inline-block
+    text-align center
+    line-height 0.75em
+    background white
+    font-size 2em
+    box-shadow inherit
+    box-sizing border-box
+  strong
+    color darkgoldenrod
