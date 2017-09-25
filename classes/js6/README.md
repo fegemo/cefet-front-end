@@ -86,7 +86,7 @@
   <!-- 1. Criar programas que testam o código escrito em JavaScript
      - Jasmine, Mocha -->
   1. Coisas variadas
-     - Exemplos: criar gráficos, criar jogos, <u>criar _easter eggs_</u>,
+     - Exemplos: criar gráficos, criar jogos, <u>criar _easter eggs_</u>c,
        criar slides etc
 
 ---
