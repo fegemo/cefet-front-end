@@ -96,10 +96,12 @@ body {
   transition: height 200ms ease-out, transform 200ms ease-out;
   transform: translate3d(0, -0.5vw, 0);
 }
-#page-header:hover {
+#page-header:hover,
+#page-header.showing {
   transform: translate3d(0, 0, 0);
 }
-#page-header:hover + #presentation-container {
+#page-header:hover + #presentation-container,
+#page-header.showing + #presentation-container {
   transform: translate3d(0, 6vw, 0);
 }
 @media screen and (orientation: portrait) {
@@ -244,6 +246,43 @@ div.did-you-know::before {
 }
 .code-split-2 pre.hljs + pre.hljs {
   margin-top: 0;
+}
+#easter-egg-panel {
+  position: absolute;
+  right: 1vw;
+  bottom: 4vh;
+  color: #000;
+  padding: 5px;
+  font-size: 11px;
+  background-color: #c0c0c0;
+  border-radius: 5px;
+  transition: opacity 100ms ease-out;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+  font-family: monospace;
+  font-weight: bold;
+}
+#easter-egg-panel.active {
+  opacity: 0.25;
+}
+#easter-egg-panel.success {
+  animation: vanishing 800ms ease-out 0s 1;
+}
+.easter-egg-key {
+  transition: all 100ms ease-out;
+  opacity: 0;
+  transform: translate3d(1em, 0, 0);
+}
+.active .easter-egg-key {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.shaking {
+  animation: shaking 500ms ease-out 0s 1;
+}
+.shaking:nth-child(2n) {
+  animation-delay: 100ms;
 }
 .blastoff.bespoke-backdrop-active {
   background-image: url("../images/icanhaz-blastoff.gif");
@@ -1012,5 +1051,49 @@ pre.hljs + pre.hljs {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+@keyframes vanishing {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes shaking {
+  0% {
+    transform: translate3d(4px, 0px, 0px);
+  }
+  10% {
+    transform: translate3d(-7px, -5px, 0px);
+  }
+  20% {
+    transform: translate3d(8px, 5px, 0px);
+  }
+  30% {
+    transform: translate3d(-7px, 3px, 0px);
+  }
+  40% {
+    transform: translate3d(9px, -3px, 0px);
+  }
+  50% {
+    transform: translate3d(-4px, 3px, 0px);
+  }
+  60% {
+    transform: translate3d(4px, -4px, 0px);
+  }
+  70% {
+    transform: translate3d(-5px, -4px, 0px);
+  }
+  80% {
+    transform: translate3d(4px, 2px, 0px);
+  }
+  90% {
+    transform: translate3d(-3px, -1px, 0px);
+  }
+  100% {
+    transform: translate3d(0px, 0px, 0px);
   }
 }

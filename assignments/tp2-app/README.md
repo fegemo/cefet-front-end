@@ -22,7 +22,7 @@ lista de jogos/livros/músicas/filmes que você quer ou já
 jogou/leu/ouviu/assistiu; (b) um jogo de cartas (alguém disse truco?), de
 navinha, de perguntas e respostas, tamagotchi; (c) um sistema de enquetes
 que permite o usuário criar enquetes, enviá-las para outras pessoas e
-visualizar os resultados em um gráfico; (d) um player de música com criação
+visualizar os resultados em um gráfico²; (d) um player de música com criação
 de playlists etc.
 
 **Nota:** neste trabalho, você vai precisar buscar por bem mais informações
@@ -32,6 +32,7 @@ do que aquelas que foram abordadas em sala de aula durante o ano!
 banco de dados e um _back-end_, que são assuntos que não foram cobertos
 nesta matéria. Nesse caso, podemos usar _web storage_ para salvar informações
 localmente no navegador.
+² O envio de enquetes para outra pessoa também seria necessário _back-end_.
 
 ## Funcionalidade da Aplicação
 
@@ -93,11 +94,12 @@ Legenda:
 [bootstrap]: http://getbootstrap.com/
 [materialize]: http://materializecss.com/
 [foundation]: https://foundation.zurb.com/
-
+[vibration]: https://googlechrome.github.io/samples/vibration/
 ## O que faz **perder nota**
 
 Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
 - Plágio do trabalho de outrem
+- Falta de originalidade: usar apenas códigos de práticas anteriores
 - Ausência de itens obrigatórios
 - Uso de elementos antigos dentro do HTML (e.g., _tags_ `<center>`, `<b>`,
   `<font>`)

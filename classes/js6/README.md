@@ -3,28 +3,70 @@
 ## Bibliotecas JavaScript, jQuery e ???
 
 ---
-<!-- {"layout": "2-column-content-zigzag"} -->
-# Na última aula... (1/3)
+# Na última aula... (1/2)
 
-...
+## **Web Storage**: `localStorage` + `sessionStorage`
+
+- Ambos nos permitem **armazenar valores dentro de _Strings_**
+- Cada item armazenado é composto por **uma chave (nome) e um valor**
+  - Exemplo (salvando):
+    ```js
+    window.localStorage.setItem('personagem', 'Jake');          // pra sempre
+    window.sessionStorage.setItem('quest', 'Salvar a Jujuba');  // temporariam.
+    ```
+    - Lembre-se: ~~`window.`~~`localStorage` e ~~`window.`~~`sessionStorage`
+  - Exemplo (recuperando):
+    ```js
+    let nome = localStorage.getItem('personagem');    // retorna "Jake"
+    let objetivo = sessionStorage.getItem('quest');   // retorna "Salvar a Jujuba"
+    ```
+
+---
+<!-- {"layout": "regular"} -->
+# Na última aula... (2/2)
+
+## **JSON** no navegador
+
+- O objeto `window` possui o objeto `JSON` que contém métodos de conversão
+  do formato JSON entre _string_ e objetos JavaScript
+  - De JavaScript para _string_ (serialização):
+    ```js
+    JSON.stringify({ nome: 'Flavio', sobrenome: 'Coutinho' });
+    // retorna '{"nome":"Flavio","sobrenome":"Coutinho"}'
+    ```
+  - De _string_ para JavaScript (desserialização):
+    ```js
+    let banco = JSON.parse('{"nome":"Itaú","codigo":"341"}');
+    console.log(banco.nome);
+    // imprime Itaú
+    ```
 
 ---
 # Roteiro
 
-1. Bibliotecas Javascript
-1. jQuery
-   - Funcionamento básico e seletores
-   - Atribuindo eventos
-   - Estilizando elementos
-   - Efeitos visuais
+1. [Bibliotecas JavaScript](#bibliotecas-javascript)
+1. [jQuery](#jquery)
+   - [Funcionamento básico e seletores](#jquery-funcionamento-basico)
+   - [Atribuindo eventos](#jquery-atribuindo-eventos)
+   - [Estilizando elementos](#jquery-estilizando-elementos)
+   - [Efeitos visuais](#jquery-efeitos-visuais)
 
 ---
 <!-- {"layout": "section-header", "slideHash": "bibliotecas-javascript"} -->
-# Bibliotecas JavaScript
-## Usando código reutilizável
+# **Bibliotecas** JavaScript
+## Usando código **reutilizável**
 
-- O que são
-- Exemplos
+- O que são e como usar
+- Exemplos:
+
+  moment.js
+    ~ lidando com datas
+
+  cheet.js
+    ~ criando _easter eggs_
+
+  underscore.js
+    ~ trabalhando com vetores
 
 <!-- {ul:.content} -->
 
@@ -35,16 +77,16 @@
 - São códigos reutilizáveis em vários contextos
 - Surgiram inicialmente para:
   1. Amenizar os problemas de **compatibilidade entre navegadores**
-     - Exemplos: Prototype, MooTools, YUI, **jQuery**
+     - Exemplos: Prototype, MooTools, YUI, <u>jQuery</u>
   1. Tornar o uso da linguagem mais **agradável**
-     - Exemplos: **underscore**, lodash
+     - Exemplos: <u>underscore</u>, lodash
 - Outros objetivos:
-  1. Consertar problemas na linguagem
-     - Exemplos: **moment.js**, RequireJS, Browserify
+  1. **Consertar problemas** na linguagem
+     - Exemplos: <u>moment.js</u>, RequireJS, Browserify
   <!-- 1. Criar programas que testam o código escrito em JavaScript
      - Jasmine, Mocha -->
   1. Coisas variadas
-     - Exemplos: criar gráficos, criar jogos, **criar _easter eggs_**,
+     - Exemplos: criar gráficos, criar jogos, <u>criar _easter eggs_</u>c,
        criar slides etc
 
 ---
@@ -150,6 +192,7 @@
 - Chegou a ser **usada** por quase **<u>75% de toda a Web</u>**
 
 ---
+<!-- {"slideHash": "incluindo-a-biblioteca-jquery"} -->
 ## Incluindo a biblioteca jQuery
 
 - Em uma página, você deve incluir o arquivo `jquery.js`. Há 2 formas:
@@ -187,6 +230,7 @@
     `document.querySelectorAll`
 
 ---
+<!-- {"slideHash": "jquery-funcionamento-basico"} -->
 ## Funcionamento básico e seletores (1/3)
 
 - Com jQuery, praticamente tudo é feito **em 2 passos**:
@@ -254,6 +298,7 @@
   ```
 
 ---
+<!-- {"slideHash": "jquery-atribuindo-eventos"} -->
 ## Atribuindo eventos
 
 - Usando jQuery, há atalhos para **colocar eventos** em elementos ou
@@ -263,7 +308,7 @@
   $('.ajuda').click(ajuda);
 
 
-  
+
   ```
   ```js
   document.querySelectorAll('.ajuda')
@@ -280,6 +325,7 @@
   ```
 
 ---
+<!-- {"slideHash": "jquery-estilizando-elementos"} -->
 ## Estilizando elementos
 
 - **Objetos jQuery** podem ser estilizados, como em "vanilla js", usando:
@@ -309,7 +355,7 @@
 [doc-jquery-css]: http://api.jquery.com/css/#css2
 
 ---
-<!-- {"layout": "regular", "slideHash": "efeitos-visuais"} -->
+<!-- {"layout": "regular", "slideHash": "jquery-efeitos-visuais"} -->
 ## Efeitos visuais
 
 - Algumas funções para fazer efeitos visuais:
