@@ -69,14 +69,15 @@
 - [JavaScript parte 5](classes/js5/) - Web Storage, JSON e a Lista de
   Tarefas :notebook: x2
 
+---
+<!-- {"layout": "regular"} -->
+# Aulas (página 4)
+
+- [JavaScript parte 6](classes/js6/) - Bibliotecas e jQuery
+
 <!--
-- Palestra do ~~Profissional da Indústria~~ Pedro Colen: Git (19/04/2016)
-
-
 - [CSS 6 - _Responsive Design_](classes/css6/) (31/05/2016)
-- [CSS 5 - Animações e _Edukids Animals_ (Prática)](classes/css5/) (02/06/2015)
 - [JavaScript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
-
 -->
 
 ---

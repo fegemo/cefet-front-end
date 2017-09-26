@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # JavaScript (parte 6)
-## Bibliotecas JavaScript, jQuery e ???
+## Bibliotecas JavaScript e jQuery
 
 ---
 # Na última aula... (1/2)
@@ -373,6 +373,43 @@
 <iframe width="100%" height="160" src="//jsfiddle.net/fegemo/4L525ow4/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
+<!-- {"slideHash": "jquery-andando-na-arvore"} -->
+## Andando na árvore
+
+- A partir do elemento selecionado, é possível chegar até seus parentes:
+- ```html
+  <div class="sanfona">
+    <h2>Tópico 1</h2>
+    <p>Sobre o tópico 1...</p>
+    <h2>Tópico 2...</h2>
+    <p>Sobre o tópico 2...</p>
+  </div>
+  ```
+  ```js
+  let $topicos = $('.sanfona h2');
+  $topicos.click(function(e) {
+    let $topico = $(e.currentTarget);
+    let $p = $topico.next(); // ← ← ←
+    $p.slideToggle();
+  });
+  ```
+  <!-- {li:.code-split-2} -->
+
+<iframe width="100%" height="250" src="//jsfiddle.net/fegemo/4podo400/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "regular", "slideHash": "jquery-andando-na-arvore-metodos"} -->
+## Andando na árvore: métodos
+
+- Alguns dos métodos são:
+  - Irmão seguinte/anterior
+    ```js
+    $elemento.next();
+    $elemento.prev();
+    ```
+  -
+---
 # Referências
 
-1. Mozilla Developer Network (MDN)
+1. Página da jQuery: http://jquery.com/
+1. Curso de jQuery da Codeschool: http://try.jquery.com
