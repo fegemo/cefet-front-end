@@ -66,6 +66,7 @@ em sua aplicação web um subconjunto dos seguintes itens opcionais:
 1. (+7%) Usar um _framework_ CSS para agilizar o desenvolvimento, como o
    [Bootstrap][bootstrap] (:star2: _seal of approval_ do professor),
    [Materialize][materialize] (:star: muito bonito),
+   [JQueryUI][jqueryui] (simples de usar),
    [Foundation][foundation] (mais flexível, porém bem mais complexo).
 1. Usar alguma biblioteca JavaScript para auxiliar
    no desenvolvimento. Por exemplo:
@@ -94,6 +95,7 @@ Legenda:
 [bootstrap]: http://getbootstrap.com/
 [materialize]: http://materializecss.com/
 [foundation]: https://foundation.zurb.com/
+[jqueryui]: https://jqueryui.com/
 [vibration]: https://googlechrome.github.io/samples/vibration/
 ## O que faz **perder nota**
 
