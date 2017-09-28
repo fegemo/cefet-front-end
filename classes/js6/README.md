@@ -322,6 +322,7 @@
   $colecao.mousemove(callback);   // 'mousemove'
   $colecao.keyup(callback);       // 'keyup'
   $colecao.change(callback);      // 'change' (no input)
+  $colecao.hover(callbackOver, callbackOut);
   ```
 
 ---
@@ -401,13 +402,16 @@
 <!-- {"layout": "regular", "slideHash": "jquery-andando-na-arvore-metodos"} -->
 ## Andando na árvore: métodos
 
-- Alguns dos métodos são:
-  - Irmão seguinte/anterior
-    ```js
-    $elemento.next();
-    $elemento.prev();
-    ```
-  -
+- Veja [todos os métodos aqui][jquery-doc-traversing]. Alguns são:
+  ```js
+  $colecao.next();    // irmão seguinte de cada elemento
+  $colecao.prev();    // irmão anterior...
+  $colecao.parent();  // pai de cada elemento
+  $colecao.find(seletor);     // filhos que atendam ao seletor
+  $colecao.closest(seletor);  // ancestral mais próximo -> seletor
+  ```
+
+[jquery-doc-traversing]: http://api.jquery.com/category/traversing/
 ---
 # Referências
 
