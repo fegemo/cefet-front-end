@@ -492,6 +492,20 @@ div.did-you-know::before {
   opacity: 0.5;
   animation: girando 360s linear 0s infinite;
 }
+.resolutionary.bespoke-backdrop {
+  opacity: 0;
+  transform: translate3d(0, 5%, 0);
+  transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
+}
+.resolutionary.bespoke-backdrop-active {
+  background-image: url("../images/resolutionary.jpg");
+  background-size: cover;
+  background-position: 50% 0%;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  height: 100%;
+}
 @keyframes girando {
   from {
     transform: rotateZ(0);
@@ -525,6 +539,14 @@ ol.no-list-icon {
   margin-left: auto;
   margin-right: auto;
 }
+.horizontal-list-flex {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-direction: row;
+      flex-direction: row;
+}
 .figure-slides > p {
   margin: 0;
 }
@@ -533,6 +555,10 @@ ol.no-list-icon {
 }
 .bullet-no-anim {
   transition: none !important;
+}
+.layout-regular-horizontal {
+  -ms-flex-direction: row;
+      flex-direction: row;
 }
 .layout-regular-block {
   display: block;

@@ -73,10 +73,10 @@
 <!-- {"layout": "regular"} -->
 # Aulas (página 4)
 
-- [JavaScript parte 6](classes/js6/) - Bibliotecas e jQuery
+- [JavaScript parte 6](classes/js6/) - Bibliotecas, jQuery e o PhotoSnap x2
+- [CSS parte 7](classes/css7/) - _Responsive Web Design_
 
 <!--
-- [CSS 6 - _Responsive Design_](classes/css6/) (31/05/2016)
 - [JavaScript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
 -->
 
