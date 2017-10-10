@@ -2,9 +2,9 @@
 # CSS (parte 7)
 ## _Responsive Web Design_ e XXX
 
----
+<!--
 ## Na última aula...
-
+ -->
 
 ---
 <!-- {"embeddedStyles": ".multi-dispositivos { justify-content: center; } .multi-dispositivos li { text-align: center; margin-right: 2em; } .multi-dispositivos img { max-height: 170px; display: block; margin: auto; }"} -->
@@ -351,3 +351,86 @@ Para testar em um dispositivo de **tela com alta densidade de pixels**:
 ![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
 
 - Este dispositivo tem densidade: <span id="device-pixel-ratio">x</span> <button id="calc-dpr" onclick="this.disabled = true; setTimeout(() => { document.querySelector('#device-pixel-ratio').innerHTML = window.devicePixelRatio; this.style.visibility = 'hidden'; }, 200); this.classList.add('vanished');">🔢 <code>window.devicePixelRatio</code></button>
+
+---
+<!-- {"layout": "section-header"} -->
+# _Responsive Design_
+## Adequando ao dispositivo
+
+- O que é
+- Exemplos de sites
+- Como fazer
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "regular"} -->
+## **O que é** _Responsive Design_
+
+- Não significa desenho responsável =)
+- É a idéia de que as páginas Web devem se adaptar à plataforma que a está
+  exibindo
+  - Melhorar a experiência de usuário
+  - Aproveitar características específicas de plataformas diferentes
+- Usa o recurso de _media queries_ do CSS3
+
+---
+<!-- {"layout": "regular"} -->
+## Exemplo de site **não**-_responsive_
+
+[![](../../images/submarino.jpg)](http://www.submarino.com.br)
+
+---
+<!-- {"layout": "regular"} -->
+## Exemplo de site **_responsive_**
+
+[![](../../images/muumilaakso.jpg)](http://muumilaakso.tampere.fi/)
+
+---
+<!-- {"layout": "regular"} -->
+## Vários exemplos
+
+- [mediaqueri.es](http://mediaqueri.es)
+
+![](../../images/mediaqueries.jpg)
+
+---
+<!-- {"layout": "regular"} -->
+## Como fazer
+
+- Para criar uma página _responsive_, você deve
+  1. Usar **unidades de medida relativas**
+  1. Definir os pontos (**largura**) em que a **página "quebra"**
+     (os _breakpoints_)
+  1. Criar **regras de estilos diferentes** para cada conjunto de dimensões
+- Por exemplo, vamos criar uma página que mostra
+  - 4 produtos por linha em dispositivos grandes
+  - 3 produtos por linha em dispositivos médios
+  - 2 produtos por linha em dispositivos pequenos
+
+---
+## Exemplo
+
+```css
+div.produto {  display: inline-block; }
+
+@media (min-width: 801px) {
+  /* tela grande: 4 produtos por linha */
+  div.produto {  width: 25%;  }
+}
+
+@media (min-width: 481px) and (max-width: 800px) {
+  /* tela média: 3 produtos por linha */
+  div.produto {  width: 33.333%;  }
+}
+
+@media (max-width: 480px) {
+  /* tela pequena: 2 produtos por linha */
+  div.produto {  width: 50%;  }
+}
+```
+
+---
+## Exemplo vivo
+
+<iframe width="100%" height="450" src="http://jsfiddle.net/fegemo/Lw7prv0u/6/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
