@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # CSS (parte 7)
-## _Responsive Web Design_ e XXX
+## _Responsive Web Design_
 
 <!--
 ## Na última aula...
