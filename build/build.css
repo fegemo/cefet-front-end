@@ -506,6 +506,20 @@ div.did-you-know::before {
   width: 100%;
   height: 100%;
 }
+.piratas-php.bespoke-backdrop {
+  background-image: url("../images/piratas-php.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: none;
+  transform: scale(0.35);
+}
+.piratas-php.bespoke-backdrop.bespoke-backdrop-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 500ms ease 400ms;
+}
 @keyframes girando {
   from {
     transform: rotateZ(0);
@@ -555,6 +569,12 @@ ol.no-list-icon {
 }
 .bullet-no-anim {
   transition: none !important;
+}
+.full-width-slides {
+  max-width: 100%;
+}
+.full-width-slides img {
+  max-width: 100%;
 }
 .layout-regular-horizontal {
   -ms-flex-direction: row;
