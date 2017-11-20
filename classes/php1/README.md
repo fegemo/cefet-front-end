@@ -1,9 +1,7 @@
 # Introdução a servidores Web
-## Apache, PHP, MySQL e os piratas
+## Apache, PHP, MySQL e os piratas :crown: x2
 ---
 # O que veremos hoje
-
-1. [O que é um servidor](#servidor-web)
 <!--   - Ideia:
      1. Colocar um slide da primeira aula falando sobre servidor Web []
      1. Mostrar que, da forma como temos feito (sem servidor), a página só pode ser vista por quem tem os arquivos, no próprio computador[]
@@ -11,7 +9,6 @@
      1. Falar que esse servidor pode simplesmente entregar os arquivos (html, css, js), ou então fazer algum tipo de processamento (ie, executar um programa) que vá gerar ou alterar esses arquivos antes de entrega-los
      1. Falar que existem vários servidores web e várias linguagens para escrever esses programas que são executados pelo servidor
 -->
-1. [O servidor Apache](#servidor-apache)
 <!--   - Ideia:
      1. Falar que é o servidor mais usado desde que foi criado (96-97) [ok]
      1. Tem um desempenho muito bom para conseguir atender a vários computadores acessando um site ao mesmo tempo [ok]
@@ -19,7 +16,6 @@
      1. Funciona no linux e no windows [ok]
      1. Mostrar funcionando (eg, a animacao) de como colocar um site estático (apenas html, css, js) no Apache
 -->
-1. [PHP: PHP Hypertext Preprocessor](#php)
 <!--   - Ideia:
      1. Falar que é uma linguagem (a mais usada em conjunto com o apache) para escrever programas no servidor para preprocessar HTML
      1. Mostrar um arquivo .php bem básico, falando que ele é um arquivo html, mas com as tags especiais <?php ?> que são onde podemos escrever o código em PHP
@@ -28,7 +24,6 @@
      1. Mostrar o resultado no navegador pra verem que o arquivo index.html baixado não possui nenhuma tag PHP (porque elas foram executadas pelo Apache no atendimento à requisição)
      1. Formalizar (bem de leve) o que foi usado no exemplo: echo, variáveis, arrays, iteração, if/else
 -->
-1. [MySQL](#mysql)
 <!--   - Ideia
      1. Motivar que queremos armazenar dados em um local central, que possa ser acessível a partir de qualquer lugar (eg emails do Gmail, produtos do Submarino, posts em um blog)
      1. Introduzir o conceito de SGBD, já falando que o MySQL é um bastante usado, gratuito, multiplataforma etc.
@@ -36,6 +31,10 @@
      1. Apresentar a linguagem SQL com alguns exemplos envolvendo SELECT, INSERT e DELETE, sem dar muitos detalhes
      1. Falar que podemos usar um banco de dados pra armazenar a lista de *entidades* e mostrar os comandos PHP para isso
 -->
+1. [O que é um servidor](#servidor-web)
+1. [O servidor Apache](#servidor-apache)
+1. [PHP: PHP Hypertext Preprocessor](#php)
+1. [MySQL](#mysql)
 1. [Piratas e seus Tesouros](#tesouros-de-piratas-dinamicos) :crown: x2
 <!--   1. Instalando Apache, MySQL e PHP
    1. A Atividade-->
@@ -65,6 +64,37 @@
 - Para isso, usaremos um **servidor Web** e nos comunicaremos por meio do
   **protocolo HTTP**
 
+
+
+
+---
+## Relembrando, protocolo HTTP
+
+- O **Navegador requisita** algo e **Servidor responde**
+
+```http
+GET /index.html HTTP/1.1
+Host: www.twitter.com
+```
+![](../../images/http-diagram-informal-2.png) <!-- {.half-width.centered} --> <!-- {p:.no-margin} -->
+```http
+HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter</title>
+</head>
+<body>
+  Olá mundo, este é um tweet.
+</body>
+</html>
+```
+- Os arquivos recebidos säo salvos, em um pasta temporária, no computador que os requisitou
 ---
 ::: figure .figure-slides.full-width-slides
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
@@ -72,14 +102,6 @@
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
-
-
----
-## Relembrando, protocolo HTTP
-
-
-- Os arquivos recebidos säo salvos, em um pasta temporária, no computador que os requisitou
-
 ---
 ## O que faz um servidor Web?
 
@@ -99,10 +121,10 @@
 	- Usuário
 	- Localização
 	- Parametros de entrada
-- Além disso, podem exibir conteúdos de um **Banco de dados**
+- Além disso, podem exibir conteúdo de um **Banco de dados**
 ---
 ## Página Estática
-![Exemplo de uma página estática](../../images/pag-estatica.png)
+![Exemplo de uma página estática](../../images/pag-estatica.png)<!-- {style="height: 55vh;"} -->
 ---
 ## Páginas Dinamicas
 
@@ -110,6 +132,7 @@
 ![Páginas dinamicas](../../images/pag-dinamica-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![Páginas dinamicas](../../images/pag-dinamica-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![Páginas dinamicas](../../images/pag-dinamica-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Páginas dinamicas](../../images/pag-dinamica-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
 ---
 ## Servidores Web
@@ -157,33 +180,28 @@
 - Assim, todo código PHP deve iniciar por `<?php` e finalizar com `?>`
 
 ---
+<!-- {"layout": "2-column-content", "slideHash": "for-formas-preferiveis"} -->
 ## PHP - Sintaxe Básica
 
-- `echo`: exibe no HTML o que for passado como parametro
-- Exemplo:
-- Código de um arquivo `index.php`
-  ```php
-  <html>
-    <head>
-      <title>PHP Teste</title>
-    </head>
-    <body>
-      <?php echo "<p>Olá Mundo</p>"; ?>
-    </body>
-  </html>
-  ```
+1. `echo`: exibe no HTML o que for passado como parametro. Exemplo, arquivo `index.php`:
+```php
+<html>
+	<head>...</head>
+	<body>
+		<?php echo "<p>Olá Mundo</p>"; ?>
+	</body>
+</html>
+```
 - O servidor irá ler este arquivo e enviar o seguinte HTML:
-  ```html
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <title>PHP Teste</title>
-    </head>
-    <body>
-      <p>Olá Mundo</p>
-    </body>
-  </html>
-  ```
+```html
+<!DOCTYPE html>
+<html>
+	<head>...</head>
+		<body>
+			<p>Olá Mundo</p>
+		</body>
+</html>
+```
 
 ---
 ## PHP - Variáveis
@@ -363,11 +381,13 @@
 ---
 ## SQL - Cláusula **SELECT** - Exemplo (1/3)
 - Seleciona todas as colunas e registros da tabela `RACA_OVELHA`
+
 ![Seleciona todos os registros e colunas](../../images/sql-exemplo1.png)
 
 ---
 ## SQL - Cláusula **SELECT** - Exemplo (2/3)
 - Seleciona o nome de todas as raças de ovelha (i.e. tabela `RACA_OVELHA`)
+
 ![Seleciona o nome de todas as raças de ovelha](../../images/sql-exemplo2.png)
 
 ---
@@ -396,7 +416,7 @@
   ```
 
 ---
-## PHP e MySQL - Exemplo (cont)
+## PHP e MySQL - Exemplo (cont.)
 
 - Logo após, podemos fazer uma consulta, por exemplo, exibindo todas as raças de ovelha.
   ```php
@@ -404,17 +424,19 @@
     $sql = "SELECT nome, alimento_preferido FROM raca_ovelha";
     $result = $db->query($sql); //db é a conexao obtida
     if ($result->num_rows > 0) {
-      print("<ul>");
+      echo("<ul>");
       while($linha = $result->fetch_assoc()) {
-        echo "<li>Ovelhas da raça <strong>{linha['nome']}</strong> gostam de {linha['alimento_preferido']} </li>";
+        $html = "<li>Ovelhas da raça <strong>{linha['nome']}</strong>";
+        $html .= "gostam de {linha['alimento_preferido']} </li>"
+        echo($html);
       }	  
-      print("</ul>");
+      echo("</ul>");
     } else {
-      print("<p>Não existem ovelhas cadastradas</p>");
+      echo("<p>Não existem ovelhas cadastradas</p>");
     }
   ?>
   ```
-  - Note que, caso não haja raças de ovelhas cadastradas, será exibida a mensagem "Não existem raças de ovelhas cadastradas"
+
 
 ---
 <!-- {"layout": "section-header", "slideHash": "tesouros-de-piratas-dinamicos"} -->
