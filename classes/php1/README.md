@@ -1,5 +1,7 @@
+<!-- {"layout": "title"} -->
 # Introdução a servidores Web
 ## Apache, PHP, MySQL e os piratas :crown: x2
+
 ---
 # O que veremos hoje
 <!--   - Ideia:
@@ -46,10 +48,12 @@
 
 - Como fizemos até hoje?
 - O que faz um servidor Web?
-- Página estática vs página dinamica
+- Página estática vs página dinâmica
 - Servidor Apache
----
 
+<!-- {ul:.content} -->
+
+---
 ## Como fizemos até agora
 
 - Nas práticas
@@ -63,9 +67,6 @@
 		- Página inexistente, falta de permissão
 - Para isso, usaremos um **servidor Web** e nos comunicaremos por meio do
   **protocolo HTTP**
-
-
-
 
 ---
 ## Relembrando, protocolo HTTP
@@ -94,7 +95,9 @@ Content-Length: 131
 </body>
 </html>
 ```
-- Os arquivos recebidos säo salvos, em um pasta temporária, no computador que os requisitou
+- Os arquivos recebidos são salvos, em uma pasta temporária, no
+	computador que os requisitou
+
 ---
 ::: figure .figure-slides.full-width-slides
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
@@ -102,54 +105,64 @@ Content-Length: 131
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
+
 ---
 ## O que faz um servidor Web?
 
 - O servidor Web **precisa**:
   1. Saber falar o protocolo HTTP para atender as requisições
-  1. Conhecer o sistema de arquivos do SO para entregar arquivos solicitados (JS, HTML, CSS, ...)
-
+  1. Conhecer o sistema de arquivos do SO para entregar arquivos solicitados
+		 (JS, HTML, CSS, imagens etc.)
 - O servidor Web **pode**:
   1. Executar algum arquivo
-  1. Permitir a geração dinâmica de recursos (e.g., arquivos html)
-  1. Permitir a recepção de arquivos (fazer _upload_)
-  1. Entender outros protocolos além de HTTP: FTP, HTTPS, FTPS etc.
+  1. Permitir a geração dinâmica de arquivos HTML (_e.g._, usando PHP)
+  1. Permitir a recepção de arquivos (_e.g._, cliente fazendo _upload_)
+  1. Entender outros protocolos além de HTTP: HTTPS, FTP, etc.
   1. Gerenciar conexões simultâneas de vários "solicitantes"
+
 ---
-## Páginas dinamicas vs páginas estáticas
-- Páginas dinamicas podem exibir um conteúdo diferente dependendo:
+## Páginas dinâmicas vs páginas estáticas
+
+- Páginas dinâmicas podem exibir um conteúdo diferente dependendo:
 	- Usuário
 	- Localização
-	- Parametros de entrada
-- Além disso, podem exibir conteúdo de um **Banco de dados**
+	- Parâmetros de entrada
+- Além disso, elas podem exibir conteúdo que está armazenado
+	em um **banco de dados**
+
 ---
-## Página Estática
-![Exemplo de uma página estática](../../images/pag-estatica.png)<!-- {style="height: 55vh;"} -->
+## Páginas Estáticas
+![Exemplo de uma página estática](../../images/pag-estatica.png)<!-- {style="height: 50vh;"} -->
+
 ---
-## Páginas Dinamicas
+## Páginas Dinâmicas
 
 ::: figure .figure-slides
-![Páginas dinamicas](../../images/pag-dinamica-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Páginas dinamicas](../../images/pag-dinamica-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Páginas dinamicas](../../images/pag-dinamica-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Páginas dinamicas](../../images/pag-dinamica-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Páginas dinâmicas](../../images/pag-dinamica-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Páginas dinâmicas](../../images/pag-dinamica-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Páginas dinâmicas](../../images/pag-dinamica-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Páginas dinâmicas](../../images/pag-dinamica-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
+
 ---
 ## Servidores Web
+
 - Exemplos de Servidores Web
 	- Apache
 	- Tomcat
 	- JBoss
 	- IIS
-- Além de páginas estáticas (html, js, css), podem executar diversos tipos de linguagens:
-	- PHP, Python, Java, ASP .NET
+- Além de servir (_i.e._, entregar) páginas estáticas
+	(`.html`, `.js`, `.css`), podem executar _scripts_ em diversas
+	outras linguagens:
+	- PHP, Python, Java, ASP .NET etc.
 
 
 ---
 <!-- {"slideHash": "servidor-apache"} -->
 ## Apache
 
-- Em primeiro lugar desde 1995 como o mais utilizado
+- O mais utilizado desde 1995
 - Tipicamente (mas não exclusivamente) usado associado à linguagem PHP
 - Fonte do sucesso:
   1. Projeto altamente modularizado e configurável
@@ -186,37 +199,39 @@ Content-Length: 131
 1. `echo`: exibe no HTML o que for passado como parametro. Exemplo, arquivo `index.php`:
 ```php
 <html>
-	<head>...</head>
-	<body>
-		<?php echo "<p>Olá Mundo</p>"; ?>
-	</body>
+<head>...</head>
+<body>
+  <?php echo "<p>Olá Mundo</p>"; ?>
+</body>
 </html>
 ```
 - O servidor irá ler este arquivo e enviar o seguinte HTML:
 ```html
 <!DOCTYPE html>
 <html>
-	<head>...</head>
-		<body>
-			<p>Olá Mundo</p>
-		</body>
+<head>...</head>
+<body>
+  <p>Olá Mundo</p>
+</body>
 </html>
 ```
 
 ---
+<!-- {"layout": "regular"} -->
 ## PHP - Variáveis
+
 - Variáveis não precisam de ser declaradas
 - Toda a variável inicia-se com o caractere `$`
 - Exibir a variável no HTML: *echo*
 - Para concatenação de strings, usa-se o ponto `.`
-- Para que o valor da variável seja impresso, devemos colocá-la entre aspas duplas caso esteja dentro de um texto
+- Com áspas duplas, o PHP faz substituição das variáveis na string
   ```php
   <?php
     $a = 1;
     echo $a; //imprimirá 1
+    echo "resultado: " . $a;  // imprimirá resultado: 1
     echo "resultado: $a";     // imprimirá resultado: 1
     echo 'resultado: $a';     // imprimirá resultado: $a
-    echo "resultado: " . $a;  // imprimirá resultado: 1
   ?>
   ```
 ---
@@ -227,9 +242,9 @@ Content-Length: 131
     $a = 1;
     $b = rand(); // rand(): retorna um número aleatório
     echo "b: $b";  
-    if($a > $b){
+    if ($a > $b) {
       echo "'a' é maior que 'b'!";
-    }else{
+    } else {
       echo "'b' é maior ou igual a 'a'!";
     }
   ?>
@@ -237,6 +252,7 @@ Content-Length: 131
 
 ---
 ## PHP - Estrutura de repetição - **for**
+
 - Também possui a sintaxe similar ao JavaScript
   ```php
   <?php $numero = rand(2,9); ?>
@@ -331,6 +347,7 @@ Content-Length: 131
 - Bancos de dados armazenam os seus dados de uma forma:
 	- mais estruturada;
 	- favorecendo o uso por muitos usuários.
+
 ---
 ## Sistema de Gerenciamento de Banco de Dados (SGBDs)
 
@@ -340,7 +357,8 @@ Content-Length: 131
 	- Postgres
 	- Oracle
 	- MS SQL Server
-- Iremos usar o MySQL por ser um SGBD gratuíto, multiplataforma e bem popular
+- Iremos usar o **MySQL** por ser um SGBD gratuíto, multiplataforma
+	e bem popular
 
 
 ---
