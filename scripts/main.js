@@ -116,6 +116,10 @@ bespoke.from('article', [
       el.style.height = window.getComputedStyle(slide).height;
       el.style.position = 'absolute';
       el.style.left = el.style.top = '0';
+      // fix for chrome hiding the video controls behind (or under) the video
+      // from: https://stackoverflow.com/questions/22217084/video-tag-at-chrome-overlays-on-top
+      el.style.backfaceVisibility = 'hidden';
+      el.style.transform = 'translateZ(0)';
     },
     playMediaOnActivation: function(slide, { selector, delay = '1500'}) {
       let els = slide.querySelectorAll(selector);

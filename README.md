@@ -75,11 +75,10 @@
 
 - [JavaScript parte 6](classes/js6/) - Bibliotecas, jQuery e o PhotoSnap x2
 - [CSS parte 7](classes/css7/) - _Responsive Web Design_
-- [_Back-ends_ parte 1](classes/php1/) - Apache, PHP e MySQL
+- [_Back-ends_ parte 1](classes/php1/) - Apache, PHP, MySQL e os Tesouros
+  Dinâmicos :crown:
+- [JavaScript parte 7](classes/js7/) - Ajax e as Guerras Estelares :stars:
 
-<!--
-- [JavaScript 7 - EcmaScript 6](classes/js7/) (07/06/2016)
--->
 
 ---
 <!--
