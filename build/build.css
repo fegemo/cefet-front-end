@@ -522,6 +522,20 @@ div.did-you-know::before {
   transform: scale(1);
   transition: all 500ms ease 400ms;
 }
+.starwars.bespoke-backdrop {
+  opacity: 0;
+  transform: translate3d(0, 5%, 0);
+  transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
+}
+.starwars.bespoke-backdrop-active {
+  background-image: url("../images/cefet-front-end-starwars.png");
+  background-size: cover;
+  background-position: 50% 0%;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  height: 100%;
+}
 @keyframes girando {
   from {
     transform: rotateZ(0);
@@ -562,6 +576,19 @@ ol.no-list-icon {
       flex-wrap: wrap;
   -ms-flex-direction: row;
       flex-direction: row;
+}
+.full-page-video-caption {
+  position: absolute;
+  bottom: 30px;
+  font-size: 0.75em;
+  left: 50%;
+  width: 16em;
+  text-align: center;
+  margin-left: -8em;
+  padding: 0;
+  background-color: rgba(255,255,8,0.65);
+  border-radius: 0.25em;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
 }
 .figure-slides > p {
   margin: 0;

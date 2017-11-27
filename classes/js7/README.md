@@ -1,459 +1,380 @@
-# Javascript parte 7 - ES6
+<!-- {"layout": "title"} -->
+# JavaScript (parte 7)
+## Ajax e as Guerras Estelares :stars:
 
 ---
-## Agenda
+# Hoje veremos
 
-- Breve histórico do JavaScript
-- Novas funcionalidades
-  - Escopo
-  - Classes
-  - Parâmetros _default_
-  - ...
-- Executando ES6 hoje
-
----
-# Breve histórico
-
-1995
-  ~ Brendan Eich criou JS para o Netscape
-  
-1996, Agosto
-  ~ Micro$oft criou o JScript no IE e no IIS 3.0
-
-1996, Novembro
-  ~ Netscape enviou para a Ecma International -> ECMAScript
-
-1997, Junho
-  ~ ECMAScript 2
-
-1999, Dezembro
-  ~ ECMAScript 3
-
-2009, Dezembro
-  ~ ECMAScript 5
-
-2011, Junho
-  ~ ECMAScript 5.1
-
-2014
-  ~ ECMAScript 6
+1. Requisições síncronas
+1. Ajax: requisições assíncronas
+   - Em _vanilla_ JavaScript
+   - Com ajuda de jQuery
+1. Guerras Estelares :stars:
+1. Usos típicos de AJAX
 
 ---
-<!--
+<!-- { "layout": "section-header", "slideHash": "requisicoes-sincronas"} -->
+# Requisições Síncronas
+## Como funcionam as requisições
+
+- Revisando:
+  - O modelo de requisição-resposta
+  - Vendo as requisições realizadas
+- Síncrono _vs_ assíncrono <!-- {ul^1:.content} -->
+
+---
+<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+## Relembrando, o protocolo **HTTP**
+
+- É um **protocolo** na camada de aplicação
+  > Conjunto de regras bem definidas descrevendo como
+  > entidades se comunicam.
+  - É a **"língua falada" pelo navegador e pelo servidor web**
+- Modelo requisição &rarr; resposta
+  ::: figure .figure-slides.no-margin
+  ![](../../images/http-diagram-informal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+  ![](../../images/http-diagram-informal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+  :::
+
+---
+<!-- {"layout": "regular-block", "backdrop": "oldtimes"} -->
+## **Navegador requisita** algo e **Servidor responde**
+
+```http
+GET /index.html HTTP/1.1
+Host: www.twitter.com                         # exemplo: requisição para www.twitter.com
+```
+```http
+HTTP/1.1 200 OK                               # exemplo: resposta
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+
+<!DOCTYPE html>
+<html>
+<head><title>Twitter</title></head>
+<body>
+  Olá mundo, este é um tweet.
+</body>
+</html>
+```
+
+---
+::: figure .figure-slides.full-width-slides
+![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
+
+---
+<!-- {"layout": "2-column-content"} -->
+## Síncrono _vs_ assíncrono
+
+- Uma **requisição tradicional é síncrona**, ou seja, enquanto ela está sendo
+  feita, o navegador "deixa o usuário esperando"
+- Uma **requisição assíncrona** é disparada e "esquecida". Quando sua
+  resposta chega, uma função JavaScript é chamada
+  - O usuário pode **continuar usando a página** enquanto a resposta chega
+
+::: figure .figure-slides.clean top: -3em;
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-01.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-02.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-03.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-04.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-05.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-06.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-07.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-08.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-09.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-10.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
+:::
+
+---
+<!-- {"fullPageElement": "#ajax-video", "playMediaOnActivation": {"selector": "#ajax-video" }} -->
+<video src="//fegemo.github.io/cefet-front-end-large-assets/videos/ajax-no-fumaceiro.webm" controls id="ajax-video"></video>
+
+[:globe_with_meridians: Exemplo do Fumaceiro][fumaceiro] <!-- {a:.full-page-video-caption target="_blank"} -->
+
+[fumaceiro]: https://fegemo.github.io/cefet-front-end-ajax
+
+---
+<!-- {"layout": "section-header", "slideHash": "ajax"} -->
+# Ajax
+## Requisições **assíncronas**
+
+![Foto do personagem Deadpool enfrentando um limpador multiuso AJAX](../../images/ajax-deadpool.jpg)
+- Exemplo com _vanilla_ JS
+- Exemplo com jQuery
+
+<!-- {.content style="max-width: 100%"} -->
+
+---
+<!-- {"layout": "regular"} -->
+## Ajax
+
+- É a sigla para _Asynchronous JavaScript and XML_ <!-- {ul:.bullet} -->
+  - Um nome melhor seria **requisição assíncrona**
+- Surgiu no Internet Explorer, nos anos 2000,
+  por [Jesse Gareth][ajax-article]
+- Originalmente, usava-se JavaScript para fazer uma requisição de dados ao
+  servidor, que respondia no formato XML (em vez de HTML)
+- Hoje em dia, **responde-se com** qualquer objeto reconhecido pelo navegador
+  (o mais comum é **JSON**)
+- Para criar uma requisição Ajax, usamos `window.XMLHttpRequest` (XHR) <!-- {li:.bullet} -->
+  ![](../../images/network-tab-filtering-xhr.png) <!-- {.centered} -->
+
+[ajax-article]: http://www.adaptivepath.org/ideas/ajax-new-approach-web-applications/
+*[Ajax]: Asynchronous JavaScript and XML*
+*[XML]: eXtensible Markup Language*
+*[XHR]: XMLHttpRequest*
+
+---
+<!-- {"layout": "regular", "slideHash": "ajax-vanilla-1"} -->
+## O **`XMLHttpRequest`**
+
+- Cada requisição Ajax é um objeto `XMLHttpRequest`. Supondo o exemplo
+  do Twitter:
+  ```js
+  let requisicao = new XMLHttpRequest();
+  requisicao.onreadystatechange = callbackMaisTweets;
+  requisicao.responseType = 'json';
+  requisicao.open('GET', '/tweets/pagina/5');
+  requisicao.send();
+  ```
+- Uma _callback_ (definida em `onreadystatechange`) é invocada a cada **mudança
+  de estado** da requisição (veja nos próximos 2 slides)
+- [Referência](https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest) e [Tutorial](https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/Usando_XMLHttpRequest) na MDN
+
+---
+<!-- {"layout": "centered", "slideHash": "ajax-vanilla-2"} -->
+```js
+function callbackMaisTweets() {
+  if (requisicao.readyState === 4) {  // 4: DONE (resp. recebida)
+    if (requisicao.status === 200) {  // 200: código Ok do HTTP
+      // a resposta chegou e foi um arquivo
+      // .json com um array de tweets:
+      let novosTweets = requisicao.response.arrayComNovosTweets;
+      novosTweets.forEach(colocaTweetNaPagina);
+    } else {
+      console.log('Erro ao carregar mais tweets. Código HTTP: '
+        + requisicao.status);
+    }
+  }
+}
+```
+- Invocada **a cada alteração** de estado
+  - da requisição `XMLHttpRequest`
+
+---
+<!-- {"layout": "centered", "state":"show-active-slide-and-previous"} -->
+
+- A resposta foi isto:
+```json
 {
-  "scripts": ["../../scripts/classes/item-cloud.min.js"],
-  "styles": ["../../styles/classes/item-cloud.min.css"]
+  "quantidade": 20,
+  "arrayComNovosTweets": [
+    {
+      "autor": "Sensacionalista",
+      "texto": "Grupo de feministas pró-Bolsonaro
+                cria novo grupo: Vegetarianos
+                pró carne mal passada",
+      "curtidas": 2
+    } /* mais 19 tweets aqui... */
+  ]
 }
--->
-
-# Visão geral de funcionalidades
-
-- Escopo de bloco
-- Classes
-- Parâmetros _default_
-- _Destructuring_
-- Operadores _Rest_ e _Spread_
-- _Fat arrow_
-- _Maps_ e _Sets_
-- _Quasi-literals_
-- _Generators_
-- Módulos
-- Promessas
-
-<!-- {ul:data-state="itemcloud"} -->
+```
 
 ---
-## Escopo **de bloco**
+<!-- {"layout": "regular"} -->
+## Estados de um `XMLHttpRequest`
 
-![](../../images/three-little-pigs.jpg) <!-- {style="height: 450px"} -->
+**0	`UNSENT`**
+  ~ `open()` ainda não foi invocado
+
+**1	`OPENED`**
+  ~ `send()` ainda não foi invocado
+
+**2	`HEADERS_RECEIVED`**
+  ~ `send()` foi invocado e os cabeçalhos da resposta
+  já estão disponíveis (chegaram)
+
+**3	`LOADING`**
+  ~ fazendo _download_ da resposta
+
+**4	`DONE`**
+  ~ operação finalizada
+
+- Basicamente, precisamos de fazer algo apenas quando a requisição chega
+  ao estado **4 `DONE`**
 
 ---
-## **var**, <small>o irmão mais velho</small>
+<!-- {"layout": "2-column-content"} -->
+## Exemplo do Fumaceiro <small>(versão [_vanilla js_][fumaceiro])</small>
 
-- Declara variáveis no escopo de função (ES5)
-  ```js
-  var nome = 'Eu sou o mais velho';
+![](../../images/exemplo-ajax-fumaceiro.png) <!-- {style="max-width: 100%; border: 1px solid silver; box-shadow: 3px 3px 3px silver"} -->
 
-  function quemEhVoce() {
-     window.alert('Quem é você: ' + nome);
-     var nome = 'não sei';
+- Uma página de um jogo com **informações + avaliações**
+- Como nem todos usuários lêem avaliações, elas não são carregadas inicialmente
+  - Isso foi feito para **carregar a página mais rápido**
+- Ao clicar no botão "Mostrar avaliações", fazemos uma **requisição Ajax
+  para pegá-las** e, então, as mostramos
+
+[fumaceiro]: https://fegemo.github.io/cefet-front-end-ajax/
+
+---
+```js
+// no clique, faz um Ajax para pegar o xcom-reviews.json
+showReviewsEl.addEventListener('click', function() {
+  let requisicao = new XMLHttpRequest();
+  requisicao.open('GET', 'xcom-reviews.json');
+  requisicao.responseType = 'json';
+  requisicao.onreadystatechange = function() {
+    // chegando a resposta, põe as avaliações na página
+    if (requisicao.readyState === 4) {
+      if (requisicao.status === 200) {
+        // a resposta é um objeto js que tem 'avaliacoes'
+        let avaliacoes = requisicao.response.avaliacoes;
+
+        reviewsEl.innerHTML = '';
+        avaliacoes.forEach(criaAvaliacaoNaPagina);
+      }
+    }
   }
-
-  quemEhVoce();
-  ```
-  - _Quiz of the day_: quemEhVoce()?
+  requisicao.send();
+});
+```
 
 ---
-## **var**, <small>o irmão mais velho</small> (cont.)
+<!-- {"state": "show-active-slide-and-previous"} -->
+```json
+{
+  "avaliacoes": [
+    {
+      "autor": "Astolfo Lombardi",
+      "recomenda": true,
+      "comentario": "Um jogo de ETs sinistrões",
+      "curtidas": 18
+    },
+    {
+      "autor": "Eymael Fortunato",
+      "recomenda": true,
+      "comentario": "Rola uma parada sadia entre
+                     humanos e aliens neste jogo #sqn",
+      "curtidas": 7
+    } /* ...+2 avaliações */
+  ]
+}
+```
 
-- Resposta:
-  - `undefined` <small>([no jsfiddle](http://jsfiddle.net/R2C2v/) para os _non-believers_)</small>
-    - <span>Por quê? </span>
-      - <span>Por causa do **_hoisting_**!</span>
-- _Hoisting_: todas as declarações de variáveis e funções (mas não o seu corpo)
-  "içam" para o topo do escopo (início da função)
-  - No exemplo:
+---
+<!-- {"layout": "regular", "slideHash": "ajax-jquery"} -->
+## Ajax mais facinho **com jQuery**
+
+- O jQuery possui uma abstração do objeto `XMLHttpRequest` para facilitar a
+  realização de requisições Ajax. Exemplo:
     ```js
-    function quemEhVoce() {
-      var nome;     // nome passa a ser 'undefined' aqui
-      window.alert('...');
-      nome = 'não sei';
-    }
+    $.ajax({
+      url: '/tweets/pagina/5',
+      dataType: 'json',
+      success: function(resposta) {
+        let novosTweets = resposta.arrayComNovosTweets;
+        novosTweets.forEach(colocaTweetNaPagina);
+      }
+    });
     ```
+  - Existe [`$.getJSON({...})`][jquery-getjson], equivalente a
+    [`$.ajax({...})`][jquery-ajax] com o `dataType: 'json'`
+
+[jquery-getjson]: http://api.jquery.com/jQuery.getJSON/#jQuery-getJSON-url-data-success
+[jquery-ajax]: http://api.jquery.com/jquery.ajax/#jQuery-ajax-url-settings
 
 ---
-## **let** e **const**, <small>os gêmeos</small>
+<!-- {"layout": "regular"} -->
+## Exemplo do Fumaceiro <small>(versão [jQuery][fumaceiro-jquery])</small>
 
 ```js
-const COMIDA_DIARIA = 800; // gramas
-
-function alimentarVara(porquinhos) {
-  for (let i = 0; i < porquinhos.length; i++) {
-    porquinhos[i].alimentar(COMIDA_DIARIA);
-  }
-
-  console.log('i: ' + i);
-  // ReferenceError: i is not defined
-  COMIDA_DIARIA = 400;
-  // TypeError: Assignment to constant variable
-}
-```
-
-- Leia mais: [`let`][let] e [`const`][const] na MDN
-
-[let]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/let
-[const]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/const
-
----
-## Classes em <small>(ES5)</small>
-
-```js
-function Veiculo(marca, tipo) {
-  this.marca = marca;
-  this.tipo = tipo;
-}
-
-Veiculo.prototype.ligar = function(opcoes) {
-  //...  
-};
-
-```
-
----
-## Classes em <small>(**ES6**)</small>
-
-```js
-class Veiculo {
-  constructor(marca, tipo) {
-    this.marca = marca;
-    this.tipo = tipo;
-  }
-  ligar(opcoes) {
-    //...
-  }
-}
-```
-
----
-## Herança de Classes <small>(ES5)</small>
-
-```js
-function Carro(marca, tipo, modelo) {
-  Veiculo.call(this, marca, tipo);
-  this.modelo = modelo;
-}
-
-Carro.prototype = Object.create(Veiculo.prototype);
-Carro.prototype.ligar = function(opcoes) {
-  Veiculo.prototype.ligar.call(this, opcoes);
-  // fazer coisas específicas de um carro
-}
-```
-
----
-## Herança de Classes <small>(**ES6**)</small>
-
-```js
-class Carro extends Veiculo {
-  ligar(opcoes) {
-    super.ligar(opcoes);
-  }
-}
-```
-
-- es6fiddle:
- - [Car and vehicle](http://www.es6fiddle.net/hukmpu6l/)
- - [Item Cloud RevealJS plugin](http://www.es6fiddle.net/hukn6opl/)
-
----
-## Classes em ES6
-
-- Prós
-  - Classes tornam mais **fácil para novatos começarem** a usar JavaScript
-  - Ter um **mecanismo de herança com suporte da linguagem**
-  - Sintaxe **clara e expressiva**
-  - Previne que o programador esqueça do `new` ao usar uma função construtora
-- Contras
-  - Não há controle de privacidade (`private`, `protected`) ainda
-
----
-# **Valores Padrão** para Argumentos
-
-- Como fazemos em ES5:
-  ```js
-  function contarEstoria(lang, year) {
-    return (lang || 'C') + ' foi criada em ' + (year || 1972);
-  }
-  ```
-- Mas em ES6, podemos:
-  ```js
-  function contarEstoria(lang = 'C', year = 1972) {
-    return lang + ' foi criada em ' + year;
-  }
-  ```
-
----
-# <small>Operadores</small> **Rest** e Spread
-
-- Como podemos criar uma lista HTML, dado um array de Strings?
-  ```js
-  function criaListaHTML() {
-    var itens = Array.prototype.slice.call(arguments),
-    return '<li>' + itens.join('</li><li>') + '</li>';
-  }
-  criaListaHTML('Mario', 'Yoshi', 'Toad');
-  ```
-- Em ES6, podemos usar o **operador rest** em vez de **`arguments`**:
-  ```js
-  function criaListaHTML(...itens) {
-    return '<li>' + itens.join('</li><li>') + '</li>';
-  }
-  ```
-
----
-# <small>Operadores</small> Rest e **Spread**
-
-- Como instanciar um objeto data a partir de 3 inputs (day, month, year)?
-  ```js
-  var day = getDateDay(),
-      month = getDateMonth(),
-      year = getDateYear();
-  var d = new Date(year, month, day);
-  ```
-- Em ES6, podemos usar o **operador spread**:
-  ```js
-  var dateFields = getDateFieldsValues(),
-      d = new Date(...dateFields);
-  ```
-
----
-## <small>Operadores</small> Rest e Spread
-
-- O operador **rest** transforma um parâmetro em um _array_ de valores
-- O operador **spead** transforma um "_array_ de valores" em
-  "valores separados por vírgula"
-  ```js
-  var pets = ['rat', 'dragon', 'bee'];
-
-  console.log(pets[0], pets[1], pets[2])  // rat dragon bee
-  console.log(...pets);                   // rat dragon bee
-  ```
-  - Executar no [es6fiddle](http://www.es6fiddle.net/huktq4ed/)
-
----
-# Destructuring
-
-- Decapitando um _array_:
-  ```js
-  var [head, ...tail] = [1, 2, 3, 4];
-  console.log(tail);  // imprime [2, 3, 4]
-  ```
-  - Usa **destructuring** E o operador **spread**
-- Trocando o valor de 2 variáveis sem usar uma terceira:
-  ```js
-  var a = 1;
-  var b = 3;
-
-  [a, b] = [b, a];  // a=3, b=1
-  ```
-
----
-## Destructuring <small>um objeto</small>
-
-```js
-var musica = {
-  titulo: 'The Scarecrow',
-  artista: 'Avantasia',
-  album: {
-    titulo: 'Scarecrow',
-    data: '2006'
-  }
-};
-
-function registrarMusicaEscutada(
-  {
-    titulo,
-    artista,
-    album: {
-      data: ano
+$('#show-reviews').click(function() {
+  $.ajax({
+    url: 'xcom-reviews.json',
+    dataType: 'json',
+    success: function(resposta) {
+      // a resposta é um objeto js que contém uma propriedade avaliacoes
+      let avaliacoes = resposta.avaliacoes;
+      // limpamos a <div id="reviews">...</div>
+      $reviews.empty();
+      // percorremos as avaliacoes, colocando elementos na página
+      avaliacoes.forEach(criaAvaliacaoNaPagina);
     }
-  }) {
-
-  console.log('Título: ' + titulo);
-  console.log('Artista: ' + artista);
-  console.log('Ano: ' + ano);
-};
-
-registrarMusicaEscutada(musica);
-/*
-Título: The Scarecrow
-Artista: Avantasia
-Ano: 2006
-*/
+  });
+});
 ```
 
----
-## String templates <small>(quasi-literals)</small>
-
-- Você já viu isto?
-  ```js
-  var tom = Math.random() * 155 + 100;
-  var cor = 'rgb('+ tom  +', ' + tom + ', ' + tom + ')';
-  ```
-- Há uma forma melhor:
-  ```js
-  var tom = Math.random() * 155 + 100;
-  var cor = `rgb(${tom}, ${tom}, ${tom})`;
-  ```
-- Isto se chama _**string interpolation**_
+[fumaceiro-jquery]: https://fegemo.github.io/cefet-front-end-ajax/index-jquery.html
 
 ---
-## String templates <small>(quasi-literals)</small> (cont.)
+<!-- {"layout": "section-header", "slideHash": "guerras-estelares"} -->
+# Guerras Estelares :stars:
+## Intro nas estrelas
 
-- E isto:
-  ```js
-  console.log('Cart total: R$ ' + (quantity * unitPrice) + ',00');
-  ```
-- Se torna:
-  ```js
-  console.log(`Cart total: R\$ ${quantity * unitPrice},00`);
-  ```
-- É possível colocar uma expressão, não apenas 1 variável
+- Usos comuns de Ajax
+- Atividade de hoje
+
+<!-- {ul:.content} -->
 
 ---
-## Multilinhas com String templates
-
-- Fazendo com que uma **literal string** possa ser **representada em
-  várias linhas**:
-<div class="layout-split-2" style="height: auto;">
-  <section style="border-right: 4px dotted silver; background: aliceblue;">
-    <h3>Em ES5:</h3>
-    <pre style="text-align: left; ">
-      <code class="hljs">var poema = [
-    'Cavei, cavei, cavei',
-    'Isto não é um poema',
-    'Mas é profundo.']
-      .join('\n');</code>
-    </pre>
-  </section>
-  <section style="background: darkseagreen;">
-    <h3>Em <strong>ES6</strong>:</h3>
-    <pre style="text-align: left;">
-      <code class="hljs">var poema =
-  `Cavei, cavei, cavei
-   Isto não é um poema
-   Mas é profundo.`;</code>
-    </pre>
-  </section>
-</div>
+<!-- {"backdrop": "starwars"} -->
 
 ---
-## String templates
+<!-- {"layout": "regular"} -->
+## Usos comuns de Ajax
 
-Forma geral:
+- Pegar novas informações depois que a página carregou. Exemplos:
+  - Carregar mais _tweets_
+  - Carregar mais produtos
+  - Carregar avaliações, comentários
+  - Carregar a próxima fase de um jogo
+- Avisar ao _back-end_ que algo mudou, sem sair da página. Exemplos:
+  - Botão curtir
+  - Enviar um comentário
+  - Adicionar produto ao carrinho
+- Pegar informações **de outros sites** (se eles permitirem)
+  - Basta usar uma URL absoluta, por exemplo, colocando
+    [`https://swapi.co/api/films/1/`][swapi-example] como a URL
 
-```js
-tag`literal${substitution}literal`
-```
-
-...onde a _tag_ é uma função que pode pós-processar o template depois que
-a substituição acontece.
-
-Veja mais em: [A critical review of ES6 quasi-literals](http://www.nczonline.net/blog/2012/08/01/a-critical-review-of-ecmascript-6-quasi-literals/#content)
-
----
-## String templates
-
-- Prós
-  - Criação de strings mais elemgante e expressiva
-  - Strings multilinha
-  - Facilita a criação de DSLs
-- Contras
-  - As variáveis interpoladas devem estar no mesmo escopo
-  ```js
-  var msg = `Hello, ${place}`;    // dá erro
-  ```
-  - Não é possível externalizar (e.g., para outro arquivo) as strings
-
+[swapi-example]: https://swapi.co/api/films/1/
 
 ---
-# Usando ES6 hoje
+<!-- {"layout": "regular"} -->
+# Intro nas Estrelas
+
+- Vamos criar um letreiro Star Wars em JavaScript e CSS \o/
+- Você deve escrever código JavaScript para fazer chamadas Ajax para
+  uma API pública com informações sobre Star Wars
+  - Disponível em https://swapi.co/
+- Mais instruções no Moodle
 
 ---
-## _Can I Use_ caniuse.com?
+# Referências
 
-- Ainda hoje, nenhum navegador suporta todas as funcionalidades do es6
-- Existe uma tabela curada que mostra a compatibilidade por _feature_:
-  ![](../../images/es6-compatibility-table.jpg) <!-- {.small-height.block} -->
+1. Mozilla Developer Network (MDN)
+1. [Artigo que batizou a técnica de Ajax][artigo-ajax], de Jesse James Garret
 
-Veja na [ECMAScript 6 _compatibility table_](http://kangax.github.io/es5-compat-table/es6/) do Kangax
-
----
-## Usando ES6 hoje
-
-- Podemos usar um **_transpiler_** para transformar ES6 em ES5!!
-- O mais usado hoje em dia é o [babel](https://babeljs.io/), que bastante
-  agilmente implementa os _specs_ ES6
-  ![](../../images/babel-logo.svg) <!-- {.small-height.block} -->
-- Aqui está a
-  [lista de funcionalidades](https://babeljs.io/docs/learn-es2015/#ecmascript-6-features)
-  suportadas pelo babel
+[artigo-ajax]: http://adaptivepath.org/ideas/ajax-new-approach-web-applications/
 
 ---
-# Funcionalidades não cobertas
+<!-- {"slideHash": "setup-local-server"} -->
+## Erro ao fazer o AJAX (slide oculto :P)
 
-## Alto impacto
-
-- Modules
-- Promises
-- Generators
-- Annotations
-
----
-# Funcionalidades não cobertas
-
-## Não tão impactantes
-
-- Maps and Sets
-- Computed Property Names
-- Iterators and for-of
-- Symbols
-- Object Initializer Shorthand
-- Array Comprehension
-
----
-# Aprenda mais
-
-1. [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read)
-1. [Use ECMAScript 6 Today, at tutsplus.com](http://code.tutsplus.com/articles/use-ecmascript-6-today--net-31582)
-1. [Examples of use of let, const and optional params](http://peter.michaux.ca/articles/javascript-is-dead-long-live-javascript)
-1. [ECMAScript 6 compatibility table](http://kangax.github.io/es5-compat-table/es6/)
-1. [ES6 Classes](http://www.2ality.com/2012/07/esnext-classes.html)
-
----
-## Aprenda mais ainda
-
-1. [ES6 Modules](http://www.infoq.com/news/2013/08/es6-modules)
-1. [ES6 Fiddle](http://www.es6fiddle.net/)
-1. [A Critical Review of quasi-literals](http://www.nczonline.net/blog/2012/08/01/a-critical-review-of-ecmascript-6-quasi-literals/)
-1. [Destructuring Assignment in ECMAScript 6](http://fitzgeraldnick.com/weblog/50/)
+- Os navegadores têm uma política de permissões diferente para quando
+  acessamos uma página via o protocolo file:// que proíbe o uso de
+  requisições Ajax, dentre outras coisas
+- Para contornar a restrição, precisamos hospedar nosso arquivo em um servidor
+  Web e acessar a página usando o protocolo HTTP
+  1. Navegue até seu diretório com o arquivo index.html **pelo terminal**
+  1. Use um servidor http simples em python
+     ```bash
+     $ python -m SimpleHTTPServer
+     ```
+  1. Acesse http://localhost:8000 no navegador
