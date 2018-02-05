@@ -859,6 +859,125 @@ abbr[title] {
     right: 2vw;
   }
 }
+.gallery > ul {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gallery > ul > li {
+  list-style-type: none;
+}
+.gallery img {
+  width: 300px;
+}
+.gallery.fish-eye {
+  height: 100%;
+  width: 100%;
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+.gallery.fish-eye > ul {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  animation: spin 25s linear infinite;
+}
+.gallery.fish-eye > ul:hover {
+  animation-play-state: paused;
+}
+.gallery.fish-eye > ul > li {
+  position: absolute;
+  width: 300px;
+  box-sizing: border-box;
+  opacity: 0.9;
+  transition: all 200ms ease-out;
+}
+.gallery.fish-eye > ul > li:nth-child(1) {
+  transform: rotateY(0deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(1):hover {
+  transform: scale(1.1) rotateY(0deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(2) {
+  transform: rotateY(40deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(2):hover {
+  transform: scale(1.1) rotateY(40deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(3) {
+  transform: rotateY(80deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(3):hover {
+  transform: scale(1.1) rotateY(80deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(4) {
+  transform: rotateY(120deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(4):hover {
+  transform: scale(1.1) rotateY(120deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(5) {
+  transform: rotateY(160deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(5):hover {
+  transform: scale(1.1) rotateY(160deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(6) {
+  transform: rotateY(200deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(6):hover {
+  transform: scale(1.1) rotateY(200deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(7) {
+  transform: rotateY(240deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(7):hover {
+  transform: scale(1.1) rotateY(240deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(8) {
+  transform: rotateY(280deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(8):hover {
+  transform: scale(1.1) rotateY(280deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li:nth-child(9) {
+  transform: rotateY(320deg) translateZ(412px);
+}
+.gallery.fish-eye > ul > li:nth-child(9):hover {
+  transform: scale(1.1) rotateY(320deg) translateZ(412px);
+  opacity: 1;
+}
+.gallery.fish-eye > ul > li img {
+  border: 1px solid #c0c0c0;
+}
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-360deg);
+  }
+}
 /* fonts for browser icons (used with permission from IcoMoon.io) */
 @font-face {
   font-family: 'agents';
