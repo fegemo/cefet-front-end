@@ -244,6 +244,40 @@ bespoke.from('article', [
         }
       }
     ],
+    [
+      markdownItContainer,
+      'gallery',
+      {
+        validate: (params) => params.trim().match(/^gallery.*$/),
+        render: (tokens, idx, options, env, self) => {
+          // formato:
+          // ::: gallery .primeira-classe.segunda.terceira background-color: white; color: black;
+          // - [![Descricao](imagem)](link)
+          // - [![Descricao](imagem)](link)
+          // :::
+          // as classes devem estar "coladas" uma na outra e são opcionais
+          // após as classes, é possível definir uma string de estilos, que
+          // também é opcional. Se a string de estilos for definida, é
+          // necessário definir pelo menos 1 classe (ou então colocar apenas um
+          // ponto final sem nome de classe)
+          const m = tokens[idx].info.trim().match(/^gallery\s+([^\s]*)\s*(.*)?$/);
+          let  className = '',
+            styleString = '';
+
+          if (tokens[idx].nesting === 1) {
+            // opening tag
+            if (!!m && Array.isArray(m)) {
+              className = (m[1] || '').trim().replace(/\./g, ' ');
+              styleString = (m[2] || '').trim();
+            }
+            return `<div class="gallery ${className}" style="${styleString}">\n`;
+          } else {
+            // closing tag
+            return '</div>\n';
+          }
+        }
+      }
+    ],
     markdownItAnchor,
     markdownItDefList,
     markdownItAbbr,

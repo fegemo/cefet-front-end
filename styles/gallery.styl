@@ -1,0 +1,53 @@
+
+.gallery
+  > ul
+    display flex
+    flex-wrap wrap
+    justify-content space-evenly
+    margin 0
+    padding 0
+    list-style none
+    > li
+      list-style-type none
+  img
+    width 300px
+
+$fish-eye-radius = 412px
+
+.gallery.fish-eye
+  height 100%
+  width 100%
+  perspective 900px
+  transform-style preserve-3d
+  > ul
+    flex-wrap nowrap
+    justify-content center
+    align-items center
+    height 100%
+    width 100%
+    transform-style preserve-3d
+    animation spin 25s linear infinite
+    &:hover
+      animation-play-state paused
+    > li
+      position absolute
+      width 300px
+      box-sizing border-box
+      opacity 0.9
+      transition all 200ms ease-out
+
+      for i in 0 1 2 3 4 5 6 7 8
+        &:nth-child({i+1})
+          transform rotateY(i * 40deg) translateZ($fish-eye-radius)
+          &:hover
+            transform scale(1.1) rotateY(i * 40deg) translateZ($fish-eye-radius)
+            opacity 1
+
+      img
+        border 1px solid silver
+
+@keyframes spin
+  0%
+    transform rotateY(0deg)
+  100%
+    transform rotateY(-360deg)
