@@ -880,7 +880,7 @@ Content-Length: 131
         <meta name="viewport" content="width=device-width">
         <title>Raças Raras de Ovelhas</title>
         <link rel="stylesheet" href="estilos.css">
-        <link rel="icon" href="imagens/favicon.png" type="image/png">
+        <link rel="icon" href="imagens/ovelhinha.png" type="image/png">
       </head>
       <body>
         <h1>Raças <strong>Raras</strong> de Ovelhas</h1>
