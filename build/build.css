@@ -247,6 +247,46 @@ div.did-you-know::before {
 .code-split-2 pre.hljs + pre.hljs {
   margin-top: 0;
 }
+.full-width {
+  width: 100%;
+}
+ul.item-code-with-image {
+  padding-left: 0;
+  list-style-type: none;
+}
+ul.item-code-with-image li {
+  clear: right;
+  margin-bottom: 1em;
+}
+ul.item-code-with-image li > img {
+  float: right;
+  margin-left: 1em;
+}
+.compact-code pre,
+.compact-code-more pre {
+  line-height: 1em;
+}
+.compact-code-more pre {
+  font-size: 75%;
+}
+.badge {
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #333;
+  color: #666;
+  font-size: 75%;
+  line-height: 1em;
+  padding: 0.1em 0.2em;
+}
+.badge.type1 {
+  color: #008080;
+  border-color: #008080;
+}
+.badge.type2 {
+  color: #6495ed;
+  border-color: #6495ed;
+}
 #easter-egg-panel {
   position: absolute;
   right: 1vw;
@@ -604,6 +644,9 @@ ol.no-list-icon {
 }
 .full-width-slides img {
   max-width: 100%;
+}
+.bespoke-slide.layout-regular {
+  padding: 1.5rem;
 }
 .layout-regular-horizontal {
   -ms-flex-direction: row;

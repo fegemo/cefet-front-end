@@ -144,20 +144,20 @@ Content-Length: 131
   - **Codificação** (_encoding_) da página
   - Ícone
   - Inclusão de arquivos (`.css`, `.js`)
-- Trecho de código
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Este é o título que aparece na aba</title>
-    ...
-  </head>
-  <body>
-    ...
-  </body>
-</html>
-```
+- Trecho de código <!-- {li:.compact-code-more} -->
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Este é o título que aparece na aba</title>
+      ...
+    </head>
+    <body>
+      ...
+    </body>
+  </html>
+  ```
 
 ---
 ## A _tag_ &lt;body&gt;
@@ -168,14 +168,15 @@ Content-Length: 131
   - títulos e subtítulos (`<h1>...</h1>`)
   - imagens (`<img>`), etc.
 - Trecho de código
-```html
-<html>
-  <head>...</head>
-  <body>
-    ...
-  </body>
-<html>
-```
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <head>...</head>
+    <body>
+      ...
+    </body>
+  <html>
+  ```
 
 ---
 <!-- {"layout": "section-header", "slideHash": "tags-html"} -->
@@ -191,31 +192,41 @@ Content-Length: 131
 <!-- {ul:.content} -->
 
 ---
-## Anatomia de uma _tag_
+## Anatomia de uma **_tag_**
 
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.png)
+::: figure .figure-slides
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-5.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
 
-- Tags de abertura podem ter **atributos**:
+- Tags de abertura podem ter **atributos**: <!-- {ul:.bulleted} -->
   ```html
   <img src="bob-esponja.png">
   ```
   - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
-  - **Não deve haver espaço** entre seu nome e seu valor: `<img src = "...">`
+  - **Não deve haver espaço** entre seu nome e seu valor:
+    - `<img src = "...">` <span style="color: red">:thumbsdown:</span>
+    - `<img src="...">` <span style="color: green">:thumbsup:</span>
 
 ---
-<!-- {"slideHash": "tag-paragrafo"} -->
+<!-- {"layout": "regular", "slideHash": "tag-paragrafo"} -->
 ## _Tag_ de **<u>Parágrafo</u>** (`<p>...</p>`)
 
-- **Quebras de linha** são feitas automaticamente
-```html
-<p>
-  "Um dos maiores problemas encontrados em viajar no tempo não é
-  vir a se tornar acidentalmente seu próprio pai ou mãe. Não há
-  nenhum problema em tornar-se seu próprio pai ou mãe com que
-  uma família de mente aberta e bem ajustada não possa lidar."
-</p>
-```
-<iframe width="100%" src="https://jsfiddle.net/fegemo/62afu86f/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- **Quebras de linha** são feitas automaticamente <!-- {li:.compact-code} -->
+  ```html
+  <p>
+    "Um dos maiores problemas encontrados em viajar no tempo não é vir a se tornar
+    acidentalmente seu próprio pai ou mãe. Não há nenhum problema em tornar-se
+    seu próprio pai ou mãe com que uma família de mente aberta e bem ajustada não
+    possa lidar."
+  </p>
+  ```
+  ::: result . width: 80%; margin: 1em auto;
+  "Um dos maiores problemas encontrados em viajar no tempo não é vir a se tornar acidentalmente seu próprio pai ou mãe. Não há nenhum problema em tornar-se seu próprio pai ou mãe com que uma família de mente aberta e bem ajustada não possa lidar."
+  :::
 
 ---
 <!-- {"layout": "2-column-content","slideHash": "tag-titulo-subtitulo"} -->
@@ -231,37 +242,63 @@ Content-Length: 131
 <iframe width="100%" height="260" src="//jsfiddle.net/fegemo/wxd5s6be/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - Há a possibilidade de ter **6 <u>níveis</u> de títulos**
-  - Mas a quantidade de títulos é infinita
+  - Mas a quantidade de títulos é infinita... por exemplo :arrow_right:
+
+<iframe width="100%" height="260" src="//jsfiddle.net/fegemo/qLc41vs3/embedded/html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"slideHash": "tag-imagem"} -->
+<!-- {"layout": "regular", "slideHash": "tag-imagem"} -->
 ## _Tag_ de **<u>Imagem</u>** (`<img>`)
 
-- Para exibir imagens...
+- ![Mascote do programa GitKraken](https://fegemo.github.io/kraken-typing/imgs/site/logo-gitkraken.png)  
+  <!-- {.push-right height="100px"} -->
+  Para exibir imagens...
   ```html
   <img src="http://fegemo.github.io/kraken-typing/imgs/kraken.png">
   ```
-  ![Mascote do programa GitKraken](https://fegemo.github.io/kraken-typing/imgs/site/logo-gitkraken.png)  <!-- {.block.centered height="100px"} -->
-- Neste exemplo, usamos **a URL da imagem hospedada em outro
+- Neste exemplo, usamos **a URL de uma imagem hospedada em outro
   site** na Internet
-  - **URLs externas** devem ser sempre absolutas (mostar o caminho completo)
-- **URLs internas** (endereços, ou caminhos) podem ser **absolutas** ou **relativas**
+- O atributo `src="..."` (abreviação de _source_) é usado para definir o
+  endereço (URL) da imagem
+- Uma URL pode ser **externa** ou **interna** <!-- {.alternate-color} -->
+  - Veja a diferença no próximo slide
 
 ---
-<!-- {"slideHash": "end-relativo-absoluto"} -->
+<!-- {"layout": "regular"} -->
+## URL externa vs interna
+
+URL **externa**
+  ~ Aponta para algo (imagem etc.) de um outro site
+  ~ Quase sempre começa com `http://` ou `https://`. Exemplos:
+    - http://google.com
+    - http://fegemo.github.io/imgs/kraken.png
+    - https://twitter.com/elonmusk
+
+URL **interna** <!-- {.alternate-color} -->
+  ~ Aponta para algo da própria página/site
+  ~ Pode ser um caminho <span class="badge type1">relativo</span> ou <span class="badge type2">absoluto</span>.
+    - racas-raras.html <span class="badge type1">relativo</span>
+    - imagens/ovelha.jpg <span class="badge type1">relativo</span>
+    - ../imgs/logo.png <span class="badge type1">relativo</span>
+    - /arquivos/fotosdafesta.zip <span class="badge type2">absoluto</span>
+
+---
+<!-- {"layout": "regular", "slideHash": "end-relativo-absoluto"} -->
 ## Exemplo 1: Arquivo HTML e imagem **na mesma pasta**
 
 - ![Página exibindo a descrição e imagem da Pirá-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-right style="height: 140px;"} -->
   Arquivo HTML está em:<br>`/ovelhas/racas/raras.html`
 - A imagem está em:<br>`/ovelhas/racas/pira-tovelha.jpg`
-  - Podemos utilizar seu **endereço absoluto**: `/ovelhas/racas/pira-tovelha.jpg`
+  - Podemos utilizar seu endereço <span class="badge type2">absoluto</span>: `/ovelhas/racas/pira-tovelha.jpg`
     ```html
     <img src="/ovelhas/racas/pira-tovelha.jpg">
     ```
-  - Ou seu **endereço relativo**: `pira-tovelha.jpg` (relativo à página atual)
+  - Ou seu endereço <span class="badge type1">relativo</span>: `pira-tovelha.jpg` (relativo à página atual) <!-- {li:.bullet} -->
     ```html
     <img src="pira-tovelha.jpg">
     ```
+    - Apenas o nome da imagem, porque ela está <u>na mesma pasta</u> que
+      o arquivo HTML <!-- {li:.bullet} -->
 
 ---
 ## Exemplo 2: Imagem 1 pasta adentro
@@ -269,11 +306,11 @@ Content-Length: 131
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-left style="height: 140px"} -->
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right style="height: 140px"} -->
 
-- **Endereço absoluto**: `/ovelhas/racas/img/pira-tovelha.jpg`
+- Endereço <span class="badge type2">absoluto</span>: `/ovelhas/racas/img/pira-tovelha.jpg`
   ```html
   <img src="/ovelhas/racas/img/pira-tovelha.jpg">
   ```
-- **Endereço relativo**: `img/pira-tovelha.jpg`
+- Endereço <span class="badge type1">relativo</span>: `img/pira-tovelha.jpg`
   ```html
   <img src="img/pira-tovelha.jpg">
   ```
@@ -284,11 +321,11 @@ Content-Length: 131
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)<!-- {.push-left style="height: 140px"} -->
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right style="height: 140px"} -->
 
-- **Endereço absoluto**: `/ovelhas/pira-tovelha.jpg`
+- Endereço <span class="badge type2">absoluto</span>: `/ovelhas/pira-tovelha.jpg`
   ```html
   <img src="/ovelhas/pira-tovelha.jpg">
   ```
-- **Endereço relativo**: `../pira-tovelha.jpg`
+- Endereço <span class="badge type1">relativo</span>: `../pira-tovelha.jpg`
   ```html
   <img src="../pira-tovelha.jpg">
   ```
@@ -299,11 +336,11 @@ Content-Length: 131
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)<!-- {.push-left style="height: 140px"} -->
 ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!--{.push-right style="height: 140px"} -->
 
-- **Endereço absoluto**: `/pira-tovelha.jpg`
+- Endereço <span class="badge type2">absoluto</span>: `/pira-tovelha.jpg`
   ```html
   <img src="/pira-tovelha.jpg">
   ```
-- **Endereço relativo**: `../../pira-tovelha.jpg`
+- Endereço <span class="badge type1">relativo</span>: `../../pira-tovelha.jpg`
   ```html
   <img src="../../pira-tovelha.jpg">
   ```
@@ -316,14 +353,21 @@ Content-Length: 131
 
 <!-- {p:style="width: 20%"} -->
 
-| Endereço Absoluto          	| End. Relativo 	|
-|---------------------------	|---------------	|
-| /ovelhas/racas/c.jpg      	| `c.jpg`        	|
-| /ovelhas/racas/xpto/d.jpg 	| `xpto/d.jpg`   	|
-| /ovelhas/b.jpg            	| `../b.jpg`     	|
-| /a.jpg                    	| `../../a.jpg`  	|
+| Endereço <span class="badge type2">absoluto</span>          	| Endereço <span class="badge type1">relativo</span> |
+|:--------------------------	|:-------------	|
+| /ovelhas/racas/c.jpg      	| c.jpg        	|
+| /ovelhas/racas/xpto/d.jpg 	| xpto/d.jpg   	|
+| /ovelhas/b.jpg            	| ../b.jpg     	|
+| /a.jpg                    	| ../../a.jpg  	|
 
 <!-- {table:style="width: 75%"} -->
+
+1. Durante este ano, **prefira usar endereços <span class="badge type1">relativos</span> sempre**
+
+- Como estamos acessando as páginas HTML "dando 2 cliques"
+  (sem um servidor Web), um endereço <span class="badge type2">absoluto</span> começa na raiz do sistema
+  de arquivos (_e.g._, "C:\") e não devemos especificar endereços dessa forma
+
 ---
 <!-- {"slideHash": "tag-hiperlink"} -->
 ## _Tag_ de **_Hyperlink_** (`<a href="">...</a>`)
@@ -350,14 +394,15 @@ Content-Length: 131
   :::
 
 ---
-## Como o navegador decide **como vai exibir** as _tags_ html?
+<!-- {"layout": "main-point"} -->
+## Como o navegador <u>vai desenhar</u> as _tags_ HTML?
 
-- Estilos padrão
-  - Cor: preto
-  - Fundo de tela: branco
-  - Fonte: Times New Roman
+- Ele usa estilos padrão:
+  - Cor: preta
+  - Fundo de tela: branca
+  - Fonte: Times New Roman (no Windows)
 - Cada navegador pode ter um estilo padrão diferente
-- É possível e altamente recomendável **criar estilos próprios**
+- É possível e altamente recomendável <u>criar estilos próprios</u>
 - Vamos conhecer agora uma segunda linguagem: CSS
 
 ---
@@ -422,6 +467,7 @@ h2 {
 ...e o resultado...
 
 ---
+<!-- {"layout": "regular"} -->
 ## Definindo o estilo (cont.)
 
 <iframe width="100%" height="500" src="//jsfiddle.net/fegemo/ojmwh8gb/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -477,38 +523,34 @@ h2 {
   Define a **fonte** sendo usada para o texto de **todos `<h1>` na página**
 
 ---
-<!-- {"slideHash": "css-alinhamentoTexto"} -->
-## Entendendo o estilo: **alinhamento do texto** (1/2)
+<!-- {"layout": "regular", "slideHash": "css-alinhamentoTexto"} -->
+## Entendendo o estilo: **alinhamento do texto**
 
-- ![](../../images/text-align-justify.png) <!-- {.push-right} -->
+- ![](../../images/text-align-justify.png) <!-- {ul:.item-code-with-image.full-width.compact-code} -->
   ```css
   p {
     text-align: justify;
   }
   ```
--
-- ![](../../images/text-align-left.png) <!-- {.push-right} -->
+- ![](../../images/text-align-left.png)
   ```css
-  p{
+  p {
     text-align: left; /* valor padrão */
   }
   ```
----
-## Entendendo o estilo: **alinhamento do texto** (2/2)
-
-- ![](../../images/text-align-right.png) <!-- {.push-right} -->
+- ![](../../images/text-align-right.png)
   ```css
-  p{
+  p {
     text-align: right;
   }
   ```
--
 - ![](../../images/text-align-center.png) <!-- {.push-right} -->
   ```css
-  p{
+  p {
     text-align: center;
   }
   ```
+
 ---
 # Referências
 
