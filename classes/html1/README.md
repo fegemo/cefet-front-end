@@ -477,38 +477,34 @@ h2 {
   Define a **fonte** sendo usada para o texto de **todos `<h1>` na página**
 
 ---
-<!-- {"slideHash": "css-alinhamentoTexto"} -->
-## Entendendo o estilo: **alinhamento do texto** (1/2)
+<!-- {"layout": "regular", "slideHash": "css-alinhamentoTexto"} -->
+## Entendendo o estilo: **alinhamento do texto**
 
-- ![](../../images/text-align-justify.png) <!-- {.push-right} -->
+- ![](../../images/text-align-justify.png) <!-- {ul:.item-code-with-image.full-width.compact-code} -->
   ```css
   p {
     text-align: justify;
   }
   ```
--
-- ![](../../images/text-align-left.png) <!-- {.push-right} -->
+- ![](../../images/text-align-left.png)
   ```css
-  p{
+  p {
     text-align: left; /* valor padrão */
   }
   ```
----
-## Entendendo o estilo: **alinhamento do texto** (2/2)
-
-- ![](../../images/text-align-right.png) <!-- {.push-right} -->
+- ![](../../images/text-align-right.png)
   ```css
-  p{
+  p {
     text-align: right;
   }
   ```
--
 - ![](../../images/text-align-center.png) <!-- {.push-right} -->
   ```css
-  p{
+  p {
     text-align: center;
   }
   ```
+
 ---
 # Referências
 
