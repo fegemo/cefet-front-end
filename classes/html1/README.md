@@ -129,9 +129,9 @@ Content-Length: 131
 ---
 ## A _tag_ &lt;html&gt;
 
-- Envolve todas* as outras _tags_
-  - *Exceto a _tag_ especial `<!DOCTYPE html>`
-- Dentro dela, **devem existir todas e apenas**, nesta ordem:
+- Envolve **todas** as outras _tags_
+  - **Exceto** a _tag_ especial `<!DOCTYPE html>`
+- Dentro dela, deve existir as seguintes _tags_, nesta ordem:
   - `<head>...</head>`
   - `<body>...</body>`
 
@@ -330,13 +330,24 @@ Content-Length: 131
 
 - [Link externo](http://www.google.com) (para fora da página):
   ```html
-  <a href="http://www.google.com">Link externo</a>
+  <a href="http://www.google.com">Texto do link externo</a>
   ```
+  ::: result
+
+    <a href="http://www.google.com">Texto do link externo</a>
+
+  :::
+
 - [Link interno](../../attachments/exemplo.zip) (para algo hospedado no
   próprio computador)
   ```html
-  <a href="downloads/exemplo.zip">Link interno</a>
+  <a href="downloads/exemplo.zip">Texto do link interno</a>
   ```
+  ::: result
+
+    <a href="../../attachments/exemplo.zip">Texto do link interno</a>
+
+  :::
 
 ---
 ## Como o navegador decide **como vai exibir** as _tags_ html?
@@ -346,7 +357,7 @@ Content-Length: 131
   - Fundo de tela: branco
   - Fonte: Times New Roman
 - Cada navegador pode ter um estilo padrão diferente
-- É possível e altamente recomendável **criar estilos próprios**
+- É possível e altamente recomendável **criar estilos próprios**
 - Vamos conhecer agora uma segunda linguagem: CSS
 
 ---
@@ -467,7 +478,7 @@ h2 {
 
 ---
 <!-- {"slideHash": "css-alinhamentoTexto"} -->
-## Entendendo o estilo: **alinhamento do texto**
+## Entendendo o estilo: **alinhamento do texto** (1/2)
 
 - ![](../../images/text-align-justify.png) <!-- {.push-right} -->
   ```css
@@ -475,61 +486,29 @@ h2 {
     text-align: justify;
   }
   ```
+-
 - ![](../../images/text-align-left.png) <!-- {.push-right} -->
   ```css
-  text-align: left; /* valor padrão */
+  p{
+    text-align: left; /* valor padrão */
+  }
   ```
+---
+## Entendendo o estilo: **alinhamento do texto** (2/2)
+
 - ![](../../images/text-align-right.png) <!-- {.push-right} -->
   ```css
-  text-align: right;
+  p{
+    text-align: right;
+  }
   ```
+-
 - ![](../../images/text-align-center.png) <!-- {.push-right} -->
   ```css
-  text-align: center;
+  p{
+    text-align: center;
+  }
   ```
-
-<!--
-## Entendendo o estilo (cont.)
-
-- Coloca uma **borda** preta (_black_) com largura de 2px e pontilhada (_dotted_):
-  ```css
-  border: 2px dotted black;
-  ```
-- Altera a **fonte** para `sans-serif` (parecida com Arial):
-  ```css
-  font-family: sans-serif;
-  ```
-
-## Entendendo o estilo (cont.)
-
-- Define um **espaço de preenchimento** de 10px entre a borda e o conteúdo
-  ```css
-  padding: 10px 10px 10px 10px;
-  ```
-  - `padding:` é um atalho para
-    - `padding-top:`
-    - `padding-right:`
-    - `padding-bottom:`
-    - `padding-left:`
-  - Se usarmos a propriedade de atalho, definimos valores para as propriedades
-    originais na ordem acima (cima, direita, baixo, esquerda)
-
-## Mais sobre atalhos
-
-- Os **resultados são idênticos** de se fazer:
-- ```css
-  padding: 10px 10px 10px 10px;
-  ```
-- ```css
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  ```
-- ```css
-  padding: 10px;
-  ```
--->
 ---
 # Referências
 
