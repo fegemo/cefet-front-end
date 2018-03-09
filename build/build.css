@@ -263,10 +263,12 @@ ul.item-code-with-image li > img {
   margin-left: 1em;
 }
 .compact-code pre,
-.compact-code-more pre {
+.compact-code ~ pre {
   line-height: 1em;
 }
-.compact-code-more pre {
+.compact-code-more pre,
+.compact-code-more ~ pre {
+  line-height: 1em;
   font-size: 75%;
 }
 .badge {
@@ -645,7 +647,8 @@ ol.no-list-icon {
 .full-width-slides img {
   max-width: 100%;
 }
-.bespoke-slide.layout-regular {
+.bespoke-slide.layout-regular,
+.bespoke-slide.layout-regular-block {
   padding: 1.5rem;
 }
 .layout-regular-horizontal {
