@@ -211,13 +211,13 @@ ul.item-code-with-image
     float right
     margin-left 1em
 
-.compact-code
-  pre
-    line-height 1em
-.compact-code-more
-  @extends .compact-code
-  pre
-    font-size 75%
+.compact-code pre,
+.compact-code ~ pre
+  line-height 1em
+.compact-code-more pre,
+.compact-code-more ~ pre
+  line-height 1em
+  font-size 75%
 
 .badge
   display inline-block

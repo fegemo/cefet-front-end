@@ -68,16 +68,6 @@
 1. [Estilizando tabelas](#estilizando-tabelas)
 1. [Piratas e seus tesouros](#piratas-e-seus-tesouros) 👑
 
-<!--
-1. [HTML: Tabelas e seus elementos](#tabelas)
-1. [Mais sobre bordas em **CSS**](#bordas)
-1. [A propriedade `border-collapse` em tabelas](#propriedade-border-collapse)
-1. [_Margin_ vs _Padding_](#margin-e-padding)
-1. [Definição da largura de um elemento](#largura-de-elementos)
-1. [Mais propriedades **CSS** para fontes e textos](#outras-propriedades-do-texto)
-1. [Piratas e seus tesouros](#piratas-e-seus-tesouros) 👑
- -->
-
 
 ---
 <!-- {"slideHash": "tabelas"} -->
@@ -131,14 +121,14 @@ Nesta aula iremos:
 - As _tags_ `<td>` e `<th>` **devem** estar dentro de uma linha (`<tr>`)
 
 ---
-<video src="../../videos/coding-simple-table.mp4" width="802" height="456" controls style="margin: 0 auto;"></video>
+<!-- {"playMediaOnActivation": {"selector": "#simple-table" }} -->
+<video src="../../videos/coding-simple-table.mp4" id="simple-table" width="802" height="456" controls style="margin: 0 auto;"></video>
 
 - Repare que, por padrão, as células `<th>` ficam em <span style="font-weight: bold;">negrito</span>
 
 ---
 <!-- {"slideHash": "meclando-celulas-horizontais-e-verticais", "layout": "2-column-content"} -->
 ## Mesclando células **horizontais** e **verticais**
-
 
 ```html
 <table>
@@ -162,7 +152,7 @@ Nesta aula iremos:
 ---
 ## A tabela do nosso exemplo
 
-<iframe width="65%" height="375" src="https://jsfiddle.net/danielhasan/nmrbhqkb/17/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="65%" height="375" src="https://jsfiddle.net/danielhasan/nmrbhqkb/17/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - OBS: Como ainda não alteramos o **estilo**, ainda não há **borda**
 
@@ -200,13 +190,15 @@ Nesta aula iremos:
 ---
 ## Tabela do nosso exemplo <ins>(com caption)</ins>
 
-<iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/19/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/19/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - OBS: Como ainda não alteramos o **estilo**, ainda não há **borda**
 
 ---
 <!-- {"slideHash": "tag-de-cabecalho-e-rodape", "layout": "2-column-content", "embeddedStyles": "pre.hljs { max-height: 100%; }"} -->
 ## _Tags_ de **cabeçalho**, **corpo** e **rodapé** da tabela
+
+<!-- {h2:.compact-code-more} -->
 
 ```html
 <table>
@@ -231,6 +223,7 @@ Nesta aula iremos:
   </tfoot>
 </table>
 ```
+
 - Exemplo: https://jsfiddle.net/danielhasan/z62vg9xq/5/
 - `<thead>`, `<tbody>` e `<tfoot>` devem **marcar _as linhas_** que compõem o
   corpo, o cabeçalho e o rodapé
@@ -241,9 +234,9 @@ Nesta aula iremos:
       aparecerá em todas as páginas
 
 ---
-## Tabela do nosso exemplo <ins>(completa)</ins>
+## Tabela do nosso exemplo (<ins>completa</ins>)
 
-<iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/10/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="65%" height="375px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/10/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - ~~OBS:~~ chegou a hora de estilizar!
 
@@ -258,11 +251,13 @@ Nesta aula iremos:
 - A propriedade `border-collapse` em tabelas
 - Fontes: `font-size`, `font-style`, `font-weight` e `text-decoration`
 
+<!-- {ul:.content} -->
+
 ---
 <!-- {"layout": "regular", "backdrop": "oldtimes"} -->
 ## Colocando bordas         
 
-- A **propriedade `border`** é um atalho para `border-width`, `border-style` e
+- A **propriedade `border`** é um atalho: `border-width`, `border-style` e
   `border-color`
   - Exemplo (os dois são **equivalentes**):
     ```css
@@ -279,7 +274,7 @@ Nesta aula iremos:
     ```
 
 ---
-<!-- {"slideHash": "bordas"} -->
+<!-- {"layout": "regular", "slideHash": "bordas"} -->
 ## Bordas
 
 - De forma similar, podemos fazer com que exiba apenas a borda do
@@ -303,14 +298,13 @@ Nesta aula iremos:
   o estilo e a cor da borda do topo
 
 ---
-<!-- {"slideHash": "propriedade-border-collapse"} -->
+<!-- {"layout": "regular", "slideHash": "propriedade-border-collapse"} -->
 ## Colocando **bordas na tabela**
 
-- <iframe width="65%" height="150" src="https://jsfiddle.net/danielhasan/nmrbhqkb/23/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
-
+- <iframe width="45%" height="150" src="https://jsfiddle.net/danielhasan/nmrbhqkb/23/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
   Ao adicionarmos a borda nas células de uma tabela o resultado ficaria assim:
 
-- <iframe width="65%" height="200px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/24/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
+- <iframe width="45%" height="200px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/24/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="clear: right; float: right;"></iframe>
 
   Para mudarmos isso, adicionamos `border-collapse: collapse` à regra CSS
   da tabela
@@ -320,8 +314,8 @@ Nesta aula iremos:
 <!-- {"slideHash": "margin-e-padding"} -->
 ## Margem e _Padding_
 ![Desenho de máscara de festa a fantasia](../../images/margin-and-padding.png)
-- **Padding**: Espaçamento interno: entre o texto e a borda
-- **Margem**: Espaçamento externo: por fora da borda
+- **Padding**: Espaçamento interno, da borda para dentro
+- **Margem**: Espaçamento externo, da borda para fora
 
 ---
 ## Margem e _Padding_ - Exemplo
@@ -329,43 +323,63 @@ Nesta aula iremos:
 <iframe width="65%" height="250" src="https://jsfiddle.net/danielhasan/vs1w9khr/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"slideHash": "largura-de-elementos"} -->
-## Largura de elementos
+<!-- {"layout": "regular", "slideHash": "largura-de-elementos"} -->
+## **Largura** dos elementos
 
 - Podemos especificar a largura dos elementos _**block**_ por meio da
   propriedade **width**
+  - ```css
+    p {
+      width: 260px;
+    }
 
-```css
-p {
-  width: 100px;
-}
-```
 
-<iframe width="65%"  src="https://jsfiddle.net/danielhasan/t1joy5v6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    ```
+    <!-- {li:style="flex-grow: 1;"} -->
+  - <iframe width="100%" height="206" src="https://jsfiddle.net/fegemo/4z6d68gw/embedded/result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+    <!-- {ul^0:.layout-split-2.no-list-icon.no-padding} -->
+    <!-- {li:style="flex-grow: 1;"} -->
+- Observação: não é possível definir largura de elementos **inline**.
+  - Esses elementos possuem exatamente a largura necessária para apresentar seu
+    conteúdo
 
 ---
-<!-- {"slideHash": "outras-propriedades-do-texto"} -->
+<!-- {"layout": "regular-block", "slideHash": "outras-propriedades-do-texto"} -->
 ## Outras propriedades CSS para texto
 
-- `font-size`: Define o tamanho da fonte
-- `font-weight`: Define a espessura da fonte.
-  - Valores: `normal`, `lighter`, `bold`, `bolder` ou um número representando sua espessura
-- `font-style`: Define o estilo da fonte
-  - Valores: `normal` e `italic`
-- `text-decoration`: Sublinha, risca ou coloca um risco acima do texto:
-  - Valores: `none` (nenhum), `underline` (sublinhado), `overline` (acima do texto), `line-through` (riscado)
+<iframe width="330px" height="400px"  src="https://jsfiddle.net/fegemo/x2m8fnL6/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
+
+**`font-size`**
+  ~ Define o tamanho da fonte, _e.g._, `18px`
+
+**`font-weight`**
+  ~ Define a espessura da fonte
+  ~ Valores: `normal` <!-- {code:style="font-weight: normal"} -->,
+    `lighter` <!-- {code:style="font-weight: lighter"} -->,
+    `bold` <!-- {code:style="font-weight: bold"} -->,
+    `bolder` <!-- {code:style="font-weight: bolder"} --> ou um número
+    representando sua espessura
+
+**`font-style`**
+  ~ Define o estilo da fonte
+  ~ Valores: `normal` <!-- {code:style="font-style: normal"} --> e
+    `italic` <!-- {code:style="font-style: italic"} -->
+
+**`text-decoration`**
+  ~ Sublinha, risca ou coloca um risco acima do texto:
+  ~ Valores: `none` <!-- {code:style="text-decoration: none"} --> (nenhum),
+    `underline` <!-- {code:style="text-decoration: underline"} --> (sublinhado),
+    `overline` <!-- {code:style="text-decoration: overline"} --> (acima do texto),
+    `line-through` <!-- {code:style="text-decoration: line-through"} --> (riscado)
 
 ---
-## Outras propriedades CSS para texto - Exemplo
+<!-- {"layout": "regular-block"} -->
+## Estilizando a tabela do nosso exemplo
 
-<iframe width="65%" height="400px"  src="https://jsfiddle.net/danielhasan/x2m8fnL6/embedded/html,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="48%" height="400" src="https://jsfiddle.net/fegemo/yezb7ebo/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" style="float: left;"></iframe>
 
-
----
-## Utilização do CSS para a tabela do nosso exemplo...
-
-
-<iframe width="50%" height="225px" src="https://jsfiddle.net/danielhasan/nmrbhqkb/7/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="48%" height="400" src="https://jsfiddle.net/fegemo/yezb7ebo/embedded/css,html/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right;"></iframe>
 
 ---
 <!-- {"layout": "section-header", "slideHash": "piratas-e-seus-tesouros"} -->
@@ -416,6 +430,7 @@ body {
 - `background-size: cover` para que a imagem **cubra todo o espaço** da tela
 
 ---
+<!-- {"layout": "regular"} -->
 ## **Ancorando** a imagem **em um canto da tela**
 
 ![](../../images/background-position-left-bottom.png)
@@ -428,6 +443,7 @@ body {
 
 
 ---
+<!-- {"layout": "regular"} -->
 ## Ajustando o **tamanho da imagem**
 
 ![](../../images/background-size-cover.png)
@@ -464,7 +480,7 @@ body {
   ```
 
 ---
-<!-- {"slideHash": "textos-sombreados"} -->
+<!-- {"layout": "regular", "slideHash": "textos-sombreados"} -->
 ## Textos <span style="text-shadow: 2px 2px purple; color: hotpink;">sombreados</span>
 
 ![](../../images/text-shadow-none.png)
@@ -529,7 +545,7 @@ body {
     <!-- {li:style="flex-grow: 1;"} -->
     <!-- {ul^1:style="width: 100%;"} -->
     - Repare que o fundo do parágrafo ficou azulado
-      - ...porque o fundo do "resultado" era azul
+      - ...porque o fundo da página era azul
 
 
 ---
