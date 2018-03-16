@@ -70,7 +70,7 @@
 <!-- {"layout": "2-column-content"} -->
 ## _Hotkeys_ Úteis - Criando um Novo Arquivo HTML
 
-<video src="../../videos/atom-html.mp4" height="340" controls style="margin: 0 auto;"></video>
+<video src="../../videos/atom-html.mp4" height="340" controls style="float: right; margin: 0 auto;"></video>
 
 - Crie o arquivo e salve com a extensão **`.html`** (_e.g._, `index.html`)
 - Digite `html` e pressione <kbd>tab</kbd>
@@ -81,10 +81,8 @@
 ---
 ## _Hotkeys_ Úteis - Visualização prévia do código
 
-- Pressione <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
-
-<video src="../../videos/coding-simple-table.mp4" height="400" controls style="margin: 0 auto;"></video>
-
+- <video src="../../videos/coding-simple-table.mp4" height="340" controls style="float: right; margin: 0 auto;"></video>
+  Pressione <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
 
 ---
 <!-- {"layout": "section-header", "slideHash": "doctype-e-codificacao"} -->
@@ -266,7 +264,7 @@
 - Uma solução possível é usar os atributos universais¹ HTML chamados
   **`class`** e **`id`** para identificar os elementos e estilizá-los
 
-  > **Atributos universais¹**: aqueles que qualquer elemento pode ter
+  > **Atributos universais¹**: aqueles que qualquer elemento pode ter <cite>Coutinho & Hasan, 2018</cite>
   >
 
 ---
@@ -317,6 +315,7 @@
   ```
 
 ---
+<!-- {"layout": "regular"} -->
 ## Selecionar por classe (cont.)
 
 - E, em um arquivo CSS, podemos escrever o nome da _tag_, seguido por um ponto
@@ -404,55 +403,44 @@
   ```
 
 ---
-<!-- {"slideHash": "escolhendo-cores"} -->
+<!-- {"layout": "regular", "slideHash": "escolhendo-cores"} -->
 ## Escolhendo cores (<kbd>F12</kbd>)
 
 <video src="../../videos/escolhendo-cores.mp4" height="460" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"slideHash": "gradientes"} -->
+<!-- {"layout": "regular", "slideHash": "gradientes"} -->
 ## Gradientes
 
 - `linear-gradient` é um **valor válido para `background-image`**,
       e não para `background-color`
   - Veja a documentação do que é um [`gradient`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient)
 
-
----
-## Exemplo de Uso (1/3)
-
-- ```css
-  p {
-    background-image: linear-gradient( 45deg, blue, #00FF00 );
-  }
-  ```
-  ::: result
-  - 45 graus, iniciando com azul e terminando como verde <!-- {li:style="background-image: linear-gradient( 45deg, blue, #00FF00 )"} -->
-  :::
-
----
-## Exemplo de Uso (2/3)
-
-- ```css
-  p {
-    background-image: linear-gradient( to left top, yellow, blue );
-  }
-  ```
-  ::: result
-  - Começa amarelo e termina azul no canto esquerdo superior  <!-- {li:style="background-image: linear-gradient( to left top, yellow, blue )"} -->
-  :::
-
----
-## Exemplo de Uso (3/3)
-
-- ```css
-  p {
-    background-image: linear-gradient( 90deg, blue, white 20%, #00FF00 );
-  }
-  ```
-  ::: result
-  - Azul, branco e verde <!-- {li:style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00);"} -->
-  :::
+1. <!-- {ol:.item-code-with-image.full-width.compact-code-more} -->
+   ::: result . max-width: calc(100% - 600px);
+   0 graus, iniciando com azul e terminando como verde <!-- {style="background-image: linear-gradient( 0deg, blue, #00FF00 ); font-size: 75%; color: white; text-shadow: 1px 1px black;"} -->
+   :::
+   ```css
+   p {
+     background-image: linear-gradient( 0deg, blue, #00FF00 );
+   }
+   ```
+1. ::: result . max-width: calc(100% - 650px);
+   Começa amarelo e termina azul no canto esquerdo superior  <!-- {style="background-image: linear-gradient( to left top, yellow, blue ); font-size: 75%; color: white; text-shadow: 1px 1px black;"} -->
+   :::
+   ```css
+   p {
+     background-image: linear-gradient( to left top, yellow, blue );
+   }
+   ```
+1. ::: result . max-width: calc(100% - 600px);
+   Azul, branco e verde <!-- {style="background-image:linear-gradient( 90deg, blue, white 20%,#00FF00); font-size: 75%; color: white; text-shadow: 1px 1px black;"} -->
+   :::
+   ```css
+   p {
+     background-image: linear-gradient( 90deg, blue, white 20%, #00FF00 );
+   }
+   ```
 
 ---
 <!-- {"layout": "section-header", "slideHash": "abelhas-e-suas-castas"} -->
@@ -494,12 +482,14 @@
 - Na web também queremos fazer isso!
 
 ---
+<!-- {"layout": "regular"} -->
 ## Como flutuar elementos usando CSS?
 
 ![](../../images/pratica-abelhas-operarias.png)
 
 
 ---
+<!-- {"layout": "regular"} -->
 ## Propriedade `float`
 
 - Usado para alterar o fluxo tradicional da página
@@ -516,6 +506,7 @@
     ```
 
 ---
+<!-- {"layout": "regular"} -->
 ## Propriedade `float` (cont.)
 
 - ![](../../images/float-p1.png) <!-- {.push-right} -->
@@ -526,6 +517,7 @@
   flutue à direita **nos próximos 2 slides**...
 
 ---
+<!-- {"layout": "regular"} -->
 ## Exemplo de `float` (1º passo)
 
 - ![](../../images/float-p2.png)  <!-- {.push-right style="max-height: 440px;"} -->
@@ -537,6 +529,7 @@
   ```
 
 ---
+<!-- {"layout": "regular"} -->
 ## Exemplo de `float` (2º passo)
 
 - ![](../../images/float-p3.png)  <!-- {.push-right style="max-height: 440px;"} -->
@@ -555,7 +548,7 @@
       - Se forem `inline`, **respeitam** o elemtno flutuante
 
 ---
-<!-- {"slideHash": "arredondando-bordas"} -->
+<!-- {"layout": "regular", "slideHash": "arredondando-bordas"} -->
 # Arredondando bordas
 
 - ![](../../images/borda-arredondada.png) <!-- {.push-right} -->

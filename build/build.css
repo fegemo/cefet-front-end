@@ -250,15 +250,20 @@ div.did-you-know::before {
 .full-width {
   width: 100%;
 }
-ul.item-code-with-image {
+.item-code-with-image,
+.item-code-with-result {
   padding-left: 0;
   list-style-type: none;
 }
-ul.item-code-with-image li {
+.item-code-with-image li,
+.item-code-with-result li {
   clear: right;
   margin-bottom: 1em;
 }
-ul.item-code-with-image li > img {
+.item-code-with-image li > img,
+.item-code-with-result li > img,
+.item-code-with-image li > .result,
+.item-code-with-result li > .result {
   float: right;
   margin-left: 1em;
 }
@@ -365,6 +370,7 @@ ul.item-code-with-image li > img {
 .pratica-abelhas.bespoke-backdrop {
   background-image: url("../images/pratica-abelhas.png");
   background-size: cover;
+  background-position: bottom center;
   width: 100%;
   height: 100%;
   opacity: 0;
