@@ -31,7 +31,7 @@
 - Além de selecionar por _tag_, id ou classe, há diversos **outros seletores**:
 
   descend./filho
-    ~ `p strong`: todo `<strong>` com um antescedente `<p>`
+    ~ `p strong`: todo `<strong>` descendente de `<p>` (filho, neto etc.)
     ~ `p > strong`: todo `<strong>` filho direto de `<p>`
 
   atributo
@@ -72,9 +72,9 @@
 ![](../../images/coelhos-vampiros-1.png) <!-- {.rounded} -->
 
 1. E se quisermos estilizar de forma que o <u>título</u> e
-  <u>subtítulo</u> ficassem **com o mesmo fundo**...
+  <u>subtítulo</u> ficassem **com o mesmo fundo**... <!-- {ol:.no-list-icon} -->
 
-- ...a partir do HTML acima?
+- ...a partir do HTML acima?  <!-- {ul:.no-list-icon} -->
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
@@ -167,11 +167,11 @@ h1, h2 {
 ![](../../images/div-exemplo-conteudo-pagina.png) <!-- {.bordered.push-right} -->
 - ```html
   <body>
-    <div id="conteudo">
+  ➡️ <div id="conteudo">
       <h1>Tesouros</h1>
       <table><!-- ... --></table>
       <p>Ajude Barba-Ruiva ...</p>
-    </div>
+  ➡️ </div>
   </body>
   ```
   ```css
@@ -180,6 +180,7 @@ h1, h2 {
     background: white;
   }
   ```
+  <!-- {ul:.no-list-icon} -->
 
 ---
 <!-- {"layout": "regular"} -->
@@ -223,6 +224,7 @@ h1, h2 {
   <span class="artista">Joelma</span> é diva
   intergalática.
   :::
+  <!-- {ul:.no-list-icon} -->
 
 ---
 <!-- {"layout": "section-header", "slideHash": "o-box-model"} -->
@@ -278,10 +280,9 @@ h1, h2 {
 <!-- {"layout": "regular-block"} -->
 ## **Dimensionando** um elemento
 
-::: did-you-know .push-right width: 350px; margin-right: 6px;
+::: did-you-know .push-right width: 320px; margin-right: 6px;
 Elementos `inline` ignoram os valores de:
-- `width`
-- `height`
+- `width`, `height`
 - `padding-top`
 - `padding-bottom`
 - `margin-top`
@@ -300,15 +301,15 @@ Elementos `inline` ignoram os valores de:
   - É possível mudar isso!
 
 ---
-<!-- {"layout": "regular-block"} -->
+<!-- {"layout": "regular-block", "embeddedStyles": ".max-width img{max-width:100%;}"} -->
 ## Alterando o _box model_
 
-::: did-you-know .push-right width: 260px; margin-right: 6px;
-As **margens** de um elemento formam um **espaçamento externo** e não contam
+::: did-you-know .push-right width: 284px; margin-left: 6px; padding-right: 0.5em
+As **margens** do elemento formam um **espaçamento externo** e não usam
 espaço dentro da caixa.
 :::
 
-- É possível alterar o significado da `width` e `height` que damos a um elemento
+- É possível alterar o significado da `width` e `height` de um elemento
    **usando _a propriedade `box-sizing`_** <!-- {em:.underline.upon-activation.delay-3000} -->:
   - `box-sizing: content-box` (valor padrão)
     - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
@@ -316,10 +317,9 @@ espaço dentro da caixa.
     - `width` = _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} --> +
       _padding_ <!-- {.box-model-part style="background: #c2ce89;"} --> +
       _border_ <!-- {.box-model-part style="background: #fddc9a;"} -->
-    - Esta forma é mais intuitiva :thumbsup: :thumbsup: :thumbsup:
+    - Esta forma é mais intuitiva :thumbsup: :thumbsup: :thumbsup: <!-- {ul^2:style="margin-bottom: 0.25em"} -->
 
-
-::: figure .figure-slides.centered margin: 0 auto
+::: figure .figure-slides.max-width.centered margin:0 auto; width: calc(100% - 290px); clear: both;
 ![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-border-box-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
@@ -328,7 +328,7 @@ espaço dentro da caixa.
 
 ---
 <!-- {"layout": "section-header", "slideHash": "revisitando-o-float", "embeddedStyles": ".guia-do-mochileiro { position: fixed; bottom: -225px; left: calc(50% + 20px); transition: all 200ms ease-out; } .guia-do-mochileiro-container { cursor: help; } .guia-do-mochileiro-container:hover .guia-do-mochileiro { bottom: -10px; box-shadow: 6px 3px 6px rgba(0, 0, 0, .5), -6px 3px 6px rgba(0, 0, 0, .5); }"} -->
-# Revisitando o **float**
+# Revisitando **float**
 
 > Para voar, basta errar o chão.
 > <cite>Douglas Adams no Guia do Mochileiro das Galáxias</cite> ![](../../images/guia-do-mochileiro.jpg) <!-- {.guia-do-mochileiro} -->
@@ -347,30 +347,20 @@ espaço dentro da caixa.
 <!-- {"backdrop": "oldtimes"} -->
 ## Elementos **`block`**
 
-![](../../images/flow1.png)
+![](../../images/flow1.png) <!-- {style="max-height: 60vh"} -->
 
 ---
 <!-- {"backdrop": "oldtimes", "state": "show-active-slide-and-previous"} -->
 ## Elementos **`inline`**
 
-![](../../images/flow2.png)
+![](../../images/flow2.png) <!-- {style="max-height: 60vh"} -->
 
 ---
 <!-- {"backdrop": "oldtimes"} -->
 ## `block` e `inline`, juntos
 
-![](../../images/flow3.png)
+![](../../images/flow3.png) <!-- {style="max-height: 60vh"} -->
 
-<!--
-...acho que isto é muito avançado...
-## Margens
-
-- Quando o navegador coloca **dois elementos `inline` um ao lado do outro** e
-  ambos têm **margens** laterais, o navegador **soma seus valores** (esperado)
-- Quando o navegador coloca **dois elementos `block` um em cima do outro** e
-  ambos têm **margens superior/inferior**, o navegador **seleciona o maior
-  valor** dentre os dois (não intuitivo)
--->
 ---
 ## Flutuando elementos com **`float`**
 
@@ -478,6 +468,8 @@ espaço dentro da caixa.
 - Cada grupo deverá **responder** no papel a pergunta/desafio
 - O professor corrigirá e pontuará os grupos que acertarem
 - O grupo que conseguir **maior pontuação será o vencedor**
+
+<!-- {ul:.content} -->
 
 ---
 # Referências
