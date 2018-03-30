@@ -135,25 +135,24 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 <!-- {ul:.content} -->
 
 ---
+<!-- {"layout": "regular"} -->
 ## História
 
 1989 - 1993 <!-- {.bullet-old} -->
-  ~ Tim Berners-Lee cria a WWW em CERN
-    (_European Organization for Nuclear Research_) e a deixa aberta ao público
+  ~ Tim Berners-Lee cria a WWW em CERN e a deixa aberta ao público
     geral <!-- {dd:.bullet-old} -->
 
 1994
   ~ ::: figure .floating-portrait-container.push-right
       ![Foto de Håkon Wium Lie](../../images/howcome.jpg)
     :::
-    Håkon Wium Lie propõe uma linguagem para dar conta da responsabilidade
+    Håkon Wium Lie propõe uma linguagem com a responsabilidade
     de alterar a aparência de páginas web chamada CSS
 
 1996
   ~ Juntamente com Bert Bos, Håkon publica a especificação do  **CSS1**
 1998
-  ~ Já gerenciado pela W3C, a especificação do **CSS2** foi
-  publicada
+  ~ Já gerenciado pela W3C, o **CSS2** foi publicado
 
 1998 - 2014
   ~ Desenvolvimento da especificação do **CSS3** (_living standard_)
@@ -161,11 +160,11 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 2013
   ~ Håkon tornou-se CTO na _Opera Software_
 
----
-# A Cascata
+*[CERN]: European Organization for Nuclear Research*
 
 ---
-## Cascata
+<!-- {"layout": "regular"} -->
+## A **Cascata**
 
 - CSS é a sigla para _**Cascading** Style Sheets_
 - Algumas propriedades são **herdadas** dos elementos ascendentes
@@ -178,6 +177,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     parágrafos ou outros elementos, ficarão vermelhos (!)
 
 ---
+<!-- {"layout": "regular"} -->
 ## Exemplo da Cascata
 
 <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -186,6 +186,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   em "Edit in JSFiddle"
 
 ---
+<!-- {"layout": "regular"} -->
 ## Cascata (cont.)
 
 - Para as propriedades que não são herdadas por padrão (_e.g._, `border`),
@@ -203,6 +204,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   :::
 
 ---
+<!-- {"layout": "regular"} -->
 ## Cascata (cont.)
 
 - Também podemos sobrescrever a herança de uma propriedade:
@@ -219,16 +221,13 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   :::
 
 ---
-<!-- {"slideHash": "outros-seletores"} -->
-# Outros Seletores
-
----
+<!-- {"layout": "regular", "slideHash": "outros-seletores"} -->
 ## Seletores
 
 - ![Regra CSS](../../images/css-selector-no-margin.png) <!-- {.push-right} -->
-  Até agora, já sabemos selecionar elementos:
+  Até agora, já sabemos **selecionar elementos de <u>03 formas</u>**:
   1. Pelo **nome de sua _tag_**: `p { color: white; }`
-  1. Por (uma de) suas **classes**: `.spam { color: red; }`
+  1. Por (uma de) suas **classes**: `.spam { color: red;}`
   1. Por seu **id**: `#manchete-principal { color: green; }`
 - Contudo, a vida não para por aí...
   - Há 20+ tipos de seletores (dos quais já vimos 3)
@@ -244,126 +243,130 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 
 - Poderíamos usar uma classe (`.marca-de-sabao`) nos links da lista
   - Mas há uma forma melhor!
-  - É possível **fazer isso sem alterar o HTML**!
+  - É possível **fazer isso sem alterar o HTML**! <!-- {li:.bullet} -->
+    - ```css
+      ul a {  /* todo <a> dentro de uma <ul> */
+        color: orange;
+      }
+      ```
+      <!-- {ul^0:.bullet.no-list-icon.layout-split-2} -->
+    - :::result
+      - Sabão [Omo](http://omo.com.br) <!-- {style="color: orange"} -->
+      - Sabão [Ariel](http://ariel.com.br) <!-- {style="color: orange"} -->
+
+      [Voltar para cima](#) <!-- {style="color: blue"} -->
+      :::
 
 ---
-## Seletor: **Descendente**
+<!-- {"layout": "regular"} -->
+## Seletores de **Descendente** e **Filho direto**
 
-- Exemplo:
-  ```css
-  ul a {
-    text-decoration: none;
-  }
-  ```
-  - Descrição: seleciona todos hiperlinks `a` que têm um `ul` como
-    antecedente (pai, avô, bisavô etc.)
-- Formato: `X Y` _(antecessor, espaço, elemento selecionado)_
-
----
-## Seletor: **Filho** direto
-
-- Exemplo:
-  ```css
-  #menu-principal > ul {
-    padding: 20px;
-  }
-  ```
-  - Descrição: seleciona todos os `ul` que têm `#menu-principal` como pai
+- Formato: `X Y` _(antecessor, espaço, elemento selecionado)_ <!-- {ul:.layout-split-2.no-padding.no-list-icon.flex-equal-children} -->
+  - Exemplo:
+    ```css
+    ul a {
+      text-decoration: none;
+    }
+    ```
+    - Descrição: seleciona todos hiperlinks `a` que têm um `ul` como
+      antecedente (pai, avô, bisavô etc.)
 - Formato: `X > Y` _(pai, sinal de maior, elemento selecionado)_
+  - Exemplo:
+    ```css
+    #menu-principal > ul {
+      padding: 20px;
+    }
+    ```
+    - Descrição: seleciona todos os `ul` que têm `#menu-principal` como pai
 
 ---
-## Exemplo: **Filho direto** vs **Descendente**
+<!-- {"layout": "regular"} -->
+## Exemplo: **Descendente** vs **Filho direto**
 
-```html
-<p>
-  <strong>Ola! <a href="http://www.google.com">Este é meu link! </a></strong>
-  <a href="http://www.terra.com.br">Esta é uma outra pagina</a>
-</p>
-<a href="http://google.com">Este é outro link</a>
-```
-```css
-p > a {
-  text-decoration: line-through;
-}
-p  a {
-  color: red;
-}
-```
-
-:::result
-<p >
-  <strong style="color:black;">Ola! <a style="color:red;" href="http://www.google.com">Este é meu link! </a></strong>
-  <a style="color:red;text-decoration: line-through;" href="http://www.terra.com.br">Esta é uma outra pagina</a>
-</p>
-<a style="color:blue" href="http://google.com">Este é outro link</a>
-:::
-
----
-## Seletor: por **Atributo**
-
-- Exemplo:
-  ```css
-  img[alt] {
-    border: 1px solid blue;
-  }
+- ```html
+  <p>
+    <strong>Ola! <a href="http://www.google.com">Este é meu link! </a></strong>
+    <a href="http://www.terra.com.br">Esta é uma outra pagina</a>
+  </p>
+  <a href="http://google.com">Este é outro link</a>
   ```
-  - Descrição: seleciona toda `img` que contém o atributo `alt`
-- Formato: `X[atributo]` _(elem. selecion., nome do atributo entre colchetes)_
+- &nbsp;
+  - ```css
+    p > a { /* <a>s filhos de um <p> */
+      text-decoration: line-through;
+    }
+    p a { /* <a>s descendentes de um <p> */
+      color: red;
+    }
+    ```
+  - :::result
+    <p>
+      <strong style="color:black;">Ola! <a style="color:red;" href="http://www.google.com">Este é meu link! </a></strong>
+      <a style="color:red;text-decoration: line-through;" href="http://www.terra.com.br">Esta é uma outra pagina</a>
+    </p>
+    <a style="color:blue" href="http://google.com">Este é outro link</a>
+    :::
+
+    <!-- {ul^0:.no-list-icon.no-padding.layout-split-2}-->
+    <!-- {ul^1:.no-list-icon.no-padding}-->
 
 ---
-## Seletor: por **valor** de **atributo**
+<!-- {"layout": "regular"} -->
+## Desafio #2
 
-- Exemplo:
-  ```css
-  a[href="http://google.com/"] {
-    color: blue;
-  }
-  ```
-  - Descrição: seleciona todo `a` que tem um atributo `href`
-    igual a http://google.com/
-- Formato: `X[atributo="valor"]`
+> Colocar uma borda rosa **apenas nas imagens .jpg**:
+> ![](../../images/css-selectors-attribute-challenge.png)
 
----
-## Seletor: por **trecho de valor** de **atributo**
-
-- Exemplo:
-  ```css
-  a[href*="goo"] {
-    color: white;
-  }
-  ```
-  - Descrição: seleciona todo `a` cujo atributo `href` **contenha
-    a _string_** `"goo"`
-- Formato: `X[atributo*="trecho"]`
+- Poderíamos usar uma classe (`.formato-jpg`) nessas imagens...
+  - Mas há uma forma melhor!
+  - É possível **selecionar elementos de acordo com seus atributos**! <!-- {li:.bullet} -->
+    - ```css
+      img[src$=".jpg"] {
+        border: 5px solid hotpink;
+      }
+      ```
+      <!-- {li:.bullet} -->
 
 ---
-## Seletor: por **trecho inicial de valor** de **atributo**
+<!-- {"layout": "regular"} -->
+## Seletores de **Atributo**
 
-- Exemplo:
-  ```css
-  a[href^="http"] {
-    background: url(globo.png) no-repeat;
-  }
-  ```
-  - Descrição: seleciona todo `a` cujo atributo `href` **comece com a _string_**
-    `"http"`
-- Formato: `X[atributo^="trecho"]`
+- Podemos selecionar elementos HTML **de acordo com <u>seus atributos</u>**:
+  - ```css
+    a[href] {
+      color: blue;  /* [a] */
+    }
+    a[href="http://google.com"] {
+      color: blue;  /* [b] */
+    }
+    a[href^="http"] {
+      color: blue;  /* [c] */
+    }
+    a[href$=".com"] {
+      color: blue;  /* [d] */
+    }
+    a[href*="google"] {
+      color: blue;  /* [e] */
+    }
+    ```
+  - Há **5 variações**: <!-- {li:style="margin-left: 1em"} -->
+    - [a] existência do atributo: `[atributo]` <!-- {li:.push-code-right} -->
+      - Neste caso, todo `<a>` que possua `href`
+    - [b] valor inteiro: `[atrib="valor"]` <!-- {li:.push-code-right} -->
+    - [c] começo do valor: `[atrib^="inicio"]` <!-- {li:.push-code-right} -->
+    - [d] fim do valor: `[atrib$="final"]` <!-- {li:.push-code-right} -->
+    - [e] trecho do valor: `[atrib*="trecho"]` <!-- {li:.push-code-right} -->
+    - Repare que esses seletores podem ser **usados com qualquer elemento**:
+      ```css
+      img[alt] {
+        border: 5px solid red;
+      }
+      ```
+    <!-- {ul^2:.layout-split-2.no-list-icon.no-padding.compact-code} -->
 
 ---
-## Seletor: por **trecho final de valor** de **atributo**
-
-- Exemplo:
-  ```css
-  img[src$=".jpg"] {
-     color: red;
-  }  
-  ```
-  - Descrição: seleciona toda `img` cujo atributo `src` **termine com a
-    _string_** `".jpg"`
-- Formato: `X[atributo$="trecho"]`
-
----
-## Seleção de trechos de atributos
+<!-- {"layout": "regular"} -->
+## Exemplos de seletores de atributos
 
 ```css
 a[href$=".br"] {
@@ -384,7 +387,7 @@ a[href^="http"] {
 <a href="http://www.cnn.com">Um site gringo<a>
 ```
 
-:::result
+:::result . margin: 1em auto;
 <img style="height:50px;" src="../../images/algod-ovelha.jpg" alt="esta é uma ovelha">
 <img style="height:50px;border: 3px solid black;" src="../../images/print-ninja-logo.png" alt="este é um ninja">
 <a style="color:purple;background-image: linear-gradient(45deg, green, yellow);" href="http://www.terra.com.br">Um site brasuca<a>
@@ -392,48 +395,130 @@ a[href^="http"] {
 :::
 
 ---
-## Seletor: **hover**
+<!-- {"layout": "regular"} -->
+## Desafio #3
 
-- Exemplo:
-  ```css
-  a:hover {
-    background-color: red;
-  }
-  ```
-  - Descrição: seleciona o estado **"com mouse em cima"** do elemento
-    (no caso, `a`s)
-- Formato: `X:hover`
+> Tirar o sublinhado do hyperlink **quando passar o mouse sobre ele**:
+> ![](../../images/css-selectors-state-challenge.png)
+
+- A única forma de fazer é usando **seletores de estado**: <!-- {li:.bullet} -->
+  - ```css
+    a:hover {
+      text-decoration: none;
+    }
+    ```
+    <!-- {li:.bullet} -->
 
 ---
+<!-- {"layout": "regular", "embeddedStyles": ".link:link {color: blue; text-decoration: underline;}.link:hover {color: cyan;}.link:active {color: gold;}"} -->
+## Seletores de **Estado**
+
+- Podemos selecionar elementos HTML **de acordo com <u>seus atributos</u>**:
+  - ```css
+    a:link {
+      color: blue;  /* [a] */
+    }
+    a:hover {
+      color: cyan;  /* [b] */
+    }
+    a:active {
+      color: gold;  /* [c] */
+    }
+    ```
+    ::: result
+    [Um link](#um-link) <!-- {a:.link} -->
+    :::
+  - Há pelo menos **3 estados**: <!-- {li:style="margin-left: 1em"} -->
+    - [a] situação inicial `:link`
+    - [b] mouse em cima: `:hover`
+    - [c] começo do valor: `:active`
+    - Repare que os seletores `:hover` e `:active` podem ser **usados com outros elementos**:
+      ```css
+      tr {
+        background-color: white;
+      }
+      tr:hover {
+        background-color: silver;
+      }
+      ```
+    <!-- {ul^1:.layout-split-2.no-list-icon.no-padding.compact-code} -->
+
+---
+<!-- {"layout": "regular"} -->
+## Desafio #4
+
+> Centralizar todas imagens **exceto uma ou outra**:
+> ![](../../images/css-selectors-negation-challenge.png)
+
+- Isso poderia ser feito colocando classes/ids nos elementos <!-- {li:.bullet} -->
+  - Mas há outra forma, com o **seletor de negação**:
+    ```css
+    img:not(#logo) {
+      display: block;
+      margin: 0 auto; /* vertical: 0, horizontal: auto */
+    }
+    ```
+    <!-- {li:.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
 ## Seletor: **Negação**
 
+- Formato: `X:not(seletor)`
 - Exemplo:
   ```css
   p:not(.destacado) {
     color: gray;
   }
   ```
-- Descrição: seleciona todos os elementos (`p`) que não passem pelo teste do
+- Descrição: seleciona todos os elementos que **não passem pelo teste** do
   `seletor`
-  - Ou seja, no exemplo, seleciona todos os **parágrafos que
+  - Ou seja, no exemplo, seleciona todos os **`<p>` que
     não possuam a classe `.destacado`**
-- Formato: `X:not(seletor)`
 
 ---
+<!-- {"layout": "regular-block", "embeddedStyles": ".tabela tr:nth-child(2n){background:lightblue;}.tabela tr:nth-child(2n+1){background:silver;}"} -->
 ## Outros seletores
 
-- `X:first-child`
-- `X:last-child`
-- `X:nth-child(n)`
-- `X:nth-last-child(n)`
-- `X:nth-of-type(n)`
-- `X:nth-last-of-type(n)`
-- `X:only-child`
-- `X:only-of-type`
-- `X:first-of-type`
-- Ver: [Os 30 seletores CSS que você precisa memorizar (inglês)][css-selectors-30]
+::: did-you-know .push-right width: 360px; margin-left: 6px;
+A parte dso seletores "com dois pontos" (eg, `:not()`, `:hover`) é chamada
+de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes).
+:::
 
-<!-- {ul:.multi-column-list-2}-->
+- Seletores **de posição** dentro do pai:
+  - `X:first-child`
+  - `X:last-child`
+  - `X:nth-child(n)` <!-- {ul^0:.multi-column-list-2}-->
+- Seletores **de posição** de um tipo:
+  - `X:first-of-type`
+  - `X:last-of-type`
+  - `X:nth-of-type(n)` <!-- {ul^0:.multi-column-list-2}-->
+- Exemplo de `nth-child`:
+  - ```html
+    <table>
+      <tr><td>Linha 1</td></tr>
+      <tr><td>Linha 2</td></tr>
+      <tr><td>Linha 3</td></tr>
+      <tr><td>Linha 4</td></tr>
+    </table>
+    ```
+  - ```css
+    tr:nth-child(2n) { /*par*/
+      background: lightblue;
+    }
+    tr:nth-child(2n+1) {
+      background: silver;
+    }
+    ```
+  - ::: result
+    <table class="tabela">
+      <tr><td>Linha 1</td></tr>
+      <tr><td>Linha 2</td></tr>
+      <tr><td>Linha 3</td></tr>
+      <tr><td>Linha 4</td></tr>
+    </table>
+    :::
+    <!-- {ul^0:.layout-split-3.no-list-icon.no-padding style="justify-content:space-between;"}-->
 
 [css-selectors-30]: https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048
 

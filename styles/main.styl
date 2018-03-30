@@ -178,6 +178,8 @@ div.did-you-know
     font-family "Purisa", "Comic Sans MS", cursive;
     font-weight bold
     color purple
+  & > p
+    padding-left 0.5em
 
 .push-code-right
   pre
@@ -220,6 +222,10 @@ div.did-you-know
 .compact-code-more ~ pre
   line-height 1em
   font-size 75%
+
+.push-code-right
+  & > code
+    float right
 
 .badge
   display inline-block
