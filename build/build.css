@@ -225,6 +225,9 @@ div.did-you-know::before {
   font-weight: bold;
   color: #800080;
 }
+div.did-you-know > p {
+  padding-left: 0.5em;
+}
 .push-code-right pre {
   float: right;
   clear: right;
@@ -275,6 +278,9 @@ div.did-you-know::before {
 .compact-code-more ~ pre {
   line-height: 1em;
   font-size: 75%;
+}
+.push-code-right > code {
+  float: right;
 }
 .badge {
   display: inline-block;
@@ -723,6 +729,10 @@ ol.no-list-icon {
 }
 .layout-2-column-content-40-60 > *:last-child {
   width: 58%;
+}
+.flex-equal-children > * {
+  -ms-flex: 1;
+      flex: 1;
 }
 .underline {
   position: relative;
