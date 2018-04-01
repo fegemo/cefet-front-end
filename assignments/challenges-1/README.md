@@ -116,9 +116,9 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 ## <span class="badge">Exercício 2</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 1 -->
-1. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/fegemo/vyeawf53/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="400" src="//jsfiddle.net/fegemo/vyeawf53/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-2. <iframe width="100%" height="400" src="//jsfiddle.net/fegemo/r7anp9j6/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+2. <iframe width="100%" height="400" src="//jsfiddle.net/fegemo/da8g55er/7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
 ---
@@ -126,9 +126,9 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 ## <span class="badge">Exercício 2</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 1 -->
-3. <iframe id="xpto" width="100%" height="400" src="//jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+3. <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/umphkg01/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-3. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/da8g55er/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+4. <iframe width="100%" height="400" src="//jsfiddle.net/danielhasan/zumxqes0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
 ---
@@ -136,9 +136,10 @@ Para cada dica, defina: nome da _tag_ e se os elementos são _inline_ ou _block_
 ## <span class="badge">Exercício 2</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 1 -->
-5. <iframe id="xpto" width="100%" height="300" src="//jsfiddle.net/danielhasan/ybpnj4x4/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+5. <iframe width="100%" height="300" src="//jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-5. <iframe width="100%" height="300" src="//jsfiddle.net/danielhasan/h5wpoLca/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+6. <iframe width="100%" height="400" src="//jsfiddle.net/fegemo/r7anp9j6/50/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+
 <!-- {ol:.multi-column-list-2 .alpha-list .border-right-list}-->
 
 [Próximo Exercício](#exercicio3) :point_right: <!-- {p:.align-right} -->
