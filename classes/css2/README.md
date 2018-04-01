@@ -311,7 +311,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     <!-- {ul^1:.no-list-icon.no-padding}-->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "desafio-seletor-atributo"} -->
 ## Desafio #2
 
 > Colocar uma borda rosa **apenas nas imagens .jpg**:
@@ -395,7 +395,7 @@ a[href^="http"] {
 :::
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "desafio-seletor-estado"} -->
 ## Desafio #3
 
 > Tirar o sublinhado do hyperlink **quando passar o mouse sobre ele**:
@@ -444,7 +444,7 @@ a[href^="http"] {
     <!-- {ul^1:.layout-split-2.no-list-icon.no-padding.compact-code} -->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "desafio-seletor-negacao"} -->
 ## Desafio #4
 
 > Centralizar todas imagens **exceto uma ou outra**:
