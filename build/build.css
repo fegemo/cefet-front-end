@@ -598,6 +598,14 @@ div.did-you-know > p {
     transform: rotateZ(1turn);
   }
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1em;
+}
 strong.alternate-color {
   color: #7b9c02;
 }
@@ -662,6 +670,15 @@ ol.no-list-icon {
 .bespoke-slide.layout-regular,
 .bespoke-slide.layout-regular-block {
   padding: 1.5rem;
+}
+.bespoke-slide.layout-regular-centered {
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.bespoke-slide.layout-regular-block-centered {
+  display: block;
+  padding: 1.5rem;
+  text-align: center;
 }
 .layout-regular-horizontal {
   -ms-flex-direction: row;
