@@ -488,7 +488,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   1. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
      - Fazer no arquivo `atividade2.js`
 
-[todos]: https://github.com/fegemo/cefet-front-end-todo/archive/master.zip
+[todos]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
 
 ---
 <!-- {"slideHash": "definindo-constantes"} -->
