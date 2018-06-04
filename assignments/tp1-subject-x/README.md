@@ -70,6 +70,7 @@ O site deve conter:
 Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
 - Plágio do trabalho de outrem
 - Ausência de itens obrigatórios
+- Falta de originalidade: utilização de códigos prontos (de práticas anteriores, por exemplo)
 - Uso de elementos antigos dentro do HTML (e.g., _tags_ `<center>`, `<b>`,
   `<font>`)
 - Ignorar boas práticas de programação:
