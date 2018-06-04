@@ -17,8 +17,8 @@ O site deve conter:
    - Um site sobre Dragon Ball não poderia se chamar "Dragon Ball", mas
      poderia ser "Ilha do Mestre Kami", ou "As Escamas de Shen Long"
  1. Um **logotipo**, que pode ser
-   - um logotipo propriamente dito, preferencialmente criado pela turma, ou
-   - o nome do site, escrito em uma fonte diferentona
+    - um logotipo propriamente dito, preferencialmente criado pela turma, ou
+    - o nome do site, escrito em uma fonte diferentona
 1. Pelo menos **três páginas**
 1. Um **_menu_ de navegação** para navegar entre as páginas
 1. Uma das páginas deve conter **informações sobre o site**, contendo:
