@@ -1,28 +1,30 @@
 # Trabalho Prático 1 - O Assunto X
 
-Ao sair da aula de sua **disciplina favorita**, você e mais 1 ou 2 amiguinh@s
-decidiram **fazer um site sobre um determinado assunto - o Assunto X -**
-sobre a matéria, para motivar os demais alunos ou então para ajudá-los
-a aprender.
+Ao sair do banho, você e mais 1 ou 2 amiguinh@s decidiram **fazer um site
+sobre um determinado assunto - o Assunto X -**, para motivar os amigos a
+gostarem da mesma coisa que vocês.
 
-O grupo pode (e deve, porque fica mais legal!!) envolver o professor da outra
-disciplina no projeto, para que ele contribua com ideias e críticas.
+Esse assunto deve ser algo de interesse em comum dos integrantes do grupo,
+como um personagem, um filme, uma série, um tipo de comida, um anime, um jogo,
+um tema de ciência, um assunto da matemática, robótica etc.
 
-## Funcionalidade do Site
+## Funcionalidades do Site
 
 O site deve conter:
 
-1. Pelo menos **três páginas**, com links entre elas (por exemplo, via menu de
-   navegação)
-1. Um **_menu_ de navegação**
-1. Um **logotipo**, que pode ser
-   - um logotipo propriamente dito ou
-   - o nome da disciplina e do tópico (como subtítulo), escritos em uma
-     fonte diferente
+1. Um **nome**, que não deve ser simplesmente o nome do assunto, mas algo que
+   o envolva. Por exemplo:
+   - Um site sobre Dragon Ball não poderia se chamar "Dragon Ball", mas
+     poderia ser "Ilha do Mestre Kami", ou "As Escamas de Shen Long"
+ 1. Um **logotipo**, que pode ser
+   - um logotipo propriamente dito, preferencialmente criado pela turma, ou
+   - o nome do site, escrito em uma fonte diferentona
+1. Pelo menos **três páginas**
+1. Um **_menu_ de navegação** para navegar entre as páginas
 1. Uma das páginas deve conter **informações sobre o site**, contendo:
    - Informação sobre os **autores do site** (o grupo)
-   - Informação sobre **colaboradores** (se tiver, por exemplo, um professor
-     da disciplina escolhida que ajudou no trabalho)
+   - Informação sobre **colaboradores** (se tiver, por exemplo, pessoas que
+     ajudaram)
    - Atribuição de **créditos**:
      - Se estiver usando recursos de terceiros (_e.g._, vídeos, sons, imagens
        etc.), a página deve mostrar quem é o autor de cada um, possivelmente
@@ -36,18 +38,24 @@ O site deve conter:
 1. Uso de **_tags_ semânticas** sempre que aplicável
    ([ver slides][tags_semanticas])
 1. Ter **algo interativo feito em JavaScript** (criado por vocês) para,
-   por exemplo, resolver uma fórmula matemática que ilustre o conceito sendo
-   apresentado
+   por exemplo, navegar em uma galeria de imagens, mostrar/ocultar seções
+   dentro da página, fazer algo acontecer com (seguir?) o movimento do mouse
+   etc.
+   - Vocês devem ser **capazes de extrapolar** os exemplos de JavaScript que
+     foram feitos em sala de aula (eg, matemática, galeria de imagens,
+     expandir/retrair)
 1. Usar alguma fonte não instalada - **_webfonts_** ([ver slides][webfonts])
 1. Ter uma dentre as seguintes 4 opções:
    - **Tabela** com uma célula ocupando mais de uma coluna ou linha; ou
    - Uma **lista de definição** (`<dl>...</dl>` - pesquisar); ou
    - **Código fonte** dentro da página (`<pre></pre>` e `<code></code>` -
      pesquisar); ou
-   - **Campos de entrada** de dados
+   - **Campos de entrada** de dados (`<input>`s)
 1. Utilizar, em algum momento, **_pseudo-elements_ ou _pseudo-classes_**
    ([ver slides][pseudo-coisas])
 1. Exibição de um **vídeo sobre o tema** ([ver slides][video])
+   - Pode ser um vídeo do Youtube (eg, `<iframe ...>`), ou um vídeo hospedado
+     no próprio site (`<video ...>`)
 1. **_Layout_ e _design_ agradáveis** - não pode ter carinha de site da década
    de 90
 
