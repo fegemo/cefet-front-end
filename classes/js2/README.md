@@ -479,7 +479,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 # Exploração Espacial :alien:
 
 - Crie um sisteminha de gerenciamento de tarefas :notebook:
-  - [Baixe os arquivos][todos] e veja as instruções
+  - [Baixe os arquivos][space] e veja as instruções
     detalhadas no arquivo `README.md`
 - Há 2 atividades:
   1. Criar um código em JavaScript para **fazer os botões "+"
@@ -488,7 +488,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   1. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
      - Fazer no arquivo `atividade2.js`
 
-[todos]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
+[space]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
 
 ---
 <!-- {"slideHash": "definindo-constantes"} -->
