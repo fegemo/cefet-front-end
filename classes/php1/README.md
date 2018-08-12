@@ -492,7 +492,7 @@ Content-Length: 131
 [mysql]: https://www.mysql.com/downloads/
 [php]: http://php.net/downloads.php
 [wamp]: http://www.wampserver.com/en/
-[lamp]: https://www.digitalocean.com/community/tutorials/como-instalar-a-pilha-linux-apache-mysql-php-lamp-no-ubuntu-14-04-pt
+[lamp]: https://howtoubuntu.org/how-to-install-lamp-on-ubuntu
 [xampp]: https://www.apachefriends.org/pt_br/index.html
 
 ---
