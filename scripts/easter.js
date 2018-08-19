@@ -1,7 +1,7 @@
 const cheet = require('cheet.js');
 
 function pathToAssets(assetType) {
-  return (location.pathname.indexOf('/classes/') === 0 ? '../../' : '')
+  return (location.pathname.indexOf('/classes/') !== -1 ? '../../' : '')
     + `${assetType}/`;
 }
 
