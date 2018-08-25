@@ -54,8 +54,9 @@
 
 1. [Elementos HTML de **entrada**](#elementos-de-entrada)
 1. [Elementos HTML de **escolha**](#elementos-de-escolha)
-1. [Restrições, validação e estilo](#restricoes-validacao-estilo)
-1. [Eventos em campos de formulários](#eventos-formularios)
+1. [Envio de formulários e validação](#envio-de-formularios-e-validacao)
+1. [Estilização de campos](#estilizacao-de-campos)
+1. [AvatarCreator](#avatar-creator)
 
 ---
 <!-- {"layout": "section-header", "slideHash": "elementos-de-entrada"} -->
@@ -328,12 +329,26 @@ para o servidor
 | Texto multi-linha   | `<textarea></textarea>`   | <textarea></textarea>     |
 
 ---
-<!-- {"layout": "section-header", "slideHash": "elementos-de-acao"} -->
-# Elementos de **ação**
-## <img src="../../images/rambo.png" alt="Foto do Rambo" class="portrait">
+<!-- {"layout": "section-header", "slideHash": "envio-de-formularios-e-validacao"} -->
+# Envio de Formulários e Validação
+## Enviando dados e verificando
 
-- Elemento **`<form></form>`** <!-- {ul:.content} -->
+- O elemento HTML **`<form></form>`** <!-- {ul:.content} -->
 - Botões: _submit_, _reset_ e _button_
+- Validação de campos e formulário
+
+---
+<!-- {"layout": "regular"} -->
+## O Elemento HTML `<form>...</form>`
+
+- Um **formulário** é um conjunto de campos de dados (_i.e._, entrada/escolha)
+  que pode ser **enviado** <!-- {.underline} --> a um servidor Web. Exemplos:
+  - ![](../../images/cadastro-facebook.png) <!-- {.push-right style="max-width: 450px"} -->
+    Ao se cadastrar no Facebook (ou qualquer site)
+  - Ao preencher e enviar um questionário
+  - Ao editar seu perfil em algum site
+- Além de **enviar os dados**, podemos também configurar os campos com
+  algumas **restrições** (_e.g._, campo obrigatório)
 
 ---
 <!-- {"layout": "regular"} -->
@@ -342,67 +357,162 @@ para o servidor
 - Um _form_ agrupa _inputs_ para, posteriormente, serem enviados a
   um servidor (por exemplo, para **cadastrar um usuário**):
   ```html
-  <form action="cadastrar-usuario.php">
+  <form action="cadastrar-usuario.php"> <!-- que "página" receberá os dados -->
     <label>Nome: <input name="nome" type="text"></label>
     <label>E-mail: <input name="email" type="email"></label>
     <label>Senha: <input name="senha" type="password"></label>
 
-    <button type="submit">Enviar</button>
-    <button type="reset">Limpar</button>
+    <button type="submit">Enviar</button> <!-- veja no próximo -->
+    <button type="reset">Limpar</button>  <!-- slide -->
   </form>
   ```
-- **Botão submit**: envia os dados para o endereço
-  especificado pelo atributo `action` do formulário
-- **Botão reset**: volta os dados do formulário aos seus valores iniciais
+- Exemplo de [formulário](../../samples/form/index.html) <!-- {target="_blank"} -->
 
 ---
 <!-- {"layout": "regular"} -->
-## Botões de submissão
+## Botões de submissão e _reset_
 
-- Existem 02 formas para criar o botão de envio:
-  - `input` (forma antiga) :thumbsdown:
-    ```html
-    <input type="submit" value="Enviar">
-    ```
-    - <input type="submit" value="Enviar">
-    - Problema: não há como colocar um "ícone" no botão, apenas texto
-  - `button` (forma nova) :thumbsup:
-    ```html
-    <button type="submit">Enviar</button>
-    <button type="submit"><img src="icone.png">Enviar</button>
-    ```
-    - <button type="submit">Enviar</button> <button type="submit"><img src="../../images/html5-logo-32.png" style="height: 0.75em">Enviar</button>
+- Dentro de um formulário, um botão do `type="submit"` envia os dados para
+  o servidor: <button type="submit"><img src="../../images/html5-logo-32.png" style="height: 0.75em; font-size: 75%;">Cadastrar</button>
+  ```html
+  <button type="submit">
+    <img src="icone.png">Cadastrar <!-- podemos colocar ícones nos botões =) -->
+  </button>
+  ```
+- Um botão `type="reset"` volta os valores digitados para
+  seus `value` padrão
+  ```html
+  <button type="reset">Limpar</button> <!-- muito pouco usado -->
+  ```
+- Também há botões que não fazem nada, mas podem ter algum comportamento
+  associado (via JavaScript)
+  ```html
+  <button type="button">Ver detalhes</button> <!-- type="button" é o padrão -->
+  ```
 
 ---
 <!-- {"layout": "regular"} -->
-## Reset e outros botões
+## Validação e Restrições nos Campos
 
-- Botão _reset_
+- Podemos usar o atributo HTML `required` para marcar um campo como
+  de preenchimento obrigatório:
   ```html
-  <input type="reset" value="Limpar">
-  <button type="reset">Limpar</button><!-- HTML5 -->
+  <form action="verifica-login.php">
+    <label>Digite seu login:
+      <input type="text" id="usuario" required>
+      <input type="password" id="senha" required>
+    </label>
+    <button type="submit">Entrar</button>
+  </form>
   ```
-- Botões que não fazem nada, mas podem ter algum comportamento associado
-  (via JavaScript)
-  ```html
-  <input type="button" value="Ver detalhes">
-  <button>Ver detalhes</button><!-- HTML5 -->
-  ```
+  ::: result
+  <form action="verifica-login.php">
+    <label>Digite seu login:
+      <input type="text" id="usuario" required size="10">
+      <input type="password" id="senha" required size="10">
+    </label>
+    <button type="submit">Entrar</button>
+  </form>
+  :::
 
 ---
-<!-- {"layout": "section-header", "slideHash": "eventos-formularios"} -->
-# Eventos relacionados aos formulários
-##
+<!-- {"layout": "regular"} -->
+## Outros Tipos de Restrições
 
+| Tipo      	            | Código HTML                  	        | Exemplo                 	                   |
+|-------------------------|---------------------------------------|--------------------------------------------- |
+| Campo obrigatório 	    | `<input required>`                    | <form><input required size="5"><button>Enviar</button></form>     	|
+| Quantidade de caracteres| `<input maxlength="2">`	              | <input maxlength="2" size="5"> 	|
+| Número mínimo       	  | `<input type="number" min="5">`	      | <form><input type="number" min="5" style="width: 5em"><button>Enviar</button></form>	|
+| Número máximo       	  | `<input type="number" max="10">`	    | <form><input type="number" max="10" style="width: 5em"><button>Enviar</button></form>	|
+| Padrão                  | `<input pattern="[0-9]{4}">` | <form><input pattern="[0-9]{4}" size="5"><button>Enviar</button></form>     |
+| Desabilitar             | `<input disabled>` | <input disabled size="5">     |
+
+---
+<!-- {"layout": "regular"} -->
+## Estilizando campos de formulários
+
+- Campos de "entrada livre" (`text`, `number`, `email` etc.) podem ser
+  facilmente estilizados. Exemplos: <!-- {ul:.compact-code-more} -->
+  ```css
+  input[type="number"] {  /* todos os campos de números */
+    width: 4em; /* largura de 4 caracteres */
+  }
+
+  input[disabled],    /* todos que estejam disabled */
+  button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  input.discreto {    /* criei uma classe */
+    background-color: transparent;
+    border-width: none; /* tira o fundo e a borda */
+  }
+  ```
+  ::: result
+  <input type="number" style="width: 4em;">
+  <input type="text" disabled style="cursor: not-allowed; opacity: 0.65">
+  <button disabled style="cursor: not-allowed; opacity: 0.65">Desabilitado</button>
+  <input class="discreto" type="texto" style="background-color: transparent; border-width: 0;">
+  :::
+
+
+---
+<!-- {"layout": "regular", "embeddedStyles": ".estilizando-forms input:focus { outline: 3px solid yellow !important; } .estilizando-forms input:invalid { border: 1px solid red; }"} -->
+## Estilizando campos em diferentes estados
+
+- É possível estilizar campos **em diferentes situações** <!-- {ul:.estilizando-forms} -->
+  ```css
+  input:focus { /* elemento que está com o foco */
+    outline: 3px solid yellow;
+  }
+  input:invalid { /* elementos com erro */
+    border: 1px solid red;
+  }
+  ```
+  ::: result
+  <input type="number" required placeholder="Este number é required">
+  <input type="text" pattern="[0-9]{4}" maxlength="4" size="20" placeholder="Padrão de 4 dígitos">
+  :::
+  - É importante ressaltar o elemento que **está com o foco**
+  - Além de mostrar os **estão com erro**
+
+---
+<!-- {"layout": "section-header", "slideHash": "avatar-creator"} -->
+# AvatarCreator :lipstick:
+## Gerador de avatares
+
+- O AvatarCreator :lipstick:
+- Eventos de formulários
   - Foco: `blur` e `focus`
   - Teclado: `keydown` e `keyup`
-  - Modificação: `change`, `input`<!-- {ul:.content} -->
+  - Modificação: `change`, `input`<!-- {ul^1:.content} -->
 
+---
+<!-- {"backdrop": "avatarcreator"} -->
 
 ---
 <!-- {"layout": "regular"} -->
-- Lembrando que: eventos são **atrelados a nós específicos** e causam a invocação de uma função
-  "manipuladora" (_event handler_ ou apenas _handler_)
+# Atividade de Hoje
+
+- Completar a página do "AvatarCreator" :lipstick:
+- [Baixe os arquivos][avatar-seminal] contendo o HTML e faça os exercícios
+  - Leia as instruções detalhadas no arquivo `README.md`. No geral:
+    1. Possibilitar o usuário:
+       - Escrever o nome
+       - Selecionar uma cor da pele
+       - Escolher um cabelo
+       - Colocar/remover acessórios (desafios)
+
+[avatar-seminal]: https://github.com/fegemo/cefet-front-end-avatar/archive/master.zip
+
+---
+<!-- {"layout": "regular"} -->
+## Eventos de formulários
+
+- Lembrando que: eventos são **atrelados a nós específicos** e causam a
+  invocação de uma função "manipuladora" (_event handler_ ou apenas _handler_)
 - Eventos de entrada de dados:
   - `change` ou `input` (modificou)
   - `blur` (perdeu foco)

@@ -162,6 +162,13 @@ gulp.task('css-classes', function(done) {
   });
 });
 
+gulp.task('samples', function() {
+  var destination = 'dist/samples';
+  return gulp.src('samples/**/*')
+    .pipe(changed(destination))
+    .pipe(gulp.dest(destination));
+});
+
 gulp.task('attachments', function() {
   var destination = 'dist/attachments';
   return gulp.src('attachments/**/*')
@@ -241,6 +248,7 @@ gulp.task('build', ['js', 'js-classes',
   'audios',
   'videos',
   'attachments',
+  'samples',
   'favicon',
   'manifest'], function() {
   var folders = getFolders('.', 'classes').concat(getFolders('.', 'assignments')),
