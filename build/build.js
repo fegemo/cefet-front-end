@@ -175,13 +175,6 @@ module.exports = function() {
 },{}],5:[function(require,module,exports){
 module.exports = function() {
   return function(deck) {
-    var activateSlide = function(index) {
-      var indexToActivate = -1 < index && index < deck.slides.length ? index : 0;
-      if (indexToActivate !== deck.slide()) {
-        deck.slide(indexToActivate);
-      }
-    };
-
     var parseHash = function() {
       var hash = window.location.hash.slice(1),
         slideNumberOrName = parseInt(hash, 10);
@@ -191,7 +184,7 @@ module.exports = function() {
           activateSlide(slideNumberOrName - 1);
         } else {
           deck.slides.forEach(function(slide, i) {
-            if (slide.getAttribute('data-bespoke-hash') === hash || slide.id === hash) {
+            if (slide.getAttribute('data-bespoke-hash') === hash) {
               activateSlide(i);
             }
           });
@@ -199,11 +192,18 @@ module.exports = function() {
       }
     };
 
+    var activateSlide = function(index) {
+      var indexToActivate = -1 < index && index < deck.slides.length ? index : 0;
+      if (indexToActivate !== deck.slide()) {
+        deck.slide(indexToActivate);
+      }
+    };
+
     setTimeout(function() {
       parseHash();
 
       deck.on('activate', function(e) {
-        var slideName = e.slide.getAttribute('data-bespoke-hash') || e.slide.id;
+        var slideName = e.slide.getAttribute('data-bespoke-hash');
         window.location.hash = slideName || e.index + 1;
       });
 
@@ -471,7 +471,7 @@ module.exports = function(metadataCallbacks, pluginsArray) {
   };
 };
 
-},{"highlight.js":18,"lodash.isempty":198,"lodash.isfunction":199,"markdown-it":211}],8:[function(require,module,exports){
+},{"highlight.js":18,"lodash.isempty":191,"lodash.isfunction":192,"markdown-it":204}],8:[function(require,module,exports){
 module.exports = function(options) {
   return function (deck) {
     var progressParent = document.createElement('div'),
@@ -692,7 +692,7 @@ module.exports.insertCss = insertCss;
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"bespoke-classes":3,"insert-css":195}],13:[function(require,module,exports){
+},{"bespoke-classes":3,"insert-css":188}],13:[function(require,module,exports){
 module.exports = function(options) {
   return function(deck) {
     var axis = options == 'vertical' ? 'Y' : 'X',
@@ -1136,11 +1136,19 @@ https://highlightjs.org/
     languages: undefined
   };
 
+  // Object map that is used to escape some common HTML characters.
+  var escapeRegexMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;'
+  };
 
   /* Utility functions */
 
   function escape(value) {
-    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return value.replace(/[&<>]/gm, function(character) {
+      return escapeRegexMap[character];
+    });
   }
 
   function tag(node) {
@@ -1179,17 +1187,15 @@ https://highlightjs.org/
     }
   }
 
-  function inherit(parent) {  // inherit(parent, override_obj, override_obj, ...)
+  function inherit(parent, obj) {
     var key;
     var result = {};
-    var objects = Array.prototype.slice.call(arguments, 1);
 
     for (key in parent)
       result[key] = parent[key];
-    objects.forEach(function(obj) {
+    if (obj)
       for (key in obj)
         result[key] = obj[key];
-    });
     return result;
   }
 
@@ -1257,7 +1263,7 @@ https://highlightjs.org/
     }
 
     function open(node) {
-      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value).replace('"', '&quot;') + '"';}
+      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value) + '"';}
       result += '<' + tag(node) + ArrayProto.map.call(node.attributes, attr_str).join('') + '>';
     }
 
@@ -1299,15 +1305,6 @@ https://highlightjs.org/
   }
 
   /* Initialization */
-
-  function expand_mode(mode) {
-    if (mode.variants && !mode.cached_variants) {
-      mode.cached_variants = mode.variants.map(function(variant) {
-        return inherit(mode, {variants: null}, variant);
-      });
-    }
-    return mode.cached_variants || (mode.endsWithParent && [inherit(mode)]) || [mode];
-  }
 
   function compileLanguage(language) {
 
@@ -1374,9 +1371,15 @@ https://highlightjs.org/
       if (!mode.contains) {
         mode.contains = [];
       }
-      mode.contains = Array.prototype.concat.apply([], mode.contains.map(function(c) {
-        return expand_mode(c === 'self' ? mode : c)
-      }));
+      var expanded_contains = [];
+      mode.contains.forEach(function(c) {
+        if (c.variants) {
+          c.variants.forEach(function(v) {expanded_contains.push(inherit(c, v));});
+        } else {
+          expanded_contains.push(c === 'self' ? mode : c);
+        }
+      });
+      mode.contains = expanded_contains;
       mode.contains.forEach(function(c) {compileMode(c, mode);});
 
       if (mode.starts) {
@@ -1675,7 +1678,6 @@ https://highlightjs.org/
           } else if (options.tabReplace) {
             return p1.replace(/\t/g, options.tabReplace);
           }
-          return '';
       });
   }
 
@@ -1818,7 +1820,7 @@ https://highlightjs.org/
     contains: [hljs.BACKSLASH_ESCAPE]
   };
   hljs.PHRASAL_WORDS_MODE = {
-    begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/
+    begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|like)\b/
   };
   hljs.COMMENT = function (begin, end, inherits) {
     var mode = hljs.inherit(
@@ -1980,20 +1982,16 @@ hljs.registerLanguage('haxe', require('./languages/haxe'));
 hljs.registerLanguage('hsp', require('./languages/hsp'));
 hljs.registerLanguage('htmlbars', require('./languages/htmlbars'));
 hljs.registerLanguage('http', require('./languages/http'));
-hljs.registerLanguage('hy', require('./languages/hy'));
 hljs.registerLanguage('inform7', require('./languages/inform7'));
 hljs.registerLanguage('ini', require('./languages/ini'));
 hljs.registerLanguage('irpf90', require('./languages/irpf90'));
 hljs.registerLanguage('java', require('./languages/java'));
 hljs.registerLanguage('javascript', require('./languages/javascript'));
-hljs.registerLanguage('jboss-cli', require('./languages/jboss-cli'));
 hljs.registerLanguage('json', require('./languages/json'));
 hljs.registerLanguage('julia', require('./languages/julia'));
-hljs.registerLanguage('julia-repl', require('./languages/julia-repl'));
 hljs.registerLanguage('kotlin', require('./languages/kotlin'));
 hljs.registerLanguage('lasso', require('./languages/lasso'));
 hljs.registerLanguage('ldif', require('./languages/ldif'));
-hljs.registerLanguage('leaf', require('./languages/leaf'));
 hljs.registerLanguage('less', require('./languages/less'));
 hljs.registerLanguage('lisp', require('./languages/lisp'));
 hljs.registerLanguage('livecodeserver', require('./languages/livecodeserver'));
@@ -2013,7 +2011,6 @@ hljs.registerLanguage('perl', require('./languages/perl'));
 hljs.registerLanguage('mojolicious', require('./languages/mojolicious'));
 hljs.registerLanguage('monkey', require('./languages/monkey'));
 hljs.registerLanguage('moonscript', require('./languages/moonscript'));
-hljs.registerLanguage('n1ql', require('./languages/n1ql'));
 hljs.registerLanguage('nginx', require('./languages/nginx'));
 hljs.registerLanguage('nimrod', require('./languages/nimrod'));
 hljs.registerLanguage('nix', require('./languages/nix'));
@@ -2039,7 +2036,6 @@ hljs.registerLanguage('qml', require('./languages/qml'));
 hljs.registerLanguage('r', require('./languages/r'));
 hljs.registerLanguage('rib', require('./languages/rib'));
 hljs.registerLanguage('roboconf', require('./languages/roboconf'));
-hljs.registerLanguage('routeros', require('./languages/routeros'));
 hljs.registerLanguage('rsl', require('./languages/rsl'));
 hljs.registerLanguage('ruleslanguage', require('./languages/ruleslanguage'));
 hljs.registerLanguage('rust', require('./languages/rust'));
@@ -2047,7 +2043,6 @@ hljs.registerLanguage('scala', require('./languages/scala'));
 hljs.registerLanguage('scheme', require('./languages/scheme'));
 hljs.registerLanguage('scilab', require('./languages/scilab'));
 hljs.registerLanguage('scss', require('./languages/scss'));
-hljs.registerLanguage('shell', require('./languages/shell'));
 hljs.registerLanguage('smali', require('./languages/smali'));
 hljs.registerLanguage('smalltalk', require('./languages/smalltalk'));
 hljs.registerLanguage('sml', require('./languages/sml'));
@@ -2081,515 +2076,84 @@ hljs.registerLanguage('xquery', require('./languages/xquery'));
 hljs.registerLanguage('zephir', require('./languages/zephir'));
 
 module.exports = hljs;
-},{"./highlight":17,"./languages/1c":19,"./languages/abnf":20,"./languages/accesslog":21,"./languages/actionscript":22,"./languages/ada":23,"./languages/apache":24,"./languages/applescript":25,"./languages/arduino":26,"./languages/armasm":27,"./languages/asciidoc":28,"./languages/aspectj":29,"./languages/autohotkey":30,"./languages/autoit":31,"./languages/avrasm":32,"./languages/awk":33,"./languages/axapta":34,"./languages/bash":35,"./languages/basic":36,"./languages/bnf":37,"./languages/brainfuck":38,"./languages/cal":39,"./languages/capnproto":40,"./languages/ceylon":41,"./languages/clean":42,"./languages/clojure":44,"./languages/clojure-repl":43,"./languages/cmake":45,"./languages/coffeescript":46,"./languages/coq":47,"./languages/cos":48,"./languages/cpp":49,"./languages/crmsh":50,"./languages/crystal":51,"./languages/cs":52,"./languages/csp":53,"./languages/css":54,"./languages/d":55,"./languages/dart":56,"./languages/delphi":57,"./languages/diff":58,"./languages/django":59,"./languages/dns":60,"./languages/dockerfile":61,"./languages/dos":62,"./languages/dsconfig":63,"./languages/dts":64,"./languages/dust":65,"./languages/ebnf":66,"./languages/elixir":67,"./languages/elm":68,"./languages/erb":69,"./languages/erlang":71,"./languages/erlang-repl":70,"./languages/excel":72,"./languages/fix":73,"./languages/flix":74,"./languages/fortran":75,"./languages/fsharp":76,"./languages/gams":77,"./languages/gauss":78,"./languages/gcode":79,"./languages/gherkin":80,"./languages/glsl":81,"./languages/go":82,"./languages/golo":83,"./languages/gradle":84,"./languages/groovy":85,"./languages/haml":86,"./languages/handlebars":87,"./languages/haskell":88,"./languages/haxe":89,"./languages/hsp":90,"./languages/htmlbars":91,"./languages/http":92,"./languages/hy":93,"./languages/inform7":94,"./languages/ini":95,"./languages/irpf90":96,"./languages/java":97,"./languages/javascript":98,"./languages/jboss-cli":99,"./languages/json":100,"./languages/julia":102,"./languages/julia-repl":101,"./languages/kotlin":103,"./languages/lasso":104,"./languages/ldif":105,"./languages/leaf":106,"./languages/less":107,"./languages/lisp":108,"./languages/livecodeserver":109,"./languages/livescript":110,"./languages/llvm":111,"./languages/lsl":112,"./languages/lua":113,"./languages/makefile":114,"./languages/markdown":115,"./languages/mathematica":116,"./languages/matlab":117,"./languages/maxima":118,"./languages/mel":119,"./languages/mercury":120,"./languages/mipsasm":121,"./languages/mizar":122,"./languages/mojolicious":123,"./languages/monkey":124,"./languages/moonscript":125,"./languages/n1ql":126,"./languages/nginx":127,"./languages/nimrod":128,"./languages/nix":129,"./languages/nsis":130,"./languages/objectivec":131,"./languages/ocaml":132,"./languages/openscad":133,"./languages/oxygene":134,"./languages/parser3":135,"./languages/perl":136,"./languages/pf":137,"./languages/php":138,"./languages/pony":139,"./languages/powershell":140,"./languages/processing":141,"./languages/profile":142,"./languages/prolog":143,"./languages/protobuf":144,"./languages/puppet":145,"./languages/purebasic":146,"./languages/python":147,"./languages/q":148,"./languages/qml":149,"./languages/r":150,"./languages/rib":151,"./languages/roboconf":152,"./languages/routeros":153,"./languages/rsl":154,"./languages/ruby":155,"./languages/ruleslanguage":156,"./languages/rust":157,"./languages/scala":158,"./languages/scheme":159,"./languages/scilab":160,"./languages/scss":161,"./languages/shell":162,"./languages/smali":163,"./languages/smalltalk":164,"./languages/sml":165,"./languages/sqf":166,"./languages/sql":167,"./languages/stan":168,"./languages/stata":169,"./languages/step21":170,"./languages/stylus":171,"./languages/subunit":172,"./languages/swift":173,"./languages/taggerscript":174,"./languages/tap":175,"./languages/tcl":176,"./languages/tex":177,"./languages/thrift":178,"./languages/tp":179,"./languages/twig":180,"./languages/typescript":181,"./languages/vala":182,"./languages/vbnet":183,"./languages/vbscript":185,"./languages/vbscript-html":184,"./languages/verilog":186,"./languages/vhdl":187,"./languages/vim":188,"./languages/x86asm":189,"./languages/xl":190,"./languages/xml":191,"./languages/xquery":192,"./languages/yaml":193,"./languages/zephir":194}],19:[function(require,module,exports){
+},{"./highlight":17,"./languages/1c":19,"./languages/abnf":20,"./languages/accesslog":21,"./languages/actionscript":22,"./languages/ada":23,"./languages/apache":24,"./languages/applescript":25,"./languages/arduino":26,"./languages/armasm":27,"./languages/asciidoc":28,"./languages/aspectj":29,"./languages/autohotkey":30,"./languages/autoit":31,"./languages/avrasm":32,"./languages/awk":33,"./languages/axapta":34,"./languages/bash":35,"./languages/basic":36,"./languages/bnf":37,"./languages/brainfuck":38,"./languages/cal":39,"./languages/capnproto":40,"./languages/ceylon":41,"./languages/clean":42,"./languages/clojure":44,"./languages/clojure-repl":43,"./languages/cmake":45,"./languages/coffeescript":46,"./languages/coq":47,"./languages/cos":48,"./languages/cpp":49,"./languages/crmsh":50,"./languages/crystal":51,"./languages/cs":52,"./languages/csp":53,"./languages/css":54,"./languages/d":55,"./languages/dart":56,"./languages/delphi":57,"./languages/diff":58,"./languages/django":59,"./languages/dns":60,"./languages/dockerfile":61,"./languages/dos":62,"./languages/dsconfig":63,"./languages/dts":64,"./languages/dust":65,"./languages/ebnf":66,"./languages/elixir":67,"./languages/elm":68,"./languages/erb":69,"./languages/erlang":71,"./languages/erlang-repl":70,"./languages/excel":72,"./languages/fix":73,"./languages/flix":74,"./languages/fortran":75,"./languages/fsharp":76,"./languages/gams":77,"./languages/gauss":78,"./languages/gcode":79,"./languages/gherkin":80,"./languages/glsl":81,"./languages/go":82,"./languages/golo":83,"./languages/gradle":84,"./languages/groovy":85,"./languages/haml":86,"./languages/handlebars":87,"./languages/haskell":88,"./languages/haxe":89,"./languages/hsp":90,"./languages/htmlbars":91,"./languages/http":92,"./languages/inform7":93,"./languages/ini":94,"./languages/irpf90":95,"./languages/java":96,"./languages/javascript":97,"./languages/json":98,"./languages/julia":99,"./languages/kotlin":100,"./languages/lasso":101,"./languages/ldif":102,"./languages/less":103,"./languages/lisp":104,"./languages/livecodeserver":105,"./languages/livescript":106,"./languages/llvm":107,"./languages/lsl":108,"./languages/lua":109,"./languages/makefile":110,"./languages/markdown":111,"./languages/mathematica":112,"./languages/matlab":113,"./languages/maxima":114,"./languages/mel":115,"./languages/mercury":116,"./languages/mipsasm":117,"./languages/mizar":118,"./languages/mojolicious":119,"./languages/monkey":120,"./languages/moonscript":121,"./languages/nginx":122,"./languages/nimrod":123,"./languages/nix":124,"./languages/nsis":125,"./languages/objectivec":126,"./languages/ocaml":127,"./languages/openscad":128,"./languages/oxygene":129,"./languages/parser3":130,"./languages/perl":131,"./languages/pf":132,"./languages/php":133,"./languages/pony":134,"./languages/powershell":135,"./languages/processing":136,"./languages/profile":137,"./languages/prolog":138,"./languages/protobuf":139,"./languages/puppet":140,"./languages/purebasic":141,"./languages/python":142,"./languages/q":143,"./languages/qml":144,"./languages/r":145,"./languages/rib":146,"./languages/roboconf":147,"./languages/rsl":148,"./languages/ruby":149,"./languages/ruleslanguage":150,"./languages/rust":151,"./languages/scala":152,"./languages/scheme":153,"./languages/scilab":154,"./languages/scss":155,"./languages/smali":156,"./languages/smalltalk":157,"./languages/sml":158,"./languages/sqf":159,"./languages/sql":160,"./languages/stan":161,"./languages/stata":162,"./languages/step21":163,"./languages/stylus":164,"./languages/subunit":165,"./languages/swift":166,"./languages/taggerscript":167,"./languages/tap":168,"./languages/tcl":169,"./languages/tex":170,"./languages/thrift":171,"./languages/tp":172,"./languages/twig":173,"./languages/typescript":174,"./languages/vala":175,"./languages/vbnet":176,"./languages/vbscript":178,"./languages/vbscript-html":177,"./languages/verilog":179,"./languages/vhdl":180,"./languages/vim":181,"./languages/x86asm":182,"./languages/xl":183,"./languages/xml":184,"./languages/xquery":185,"./languages/yaml":186,"./languages/zephir":187}],19:[function(require,module,exports){
 module.exports = function(hljs){
-
-  // общий паттерн для определения идентификаторов
-  var UNDERSCORE_IDENT_RE = '[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+';
-  
-  // v7 уникальные ключевые слова, отсутствующие в v8 ==> keyword
-  var v7_keywords =
-  'далее ';
-
-  // v8 ключевые слова ==> keyword
-  var v8_keywords =
-  'возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли ' +
-  'конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт ';
-
-  // keyword : ключевые слова
-  var KEYWORD = v7_keywords + v8_keywords;
-  
-  // v7 уникальные директивы, отсутствующие в v8 ==> meta-keyword
-  var v7_meta_keywords =
-  'загрузитьизфайла ';
-
-  // v8 ключевые слова в инструкциях препроцессора, директивах компиляции, аннотациях ==> meta-keyword
-  var v8_meta_keywords =
-  'вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер ' +
-  'наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед ' +
-  'после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент ';
-
-  // meta-keyword : ключевые слова в инструкциях препроцессора, директивах компиляции, аннотациях
-  var METAKEYWORD = v7_meta_keywords + v8_meta_keywords;
-
-  // v7 системные константы ==> built_in
-  var v7_system_constants =
-  'разделительстраниц разделительстрок символтабуляции ';
-  
-  // v7 уникальные методы глобального контекста, отсутствующие в v8 ==> built_in
-  var v7_global_context_methods =
-  'ansitooem oemtoansi ввестивидсубконто ввестиперечисление ввестипериод ввестиплансчетов выбранныйплансчетов ' +
-  'датагод датамесяц датачисло заголовоксистемы значениевстроку значениеизстроки каталогиб каталогпользователя ' +
-  'кодсимв конгода конецпериодаби конецрассчитанногопериодаби конецстандартногоинтервала конквартала конмесяца ' +
-  'коннедели лог лог10 максимальноеколичествосубконто названиеинтерфейса названиенабораправ назначитьвид ' +
-  'назначитьсчет найтиссылки началопериодаби началостандартногоинтервала начгода начквартала начмесяца ' +
-  'начнедели номерднягода номерднянедели номернеделигода обработкаожидания основнойжурналрасчетов ' +
-  'основнойплансчетов основнойязык очиститьокносообщений периодстр получитьвремята получитьдатута ' +
-  'получитьдокументта получитьзначенияотбора получитьпозициюта получитьпустоезначение получитьта ' +
-  'префиксавтонумерации пропись пустоезначение разм разобратьпозициюдокумента рассчитатьрегистрына ' +
-  'рассчитатьрегистрыпо симв создатьобъект статусвозврата стрколичествострок сформироватьпозициюдокумента ' +
-  'счетпокоду текущеевремя типзначения типзначениястр установитьтана установитьтапо фиксшаблон шаблон ';
-  
-  // v8 методы глобального контекста ==> built_in
-  var v8_global_context_methods =
-  'acos asin atan base64значение base64строка cos exp log log10 pow sin sqrt tan xmlзначение xmlстрока ' +
-  'xmlтип xmlтипзнч активноеокно безопасныйрежим безопасныйрежимразделенияданных булево ввестидату ввестизначение ' +
-  'ввестистроку ввестичисло возможностьчтенияxml вопрос восстановитьзначение врег выгрузитьжурналрегистрации ' +
-  'выполнитьобработкуоповещения выполнитьпроверкуправдоступа вычислить год данныеформывзначение дата день деньгода ' +
-  'деньнедели добавитьмесяц заблокироватьданныедляредактирования заблокироватьработупользователя завершитьработусистемы ' +
-  'загрузитьвнешнююкомпоненту закрытьсправку записатьjson записатьxml записатьдатуjson записьжурналарегистрации ' +
-  'заполнитьзначениясвойств запроситьразрешениепользователя запуститьприложение запуститьсистему зафиксироватьтранзакцию ' +
-  'значениевданныеформы значениевстрокувнутр значениевфайл значениезаполнено значениеизстрокивнутр значениеизфайла ' +
-  'изxmlтипа импортмоделиxdto имякомпьютера имяпользователя инициализироватьпредопределенныеданные информацияобошибке ' +
-  'каталогбиблиотекимобильногоустройства каталогвременныхфайлов каталогдокументов каталогпрограммы кодироватьстроку ' +
-  'кодлокализацииинформационнойбазы кодсимвола командасистемы конецгода конецдня конецквартала конецмесяца конецминуты ' +
-  'конецнедели конецчаса конфигурациябазыданныхизмененадинамически конфигурацияизменена копироватьданныеформы ' +
-  'копироватьфайл краткоепредставлениеошибки лев макс местноевремя месяц мин минута монопольныйрежим найти ' +
-  'найтинедопустимыесимволыxml найтиокнопонавигационнойссылке найтипомеченныенаудаление найтипоссылкам найтифайлы ' +
-  'началогода началодня началоквартала началомесяца началоминуты началонедели началочаса начатьзапросразрешенияпользователя ' +
-  'начатьзапускприложения начатькопированиефайла начатьперемещениефайла начатьподключениевнешнейкомпоненты ' +
-  'начатьподключениерасширенияработыскриптографией начатьподключениерасширенияработысфайлами начатьпоискфайлов ' +
-  'начатьполучениекаталогавременныхфайлов начатьполучениекаталогадокументов начатьполучениерабочегокаталогаданныхпользователя ' +
-  'начатьполучениефайлов начатьпомещениефайла начатьпомещениефайлов начатьсозданиедвоичныхданныхизфайла начатьсозданиекаталога ' +
-  'начатьтранзакцию начатьудалениефайлов начатьустановкувнешнейкомпоненты начатьустановкурасширенияработыскриптографией ' +
-  'начатьустановкурасширенияработысфайлами неделягода необходимостьзавершениясоединения номерсеансаинформационнойбазы ' +
-  'номерсоединенияинформационнойбазы нрег нстр обновитьинтерфейс обновитьнумерациюобъектов обновитьповторноиспользуемыезначения ' +
-  'обработкапрерыванияпользователя объединитьфайлы окр описаниеошибки оповестить оповеститьобизменении ' +
-  'отключитьобработчикзапросанастроекклиенталицензирования отключитьобработчикожидания отключитьобработчикоповещения ' +
-  'открытьзначение открытьиндекссправки открытьсодержаниесправки открытьсправку открытьформу открытьформумодально ' +
-  'отменитьтранзакцию очиститьжурналрегистрации очиститьнастройкипользователя очиститьсообщения параметрыдоступа ' +
-  'перейтипонавигационнойссылке переместитьфайл подключитьвнешнююкомпоненту ' +
-  'подключитьобработчикзапросанастроекклиенталицензирования подключитьобработчикожидания подключитьобработчикоповещения ' +
-  'подключитьрасширениеработыскриптографией подключитьрасширениеработысфайлами подробноепредставлениеошибки ' +
-  'показатьвводдаты показатьвводзначения показатьвводстроки показатьвводчисла показатьвопрос показатьзначение ' +
-  'показатьинформациюобошибке показатьнакарте показатьоповещениепользователя показатьпредупреждение полноеимяпользователя ' +
-  'получитьcomобъект получитьxmlтип получитьадреспоместоположению получитьблокировкусеансов получитьвремязавершенияспящегосеанса ' +
-  'получитьвремязасыпанияпассивногосеанса получитьвремяожиданияблокировкиданных получитьданныевыбора ' +
-  'получитьдополнительныйпараметрклиенталицензирования получитьдопустимыекодылокализации получитьдопустимыечасовыепояса ' +
-  'получитьзаголовокклиентскогоприложения получитьзаголовоксистемы получитьзначенияотборажурналарегистрации ' +
-  'получитьидентификаторконфигурации получитьизвременногохранилища получитьимявременногофайла ' +
-  'получитьимяклиенталицензирования получитьинформациюэкрановклиента получитьиспользованиежурналарегистрации ' +
-  'получитьиспользованиесобытияжурналарегистрации получитькраткийзаголовокприложения получитьмакетоформления ' +
-  'получитьмаскувсефайлы получитьмаскувсефайлыклиента получитьмаскувсефайлысервера получитьместоположениепоадресу ' +
-  'получитьминимальнуюдлинупаролейпользователей получитьнавигационнуюссылку получитьнавигационнуюссылкуинформационнойбазы ' +
-  'получитьобновлениеконфигурациибазыданных получитьобновлениепредопределенныхданныхинформационнойбазы получитьобщиймакет ' +
-  'получитьобщуюформу получитьокна получитьоперативнуюотметкувремени получитьотключениебезопасногорежима ' +
-  'получитьпараметрыфункциональныхопцийинтерфейса получитьполноеимяпредопределенногозначения ' +
-  'получитьпредставлениянавигационныхссылок получитьпроверкусложностипаролейпользователей получитьразделительпути ' +
-  'получитьразделительпутиклиента получитьразделительпутисервера получитьсеансыинформационнойбазы ' +
-  'получитьскоростьклиентскогосоединения получитьсоединенияинформационнойбазы получитьсообщенияпользователю ' +
-  'получитьсоответствиеобъектаиформы получитьсоставстандартногоинтерфейсаodata получитьструктурухранениябазыданных ' +
-  'получитьтекущийсеансинформационнойбазы получитьфайл получитьфайлы получитьформу получитьфункциональнуюопцию ' +
-  'получитьфункциональнуюопциюинтерфейса получитьчасовойпоясинформационнойбазы пользователиос поместитьвовременноехранилище ' +
-  'поместитьфайл поместитьфайлы прав праводоступа предопределенноезначение представлениекодалокализации представлениепериода ' +
-  'представлениеправа представлениеприложения представлениесобытияжурналарегистрации представлениечасовогопояса предупреждение ' +
-  'прекратитьработусистемы привилегированныйрежим продолжитьвызов прочитатьjson прочитатьxml прочитатьдатуjson пустаястрока ' +
-  'рабочийкаталогданныхпользователя разблокироватьданныедляредактирования разделитьфайл разорватьсоединениесвнешнимисточникомданных ' +
-  'раскодироватьстроку рольдоступна секунда сигнал символ скопироватьжурналрегистрации смещениелетнеговремени ' +
-  'смещениестандартноговремени соединитьбуферыдвоичныхданных создатькаталог создатьфабрикуxdto сокрл сокрлп сокрп сообщить ' +
-  'состояние сохранитьзначение сохранитьнастройкипользователя сред стрдлина стрзаканчиваетсяна стрзаменить стрнайти стрначинаетсяс ' +
-  'строка строкасоединенияинформационнойбазы стрполучитьстроку стрразделить стрсоединить стрсравнить стрчисловхождений '+
-  'стрчислострок стршаблон текущаядата текущаядатасеанса текущаяуниверсальнаядата текущаяуниверсальнаядатавмиллисекундах ' +
-  'текущийвариантинтерфейсаклиентскогоприложения текущийвариантосновногошрифтаклиентскогоприложения текущийкодлокализации ' +
-  'текущийрежимзапуска текущийязык текущийязыксистемы тип типзнч транзакцияактивна трег удалитьданныеинформационнойбазы ' +
-  'удалитьизвременногохранилища удалитьобъекты удалитьфайлы универсальноевремя установитьбезопасныйрежим ' +
-  'установитьбезопасныйрежимразделенияданных установитьблокировкусеансов установитьвнешнююкомпоненту ' +
-  'установитьвремязавершенияспящегосеанса установитьвремязасыпанияпассивногосеанса установитьвремяожиданияблокировкиданных ' +
-  'установитьзаголовокклиентскогоприложения установитьзаголовоксистемы установитьиспользованиежурналарегистрации ' +
-  'установитьиспользованиесобытияжурналарегистрации установитькраткийзаголовокприложения ' +
-  'установитьминимальнуюдлинупаролейпользователей установитьмонопольныйрежим установитьнастройкиклиенталицензирования ' +
-  'установитьобновлениепредопределенныхданныхинформационнойбазы установитьотключениебезопасногорежима ' +
-  'установитьпараметрыфункциональныхопцийинтерфейса установитьпривилегированныйрежим ' +
-  'установитьпроверкусложностипаролейпользователей установитьрасширениеработыскриптографией ' +
-  'установитьрасширениеработысфайлами установитьсоединениесвнешнимисточникомданных установитьсоответствиеобъектаиформы ' +
-  'установитьсоставстандартногоинтерфейсаodata установитьчасовойпоясинформационнойбазы установитьчасовойпояссеанса ' +
-  'формат цел час часовойпояс часовойпояссеанса число числопрописью этоадресвременногохранилища ';
-
-  // v8 свойства глобального контекста ==> built_in
-  var v8_global_context_property =
-  'wsссылки библиотекакартинок библиотекамакетовоформлениякомпоновкиданных библиотекастилей бизнеспроцессы ' +
-  'внешниеисточникиданных внешниеобработки внешниеотчеты встроенныепокупки главныйинтерфейс главныйстиль ' +
-  'документы доставляемыеуведомления журналыдокументов задачи информацияобинтернетсоединении использованиерабочейдаты ' +
-  'историяработыпользователя константы критерииотбора метаданные обработки отображениерекламы отправкадоставляемыхуведомлений ' +
-  'отчеты панельзадачос параметрзапуска параметрысеанса перечисления планывидоврасчета планывидовхарактеристик ' +
-  'планыобмена планысчетов полнотекстовыйпоиск пользователиинформационнойбазы последовательности проверкавстроенныхпокупок ' +
-  'рабочаядата расширенияконфигурации регистрыбухгалтерии регистрынакопления регистрырасчета регистрысведений ' +
-  'регламентныезадания сериализаторxdto справочники средствагеопозиционирования средствакриптографии средствамультимедиа ' +
-  'средстваотображениярекламы средствапочты средствателефонии фабрикаxdto файловыепотоки фоновыезадания хранилищанастроек ' +
-  'хранилищевариантовотчетов хранилищенастроекданныхформ хранилищеобщихнастроек хранилищепользовательскихнастроекдинамическихсписков ' +
-  'хранилищепользовательскихнастроекотчетов хранилищесистемныхнастроек ';
-
-  // built_in : встроенные или библиотечные объекты (константы, классы, функции)
-  var BUILTIN =
-  v7_system_constants +
-  v7_global_context_methods + v8_global_context_methods +
-  v8_global_context_property;
-  
-  // v8 системные наборы значений ==> class
-  var v8_system_sets_of_values =
-  'webцвета windowsцвета windowsшрифты библиотекакартинок рамкистиля символы цветастиля шрифтыстиля ';
-
-  // v8 системные перечисления - интерфейсные ==> class
-  var v8_system_enums_interface =
-  'автоматическоесохранениеданныхформывнастройках автонумерациявформе автораздвижениесерий ' +
-  'анимациядиаграммы вариантвыравниванияэлементовизаголовков вариантуправлениявысотойтаблицы ' +
-  'вертикальнаяпрокруткаформы вертикальноеположение вертикальноеположениеэлемента видгруппыформы ' +
-  'виддекорацииформы виддополненияэлементаформы видизмененияданных видкнопкиформы видпереключателя ' +
-  'видподписейкдиаграмме видполяформы видфлажка влияниеразмеранапузырекдиаграммы горизонтальноеположение ' +
-  'горизонтальноеположениеэлемента группировкаколонок группировкаподчиненныхэлементовформы ' +
-  'группыиэлементы действиеперетаскивания дополнительныйрежимотображения допустимыедействияперетаскивания ' +
-  'интервалмеждуэлементамиформы использованиевывода использованиеполосыпрокрутки ' +
-  'используемоезначениеточкибиржевойдиаграммы историявыборапривводе источникзначенийоситочекдиаграммы ' +
-  'источникзначенияразмерапузырькадиаграммы категориягруппыкоманд максимумсерий начальноеотображениедерева ' +
-  'начальноеотображениесписка обновлениетекстаредактирования ориентациядендрограммы ориентациядиаграммы ' +
-  'ориентацияметокдиаграммы ориентацияметоксводнойдиаграммы ориентацияэлементаформы отображениевдиаграмме ' +
-  'отображениевлегендедиаграммы отображениегруппыкнопок отображениезаголовкашкалыдиаграммы ' +
-  'отображениезначенийсводнойдиаграммы отображениезначенияизмерительнойдиаграммы ' +
-  'отображениеинтерваладиаграммыганта отображениекнопки отображениекнопкивыбора отображениеобсужденийформы ' +
-  'отображениеобычнойгруппы отображениеотрицательныхзначенийпузырьковойдиаграммы отображениепанелипоиска ' +
-  'отображениеподсказки отображениепредупрежденияприредактировании отображениеразметкиполосырегулирования ' +
-  'отображениестраницформы отображениетаблицы отображениетекстазначениядиаграммыганта ' +
-  'отображениеуправленияобычнойгруппы отображениефигурыкнопки палитрацветовдиаграммы поведениеобычнойгруппы ' +
-  'поддержкамасштабадендрограммы поддержкамасштабадиаграммыганта поддержкамасштабасводнойдиаграммы ' +
-  'поисквтаблицепривводе положениезаголовкаэлементаформы положениекартинкикнопкиформы ' +
-  'положениекартинкиэлементаграфическойсхемы положениекоманднойпанелиформы положениекоманднойпанелиэлементаформы ' +
-  'положениеопорнойточкиотрисовки положениеподписейкдиаграмме положениеподписейшкалызначенийизмерительнойдиаграммы ' +
-  'положениесостоянияпросмотра положениестрокипоиска положениетекстасоединительнойлинии положениеуправленияпоиском ' +
-  'положениешкалывремени порядокотображенияточекгоризонтальнойгистограммы порядоксерийвлегендедиаграммы ' +
-  'размеркартинки расположениезаголовкашкалыдиаграммы растягиваниеповертикалидиаграммыганта ' +
-  'режимавтоотображениясостояния режимвводастроктаблицы режимвыборанезаполненного режимвыделениядаты ' +
-  'режимвыделениястрокитаблицы режимвыделениятаблицы режимизмененияразмера режимизменениясвязанногозначения ' +
-  'режимиспользованиядиалогапечати режимиспользованияпараметракоманды режиммасштабированияпросмотра ' +
-  'режимосновногоокнаклиентскогоприложения режимоткрытияокнаформы режимотображениявыделения ' +
-  'режимотображениягеографическойсхемы режимотображениязначенийсерии режимотрисовкисеткиграфическойсхемы ' +
-  'режимполупрозрачностидиаграммы режимпробеловдиаграммы режимразмещениянастранице режимредактированияколонки ' +
-  'режимсглаживаниядиаграммы режимсглаживанияиндикатора режимсписказадач сквозноевыравнивание ' +
-  'сохранениеданныхформывнастройках способзаполнениятекстазаголовкашкалыдиаграммы ' +
-  'способопределенияограничивающегозначениядиаграммы стандартнаягруппакоманд стандартноеоформление ' +
-  'статусоповещенияпользователя стильстрелки типаппроксимациилиниитрендадиаграммы типдиаграммы ' +
-  'типединицышкалывремени типимпортасерийслоягеографическойсхемы типлиниигеографическойсхемы типлиниидиаграммы ' +
-  'типмаркерагеографическойсхемы типмаркерадиаграммы типобластиоформления ' +
-  'типорганизацииисточникаданныхгеографическойсхемы типотображениясериислоягеографическойсхемы ' +
-  'типотображенияточечногообъектагеографическойсхемы типотображенияшкалыэлементалегендыгеографическойсхемы ' +
-  'типпоискаобъектовгеографическойсхемы типпроекциигеографическойсхемы типразмещенияизмерений ' +
-  'типразмещенияреквизитовизмерений типрамкиэлементауправления типсводнойдиаграммы ' +
-  'типсвязидиаграммыганта типсоединениязначенийпосериямдиаграммы типсоединенияточекдиаграммы ' +
-  'типсоединительнойлинии типстороныэлементаграфическойсхемы типформыотчета типшкалырадарнойдиаграммы ' +
-  'факторлиниитрендадиаграммы фигуракнопки фигурыграфическойсхемы фиксациявтаблице форматдняшкалывремени ' +
-  'форматкартинки ширинаподчиненныхэлементовформы ';
-
-  // v8 системные перечисления - свойства прикладных объектов ==> class
-  var v8_system_enums_objects_properties =
-  'виддвижениябухгалтерии виддвижениянакопления видпериодарегистрарасчета видсчета видточкимаршрутабизнеспроцесса ' +
-  'использованиеагрегатарегистранакопления использованиегруппиэлементов использованиережимапроведения ' +
-  'использованиесреза периодичностьагрегатарегистранакопления режимавтовремя режимзаписидокумента режимпроведениядокумента ';
-
-  // v8 системные перечисления - планы обмена ==> class
-  var v8_system_enums_exchange_plans =
-  'авторегистрацияизменений допустимыйномерсообщения отправкаэлементаданных получениеэлементаданных ';
-
-  // v8 системные перечисления - табличный документ ==> class
-  var v8_system_enums_tabular_document =
-  'использованиерасшифровкитабличногодокумента ориентациястраницы положениеитоговколоноксводнойтаблицы ' +
-  'положениеитоговстроксводнойтаблицы положениетекстаотносительнокартинки расположениезаголовкагруппировкитабличногодокумента ' +
-  'способчтениязначенийтабличногодокумента типдвустороннейпечати типзаполненияобластитабличногодокумента ' +
-  'типкурсоровтабличногодокумента типлиниирисункатабличногодокумента типлинииячейкитабличногодокумента ' +
-  'типнаправленияпереходатабличногодокумента типотображениявыделениятабличногодокумента типотображениялинийсводнойтаблицы ' +
-  'типразмещениятекстатабличногодокумента типрисункатабличногодокумента типсмещениятабличногодокумента ' +
-  'типузоратабличногодокумента типфайлатабличногодокумента точностьпечати чередованиерасположениястраниц ';
-
-  // v8 системные перечисления - планировщик ==> class
-  var v8_system_enums_sheduler =
-  'отображениевремениэлементовпланировщика ';
-
-  // v8 системные перечисления - форматированный документ ==> class
-  var v8_system_enums_formatted_document =
-  'типфайлаформатированногодокумента ';
-
-  // v8 системные перечисления - запрос ==> class
-  var v8_system_enums_query =
-  'обходрезультатазапроса типзаписизапроса ';
-
-  // v8 системные перечисления - построитель отчета ==> class
-  var v8_system_enums_report_builder =
-  'видзаполнениярасшифровкипостроителяотчета типдобавленияпредставлений типизмеренияпостроителяотчета типразмещенияитогов ';
-
-  // v8 системные перечисления - работа с файлами ==> class
-  var v8_system_enums_files =
-  'доступкфайлу режимдиалогавыборафайла режимоткрытияфайла ';
-
-  // v8 системные перечисления - построитель запроса ==> class
-  var v8_system_enums_query_builder =
-  'типизмеренияпостроителязапроса ';
-
-  // v8 системные перечисления - анализ данных ==> class
-  var v8_system_enums_data_analysis =
-  'видданныханализа методкластеризации типединицыинтервалавременианализаданных типзаполнениятаблицырезультатаанализаданных ' +
-  'типиспользованиячисловыхзначенийанализаданных типисточникаданныхпоискаассоциаций типколонкианализаданныхдереворешений ' +
-  'типколонкианализаданныхкластеризация типколонкианализаданныхобщаястатистика типколонкианализаданныхпоискассоциаций ' +
-  'типколонкианализаданныхпоискпоследовательностей типколонкимоделипрогноза типмерырасстоянияанализаданных ' +
-  'типотсеченияправилассоциации типполяанализаданных типстандартизациианализаданных типупорядочиванияправилассоциациианализаданных ' +
-  'типупорядочиванияшаблоновпоследовательностейанализаданных типупрощениядереварешений ';
-
-  // v8 системные перечисления - xml, json, xs, dom, xdto, web-сервисы ==> class
-  var v8_system_enums_xml_json_xs_dom_xdto_ws =
-  'wsнаправлениепараметра вариантxpathxs вариантзаписидатыjson вариантпростоготипаxs видгруппымоделиxs видфасетаxdto ' +
-  'действиепостроителяdom завершенностьпростоготипаxs завершенностьсоставноготипаxs завершенностьсхемыxs запрещенныеподстановкиxs ' +
-  'исключениягруппподстановкиxs категорияиспользованияатрибутаxs категорияограниченияидентичностиxs категорияограниченияпространствименxs ' +
-  'методнаследованияxs модельсодержимогоxs назначениетипаxml недопустимыеподстановкиxs обработкапробельныхсимволовxs обработкасодержимогоxs ' +
-  'ограничениезначенияxs параметрыотбораузловdom переносстрокjson позициявдокументеdom пробельныесимволыxml типатрибутаxml типзначенияjson ' +
-  'типканоническогоxml типкомпонентыxs типпроверкиxml типрезультатаdomxpath типузлаdom типузлаxml формаxml формапредставленияxs ' +
-  'форматдатыjson экранированиесимволовjson ';
-
-  // v8 системные перечисления - система компоновки данных ==> class
-  var v8_system_enums_data_composition_system =
-  'видсравнениякомпоновкиданных действиеобработкирасшифровкикомпоновкиданных направлениесортировкикомпоновкиданных ' +
-  'расположениевложенныхэлементоврезультатакомпоновкиданных расположениеитоговкомпоновкиданных расположениегруппировкикомпоновкиданных ' +
-  'расположениеполейгруппировкикомпоновкиданных расположениеполякомпоновкиданных расположениереквизитовкомпоновкиданных ' +
-  'расположениересурсовкомпоновкиданных типбухгалтерскогоостаткакомпоновкиданных типвыводатекстакомпоновкиданных ' +
-  'типгруппировкикомпоновкиданных типгруппыэлементовотборакомпоновкиданных типдополненияпериодакомпоновкиданных ' +
-  'типзаголовкаполейкомпоновкиданных типмакетагруппировкикомпоновкиданных типмакетаобластикомпоновкиданных типостаткакомпоновкиданных ' +
-  'типпериодакомпоновкиданных типразмещениятекстакомпоновкиданных типсвязинаборовданныхкомпоновкиданных типэлементарезультатакомпоновкиданных ' +
-  'расположениелегендыдиаграммыкомпоновкиданных типпримененияотборакомпоновкиданных режимотображенияэлементанастройкикомпоновкиданных ' +
-  'режимотображениянастроеккомпоновкиданных состояниеэлементанастройкикомпоновкиданных способвосстановлениянастроеккомпоновкиданных ' +
-  'режимкомпоновкирезультата использованиепараметракомпоновкиданных автопозицияресурсовкомпоновкиданных '+
-  'вариантиспользованиягруппировкикомпоновкиданных расположениересурсоввдиаграммекомпоновкиданных фиксациякомпоновкиданных ' +
-  'использованиеусловногооформлениякомпоновкиданных ';
-
-  // v8 системные перечисления - почта ==> class
-  var v8_system_enums_email =
-  'важностьинтернетпочтовогосообщения обработкатекстаинтернетпочтовогосообщения способкодированияинтернетпочтовоговложения ' +
-  'способкодированиянеasciiсимволовинтернетпочтовогосообщения типтекстапочтовогосообщения протоколинтернетпочты ' +
-  'статусразборапочтовогосообщения ';
-
-  // v8 системные перечисления - журнал регистрации ==> class
-  var v8_system_enums_logbook =
-  'режимтранзакциизаписижурналарегистрации статустранзакциизаписижурналарегистрации уровеньжурналарегистрации ';
-
-  // v8 системные перечисления - криптография ==> class
-  var v8_system_enums_cryptography =
-  'расположениехранилищасертификатовкриптографии режимвключениясертификатовкриптографии режимпроверкисертификатакриптографии ' +
-  'типхранилищасертификатовкриптографии ';
-
-  // v8 системные перечисления - ZIP ==> class
-  var v8_system_enums_zip =
-  'кодировкаименфайловвzipфайле методсжатияzip методшифрованияzip режимвосстановленияпутейфайловzip режимобработкиподкаталоговzip ' +
-  'режимсохраненияпутейzip уровеньсжатияzip ';
-
-  // v8 системные перечисления - 
-  // Блокировка данных, Фоновые задания, Автоматизированное тестирование,
-  // Доставляемые уведомления, Встроенные покупки, Интернет, Работа с двоичными данными ==> class
-  var v8_system_enums_other =
-  'звуковоеоповещение направлениепереходакстроке позициявпотоке порядокбайтов режимблокировкиданных режимуправленияблокировкойданных ' +
-  'сервисвстроенныхпокупок состояниефоновогозадания типподписчикадоставляемыхуведомлений уровеньиспользованиязащищенногосоединенияftp ';
-
-  // v8 системные перечисления - схема запроса ==> class
-  var v8_system_enums_request_schema =
-  'направлениепорядкасхемызапроса типдополненияпериодамисхемызапроса типконтрольнойточкисхемызапроса типобъединениясхемызапроса ' +
-  'типпараметрадоступнойтаблицысхемызапроса типсоединениясхемызапроса ';
-
-  // v8 системные перечисления - свойства объектов метаданных ==> class
-  var v8_system_enums_properties_of_metadata_objects =
-  'httpметод автоиспользованиеобщегореквизита автопрефиксномеразадачи вариантвстроенногоязыка видиерархии видрегистранакопления ' +
-  'видтаблицывнешнегоисточникаданных записьдвиженийприпроведении заполнениепоследовательностей индексирование ' +
-  'использованиебазыпланавидоврасчета использованиебыстроговыбора использованиеобщегореквизита использованиеподчинения ' +
-  'использованиеполнотекстовогопоиска использованиеразделяемыхданныхобщегореквизита использованиереквизита ' +
-  'назначениеиспользованияприложения назначениерасширенияконфигурации направлениепередачи обновлениепредопределенныхданных ' +
-  'оперативноепроведение основноепредставлениевидарасчета основноепредставлениевидахарактеристики основноепредставлениезадачи ' +
-  'основноепредставлениепланаобмена основноепредставлениесправочника основноепредставлениесчета перемещениеграницыприпроведении ' +
-  'периодичностьномерабизнеспроцесса периодичностьномерадокумента периодичностьрегистрарасчета периодичностьрегистрасведений ' +
-  'повторноеиспользованиевозвращаемыхзначений полнотекстовыйпоискпривводепостроке принадлежностьобъекта проведение ' +
-  'разделениеаутентификацииобщегореквизита разделениеданныхобщегореквизита разделениерасширенийконфигурацииобщегореквизита '+
-  'режимавтонумерацииобъектов режимзаписирегистра режимиспользованиямодальности ' +
-  'режимиспользованиясинхронныхвызововрасширенийплатформыивнешнихкомпонент режимповторногоиспользованиясеансов ' +
-  'режимполученияданныхвыборапривводепостроке режимсовместимости режимсовместимостиинтерфейса ' +
-  'режимуправленияблокировкойданныхпоумолчанию сериикодовпланавидовхарактеристик сериикодовпланасчетов ' +
-  'сериикодовсправочника созданиепривводе способвыбора способпоискастрокипривводепостроке способредактирования ' +
-  'типданныхтаблицывнешнегоисточникаданных типкодапланавидоврасчета типкодасправочника типмакета типномерабизнеспроцесса ' +
-  'типномерадокумента типномеразадачи типформы удалениедвижений ';
-
-  // v8 системные перечисления - разные ==> class
-  var v8_system_enums_differents =
-  'важностьпроблемыприменениярасширенияконфигурации вариантинтерфейсаклиентскогоприложения вариантмасштабаформклиентскогоприложения ' +
-  'вариантосновногошрифтаклиентскогоприложения вариантстандартногопериода вариантстандартнойдатыначала видграницы видкартинки ' +
-  'видотображенияполнотекстовогопоиска видрамки видсравнения видцвета видчисловогозначения видшрифта допустимаядлина допустимыйзнак ' +
-  'использованиеbyteordermark использованиеметаданныхполнотекстовогопоиска источникрасширенийконфигурации клавиша кодвозвратадиалога ' +
-  'кодировкаxbase кодировкатекста направлениепоиска направлениесортировки обновлениепредопределенныхданных обновлениеприизмененииданных ' +
-  'отображениепанелиразделов проверказаполнения режимдиалогавопрос режимзапускаклиентскогоприложения режимокругления режимоткрытияформприложения ' +
-  'режимполнотекстовогопоиска скоростьклиентскогосоединения состояниевнешнегоисточникаданных состояниеобновленияконфигурациибазыданных ' +
-  'способвыборасертификатаwindows способкодированиястроки статуссообщения типвнешнейкомпоненты типплатформы типповеденияклавишиenter ' +
-  'типэлементаинформацииовыполненииобновленияконфигурациибазыданных уровеньизоляциитранзакций хешфункция частидаты';
-
-  // class: встроенные наборы значений, системные перечисления (содержат дочерние значения, обращения к которым через разыменование)
-  var CLASS =
-  v8_system_sets_of_values +
-  v8_system_enums_interface +
-  v8_system_enums_objects_properties +
-  v8_system_enums_exchange_plans +
-  v8_system_enums_tabular_document +
-  v8_system_enums_sheduler +
-  v8_system_enums_formatted_document +
-  v8_system_enums_query +
-  v8_system_enums_report_builder +
-  v8_system_enums_files +
-  v8_system_enums_query_builder +
-  v8_system_enums_data_analysis +
-  v8_system_enums_xml_json_xs_dom_xdto_ws +
-  v8_system_enums_data_composition_system +
-  v8_system_enums_email +
-  v8_system_enums_logbook +
-  v8_system_enums_cryptography +
-  v8_system_enums_zip +
-  v8_system_enums_other +
-  v8_system_enums_request_schema +
-  v8_system_enums_properties_of_metadata_objects +
-  v8_system_enums_differents;
-
-  // v8 общие объекты (у объектов есть конструктор, экземпляры создаются методом НОВЫЙ) ==> type
-  var v8_shared_object =
-  'comобъект ftpсоединение httpзапрос httpсервисответ httpсоединение wsопределения wsпрокси xbase анализданных аннотацияxs ' +
-  'блокировкаданных буфердвоичныхданных включениеxs выражениекомпоновкиданных генераторслучайныхчисел географическаясхема ' +
-  'географическиекоординаты графическаясхема группамоделиxs данныерасшифровкикомпоновкиданных двоичныеданные дендрограмма ' +
-  'диаграмма диаграммаганта диалогвыборафайла диалогвыборацвета диалогвыборашрифта диалограсписаниярегламентногозадания ' +
-  'диалогредактированиястандартногопериода диапазон документdom документhtml документацияxs доставляемоеуведомление ' +
-  'записьdom записьfastinfoset записьhtml записьjson записьxml записьzipфайла записьданных записьтекста записьузловdom ' +
-  'запрос защищенноесоединениеopenssl значенияполейрасшифровкикомпоновкиданных извлечениетекста импортxs интернетпочта ' +
-  'интернетпочтовоесообщение интернетпочтовыйпрофиль интернетпрокси интернетсоединение информациядляприложенияxs ' +
-  'использованиеатрибутаxs использованиесобытияжурналарегистрации источникдоступныхнастроеккомпоновкиданных ' +
-  'итераторузловdom картинка квалификаторыдаты квалификаторыдвоичныхданных квалификаторыстроки квалификаторычисла ' +
-  'компоновщикмакетакомпоновкиданных компоновщикнастроеккомпоновкиданных конструктормакетаоформлениякомпоновкиданных ' +
-  'конструкторнастроеккомпоновкиданных конструкторформатнойстроки линия макеткомпоновкиданных макетобластикомпоновкиданных ' +
-  'макетоформлениякомпоновкиданных маскаxs менеджеркриптографии наборсхемxml настройкикомпоновкиданных настройкисериализацииjson ' +
-  'обработкакартинок обработкарасшифровкикомпоновкиданных обходдереваdom объявлениеатрибутаxs объявлениенотацииxs ' +
-  'объявлениеэлементаxs описаниеиспользованиясобытиядоступжурналарегистрации ' +
-  'описаниеиспользованиясобытияотказвдоступежурналарегистрации описаниеобработкирасшифровкикомпоновкиданных ' +
-  'описаниепередаваемогофайла описаниетипов определениегруппыатрибутовxs определениегруппымоделиxs ' +
-  'определениеограниченияидентичностиxs определениепростоготипаxs определениесоставноготипаxs определениетипадокументаdom ' +
-  'определенияxpathxs отборкомпоновкиданных пакетотображаемыхдокументов параметрвыбора параметркомпоновкиданных ' +
-  'параметрызаписиjson параметрызаписиxml параметрычтенияxml переопределениеxs планировщик полеанализаданных ' +
-  'полекомпоновкиданных построительdom построительзапроса построительотчета построительотчетаанализаданных ' +
-  'построительсхемxml поток потоквпамяти почта почтовоесообщение преобразованиеxsl преобразованиекканоническомуxml ' +
-  'процессорвыводарезультатакомпоновкиданныхвколлекциюзначений процессорвыводарезультатакомпоновкиданныхвтабличныйдокумент ' +
-  'процессоркомпоновкиданных разыменовательпространствименdom рамка расписаниерегламентногозадания расширенноеимяxml ' +
-  'результатчтенияданных своднаядиаграмма связьпараметравыбора связьпотипу связьпотипукомпоновкиданных сериализаторxdto ' +
-  'сертификатклиентаwindows сертификатклиентафайл сертификаткриптографии сертификатыудостоверяющихцентровwindows ' +
-  'сертификатыудостоверяющихцентровфайл сжатиеданных системнаяинформация сообщениепользователю сочетаниеклавиш ' +
-  'сравнениезначений стандартнаядатаначала стандартныйпериод схемаxml схемакомпоновкиданных табличныйдокумент ' +
-  'текстовыйдокумент тестируемоеприложение типданныхxml уникальныйидентификатор фабрикаxdto файл файловыйпоток ' +
-  'фасетдлиныxs фасетколичестваразрядовдробнойчастиxs фасетмаксимальноговключающегозначенияxs ' +
-  'фасетмаксимальногоисключающегозначенияxs фасетмаксимальнойдлиныxs фасетминимальноговключающегозначенияxs ' +
-  'фасетминимальногоисключающегозначенияxs фасетминимальнойдлиныxs фасетобразцаxs фасетобщегоколичестваразрядовxs ' +
-  'фасетперечисленияxs фасетпробельныхсимволовxs фильтрузловdom форматированнаястрока форматированныйдокумент ' +
-  'фрагментxs хешированиеданных хранилищезначения цвет чтениеfastinfoset чтениеhtml чтениеjson чтениеxml чтениеzipфайла ' +
-  'чтениеданных чтениетекста чтениеузловdom шрифт элементрезультатакомпоновкиданных ';
-
-  // v8 универсальные коллекции значений ==> type
-  var v8_universal_collection =
-  'comsafearray деревозначений массив соответствие списокзначений структура таблицазначений фиксированнаяструктура ' +
-  'фиксированноесоответствие фиксированныймассив ';
-
-  // type : встроенные типы
-  var TYPE =
-  v8_shared_object +
-  v8_universal_collection;
-
-  // literal : примитивные типы
-  var LITERAL = 'null истина ложь неопределено';
-  
-  // number : числа
-  var NUMBERS = hljs.inherit(hljs.NUMBER_MODE);
-
-  // string : строки
-  var STRINGS = {
+  var IDENT_RE_RU = '[a-zA-Zа-яА-Я][a-zA-Z0-9_а-яА-Я]*';
+  var OneS_KEYWORDS = 'возврат дата для если и или иначе иначеесли исключение конецесли ' +
+    'конецпопытки конецпроцедуры конецфункции конеццикла константа не перейти перем ' +
+    'перечисление по пока попытка прервать продолжить процедура строка тогда фс функция цикл ' +
+    'число экспорт';
+  var OneS_BUILT_IN = 'ansitooem oemtoansi ввестивидсубконто ввестидату ввестизначение ' +
+    'ввестиперечисление ввестипериод ввестиплансчетов ввестистроку ввестичисло вопрос ' +
+    'восстановитьзначение врег выбранныйплансчетов вызватьисключение датагод датамесяц ' +
+    'датачисло добавитьмесяц завершитьработусистемы заголовоксистемы записьжурналарегистрации ' +
+    'запуститьприложение зафиксироватьтранзакцию значениевстроку значениевстрокувнутр ' +
+    'значениевфайл значениеизстроки значениеизстрокивнутр значениеизфайла имякомпьютера ' +
+    'имяпользователя каталогвременныхфайлов каталогиб каталогпользователя каталогпрограммы ' +
+    'кодсимв командасистемы конгода конецпериодаби конецрассчитанногопериодаби ' +
+    'конецстандартногоинтервала конквартала конмесяца коннедели лев лог лог10 макс ' +
+    'максимальноеколичествосубконто мин монопольныйрежим названиеинтерфейса названиенабораправ ' +
+    'назначитьвид назначитьсчет найти найтипомеченныенаудаление найтиссылки началопериодаби ' +
+    'началостандартногоинтервала начатьтранзакцию начгода начквартала начмесяца начнедели ' +
+    'номерднягода номерднянедели номернеделигода нрег обработкаожидания окр описаниеошибки ' +
+    'основнойжурналрасчетов основнойплансчетов основнойязык открытьформу открытьформумодально ' +
+    'отменитьтранзакцию очиститьокносообщений периодстр полноеимяпользователя получитьвремята ' +
+    'получитьдатута получитьдокументта получитьзначенияотбора получитьпозициюта ' +
+    'получитьпустоезначение получитьта прав праводоступа предупреждение префиксавтонумерации ' +
+    'пустаястрока пустоезначение рабочаядаттьпустоезначение рабочаядата разделительстраниц ' +
+    'разделительстрок разм разобратьпозициюдокумента рассчитатьрегистрына ' +
+    'рассчитатьрегистрыпо сигнал симв символтабуляции создатьобъект сокрл сокрлп сокрп ' +
+    'сообщить состояние сохранитьзначение сред статусвозврата стрдлина стрзаменить ' +
+    'стрколичествострок стрполучитьстроку  стрчисловхождений сформироватьпозициюдокумента ' +
+    'счетпокоду текущаядата текущеевремя типзначения типзначениястр удалитьобъекты ' +
+    'установитьтана установитьтапо фиксшаблон формат цел шаблон';
+  var DQUOTE =  {begin: '""'};
+  var STR_START = {
+      className: 'string',
+      begin: '"', end: '"|$',
+      contains: [DQUOTE]
+    };
+  var STR_CONT = {
     className: 'string',
-    begin: '"|\\|', end: '"|$',
-    contains: [{begin: '""'}]
-  };
-
-  // number : даты
-  var DATE = {
-    begin: "'", end: "'", excludeBegin: true, excludeEnd: true,
-    contains: [
-      {
-        className: 'number',
-        begin: '\\d{4}([\\.\\\\/:-]?\\d{2}){0,5}'
-      }
-    ]
-  };
-  
-  // comment : комментарии
-  var COMMENTS = hljs.inherit(hljs.C_LINE_COMMENT_MODE);
-  
-  // meta : инструкции препроцессора, директивы компиляции
-  var META = {
-    className: 'meta',
-    lexemes: UNDERSCORE_IDENT_RE,
-    begin: '#|&', end: '$',
-    keywords: {'meta-keyword': KEYWORD + METAKEYWORD},
-    contains: [
-      COMMENTS
-    ]
-  };
-  
-  // symbol : метка goto
-  var SYMBOL = {
-    className: 'symbol',
-    begin: '~', end: ';|:', excludeEnd: true
-  };  
-  
-  // function : объявление процедур и функций
-  var FUNCTION = {
-    className: 'function',
-    lexemes: UNDERSCORE_IDENT_RE,
-    variants: [
-      {begin: 'процедура|функция', end: '\\)', keywords: 'процедура функция'},
-      {begin: 'конецпроцедуры|конецфункции', keywords: 'конецпроцедуры конецфункции'}
-    ],
-    contains: [
-      {
-        begin: '\\(', end: '\\)', endsParent : true,
-        contains: [
-          {
-            className: 'params',
-            lexemes: UNDERSCORE_IDENT_RE,
-            begin: UNDERSCORE_IDENT_RE, end: ',', excludeEnd: true, endsWithParent: true,
-            keywords: {
-              keyword: 'знач',
-              literal: LITERAL
-            },
-            contains: [
-              NUMBERS,
-              STRINGS,
-              DATE
-            ]
-          },
-          COMMENTS
-        ]
-      },
-      hljs.inherit(hljs.TITLE_MODE, {begin: UNDERSCORE_IDENT_RE})
-    ]
+    begin: '\\|', end: '"|$',
+    contains: [DQUOTE]
   };
 
   return {
     case_insensitive: true,
-    lexemes: UNDERSCORE_IDENT_RE,
-    keywords: {
-      keyword: KEYWORD,
-      built_in: BUILTIN,
-      class: CLASS,
-      type: TYPE,
-      literal: LITERAL
-    },
+    lexemes: IDENT_RE_RU,
+    keywords: {keyword: OneS_KEYWORDS, built_in: OneS_BUILT_IN},
     contains: [
-      META,
-      FUNCTION,
-      COMMENTS,
-      SYMBOL,
-      NUMBERS,
-      STRINGS,
-      DATE
-    ]  
-  }
+      hljs.C_LINE_COMMENT_MODE,
+      hljs.NUMBER_MODE,
+      STR_START, STR_CONT,
+      {
+        className: 'function',
+        begin: '(процедура|функция)', end: '$',
+        lexemes: IDENT_RE_RU,
+        keywords: 'процедура функция',
+        contains: [
+          {
+            begin: 'экспорт', endsWithParent: true,
+            lexemes: IDENT_RE_RU,
+            keywords: 'экспорт',
+            contains: [hljs.C_LINE_COMMENT_MODE]
+          },
+          {
+            className: 'params',
+            begin: '\\(', end: '\\)',
+            lexemes: IDENT_RE_RU,
+            keywords: 'знач',
+            contains: [STR_START, STR_CONT]
+          },
+          hljs.C_LINE_COMMENT_MODE,
+          hljs.inherit(hljs.TITLE_MODE, {begin: IDENT_RE_RU})
+        ]
+      },
+      {className: 'meta', begin: '#', end: '$'},
+      {className: 'number', begin: '\'\\d{2}\\.\\d{2}\\.(\\d{2}|\\d{4})\''} // date
+    ]
+  };
 };
 },{}],20:[function(require,module,exports){
 module.exports = function(hljs) {
@@ -3553,8 +3117,7 @@ module.exports = function (hljs) {
         contains : [
           {
             begin : hljs.UNDERSCORE_IDENT_RE + '\\s*\\(',
-            keywords : KEYWORDS + ' ' + SHORTKEYS,
-            relevance: 0
+            keywords : KEYWORDS + ' ' + SHORTKEYS
           },
           hljs.QUOTE_STRING_MODE
         ]
@@ -3607,14 +3170,13 @@ module.exports = function (hljs) {
 },{}],30:[function(require,module,exports){
 module.exports = function(hljs) {
   var BACKTICK_ESCAPE = {
-    begin: '`[\\s\\S]'
+    begin: /`[\s\S]/
   };
 
   return {
     case_insensitive: true,
-    aliases: [ 'ahk' ],
     keywords: {
-      keyword: 'Break Continue Critical Exit ExitApp Gosub Goto New OnExit Pause return SetBatchLines SetTimer Suspend Thread Throw Until ahk_id ahk_class ahk_pid ahk_exe ahk_group',
+      keyword: 'Break Continue Else Gosub If Loop Return While',
       literal: 'A|0 true false NOT AND OR',
       built_in: 'ComSpec Clipboard ClipboardAll ErrorLevel',
     },
@@ -3626,26 +3188,16 @@ module.exports = function(hljs) {
       BACKTICK_ESCAPE,
       hljs.inherit(hljs.QUOTE_STRING_MODE, {contains: [BACKTICK_ESCAPE]}),
       hljs.COMMENT(';', '$', {relevance: 0}),
-      hljs.C_BLOCK_COMMENT_MODE,
       {
         className: 'number',
         begin: hljs.NUMBER_RE,
         relevance: 0
       },
       {
-        className: 'subst', // FIXED
-        begin: '%(?=[a-zA-Z0-9#_$@])', end: '%',
-        illegal: '[^a-zA-Z0-9#_$@]'
-      },
-      {
-        className: 'built_in',
-        begin: '^\\s*\\w+\\s*,'
-        //I don't really know if this is totally relevant
-      },
-      {
-        className: 'meta', 
-        begin: '^\\s*#\w+', end:'$',
-        relevance: 0
+        className: 'variable', // FIXME
+        begin: '%', end: '%',
+        illegal: '\\n',
+        contains: [BACKTICK_ESCAPE]
       },
       {
         className: 'symbol',
@@ -3974,7 +3526,7 @@ module.exports = function(hljs) {
 
   return {
     aliases: ['sh', 'zsh'],
-    lexemes: /\b-?[a-z\._]+\b/,
+    lexemes: /-?[a-z\._]+/,
     keywords: {
       keyword:
         'if then else elif fi for while in do done case esac function',
@@ -4461,7 +4013,6 @@ module.exports = function(hljs) {
   LIST.contains = [hljs.COMMENT('comment', ''), NAME, BODY];
   BODY.contains = DEFAULT_CONTAINS;
   COLLECTION.contains = DEFAULT_CONTAINS;
-  HINT_COL.contains = [COLLECTION];
 
   return {
     aliases: ['clj'],
@@ -4874,7 +4425,7 @@ module.exports = function(hljs) {
     className: 'number',
     variants: [
       { begin: '\\b(0b[01\']+)' },
-      { begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)(u|U|l|L|ul|UL|f|F|b|B)' },
+      { begin: '\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)(u|U|l|L|ul|UL|f|F|b|B)' },
       { begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)' }
     ],
     relevance: 0
@@ -4895,7 +4446,7 @@ module.exports = function(hljs) {
       hljs.inherit(STRINGS, {className: 'meta-string'}),
       {
         className: 'meta-string',
-        begin: /<[^\n>]*>/, end: /$/,
+        begin: '<', end: '>',
         illegal: '\\n',
       },
       hljs.C_LINE_COMMENT_MODE,
@@ -4907,16 +4458,15 @@ module.exports = function(hljs) {
 
   var CPP_KEYWORDS = {
     keyword: 'int float while private char catch import module export virtual operator sizeof ' +
-      'dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace ' +
+      'dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace ' +
       'unsigned long volatile static protected bool template mutable if public friend ' +
-      'do goto auto void enum else break extern using asm case typeid ' +
+      'do goto auto void enum else break extern using class asm case typeid ' +
       'short reinterpret_cast|10 default double register explicit signed typename try this ' +
       'switch continue inline delete alignof constexpr decltype ' +
       'noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary ' +
       'atomic_bool atomic_char atomic_schar ' +
       'atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong ' +
-      'atomic_ullong new throw return ' +
-      'and or not',
+      'atomic_ullong new throw return',
     built_in: 'std string cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream ' +
       'auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set ' +
       'unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos ' +
@@ -5001,14 +4551,6 @@ module.exports = function(hljs) {
           hljs.C_LINE_COMMENT_MODE,
           hljs.C_BLOCK_COMMENT_MODE,
           PREPROCESSOR
-        ]
-      },
-      {
-        className: 'class',
-        beginKeywords: 'class struct', end: /[{;:]/,
-        contains: [
-          {begin: /</, end: />/, contains: ['self']}, // skip generic stuff
-          hljs.TITLE_MODE
         ]
       }
     ]),
@@ -5122,10 +4664,10 @@ module.exports = function(hljs) {
   var CRYSTAL_METHOD_RE = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\][=?]?';
   var CRYSTAL_KEYWORDS = {
     keyword:
-      'abstract alias as as? asm begin break case class def do else elsif end ensure enum extend for fun if ' +
-      'include instance_sizeof is_a? lib macro module next nil? of out pointerof private protected rescue responds_to? ' +
-      'return require select self sizeof struct super then type typeof union uninitialized unless until when while with yield ' +
-      '__DIR__ __END_LINE__ __FILE__ __LINE__',
+      'abstract alias as asm begin break case class def do else elsif end ensure enum extend for fun if ifdef ' +
+      'include instance_sizeof is_a? lib macro module next of out pointerof private protected rescue responds_to? ' +
+      'return require self sizeof struct super then type typeof union unless until when while with yield ' +
+      '__DIR__ __FILE__ __LINE__',
     literal: 'false nil true'
   };
   var SUBST = {
@@ -5163,22 +4705,6 @@ module.exports = function(hljs) {
       {begin: '%w?%', end: '%'},
       {begin: '%w?-', end: '-'},
       {begin: '%w?\\|', end: '\\|'},
-      {begin: /<<-\w+$/, end: /^\s*\w+$/},
-    ],
-    relevance: 0,
-  };
-  var Q_STRING = {
-    className: 'string',
-    variants: [
-      {begin: '%q\\(', end: '\\)', contains: recursiveParen('\\(', '\\)')},
-      {begin: '%q\\[', end: '\\]', contains: recursiveParen('\\[', '\\]')},
-      {begin: '%q{', end: '}', contains: recursiveParen('{', '}')},
-      {begin: '%q<', end: '>', contains: recursiveParen('<', '>')},
-      {begin: '%q/', end: '/'},
-      {begin: '%q%', end: '%'},
-      {begin: '%q-', end: '-'},
-      {begin: '%q\\|', end: '\\|'},
-      {begin: /<<-'\w+'$/, end: /^\s*\w+$/},
     ],
     relevance: 0,
   };
@@ -5229,7 +4755,6 @@ module.exports = function(hljs) {
   var CRYSTAL_DEFAULT_CONTAINS = [
     EXPANSION,
     STRING,
-    Q_STRING,
     REGEXP,
     REGEXP2,
     ATTRIBUTE,
@@ -5313,11 +4838,12 @@ module.exports = function(hljs) {
     keyword:
       // Normal keywords.
       'abstract as base bool break byte case catch char checked const continue decimal ' +
-      'default delegate do double enum event explicit extern finally fixed float ' +
-      'for foreach goto if implicit in int interface internal is lock long nameof ' +
+      'default delegate do double else enum event explicit extern finally fixed float ' +
+      'for foreach goto if implicit in int interface internal is lock long ' +
       'object operator out override params private protected public readonly ref sbyte ' +
       'sealed short sizeof stackalloc static string struct switch this try typeof ' +
       'uint ulong unchecked unsafe ushort using virtual void volatile while ' +
+      'nameof ' +
       // Contextual keywords.
       'add alias ascending async await by descending dynamic equals from get global group into join ' +
       'let on orderby partial remove select set value var where yield',
@@ -5381,7 +4907,6 @@ module.exports = function(hljs) {
   };
 
   var TYPE_IDENT_RE = hljs.IDENT_RE + '(<' + hljs.IDENT_RE + '(\\s*,\\s*' + hljs.IDENT_RE + ')*>)?(\\[\\])?';
-
   return {
     aliases: ['csharp'],
     keywords: KEYWORDS,
@@ -5415,9 +4940,7 @@ module.exports = function(hljs) {
       {
         className: 'meta',
         begin: '#', end: '$',
-        keywords: {
-          'meta-keyword': 'if else elif endif define undef warning error line region endregion pragma checksum'
-        }
+        keywords: {'meta-keyword': 'if else elif endif define undef warning error line region endregion pragma checksum'}
       },
       STRING,
       hljs.C_NUMBER_MODE,
@@ -5440,23 +4963,15 @@ module.exports = function(hljs) {
         ]
       },
       {
-        // [Attributes("")]
-        className: 'meta',
-        begin: '^\\s*\\[', excludeBegin: true, end: '\\]', excludeEnd: true,
-        contains: [
-          {className: 'meta-string', begin: /"/, end: /"/}
-        ]
-      },
-      {
         // Expression keywords prevent 'keyword Name(...)' from being
         // recognized as a function definition
-        beginKeywords: 'new return throw await else',
+        beginKeywords: 'new return throw await',
         relevance: 0
       },
       {
         className: 'function',
-        begin: '(' + TYPE_IDENT_RE + '\\s+)+' + hljs.IDENT_RE + '\\s*\\(', returnBegin: true,
-        end: /[{;=]/, excludeEnd: true,
+        begin: '(' + TYPE_IDENT_RE + '\\s+)+' + hljs.IDENT_RE + '\\s*\\(', returnBegin: true, end: /[{;=]/,
+        excludeEnd: true,
         keywords: KEYWORDS,
         contains: [
           {
@@ -6177,14 +5692,14 @@ module.exports = function(hljs) {
   return {
     aliases: ['docker'],
     case_insensitive: true,
-    keywords: 'from maintainer expose env arg user onbuild stopsignal',
+    keywords: 'from maintainer expose env user onbuild',
     contains: [
       hljs.HASH_COMMENT_MODE,
       hljs.APOS_STRING_MODE,
       hljs.QUOTE_STRING_MODE,
       hljs.NUMBER_MODE,
       {
-        beginKeywords: 'run cmd entrypoint volume add copy workdir label healthcheck shell',
+        beginKeywords: 'run cmd entrypoint volume add copy workdir label healthcheck',
         starts: {
           end: /[^\\]\n/,
           subLanguage: 'bash'
@@ -6659,8 +6174,7 @@ module.exports = function(hljs) {
       COMMENT,
 
       {begin: '->|<-'} // No markup, relevance booster
-    ],
-    illegal: /;/
+    ]
   };
 };
 },{}],69:[function(require,module,exports){
@@ -7265,7 +6779,7 @@ module.exports = function (hljs) {
         contains: [
               { // Function title
                 className: 'title',
-                begin: /^[a-z0-9_]+/,
+                begin: /^[a-z][a-z0-9_]+/,
               },
               PARAMS,
               SYMBOLS,
@@ -7329,7 +6843,7 @@ module.exports = function(hljs) {
               'getpath getPreviousTradingDay getPreviousWeekDay getRow getscalar3D getscalar4D getTrRow getwind glm gradcplx gradMT ' +
               'gradMTm gradMTT gradMTTm gradp graphprt graphset hasimag header headermt hess hessMT hessMTg hessMTgw hessMTm ' +
               'hessMTmw hessMTT hessMTTg hessMTTgw hessMTTm hessMTw hessp hist histf histp hsec imag indcv indexcat indices indices2 ' +
-              'indicesf indicesfn indnv indsav integrate1d integrateControlCreate intgrat2 intgrat3 inthp1 inthp2 inthp3 inthp4 ' +
+              'indicesf indicesfn indnv indsav indx integrate1d integrateControlCreate intgrat2 intgrat3 inthp1 inthp2 inthp3 inthp4 ' +
               'inthpControlCreate intquad1 intquad2 intquad3 intrleav intrleavsa intrsect intsimp inv invpd invswp iscplx iscplxf ' +
               'isden isinfnanmiss ismiss key keyav keyw lag lag1 lagn lapEighb lapEighi lapEighvb lapEighvi lapgEig lapgEigh lapgEighv ' +
               'lapgEigv lapgSchur lapgSvdcst lapgSvds lapgSvdst lapSvdcusv lapSvds lapSvdusv ldlp ldlsol linSolve listwise ln lncdfbvn ' +
@@ -7369,9 +6883,7 @@ module.exports = function(hljs) {
               'utctodtv utrisol vals varCovMS varCovXS varget vargetl varmall varmares varput varputl vartypef vcm vcms vcx vcxs ' +
               'vec vech vecr vector vget view viewxyz vlist vnamecv volume vput vread vtypecv wait waitc walkindex where window ' +
               'writer xlabel xlsGetSheetCount xlsGetSheetSize xlsGetSheetTypes xlsMakeRange xlsReadM xlsReadSA xlsWrite xlsWriteM ' +
-              'xlsWriteSA xpnd xtics xy xyz ylabel ytics zeros zeta zlabel ztics cdfEmpirical dot h5create h5open h5read h5readAttribute ' +
-              'h5write h5writeAttribute ldl plotAddErrorBar plotAddSurface plotCDFEmpirical plotSetColormap plotSetContourLabels ' +
-              'plotSetLegendFont plotSetTextInterpreter plotSetXTicCount plotSetYTicCount plotSetZLevels powerm strjoin strtrim sylvester',
+              'xlsWriteSA xpnd xtics xy xyz ylabel ytics zeros zeta zlabel ztics',
     literal: 'DB_AFTER_LAST_ROW DB_ALL_TABLES DB_BATCH_OPERATIONS DB_BEFORE_FIRST_ROW DB_BLOB DB_EVENT_NOTIFICATIONS ' +
              'DB_FINISH_QUERY DB_HIGH_PRECISION DB_LAST_INSERT_ID DB_LOW_PRECISION_DOUBLE DB_LOW_PRECISION_INT32 ' +
              'DB_LOW_PRECISION_INT64 DB_LOW_PRECISION_NUMBERS DB_MULTIPLE_RESULT_SETS DB_NAMED_PLACEHOLDERS ' +
@@ -8200,7 +7712,7 @@ module.exports = function(hljs) {
   return {
     aliases: ['hx'],
     keywords: {
-      keyword: 'break case cast catch continue default do dynamic else enum extern ' +
+      keyword: 'break callback case cast catch continue default do dynamic else enum extern ' +
                'for function here if import in inline never new override package private get set ' +
                'public return static super switch this throw trace try typedef untyped using var while ' +
                HAXE_BASIC_TYPES,
@@ -8462,108 +7974,6 @@ module.exports = function(hljs) {
 };
 },{}],93:[function(require,module,exports){
 module.exports = function(hljs) {
-  var keywords = {
-    'builtin-name':
-      // keywords
-      '!= % %= & &= * ** **= *= *map ' +
-      '+ += , --build-class-- --import-- -= . / // //= ' +
-      '/= < << <<= <= = > >= >> >>= ' +
-      '@ @= ^ ^= abs accumulate all and any ap-compose ' +
-      'ap-dotimes ap-each ap-each-while ap-filter ap-first ap-if ap-last ap-map ap-map-when ap-pipe ' +
-      'ap-reduce ap-reject apply as-> ascii assert assoc bin break butlast ' +
-      'callable calling-module-name car case cdr chain chr coll? combinations compile ' +
-      'compress cond cons cons? continue count curry cut cycle dec ' +
-      'def default-method defclass defmacro defmacro-alias defmacro/g! defmain defmethod defmulti defn ' +
-      'defn-alias defnc defnr defreader defseq del delattr delete-route dict-comp dir ' +
-      'disassemble dispatch-reader-macro distinct divmod do doto drop drop-last drop-while empty? ' +
-      'end-sequence eval eval-and-compile eval-when-compile even? every? except exec filter first ' +
-      'flatten float? fn fnc fnr for for* format fraction genexpr ' +
-      'gensym get getattr global globals group-by hasattr hash hex id ' +
-      'identity if if* if-not if-python2 import in inc input instance? ' +
-      'integer integer-char? integer? interleave interpose is is-coll is-cons is-empty is-even ' +
-      'is-every is-float is-instance is-integer is-integer-char is-iterable is-iterator is-keyword is-neg is-none ' +
-      'is-not is-numeric is-odd is-pos is-string is-symbol is-zero isinstance islice issubclass ' +
-      'iter iterable? iterate iterator? keyword keyword? lambda last len let ' +
-      'lif lif-not list* list-comp locals loop macro-error macroexpand macroexpand-1 macroexpand-all ' +
-      'map max merge-with method-decorator min multi-decorator multicombinations name neg? next ' +
-      'none? nonlocal not not-in not? nth numeric? oct odd? open ' +
-      'or ord partition permutations pos? post-route postwalk pow prewalk print ' +
-      'product profile/calls profile/cpu put-route quasiquote quote raise range read read-str ' +
-      'recursive-replace reduce remove repeat repeatedly repr require rest round route ' +
-      'route-with-methods rwm second seq set-comp setattr setv some sorted string ' +
-      'string? sum switch symbol? take take-nth take-while tee try unless ' +
-      'unquote unquote-splicing vars walk when while with with* with-decorator with-gensyms ' +
-      'xi xor yield yield-from zero? zip zip-longest | |= ~'
-   };
-
-  var SYMBOLSTART = 'a-zA-Z_\\-!.?+*=<>&#\'';
-  var SYMBOL_RE = '[' + SYMBOLSTART + '][' + SYMBOLSTART + '0-9/;:]*';
-  var SIMPLE_NUMBER_RE = '[-+]?\\d+(\\.\\d+)?';
-
-  var SHEBANG = {
-    className: 'meta',
-    begin: '^#!', end: '$'
-  };
-
-  var SYMBOL = {
-    begin: SYMBOL_RE,
-    relevance: 0
-  };
-  var NUMBER = {
-    className: 'number', begin: SIMPLE_NUMBER_RE,
-    relevance: 0
-  };
-  var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null});
-  var COMMENT = hljs.COMMENT(
-    ';',
-    '$',
-    {
-      relevance: 0
-    }
-  );
-  var LITERAL = {
-    className: 'literal',
-    begin: /\b([Tt]rue|[Ff]alse|nil|None)\b/
-  };
-  var COLLECTION = {
-    begin: '[\\[\\{]', end: '[\\]\\}]'
-  };
-  var HINT = {
-    className: 'comment',
-    begin: '\\^' + SYMBOL_RE
-  };
-  var HINT_COL = hljs.COMMENT('\\^\\{', '\\}');
-  var KEY = {
-    className: 'symbol',
-    begin: '[:]{1,2}' + SYMBOL_RE
-  };
-  var LIST = {
-    begin: '\\(', end: '\\)'
-  };
-  var BODY = {
-    endsWithParent: true,
-    relevance: 0
-  };
-  var NAME = {
-    keywords: keywords,
-    lexemes: SYMBOL_RE,
-    className: 'name', begin: SYMBOL_RE,
-    starts: BODY
-  };
-  var DEFAULT_CONTAINS = [LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL, SYMBOL];
-
-  LIST.contains = [hljs.COMMENT('comment', ''), NAME, BODY];
-  BODY.contains = DEFAULT_CONTAINS;
-  COLLECTION.contains = DEFAULT_CONTAINS;
-
-  return {
-    aliases: ['hylang'],
-    illegal: /\S/,
-    contains: [SHEBANG, LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL]
-  }
-};
-},{}],94:[function(require,module,exports){
-module.exports = function(hljs) {
   var START_BRACKET = '\\[';
   var END_BRACKET = '\\]';
   return {
@@ -8619,7 +8029,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],95:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 module.exports = function(hljs) {
   var STRING = {
     className: "string",
@@ -8685,7 +8095,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],96:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 module.exports = function(hljs) {
   var PARAMS = {
     className: 'params',
@@ -8761,7 +8171,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],97:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 module.exports = function(hljs) {
   var JAVA_IDENT_RE = '[\u00C0-\u02B8a-zA-Z_$][\u00C0-\u02B8a-zA-Z_$0-9]*';
   var GENERIC_IDENT_RE = JAVA_IDENT_RE + '(<' + JAVA_IDENT_RE + '(\\s*,\\s*' + JAVA_IDENT_RE + ')*>)?';
@@ -8869,7 +8279,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],98:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
   var KEYWORDS = {
@@ -9040,54 +8450,7 @@ module.exports = function(hljs) {
     illegal: /#(?!!)/
   };
 };
-},{}],99:[function(require,module,exports){
-module.exports = function (hljs) {
-  var PARAM = {
-    begin: /[\w-]+ *=/, returnBegin: true,
-    relevance: 0,
-    contains: [{className: 'attr', begin: /[\w-]+/}]
-  };
-  var PARAMSBLOCK = {
-    className: 'params',
-    begin: /\(/,
-    end: /\)/,
-    contains: [PARAM],
-    relevance : 0
-  };
-  var OPERATION = {
-    className: 'function',
-    begin: /:[\w\-.]+/,
-    relevance: 0
-  };
-  var PATH = {
-    className: 'string',
-    begin: /\B(([\/.])[\w\-.\/=]+)+/,
-  };
-  var COMMAND_PARAMS = {
-    className: 'params',
-    begin: /--[\w\-=\/]+/,
-  };
-  return {
-    aliases: ['wildfly-cli'],
-    lexemes: '[a-z\-]+',
-    keywords: {
-      keyword: 'alias batch cd clear command connect connection-factory connection-info data-source deploy ' +
-      'deployment-info deployment-overlay echo echo-dmr help history if jdbc-driver-info jms-queue|20 jms-topic|20 ls ' +
-      'patch pwd quit read-attribute read-operation reload rollout-plan run-batch set shutdown try unalias ' +
-      'undeploy unset version xa-data-source', // module
-      literal: 'true false'
-    },
-    contains: [
-      hljs.HASH_COMMENT_MODE,
-      hljs.QUOTE_STRING_MODE,
-      COMMAND_PARAMS,
-      OPERATION,
-      PATH,
-      PARAMSBLOCK
-    ]
-  }
-};
-},{}],100:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 module.exports = function(hljs) {
   var LITERALS = {literal: 'true false null'};
   var TYPES = [
@@ -9124,112 +8487,108 @@ module.exports = function(hljs) {
     illegal: '\\S'
   };
 };
-},{}],101:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    contains: [
-      {
-        className: 'meta',
-        begin: /^julia>/,
-        relevance: 10,
-        starts: {
-          // end the highlighting if we are on a new line and the line does not have at
-          // least six spaces in the beginning
-          end: /^(?![ ]{6})/,
-          subLanguage: 'julia'
-      },
-      // jldoctest Markdown blocks are used in the Julia manual and package docs indicate
-      // code snippets that should be verified when the documentation is built. They can be
-      // either REPL-like or script-like, but are usually REPL-like and therefore we apply
-      // julia-repl highlighting to them. More information can be found in Documenter's
-      // manual: https://juliadocs.github.io/Documenter.jl/latest/man/doctests.html
-      aliases: ['jldoctest']
-      }
-    ]
-  }
-};
-},{}],102:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module.exports = function(hljs) {
   // Since there are numerous special names in Julia, it is too much trouble
   // to maintain them by hand. Hence these names (i.e. keywords, literals and
-  // built-ins) are automatically generated from Julia v0.6 itself through
-  // the following scripts for each.
+  // built-ins) are automatically generated from Julia (v0.3.0 and v0.4.1)
+  // itself through following scripts for each.
 
   var KEYWORDS = {
-    // # keyword generator, multi-word keywords handled manually below
-    // foreach(println, ["in", "isa", "where"])
+    // # keyword generator
+    // println("in")
     // for kw in Base.REPLCompletions.complete_keyword("")
-    //     if !(contains(kw, " ") || kw == "struct")
-    //         println(kw)
-    //     end
+    //     println(kw)
     // end
     keyword:
-      'in isa where ' +
-      'baremodule begin break catch ccall const continue do else elseif end export false finally for function ' +
-      'global if import importall let local macro module quote return true try using while ' +
-      // legacy, to be deprecated in the next release
-      'type immutable abstract bitstype typealias ',
+      'in abstract baremodule begin bitstype break catch ccall const continue do else elseif end export ' +
+      'finally for function global if immutable import importall let local macro module quote return try type ' +
+      'typealias using while',
 
     // # literal generator
     // println("true")
     // println("false")
     // for name in Base.REPLCompletions.completions("", 0)[1]
     //     try
-    //         v = eval(Symbol(name))
-    //         if !(v isa Function || v isa Type || v isa TypeVar || v isa Module || v isa Colon)
+    //         s = symbol(name)
+    //         v = eval(s)
+    //         if !isa(v, Function) &&
+    //            !isa(v, DataType) &&
+    //            !isa(v, IntrinsicFunction) &&
+    //            !issubtype(typeof(v), Tuple) &&
+    //            !isa(v, Union) &&
+    //            !isa(v, Module) &&
+    //            !isa(v, TypeConstructor) &&
+    //            !isa(v, TypeVar) &&
+    //            !isa(v, Colon)
     //             println(name)
     //         end
     //     end
     // end
     literal:
-      'true false ' +
-      'ARGS C_NULL DevNull ENDIAN_BOM ENV I Inf Inf16 Inf32 Inf64 InsertionSort JULIA_HOME LOAD_PATH MergeSort ' +
-      'NaN NaN16 NaN32 NaN64 PROGRAM_FILE QuickSort RoundDown RoundFromZero RoundNearest RoundNearestTiesAway ' +
-      'RoundNearestTiesUp RoundToZero RoundUp STDERR STDIN STDOUT VERSION catalan e|0 eu|0 eulergamma golden im ' +
-      'nothing pi γ π φ ',
+      // v0.3
+      'true false ARGS CPU_CORES C_NULL DL_LOAD_PATH DevNull ENDIAN_BOM ENV I|0 Inf Inf16 Inf32 ' +
+      'InsertionSort JULIA_HOME LOAD_PATH MS_ASYNC MS_INVALIDATE MS_SYNC MergeSort NaN NaN16 NaN32 OS_NAME QuickSort ' +
+      'RTLD_DEEPBIND RTLD_FIRST RTLD_GLOBAL RTLD_LAZY RTLD_LOCAL RTLD_NODELETE RTLD_NOLOAD RTLD_NOW RoundDown ' +
+      'RoundFromZero RoundNearest RoundToZero RoundUp STDERR STDIN STDOUT VERSION WORD_SIZE catalan cglobal e|0 eu|0 ' +
+      'eulergamma golden im nothing pi γ π φ ' +
+      // v0.4 (diff)
+      'Inf64 NaN64 RoundNearestTiesAway RoundNearestTiesUp ',
 
     // # built_in generator:
     // for name in Base.REPLCompletions.completions("", 0)[1]
     //     try
-    //         v = eval(Symbol(name))
-    //         if v isa Type || v isa TypeVar
+    //         v = eval(symbol(name))
+    //         if isa(v, DataType) || isa(v, TypeConstructor) || isa(v, TypeVar)
     //             println(name)
     //         end
     //     end
     // end
     built_in:
-      'ANY AbstractArray AbstractChannel AbstractFloat AbstractMatrix AbstractRNG AbstractSerializer AbstractSet ' +
-      'AbstractSparseArray AbstractSparseMatrix AbstractSparseVector AbstractString AbstractUnitRange AbstractVecOrMat ' +
-      'AbstractVector Any ArgumentError Array AssertionError Associative Base64DecodePipe Base64EncodePipe Bidiagonal '+
-      'BigFloat BigInt BitArray BitMatrix BitVector Bool BoundsError BufferStream CachingPool CapturedException ' +
-      'CartesianIndex CartesianRange Cchar Cdouble Cfloat Channel Char Cint Cintmax_t Clong Clonglong ClusterManager ' +
-      'Cmd CodeInfo Colon Complex Complex128 Complex32 Complex64 CompositeException Condition ConjArray ConjMatrix ' +
-      'ConjVector Cptrdiff_t Cshort Csize_t Cssize_t Cstring Cuchar Cuint Cuintmax_t Culong Culonglong Cushort Cwchar_t ' +
-      'Cwstring DataType Date DateFormat DateTime DenseArray DenseMatrix DenseVecOrMat DenseVector Diagonal Dict ' +
-      'DimensionMismatch Dims DirectIndexString Display DivideError DomainError EOFError EachLine Enum Enumerate ' +
-      'ErrorException Exception ExponentialBackOff Expr Factorization FileMonitor Float16 Float32 Float64 Function ' +
-      'Future GlobalRef GotoNode HTML Hermitian IO IOBuffer IOContext IOStream IPAddr IPv4 IPv6 IndexCartesian IndexLinear ' +
-      'IndexStyle InexactError InitError Int Int128 Int16 Int32 Int64 Int8 IntSet Integer InterruptException ' +
-      'InvalidStateException Irrational KeyError LabelNode LinSpace LineNumberNode LoadError LowerTriangular MIME Matrix ' +
-      'MersenneTwister Method MethodError MethodTable Module NTuple NewvarNode NullException Nullable Number ObjectIdDict ' +
-      'OrdinalRange OutOfMemoryError OverflowError Pair ParseError PartialQuickSort PermutedDimsArray Pipe ' +
-      'PollingFileWatcher ProcessExitedException Ptr QuoteNode RandomDevice Range RangeIndex Rational RawFD ' +
-      'ReadOnlyMemoryError Real ReentrantLock Ref Regex RegexMatch RemoteChannel RemoteException RevString RoundingMode ' +
-      'RowVector SSAValue SegmentationFault SerializationState Set SharedArray SharedMatrix SharedVector Signed ' +
-      'SimpleVector Slot SlotNumber SparseMatrixCSC SparseVector StackFrame StackOverflowError StackTrace StepRange ' +
-      'StepRangeLen StridedArray StridedMatrix StridedVecOrMat StridedVector String SubArray SubString SymTridiagonal ' +
-      'Symbol Symmetric SystemError TCPSocket Task Text TextDisplay Timer Tridiagonal Tuple Type TypeError TypeMapEntry ' +
-      'TypeMapLevel TypeName TypeVar TypedSlot UDPSocket UInt UInt128 UInt16 UInt32 UInt64 UInt8 UndefRefError UndefVarError ' +
-      'UnicodeError UniformScaling Union UnionAll UnitRange Unsigned UpperTriangular Val Vararg VecElement VecOrMat Vector ' +
-      'VersionNumber Void WeakKeyDict WeakRef WorkerConfig WorkerPool '
+      // v0.3
+      'ANY ASCIIString AbstractArray AbstractRNG AbstractSparseArray Any ArgumentError Array Associative Base64Pipe ' +
+      'Bidiagonal BigFloat BigInt BitArray BitMatrix BitVector Bool BoundsError Box CFILE Cchar Cdouble Cfloat Char ' +
+      'CharString Cint Clong Clonglong ClusterManager Cmd Coff_t Colon Complex Complex128 Complex32 Complex64 ' +
+      'Condition Cptrdiff_t Cshort Csize_t Cssize_t Cuchar Cuint Culong Culonglong Cushort Cwchar_t DArray DataType ' +
+      'DenseArray Diagonal Dict DimensionMismatch DirectIndexString Display DivideError DomainError EOFError ' +
+      'EachLine Enumerate ErrorException Exception Expr Factorization FileMonitor FileOffset Filter Float16 Float32 ' +
+      'Float64 FloatRange FloatingPoint Function GetfieldNode GotoNode Hermitian IO IOBuffer IOStream IPv4 IPv6 ' +
+      'InexactError Int Int128 Int16 Int32 Int64 Int8 IntSet Integer InterruptException IntrinsicFunction KeyError ' +
+      'LabelNode LambdaStaticData LineNumberNode LoadError LocalProcess MIME MathConst MemoryError MersenneTwister ' +
+      'Method MethodError MethodTable Module NTuple NewvarNode Nothing Number ObjectIdDict OrdinalRange ' +
+      'OverflowError ParseError PollingFileWatcher ProcessExitedException ProcessGroup Ptr QuoteNode Range Range1 ' +
+      'Ranges Rational RawFD Real Regex RegexMatch RemoteRef RepString RevString RopeString RoundingMode Set ' +
+      'SharedArray Signed SparseMatrixCSC StackOverflowError Stat StatStruct StepRange String SubArray SubString ' +
+      'SymTridiagonal Symbol SymbolNode Symmetric SystemError Task TextDisplay Timer TmStruct TopNode Triangular ' +
+      'Tridiagonal Type TypeConstructor TypeError TypeName TypeVar UTF16String UTF32String UTF8String UdpSocket ' +
+      'Uint Uint128 Uint16 Uint32 Uint64 Uint8 UndefRefError UndefVarError UniformScaling UnionType UnitRange ' +
+      'Unsigned Vararg VersionNumber WString WeakKeyDict WeakRef Woodbury Zip ' +
+      // v0.4 (diff)
+      'AbstractChannel AbstractFloat AbstractString AssertionError Base64DecodePipe Base64EncodePipe BufferStream ' +
+      'CapturedException CartesianIndex CartesianRange Channel Cintmax_t CompositeException Cstring Cuintmax_t ' +
+      'Cwstring Date DateTime Dims Enum GenSym GlobalRef HTML InitError InvalidStateException Irrational LinSpace ' +
+      'LowerTriangular NullException Nullable OutOfMemoryError Pair PartialQuickSort Pipe RandomDevice ' +
+      'ReadOnlyMemoryError ReentrantLock Ref RemoteException SegmentationFault SerializationState SimpleVector ' +
+      'TCPSocket Text Tuple UDPSocket UInt UInt128 UInt16 UInt32 UInt64 UInt8 UnicodeError Union UpperTriangular ' +
+      'Val Void WorkerConfig AbstractMatrix AbstractSparseMatrix AbstractSparseVector AbstractVecOrMat AbstractVector ' +
+      'DenseMatrix DenseVecOrMat DenseVector Matrix SharedMatrix SharedVector StridedArray StridedMatrix ' +
+      'StridedVecOrMat StridedVector VecOrMat Vector '
   };
 
   // ref: http://julia.readthedocs.org/en/latest/manual/variables/#allowed-variable-names
   var VARIABLE_NAME_RE = '[A-Za-z_\\u00A1-\\uFFFF][A-Za-z_0-9\\u00A1-\\uFFFF]*';
 
   // placeholder for recursive self-reference
-  var DEFAULT = {
-    lexemes: VARIABLE_NAME_RE, keywords: KEYWORDS, illegal: /<\//
+  var DEFAULT = { lexemes: VARIABLE_NAME_RE, keywords: KEYWORDS, illegal: /<\// };
+
+  var TYPE_ANNOTATION = {
+    className: 'type',
+    begin: /::/
+  };
+
+  var SUBTYPE = {
+    className: 'type',
+    begin: /<:/
   };
 
   // ref: http://julia.readthedocs.org/en/latest/manual/integers-and-floating-point-numbers/
@@ -9294,29 +8653,25 @@ module.exports = function(hljs) {
   DEFAULT.contains = [
     NUMBER,
     CHAR,
+    TYPE_ANNOTATION,
+    SUBTYPE,
     STRING,
     COMMAND,
     MACROCALL,
     COMMENT,
-    hljs.HASH_COMMENT_MODE,
-    {
-      className: 'keyword',
-      begin:
-        '\\b(((abstract|primitive)\\s+)type|(mutable\\s+)?struct)\\b'
-    },
-    {begin: /<:/}  // relevance booster
+    hljs.HASH_COMMENT_MODE
   ];
   INTERPOLATION.contains = DEFAULT.contains;
 
   return DEFAULT;
 };
-},{}],103:[function(require,module,exports){
-module.exports = function(hljs) {
+},{}],100:[function(require,module,exports){
+module.exports = function (hljs) {
   var KEYWORDS = {
     keyword:
       'abstract as val var vararg get set class object open private protected public noinline ' +
       'crossinline dynamic final enum if else do while for when throw try catch finally ' +
-      'import package is in fun override companion reified inline lateinit init' +
+      'import package is in fun override companion reified inline ' +
       'interface annotation data sealed internal infix operator out by constructor super ' +
       // to be deleted soon
       'trait volatile transient native default',
@@ -9344,17 +8699,17 @@ module.exports = function(hljs) {
   // for string templates
   var SUBST = {
     className: 'subst',
-    begin: '\\${', end: '}', contains: [hljs.APOS_STRING_MODE, hljs.C_NUMBER_MODE]
-  };
-  var VARIABLE = {
-    className: 'variable', begin: '\\$' + hljs.UNDERSCORE_IDENT_RE
+    variants: [
+      {begin: '\\$' + hljs.UNDERSCORE_IDENT_RE},
+      {begin: '\\${', end: '}', contains: [hljs.APOS_STRING_MODE, hljs.C_NUMBER_MODE]}
+    ]
   };
   var STRING = {
     className: 'string',
     variants: [
       {
         begin: '"""', end: '"""',
-        contains: [VARIABLE, SUBST]
+        contains: [SUBST]
       },
       // Can't use built-in modes easily, as we want to use STRING in the meta
       // context as 'meta-string' and there's no syntax to remove explicitly set
@@ -9367,7 +8722,7 @@ module.exports = function(hljs) {
       {
         begin: '"', end: '"',
         illegal: /\n/,
-        contains: [hljs.BACKSLASH_ESCAPE, VARIABLE, SUBST]
+        contains: [hljs.BACKSLASH_ESCAPE, SUBST]
       }
     ]
   };
@@ -9484,7 +8839,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],104:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 module.exports = function(hljs) {
   var LASSO_IDENT_RE = '[a-zA-Z_][\\w.]*';
   var LASSO_ANGLE_RE = '<\\?(lasso(script)?|=)';
@@ -9647,7 +9002,7 @@ module.exports = function(hljs) {
     ].concat(LASSO_CODE)
   };
 };
-},{}],105:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -9670,47 +9025,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],106:[function(require,module,exports){
-module.exports = function (hljs) {
-  return {
-    contains: [
-      {
-        className: 'function',
-        begin: '#+' + '[A-Za-z_0-9]*' + '\\(',
-        end:' {',
-        returnBegin: true,
-        excludeEnd: true,
-        contains : [
-          {
-            className: 'keyword',
-            begin: '#+'
-          },
-          {
-            className: 'title',
-            begin: '[A-Za-z_][A-Za-z_0-9]*'
-          },
-          {
-            className: 'params',
-            begin: '\\(', end: '\\)',
-            endsParent: true,
-            contains: [
-              {
-                className: 'string',
-                begin: '"',
-                end: '"'
-              },
-              {
-                className: 'variable',
-                begin: '[A-Za-z_][A-Za-z_0-9]*'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  };
-};
-},{}],107:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE        = '[\\w-]+'; // yes, Less identifiers may begin with a digit
   var INTERP_IDENT_RE = '(' + IDENT_RE + '|@{' + IDENT_RE + '})';
@@ -9850,7 +9165,7 @@ module.exports = function(hljs) {
     contains: RULES
   };
 };
-},{}],108:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 module.exports = function(hljs) {
   var LISP_IDENT_RE = '[a-zA-Z_\\-\\+\\*\\/\\<\\=\\>\\&\\#][a-zA-Z0-9_\\-\\+\\*\\/\\<\\=\\>\\&\\#!]*';
   var MEC_RE = '\\|[^]*?\\|';
@@ -9953,7 +9268,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],109:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 module.exports = function(hljs) {
   var VARIABLE = {
     begin: '\\b[gtps][A-Z]+[A-Za-z0-9_\\-]*\\b|\\$_[A-Z]+',
@@ -10110,7 +9425,7 @@ module.exports = function(hljs) {
     illegal: ';$|^\\[|^=|&|{'
   };
 };
-},{}],110:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -10259,7 +9574,7 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],111:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 module.exports = function(hljs) {
   var identifier = '([-a-zA-Z$._][\\w\\-$.]*)';
   return {
@@ -10348,7 +9663,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],112:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 module.exports = function(hljs) {
 
     var LSL_STRING_ESCAPE_CHARS = {
@@ -10431,7 +9746,7 @@ module.exports = function(hljs) {
         ]
     };
 };
-},{}],113:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 module.exports = function(hljs) {
   var OPENING_LONG_BRACKET = '\\[=*\\[';
   var CLOSING_LONG_BRACKET = '\\]=*\\]';
@@ -10453,24 +9768,14 @@ module.exports = function(hljs) {
   return {
     lexemes: hljs.UNDERSCORE_IDENT_RE,
     keywords: {
-      literal: "true false nil",
-      keyword: "and break do else elseif end for goto if in local not or repeat return then until while",
+      keyword:
+        'and break do else elseif end false for if in local nil not or repeat return then ' +
+        'true until while',
       built_in:
-        //Metatags and globals:
-        '_G _ENV _VERSION __index __newindex __mode __call __metatable __tostring __len ' +
-        '__gc __add __sub __mul __div __mod __pow __concat __unm __eq __lt __le assert ' +
-        //Standard methods and properties:
-        'collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring' +
-        'module next pairs pcall print rawequal rawget rawset require select setfenv' +
-        'setmetatable tonumber tostring type unpack xpcall arg self' +
-        //Library methods and properties (one line per library):
-        'coroutine resume yield status wrap create running debug getupvalue ' +
-        'debug sethook getmetatable gethook setmetatable setlocal traceback setfenv getinfo setupvalue getlocal getregistry getfenv ' +
-        'io lines write close flush open output type read stderr stdin input stdout popen tmpfile ' +
-        'math log max acos huge ldexp pi cos tanh pow deg tan cosh sinh random randomseed frexp ceil floor rad abs sqrt modf asin min mod fmod log10 atan2 exp sin atan ' +
-        'os exit setlocale date getenv difftime remove time clock tmpname rename execute package preload loadlib loaded loaders cpath config path seeall ' +
-        'string sub upper len gfind rep find match char dump gmatch reverse byte format gsub lower ' +
-        'table setn insert getn foreachi maxn foreach concat sort remove'
+        '_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load ' +
+        'loadfile loadstring module next pairs pcall print rawequal rawget rawset require ' +
+        'select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug ' +
+        'io math os package string table'
     },
     contains: COMMENTS.concat([
       {
@@ -10497,88 +9802,52 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],114:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 module.exports = function(hljs) {
-  /* Variables: simple (eg $(var)) and special (eg $@) */
   var VARIABLE = {
     className: 'variable',
-    variants: [
-      {
-        begin: '\\$\\(' + hljs.UNDERSCORE_IDENT_RE + '\\)',
-        contains: [hljs.BACKSLASH_ESCAPE],
-      },
-      {
-        begin: /\$[@%<?\^\+\*]/
-      },
-    ]
-  };
-  /* Quoted string with variables inside */
-  var QUOTE_STRING = {
-    className: 'string',
-    begin: /"/, end: /"/,
-    contains: [
-      hljs.BACKSLASH_ESCAPE,
-      VARIABLE,
-    ]
-  };
-  /* Function: $(func arg,...) */
-  var FUNC = {
-    className: 'variable',
-    begin: /\$\([\w-]+\s/, end: /\)/,
-    keywords: {
-      built_in:
-        'subst patsubst strip findstring filter filter-out sort ' +
-        'word wordlist firstword lastword dir notdir suffix basename ' +
-        'addsuffix addprefix join wildcard realpath abspath error warning ' +
-        'shell origin flavor foreach if or and call eval file value',
-    },
-    contains: [
-      VARIABLE,
-    ]
-  };
-  /* Variable assignment */
-  var VAR_ASSIG = {
-    begin: '^' + hljs.UNDERSCORE_IDENT_RE + '\\s*[:+?]?=',
-    illegal: '\\n',
-    returnBegin: true,
-    contains: [
-      {
-        begin: '^' + hljs.UNDERSCORE_IDENT_RE, end: '[:+?]?=',
-        excludeEnd: true,
-      }
-    ]
-  };
-  /* Meta targets (.PHONY) */
-  var META = {
-    className: 'meta',
-    begin: /^\.PHONY:/, end: /$/,
-    keywords: {'meta-keyword': '.PHONY'},
-    lexemes: /[\.\w]+/
-  };
-  /* Targets */
-  var TARGET = {
-    className: 'section',
-    begin: /^[^\s]+:/, end: /$/,
-    contains: [VARIABLE,]
+    begin: /\$\(/, end: /\)/,
+    contains: [hljs.BACKSLASH_ESCAPE]
   };
   return {
     aliases: ['mk', 'mak'],
-    keywords:
-      'define endef undefine ifdef ifndef ifeq ifneq else endif ' +
-      'include -include sinclude override export unexport private vpath',
-    lexemes: /[\w-]+/,
     contains: [
       hljs.HASH_COMMENT_MODE,
-      VARIABLE,
-      QUOTE_STRING,
-      FUNC,
-      VAR_ASSIG,
-      META,
-      TARGET,
+      {
+        begin: /^\w+\s*\W*=/, returnBegin: true,
+        relevance: 0,
+        starts: {
+          end: /\s*\W*=/, excludeEnd: true,
+          starts: {
+            end: /$/,
+            relevance: 0,
+            contains: [
+              VARIABLE
+            ]
+          }
+        }
+      },
+      {
+        className: 'section',
+        begin: /^[\w]+:\s*$/
+      },
+      {
+        className: 'meta',
+        begin: /^\.PHONY:/, end: /$/,
+        keywords: {'meta-keyword': '.PHONY'}, lexemes: /[\.\w]+/
+      },
+      {
+        begin: /^\t+/, end: /$/,
+        relevance: 0,
+        contains: [
+          hljs.QUOTE_STRING_MODE,
+          VARIABLE
+        ]
+      }
     ]
   };
 };
-},{}],115:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['md', 'mkdown', 'mkd'],
@@ -10686,7 +9955,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],116:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['mma'],
@@ -10744,7 +10013,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],117:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 module.exports = function(hljs) {
   var COMMON_CONTAINS = [
     hljs.C_NUMBER_MODE,
@@ -10832,7 +10101,7 @@ module.exports = function(hljs) {
     ].concat(COMMON_CONTAINS)
   };
 };
-},{}],118:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = 'if then else elseif for thru do while unless step in and or not';
   var LITERALS = 'true false unknown inf minf ind und %e %i %pi %phi %gamma';
@@ -11238,7 +10507,7 @@ module.exports = function(hljs) {
     illegal: /@/
   }
 };
-},{}],119:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords:
@@ -11463,7 +10732,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],120:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -11545,7 +10814,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],121:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 module.exports = function(hljs) {
     //local labels: %?[FB]?[AT]?\d{1,2}\w+
   return {
@@ -11631,7 +10900,7 @@ module.exports = function(hljs) {
     illegal: '\/'
   };
 };
-},{}],122:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords:
@@ -11650,7 +10919,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],123:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     subLanguage: 'xml',
@@ -11675,7 +10944,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],124:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 module.exports = function(hljs) {
   var NUMBER = {
     className: 'number', relevance: 0,
@@ -11750,7 +11019,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],125:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -11862,76 +11131,7 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],126:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    case_insensitive: true,
-    contains: [
-      {
-        beginKeywords:
-          'build create index delete drop explain infer|10 insert merge prepare select update upsert|10',
-        end: /;/, endsWithParent: true,
-        keywords: {
-          // Taken from http://developer.couchbase.com/documentation/server/current/n1ql/n1ql-language-reference/reservedwords.html
-          keyword:
-            'all alter analyze and any array as asc begin between binary boolean break bucket build by call ' +
-            'case cast cluster collate collection commit connect continue correlate cover create database ' +
-            'dataset datastore declare decrement delete derived desc describe distinct do drop each element ' +
-            'else end every except exclude execute exists explain fetch first flatten for force from ' +
-            'function grant group gsi having if ignore ilike in include increment index infer inline inner ' +
-            'insert intersect into is join key keys keyspace known last left let letting like limit lsm map ' +
-            'mapping matched materialized merge minus namespace nest not number object offset on ' +
-            'option or order outer over parse partition password path pool prepare primary private privilege ' +
-            'procedure public raw realm reduce rename return returning revoke right role rollback satisfies ' +
-            'schema select self semi set show some start statistics string system then to transaction trigger ' +
-            'truncate under union unique unknown unnest unset update upsert use user using validate value ' +
-            'valued values via view when where while with within work xor',
-          // Taken from http://developer.couchbase.com/documentation/server/4.5/n1ql/n1ql-language-reference/literals.html
-          literal:
-            'true false null missing|5',
-          // Taken from http://developer.couchbase.com/documentation/server/4.5/n1ql/n1ql-language-reference/functions.html
-          built_in:
-            'array_agg array_append array_concat array_contains array_count array_distinct array_ifnull array_length ' +
-            'array_max array_min array_position array_prepend array_put array_range array_remove array_repeat array_replace ' +
-            'array_reverse array_sort array_sum avg count max min sum greatest least ifmissing ifmissingornull ifnull ' +
-            'missingif nullif ifinf ifnan ifnanorinf naninf neginfif posinfif clock_millis clock_str date_add_millis ' +
-            'date_add_str date_diff_millis date_diff_str date_part_millis date_part_str date_trunc_millis date_trunc_str ' +
-            'duration_to_str millis str_to_millis millis_to_str millis_to_utc millis_to_zone_name now_millis now_str ' +
-            'str_to_duration str_to_utc str_to_zone_name decode_json encode_json encoded_size poly_length base64 base64_encode ' +
-            'base64_decode meta uuid abs acos asin atan atan2 ceil cos degrees e exp ln log floor pi power radians random ' +
-            'round sign sin sqrt tan trunc object_length object_names object_pairs object_inner_pairs object_values ' +
-            'object_inner_values object_add object_put object_remove object_unwrap regexp_contains regexp_like regexp_position ' +
-            'regexp_replace contains initcap length lower ltrim position repeat replace rtrim split substr title trim upper ' +
-            'isarray isatom isboolean isnumber isobject isstring type toarray toatom toboolean tonumber toobject tostring'
-        },
-        contains: [
-          {
-            className: 'string',
-            begin: '\'', end: '\'',
-            contains: [hljs.BACKSLASH_ESCAPE],
-            relevance: 0
-          },
-          {
-            className: 'string',
-            begin: '"', end: '"',
-            contains: [hljs.BACKSLASH_ESCAPE],
-            relevance: 0
-          },
-          {
-            className: 'symbol',
-            begin: '`', end: '`',
-            contains: [hljs.BACKSLASH_ESCAPE],
-            relevance: 2
-          },
-          hljs.C_NUMBER_MODE,
-          hljs.C_BLOCK_COMMENT_MODE
-        ]
-      },
-      hljs.C_BLOCK_COMMENT_MODE
-    ]
-  };
-};
-},{}],127:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports = function(hljs) {
   var VAR = {
     className: 'variable',
@@ -12024,7 +11224,7 @@ module.exports = function(hljs) {
     illegal: '[^\\s\\}]'
   };
 };
-},{}],128:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['nim'],
@@ -12079,7 +11279,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],129:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports = function(hljs) {
   var NIX_KEYWORDS = {
     keyword:
@@ -12128,7 +11328,7 @@ module.exports = function(hljs) {
     contains: EXPRESSIONS
   };
 };
-},{}],130:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 module.exports = function(hljs) {
   var CONSTANTS = {
     className: 'variable',
@@ -12234,7 +11434,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],131:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports = function(hljs) {
   var API_CLASS = {
     className: 'built_in',
@@ -12325,7 +11525,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],132:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports = function(hljs) {
   /* missing support for heredoc-like string (OCaml 4.0.2+) */
   return {
@@ -12396,7 +11596,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],133:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports = function(hljs) {
 	var SPECIAL_VARS = {
 		className: 'keyword',
@@ -12453,7 +11653,7 @@ module.exports = function(hljs) {
 		]
 	}
 };
-},{}],134:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports = function(hljs) {
   var OXYGENE_KEYWORDS = 'abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue '+
     'create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false '+
@@ -12523,7 +11723,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],135:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports = function(hljs) {
   var CURLY_SUBCOMMENT = hljs.COMMENT(
     '{',
@@ -12571,7 +11771,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],136:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports = function(hljs) {
   var PERL_KEYWORDS = 'getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ' +
     'ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime ' +
@@ -12728,7 +11928,7 @@ module.exports = function(hljs) {
     contains: PERL_DEFAULT_CONTAINS
   };
 };
-},{}],137:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports = function(hljs) {
   var MACRO = {
     className: 'variable',
@@ -12780,7 +11980,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],138:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports = function(hljs) {
   var VARIABLE = {
     begin: '\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
@@ -12907,7 +12107,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],139:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
@@ -12998,7 +12198,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],140:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports = function(hljs) {
   var BACKTICK_ESCAPE = {
     begin: '`[\\s\\S]',
@@ -13079,7 +12279,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],141:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -13127,7 +12327,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],142:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -13157,7 +12357,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],143:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var ATOM = {
@@ -13245,7 +12445,7 @@ module.exports = function(hljs) {
     ])
   };
 };
-},{}],144:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -13281,7 +12481,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],145:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var PUPPET_KEYWORDS = {
@@ -13396,7 +12596,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],146:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports = // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
 
 function(hljs) {
@@ -13454,24 +12654,10 @@ function(hljs) {
     ]
   };
 };
-},{}],147:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports = function(hljs) {
-  var KEYWORDS = {
-    keyword:
-      'and elif is global as in if from raise for except finally print import pass return ' +
-      'exec else break not with class assert yield try while continue del or def lambda ' +
-      'async await nonlocal|10 None True False',
-    built_in:
-      'Ellipsis NotImplemented'
-  };
   var PROMPT = {
     className: 'meta',  begin: /^(>>>|\.\.\.) /
-  };
-  var SUBST = {
-    className: 'subst',
-    begin: /\{/, end: /\}/,
-    keywords: KEYWORDS,
-    illegal: /#/
   };
   var STRING = {
     className: 'string',
@@ -13488,14 +12674,6 @@ module.exports = function(hljs) {
         relevance: 10
       },
       {
-        begin: /(fr|rf|f)'''/, end: /'''/,
-        contains: [PROMPT, SUBST]
-      },
-      {
-        begin: /(fr|rf|f)"""/, end: /"""/,
-        contains: [PROMPT, SUBST]
-      },
-      {
         begin: /(u|r|ur)'/, end: /'/,
         relevance: 10
       },
@@ -13508,14 +12686,6 @@ module.exports = function(hljs) {
       },
       {
         begin: /(b|br)"/, end: /"/
-      },
-      {
-        begin: /(fr|rf|f)'/, end: /'/,
-        contains: [SUBST]
-      },
-      {
-        begin: /(fr|rf|f)"/, end: /"/,
-        contains: [SUBST]
       },
       hljs.APOS_STRING_MODE,
       hljs.QUOTE_STRING_MODE
@@ -13534,10 +12704,16 @@ module.exports = function(hljs) {
     begin: /\(/, end: /\)/,
     contains: ['self', PROMPT, NUMBER, STRING]
   };
-  SUBST.contains = [STRING, NUMBER, PROMPT];
   return {
     aliases: ['py', 'gyp'],
-    keywords: KEYWORDS,
+    keywords: {
+      keyword:
+        'and elif is global as in if from raise for except finally print import pass return ' +
+        'exec else break not with class assert yield try while continue del or def lambda ' +
+        'async await nonlocal|10 None True False',
+      built_in:
+        'Ellipsis NotImplemented'
+    },
     illegal: /(<\/|->|\?)|=>/,
     contains: [
       PROMPT,
@@ -13570,7 +12746,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],148:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports = function(hljs) {
   var Q_KEYWORDS = {
   keyword:
@@ -13593,7 +12769,7 @@ module.exports = function(hljs) {
      ]
   };
 };
-},{}],149:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
       keyword:
@@ -13612,7 +12788,7 @@ module.exports = function(hljs) {
         'module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect ' +
         'Behavior bool color coordinate date double enumeration font geocircle georectangle ' +
         'geoshape int list matrix4x4 parent point quaternion real rect ' +
-        'size string url variant vector2d vector3d vector4d' +
+        'size string url var variant vector2d vector3d vector4d' +
         'Promise'
     };
 
@@ -13762,7 +12938,7 @@ module.exports = function(hljs) {
     illegal: /#/
   };
 };
-},{}],150:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*';
 
@@ -13832,7 +13008,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],151:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords:
@@ -13859,7 +13035,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],152:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENTIFIER = '[a-zA-Z-_][^\\n{]+\\{';
 
@@ -13926,166 +13102,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],153:[function(require,module,exports){
-module.exports = // Colors from RouterOS terminal:
-//   green        - #0E9A00
-//   teal         - #0C9A9A
-//   purple       - #99069A
-//   light-brown  - #9A9900
-
-function(hljs) {
-
-  var STATEMENTS = 'foreach do while for if from to step else on-error and or not in';
-
-  // Global commands: Every global command should start with ":" token, otherwise it will be treated as variable.
-  var GLOBAL_COMMANDS = 'global local beep delay put len typeof pick log time set find environment terminal error execute parse resolve toarray tobool toid toip toip6 tonum tostr totime';
-
-  // Common commands: Following commands available from most sub-menus:
-  var COMMON_COMMANDS = 'add remove enable disable set get print export edit find run debug error info warning';
-
-  var LITERALS = 'true false yes no nothing nil null';
-
-  var OBJECTS = 'traffic-flow traffic-generator firewall scheduler aaa accounting address-list address align area bandwidth-server bfd bgp bridge client clock community config connection console customer default dhcp-client dhcp-server discovery dns e-mail ethernet filter firewall firmware gps graphing group hardware health hotspot identity igmp-proxy incoming instance interface ip ipsec ipv6 irq l2tp-server lcd ldp logging mac-server mac-winbox mangle manual mirror mme mpls nat nd neighbor network note ntp ospf ospf-v3 ovpn-server page peer pim ping policy pool port ppp pppoe-client pptp-server prefix profile proposal proxy queue radius resource rip ripng route routing screen script security-profiles server service service-port settings shares smb sms sniffer snmp snooper socks sstp-server system tool tracking type upgrade upnp user-manager users user vlan secret vrrp watchdog web-access wireless pptp pppoe lan wan layer7-protocol lease simple raw';
-
-  // print parameters
-  // Several parameters are available for print command:
-  // ToDo: var PARAMETERS_PRINT = 'append as-value brief detail count-only file follow follow-only from interval terse value-list without-paging where info';
-  // ToDo: var OPERATORS = '&& and ! not || or in ~ ^ & << >> + - * /';
-  // ToDo: var TYPES = 'num number bool boolean str string ip ip6-prefix id time array';
-  // ToDo: The following tokens serve as delimiters in the grammar: ()  []  {}  :   ;   $   / 
-
-  var VAR_PREFIX = 'global local set for foreach';
-
-  var VAR = {
-    className: 'variable',
-    variants: [
-      {begin: /\$[\w\d#@][\w\d_]*/},
-      {begin: /\$\{(.*?)}/}
-    ]
-  };
-  
-  var QUOTE_STRING = {
-    className: 'string',
-    begin: /"/, end: /"/,
-    contains: [
-      hljs.BACKSLASH_ESCAPE,
-      VAR,
-      {
-        className: 'variable',
-        begin: /\$\(/, end: /\)/,
-        contains: [hljs.BACKSLASH_ESCAPE]
-      }
-    ]
-  };
-  
-  var APOS_STRING = {
-    className: 'string',
-    begin: /'/, end: /'/
-  };
-  
-  var IPADDR = '((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\b';
-  var IPADDR_wBITMASK =  IPADDR+'/(3[0-2]|[1-2][0-9]|\\d)';
-  //////////////////////////////////////////////////////////////////////
-  return {
-    aliases: ['routeros', 'mikrotik'],
-    case_insensitive: true,
-    lexemes: /:?[\w-]+/,
-    keywords: {
-      literal: LITERALS,
-      keyword: STATEMENTS + ' :' + STATEMENTS.split(' ').join(' :') + ' :' + GLOBAL_COMMANDS.split(' ').join(' :'),
-    },
-    contains: [
-      { // недопустимые конструкции
-        variants: [
-          { begin: /^@/, end: /$/, },               // dns
-          { begin: /\/\*/, end: /\*\//, },          // -- comment
-          { begin: /%%/, end: /$/, },               // -- comment
-          { begin: /^'/, end: /$/, },               // Monkey one line comment
-          { begin: /^\s*\/[\w-]+=/, end: /$/, },    // jboss-cli
-          { begin: /\/\//, end: /$/, },             // Stan comment
-          { begin: /^\[\</, end: /\>\]$/, },        // F# class declaration?
-          { begin: /<\//, end: />/, },              // HTML tags
-          { begin: /^facet /, end: /\}/, },         // roboconf - лютый костыль )))
-          { begin: '^1\\.\\.(\\d+)$', end: /$/, },  // tap  
-        ],
-        illegal: /./,
-      },
-      hljs.COMMENT('^#', '$'),
-      QUOTE_STRING,
-      APOS_STRING,
-      VAR,
-      { // attribute=value
-        begin: /[\w-]+\=([^\s\{\}\[\]\(\)]+)/, 
-        relevance: 0,
-        returnBegin: true,
-        contains: [
-          {
-            className: 'attribute',
-            begin: /[^=]+/
-          },
-          {
-            begin: /=/, 
-            endsWithParent:  true,
-            relevance: 0,
-            contains: [
-              QUOTE_STRING,
-              APOS_STRING,
-              VAR,
-              {
-                className: 'literal',
-                begin: '\\b(' + LITERALS.split(' ').join('|') + ')\\b',
-              },
-              /*{
-                // IPv4 addresses and subnets
-                className: 'number',
-                variants: [
-                  {begin: IPADDR_wBITMASK+'(,'+IPADDR_wBITMASK+')*'}, //192.168.0.0/24,1.2.3.0/24
-                  {begin: IPADDR+'-'+IPADDR},       // 192.168.0.1-192.168.0.3
-                  {begin: IPADDR+'(,'+IPADDR+')*'}, // 192.168.0.1,192.168.0.34,192.168.24.1,192.168.0.1
-                ]
-              }, // */
-              /*{
-                // MAC addresses and DHCP Client IDs
-                className: 'number',
-                begin: /\b(1:)?([0-9A-Fa-f]{1,2}[:-]){5}([0-9A-Fa-f]){1,2}\b/,
-              }, //*/
-              {
-                // Не форматировать не классифицированные значения. Необходимо для исключения подсветки значений как built_in.
-                // className: 'number',  
-                begin: /("[^"]*"|[^\s\{\}\[\]]+)/,
-              }, //*/
-            ]
-          } //*/
-        ]
-      },//*/
-      {
-        // HEX values
-        className: 'number',
-        begin: /\*[0-9a-fA-F]+/,
-      }, //*/
-
-      { 
-        begin: '\\b(' + COMMON_COMMANDS.split(' ').join('|') + ')([\\s\[\(]|\])',
-        returnBegin: true,
-        contains: [
-          {
-            className: 'builtin-name', //'function',
-            begin: /\w+/,
-          },
-        ],  
-      },
-      
-      { 
-        className: 'built_in',
-        variants: [
-          {begin: '(\\.\\./|/|\\s)((' + OBJECTS.split(' ').join('|') + ');?\\s)+',relevance: 10,},
-          {begin: /\.\./,},
-        ],
-      },//*/
-    ]
-  };
-};
-},{}],154:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -14121,7 +13138,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],155:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports = function(hljs) {
   var RUBY_METHOD_RE = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?';
   var RUBY_KEYWORDS = {
@@ -14248,7 +13265,6 @@ module.exports = function(hljs) {
     },
     { // regexp container
       begin: '(' + hljs.RE_STARTERS_RE + '|unless)\\s*',
-      keywords: 'unless',
       contains: [
         IRB_OBJECT,
         {
@@ -14298,7 +13314,7 @@ module.exports = function(hljs) {
     contains: COMMENT_MODES.concat(IRB_DEFAULT).concat(RUBY_DEFAULT_CONTAINS)
   };
 };
-},{}],156:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -14359,34 +13375,30 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],157:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 module.exports = function(hljs) {
-  var NUM_SUFFIX = '([ui](8|16|32|64|128|size)|f(32|64))\?';
+  var NUM_SUFFIX = '([uif](8|16|32|64|size))\?';
   var KEYWORDS =
     'alignof as be box break const continue crate do else enum extern ' +
     'false fn for if impl in let loop match mod mut offsetof once priv ' +
     'proc pub pure ref return self Self sizeof static struct super trait true ' +
-    'type typeof unsafe unsized use virtual while where yield move default';
+    'type typeof unsafe unsized use virtual while where yield move default ' +
+    'int i8 i16 i32 i64 isize ' +
+    'uint u8 u32 u64 usize ' +
+    'float f32 f64 ' +
+    'str char bool'
   var BUILTINS =
-    // functions
-    'drop ' +
-    // types
-    'i8 i16 i32 i64 i128 isize ' +
-    'u8 u16 u32 u64 u128 usize ' +
-    'f32 f64 ' +
-    'str char bool ' +
-    'Box Option Result String Vec ' +
-    // traits
-    'Copy Send Sized Sync Drop Fn FnMut FnOnce ToOwned Clone Debug ' +
+    // prelude
+    'Copy Send Sized Sync Drop Fn FnMut FnOnce drop Box ToOwned Clone ' +
     'PartialEq PartialOrd Eq Ord AsRef AsMut Into From Default Iterator ' +
-    'Extend IntoIterator DoubleEndedIterator ExactSizeIterator ' +
-    'SliceConcatExt ToString ' +
+    'Extend IntoIterator DoubleEndedIterator ExactSizeIterator Option ' +
+    'Result SliceConcatExt String ToString Vec ' +
     // macros
     'assert! assert_eq! bitflags! bytes! cfg! col! concat! concat_idents! ' +
     'debug_assert! debug_assert_eq! env! panic! file! format! format_args! ' +
     'include_bin! include_str! line! local_data_key! module_path! ' +
     'option_env! print! println! select! stringify! try! unimplemented! ' +
-    'unreachable! vec! write! writeln! macro_rules! assert_ne! debug_assert_ne!';
+    'unreachable! vec! write! writeln! macro_rules!';
   return {
     aliases: ['rs'],
     keywords: {
@@ -14406,7 +13418,7 @@ module.exports = function(hljs) {
       {
         className: 'string',
         variants: [
-           { begin: /r(#*)"(.|\n)*?"\1(?!#)/ },
+           { begin: /r(#*)".*?"\1(?!#)/ },
            { begin: /b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'/ }
         ]
       },
@@ -14451,7 +13463,7 @@ module.exports = function(hljs) {
       },
       {
         className: 'class',
-        beginKeywords: 'trait enum struct union', end: '{',
+        beginKeywords: 'trait enum struct', end: '{',
         contains: [
           hljs.inherit(hljs.UNDERSCORE_TITLE_MODE, {endsParent: true})
         ],
@@ -14467,7 +13479,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],158:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var ANNOTATION = { className: 'meta', begin: '@[A-Za-z]+' };
@@ -14582,7 +13594,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],159:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports = function(hljs) {
   var SCHEME_IDENT_RE = '[^\\(\\)\\[\\]\\{\\}",\'`;#|\\\\\\s]+';
   var SCHEME_SIMPLE_NUMBER_RE = '(\\-|\\+)?\\d+([./]\\d+)?';
@@ -14681,10 +13693,7 @@ module.exports = function(hljs) {
   };
 
   var QUOTED_LIST = {
-    variants: [
-      { begin: /'/ },
-      { begin: '`' }
-    ],
+    begin: /'/,
     contains: [
       {
         begin: '\\(', end: '\\)',
@@ -14726,7 +13735,7 @@ module.exports = function(hljs) {
     contains: [SHEBANG, NUMBER, STRING, QUOTED_IDENT, QUOTED_LIST, LIST].concat(COMMENT_MODES)
   };
 };
-},{}],160:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var COMMON_CONTAINS = [
@@ -14780,7 +13789,7 @@ module.exports = function(hljs) {
     ].concat(COMMON_CONTAINS)
   };
 };
-},{}],161:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
   var VARIABLE = {
@@ -14878,22 +13887,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],162:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    aliases: ['console'],
-    contains: [
-      {
-        className: 'meta',
-        begin: '^\\s{0,3}[\\w\\d\\[\\]()@-]*[>%$#]',
-        starts: {
-          end: '$', subLanguage: 'bash'
-        }
-      },
-    ]
-  }
-};
-},{}],163:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports = function(hljs) {
   var smali_instr_low_prio = ['add', 'and', 'cmp', 'cmpg', 'cmpl', 'const', 'div', 'double', 'float', 'goto', 'if', 'int', 'long', 'move', 'mul', 'neg', 'new', 'nop', 'not', 'or', 'rem', 'return', 'shl', 'shr', 'sput', 'sub', 'throw', 'ushr', 'xor'];
   var smali_instr_high_prio = ['aget', 'aput', 'array', 'check', 'execute', 'fill', 'filled', 'goto/16', 'goto/32', 'iget', 'instance', 'invoke', 'iput', 'monitor', 'packed', 'sget', 'sparse'];
@@ -14949,7 +13943,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],164:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports = function(hljs) {
   var VAR_IDENT_RE = '[a-z][a-zA-Z0-9_]*';
   var CHAR = {
@@ -14999,7 +13993,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],165:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['ml'],
@@ -15065,7 +14059,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],166:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports = function(hljs) {
   var CPP = hljs.getLanguage('cpp').exports;
 
@@ -15436,7 +14430,7 @@ module.exports = function(hljs) {
     illegal: /#/
   };
 };
-},{}],167:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports = function(hljs) {
   var COMMENT_MODE = hljs.COMMENT('--', '$');
   return {
@@ -15596,7 +14590,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],168:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -15679,7 +14673,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],169:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['do', 'ado'],
@@ -15717,7 +14711,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],170:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 module.exports = function(hljs) {
   var STEP21_IDENT_RE = '[A-Z_][A-Z0-9_.]*';
   var STEP21_KEYWORDS = {
@@ -15764,7 +14758,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],171:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var VARIABLE = {
@@ -16218,7 +15212,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],172:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports = function(hljs) {
   var DETAILS = {
     className: 'string',
@@ -16252,14 +15246,14 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],173:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports = function(hljs) {
   var SWIFT_KEYWORDS = {
       keyword: '__COLUMN__ __FILE__ __FUNCTION__ __LINE__ as as! as? associativity ' +
         'break case catch class continue convenience default defer deinit didSet do ' +
-        'dynamic dynamicType else enum extension fallthrough false fileprivate final for func ' +
+        'dynamic dynamicType else enum extension fallthrough false final for func ' +
         'get guard if import in indirect infix init inout internal is lazy left let ' +
-        'mutating nil none nonmutating open operator optional override postfix precedence ' +
+        'mutating nil none nonmutating operator optional override postfix precedence ' +
         'prefix private protocol Protocol public repeat required rethrows return ' +
         'right self Self set static struct subscript super switch throw throws true ' +
         'try try! try? Type typealias unowned var weak where while willSet',
@@ -16369,7 +15363,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],174:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports = function(hljs) {
 
   var COMMENT = {
@@ -16413,7 +15407,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],175:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     case_insensitive: true,
@@ -16449,7 +15443,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],176:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['tk'],
@@ -16510,7 +15504,7 @@ module.exports = function(hljs) {
     ]
   }
 };
-},{}],177:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports = function(hljs) {
   var COMMAND = {
     className: 'tag',
@@ -16572,7 +15566,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],178:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports = function(hljs) {
   var BUILT_IN_TYPES = 'bool byte i16 i32 i64 double string binary';
   return {
@@ -16607,7 +15601,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],179:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports = function(hljs) {
   var TPID = {
     className: 'number',
@@ -16691,7 +15685,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],180:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports = function(hljs) {
   var PARAMS = {
     className: 'params',
@@ -16757,15 +15751,14 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],181:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = {
     keyword:
       'in if for while finally var new function do return void else break catch ' +
       'instanceof with throw case default try this switch continue typeof delete ' +
       'let yield const class public private protected get set super ' +
-      'static implements enum export import declare type namespace abstract ' +
-      'as from extends async await',
+      'static implements enum export import declare type namespace abstract',
     literal:
       'true false null undefined NaN Infinity',
     built_in:
@@ -16775,7 +15768,7 @@ module.exports = function(hljs) {
       'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
       'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
       'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require ' +
-      'module console window document any number boolean string void Promise'
+      'module console window document any number boolean string void'
   };
 
   return {
@@ -16816,35 +15809,7 @@ module.exports = function(hljs) {
         contains: [
           hljs.C_LINE_COMMENT_MODE,
           hljs.C_BLOCK_COMMENT_MODE,
-          hljs.REGEXP_MODE,
-          {
-            className: 'function',
-            begin: '(\\(.*?\\)|' + hljs.IDENT_RE + ')\\s*=>', returnBegin: true,
-            end: '\\s*=>',
-            contains: [
-              {
-                className: 'params',
-                variants: [
-                  {
-                    begin: hljs.IDENT_RE
-                  },
-                  {
-                    begin: /\(\s*\)/,
-                  },
-                  {
-                    begin: /\(/, end: /\)/,
-                    excludeBegin: true, excludeEnd: true,
-                    keywords: KEYWORDS,
-                    contains: [
-                      'self',
-                      hljs.C_LINE_COMMENT_MODE,
-                      hljs.C_BLOCK_COMMENT_MODE
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
+          hljs.REGEXP_MODE
         ],
         relevance: 0
       },
@@ -16913,7 +15878,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],182:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     keywords: {
@@ -16963,7 +15928,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],183:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['vb'],
@@ -17019,7 +15984,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],184:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     subLanguage: 'xml',
@@ -17031,7 +15996,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],185:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['vbs'],
@@ -17070,7 +16035,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],186:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports = function(hljs) {
   var SV_KEYWORDS = {
     keyword:
@@ -17169,7 +16134,7 @@ module.exports = function(hljs) {
     ]
   }; // return
 };
-},{}],187:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 module.exports = function(hljs) {
   // Regular expression for VHDL numeric literals.
 
@@ -17230,7 +16195,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],188:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     lexemes: /[!#@\w]+/,
@@ -17336,7 +16301,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],189:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     case_insensitive: true,
@@ -17472,7 +16437,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],190:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 module.exports = function(hljs) {
   var BUILTIN_MODULES =
     'ObjectLoader Animate MovieCredits Slides Filters Shading Materials LensFlare Mapping VLCAudioVideo ' +
@@ -17545,7 +16510,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],191:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 module.exports = function(hljs) {
   var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
   var TAG_INTERNALS = {
@@ -17648,7 +16613,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],192:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 module.exports = function(hljs) {
   var KEYWORDS = 'for let if while then else return where group by xquery encoding version' +
     'module namespace boundary-space preserve strip default collation base-uri ordering' +
@@ -17719,9 +16684,9 @@ module.exports = function(hljs) {
     contains: CONTAINS
   };
 };
-},{}],193:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 module.exports = function(hljs) {
-  var LITERALS = 'true false yes no null';
+  var LITERALS = {literal: '{ } true false yes no Yes No True False null'};
 
   var keyPrefix = '^[ \\-]*';
   var keyName =  '[a-zA-Z_][\\w\\-]*';
@@ -17746,8 +16711,7 @@ module.exports = function(hljs) {
     relevance: 0,
     variants: [
       {begin: /'/, end: /'/},
-      {begin: /"/, end: /"/},
-      {begin: /\S+/}
+      {begin: /"/, end: /"/}
     ],
     contains: [
       hljs.BACKSLASH_ESCAPE,
@@ -17797,17 +16761,14 @@ module.exports = function(hljs) {
         begin: '^ *-',
         relevance: 0
       },
+      STRING,
       hljs.HASH_COMMENT_MODE,
-      {
-        beginKeywords: LITERALS,
-        keywords: {literal: LITERALS}
-      },
-      hljs.C_NUMBER_MODE,
-      STRING
-    ]
+      hljs.C_NUMBER_MODE
+    ],
+    keywords: LITERALS
   };
 };
-},{}],194:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports = function(hljs) {
   var STRING = {
     className: 'string',
@@ -17914,7 +16875,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],195:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 var inserted = {};
 
 module.exports = function (css, options) {
@@ -17938,7 +16899,7 @@ module.exports = function (css, options) {
     }
 };
 
-},{}],196:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 'use strict';
 
 
@@ -18577,7 +17538,7 @@ LinkifyIt.prototype.onCompile = function onCompile() {
 
 module.exports = LinkifyIt;
 
-},{"./lib/re":197}],197:[function(require,module,exports){
+},{"./lib/re":190}],190:[function(require,module,exports){
 'use strict';
 
 
@@ -18756,7 +17717,7 @@ module.exports = function (opts) {
   return re;
 };
 
-},{"uc.micro/categories/Cc/regex":273,"uc.micro/categories/P/regex":275,"uc.micro/categories/Z/regex":276,"uc.micro/properties/Any/regex":278}],198:[function(require,module,exports){
+},{"uc.micro/categories/Cc/regex":266,"uc.micro/categories/P/regex":268,"uc.micro/categories/Z/regex":269,"uc.micro/properties/Any/regex":271}],191:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -19343,7 +18304,7 @@ module.exports = isEmpty;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],199:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 /**
  * lodash 3.0.8 (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -19420,7 +18381,7 @@ function isObject(value) {
 
 module.exports = isFunction;
 
-},{}],200:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 // Enclose abbreviations in <abbr> tags
 //
 'use strict';
@@ -19570,7 +18531,7 @@ module.exports = function sub_plugin(md) {
   md.core.ruler.after('linkify', 'abbr_replace', abbr_replace);
 };
 
-},{}],201:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19678,7 +18639,7 @@ anchor.defaults = {
 exports.default = anchor;
 module.exports = exports['default'];
 
-},{"string":272}],202:[function(require,module,exports){
+},{"string":265}],195:[function(require,module,exports){
 // Process block-level custom containers
 //
 'use strict';
@@ -19823,7 +18784,7 @@ module.exports = function container_plugin(md, name, options) {
   md.renderer.rules['container_' + name + '_close'] = render;
 };
 
-},{}],203:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 'use strict'
 /* eslint-disable no-cond-assign */
 
@@ -20055,7 +19016,7 @@ function spush (stack, token) {
   stack.last = token
 }
 
-},{}],204:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 // Process definition lists
 //
 'use strict';
@@ -20130,11 +19091,8 @@ module.exports = function deflist_plugin(md) {
     }
 
     nextLine = startLine + 1;
-    if (nextLine >= endLine) { return false; }
-
     if (state.isEmpty(nextLine)) {
-      nextLine++;
-      if (nextLine >= endLine) { return false; }
+      if (++nextLine > endLine) { return false; }
     }
 
     if (state.sCount[nextLine] < state.blkIndent) { return false; }
@@ -20285,7 +19243,7 @@ module.exports = function deflist_plugin(md) {
   md.block.ruler.before('paragraph', 'deflist', deflist, { alt: [ 'paragraph', 'reference' ] });
 };
 
-},{}],205:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 'use strict';
 
 
@@ -20310,46 +19268,53 @@ module.exports = function emoji_plugin(md, options) {
   md.core.ruler.push('emoji', emoji_replace(md, opts.defs, opts.shortcuts, opts.scanRE, opts.replaceRE));
 };
 
-},{"./lib/data/full.json":206,"./lib/data/shortcuts":207,"./lib/normalize_opts":208,"./lib/render":209,"./lib/replace":210}],206:[function(require,module,exports){
+},{"./lib/data/full.json":199,"./lib/data/shortcuts":200,"./lib/normalize_opts":201,"./lib/render":202,"./lib/replace":203}],199:[function(require,module,exports){
 module.exports={
   "100": "💯",
   "1234": "🔢",
   "grinning": "😀",
+  "grimacing": "😬",
+  "grin": "😁",
+  "joy": "😂",
   "smiley": "😃",
   "smile": "😄",
-  "grin": "😁",
+  "sweat_smile": "😅",
   "laughing": "😆",
   "satisfied": "😆",
-  "sweat_smile": "😅",
-  "joy": "😂",
-  "rofl": "🤣",
-  "relaxed": "☺️",
-  "blush": "😊",
   "innocent": "😇",
+  "wink": "😉",
+  "blush": "😊",
   "slightly_smiling_face": "🙂",
   "upside_down_face": "🙃",
-  "wink": "😉",
+  "relaxed": "☺️",
+  "yum": "😋",
   "relieved": "😌",
   "heart_eyes": "😍",
   "kissing_heart": "😘",
   "kissing": "😗",
   "kissing_smiling_eyes": "😙",
   "kissing_closed_eyes": "😚",
-  "yum": "😋",
   "stuck_out_tongue_winking_eye": "😜",
   "stuck_out_tongue_closed_eyes": "😝",
   "stuck_out_tongue": "😛",
   "money_mouth_face": "🤑",
-  "hugs": "🤗",
   "nerd_face": "🤓",
   "sunglasses": "😎",
-  "clown_face": "🤡",
-  "cowboy_hat_face": "🤠",
+  "hugs": "🤗",
   "smirk": "😏",
+  "no_mouth": "😶",
+  "neutral_face": "😐",
+  "expressionless": "😑",
   "unamused": "😒",
+  "roll_eyes": "🙄",
+  "thinking": "🤔",
+  "flushed": "😳",
   "disappointed": "😞",
-  "pensive": "😔",
   "worried": "😟",
+  "angry": "😠",
+  "rage": "😡",
+  "pout": "😡",
+  "pensive": "😔",
   "confused": "😕",
   "slightly_frowning_face": "🙁",
   "frowning_face": "☹️",
@@ -20358,53 +19323,39 @@ module.exports={
   "tired_face": "😫",
   "weary": "😩",
   "triumph": "😤",
-  "angry": "😠",
-  "rage": "😡",
-  "pout": "😡",
-  "no_mouth": "😶",
-  "neutral_face": "😐",
-  "expressionless": "😑",
-  "hushed": "😯",
-  "frowning": "😦",
-  "anguished": "😧",
   "open_mouth": "😮",
-  "astonished": "😲",
-  "dizzy_face": "😵",
-  "flushed": "😳",
   "scream": "😱",
   "fearful": "😨",
   "cold_sweat": "😰",
+  "hushed": "😯",
+  "frowning": "😦",
+  "anguished": "😧",
   "cry": "😢",
   "disappointed_relieved": "😥",
-  "drooling_face": "🤤",
-  "sob": "😭",
-  "sweat": "😓",
   "sleepy": "😪",
-  "sleeping": "😴",
-  "roll_eyes": "🙄",
-  "thinking": "🤔",
-  "lying_face": "🤥",
-  "grimacing": "😬",
+  "sweat": "😓",
+  "sob": "😭",
+  "dizzy_face": "😵",
+  "astonished": "😲",
   "zipper_mouth_face": "🤐",
-  "nauseated_face": "🤢",
-  "sneezing_face": "🤧",
   "mask": "😷",
   "face_with_thermometer": "🤒",
   "face_with_head_bandage": "🤕",
+  "sleeping": "😴",
+  "zzz": "💤",
+  "hankey": "💩",
+  "poop": "💩",
+  "shit": "💩",
   "smiling_imp": "😈",
   "imp": "👿",
   "japanese_ogre": "👹",
   "japanese_goblin": "👺",
-  "hankey": "💩",
-  "poop": "💩",
-  "shit": "💩",
   "ghost": "👻",
   "skull": "💀",
   "skull_and_crossbones": "☠️",
   "alien": "👽",
   "space_invader": "👾",
   "robot": "🤖",
-  "jack_o_lantern": "🎃",
   "smiley_cat": "😺",
   "smile_cat": "😸",
   "joy_cat": "😹",
@@ -20414,52 +19365,39 @@ module.exports={
   "scream_cat": "🙀",
   "crying_cat_face": "😿",
   "pouting_cat": "😾",
-  "open_hands": "👐",
   "raised_hands": "🙌",
   "clap": "👏",
-  "pray": "🙏",
-  "handshake": "🤝",
   "+1": "👍",
   "thumbsup": "👍",
   "-1": "👎",
   "thumbsdown": "👎",
-  "fist_oncoming": "👊",
   "facepunch": "👊",
   "punch": "👊",
-  "fist_raised": "✊",
   "fist": "✊",
-  "fist_left": "🤛",
-  "fist_right": "🤜",
-  "crossed_fingers": "🤞",
-  "v": "✌️",
-  "metal": "🤘",
-  "ok_hand": "👌",
+  "wave": "👋",
   "point_left": "👈",
   "point_right": "👉",
   "point_up_2": "👆",
   "point_down": "👇",
+  "ok_hand": "👌",
   "point_up": "☝️",
+  "v": "✌️",
   "hand": "✋",
   "raised_hand": "✋",
-  "raised_back_of_hand": "🤚",
   "raised_hand_with_fingers_splayed": "🖐",
-  "vulcan_salute": "🖖",
-  "wave": "👋",
-  "call_me_hand": "🤙",
+  "open_hands": "👐",
   "muscle": "💪",
+  "pray": "🙏",
+  "vulcan_salute": "🖖",
+  "metal": "🤘",
   "middle_finger": "🖕",
   "fu": "🖕",
   "writing_hand": "✍️",
-  "selfie": "🤳",
   "nail_care": "💅",
-  "ring": "💍",
-  "lipstick": "💄",
-  "kiss": "💋",
   "lips": "👄",
   "tongue": "👅",
   "ear": "👂",
   "nose": "👃",
-  "footprints": "👣",
   "eye": "👁",
   "eyes": "👀",
   "speaking_head": "🗣",
@@ -20470,109 +19408,65 @@ module.exports={
   "girl": "👧",
   "man": "👨",
   "woman": "👩",
-  "blonde_woman": "👱‍♀",
+  "blonde_woman": "👱‍♀️",
   "blonde_man": "👱",
   "person_with_blond_hair": "👱",
   "older_man": "👴",
   "older_woman": "👵",
   "man_with_gua_pi_mao": "👲",
-  "woman_with_turban": "👳‍♀",
+  "woman_with_turban": "👳‍♀️",
   "man_with_turban": "👳",
-  "policewoman": "👮‍♀",
+  "policewoman": "👮‍♀️",
   "policeman": "👮",
   "cop": "👮",
-  "construction_worker_woman": "👷‍♀",
+  "construction_worker_woman": "👷‍♀️",
   "construction_worker_man": "👷",
   "construction_worker": "👷",
-  "guardswoman": "💂‍♀",
+  "guardswoman": "💂‍♀️",
   "guardsman": "💂",
   "female_detective": "🕵️‍♀️",
-  "male_detective": "🕵",
-  "detective": "🕵",
-  "woman_health_worker": "👩‍⚕",
-  "man_health_worker": "👨‍⚕",
-  "woman_farmer": "👩‍🌾",
-  "man_farmer": "👨‍🌾",
-  "woman_cook": "👩‍🍳",
-  "man_cook": "👨‍🍳",
-  "woman_student": "👩‍🎓",
-  "man_student": "👨‍🎓",
-  "woman_singer": "👩‍🎤",
-  "man_singer": "👨‍🎤",
-  "woman_teacher": "👩‍🏫",
-  "man_teacher": "👨‍🏫",
-  "woman_factory_worker": "👩‍🏭",
-  "man_factory_worker": "👨‍🏭",
-  "woman_technologist": "👩‍💻",
-  "man_technologist": "👨‍💻",
-  "woman_office_worker": "👩‍💼",
-  "man_office_worker": "👨‍💼",
-  "woman_mechanic": "👩‍🔧",
-  "man_mechanic": "👨‍🔧",
-  "woman_scientist": "👩‍🔬",
-  "man_scientist": "👨‍🔬",
-  "woman_artist": "👩‍🎨",
-  "man_artist": "👨‍🎨",
-  "woman_firefighter": "👩‍🚒",
-  "man_firefighter": "👨‍🚒",
-  "woman_pilot": "👩‍✈",
-  "man_pilot": "👨‍✈",
-  "woman_astronaut": "👩‍🚀",
-  "man_astronaut": "👨‍🚀",
-  "woman_judge": "👩‍⚖",
-  "man_judge": "👨‍⚖",
-  "mrs_claus": "🤶",
+  "male_detective": "🕵️",
+  "detective": "🕵️",
   "santa": "🎅",
   "princess": "👸",
-  "prince": "🤴",
   "bride_with_veil": "👰",
-  "man_in_tuxedo": "🤵",
   "angel": "👼",
-  "pregnant_woman": "🤰",
-  "bowing_woman": "🙇‍♀",
+  "bowing_woman": "🙇‍♀️",
   "bowing_man": "🙇",
   "bow": "🙇",
   "tipping_hand_woman": "💁",
   "information_desk_person": "💁",
-  "sassy_woman": "💁",
-  "tipping_hand_man": "💁‍♂",
-  "sassy_man": "💁‍♂",
+  "tipping_hand_man": "💁‍♂️",
   "no_good_woman": "🙅",
   "no_good": "🙅",
   "ng_woman": "🙅",
-  "no_good_man": "🙅‍♂",
-  "ng_man": "🙅‍♂",
+  "no_good_man": "🙅‍♂️",
+  "ng_man": "🙅‍♂️",
   "ok_woman": "🙆",
-  "ok_man": "🙆‍♂",
+  "ok_man": "🙆‍♂️",
   "raising_hand_woman": "🙋",
   "raising_hand": "🙋",
-  "raising_hand_man": "🙋‍♂",
-  "woman_facepalming": "🤦‍♀",
-  "man_facepalming": "🤦‍♂",
-  "woman_shrugging": "🤷‍♀",
-  "man_shrugging": "🤷‍♂",
+  "raising_hand_man": "🙋‍♂️",
   "pouting_woman": "🙎",
   "person_with_pouting_face": "🙎",
-  "pouting_man": "🙎‍♂",
+  "pouting_man": "🙎‍♂️",
   "frowning_woman": "🙍",
   "person_frowning": "🙍",
-  "frowning_man": "🙍‍♂",
+  "frowning_man": "🙍‍♂️",
   "haircut_woman": "💇",
   "haircut": "💇",
-  "haircut_man": "💇‍♂",
+  "haircut_man": "💇‍♂️",
   "massage_woman": "💆",
   "massage": "💆",
-  "massage_man": "💆‍♂",
-  "business_suit_levitating": "🕴",
+  "massage_man": "💆‍♂️",
   "dancer": "💃",
-  "man_dancing": "🕺",
   "dancing_women": "👯",
   "dancers": "👯",
-  "dancing_men": "👯‍♂",
-  "walking_woman": "🚶‍♀",
+  "dancing_men": "👯‍♂️",
+  "walking_woman": "🚶‍♀️",
   "walking_man": "🚶",
   "walking": "🚶",
-  "running_woman": "🏃‍♀",
+  "running_woman": "🏃‍♀️",
   "running_man": "🏃",
   "runner": "🏃",
   "running": "🏃",
@@ -20620,6 +19514,9 @@ module.exports={
   "dress": "👗",
   "bikini": "👙",
   "kimono": "👘",
+  "lipstick": "💄",
+  "kiss": "💋",
+  "footprints": "👣",
   "high_heel": "👠",
   "sandal": "👡",
   "boot": "👢",
@@ -20638,14 +19535,13 @@ module.exports={
   "briefcase": "💼",
   "eyeglasses": "👓",
   "dark_sunglasses": "🕶",
+  "ring": "💍",
   "closed_umbrella": "🌂",
-  "open_umbrella": "☂️",
   "dog": "🐶",
   "cat": "🐱",
   "mouse": "🐭",
   "hamster": "🐹",
   "rabbit": "🐰",
-  "fox_face": "🦊",
   "bear": "🐻",
   "panda_face": "🐼",
   "koala": "🐨",
@@ -20655,6 +19551,7 @@ module.exports={
   "pig": "🐷",
   "pig_nose": "🐽",
   "frog": "🐸",
+  "octopus": "🐙",
   "monkey_face": "🐵",
   "see_no_evil": "🙈",
   "hear_no_evil": "🙉",
@@ -20666,10 +19563,6 @@ module.exports={
   "baby_chick": "🐤",
   "hatching_chick": "🐣",
   "hatched_chick": "🐥",
-  "duck": "🦆",
-  "eagle": "🦅",
-  "owl": "🦉",
-  "bat": "🦇",
   "wolf": "🐺",
   "boar": "🐗",
   "horse": "🐴",
@@ -20677,27 +19570,19 @@ module.exports={
   "bee": "🐝",
   "honeybee": "🐝",
   "bug": "🐛",
-  "butterfly": "🦋",
   "snail": "🐌",
-  "shell": "🐚",
   "beetle": "🐞",
   "ant": "🐜",
   "spider": "🕷",
-  "spider_web": "🕸",
-  "turtle": "🐢",
-  "snake": "🐍",
-  "lizard": "🦎",
   "scorpion": "🦂",
   "crab": "🦀",
-  "squid": "🦑",
-  "octopus": "🐙",
-  "shrimp": "🦐",
+  "snake": "🐍",
+  "turtle": "🐢",
   "tropical_fish": "🐠",
   "fish": "🐟",
   "blowfish": "🐡",
   "dolphin": "🐬",
   "flipper": "🐬",
-  "shark": "🦈",
   "whale": "🐳",
   "whale2": "🐋",
   "crocodile": "🐊",
@@ -20706,26 +19591,23 @@ module.exports={
   "water_buffalo": "🐃",
   "ox": "🐂",
   "cow2": "🐄",
-  "deer": "🦌",
   "dromedary_camel": "🐪",
   "camel": "🐫",
   "elephant": "🐘",
-  "rhinoceros": "🦏",
-  "gorilla": "🦍",
-  "racehorse": "🐎",
-  "pig2": "🐖",
   "goat": "🐐",
   "ram": "🐏",
   "sheep": "🐑",
-  "dog2": "🐕",
-  "poodle": "🐩",
-  "cat2": "🐈",
+  "racehorse": "🐎",
+  "pig2": "🐖",
+  "rat": "🐀",
+  "mouse2": "🐁",
   "rooster": "🐓",
   "turkey": "🦃",
   "dove": "🕊",
+  "dog2": "🐕",
+  "poodle": "🐩",
+  "cat2": "🐈",
   "rabbit2": "🐇",
-  "mouse2": "🐁",
-  "rat": "🐀",
   "chipmunk": "🐿",
   "feet": "🐾",
   "paw_prints": "🐾",
@@ -20738,23 +19620,26 @@ module.exports={
   "palm_tree": "🌴",
   "seedling": "🌱",
   "herb": "🌿",
-  "shamrock": "☘️",
+  "shamrock": "☘",
   "four_leaf_clover": "🍀",
   "bamboo": "🎍",
   "tanabata_tree": "🎋",
   "leaves": "🍃",
   "fallen_leaf": "🍂",
   "maple_leaf": "🍁",
-  "mushroom": "🍄",
   "ear_of_rice": "🌾",
-  "bouquet": "💐",
-  "tulip": "🌷",
-  "rose": "🌹",
-  "wilted_flower": "🥀",
+  "hibiscus": "🌺",
   "sunflower": "🌻",
+  "rose": "🌹",
+  "tulip": "🌷",
   "blossom": "🌼",
   "cherry_blossom": "🌸",
-  "hibiscus": "🌺",
+  "bouquet": "💐",
+  "mushroom": "🍄",
+  "chestnut": "🌰",
+  "jack_o_lantern": "🎃",
+  "shell": "🐚",
+  "spider_web": "🕸",
   "earth_americas": "🌎",
   "earth_africa": "🌍",
   "earth_asia": "🌏",
@@ -20769,41 +19654,41 @@ module.exports={
   "waxing_gibbous_moon": "🌔",
   "new_moon_with_face": "🌚",
   "full_moon_with_face": "🌝",
-  "sun_with_face": "🌞",
   "first_quarter_moon_with_face": "🌛",
   "last_quarter_moon_with_face": "🌜",
+  "sun_with_face": "🌞",
   "crescent_moon": "🌙",
-  "dizzy": "💫",
   "star": "⭐️",
   "star2": "🌟",
+  "dizzy": "💫",
   "sparkles": "✨",
-  "zap": "⚡️",
-  "fire": "🔥",
-  "boom": "💥",
-  "collision": "💥",
-  "comet": "☄",
+  "comet": "☄️",
   "sunny": "☀️",
   "sun_behind_small_cloud": "🌤",
   "partly_sunny": "⛅️",
   "sun_behind_large_cloud": "🌥",
   "sun_behind_rain_cloud": "🌦",
-  "rainbow": "🌈",
   "cloud": "☁️",
   "cloud_with_rain": "🌧",
   "cloud_with_lightning_and_rain": "⛈",
   "cloud_with_lightning": "🌩",
+  "zap": "⚡️",
+  "fire": "🔥",
+  "boom": "💥",
+  "collision": "💥",
+  "snowflake": "❄️",
   "cloud_with_snow": "🌨",
   "snowman_with_snow": "☃️",
   "snowman": "⛄️",
-  "snowflake": "❄️",
   "wind_face": "🌬",
   "dash": "💨",
   "tornado": "🌪",
   "fog": "🌫",
-  "ocean": "🌊",
+  "open_umbrella": "☂️",
+  "umbrella": "☔️",
   "droplet": "💧",
   "sweat_drops": "💦",
-  "umbrella": "☔️",
+  "ocean": "🌊",
   "green_apple": "🍏",
   "apple": "🍎",
   "pear": "🍐",
@@ -20819,48 +19704,33 @@ module.exports={
   "cherries": "🍒",
   "peach": "🍑",
   "pineapple": "🍍",
-  "kiwi_fruit": "🥝",
-  "avocado": "🥑",
   "tomato": "🍅",
   "eggplant": "🍆",
-  "cucumber": "🥒",
-  "carrot": "🥕",
-  "corn": "🌽",
   "hot_pepper": "🌶",
-  "potato": "🥔",
+  "corn": "🌽",
   "sweet_potato": "🍠",
-  "chestnut": "🌰",
-  "peanuts": "🥜",
   "honey_pot": "🍯",
-  "croissant": "🥐",
   "bread": "🍞",
-  "baguette_bread": "🥖",
   "cheese": "🧀",
-  "egg": "🥚",
-  "fried_egg": "🍳",
-  "bacon": "🥓",
-  "pancakes": "🥞",
-  "fried_shrimp": "🍤",
   "poultry_leg": "🍗",
   "meat_on_bone": "🍖",
-  "pizza": "🍕",
-  "hotdog": "🌭",
+  "fried_shrimp": "🍤",
+  "egg": "🍳",
   "hamburger": "🍔",
   "fries": "🍟",
-  "stuffed_flatbread": "🥙",
+  "hotdog": "🌭",
+  "pizza": "🍕",
+  "spaghetti": "🍝",
   "taco": "🌮",
   "burrito": "🌯",
-  "green_salad": "🥗",
-  "shallow_pan_of_food": "🥘",
-  "spaghetti": "🍝",
   "ramen": "🍜",
   "stew": "🍲",
   "fish_cake": "🍥",
   "sushi": "🍣",
   "bento": "🍱",
   "curry": "🍛",
-  "rice": "🍚",
   "rice_ball": "🍙",
+  "rice": "🍚",
   "rice_cracker": "🍘",
   "oden": "🍢",
   "dango": "🍡",
@@ -20870,26 +19740,22 @@ module.exports={
   "cake": "🍰",
   "birthday": "🎂",
   "custard": "🍮",
-  "lollipop": "🍭",
   "candy": "🍬",
+  "lollipop": "🍭",
   "chocolate_bar": "🍫",
   "popcorn": "🍿",
   "doughnut": "🍩",
   "cookie": "🍪",
-  "milk_glass": "🥛",
-  "baby_bottle": "🍼",
-  "coffee": "☕️",
-  "tea": "🍵",
-  "sake": "🍶",
   "beer": "🍺",
   "beers": "🍻",
-  "clinking_glasses": "🥂",
   "wine_glass": "🍷",
-  "tumbler_glass": "🥃",
   "cocktail": "🍸",
   "tropical_drink": "🍹",
   "champagne": "🍾",
-  "spoon": "🥄",
+  "sake": "🍶",
+  "tea": "🍵",
+  "coffee": "☕️",
+  "baby_bottle": "🍼",
   "fork_and_knife": "🍴",
   "plate_with_cutlery": "🍽",
   "soccer": "⚽️",
@@ -20902,81 +19768,65 @@ module.exports={
   "8ball": "🎱",
   "ping_pong": "🏓",
   "badminton": "🏸",
-  "goal_net": "🥅",
   "ice_hockey": "🏒",
   "field_hockey": "🏑",
   "cricket": "🏏",
-  "golf": "⛳️",
   "bow_and_arrow": "🏹",
+  "golf": "⛳️",
   "fishing_pole_and_fish": "🎣",
-  "boxing_glove": "🥊",
-  "martial_arts_uniform": "🥋",
   "ice_skate": "⛸",
   "ski": "🎿",
   "skier": "⛷",
   "snowboarder": "🏂",
   "weight_lifting_woman": "🏋️‍♀️",
-  "weight_lifting_man": "🏋",
-  "person_fencing": "🤺",
-  "women_wrestling": "🤼‍♀",
-  "men_wrestling": "🤼‍♂",
-  "woman_cartwheeling": "🤸‍♀",
-  "man_cartwheeling": "🤸‍♂",
+  "weight_lifting_man": "🏋️",
   "basketball_woman": "⛹️‍♀️",
-  "basketball_man": "⛹",
-  "woman_playing_handball": "🤾‍♀",
-  "man_playing_handball": "🤾‍♂",
+  "basketball_man": "⛹️",
   "golfing_woman": "🏌️‍♀️",
-  "golfing_man": "🏌",
-  "surfing_woman": "🏄‍♀",
+  "golfing_man": "🏌️",
+  "surfing_woman": "🏄‍♀️",
   "surfing_man": "🏄",
   "surfer": "🏄",
-  "swimming_woman": "🏊‍♀",
+  "swimming_woman": "🏊‍♀️",
   "swimming_man": "🏊",
   "swimmer": "🏊",
-  "woman_playing_water_polo": "🤽‍♀",
-  "man_playing_water_polo": "🤽‍♂",
-  "rowing_woman": "🚣‍♀",
+  "rowing_woman": "🚣‍♀️",
   "rowing_man": "🚣",
   "rowboat": "🚣",
   "horse_racing": "🏇",
-  "biking_woman": "🚴‍♀",
+  "biking_woman": "🚴‍♀️",
   "biking_man": "🚴",
   "bicyclist": "🚴",
-  "mountain_biking_woman": "🚵‍♀",
+  "mountain_biking_woman": "🚵‍♀️",
   "mountain_biking_man": "🚵",
   "mountain_bicyclist": "🚵",
+  "bath": "🛀",
+  "business_suit_levitating": "🕴",
+  "reminder_ribbon": "🎗",
   "running_shirt_with_sash": "🎽",
   "medal_sports": "🏅",
   "medal_military": "🎖",
-  "1st_place_medal": "🥇",
-  "2nd_place_medal": "🥈",
-  "3rd_place_medal": "🥉",
   "trophy": "🏆",
   "rosette": "🏵",
-  "reminder_ribbon": "🎗",
+  "dart": "🎯",
   "ticket": "🎫",
   "tickets": "🎟",
-  "circus_tent": "🎪",
-  "woman_juggling": "🤹‍♀",
-  "man_juggling": "🤹‍♂",
   "performing_arts": "🎭",
   "art": "🎨",
+  "circus_tent": "🎪",
   "clapper": "🎬",
   "microphone": "🎤",
   "headphones": "🎧",
   "musical_score": "🎼",
   "musical_keyboard": "🎹",
-  "drum": "🥁",
   "saxophone": "🎷",
   "trumpet": "🎺",
   "guitar": "🎸",
   "violin": "🎻",
-  "game_die": "🎲",
-  "dart": "🎯",
-  "bowling": "🎳",
   "video_game": "🎮",
   "slot_machine": "🎰",
+  "game_die": "🎲",
+  "bowling": "🎳",
   "car": "🚗",
   "red_car": "🚗",
   "taxi": "🚕",
@@ -20991,10 +19841,8 @@ module.exports={
   "truck": "🚚",
   "articulated_lorry": "🚛",
   "tractor": "🚜",
-  "kick_scooter": "🛴",
-  "bike": "🚲",
-  "motor_scooter": "🛵",
   "motorcycle": "🏍",
+  "bike": "🚲",
   "rotating_light": "🚨",
   "oncoming_police_car": "🚔",
   "oncoming_bus": "🚍",
@@ -21005,11 +19853,11 @@ module.exports={
   "suspension_railway": "🚟",
   "railway_car": "🚃",
   "train": "🚋",
-  "mountain_railway": "🚞",
   "monorail": "🚝",
   "bullettrain_side": "🚄",
   "bullettrain_front": "🚅",
   "light_rail": "🚈",
+  "mountain_railway": "🚞",
   "steam_locomotive": "🚂",
   "train2": "🚆",
   "metro": "🚇",
@@ -21020,17 +19868,15 @@ module.exports={
   "airplane": "✈️",
   "flight_departure": "🛫",
   "flight_arrival": "🛬",
-  "rocket": "🚀",
-  "artificial_satellite": "🛰",
-  "seat": "💺",
-  "canoe": "🛶",
   "boat": "⛵️",
   "sailboat": "⛵️",
   "motor_boat": "🛥",
   "speedboat": "🚤",
-  "passenger_ship": "🛳",
   "ferry": "⛴",
-  "ship": "🚢",
+  "passenger_ship": "🛳",
+  "rocket": "🚀",
+  "artificial_satellite": "🛰",
+  "seat": "💺",
   "anchor": "⚓️",
   "construction": "🚧",
   "fuelpump": "⛽️",
@@ -21038,33 +19884,48 @@ module.exports={
   "vertical_traffic_light": "🚦",
   "traffic_light": "🚥",
   "world_map": "🗺",
-  "moyai": "🗿",
-  "statue_of_liberty": "🗽",
-  "fountain": "⛲️",
-  "tokyo_tower": "🗼",
-  "european_castle": "🏰",
-  "japanese_castle": "🏯",
-  "stadium": "🏟",
+  "ship": "🚢",
   "ferris_wheel": "🎡",
   "roller_coaster": "🎢",
   "carousel_horse": "🎠",
-  "parasol_on_ground": "⛱",
-  "beach_umbrella": "🏖",
-  "desert_island": "🏝",
+  "building_construction": "🏗",
+  "foggy": "🌁",
+  "tokyo_tower": "🗼",
+  "factory": "🏭",
+  "fountain": "⛲️",
+  "rice_scene": "🎑",
   "mountain": "⛰",
   "mountain_snow": "🏔",
   "mount_fuji": "🗻",
   "volcano": "🌋",
-  "desert": "🏜",
+  "japan": "🗾",
   "camping": "🏕",
   "tent": "⛺️",
-  "railway_track": "🛤",
+  "national_park": "🏞",
   "motorway": "🛣",
-  "building_construction": "🏗",
-  "factory": "🏭",
+  "railway_track": "🛤",
+  "sunrise": "🌅",
+  "sunrise_over_mountains": "🌄",
+  "desert": "🏜",
+  "beach_umbrella": "🏖",
+  "desert_island": "🏝",
+  "city_sunrise": "🌇",
+  "city_sunset": "🌆",
+  "cityscape": "🏙",
+  "night_with_stars": "🌃",
+  "bridge_at_night": "🌉",
+  "milky_way": "🌌",
+  "stars": "🌠",
+  "sparkler": "🎇",
+  "fireworks": "🎆",
+  "rainbow": "🌈",
+  "houses": "🏘",
+  "european_castle": "🏰",
+  "japanese_castle": "🏯",
+  "stadium": "🏟",
+  "statue_of_liberty": "🗽",
   "house": "🏠",
   "house_with_garden": "🏡",
-  "houses": "🏘",
   "derelict_house": "🏚",
   "office": "🏢",
   "department_store": "🏬",
@@ -21083,21 +19944,6 @@ module.exports={
   "synagogue": "🕍",
   "kaaba": "🕋",
   "shinto_shrine": "⛩",
-  "japan": "🗾",
-  "rice_scene": "🎑",
-  "national_park": "🏞",
-  "sunrise": "🌅",
-  "sunrise_over_mountains": "🌄",
-  "stars": "🌠",
-  "sparkler": "🎇",
-  "fireworks": "🎆",
-  "city_sunrise": "🌇",
-  "city_sunset": "🌆",
-  "cityscape": "🏙",
-  "night_with_stars": "🌃",
-  "milky_way": "🌌",
-  "bridge_at_night": "🌉",
-  "foggy": "🌁",
   "watch": "⌚️",
   "iphone": "📱",
   "calling": "📲",
@@ -21134,8 +19980,8 @@ module.exports={
   "timer_clock": "⏲",
   "alarm_clock": "⏰",
   "mantelpiece_clock": "🕰",
-  "hourglass": "⌛️",
   "hourglass_flowing_sand": "⏳",
+  "hourglass": "⌛️",
   "satellite": "📡",
   "battery": "🔋",
   "electric_plug": "🔌",
@@ -21152,30 +19998,30 @@ module.exports={
   "moneybag": "💰",
   "credit_card": "💳",
   "gem": "💎",
-  "balance_scale": "⚖️",
+  "balance_scale": "⚖",
   "wrench": "🔧",
   "hammer": "🔨",
   "hammer_and_pick": "⚒",
   "hammer_and_wrench": "🛠",
   "pick": "⛏",
   "nut_and_bolt": "🔩",
-  "gear": "⚙️",
+  "gear": "⚙",
   "chains": "⛓",
   "gun": "🔫",
   "bomb": "💣",
   "hocho": "🔪",
   "knife": "🔪",
   "dagger": "🗡",
-  "crossed_swords": "⚔️",
+  "crossed_swords": "⚔",
   "shield": "🛡",
   "smoking": "🚬",
-  "coffin": "⚰️",
-  "funeral_urn": "⚱️",
+  "coffin": "⚰",
+  "funeral_urn": "⚱",
   "amphora": "🏺",
   "crystal_ball": "🔮",
   "prayer_beads": "📿",
   "barber": "💈",
-  "alembic": "⚗️",
+  "alembic": "⚗",
   "telescope": "🔭",
   "microscope": "🔬",
   "hole": "🕳",
@@ -21183,30 +20029,29 @@ module.exports={
   "syringe": "💉",
   "thermometer": "🌡",
   "toilet": "🚽",
-  "potable_water": "🚰",
   "shower": "🚿",
   "bathtub": "🛁",
-  "bath": "🛀",
   "bellhop_bell": "🛎",
   "key": "🔑",
   "old_key": "🗝",
   "door": "🚪",
   "couch_and_lamp": "🛋",
-  "bed": "🛏",
   "sleeping_bed": "🛌",
+  "bed": "🛏",
   "framed_picture": "🖼",
+  "parasol_on_ground": "⛱",
+  "moyai": "🗿",
   "shopping": "🛍",
-  "shopping_cart": "🛒",
   "gift": "🎁",
   "balloon": "🎈",
   "flags": "🎏",
   "ribbon": "🎀",
   "confetti_ball": "🎊",
   "tada": "🎉",
-  "dolls": "🎎",
+  "wind_chime": "🎐",
   "izakaya_lantern": "🏮",
   "lantern": "🏮",
-  "wind_chime": "🎐",
+  "dolls": "🎎",
   "email": "✉️",
   "envelope": "✉️",
   "envelope_with_arrow": "📩",
@@ -21217,6 +20062,7 @@ module.exports={
   "outbox_tray": "📤",
   "package": "📦",
   "label": "🏷",
+  "bookmark": "🔖",
   "mailbox_closed": "📪",
   "mailbox": "📫",
   "mailbox_with_mail": "📬",
@@ -21254,35 +20100,39 @@ module.exports={
   "books": "📚",
   "book": "📖",
   "open_book": "📖",
-  "bookmark": "🔖",
   "link": "🔗",
   "paperclip": "📎",
   "paperclips": "🖇",
   "triangular_ruler": "📐",
   "straight_ruler": "📏",
+  "scissors": "✂️",
   "pushpin": "📌",
   "round_pushpin": "📍",
-  "scissors": "✂️",
+  "triangular_flag_on_post": "🚩",
+  "crossed_flags": "🎌",
+  "white_flag": "🏳️",
+  "black_flag": "🏴",
+  "checkered_flag": "🏁",
+  "rainbow_flag": "🏳️‍🌈",
+  "paintbrush": "🖌",
+  "crayon": "🖍",
   "pen": "🖊",
   "fountain_pen": "🖋",
   "black_nib": "✒️",
-  "paintbrush": "🖌",
-  "crayon": "🖍",
   "memo": "📝",
   "pencil": "📝",
   "pencil2": "✏️",
-  "mag": "🔍",
-  "mag_right": "🔎",
   "lock_with_ink_pen": "🔏",
   "closed_lock_with_key": "🔐",
   "lock": "🔒",
   "unlock": "🔓",
+  "mag": "🔍",
+  "mag_right": "🔎",
   "heart": "❤️",
   "yellow_heart": "💛",
   "green_heart": "💚",
   "blue_heart": "💙",
   "purple_heart": "💜",
-  "black_heart": "🖤",
   "broken_heart": "💔",
   "heavy_heart_exclamation": "❣️",
   "two_hearts": "💕",
@@ -21318,14 +20168,14 @@ module.exports={
   "aquarius": "♒️",
   "pisces": "♓️",
   "id": "🆔",
-  "atom_symbol": "⚛️",
-  "accept": "🉑",
+  "atom_symbol": "⚛",
   "radioactive": "☢️",
   "biohazard": "☣️",
   "mobile_phone_off": "📴",
   "vibration_mode": "📳",
   "eight_pointed_black_star": "✴️",
   "vs": "🆚",
+  "accept": "🉑",
   "white_flower": "💮",
   "ideograph_advantage": "🉐",
   "secret": "㊙️",
@@ -21337,12 +20187,11 @@ module.exports={
   "cl": "🆑",
   "o2": "🅾️",
   "sos": "🆘",
-  "x": "❌",
-  "o": "⭕️",
-  "stop_sign": "🛑",
   "no_entry": "⛔️",
   "name_badge": "📛",
   "no_entry_sign": "🚫",
+  "x": "❌",
+  "o": "⭕️",
   "anger": "💢",
   "hotsprings": "♨️",
   "no_pedestrians": "🚷",
@@ -21351,7 +20200,6 @@ module.exports={
   "non-potable_water": "🚱",
   "underage": "🔞",
   "no_mobile_phones": "📵",
-  "no_smoking": "🚭",
   "exclamation": "❗️",
   "heavy_exclamation_mark": "❗️",
   "grey_exclamation": "❕",
@@ -21361,32 +20209,34 @@ module.exports={
   "interrobang": "⁉️",
   "low_brightness": "🔅",
   "high_brightness": "🔆",
+  "trident": "🔱",
+  "fleur_de_lis": "⚜",
   "part_alternation_mark": "〽️",
   "warning": "⚠️",
   "children_crossing": "🚸",
-  "trident": "🔱",
-  "fleur_de_lis": "⚜️",
   "beginner": "🔰",
   "recycle": "♻️",
-  "white_check_mark": "✅",
   "chart": "💹",
   "sparkle": "❇️",
   "eight_spoked_asterisk": "✳️",
   "negative_squared_cross_mark": "❎",
+  "white_check_mark": "✅",
   "globe_with_meridians": "🌐",
-  "diamond_shape_with_a_dot_inside": "💠",
   "m": "Ⓜ️",
+  "diamond_shape_with_a_dot_inside": "💠",
   "cyclone": "🌀",
-  "zzz": "💤",
+  "loop": "➿",
   "atm": "🏧",
-  "wc": "🚾",
-  "wheelchair": "♿️",
-  "parking": "🅿️",
   "sa": "🈂️",
   "passport_control": "🛂",
   "customs": "🛃",
   "baggage_claim": "🛄",
   "left_luggage": "🛅",
+  "wheelchair": "♿️",
+  "no_smoking": "🚭",
+  "wc": "🚾",
+  "parking": "🅿️",
+  "potable_water": "🚰",
   "mens": "🚹",
   "womens": "🚺",
   "baby_symbol": "🚼",
@@ -21395,11 +20245,11 @@ module.exports={
   "cinema": "🎦",
   "signal_strength": "📶",
   "koko": "🈁",
-  "symbols": "🔣",
-  "information_source": "ℹ️",
   "abc": "🔤",
   "abcd": "🔡",
   "capital_abcd": "🔠",
+  "symbols": "🔣",
+  "information_source": "ℹ️",
   "ng": "🆖",
   "ok": "🆗",
   "up": "🆙",
@@ -21454,6 +20304,9 @@ module.exports={
   "arrows_clockwise": "🔃",
   "musical_note": "🎵",
   "notes": "🎶",
+  "wavy_dash": "〰️",
+  "curly_loop": "➰",
+  "heavy_check_mark": "✔️",
   "heavy_plus_sign": "➕",
   "heavy_minus_sign": "➖",
   "heavy_division_sign": "➗",
@@ -21463,15 +20316,11 @@ module.exports={
   "tm": "™️",
   "copyright": "©️",
   "registered": "®️",
-  "wavy_dash": "〰️",
-  "curly_loop": "➰",
-  "loop": "➿",
   "end": "🔚",
   "back": "🔙",
   "on": "🔛",
   "top": "🔝",
   "soon": "🔜",
-  "heavy_check_mark": "✔️",
   "ballot_box_with_check": "☑️",
   "radio_button": "🔘",
   "white_circle": "⚪️",
@@ -21494,25 +20343,25 @@ module.exports={
   "white_medium_square": "◻️",
   "black_large_square": "⬛️",
   "white_large_square": "⬜️",
-  "speaker": "🔈",
   "mute": "🔇",
+  "speaker": "🔈",
   "sound": "🔉",
   "loud_sound": "🔊",
-  "bell": "🔔",
   "no_bell": "🔕",
+  "bell": "🔔",
   "mega": "📣",
   "loudspeaker": "📢",
   "eye_speech_bubble": "👁‍🗨",
   "speech_balloon": "💬",
   "thought_balloon": "💭",
   "right_anger_bubble": "🗯",
+  "black_joker": "🃏",
+  "mahjong": "🀄️",
+  "flower_playing_cards": "🎴",
   "spades": "♠️",
   "clubs": "♣️",
   "hearts": "♥️",
   "diamonds": "♦️",
-  "black_joker": "🃏",
-  "flower_playing_cards": "🎴",
-  "mahjong": "🀄️",
   "clock1": "🕐",
   "clock2": "🕑",
   "clock3": "🕒",
@@ -21537,11 +20386,6 @@ module.exports={
   "clock1030": "🕥",
   "clock1130": "🕦",
   "clock1230": "🕧",
-  "white_flag": "🏳️",
-  "black_flag": "🏴",
-  "checkered_flag": "🏁",
-  "triangular_flag_on_post": "🚩",
-  "rainbow_flag": "🏳️‍🌈",
   "afghanistan": "🇦🇫",
   "aland_islands": "🇦🇽",
   "albania": "🇦🇱",
@@ -21597,7 +20441,6 @@ module.exports={
   "congo_kinshasa": "🇨🇩",
   "cook_islands": "🇨🇰",
   "costa_rica": "🇨🇷",
-  "cote_divoire": "🇨🇮",
   "croatia": "🇭🇷",
   "cuba": "🇨🇺",
   "curacao": "🇨🇼",
@@ -21653,9 +20496,9 @@ module.exports={
   "isle_of_man": "🇮🇲",
   "israel": "🇮🇱",
   "it": "🇮🇹",
+  "cote_divoire": "🇨🇮",
   "jamaica": "🇯🇲",
   "jp": "🇯🇵",
-  "crossed_flags": "🎌",
   "jersey": "🇯🇪",
   "jordan": "🇯🇴",
   "kazakhstan": "🇰🇿",
@@ -21793,7 +20636,7 @@ module.exports={
   "zambia": "🇿🇲",
   "zimbabwe": "🇿🇼"
 }
-},{}],207:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 // Emoticons -> Emoji mapping.
 //
 // (!) Some patterns skipped, to avoid collisions
@@ -21836,7 +20679,7 @@ module.exports = {
   wink:             [ ';)', ';-)' ]
 };
 
-},{}],208:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 // Convert input options to more useable format
 // and compile search regexp
 
@@ -21897,14 +20740,14 @@ module.exports = function normalize_opts(options) {
   };
 };
 
-},{}],209:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 'use strict';
 
 module.exports = function emoji_html(tokens, idx /*, options, env */) {
   return tokens[idx].content;
 };
 
-},{}],210:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 // Emojies & shortcuts replacement logic.
 //
 // Note: In theory, it could be faster to parse :smile: in inline chain and
@@ -21984,7 +20827,7 @@ module.exports = function create_rule(md, emojies, shortcuts, scanRE, replaceRE)
           if (token.info === 'auto') { autolinkLevel -= token.nesting; }
         }
 
-        if (token.type === 'text' && autolinkLevel === 0 && scanRE.test(token.content)) {
+        if (token.type === 'text' && scanRE.test(token.content) && autolinkLevel === 0) {
           // replace current node
           blockTokens[j].children = tokens = arrayReplaceAt(
             tokens, i, splitTextToken(token.content, token.level, state.Token)
@@ -21995,13 +20838,13 @@ module.exports = function create_rule(md, emojies, shortcuts, scanRE, replaceRE)
   };
 };
 
-},{}],211:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 'use strict';
 
 
 module.exports = require('./lib/');
 
-},{"./lib/":220}],212:[function(require,module,exports){
+},{"./lib/":213}],205:[function(require,module,exports){
 // HTML5 entities map: { name -> utf16string }
 //
 'use strict';
@@ -22009,7 +20852,7 @@ module.exports = require('./lib/');
 /*eslint quotes:0*/
 module.exports = require('entities/maps/entities.json');
 
-},{"entities/maps/entities.json":16}],213:[function(require,module,exports){
+},{"entities/maps/entities.json":16}],206:[function(require,module,exports){
 // List of valid html blocks names, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#html-blocks
 
@@ -22067,8 +20910,10 @@ module.exports = [
   'option',
   'p',
   'param',
+  'pre',
   'section',
   'source',
+  'title',
   'summary',
   'table',
   'tbody',
@@ -22082,7 +20927,7 @@ module.exports = [
   'ul'
 ];
 
-},{}],214:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 // Regexps to match html elements
 
 'use strict';
@@ -22112,7 +20957,7 @@ var HTML_OPEN_CLOSE_TAG_RE = new RegExp('^(?:' + open_tag + '|' + close_tag + ')
 module.exports.HTML_TAG_RE = HTML_TAG_RE;
 module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
-},{}],215:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 // Utilities
 //
 'use strict';
@@ -22389,7 +21234,7 @@ exports.isPunctChar         = isPunctChar;
 exports.escapeRE            = escapeRE;
 exports.normalizeReference  = normalizeReference;
 
-},{"./entities":212,"mdurl":266,"uc.micro":277,"uc.micro/categories/P/regex":275}],216:[function(require,module,exports){
+},{"./entities":205,"mdurl":259,"uc.micro":270,"uc.micro/categories/P/regex":268}],209:[function(require,module,exports){
 // Just a shortcut for bulk export
 'use strict';
 
@@ -22398,7 +21243,7 @@ exports.parseLinkLabel       = require('./parse_link_label');
 exports.parseLinkDestination = require('./parse_link_destination');
 exports.parseLinkTitle       = require('./parse_link_title');
 
-},{"./parse_link_destination":217,"./parse_link_label":218,"./parse_link_title":219}],217:[function(require,module,exports){
+},{"./parse_link_destination":210,"./parse_link_label":211,"./parse_link_title":212}],210:[function(require,module,exports){
 // Parse link destination
 //
 'use strict';
@@ -22460,18 +21305,18 @@ module.exports = function parseLinkDestination(str, pos, max) {
 
     if (code === 0x28 /* ( */) {
       level++;
+      if (level > 1) { break; }
     }
 
     if (code === 0x29 /* ) */) {
-      if (level === 0) { break; }
       level--;
+      if (level < 0) { break; }
     }
 
     pos++;
   }
 
   if (start === pos) { return result; }
-  if (level !== 0) { return result; }
 
   result.str = unescapeAll(str.slice(start, pos));
   result.lines = lines;
@@ -22480,7 +21325,7 @@ module.exports = function parseLinkDestination(str, pos, max) {
   return result;
 };
 
-},{"../common/utils":215}],218:[function(require,module,exports){
+},{"../common/utils":208}],211:[function(require,module,exports){
 // Parse link label
 //
 // this function assumes that first character ("[") already matches;
@@ -22530,7 +21375,7 @@ module.exports = function parseLinkLabel(state, start, disableNested) {
   return labelEnd;
 };
 
-},{}],219:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 // Parse link title
 //
 'use strict';
@@ -22585,7 +21430,7 @@ module.exports = function parseLinkTitle(str, pos, max) {
   return result;
 };
 
-},{"../common/utils":215}],220:[function(require,module,exports){
+},{"../common/utils":208}],213:[function(require,module,exports){
 // Main parser class
 
 'use strict';
@@ -23168,7 +22013,7 @@ MarkdownIt.prototype.renderInline = function (src, env) {
 
 module.exports = MarkdownIt;
 
-},{"./common/utils":215,"./helpers":216,"./parser_block":221,"./parser_core":222,"./parser_inline":223,"./presets/commonmark":224,"./presets/default":225,"./presets/zero":226,"./renderer":227,"linkify-it":196,"mdurl":266,"punycode":268}],221:[function(require,module,exports){
+},{"./common/utils":208,"./helpers":209,"./parser_block":214,"./parser_core":215,"./parser_inline":216,"./presets/commonmark":217,"./presets/default":218,"./presets/zero":219,"./renderer":220,"linkify-it":189,"mdurl":259,"punycode":261}],214:[function(require,module,exports){
 /** internal
  * class ParserBlock
  *
@@ -23186,7 +22031,7 @@ var _rules = [
   [ 'table',      require('./rules_block/table'),      [ 'paragraph', 'reference' ] ],
   [ 'code',       require('./rules_block/code') ],
   [ 'fence',      require('./rules_block/fence'),      [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'blockquote', require('./rules_block/blockquote'), [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
+  [ 'blockquote', require('./rules_block/blockquote'), [ 'paragraph', 'reference', 'list' ] ],
   [ 'hr',         require('./rules_block/hr'),         [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
   [ 'list',       require('./rules_block/list'),       [ 'paragraph', 'reference', 'blockquote' ] ],
   [ 'reference',  require('./rules_block/reference') ],
@@ -23251,7 +22096,7 @@ ParserBlock.prototype.tokenize = function (state, startLine, endLine) {
       if (ok) { break; }
     }
 
-    // set state.tight if we had an empty line before current tag
+    // set state.tight iff we had an empty line before current tag
     // i.e. latest empty line should not count
     state.tight = !hasEmptyLines;
 
@@ -23292,7 +22137,7 @@ ParserBlock.prototype.State = require('./rules_block/state_block');
 
 module.exports = ParserBlock;
 
-},{"./ruler":228,"./rules_block/blockquote":229,"./rules_block/code":230,"./rules_block/fence":231,"./rules_block/heading":232,"./rules_block/hr":233,"./rules_block/html_block":234,"./rules_block/lheading":235,"./rules_block/list":236,"./rules_block/paragraph":237,"./rules_block/reference":238,"./rules_block/state_block":239,"./rules_block/table":240}],222:[function(require,module,exports){
+},{"./ruler":221,"./rules_block/blockquote":222,"./rules_block/code":223,"./rules_block/fence":224,"./rules_block/heading":225,"./rules_block/hr":226,"./rules_block/html_block":227,"./rules_block/lheading":228,"./rules_block/list":229,"./rules_block/paragraph":230,"./rules_block/reference":231,"./rules_block/state_block":232,"./rules_block/table":233}],215:[function(require,module,exports){
 /** internal
  * class Core
  *
@@ -23352,7 +22197,7 @@ Core.prototype.State = require('./rules_core/state_core');
 
 module.exports = Core;
 
-},{"./ruler":228,"./rules_core/block":241,"./rules_core/inline":242,"./rules_core/linkify":243,"./rules_core/normalize":244,"./rules_core/replacements":245,"./rules_core/smartquotes":246,"./rules_core/state_core":247}],223:[function(require,module,exports){
+},{"./ruler":221,"./rules_core/block":234,"./rules_core/inline":235,"./rules_core/linkify":236,"./rules_core/normalize":237,"./rules_core/replacements":238,"./rules_core/smartquotes":239,"./rules_core/state_core":240}],216:[function(require,module,exports){
 /** internal
  * class ParserInline
  *
@@ -23531,7 +22376,7 @@ ParserInline.prototype.State = require('./rules_inline/state_inline');
 
 module.exports = ParserInline;
 
-},{"./ruler":228,"./rules_inline/autolink":248,"./rules_inline/backticks":249,"./rules_inline/balance_pairs":250,"./rules_inline/emphasis":251,"./rules_inline/entity":252,"./rules_inline/escape":253,"./rules_inline/html_inline":254,"./rules_inline/image":255,"./rules_inline/link":256,"./rules_inline/newline":257,"./rules_inline/state_inline":258,"./rules_inline/strikethrough":259,"./rules_inline/text":260,"./rules_inline/text_collapse":261}],224:[function(require,module,exports){
+},{"./ruler":221,"./rules_inline/autolink":241,"./rules_inline/backticks":242,"./rules_inline/balance_pairs":243,"./rules_inline/emphasis":244,"./rules_inline/entity":245,"./rules_inline/escape":246,"./rules_inline/html_inline":247,"./rules_inline/image":248,"./rules_inline/link":249,"./rules_inline/newline":250,"./rules_inline/state_inline":251,"./rules_inline/strikethrough":252,"./rules_inline/text":253,"./rules_inline/text_collapse":254}],217:[function(require,module,exports){
 // Commonmark default options
 
 'use strict';
@@ -23613,7 +22458,7 @@ module.exports = {
   }
 };
 
-},{}],225:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 // markdown-it default options
 
 'use strict';
@@ -23656,7 +22501,7 @@ module.exports = {
   }
 };
 
-},{}],226:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 // "Zero" preset, with nothing enabled. Useful for manual configuring of simple
 // modes. For example, to parse bold/italic only.
 
@@ -23720,7 +22565,7 @@ module.exports = {
   }
 };
 
-},{}],227:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 /**
  * class Renderer
  *
@@ -23779,7 +22624,7 @@ default_rules.fence = function (tokens, idx, options, env, slf) {
     return highlighted + '\n';
   }
 
-  // If language exists, inject class gently, without modifying original token.
+  // If language exists, inject class gently, without mudofying original token.
   // May be, one day we will add .clone() for token and simplify this part, but
   // now we prefer to keep things local.
   if (info) {
@@ -24057,7 +22902,7 @@ Renderer.prototype.render = function (tokens, options, env) {
 
 module.exports = Renderer;
 
-},{"./common/utils":215}],228:[function(require,module,exports){
+},{"./common/utils":208}],221:[function(require,module,exports){
 /**
  * class Ruler
  *
@@ -24411,7 +23256,7 @@ Ruler.prototype.getRules = function (chainName) {
 
 module.exports = Ruler;
 
-},{}],229:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 // Block quotes
 
 'use strict';
@@ -24439,13 +23284,8 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       terminate,
       terminatorRules,
       token,
-      wasOutdented,
-      oldLineMax = state.lineMax,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   // check the block quote marker
   if (state.src.charCodeAt(pos++) !== 0x3E/* > */) { return false; }
@@ -24453,6 +23293,9 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   // we know that it's going to be a valid blockquote,
   // so no point trying to find the end of it in silent mode
   if (silent) { return true; }
+
+  oldIndent = state.blkIndent;
+  state.blkIndent = 0;
 
   // skip spaces after ">" and re-calculate offset
   initial = offset = state.sCount[startLine] + pos - (state.bMarks[startLine] + state.tShift[startLine]);
@@ -24520,7 +23363,6 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
 
   oldParentType = state.parentType;
   state.parentType = 'blockquote';
-  wasOutdented = false;
 
   // Search the end of the block
   //
@@ -24535,21 +23377,13 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   //     >
   //     test
   //     ```
-  //  3. another tag:
+  //  3. another tag
   //     ```
   //     > test
   //      - - -
   //     ```
   for (nextLine = startLine + 1; nextLine < endLine; nextLine++) {
-    // check if it's outdented, i.e. it's inside list item and indented
-    // less than said list item:
-    //
-    // ```
-    // 1. anything
-    //    > current blockquote
-    // 2. checking this line
-    // ```
-    if (state.sCount[nextLine] < state.blkIndent) wasOutdented = true;
+    if (state.sCount[nextLine] < oldIndent) { break; }
 
     pos = state.bMarks[nextLine] + state.tShift[nextLine];
     max = state.eMarks[nextLine];
@@ -24559,7 +23393,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       break;
     }
 
-    if (state.src.charCodeAt(pos++) === 0x3E/* > */ && !wasOutdented) {
+    if (state.src.charCodeAt(pos++) === 0x3E/* > */) {
       // This line is inside the blockquote.
 
       // skip spaces after ">" and re-calculate offset
@@ -24639,13 +23473,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
     }
 
     if (terminate) {
-      // Quirk to enforce "hard termination mode" for paragraphs;
-      // normally if you call `tokenize(state, startLine, nextLine)`,
-      // paragraphs will look below nextLine for paragraph continuation,
-      // but if blockquote is terminated by another tag, they shouldn't
-      state.lineMax = nextLine;
-
-      if (state.blkIndent !== 0) {
+      if (oldIndent !== 0) {
         // state.blkIndent was non-zero, we now set it to zero,
         // so we need to re-calculate all offsets to appear as
         // if indent wasn't changed
@@ -24653,7 +23481,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
         oldBSCount.push(state.bsCount[nextLine]);
         oldTShift.push(state.tShift[nextLine]);
         oldSCount.push(state.sCount[nextLine]);
-        state.sCount[nextLine] -= state.blkIndent;
+        state.sCount[nextLine] -= oldIndent;
       }
 
       break;
@@ -24669,9 +23497,6 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
     state.sCount[nextLine] = -1;
   }
 
-  oldIndent = state.blkIndent;
-  state.blkIndent = 0;
-
   token        = state.push('blockquote_open', 'blockquote', 1);
   token.markup = '>';
   token.map    = lines = [ startLine, 0 ];
@@ -24681,7 +23506,6 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   token        = state.push('blockquote_close', 'blockquote', -1);
   token.markup = '>';
 
-  state.lineMax = oldLineMax;
   state.parentType = oldParentType;
   lines[1] = state.line;
 
@@ -24698,7 +23522,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":215}],230:[function(require,module,exports){
+},{"../common/utils":208}],223:[function(require,module,exports){
 // Code block (4 spaces padded)
 
 'use strict';
@@ -24734,7 +23558,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],231:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 // fences (``` lang, ~~~ lang)
 
 'use strict';
@@ -24745,9 +23569,6 @@ module.exports = function fence(state, startLine, endLine, silent) {
       haveEndMarker = false,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   if (pos + 3 > max) { return false; }
 
@@ -24830,7 +23651,7 @@ module.exports = function fence(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],232:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 // heading (#, ##, ...)
 
 'use strict';
@@ -24842,9 +23663,6 @@ module.exports = function heading(state, startLine, endLine, silent) {
   var ch, level, tmp, token,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   ch  = state.src.charCodeAt(pos);
 
@@ -24887,7 +23705,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":215}],233:[function(require,module,exports){
+},{"../common/utils":208}],226:[function(require,module,exports){
 // Horizontal rule
 
 'use strict';
@@ -24899,9 +23717,6 @@ module.exports = function hr(state, startLine, endLine, silent) {
   var marker, cnt, ch, token,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   marker = state.src.charCodeAt(pos++);
 
@@ -24934,7 +23749,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":215}],234:[function(require,module,exports){
+},{"../common/utils":208}],227:[function(require,module,exports){
 // HTML block
 
 'use strict';
@@ -24961,9 +23776,6 @@ module.exports = function html_block(state, startLine, endLine, silent) {
   var i, nextLine, token, lineText,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   if (!state.md.options.html) { return false; }
 
@@ -25010,7 +23822,7 @@ module.exports = function html_block(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/html_blocks":213,"../common/html_re":214}],235:[function(require,module,exports){
+},{"../common/html_blocks":206,"../common/html_re":207}],228:[function(require,module,exports){
 // lheading (---, ===)
 
 'use strict';
@@ -25020,9 +23832,6 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   var content, terminate, i, l, token, pos, max, level, marker,
       nextLine = startLine + 1, oldParentType,
       terminatorRules = state.md.block.ruler.getRules('paragraph');
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   oldParentType = state.parentType;
   state.parentType = 'paragraph'; // use paragraph to match terminatorRules
@@ -25095,7 +23904,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],236:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 // Lists
 
 'use strict';
@@ -25103,7 +23912,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
 var isSpace = require('../common/utils').isSpace;
 
 
-// Search `[-+*][\n ]`, returns next pos after marker on success
+// Search `[-+*][\n ]`, returns next pos arter marker on success
 // or -1 on fail.
 function skipBulletListMarker(state, startLine) {
   var marker, pos, max, ch;
@@ -25131,7 +23940,7 @@ function skipBulletListMarker(state, startLine) {
   return pos;
 }
 
-// Search `\d+[.)][\n ]`, returns next pos after marker on success
+// Search `\d+[.)][\n ]`, returns next pos arter marker on success
 // or -1 on fail.
 function skipOrderedListMarker(state, startLine) {
   var ch,
@@ -25227,9 +24036,6 @@ module.exports = function list(state, startLine, endLine, silent) {
       isTerminatingParagraph = false,
       tight = true;
 
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
-
   // limit conditions when list can interrupt
   // a paragraph (validation mode only)
   if (silent && state.parentType === 'paragraph') {
@@ -25308,10 +24114,12 @@ module.exports = function list(state, startLine, endLine, silent) {
     while (pos < max) {
       ch = state.src.charCodeAt(pos);
 
-      if (ch === 0x09) {
-        offset += 4 - (offset + state.bsCount[nextLine]) % 4;
-      } else if (ch === 0x20) {
-        offset++;
+      if (isSpace(ch)) {
+        if (ch === 0x09) {
+          offset += 4 - (offset + state.bsCount[nextLine]) % 4;
+        } else {
+          offset++;
+        }
       } else {
         break;
       }
@@ -25412,7 +24220,7 @@ module.exports = function list(state, startLine, endLine, silent) {
     if (markerCharCode !== state.src.charCodeAt(posAfterMarker - 1)) { break; }
   }
 
-  // Finalize list
+  // Finilize list
   if (isOrdered) {
     token = state.push('ordered_list_close', 'ol', -1);
   } else {
@@ -25433,7 +24241,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":215}],237:[function(require,module,exports){
+},{"../common/utils":208}],230:[function(require,module,exports){
 // Paragraph
 
 'use strict';
@@ -25487,7 +24295,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
   return true;
 };
 
-},{}],238:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 'use strict';
 
 
@@ -25516,9 +24324,6 @@ module.exports = function reference(state, startLine, _endLine, silent) {
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine],
       nextLine = startLine + 1;
-
-  // if it's indented more than 3 spaces, it should be a code block
-  if (state.sCount[startLine] - state.blkIndent >= 4) { return false; }
 
   if (state.src.charCodeAt(pos) !== 0x5B/* [ */) { return false; }
 
@@ -25687,7 +24492,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
   return true;
 };
 
-},{"../common/utils":215}],239:[function(require,module,exports){
+},{"../common/utils":208}],232:[function(require,module,exports){
 // Parser state class
 
 'use strict';
@@ -25919,7 +24724,7 @@ StateBlock.prototype.Token = Token;
 
 module.exports = StateBlock;
 
-},{"../common/utils":215,"../token":262}],240:[function(require,module,exports){
+},{"../common/utils":208,"../token":255}],233:[function(require,module,exports){
 // GFM table, non-standard
 
 'use strict';
@@ -26117,7 +24922,7 @@ module.exports = function table(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":215}],241:[function(require,module,exports){
+},{"../common/utils":208}],234:[function(require,module,exports){
 'use strict';
 
 
@@ -26135,7 +24940,7 @@ module.exports = function block(state) {
   }
 };
 
-},{}],242:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 'use strict';
 
 module.exports = function inline(state) {
@@ -26150,7 +24955,7 @@ module.exports = function inline(state) {
   }
 };
 
-},{}],243:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 // Replace link-like texts with link nodes.
 //
 // Currently restricted by `md.validateLink()` to http/https/ftp
@@ -26285,7 +25090,7 @@ module.exports = function linkify(state) {
   }
 };
 
-},{"../common/utils":215}],244:[function(require,module,exports){
+},{"../common/utils":208}],237:[function(require,module,exports){
 // Normalize input string
 
 'use strict';
@@ -26307,7 +25112,7 @@ module.exports = function inline(state) {
   state.src = str;
 };
 
-},{}],245:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 // Simple typographyc replacements
 //
 // (c) (C) → ©
@@ -26416,7 +25221,7 @@ module.exports = function replace(state) {
   }
 };
 
-},{}],246:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 // Convert straight quotation marks to typographic ones
 //
 'use strict';
@@ -26611,7 +25416,7 @@ module.exports = function smartquotes(state) {
   }
 };
 
-},{"../common/utils":215}],247:[function(require,module,exports){
+},{"../common/utils":208}],240:[function(require,module,exports){
 // Core state object
 //
 'use strict';
@@ -26633,7 +25438,7 @@ StateCore.prototype.Token = Token;
 
 module.exports = StateCore;
 
-},{"../token":262}],248:[function(require,module,exports){
+},{"../token":255}],241:[function(require,module,exports){
 // Process autolinks '<protocol:...>'
 
 'use strict';
@@ -26707,7 +25512,7 @@ module.exports = function autolink(state, silent) {
   return false;
 };
 
-},{}],249:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 // Parse backticks
 
 'use strict';
@@ -26752,7 +25557,7 @@ module.exports = function backtick(state, silent) {
   return true;
 };
 
-},{}],250:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 // For each opening emphasis-like marker find a matching closing one
 //
 'use strict';
@@ -26798,7 +25603,7 @@ module.exports = function link_pairs(state) {
   }
 };
 
-},{}],251:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 // Process *this* and _that_
 //
 'use strict';
@@ -26878,7 +25683,7 @@ module.exports.postProcess = function emphasis(state) {
       delimiters = state.delimiters,
       max = state.delimiters.length;
 
-  for (i = max - 1; i >= 0; i--) {
+  for (i = 0; i < max; i++) {
     startDelim = delimiters[i];
 
     if (startDelim.marker !== 0x5F/* _ */ && startDelim.marker !== 0x2A/* * */) {
@@ -26892,16 +25697,16 @@ module.exports.postProcess = function emphasis(state) {
 
     endDelim = delimiters[startDelim.end];
 
-    // If the previous delimiter has the same marker and is adjacent to this one,
+    // If the next delimiter has the same marker and is adjacent to this one,
     // merge those into one strong delimiter.
     //
     // `<em><em>whatever</em></em>` -> `<strong>whatever</strong>`
     //
-    isStrong = i > 0 &&
-               delimiters[i - 1].end === startDelim.end + 1 &&
-               delimiters[i - 1].token === startDelim.token - 1 &&
-               delimiters[startDelim.end + 1].token === endDelim.token + 1 &&
-               delimiters[i - 1].marker === startDelim.marker;
+    isStrong = i + 1 < max &&
+               delimiters[i + 1].end === startDelim.end - 1 &&
+               delimiters[i + 1].token === startDelim.token + 1 &&
+               delimiters[startDelim.end - 1].token === endDelim.token - 1 &&
+               delimiters[i + 1].marker === startDelim.marker;
 
     ch = String.fromCharCode(startDelim.marker);
 
@@ -26920,14 +25725,14 @@ module.exports.postProcess = function emphasis(state) {
     token.content = '';
 
     if (isStrong) {
-      state.tokens[delimiters[i - 1].token].content = '';
-      state.tokens[delimiters[startDelim.end + 1].token].content = '';
-      i--;
+      state.tokens[delimiters[i + 1].token].content = '';
+      state.tokens[delimiters[startDelim.end - 1].token].content = '';
+      i++;
     }
   }
 };
 
-},{}],252:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 // Process html entity - &#123;, &#xAF;, &quot;, ...
 
 'use strict';
@@ -26977,8 +25782,8 @@ module.exports = function entity(state, silent) {
   return true;
 };
 
-},{"../common/entities":212,"../common/utils":215}],253:[function(require,module,exports){
-// Process escaped chars and hardbreaks
+},{"../common/entities":205,"../common/utils":208}],246:[function(require,module,exports){
+// Proceess escaped chars and hardbreaks
 
 'use strict';
 
@@ -27031,7 +25836,7 @@ module.exports = function escape(state, silent) {
   return true;
 };
 
-},{"../common/utils":215}],254:[function(require,module,exports){
+},{"../common/utils":208}],247:[function(require,module,exports){
 // Process html tags
 
 'use strict';
@@ -27080,7 +25885,7 @@ module.exports = function html_inline(state, silent) {
   return true;
 };
 
-},{"../common/html_re":214}],255:[function(require,module,exports){
+},{"../common/html_re":207}],248:[function(require,module,exports){
 // Process ![image](<src> "title")
 
 'use strict';
@@ -27234,7 +26039,7 @@ module.exports = function image(state, silent) {
   return true;
 };
 
-},{"../common/utils":215}],256:[function(require,module,exports){
+},{"../common/utils":208}],249:[function(require,module,exports){
 // Process [link](<to> "stuff")
 
 'use strict';
@@ -27386,7 +26191,7 @@ module.exports = function link(state, silent) {
   return true;
 };
 
-},{"../common/utils":215}],257:[function(require,module,exports){
+},{"../common/utils":208}],250:[function(require,module,exports){
 // Proceess '\n'
 
 'use strict';
@@ -27430,7 +26235,7 @@ module.exports = function newline(state, silent) {
   return true;
 };
 
-},{"../common/utils":215}],258:[function(require,module,exports){
+},{"../common/utils":208}],251:[function(require,module,exports){
 // Inline parser state
 
 'use strict';
@@ -27562,7 +26367,7 @@ StateInline.prototype.Token = Token;
 
 module.exports = StateInline;
 
-},{"../common/utils":215,"../token":262}],259:[function(require,module,exports){
+},{"../common/utils":208,"../token":255}],252:[function(require,module,exports){
 // ~~strike through~~
 //
 'use strict';
@@ -27681,7 +26486,7 @@ module.exports.postProcess = function strikethrough(state) {
   }
 };
 
-},{}],260:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 // Skip text characters for text token, place those to pending buffer
 // and increment current pos
 
@@ -27772,7 +26577,7 @@ module.exports = function text(state, silent) {
   return true;
 };*/
 
-},{}],261:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 // Merge adjacent text nodes into one, and re-calculate all token levels
 //
 'use strict';
@@ -27807,7 +26612,7 @@ module.exports = function text_collapse(state) {
   }
 };
 
-},{}],262:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 // Token class
 
 'use strict';
@@ -28006,7 +26811,7 @@ Token.prototype.attrJoin = function attrJoin(name, value) {
 
 module.exports = Token;
 
-},{}],263:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 
 'use strict';
 
@@ -28130,7 +26935,7 @@ decode.componentChars = '';
 
 module.exports = decode;
 
-},{}],264:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 
 'use strict';
 
@@ -28230,7 +27035,7 @@ encode.componentChars = "-_.!~*'()";
 
 module.exports = encode;
 
-},{}],265:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 
 'use strict';
 
@@ -28257,7 +27062,7 @@ module.exports = function format(url) {
   return result;
 };
 
-},{}],266:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 'use strict';
 
 
@@ -28266,7 +27071,7 @@ module.exports.decode = require('./decode');
 module.exports.format = require('./format');
 module.exports.parse  = require('./parse');
 
-},{"./decode":263,"./encode":264,"./format":265,"./parse":267}],267:[function(require,module,exports){
+},{"./decode":256,"./encode":257,"./format":258,"./parse":260}],260:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28580,7 +27385,7 @@ Url.prototype.parseHost = function(host) {
 
 module.exports = urlParse;
 
-},{}],268:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -29118,7 +27923,7 @@ module.exports = urlParse;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],269:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 function count(self, substr) {
   var count = 0
   var pos = self.indexOf(substr)
@@ -29132,7 +27937,7 @@ function count(self, substr) {
 }
 
 module.exports = count
-},{}],270:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 function splitLeft(self, sep, maxSplit, limit) {
 
   if (typeof maxSplit === 'undefined') {
@@ -29161,7 +27966,7 @@ function splitLeft(self, sep, maxSplit, limit) {
 
 module.exports = splitLeft;
 
-},{}],271:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 function splitRight(self, sep, maxSplit, limit) {
 
   if (typeof maxSplit === 'undefined') {
@@ -29194,7 +27999,7 @@ function splitRight(self, sep, maxSplit, limit) {
 
 module.exports = splitRight;
 
-},{}],272:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 /*
 string.js - Copyright (C) 2012-2014, JP Richardson <jprichardson@gmail.com>
 */
@@ -30304,15 +29109,15 @@ string.js - Copyright (C) 2012-2014, JP Richardson <jprichardson@gmail.com>
 
 }).call(this);
 
-},{"./_count":269,"./_splitLeft":270,"./_splitRight":271}],273:[function(require,module,exports){
+},{"./_count":262,"./_splitLeft":263,"./_splitRight":264}],266:[function(require,module,exports){
 module.exports=/[\0-\x1F\x7F-\x9F]/
-},{}],274:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804\uDCBD|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
-},{}],275:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
-},{}],276:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
-},{}],277:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 'use strict';
 
 exports.Any = require('./properties/Any/regex');
@@ -30321,9 +29126,9 @@ exports.Cf  = require('./categories/Cf/regex');
 exports.P   = require('./categories/P/regex');
 exports.Z   = require('./categories/Z/regex');
 
-},{"./categories/Cc/regex":273,"./categories/Cf/regex":274,"./categories/P/regex":275,"./categories/Z/regex":276,"./properties/Any/regex":278}],278:[function(require,module,exports){
+},{"./categories/Cc/regex":266,"./categories/Cf/regex":267,"./categories/P/regex":268,"./categories/Z/regex":269,"./properties/Any/regex":271}],271:[function(require,module,exports){
 module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
-},{}],279:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 module.exports = function() {
   function getChildNumber(node) {
     return Array.prototype.indexOf.call(node.parentElement.children, node);
@@ -30457,7 +29262,7 @@ module.exports = function() {
   }
 }
 
-},{}],280:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 const cheet = require('cheet.js');
 
 function pathToAssets(assetType) {
@@ -30540,7 +29345,7 @@ module.exports = function() {
 
 };
 
-},{"cheet.js":15}],281:[function(require,module,exports){
+},{"cheet.js":15}],274:[function(require,module,exports){
 let bespoke = require('bespoke'),
   beachday = require('bespoke-theme-beachday'),
   keys = require('bespoke-keys'),
@@ -30848,7 +29653,7 @@ easter();
 // Used to load gmaps api async (it requires a callback to be passed)
 window.noop = function() {};
 
-},{"./bespoke-proceed":279,"./easter":280,"./tutorial":282,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-simple-overview":10,"bespoke-state":11,"bespoke-theme-beachday":12,"bespoke-touch":13,"markdown-it-abbr":200,"markdown-it-anchor":201,"markdown-it-container":202,"markdown-it-decorate":203,"markdown-it-deflist":204,"markdown-it-emoji":205}],282:[function(require,module,exports){
+},{"./bespoke-proceed":272,"./easter":273,"./tutorial":275,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-simple-overview":10,"bespoke-state":11,"bespoke-theme-beachday":12,"bespoke-touch":13,"markdown-it-abbr":193,"markdown-it-anchor":194,"markdown-it-container":195,"markdown-it-decorate":196,"markdown-it-deflist":197,"markdown-it-emoji":198}],275:[function(require,module,exports){
 var tutorial = {
     turnedOn: true,
 
@@ -30892,6 +29697,6 @@ module.exports = function(tutorialEl) {
   };
 };
 
-},{}]},{},[281])
+},{}]},{},[274])
 
 //# sourceMappingURL=build.js.map

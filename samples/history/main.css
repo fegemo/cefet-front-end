@@ -1,0 +1,27 @@
+#galeria, #slide {
+    width: 400px;
+    height: 300px;
+}
+#slide {
+    border: 1px solid gray;
+}
+.controle {
+    background-image: linear-gradient(to bottom, #ddf, #bbe);
+    padding: 6px 10px;
+    border: 1px solid #999;
+    transition: all 100ms ease-out;
+    width: 150px;
+    height: 45px
+}
+.controle:hover {
+    background-image: linear-gradient(to bottom, #eef, #ccf);
+    cursor: pointer;
+    border-color: #aaa;
+    font-size: 120%;
+}
+#anterior {
+    float: left;
+}
+#proximo {
+    float: right;
+}
