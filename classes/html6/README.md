@@ -55,7 +55,6 @@
 1. [Elementos HTML de **entrada**](#elementos-de-entrada)
 1. [Elementos HTML de **escolha**](#elementos-de-escolha)
 1. [Envio de formulários e validação](#envio-de-formularios-e-validacao)
-1. [Estilização de campos](#estilizacao-de-campos)
 1. [AvatarCreator](#avatar-creator)
 
 ---
@@ -429,6 +428,56 @@ para o servidor
 | Desabilitar             | `<input disabled>` | <input disabled size="5">     |
 
 ---
+<!-- {"layout": "section-header", "slideHash": "avatar-creator"} -->
+# AvatarCreator :lipstick:
+## Gerador de avatares
+
+- O AvatarCreator :lipstick:
+- Eventos de formulários
+  - Foco: `blur` e `focus`
+  - Teclado: `keydown` e `keyup`
+  - Modificação: `change`, `input`<!-- {ul^1:.content} -->
+- Estilizando campos de formulários
+
+---
+<!-- {"backdrop": "avatarcreator"} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Atividade de Hoje
+
+- Completar a página do "AvatarCreator" :lipstick:
+- [Baixe os arquivos][avatar-seminal] contendo o HTML e faça os exercícios
+  - Leia as instruções detalhadas no arquivo `README.md`. No geral:
+    1. Possibilitar o usuário:
+       - Escrever o nome
+       - Selecionar uma cor da pele
+       - Escolher um cabelo
+       - Colocar/remover acessórios (desafios)
+
+[avatar-seminal]: https://github.com/fegemo/cefet-front-end-avatar/archive/master.zip
+
+---
+<!-- {"layout": "regular"} -->
+## Eventos de formulários
+
+- Lembrando que: eventos são **atrelados a nós específicos** e causam a
+  invocação de uma função "manipuladora" (_event handler_ ou apenas _handler_)
+- Eventos de entrada de dados:
+  - `change` ou `input` (modificou)
+  - `blur` (perdeu foco)
+  - `focus` (ganhou foco)
+  - `keydown` (pressionou uma tecla)
+  - `keyup` (liberou uma tecla)<!-- {ul:.multi-column-list-2}-->
+- (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+---
+<!-- {"layout": "regular"} -->
+## Exemplo
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/gprgLz88/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
 <!-- {"layout": "regular"} -->
 ## Estilizando campos de formulários
 
@@ -477,55 +526,6 @@ para o servidor
   :::
   - É importante ressaltar o elemento que **está com o foco**
   - Além de mostrar os **estão com erro**
-
----
-<!-- {"layout": "section-header", "slideHash": "avatar-creator"} -->
-# AvatarCreator :lipstick:
-## Gerador de avatares
-
-- O AvatarCreator :lipstick:
-- Eventos de formulários
-  - Foco: `blur` e `focus`
-  - Teclado: `keydown` e `keyup`
-  - Modificação: `change`, `input`<!-- {ul^1:.content} -->
-
----
-<!-- {"backdrop": "avatarcreator"} -->
-
----
-<!-- {"layout": "regular"} -->
-# Atividade de Hoje
-
-- Completar a página do "AvatarCreator" :lipstick:
-- [Baixe os arquivos][avatar-seminal] contendo o HTML e faça os exercícios
-  - Leia as instruções detalhadas no arquivo `README.md`. No geral:
-    1. Possibilitar o usuário:
-       - Escrever o nome
-       - Selecionar uma cor da pele
-       - Escolher um cabelo
-       - Colocar/remover acessórios (desafios)
-
-[avatar-seminal]: https://github.com/fegemo/cefet-front-end-avatar/archive/master.zip
-
----
-<!-- {"layout": "regular"} -->
-## Eventos de formulários
-
-- Lembrando que: eventos são **atrelados a nós específicos** e causam a
-  invocação de uma função "manipuladora" (_event handler_ ou apenas _handler_)
-- Eventos de entrada de dados:
-  - `change` ou `input` (modificou)
-  - `blur` (perdeu foco)
-  - `focus` (ganhou foco)
-  - `keydown` (pressionou uma tecla)
-  - `keyup` (liberou uma tecla)<!-- {ul:.multi-column-list-2}-->
-- (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
-
----
-<!-- {"layout": "regular"} -->
-## Exemplo
-
-<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/gprgLz88/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 
 ---
