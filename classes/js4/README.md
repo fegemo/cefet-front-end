@@ -331,7 +331,7 @@ function incluiNaBiblioteca(livro) {
 - Exemplo - criação de uma imagem:
   ```js
   // 1. Solicitamos ao document a criação de um elemento
-  let dadoEl = document.createElement('img');         // cria uma <img>
+  let ovelhaEl = document.createElement('img');       // cria uma <img>
   // 2. Configuramo-lo (atributos, id, classes etc.)
   ovelhaEl.src = 'images/ovelho-pixel.png';           // <img src="...">
   ovelhaEl.classList.add('raca');                     // <img src="..." class="...">
