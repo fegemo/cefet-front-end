@@ -68,7 +68,7 @@ jogadores.forEach(passouDeFase);  // 🌟🌟🌟
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula... (3/4) <!-- {h1:style="padding-bottom: 0.15em; margin-top: -0.75em;"} -->
+# Na última aula... (3/4) <!-- {h1:style="padding-bottom: 0.15em;"} -->
 ## Inserção do elemento na árvore DOM <!-- {h1:style="padding-bottom: 0.15em"} -->
 
 - Para vincularmos um elemento criado, precisamos conhecer seu **pai**
@@ -86,7 +86,7 @@ containerEl.appendChild(novaOvelhaEl);
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula... (4/4) <!-- {h1:style="padding-bottom: 0.15em; margin-top: -0.75em;"} -->
+# Na última aula... (4/4) <!-- {h1:style="padding-bottom: 0.15em"} -->
 
 ![Uma árvore com os elementos HTML](../../images/create-element-resumo.png)
 <!-- {.medium-width.centered} -->
@@ -182,6 +182,7 @@ containerEl.appendChild(novaOvelhaEl);
    <video src="../../videos/local-storage-hora-aventura.webm" controls preload width="482" height="262"></video>
 
 ---
+<!-- {"layout": "regular"} -->
 ## Exemplo de uso do **localStorage**
 
 - Um evento de clique em um botão que **faz o menu aparecer e desaparecer**:
@@ -198,6 +199,7 @@ containerEl.appendChild(novaOvelhaEl);
   - (continua no próximo slide)
 
 ---
+<!-- {"layout": "regular"} -->
 ## Exemplo de uso do **localStorage** (cont.)
 
 - Após a página ter sido carregada (e.g., um _script_ ao final do _body_):
@@ -293,9 +295,9 @@ containerEl.appendChild(novaOvelhaEl);
 que ele dê feedback ao usuário (positivo e negativo) e também que ele
 use comentários JSON em vez de input[type=hidden] -->
 
-<input type="hidden" class="bespoke-proceed-condition" value="[ { &quot;operation&quot;: &quot;containsIgnoreCase&quot;, &quot;operands&quot;: [&quot;#recuperando-vetor-tarefas&quot;, &quot;[object Object]&quot;] } ]">
+<input type="hidden" class="bespoke-proceed-condition" value="[ { &quot;operation&quot;: &quot;containsIgnoreCase&quot;, &quot;operands&quot;: [&quot;#recuperando-vetor-tarefas&quot;, &quot;[object Object]&quot;], &quot;feedbackId&quot;: &quot;#proceder-recuperando-vetor-tarefas&quot; } ]">
 
-- O que foi salvo toem vez do vetor: <input type="text" id="recuperando-vetor-tarefas" maxlength="50">
+- O que foi salvo em vez do vetor: <input type="text" id="recuperando-vetor-tarefas" maxlength="50" class="bespoke-proceed-input">
 
 
 ---
@@ -319,7 +321,7 @@ use comentários JSON em vez de input[type=hidden] -->
     ```
 
 ---
-<!-- {"slideHash": "representando-objetos-em-strings"} -->
+<!-- {"layout": "regular", "slideHash": "representando-objetos-em-strings"} -->
 ## Representando objetos em _Strings_
 
 - Na verdade, o JavaScript sabe **serializar e desserializar** objetos em
@@ -391,6 +393,7 @@ use comentários JSON em vez de input[type=hidden] -->
 
 
 ---
+<!-- {"layout": "regular"} -->
 ## JSON no navegador
 
 - O objeto `window` possui o objeto `JSON` que contém métodos de conversão
@@ -418,6 +421,7 @@ use comentários JSON em vez de input[type=hidden] -->
 
 
 ---
+<!-- {"layout": "regular"} -->
 ## Atividade, parte 2
 
 - Agora que você já sabe como salvar representar um _Object_ dentro de uma
@@ -436,6 +440,7 @@ use comentários JSON em vez de input[type=hidden] -->
   ```
 
 ---
+<!-- {"layout": "regular"} -->
 ## Atividade, parte 2 (cont.)
 
 - No **Exercício 5**, você deve salvar e carregar a lista de tarefas do

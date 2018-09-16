@@ -25,8 +25,8 @@
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula... (2/3) <!-- {h1:style="padding-bottom: 0.15em; margin-top: -0.75em;"} -->
-## Transição <!-- {h1:style="padding-bottom: 0.15em"} -->
+# Na última aula... (2/3) <!-- {h1:style="padding-bottom: 0.15em;"} -->
+## Transição <!-- {h1:style="padding-bottom: 0"} -->
 
 - Utilizando transição, perspectiva e mudando a origem da transformação (`transform-origin`):
 
@@ -102,9 +102,8 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
 - Quando usar objetos <!-- {ul^1:.content} -->
 
 ---
-<!-- {"backdrop": "oldtimes"} -->
-# Conforme vimos: O tipo _Object_
-
+<!-- {"backdrop": "oldtimes", "layout": "regular"} -->
+## Conforme vimos: O tipo **_Object_**
 
 - É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right} -->
   ```js
@@ -124,7 +123,7 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
 - Novas propriedades podem ser atribuídas mesmo após sua criação
 
 ---
-<!-- {"backdrop": "oldtimes"} -->
+<!-- {"backdrop": "oldtimes", "layout": "regular"} -->
 ## Conforme vimos: Instanciando um _Object_
 
 - Na forma literal:
@@ -183,8 +182,8 @@ let voo = {
   - `decolagem` e `chegada` são objetos por si mesmos
 
 ---
-<!-- {"layout": "2-column-content-30-70", "slideHash": "vetores-de-objetos"} -->
-## Vetores de Objetos
+<!-- {"layout": "2-column-content-30-70", "slideHash": "vetores-de-objeto"} -->
+## Vetores de Objetos <!-- {.compact-code} -->
 
 ```js  
 let jogadores = [
@@ -216,7 +215,7 @@ let jogadores = [
 
 ---
 <!-- {"layout": "2-column-content-40-60", "slideHash": "passando-vetores-como-argumentos"} -->
-## Passando objetos como argumentos
+## Passando objetos como argumentos <!-- {.compact-code} -->
 
 - Podemos passar objetos como **argumentos para funções**
 - A função é declarada como **recebendo 1 parâmetro** :arrow_lower_right:
