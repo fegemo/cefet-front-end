@@ -4,7 +4,6 @@
 
 ---
 # Na última aula... (1/2)
-
 ## **Web Storage**: `localStorage` + `sessionStorage`
 
 - Ambos nos permitem **armazenar valores dentro de _Strings_**
@@ -24,7 +23,6 @@
 ---
 <!-- {"layout": "regular"} -->
 # Na última aula... (2/2)
-
 ## **JSON** no navegador
 
 - O objeto `window` possui o objeto `JSON` que contém métodos de conversão
@@ -32,13 +30,12 @@
   - De JavaScript para _string_ (serialização):
     ```js
     JSON.stringify({ nome: 'Flavio', sobrenome: 'Coutinho' });
-    // retorna '{"nome":"Flavio","sobrenome":"Coutinho"}'
+    // retorna '{"nome":"Flavio","sobrenome":"Coutinho"}' (uma string)
     ```
   - De _string_ para JavaScript (desserialização):
     ```js
     let banco = JSON.parse('{"nome":"Itaú","codigo":"341"}');
-    console.log(banco.nome);
-    // imprime Itaú
+    console.log(banco.nome);          // imprime Itaú
     ```
 
 ---
@@ -50,6 +47,7 @@
    - [Atribuindo eventos](#jquery-atribuindo-eventos)
    - [Estilizando elementos](#jquery-estilizando-elementos)
    - [Efeitos visuais](#jquery-efeitos-visuais)
+1. Reimplementando [PhotoSnap :camera: x2](#photosnap)
 
 ---
 <!-- {"layout": "section-header", "slideHash": "bibliotecas-javascript"} -->
@@ -86,7 +84,7 @@
   <!-- 1. Criar programas que testam o código escrito em JavaScript
      - Jasmine, Mocha -->
   1. Coisas variadas
-     - Exemplos: criar gráficos, criar jogos, <u>criar _easter eggs_</u>c,
+     - Exemplos: criar gráficos, criar jogos, <u>criar _easter eggs_</u>,
        criar slides etc
 
 ---
@@ -161,7 +159,7 @@
   ...
   let baralho = [naipeOuro, naipePaus, naipeEspada, naipeCopas];
   baralho = _.flatten(baralho);   // (a) "achatou" os vetores
-  baralho = _shuffle(baralho);     // (b) embaralhou as cartas
+  baralho = _.shuffle(baralho);   // (b) embaralhou as cartas
   ```
   - **Nota**: o arquivo `underscore.js` expõe um único objeto: o `window._`
 
@@ -181,9 +179,9 @@
 <!-- {"layout": "regular"} -->
 ## A biblioteca jQuery
 
-- ![](../../images/jquery-logo.png) <!-- {.push-right} -->
+- ![Logomarca da biblioteca jQuery](../../images/jquery-logo.png) <!-- {.push-right} -->
   Criada em 2006 por John Resig
-  - Pronuncia-se djeiquéuri
+  - Pronuncia-se djeiquíulri
 - Objetivos:
   1. Resolver **incompatibilidade entre navegadores**
   1. Aumentar **expressividade do código**
@@ -412,8 +410,38 @@
   ```
 
 [jquery-doc-traversing]: http://api.jquery.com/category/traversing/
+
+---
+<!-- {"layout": "section-header", "slideHash": "photosnap"} -->
+# PhotoSnap :camera: x2
+## Reimplementando com jQuery
+
+- Relembrando...
+- Novo enunciado
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"backdrop": "photosnap"} -->
+
+---
+<!-- {"layout": "regular"} -->
+## Enunciado
+
+- O código da atividade PhotoSnap está pronto em _vanilla_ JavaScript, no
+arquivo `script/balaozinho-vanilla.js`
+  - Você deve recriar a mesma funcionalidade usando jQuery, no arquivo
+    `script/balaozinho-jquery.js` (que está vazio)
+- [Baixe os arquivos][arquivos]. Veja que está funcionando!! Agora você deve
+  refazer o exercício, conforme o enunciado completo, usando a biblioteca
+  jQuery
+  - Repare que você deve **incluir `script/balaozinho-jquery.js` em vez de**
+  **`script/balaozinho-vanilla.js`** <!-- {strong:.alternate-color} -->
+    - Altere o `index.html` para refletir isso!
+
+[arquivos]: https://github.com/fegemo/cefet-front-end-snap/archive/jquery.zip
+
 ---
 # Referências
 
 1. Página da jQuery: http://jquery.com/
-1. Curso de jQuery da Codeschool: http://try.jquery.com
