@@ -22,9 +22,9 @@ assim, quando uma nova versão do Node.js sai, não é necessário desinstalar a
 versões instaladas. Para Windows existe o [nodist][nodist] e para o Linux
 existe o [nvm][nvm].
 
-O restante do tutorial assumindo uma instalação no Linux. Os passos macro são:
+O restante do tutorial assume uma instalação no Linux. Os passos macro são:
 
-1. Instalar o node.js
+1. Instalar o Node.js
 1. Instalar o gulp globalmente
 1. Clonar o projeto para o computador
 1. Instalar as dependências do projeto (e.g., o bespoke e seus plugins)
@@ -68,7 +68,7 @@ diretório atual".
 
 ## (3) Clonando o projeto
 
-Para ter os arquivos no computador de trabalho, é necessário clonar seu 
+Para ter os arquivos no computador de trabalho, é necessário clonar seu
 repositório git. Para isso, é necessário ter o git instalado e isso pode
 ser feito a partir do [site oficial do git][git] ou de repositório apt:
 
@@ -82,7 +82,7 @@ Com o git instalado, basta clonar este repositório via terminal:
 git clone https://github.com/fegemo/cefet-front-end.git
 ```
 
-Esse comando criará uma pasta chamada `cefet-front-end` com os arquivos do 
+Esse comando criará uma pasta chamada `cefet-front-end` com os arquivos do
 projeto, dentro da pasta que estava aberta no terminal.
 
 ## (4) Instalando as dependências
@@ -91,7 +91,7 @@ Esta aplicação possui algumas dependências, como a biblioteca
 bespoke.js e alguns de seus plugins, o stylus (para pré-processar
 código e transformá-lo em CSS) e algumas outras.
 
-Todas as dependências do projeto estão descritas no arquivo 
+Todas as dependências do projeto estão descritas no arquivo
 `package.json` que, além dos nomes e das versões das dependências,
 também contém alguns metadados deste projeto como o nome dos
 seus autores, o nome e uma descrição do projeto.
@@ -116,31 +116,44 @@ chamada `dev`. Isso pode ser feito executando, dentro da pasta do projeto:
 gulp dev
 ```
 
-Quando isso acontece, uma pasta `dist` é criada no projeto e ela recebe 
+Quando isso acontece, uma pasta `dist` é criada no projeto e ela recebe
 todos os arquivos necessários para a exibição dos slides, com suas devidas
 transformações (e.g., arquivos `.styl` se transformar em `.css`).
 
-Nesse momento, uma série de subtarefas são executadas com o intuito de copiar (e, em alguns casos, transformar) arquivos para a pasta `dist/` (distribuição): 
+Nesse momento, uma série de subtarefas são executadas com o intuito de copiar
+(e, em alguns casos, transformar) arquivos para a pasta `dist/` (distribuição):
 
 1. Imagens (dentro do diretório `images/`) são copiadas para `dist/`
 1. Videos (pasta `videos/`) copiados para `dist/`
 1. Scripts (pasta `scripts/`) copiados para `dist/`
-1. Estilos (pasta `styles/`) são transformados pelo Stylus (`.styl`) em arquivos CSS (`.css`) e então copiados para `dist/`
+1. Estilos (pasta `styles/`) são transformados pelo Stylus (`.styl`) em
+   arquivos CSS (`.css`) e então copiados para `dist/`
 1. Arquivos anexos (e.g., algum arquivo `.zip`) copiados para `dist/`
-1. Fontes (`fonts/`), ícone de favoritos (`favicon/`), páginas de exemplo (`sample/`), arquivos html (`html/`) também são copiados para `dist/`
-1. As pastas dentro de `classes/`, que possuem os arquivos no [formato Markdown][markdown] com o conteúdo dos slides. Cada pasta refere-se a uma aula e possui apenas 1 arquivo chamado `README.md`
+1. Fontes (`fonts/`), ícone de favoritos (`favicon/`), páginas de exemplo
+   (`sample/`), arquivos html (`html/`) também são copiados para `dist/`
+1. As pastas dentro de `classes/`, que possuem os arquivos no
+   [formato Markdown][markdown] com o conteúdo dos slides. Cada pasta
+   refere-se a uma aula e possui apenas 1 arquivo chamado `README.md`
 
-Além da cópia/transformação dos arquivos para `dist`, a tarefa `dev` (de `gulp dev`) também faz outras três coisas:
+Além da cópia/transformação dos arquivos para `dist`, a tarefa `dev` (de
+`gulp dev`) também faz outras três coisas:
 
-1. Abre um servidor web na porta 8081 que fica servindo os arquivos. Ou seja, basta acessar `http://localhost:8081/` para visualizá-los.
+1. Abre um servidor web na porta 8081 que fica servindo os arquivos. Ou
+   seja, basta acessar `http://localhost:8081/` para visualizá-los.
 1. Abre o navegador padrão com os slides abertos.
-1. Inicia uma observação dos arquivos fonte de forma que sempre que há uma alteração em um dos arquivos (e.g., modifica e salva um arquivo `README.md`), o gulp copia/transforma o arquivo novamente e automaticamente atualiza o navegador, refletindo as alterações.
+1. Inicia uma observação dos arquivos fonte de forma que sempre que há uma
+   alteração em um dos arquivos (e.g., modifica e salva um arquivo
+   `README.md`), o gulp copia/transforma o arquivo novamente e automaticamente
+   atualiza o navegador, refletindo as alterações.
 
 ## Publicando os slides
 
-Quando finalizada uma alteração, para torná-la acessível publicamente (e.g., em https://fegemo.github.io/cefet-front-end/), é necessário enviar a nova versão para um *branch* com um especial para o GitHub chamado `gh-pages` (de GitHub Pages¹).
+Quando finalizada uma alteração, para torná-la acessível publicamente (e.g., em https://fegemo.github.io/cefet-front-end/), é necessário enviar a nova versão
+para um *branch* com um especial para o GitHub chamado `gh-pages`
+(de GitHub Pages¹).
 
-Para fazer isso, é necessário fazer *commit* das alterações e então executar uma outra tarefa gulp chamada `deploy`:
+Para fazer isso, é necessário fazer *commit* das alterações e então executar
+uma outra tarefa gulp chamada `deploy`:
 
 1. Fazendo *commit* das alterações:
   ```
@@ -157,7 +170,11 @@ Para fazer isso, é necessário fazer *commit* das alterações e então executa
   git push -u origin master
   ```
 
-¹ [GitHub Pages][gh-pages] é um serviço gratuito do GitHub que permite que cada repositório lá hospedado possa ter um pequeno site estático explicativo sobre o repositório, tipicamente contendo uma documentação do projeto. Este projeto utiliza esse espaço para colocar os slides "em produção", acessível publicamente.
+¹ [GitHub Pages][gh-pages] é um serviço gratuito do GitHub que permite que
+cada repositório lá hospedado possa ter um pequeno site estático explicativo
+sobre o repositório, tipicamente contendo uma documentação do projeto.
+Este projeto utiliza esse espaço para colocar os slides "em produção",
+acessível publicamente.
 
 [bespoke]: http://markdalgleish.com/projects/bespoke.js/
 [stylus]: http://stylus-lang.com/
