@@ -542,6 +542,20 @@ div.did-you-know > p {
   width: 100%;
   height: 100%;
 }
+.photosnap.bespoke-backdrop {
+  opacity: 0;
+  transform: translate3d(0, 5%, 0);
+  transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
+}
+.photosnap.bespoke-backdrop-active {
+  background-image: url("../images/photosnap.png");
+  background-size: cover;
+  background-position: 50% 0%;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  height: 100%;
+}
 .shiny.bespoke-backdrop-active {
   position: relative;
   width: 100%;
@@ -682,7 +696,8 @@ ol.no-list-icon {
   max-width: 100%;
 }
 .bespoke-slide.layout-regular,
-.bespoke-slide.layout-regular-block {
+.bespoke-slide.layout-regular-block,
+.bespoke-slide[class*="layout-2-column-content-"] {
   padding: 1.5rem;
 }
 .bespoke-slide.layout-regular-centered {
@@ -1070,6 +1085,16 @@ abbr[title] {
   100% {
     transform: rotateY(-360deg);
   }
+}
+.bespoke-proceed-input {
+  outline: solid 1px #ff0;
+  background-color: #ffffbf;
+  transition: all 200ms cubic-bezier(0.26, 2.94, 0.65, 0.45);
+}
+.bespoke-proceed-input.bespoke-proceed-success {
+  outline-color: #008000;
+  background-color: #a0ffa0;
+  transform: scale(1.05);
 }
 /* fonts for browser icons (used with permission from IcoMoon.io) */
 @font-face {

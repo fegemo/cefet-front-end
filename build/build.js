@@ -30331,7 +30331,8 @@ module.exports = function() {
 
   function resolveOperand(operand) {
     let elements = [],
-      result = operand;
+      result = operand,
+      element = null;
     switch (typeof operand) {
       case 'string':
         try {
@@ -30339,7 +30340,8 @@ module.exports = function() {
         } catch (error) {
           // ignores the error: the operand was not a selector
         }
-        if (elements && elements.length == 1) {
+        if (elements && elements.length === 1) {
+          element = elements[0];
           if (typeof elements[0].value !== 'undefined') {
             result = elements[0].value;
           } else {
@@ -30356,28 +30358,28 @@ module.exports = function() {
       default:
         result = null;
     }
-    return result;
+    return { result, element };
   }
 
   let operators = {
     'equal': function(condition) {
       // all operands must be equal... the current must equal the previous
       return condition.operands.reduce((prev, current) => {
-        let resolvedOperand = resolveOperand(current);
-        return prev == resolveOperand(current) ? resolvedOperand : false;
-      }, resolveOperand(condition.operands[0]));
+        let resolvedOperand = resolveOperand(current).result;
+        return prev == resolveOperand(current).result ? resolvedOperand : false;
+      }, resolveOperand(condition.operands[0]).result);
     },
 
     'contains': function(condition, ignoreCase) {
       let [firstOperand, ...remainingOperands] = condition.operands;
-      firstOperand = resolveOperand(firstOperand)
+      firstOperand = resolveOperand(firstOperand).result;
       if (ignoreCase) {
         firstOperand = firstOperand.toLocaleLowerCase();
       }
 
       // the first operand must contain all the others
       return remainingOperands.every(operand => {
-        let resolvedOperand = resolveOperand(operand);
+        let resolvedOperand = resolveOperand(operand).result;
         if (ignoreCase) {
           resolvedOperand = resolvedOperand.toLocaleLowerCase();
         }
@@ -30418,6 +30420,23 @@ module.exports = function() {
     return satisfies;
   }
 
+  function verifyConditionUponInput(configEl) {
+    let config = JSON.parse(configEl.value);
+    config.forEach(condition => {
+      let inputOperandEl = condition.operands.map(o => resolveOperand(o).element).find(o => o instanceof HTMLElement);
+
+      if (inputOperandEl) {
+        inputOperandEl.addEventListener('input', e => {
+
+          if (checkCondition(configEl)) {
+            e.currentTarget.classList.add('bespoke-proceed-success');
+            e.currentTarget.blur();
+          }
+        });
+      }
+    });
+  }
+
   return function(deck) {
 
     // gets all conditions
@@ -30443,13 +30462,25 @@ module.exports = function() {
         return prev;
       }, {});
 
+
+      // set input lisenters on every condition input to unlock its proceed
+      // button
+      deck.on('slide', e => {
+        let conditionForCurrentSlide = conditions[e.index];
+
+        if (conditionForCurrentSlide && !conditionForCurrentSlide.satisfied) {
+          verifyConditionUponInput(conditionForCurrentSlide.configEl);
+        }
+      });
+
       // on deck.next event, check if we are in a slide with a condition,
       // check the condition and conditionally prevent proceeding
       deck.on('next', function(e) {
         let conditionForCurrentSlide = conditions[e.index];
+
+
         if (conditionForCurrentSlide && !conditionForCurrentSlide.satisfied) {
           conditionForCurrentSlide.satisfied = checkCondition(conditionForCurrentSlide.configEl);
-
           return conditionForCurrentSlide.satisfied;
         }
       });
@@ -30821,7 +30852,6 @@ bespoke.from('article', [
         }
       }
     ],
-    markdownItAnchor,
     markdownItDefList,
     markdownItAbbr,
     markdownItDecorate,

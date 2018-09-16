@@ -11,10 +11,10 @@
 -->
 # Roteiro de hoje
 
-1. Finalizar o jogo **EduKids Animals** <!-- {.righteous} -->
-1. Transformações
-1. Transições
-1. Animações
+1. [Finalizar o jogo](#edukids-animals) **EduKids Animals** <!-- {.righteous} -->
+1. [Transformações](#transformacoes)
+1. [Transições](#transicoes)
+1. [Animações](#animacoes)
 
 
 ---
@@ -254,11 +254,11 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
   ```css
   p {
-    color: 'black';
+    color: 'red';
     transition: color 600ms linear;
   }
   p:hover {
-    color: 'red';
+    color: 'black';
   }
   ```
 - Escolhemos **que propriedade** `CSS` queremos animar, por **quanto tempo**
@@ -350,11 +350,12 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 <!-- {ul:.content} -->
 
 ---
+<!-- {"layout": "regular"} -->
 ## O que queremos?
 
-- Criar animações mais complexas do que uma interpolação entre dois valores de
+- Criar **animações mais complexas** do que uma interpolação entre dois valores de
   uma propriedade
-- Sem usar Javascript!!
+- Sem usar JavaScript!!
   - Maior desempenho
   - Fácil de fazer (de forma declarativa em vez de imperativa)
   - Permite que o navegador controle a animação, possibilitando que ele utilize
@@ -362,6 +363,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
     de animações que não estão visíveis
 
 ---
+<!-- {"layout": "regular"} -->
 ## A propriedade **animation** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/animation))
 
 - Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
@@ -410,6 +412,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   sequência de quadros a ser usada
 
 ---
+<!-- {"layout": "regular"} -->
 ## A propriedade **animation** (cont.)
 
 - É um atalho para:
@@ -425,6 +428,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   - `animation-play-state: running`, estado da animação
 
 ---
+<!-- {"layout": "centered"} -->
 ## Definindo **@keyframes**
 
 <style>
@@ -435,13 +439,10 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   100% { background: #6c5228;	}
 }
 .terra {
-  position: absolute;
-  bottom: 0;
-  height: 65px;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  animation: terra-ao-longo-do-dia 20s linear 4s infinite normal forwards;
+  margin-top: 1em;
+  animation: terra-ao-longo-do-dia 20s linear 0s infinite normal forwards;
+  font-family: monospace;
+  padding: 0.75em;
 }</style>
 
 - ```css
@@ -456,12 +457,34 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   	66%  { background: #48a037; }  100% { background: #6c5228; }
   }
   ```
-  <div class="terra"> </div>
+  <div class="terra">animation: terra-ao-longo-do-dia 20s linear 0s infinite;</div>
 
 ---
-## Exemplo: estrelinha girando
+<!-- {"layout": "tall-figure-left"} -->
+## Exemplo 1: estrelinha girando
+
+![](../../images/mario-star.png) <!-- {.estrela-mario-1} -->
+
+```css
+.estrela-mario-1:hover {  /* apenas em :hover */
+  animation: girando 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes girando {
+  from {
+    transform: rotate(15deg);
+  }
+  to {
+    transform: rotate(-15deg);
+  }
+}
+```
 
 <style>
+.estrela-mario-1 {
+  position: absolute;
+
+}
 .estrela-mario-1:hover {
   animation: girando 1s ease-in-out 0s infinite alternate;
 }
@@ -470,22 +493,9 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   to   { transform: rotate(-15deg); }
 }</style>
 
-```css
-.estrela-mario-1:hover {
-  animation: girando 1s ease-in-out 0s infinite alternate;
-}
-@keyframes girando {
-  from { transform: rotate(15deg); }
-  to   { transform: rotate(-15deg); }
-}
-```
-
-![](../../images/mario-star.png) <!-- {.estrela-mario-1} -->
-
-
 ---
 <!-- {"layout": "regular", "slideHash": "mais-de-uma-animacao"} -->
-## Exemplo: **Mais de uma** animação
+## Exemplo 2: **mais de uma** animação
 
 <style>
 .estrela-mario-2:hover {
@@ -514,8 +524,6 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   <img class="estrela-mario-2" src="../../images/mario-star.png" style="position:absolute;">
 </div>
 
----
-## Mais de uma animação (cont.)
 
 ```css
 @keyframes sumindo {
@@ -532,8 +540,8 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 <!-- {"layout": "regular", "slideHash": "animation-ou-transition"} -->
 ## **animation** ou **transition**?
 
-- **`transition`** é uma interpolação entre dois valores de uma propriedade
-- **`animation`** é uma interpolação entre dois ou mais valores, opcionalmente
+- **`transition`** é uma interpolação entre <u>dois valores</u> de uma propriedade
+- **`animation`** é uma interpolação entre <u>dois ou mais valores</u>, opcionalmente
   acontecendo mais de uma vez e em ordem alternada
 - Sempre optamos pelo mais simples
   - No caso, `transition`, quando possível
@@ -545,6 +553,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 - [caniuse.com](http://caniuse.com/)
 
 ---
+<!-- {"layout": "regular"} -->
 # Slide **_easter egg_**!!
 
 - Em 01/04/2015, a Google lançou um espelho para seu buscador, o com.google.
