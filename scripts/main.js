@@ -278,7 +278,6 @@ bespoke.from('article', [
         }
       }
     ],
-    markdownItAnchor,
     markdownItDefList,
     markdownItAbbr,
     markdownItDecorate,
