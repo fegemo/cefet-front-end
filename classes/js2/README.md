@@ -443,7 +443,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
     1. "Re"coloca a classe no elemento "clicado"
 
 ---
-<!-- {"layout": "2-column-content"} -->
+<!-- {"layout": "2-column-content", "slideHash": "menu-lateral"} -->
 ## Um menu lateral aparecer
 
 <iframe width="100%" height="400" src="//jsfiddle.net/fegemo/dj37kc7e/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

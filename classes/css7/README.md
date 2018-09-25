@@ -62,13 +62,14 @@
 ---
 # Na aula de hoje
 
-1. A _tag_ `meta` _viewport_
-1. _Media queries_
-1. Densidade de pixels
-1. _Responsive web design_
+1. [A _tag_ `meta` _viewport_](#a-tag-meta-viewport)
+1. [_Media queries_](#media-queries)
+1. [Densidade de pixels](#densidade-de-pixels)
+1. [_Responsive web design_](#responsive-web-design)
+1. [A Super Loja](#a-super-loja) :convenience_store:
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "a-tag-meta-viewport"} -->
 # A _tag_ `meta` _viewport_
 ## Como definir a janela da página
 
@@ -192,7 +193,7 @@
   proporção da janela** (_e.g._, slides)
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "media-queries"} -->
 # _Media Queries_
 ## Regras CSS condicionais
 
@@ -313,7 +314,7 @@
   ```
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "densidade-de-pixels"} -->
 # Densidade de pixels
 ## Telas com "super definição"
 
@@ -353,7 +354,7 @@ Para testar em um dispositivo de **tela com alta densidade de pixels**:
 - Este dispositivo tem densidade: <span id="device-pixel-ratio">x</span> <button id="calc-dpr" onclick="this.disabled = true; setTimeout(() => { document.querySelector('#device-pixel-ratio').innerHTML = window.devicePixelRatio; this.style.visibility = 'hidden'; }, 200); this.classList.add('vanished');">🔢 <code>window.devicePixelRatio</code></button>
 
 ---
-<!-- {"layout": "section-header"} -->
+<!-- {"layout": "section-header", "slideHash": "responsive-web-design"} -->
 # _Responsive Design_
 ## Adequando ao dispositivo
 
@@ -434,3 +435,17 @@ div.produto {  display: inline-block; }
 ## Exemplo vivo
 
 <iframe width="100%" height="450" src="//jsfiddle.net/fegemo/Lw7prv0u/6/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "section-header", "slideHash": "a-super-loja"} -->
+# A **Super** Loja :convenience_store:
+## Lojinha responsável
+
+- Atividade de hoje
+
+<!-- {ul:.content} -->
+
+---
+<!-- {"fullPageElement": "#super-store", "playMediaOnActivation": {"selector": "#super-store" }} -->
+
+<video src="//fegemo.github.io/cefet-front-end-large-assets/videos/super-store.webm" controls id="super-store"></video>
