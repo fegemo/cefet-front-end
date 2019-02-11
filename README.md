@@ -9,13 +9,11 @@
 ::: gallery .fish-eye
 - [![](images/trabalhos/2017/little-cout.png)](https://brandaogabriel7.github.io/web-com-little-cout/)
 - [![](images/trabalhos/2017/vulcanismo.png)](https://eumsmo.github.io/geo-chop-suey/)
-- [![](images/trabalhos/2017/bioprantinhas.png)](https://bioprantinhas.github.io/)
 - [![](images/trabalhos/2017/arte.png)](https://sirpedr.github.io/)
 - [![](images/trabalhos/2017/biomedicina.png)](https://biomedicina.neocities.org)
 - [![](images/trabalhos/2017/teorias-atomicas.png)](https://quimicaatomica.comeze.com)
 - [![](images/trabalhos/2017/quimica.png)](https://quimica.neocities.org)
 - [![](images/trabalhos/2017/medieval.png)](https://webhistoriamedieval.000webhostapp.com/)
-- [![](images/trabalhos/2017/leis-de-newton.png)](https://estherweb.github.io/Fisica-crazy/)
 - [![](images/trabalhos/2018/blogueirinha.png)](https://blogueirinhas.neocities.org/)
 - [![](images/trabalhos/2018/jornada-do-conhecimento.png)](https://jornadadoconhecimento.000webhostapp.com/)
 :::
@@ -27,12 +25,9 @@
 ::: gallery .fish-eye
 - [![](images/trabalhos/2017/friday.png)](https://lord4of4games.github.io/)
 - [![](images/trabalhos/2017/life.png)](https://daniekans.github.io/apl)
-- [![](images/trabalhos/2017/pong.png)](https://pongweb.neocities.org/menu.html)
 - [![](images/trabalhos/2017/classrun.png)](https://classrun.000webhostapp.com)
 - [![](images/trabalhos/2017/sonorize.png)](https://sonorize.github.io)
-- [![](images/trabalhos/2017/cefetianos.png)](https://mapadoscefetianos.neocities.org)
 - [![](images/trabalhos/2017/symphony.png)](https://sirpedr.github.io/SymphonyOfBlades)
-- [![](images/trabalhos/2017/gammy.png)](https://pedrocesarmesquita.github.io/Gammy/home)
 - [![](images/trabalhos/2017/thecircus.png)](https://sirpedr.github.io/TheCircus)
 - [![](images/trabalhos/2018/site-dev-tycoon.png)](https://sitedevtycoon.neocities.org/)
 - [![](images/trabalhos/2018/protect-the-planet.png)](https://jjoaovviniciuss.github.io/)
