@@ -5,12 +5,13 @@
 ---
 # Hoje veremos
 
-1. Requisições síncronas
-1. Ajax: requisições assíncronas
+1. [Requisições síncronas](#requisicoes-sincronas)
+1. [Ajax](#ajax): requisições assíncronas
    - Em _vanilla_ JavaScript
    - Com ajuda de jQuery
-1. Guerras Estelares :stars:
-1. Usos típicos de AJAX
+   - Usando <code>fetch</code>
+1. [Guerras Estelares](#guerras-estelares) :stars:
+   - Usos típicos de AJAX
 
 ---
 <!-- { "layout": "section-header", "slideHash": "requisicoes-sincronas"} -->
@@ -107,6 +108,7 @@ Content-Length: 131
 ![Foto do personagem Deadpool enfrentando um limpador multiuso AJAX](../../images/ajax-deadpool.jpg)
 - Exemplo com _vanilla_ JS
 - Exemplo com jQuery
+- Exemplo com fetch ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
 
 <!-- {.content style="max-width: 100%"} -->
 
@@ -314,6 +316,27 @@ $('#show-reviews').click(function() {
 [fumaceiro-jquery]: https://fegemo.github.io/cefet-front-end-ajax/index-jquery.html
 
 ---
+<!-- {"layout": "regular"} -->
+## Exemplo do Fumaceiro <small>(versão [fetch][fumaceiro-fetch])</small>
+
+```js
+showReviewsEl.addEventListener('click', function() {
+  fetch('xcom-reviews.json')                        // retorna uma *promessa*
+    .then(respostaBruta => respostaBruta.json())    // arrow function
+    .then(resposta => {
+      // a resposta é um objeto js que contém uma propriedade avaliacoes
+      let avaliacoes = resposta.avaliacoes;
+
+      reviewsEl.innerHTML = '';
+      avaliacoes.forEach(criaAvaliacaoNaPagina);      
+    });
+  });
+});
+```
+
+[fumaceiro-fetch]: https://fegemo.github.io/cefet-front-end-ajax/index-fetch.html
+
+---
 <!-- {"layout": "section-header", "slideHash": "guerras-estelares"} -->
 # Guerras Estelares :stars:
 ## Intro nas estrelas
@@ -350,10 +373,12 @@ $('#show-reviews').click(function() {
 # Intro nas Estrelas
 
 - Vamos criar um letreiro Star Wars em JavaScript e CSS \o/
-- Você deve escrever código JavaScript para fazer chamadas Ajax para
+- Você deve escrever código JavaScript para fazer uma chamada Ajax para
   uma API pública com informações sobre Star Wars
   - Disponível em https://swapi.co/
-- Mais instruções no Moodle
+- Mais instruções no Moodle ou [na atividade][guerras-estelares]
+
+[guerras-estelares]: https://github.com/fegemo/cefet-front-end-starwars
 
 ---
 # Referências
