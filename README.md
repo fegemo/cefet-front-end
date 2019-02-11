@@ -16,6 +16,8 @@
 - [![](images/trabalhos/2017/quimica.png)](https://quimica.neocities.org)
 - [![](images/trabalhos/2017/medieval.png)](https://webhistoriamedieval.000webhostapp.com/)
 - [![](images/trabalhos/2017/leis-de-newton.png)](https://estherweb.github.io/Fisica-crazy/)
+- [![](images/trabalhos/2018/blogueirinha.png)](https://blogueirinhas.neocities.org/)
+- [![](images/trabalhos/2018/jornada-do-conhecimento.png)](https://jornadadoconhecimento.000webhostapp.com/)
 :::
 
 ---
@@ -31,7 +33,10 @@
 - [![](images/trabalhos/2017/cefetianos.png)](https://mapadoscefetianos.neocities.org)
 - [![](images/trabalhos/2017/symphony.png)](https://sirpedr.github.io/SymphonyOfBlades)
 - [![](images/trabalhos/2017/gammy.png)](https://pedrocesarmesquita.github.io/Gammy/home)
-- [![](images/trabalhos/2017/thecircus.png)](https://sirpedr.github.io/TheCircus )
+- [![](images/trabalhos/2017/thecircus.png)](https://sirpedr.github.io/TheCircus)
+- [![](images/trabalhos/2018/site-dev-tycoon.png)](https://sitedevtycoon.neocities.org/)
+- [![](images/trabalhos/2018/protect-the-planet.png)](https://jjoaovviniciuss.github.io/)
+- [![](images/trabalhos/2018/disfarca-bobos.png)](https://disfarca-bobos.neocities.org)
 :::
 
 ---
