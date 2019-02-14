@@ -26,7 +26,7 @@
   background-color: #f5f5dc;
 }
 .book-btn {
-  display: inline-block;
+  display: block;
   text-transform: uppercase;
   text-decoration: none;
   border: 2px solid #000;
@@ -34,7 +34,9 @@
   font-size: 0.7em;
   font-weight: 700;
   padding: 0.1em 0.4em;
-  margin-left: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
+  word-break: break-all;
   text-align: center;
   transition: color 0.3s, border-color 0.3s;
 }

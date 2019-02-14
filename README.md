@@ -180,11 +180,11 @@ Veja a bibliografia básica e a complementar.
 ## **Livro texto** sobre JavaScript
 
 ::: figure .book
-- ![](images/book-head-first-programming-javascript.jpg) <!-- {.full-width.full-height} -->
+- ![](images/book-eloquent-javascript.jpg) <!-- {.full-width.full-height} -->
 - .
 <!-- {ul:.hardcover_front} -->
 - .
-- [Sobre](http://www.altabooks.com.br/use-a-cabeca-programacao-javascript.html) <!-- {a:.book-btn target="_blank"} -->
+- [Ler gratui-<br>tamente](http://eloquentjavascript.net/) <!-- {a:.book-btn target="_blank"} -->
 - .
 - .
 - .
@@ -198,13 +198,13 @@ Veja a bibliografia básica e a complementar.
 :::
 
 **Título**
-  ~ Use a Cabeça: Programação JavaScript, 1ª edição
+  ~ Eloquent JavaScript _3<sup>rd</sup> edition_
 
 **Autor**
-  ~ Eric Freeman
+  ~ Marijn Haverbeke
 
 **Editora**
-  ~ O'Reilly Media, 2016 (tradução)
+  ~ No Starch Press
 
 
 ---
