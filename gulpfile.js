@@ -4,7 +4,7 @@ var fs = require('fs'),
   plumber = require('gulp-plumber'),
   del = require('del'),
   rename = require('gulp-rename'),
-  uglify = require('gulp-uglify'),
+  // uglify = require('gulp-uglify'),
   stylus = require('gulp-stylus'),
   replace = require('gulp-replace'),
   preprocess = require('gulp-preprocess'),
@@ -22,7 +22,8 @@ var fs = require('fs'),
   path = require('path'),
   merge = require('merge-stream'),
   opn = require('opn'),
-  isDist = process.argv.indexOf('dev') === -1;
+  isDist = false;// process.argv.indexOf('dev') === -1;
+
 
 
 gulp.task('js', function() {
@@ -31,6 +32,9 @@ gulp.task('js', function() {
       debug: !isDist
     })
     .bundle()
+    .on('error', function() {
+      console.log(arguments);
+    })
     .pipe(source('build.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
@@ -52,7 +56,7 @@ gulp.task('js-classes', function(done) {
 
       return browserify({
         entries: [file],
-        debug: true
+        debug: !isDist
       })
       .bundle()
       .on('error', function(err) {

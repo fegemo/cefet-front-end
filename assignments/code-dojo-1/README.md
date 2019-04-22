@@ -71,7 +71,7 @@ Exercício: fazer uma página explicando o que é Coding Dojo
 ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo1.png) <!-- {.push-right style="height: 200px;"} -->
   - Ícone pode ser encontrado no arquivo `imgs-coding-dojo.zip`, disponibilizado no Moodle
   - Salve todas as imagens em uma pasta separada
-- Para **testar**, escreva e exiba a frase `Coding dojo é legal`
+- Para **testar**, escreva e exiba a frase `Coding dojo é muito legal`
 
 ---
 ## Título (primeiro nível) e estilos da página
