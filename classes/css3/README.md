@@ -3,29 +3,53 @@
 ## Fontes, Multimídia e Unicórnios 🦄
 
 ---
-## Revisão da Prova - Erros Comuns (1/5)
-- Endereço absoluto vs relativo
+<!-- {"layout": "regular"} -->
+## Revisão da prova - erros comuns (1/4)
+### Endereço absoluto vs relativo
 
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)<!-- {.push-left} -->
-| Endereço Absoluto          	| End. Relativo 	|
-|---------------------------	|---------------	|
-| /ovelhas/racas/c.jpg      	| `c.jpg`        	|
-| /ovelhas/racas/xpto/d.jpg 	| `xpto/d.jpg`   	|
-| /ovelhas/b.jpg            	| `../b.jpg`     	|
-| /a.jpg                    	| `../../a.jpg`  	|
+- ![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png) <!-- {ul:.layout-split-2 style="list-style-type: none; justify-content: space-between;"} -->
+- | Endereço Absoluto          	| End. Relativo 	|
+  |---------------------------	|---------------	|
+  | /ovelhas/racas/c.jpg      	| `c.jpg`        	|
+  | /ovelhas/racas/xpto/d.jpg 	| `xpto/d.jpg`   	|
+  | /ovelhas/b.jpg            	| `../b.jpg`     	|
+  | /a.jpg                    	| `../../a.jpg`  	|
 
 ---
-## Revisão da Prova - Erros Comuns (2/5)
+<!-- {"layout": "regular"} -->
+## Revisão da prova - erros comuns (2/4)
 
-- Escreva uma (única) regra em CSS para colorir de vermelho apenas links que estejam dentro de tabelas. Os demais links deverão continuar da mesma forma.
+- Escreva uma (única) regra em CSS para colorir de vermelho apenas links
+  que estejam dentro de tabelas. Os demais links não devem ser alterados.
 
-```css
-       table a{
-         color: red;
-       }
-```
+1. Correto:
+   ```css
+   table a {
+     color: red;
+   }
+   ```
+1. Errado:
+   ```css
+   td a {
+     color: red;
+   }
+   ```
+1. Errado:
+   ```css
+   .links {
+      color: red;
+   }
+   ```
+1. Errado: <!-- {ol:.layout-split-4 style="justify-content: space-between; padding-left: 0; list-style-type: none"} -->
+   ```css
+   a[td href$=" "] {
+     color: red;
+   }
+   ```
+
 ---
-## Revisão da Prova - Erros Comuns (3/5)
+<!-- {"layout": "regular"} -->
+## Revisão da prova - erros comuns (3/4)
 
 - **Regra CSS** para fazer com que uma **linha** da tabela mude sua **cor de fundo** quando o **mouse passar em cima dela** ([jsFiddle][jsFiddle]).
 
@@ -35,25 +59,17 @@
 ![Questão exibindo as 4 possíveis alternativas de respostas.](../../images/linha-branca-tabela.png)
 
 ---
-## Revisão da Prova - Erros Comuns (4/5)
+<!-- {"layout": "regular"} -->
+## Revisão da prova - erros comuns (4/4)
+
 - Lista de item dentro de um parágrafo
-  - o parágrafo deve possuir apenas elementos _inline_
-- Item de Lista definido sem sua respectiva lista
+  - O parágrafo deve possuir apenas elementos _inline_
+- Item de lista definido sem sua respectiva lista
 - Tags abertas e não fechadas:
-  - Sempre que abrir uma `tag`, feche-a.
-  - Idente bem o código
+  - Sempre que abrir uma `tag`, feche-a
+  - Indente o código
   - Lembrem-se de usar mais recursos do editor/navegador:
     - Ao criar um arquivo, digite `html` e depois <kbd>tab</kbd>
-    - No navegador, entre em exibir código fonte
-
----
-## Revisão da Prova - Erros Comuns (5/5)
-  - Tags abertas e não fechadas:
-    - Sempre que abrir uma `tag`, feche-a.
-    - Idente bem o código
-    - Lembrem-se de usar os recursos do editor/navegador:
-      - Ao criar um arquivo, digite `html` e depois <kbd>tab</kbd>
-      - No navegador, entre em exibir código fonte
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->

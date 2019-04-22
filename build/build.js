@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 module.exports = function() {
   return function(deck) {
     var backdrops;
@@ -30572,7 +30572,7 @@ module.exports = function() {
 };
 
 },{"cheet.js":15}],281:[function(require,module,exports){
-let bespoke = require('bespoke'),
+const bespoke = require('bespoke'),
   beachday = require('bespoke-theme-beachday'),
   keys = require('bespoke-keys'),
   touch = require('bespoke-touch'),
@@ -30593,270 +30593,12 @@ let bespoke = require('bespoke'),
   backdrop = require('bespoke-backdrop'),
   proceed = require('./bespoke-proceed'),
   easter = require('./easter'),
-  tutorial = require('./tutorial');
+  tutorial = require('./tutorial'),
+  markdownItConfig = require('./markdown-config');
 
 // Bespoke.js
 bespoke.from('article', [
-  markdown({
-    backdrop: function(slide, value) {
-      slide.setAttribute('data-bespoke-backdrop', value);
-    },
-    scripts: function(slide, url) {
-      var placeToPutScripts = document.body;
-      url = !Array.isArray(url) ? [url] : url;
-
-      function loadScriptChain(i) {
-        var s = document.createElement('script');
-        s.src = url[i];
-        if (i < url.length - 1) {
-          s.addEventListener('load', function () {
-              loadScriptChain(i+1);
-          });
-        }
-        placeToPutScripts.appendChild(s);
-      }
-      loadScriptChain(0);
-    },
-    styles: function(slide, value) {
-      var placeToPutStyles = document.head;
-      value = !Array.isArray(value) ? [value] : value;
-      value.forEach(function (url) {
-        var l = document.createElement('link');
-        l.rel = 'stylesheet';
-        l.href = url;
-        placeToPutStyles.appendChild(l);
-      });
-    },
-    embeddedStyles: function(slide, styleString) {
-      if (typeof styleString !== 'string') {
-        console.log('Esperava que o metadado "embeddedStyles" tivesse como ' +
-          'valor uma string, mas foi passado via arquivo markdown um ' +
-          typeof styleString);
-      }
-      var s = document.createElement('style');
-      s.innerHTML = styleString;
-      document.head.appendChild(s);
-    },
-    elementStyles: function(slideEl, elementsAndTheirStyles) {
-      Object.keys(elementsAndTheirStyles).forEach(function(selector) {
-        Array.from(slideEl.querySelectorAll(selector))
-          .forEach(function(el) {
-            return el.setAttribute('style', elementsAndTheirStyles[selector]);
-          });
-      });
-    },
-    slideHash: function(slide, value) {
-      slide.setAttribute('data-bespoke-hash', value);
-    },
-    layout: function(slide, value) {
-      slide.classList.add('layout-' + value);
-    },
-    state: function(slide, value) {
-      slide.setAttribute('data-bespoke-state', value);
-    },
-    preventSelection: function(slide, unselectableElementsSelector) {
-      var els = slide.querySelectorAll(unselectableElementsSelector);
-      els.forEach(function(el) {
-        el.onselectstart = function() { return false };
-        el.onmousedown = function() { return false };
-        el.setAttribute('unselectable', 'on');
-        el.style.userSelect = 'none';
-      });
-    },
-    fullScreenElement: function(slide, elementSelector) {
-      let el = slide.querySelector(elementSelector);
-      let requestFullScreenName = document.documentElement.requestFullScreen ?
-        'requestFullScreen' : `${['webkit', 'moz'].find(p => document.documentElement[`${p}RequestFullScreen`])}RequestFullScreen`;
-      let exitFullScreenName = document.exitFullScreen ?
-        'exitFullScreen' : `${['webkitExit', 'webkitCancel', 'mozExit', 'mozCancel']
-          .find(p => document[`${p}FullScreen`])}FullScreen`;
-
-      if (requestFullScreenName && exitFullScreenName) {
-        this.on('activate', function(e) {
-          if (e.slide === slide) {
-            el[requestFullScreenName]();
-          }
-        });
-        this.on('deactivate', function(e) {
-          if (e.slide === slide) {
-            document[exitFullScreenName]();
-          }
-        });
-      }
-    },
-    fullPageElement: function(slide, elementSelector) {
-      let el = slide.querySelector(elementSelector);
-      el.style.width = window.getComputedStyle(slide).width;
-      el.style.height = window.getComputedStyle(slide).height;
-      el.style.position = 'absolute';
-      el.style.left = el.style.top = '0';
-      // fix for chrome hiding the video controls behind (or under) the video
-      // from: https://stackoverflow.com/questions/22217084/video-tag-at-chrome-overlays-on-top
-      el.style.backfaceVisibility = 'hidden';
-      el.style.transform = 'translateZ(0)';
-    },
-    playMediaOnActivation: function(slide, { selector, delay = '1500'}) {
-      let els = slide.querySelectorAll(selector);
-      this.on('activate', function(e) {
-        if (e.slide === slide) {
-          setTimeout(() => {
-            Array.from(els).forEach(e => e.play ? e.play() : null);
-          }, delay);
-        }
-      });
-      this.on('deactivate', function(e) {
-        if (e.slide === slide) {
-          setTimeout(() => {
-            Array.from(els).forEach(e => e.pause ? e.pause() : null);
-          }, delay);
-        }
-      });
-    }
-  }, [
-    [
-      markdownItContainer,
-      'figure',
-      {
-        validate: function(params) {
-          return params.trim().match(/^figure.*$/);
-        },
-        render: function(tokens, idx, options, env, self) {
-          // formato:
-          // ::: figure .primeira-classe.segunda.terceira background-color: white; color: black;
-          // ...conteúdo markdown...
-          // :::
-          // as classes devem estar "coladas" uma na outra e são opcionais
-          // após as classes, é possível definir uma string de estilos, que
-          // também é opcional. Se a string de estilos for definida, é
-          // necessário definir pelo menos 1 classe (ou então colocar apenas um
-          // ponto final sem nome de classe)
-          var m = tokens[idx].info.trim().match(/^figure\s+([^\s]*)\s*(.*)?$/),
-            className = '',
-            styleString = '';
-
-          if (tokens[idx].nesting === 1) {
-            // opening tag
-            if (!!m && Array.isArray(m)) {
-              className = (m[1] || '').trim().replace(/\./g, ' ');
-              styleString = (m[2] || '').trim();
-            }
-            return '<figure class="' + className + '" style="' + styleString + '">\n';
-          } else {
-            // closing tag
-            return '</figure>\n';
-          }
-        }
-      }
-    ],
-    [
-      markdownItContainer,
-      'result',
-      {
-        validate: function(params) {
-          return params.trim().match(/^result.*$/);
-        },
-        render: function(tokens, idx, options, env, self) {
-          // formato:
-          // ::: result .primeira-classe.segunda.terceira background-color: white; color: black;
-          // ...conteúdo markdown...
-          // :::
-          // as classes devem estar "coladas" uma na outra e são opcionais
-          // após as classes, é possível definir uma string de estilos, que
-          // também é opcional. Se a string de estilos for definida, é
-          // necessário definir pelo menos 1 classe (ou então colocar apenas um
-          // ponto final sem nome de classe)
-          var m = tokens[idx].info.trim().match(/^result\s+([^\s]*)\s*(.*)?$/),
-            className = '',
-            styleString = '';
-
-          if (tokens[idx].nesting === 1) {
-            // opening tag
-            if (!!m && Array.isArray(m)) {
-              className = (m[1] || '').trim().replace(/\./g, ' ');
-              styleString = (m[2] || '').trim();
-            }
-            return '<div class="result ' + className + '" style="' + styleString + '" data-before="Resultado">\n';
-          } else {
-            // closing tag
-            return '</div>\n';
-          }
-        }
-      }
-    ],
-    [
-      markdownItContainer,
-      'did-you-know',
-      {
-        validate: function(params) {
-          return params.trim().match(/^did\-you\-know.*$/);
-        },
-        render: function(tokens, idx, options, env, self) {
-          // formato:
-          // ::: did-you-know .primeira-classe.segunda.terceira background-color: white; color: black;
-          // ...conteúdo markdown...
-          // :::
-          // as classes devem estar "coladas" uma na outra e são opcionais
-          // após as classes, é possível definir uma string de estilos, que
-          // também é opcional. Se a string de estilos for definida, é
-          // necessário definir pelo menos 1 classe (ou então colocar apenas um
-          // ponto final sem nome de classe)
-          var m = tokens[idx].info.trim().match(/^did\-you\-know\s+([^\s]*)\s*(.*)?$/),
-            className = '',
-            styleString = '';
-
-          if (tokens[idx].nesting === 1) {
-            // opening tag
-            if (!!m && Array.isArray(m)) {
-              className = (m[1] || '').trim().replace(/\./g, ' ');
-              styleString = (m[2] || '').trim();
-            }
-            return '<div class="did-you-know ' + className + '" style="' + styleString + '" data-before="Você Sabia??">\n';
-          } else {
-            // closing tag
-            return '</div>\n';
-          }
-        }
-      }
-    ],
-    [
-      markdownItContainer,
-      'gallery',
-      {
-        validate: (params) => params.trim().match(/^gallery.*$/),
-        render: (tokens, idx, options, env, self) => {
-          // formato:
-          // ::: gallery .primeira-classe.segunda.terceira background-color: white; color: black;
-          // - [![Descricao](imagem)](link)
-          // - [![Descricao](imagem)](link)
-          // :::
-          // as classes devem estar "coladas" uma na outra e são opcionais
-          // após as classes, é possível definir uma string de estilos, que
-          // também é opcional. Se a string de estilos for definida, é
-          // necessário definir pelo menos 1 classe (ou então colocar apenas um
-          // ponto final sem nome de classe)
-          const m = tokens[idx].info.trim().match(/^gallery\s+([^\s]*)\s*(.*)?$/);
-          let  className = '',
-            styleString = '';
-
-          if (tokens[idx].nesting === 1) {
-            // opening tag
-            if (!!m && Array.isArray(m)) {
-              className = (m[1] || '').trim().replace(/\./g, ' ');
-              styleString = (m[2] || '').trim();
-            }
-            return `<div class="gallery ${className}" style="${styleString}">\n`;
-          } else {
-            // closing tag
-            return '</div>\n';
-          }
-        }
-      }
-    ],
-    markdownItDefList,
-    markdownItAbbr,
-    markdownItDecorate,
-    markdownItEmoji
-  ]),
+  markdown(markdownItConfig.config, markdownItConfig.extensions),
   beachday({ insertFonts: false }),
   keys(),
   touch(),
@@ -30878,7 +30620,281 @@ easter();
 // Used to load gmaps api async (it requires a callback to be passed)
 window.noop = function() {};
 
-},{"./bespoke-proceed":279,"./easter":280,"./tutorial":282,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-simple-overview":10,"bespoke-state":11,"bespoke-theme-beachday":12,"bespoke-touch":13,"markdown-it-abbr":200,"markdown-it-anchor":201,"markdown-it-container":202,"markdown-it-decorate":203,"markdown-it-deflist":204,"markdown-it-emoji":205}],282:[function(require,module,exports){
+},{"./bespoke-proceed":279,"./easter":280,"./markdown-config":282,"./tutorial":283,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-simple-overview":10,"bespoke-state":11,"bespoke-theme-beachday":12,"bespoke-touch":13,"markdown-it-abbr":200,"markdown-it-anchor":201,"markdown-it-container":202,"markdown-it-decorate":203,"markdown-it-deflist":204,"markdown-it-emoji":205}],282:[function(require,module,exports){
+// markdownit plugins
+const markdownItAnchor = require('markdown-it-anchor'),
+  markdownItContainer = require('markdown-it-container'),
+  markdownItDecorate = require('markdown-it-decorate'),
+  markdownItDefList = require('markdown-it-deflist'),
+  markdownItEmoji = require('markdown-it-emoji'),
+  markdownItAbbr = require('markdown-it-abbr');
+
+
+const config = {
+    backdrop: (slide, value) => {
+      slide.setAttribute('data-bespoke-backdrop', value);
+    },
+
+    scripts: (slide, url) => {
+      const placeToPutScripts = document.body;
+      url = !Array.isArray(url) ? [url] : url;
+
+      const loadScriptChain = i => {
+        const s = document.createElement('script');
+        s.src = url[i];
+        if (i < url.length - 1) {
+          s.addEventListener('load', () => loadScriptChain(i+1));
+        }
+        placeToPutScripts.appendChild(s);
+      }
+      loadScriptChain(0);
+    },
+
+    styles: (slide, value) => {
+      const placeToPutStyles = document.head;
+      value = !Array.isArray(value) ? [value] : value;
+      value.forEach(url => {
+        const l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = url;
+        placeToPutStyles.appendChild(l);
+      });
+    },
+
+    embeddedStyles: (slide, styleString) => {
+      if (typeof styleString !== 'string') {
+        console.log('Esperava que o metadado "embeddedStyles" tivesse como ' +
+          'valor uma string, mas foi passado via arquivo markdown um ' +
+          typeof styleString);
+      }
+      const s = document.createElement('style');
+      s.innerHTML = styleString;
+      document.head.appendChild(s);
+    },
+
+    elementStyles: (slideEl, elementsAndTheirStyles) => {
+      Object.keys(elementsAndTheirStyles).forEach(selector => {
+        Array.from(slideEl.querySelectorAll(selector))
+          .forEach(el => el.setAttribute('style', elementsAndTheirStyles[selector]));
+      });
+    },
+
+    slideHash: (slide, value) => slide.setAttribute('data-bespoke-hash', value),
+
+    layout: (slide, value) => slide.classList.add('layout-' + value),
+
+    state: (slide, value) => slide.setAttribute('data-bespoke-state', value),
+
+    preventSelection: (slide, unselectableElementsSelector) => {
+      const els = slide.querySelectorAll(unselectableElementsSelector);
+      els.forEach(el => {
+        el.onselectstart = () => false;
+        el.onmousedown = () => false;
+        el.setAttribute('unselectable', 'on');
+        el.style.userSelect = 'none';
+      });
+    },
+
+    fullScreenElement: (slide, elementSelector) => {
+      const el = slide.querySelector(elementSelector);
+      const requestFullScreenName = document.documentElement.requestFullScreen ?
+        'requestFullScreen' : `${['webkit', 'moz'].find(p => document.documentElement[`${p}RequestFullScreen`])}RequestFullScreen`;
+      const exitFullScreenName = document.exitFullScreen ?
+        'exitFullScreen' : `${['webkitExit', 'webkitCancel', 'mozExit', 'mozCancel']
+          .find(p => document[`${p}FullScreen`])}FullScreen`;
+
+      if (requestFullScreenName && exitFullScreenName) {
+        this.on('activate', e =>{
+          if (e.slide === slide) {
+            el[requestFullScreenName]();
+          }
+        });
+        this.on('deactivate', e => {
+          if (e.slide === slide) {
+            document[exitFullScreenName]();
+          }
+        });
+      }
+    },
+
+    fullPageElement: (slide, elementSelector) => {
+      const el = slide.querySelector(elementSelector);
+      el.style.width = window.getComputedStyle(slide).width;
+      el.style.height = window.getComputedStyle(slide).height;
+      el.style.position = 'absolute';
+      el.style.left = el.style.top = '0';
+      // fix for chrome hiding the video controls behind (or under) the video
+      // from: https://stackoverflow.com/questions/22217084/video-tag-at-chrome-overlays-on-top
+      el.style.backfaceVisibility = 'hidden';
+      el.style.transform = 'translateZ(0)';
+    },
+
+    playMediaOnActivation: (slide, { selector, delay = '1500'}) => {
+      const els = slide.querySelectorAll(selector);
+      this.on('activate', e => {
+        if (e.slide === slide) {
+          setTimeout(() => {
+            Array.from(els).forEach(e => e.play ? e.play() : null);
+          }, delay);
+        }
+      });
+      this.on('deactivate', e => {
+        if (e.slide === slide) {
+          setTimeout(() => {
+            Array.from(els).forEach(e => e.pause ? e.pause() : null);
+          }, delay);
+        }
+      });
+    }
+};
+
+const extensions = [
+  [
+    markdownItContainer,
+    'figure',
+    {
+      validate: params => params.trim().match(/^figure.*$/),
+
+      render: (tokens, idx, options, env, self) => {
+        // formato:
+        // ::: figure .primeira-classe.segunda.terceira background-color: white; color: black;
+        // ...conteúdo markdown...
+        // :::
+        // as classes devem estar "coladas" uma na outra e são opcionais
+        // após as classes, é possível definir uma string de estilos, que
+        // também é opcional. Se a string de estilos for definida, é
+        // necessário definir pelo menos 1 classe (ou então colocar apenas um
+        // ponto final sem nome de classe)
+        let m = tokens[idx].info.trim().match(/^figure\s+([^\s]*)\s*(.*)?$/),
+          className = '',
+          styleString = '';
+
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          if (!!m && Array.isArray(m)) {
+            className = (m[1] || '').trim().replace(/\./g, ' ');
+            styleString = (m[2] || '').trim();
+          }
+          return '<figure class="' + className + '" style="' + styleString + '">\n';
+        } else {
+          // closing tag
+          return '</figure>\n';
+        }
+      }
+    }
+  ],
+  [
+    markdownItContainer,
+    'result',
+    {
+      validate: params => params.trim().match(/^result.*$/),
+
+      render: (tokens, idx, options, env, self) => {
+        // formato:
+        // ::: result .primeira-classe.segunda.terceira background-color: white; color: black;
+        // ...conteúdo markdown...
+        // :::
+        // as classes devem estar "coladas" uma na outra e são opcionais
+        // após as classes, é possível definir uma string de estilos, que
+        // também é opcional. Se a string de estilos for definida, é
+        // necessário definir pelo menos 1 classe (ou então colocar apenas um
+        // ponto final sem nome de classe)
+        let m = tokens[idx].info.trim().match(/^result\s+([^\s]*)\s*(.*)?$/),
+          className = '',
+          styleString = '';
+
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          if (!!m && Array.isArray(m)) {
+            className = (m[1] || '').trim().replace(/\./g, ' ');
+            styleString = (m[2] || '').trim();
+          }
+          return '<div class="result ' + className + '" style="' + styleString + '" data-before="Resultado">\n';
+        } else {
+          // closing tag
+          return '</div>\n';
+        }
+      }
+    }
+  ],
+  [
+    markdownItContainer,
+    'did-you-know',
+    {
+      validate: params => params.trim().match(/^did\-you\-know.*$/),
+
+      render: (tokens, idx, options, env, self) => {
+        // formato:
+        // ::: did-you-know .primeira-classe.segunda.terceira background-color: white; color: black;
+        // ...conteúdo markdown...
+        // :::
+        // as classes devem estar "coladas" uma na outra e são opcionais
+        // após as classes, é possível definir uma string de estilos, que
+        // também é opcional. Se a string de estilos for definida, é
+        // necessário definir pelo menos 1 classe (ou então colocar apenas um
+        // ponto final sem nome de classe)
+        let m = tokens[idx].info.trim().match(/^did\-you\-know\s+([^\s]*)\s*(.*)?$/),
+          className = '',
+          styleString = '';
+
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          if (!!m && Array.isArray(m)) {
+            className = (m[1] || '').trim().replace(/\./g, ' ');
+            styleString = (m[2] || '').trim();
+          }
+          return '<div class="did-you-know ' + className + '" style="' + styleString + '" data-before="Você Sabia??">\n';
+        } else {
+          // closing tag
+          return '</div>\n';
+        }
+      }
+    }
+  ],
+  [
+    markdownItContainer,
+    'gallery',
+    {
+      validate: (params) => params.trim().match(/^gallery.*$/),
+      render: (tokens, idx, options, env, self) => {
+        // formato:
+        // ::: gallery .primeira-classe.segunda.terceira background-color: white; color: black;
+        // - [![Descricao](imagem)](link)
+        // - [![Descricao](imagem)](link)
+        // :::
+        // as classes devem estar "coladas" uma na outra e são opcionais
+        // após as classes, é possível definir uma string de estilos, que
+        // também é opcional. Se a string de estilos for definida, é
+        // necessário definir pelo menos 1 classe (ou então colocar apenas um
+        // ponto final sem nome de classe)
+        const m = tokens[idx].info.trim().match(/^gallery\s+([^\s]*)\s*(.*)?$/);
+        let  className = '',
+          styleString = '';
+
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          if (!!m && Array.isArray(m)) {
+            className = (m[1] || '').trim().replace(/\./g, ' ');
+            styleString = (m[2] || '').trim();
+          }
+          return `<div class="gallery ${className}" style="${styleString}">\n`;
+        } else {
+          // closing tag
+          return '</div>\n';
+        }
+      }
+    }
+  ],
+  markdownItDefList,
+  markdownItAbbr,
+  markdownItDecorate,
+  markdownItEmoji
+];
+
+exports.config = config;
+exports.extensions = extensions;
+
+},{"markdown-it-abbr":200,"markdown-it-anchor":201,"markdown-it-container":202,"markdown-it-decorate":203,"markdown-it-deflist":204,"markdown-it-emoji":205}],283:[function(require,module,exports){
 var tutorial = {
     turnedOn: true,
 

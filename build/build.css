@@ -1243,14 +1243,9 @@ h3.caniuse-title {
   content: "\e000";
 }
 .caniuse .agents li.icon-ie:before,
-.caniuse .agents li.icon-windows:before {
-  content: "\e001";
-  /* alternate windows icon: content: "\e007" */
-
-}
 .caniuse .agents li.icon-edge:before,
 .caniuse .agents li.icon-windows:before {
-  content: "\e007";
+  content: "\e001";
   /* alternate windows icon: content: "\e007" */
 
 }
@@ -1281,10 +1276,6 @@ h3.caniuse-title {
   background: #dc6f26;
 }
 .caniuse .agents li.icon-ie:hover,
-.caniuse .agents li.icon-windows:hover {
-  background: #1a4cbd;
-}
-.caniuse .agents li.icon-edge:hover,
 .caniuse .agents li.icon-windows:hover {
   background: #1a4cbd;
 }
