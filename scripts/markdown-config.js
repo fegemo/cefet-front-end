@@ -106,7 +106,7 @@ const config = {
       el.style.transform = 'translateZ(0)';
     },
 
-    playMediaOnActivation: (slide, { selector, delay = '1500'}) => {
+    playMediaOnActivation: function(slide, { selector, delay = '1500'}) {
       const els = slide.querySelectorAll(selector);
       this.on('activate', e => {
         if (e.slide === slide) {
