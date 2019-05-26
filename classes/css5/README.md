@@ -4,20 +4,52 @@
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula (1/2)
+# Na última aula (1/4)
 
 | position | Descrição | Exemplos de uso | top, right, bottom, left | z-index |
 |------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
 | `static` | Fluxo normal | Elementos **sem posicionamento especial** | ignorados | ignorado |
-| `relative` | Fluxo normal, deslocado | Elementos que podem se **deslocar um pouco**; **contextos para elementos absolutos** | **deslocamentos** nas 4 direções | determina ordem |
+| `relative` | Fluxo normal, deslocado | Elementos que podem se **deslocar um pouco**; **contextos para elementos absolutos** | **deslocamentos** nas 4 direções | define ordem |
 
 ---
-# Na última aula  (2/2)
+<!-- {"layout": "regular"} -->
+# Na última aula  (2/4)
 
 | position | Descrição | Exemplos de uso | top, right, bottom, left | z-index |
 |------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
-| `absolute` | Removido do fluxo, posicionado em um (x,y) relativo a um contexto | Elementos que queremos **determinar os valores (x,y)** para posicioná-los exatamente em algum lugar | **posições** referentes às 4 direções | determina ordem |
-| `fixed` | Removido do fluxo, em um (x,y) na janela | Idem, mas a **posição é fixa na janela** | **posições** para as 4 direções | determina ordem |
+| `absolute` | Removido do fluxo, posicionado (x,y) relativo a um contexto | Elementos que queremos **definir os valores (x,y)** para posicioná-los exatamente nesse lugar | **posições** referentes às 4 direções | define ordem |
+| `fixed` | Removido do fluxo, em um (x,y) na janela | Idem, mas a **posição é fixa na janela** | **posições** para as 4 direções | define ordem |
+
+---
+<!-- {"layout": "regular"} -->
+# Na última aula (3/4)
+
+- Propriedades do **Flexbox**: <!-- {ul^0:.full-width.no-margin} -->
+  - No elemento pai:  <!-- {ul^0:.layout-split-2} -->
+    - `display: flex` <!-- {li^1:style="flex: 1"} -->
+    - `flex-direction: row | column`
+    - `justify-content: flex-start | flex-end | center | space-around | space-between`
+  - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
+    - `align-self: flex-start | flex-end | center`
+    - `order: numero`
+
+<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+---
+<!-- {"layout": "regular"} -->
+# Na última aula (4/4)
+
+- Propriedades do **Grid**: <!-- {ul^0:.full-width.no-margin} -->
+  - No elemento pai: <!-- {ul^0:.layout-split-2} -->
+    - `display: grid` <!-- {li^1:style="flex: 1"} -->
+    - `grid-template-rows`
+    - `grid-template-columns`
+  - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
+    - `grid-row-start: numero`
+    - `grid-row-end: numero`
+    - `grid-column-start: numero`
+    - `grid-column-end: numero`
+
+<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/sqtdb95x/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ---
 # Roteiro de hoje
@@ -59,9 +91,9 @@
 # Atividade de hoje
 
 1. O objetivo é treinar **_layout_ e posicionamento** em `CSS`
-   - `position` (`static`, `relative`, `absolute`, `fixed`), `float` etc.
+   - Usando Grid (`display: grid`) e Flexbox (`display: flex`)
    - O HTML está pronto, faltando o CSS da página
-1. O _layout_ que usamos no exercício dos Unicórnios se chama **fluido**. Hoje,
+1. O _layout_ que usamos no exercício dos Unicórnios se chama **fluido** (100% da largura). Hoje,
    você vai fazer um **_layout_ de largura fixa**
    - O conteúdo da página deve ter `800px` de largura e deve estar centralizado
 1. [Baixe os arquivos][coral-55-seminal]. Instruções detalhadas estão no
@@ -70,14 +102,21 @@
 [coral-55-seminal]: https://github.com/fegemo/cefet-front-end-coral-55/archive/master.zip
 
 ---
-## _Layout_ e posicionamento
+## _Layout_ de páginas
 
-- Em alguns _layouts_ podemos **usar elementos posicionados** de maneira
-  diferente do tradicional `static` quando:
-  1. Deseja-se posicionar um elemento em cima do outro
-  1. Deseja-se especificar coordenadas (x,y) de um elemento
-  1. Deseja-se que um elemento seja removido do fluxo (e não ocupe espaço)
-- Veja como está estruturado o HTML e como você pode estilizar as partes
+- Para definir o **_layout_** (posição das regiões da página), uma boa ideia
+  é usar **Grid** (`display: grid`)
+- Para definir o posicionamento dos **elementos que formam cada região**,
+  podemos usar **Flexbox** (`display: flex`) ou Grid (`display: grid`) também
+- Se precisarmos definir exatamente o (x,y) de um elemento, ou de
+  colocar um elemento em cima de outro, podemos usar `position`
+
+Observação: **antigamente** era comum usar `float` em alguns elementos para
+definirmos sua posição (como fizemos nos Unicórnios). Mas hoje em dia
+preferimos usar o Flexbox e o Grid, que foram criados para isso.
+<!-- {p:.nota} -->
+
+Veja como está estruturado o HTML e como você pode estilizar as partes
 
 ---
 <!-- {
@@ -90,16 +129,16 @@
 ```html
 <body>
   <div id="recipiente">
-    <header><!-- titulos --></header>
-    <main id="conteudo">
-      <section id="lateral">
-        <!-- siri, peixe, bolhas -->
-      </section>
-      <section id="cardapio">
-        <article><!-- ... --></article>
-        <article><!-- ... --></article>
-        <!-- mais itens do menu -->
-      </section>
+    <header id="cabecalho-pagina">
+      <!-- titulos -->
+    </header>
+    <section id="lateral">
+      <!-- siri, peixe, bolhas -->
+    </section>
+    <main id="cardapio">
+      <article><!-- ... --></article>
+      <article><!-- ... --></article>
+      <!-- mais itens do menu -->
     </main>
     <footer><!-- cartoes --></footer>
   </div>
