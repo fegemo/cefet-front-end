@@ -927,7 +927,7 @@ URL **externa**
 URL **interna** <!-- {.alternate-color} -->
   ~ Aponta para algo da própria página/site
     - racas-raras.html
-    - imagens/ovelha.jpg 
+    - imagens/ovelha.jpg
 
 ---
 <!-- {"slideHash": "tag-hiperlink"} -->
@@ -1092,7 +1092,7 @@ pre{
   }
   ```
 ---
-## Definindo o estilo 
+## Definindo o estilo
 
 ```css
 body {
@@ -1172,11 +1172,17 @@ documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
 ## Atividades
 
 **Primeira**
-~ "Alo mundo!" HTML/CSS
+~ "Olá mundo!" HTML/CSS
 
 **Segunda**
 ~ Plantas carnivoras,  [Veja aqui as instruções](https://github.com/fegemo/cefet-front-end-piranha-plant)
----
-# Referências
 
-1. Capítulo 1 do livro
+- Acesse aqui resumo sobre as [tags HTML](http://bit.ly/2IVYBZ6) e [regras CSS](http://bit.ly/2KIPpt7)
+---
+<!-- { "styles": ["styles/classes/books.min.css"] } -->
+# Referência
+
+- Elisabeth Robson, Eric Freeman. **Use a Cabeça HTML e CSS**, 2ª edição .O'Reilly Media, 2015 (tradução)
+
+
+---
