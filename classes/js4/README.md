@@ -339,7 +339,7 @@ function incluiNaBiblioteca(livro) {
     ```HTML
     <img src="images/ovelho-pixel.png" class="raca">
     ```
-- **Atenção**: Você **criou** o elemento, porém <u>**ainda não
+- **Atenção**: você **criou** o elemento, mas <u>**ainda não
   o adicionou**</u> na árvore
 
 ---
@@ -411,7 +411,7 @@ containerEl.appendChild(novaOvelhaEl);
      bodyEl.appendChild(pEl);                   // põe o parágrafo em <body>
      pEl.appendChild(txtEl);                    // põe o texto no <p>
      ```
-  1. Usando `elemento.innerHTML`:
+  1. Usando `elemento.innerHTML` (👍 mais _easy_):
      ```js
      let bodyEl = document.querySelector('body');
      let pEl = document.createElement('p');
