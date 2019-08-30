@@ -143,7 +143,7 @@ containerEl.appendChild(novaOvelhaEl);
 <!-- {"layout": "regular"} -->
 ## O Web Storage
 
-- O Web Storage permite páginas **armazenarem de dados <u>
+- O Web Storage permite páginas **armazenarem dados <u>
   no navegador</u>**
   - _storage_ === armazenamento
 - Existem dois sabores:
@@ -225,7 +225,7 @@ containerEl.appendChild(novaOvelhaEl);
   ```js
   localStorage.getItem('chave');
   ```
-- Excluir uma item:
+- Excluir um item:
   ```js
   localStorage.removeItem('chave');
   ```
