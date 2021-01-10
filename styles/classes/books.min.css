@@ -138,7 +138,6 @@
 .hardcover_front li:first-child {
   cursor: default;
   -webkit-user-select: none;
-     -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   transform: translateZ(2px);

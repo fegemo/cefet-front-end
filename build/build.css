@@ -282,6 +282,13 @@ div.did-you-know > p {
 .push-code-right > code {
   float: right;
 }
+.push-code-left > code,
+.push-code-left pre {
+  float: left;
+}
+.no-bullets {
+  list-style-type: none;
+}
 .badge {
   display: inline-block;
   background-color: #fff;
@@ -945,7 +952,6 @@ abbr[title] {
   z-index: 1;
   pointer-events: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }

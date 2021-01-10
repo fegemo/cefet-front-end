@@ -561,6 +561,7 @@
 
 ---
 <!-- {"layout": "regular", "slideHash": "evento-clique"} -->
+<!-- FALAR DE PROG. ORIEN. EVENTOS???? EXPLICAR CALLBACKS -->
 # Criando um evento de clique
 
 - Para **executar alguma coisa quando um botão** (ou qualquer elemento, na verdade)
