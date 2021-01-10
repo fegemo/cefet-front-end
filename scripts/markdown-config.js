@@ -62,6 +62,8 @@ const config = {
 
     state: (slide, value) => slide.setAttribute('data-bespoke-state', value),
 
+    classes: (slide, values) => values.split().forEach(cl => slide.classList.add(cl)),
+
     preventSelection: (slide, unselectableElementsSelector) => {
       const els = slide.querySelectorAll(unselectableElementsSelector);
       els.forEach(el => {
