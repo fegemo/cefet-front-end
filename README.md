@@ -81,7 +81,8 @@
   Assombrações :ghost::ghost::ghost:
 - [CSS parte 5](classes/css5/) - Especificidade, Centralizando coisas e
   a Lanchonete do Coral 55 :palm_tree:
-- [JavaScript parte 1](classes/js1/) - Características, Escrevendo código,
+- [JavaScript parte 0](classes/js0/) - Introdução a JavaScript
+- [JavaScript parte 1](classes/js1/) - Escrevendo código,
   Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
