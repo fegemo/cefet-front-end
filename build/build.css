@@ -307,6 +307,9 @@ div.did-you-know > p {
   color: #6495ed;
   border-color: #6495ed;
 }
+.cool-rotation-x {
+  animation: cool-rotation-x 1200ms ease-in-out 0s infinite alternate;
+}
 #easter-egg-panel {
   position: absolute;
   right: 1vw;
@@ -1360,6 +1363,14 @@ pre.hljs + pre.hljs {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+@keyframes cool-rotation-x {
+  0% {
+    transform: rotateX(-10deg);
+  }
+  100% {
+    transform: rotateX(10deg);
   }
 }
 @keyframes vanishing {
