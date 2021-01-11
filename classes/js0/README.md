@@ -37,6 +37,8 @@
 1. O objetivo é começar a usar JavaScript
 1. [Baixe os arquivos][js0]. Você deve abrir a página web no navegador e seguir as instruções
 
+![](../../images/activity-thumbs/js0.png) <!-- {p:.centered style="perspective: 900px"} --> <!-- {.cool-rotation-x style="max-width: 100%"} -->
+
 [js0]: https://github.com/fegemo/cefet-front-end-js0/archive/master.zip
 
 ---
@@ -366,8 +368,8 @@ function dizOla(nome, pronome) {
 ```
 
 ```js
-dizOla('enfermeira', 'sra.');
-// imprime 'olá enfermeira'
+dizOla('enfermeira', 'srta.');
+// imprime 'olá srta. enfermeira'
 dizOla('jujuba', '');
 // imprime 'olá  jujuba'
 dizOla();
@@ -857,7 +859,7 @@ Toda string possui vários métodos diferentes que podemos invocar
   ~ método que verifica se texto contém o trecho
   ~ `'Hakuna'.includes('ku') === true`
   
-`t.splits(separad)`
+`t.split(separad)`
   ~ método que retorna um vetor de trechos
   ~ `'Banana'.split('a') === ['B', 'n', 'n']`
 
@@ -881,7 +883,7 @@ Toda string possui vários métodos diferentes que podemos invocar
 `t.replaceAll(tr, n)`
   ~ método que substitui um trecho por algo novo
   ~ (todas as ocorrências)
-  ~ `'ana'.replace('a', 'e') === 'ene'` <!-- {dl:style="margin-bottom: 0"} -->
+  ~ `'ana'.replaceAll('a', 'e') === 'ene'` <!-- {dl:style="margin-bottom: 0"} -->
 
 - [Lista de métodos de string na MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String) <!-- {ul:.no-margin} -->
 
@@ -927,6 +929,7 @@ Toda string possui vários métodos diferentes que podemos invocar
 ## Exemplos que usam métodos de strings (2/2)
 
 - Pega uma frase e se a última letra de cada palavra (com mais do que 1 letra) terminar em 'a' ou 'o', substitui por 'x' <!-- {ul:.bulleted} -->
+  ([no jsfiddle](https://jsfiddle.net/fegemo/Lgwv6yne/)) <!-- {target="_blank"} -->
 - <!-- {.code-split-2} -->
   ```js
   function alteraFinalzinhoPalavras(frase) {
@@ -1011,7 +1014,7 @@ Toda string possui vários métodos diferentes que podemos invocar
 
 `vetor.pop()`
   ~ método que remove último elemento
-  ~ `['a', 'b'].pop() === ['b']`
+  ~ `['a', 'b'].pop() === ['a']`
 
 `vetor.indexOf(elem)`
   ~ método que retorna o índice do elemento no vetor (ou -1)
@@ -1072,7 +1075,7 @@ Toda string possui vários métodos diferentes que podemos invocar
 1. Função que adiciona no vetor apenas se elemento ainda não estiver nele
    ```js
    function adicionaSemDuplicar(vetor, elem) {
-     if (vetor.indexOf(elem) === -1) {
+     if (busca(vetor, elem) === -1) {
        vetor.push(elem);
      }
    }
@@ -1082,7 +1085,7 @@ Toda string possui vários métodos diferentes que podemos invocar
 <!-- {"layout": "regular", "classes": "compact-code-more"} -->
 ## Exemplos com métodos de vetores (2/2)
 
-- Função que imprime uma matriz n x n de números <!-- {ul:.full-width.bulleted} -->
+- Função que imprime uma matriz n x n de números <!-- {ul:.full-width.bulleted} --> ([no jsfiddle](https://jsfiddle.net/fegemo/f0uc4qyx/)) <!-- {target="_blank"} -->
 - <!-- {.code-split-2} -->
   ```js
   function imprimeMatriz(matriz) {
@@ -1107,21 +1110,21 @@ Toda string possui vários métodos diferentes que podemos invocar
   ```js
         resultado += matriz[i][j] + ' ';
       }
+      resultado += '|\n';
     }
   ```
   ```js
   // 3. imprime o elemento (i,j)
 
-
+  // acabou a linha, coloca paredinha |
+  
   ```
 - <!-- {.code-split-2} -->
   ```js
-    resultado += '|\n';
     console.log(resultado);
   }
   ```
   ```js
-  // acabou a linha, coloca paredinha |
   // e quebra linha \n
 
   ```
