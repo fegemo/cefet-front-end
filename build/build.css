@@ -232,22 +232,29 @@ div.did-you-know > p {
   float: right;
   clear: right;
 }
-.code-split-2 {
+.code-split-2,
+.code-split-3 {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: start;
       align-items: flex-start;
 }
-.code-split-2 pre.hljs {
+.code-split-2 > *,
+.code-split-3 > * {
   -ms-flex: 1;
       flex: 1;
+}
+.code-split-2 pre.hljs,
+.code-split-3 pre.hljs {
   margin-top: 0;
   margin-bottom: 0;
 }
-.code-split-2 pre.hljs:not(:last-of-type) {
+.code-split-2 pre.hljs:not(:last-of-type),
+.code-split-3 pre.hljs:not(:last-of-type) {
   border-right: 3px double #fff;
 }
-.code-split-2 pre.hljs + pre.hljs {
+.code-split-2 pre.hljs + pre.hljs,
+.code-split-3 pre.hljs + pre.hljs {
   margin-top: 0;
 }
 .full-width {
@@ -286,6 +293,13 @@ div.did-you-know > p {
 .push-code-left pre {
   float: left;
 }
+.push-code-right-without-clearing pre {
+  clear: none;
+  float: right;
+}
+.push-code-right-without-clearing > code {
+  float: right;
+}
 .no-bullets {
   list-style-type: none;
 }
@@ -309,6 +323,25 @@ div.did-you-know > p {
 }
 .cool-rotation-x {
   animation: cool-rotation-x 1200ms ease-in-out 0s infinite alternate;
+}
+.tipo-js {
+  border: 1px solid currentColor;
+  padding: 0.15em;
+  border-radius: 5px;
+  white-space: nowrap;
+  background-color: #fbfbfb;
+}
+.tipo-boolean {
+  color: #6495ed;
+}
+.tipo-number {
+  color: #ae81ff;
+}
+.tipo-string {
+  color: #948814;
+}
+.tipo-object {
+  color: #4d8c21;
 }
 #easter-egg-panel {
   position: absolute;
@@ -937,6 +970,45 @@ abbr[title] {
 }
 .nota strong {
   color: #b8860b;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-bottom: 3px solid #000;
+  border-top: 3px solid #000;
+  border-left: none;
+  border-right: none;
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.133);
+}
+thead {
+  background: #333;
+  border-bottom: 3px solid #000;
+}
+tr {
+  border-top: 1px solid #ccc;
+  background-color: initial;
+}
+tr:nth-of-type(even) {
+  background-color: rgba(234,234,234,0.702);
+}
+th {
+  background-color: initial;
+  color: #fff;
+  font-weight: normal;
+  text-align: inherit;
+}
+td,
+th {
+  border: none;
+  padding: 0.3em 0.5em;
+}
+table.aero-rows td {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
+table.aero-columns td {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 .tutorial {
   position: absolute;
