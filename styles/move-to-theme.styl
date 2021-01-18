@@ -196,3 +196,44 @@ abbr[title]
     box-sizing border-box
   strong
     color darkgoldenrod
+
+
+// replace the theme's table styling
+table
+  border-collapse collapse
+  border-spacing 0
+  border-bottom 3px solid #000
+  border-top 3px solid #000
+  border-left none
+  border-right none
+  box-shadow 10px 10px 10px #0002
+
+thead
+  background #333
+  border-bottom 3px solid #000
+
+tr
+  border-top 1px solid #ccc
+  background-color initial
+  &:nth-of-type(even)
+    background-color #eaeaeab3
+
+th
+  background-color initial
+  color white
+  font-weight normal
+  text-align inherit
+
+td, th
+  border none
+  padding .3em .5em
+
+table.aero-rows
+  td
+    padding-top .8em
+    padding-bottom .8em
+
+table.aero-columns
+  td
+    padding-left 1em
+    padding-right 1em

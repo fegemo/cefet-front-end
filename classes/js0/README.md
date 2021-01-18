@@ -168,18 +168,18 @@
   - Dizemos que JavaScript é **dinâmica**
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "tipos-de-dados", "embeddedStyles": ".tipo{border:1px solid currentColor;padding:0.15em;border-radius:5px;white-space:nowrap;background-color:#fbfbfb;}.tipo-boolean{color:cornflowerblue}.tipo-number{color:#ae81ff}.tipo-string{color:#948814}.tipo-object{color:#4d8c21}"} -->
+<!-- {"layout": "2-column-content", "slideHash": "tipos-de-dados"} -->
 ## Tipos de dados
 
 - Há seis **tipos primitivos** de dados:
-  - `1. Boolean` <!-- {.tipo.tipo-boolean} -->
-  - `2. Number` <!-- {.tipo.tipo-number} -->
-  - `3. String` <!-- {.tipo.tipo-string} -->
+  - `1. Boolean` <!-- {.tipo-js.tipo-boolean} -->
+  - `2. Number` <!-- {.tipo-js.tipo-number} -->
+  - `3. String` <!-- {.tipo-js.tipo-string} -->
   - `4. Null` <!-- {.tipo} -->
   - `5. Undefined` <!-- {.tipo} -->
   - `6. Symbol` ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} -->  <!-- {code:.tipo} --> <!-- {ul:.multi-column-list-2} -->
 - Um **tipo composto** de dados:
-  `7. Object` <!-- {.tipo.tipo-object} -->
+  `7. Object` <!-- {.tipo-js.tipo-object} -->
   - Há outros derivados de `Object`...
   - Veremos `Object` e seus tipos derivados em próximas aulas
 
@@ -206,7 +206,7 @@
 
 ---
 <!-- {"layout": "2-column-content", "slideHash": "os-tipos-boolean-e-number"} -->
-## <span>O tipo **1. Boolean** <!-- {.tipo.tipo-boolean} --></span> <span>O tipo **2. Number** <!-- {.tipo.tipo-number} --></span> <!-- {h2:style="display:flex;justify-content:space-between"} -->
+## <span>O tipo **1. Boolean** <!-- {.tipo-js.tipo-boolean} --></span> <span>O tipo **2. Number** <!-- {.tipo-js.tipo-number} --></span> <!-- {h2:style="display:flex;justify-content:space-between"} -->
 
 1. O tipo **Boolean** <!-- {.tipo-boolean} --> armazena um valor verdadeiro ou falso. Exemplo: <!-- {ol:.bullet.compact-code-more style="width:38%;"} -->
    ```js
@@ -231,7 +231,7 @@
 
 ---
 <!-- {"layout": "regular", "slideHash": "o-tipo-string"} -->
-## O tipo **3. String** <!-- {.tipo.tipo-string} -->
+## O tipo **3. String** <!-- {.tipo-js.tipo-string} -->
 
 - **Representa um texto** <!-- {.tipo-string} --> codificado em UTF-8
 - Não existe o tipo `char` como em C/C++ e Java, apenas _string_ :wink:

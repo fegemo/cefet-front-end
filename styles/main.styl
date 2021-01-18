@@ -183,17 +183,20 @@ div.did-you-know
     float right
     clear right
 
-.code-split-2
+.code-split-2,
+.code-split-3
   display flex
   align-items flex-start
-  pre.hljs
+  > *
     flex 1
+  pre.hljs
     margin-top 0
     margin-bottom 0
     &:not(:last-of-type)
       border-right 3px double white
   pre.hljs + pre.hljs
     margin-top 0
+
 
 .full-width
   width 100%
@@ -228,6 +231,13 @@ div.did-you-know
   pre
     float left
 
+.push-code-right-without-clearing
+  pre
+    clear none
+    float right
+  & > code
+    float right
+
 .no-bullets
   list-style-type none
 
@@ -258,6 +268,25 @@ div.did-you-know
   100%
     transform rotateX(10deg)
 
+
+.tipo-js
+  border 1px solid currentColor
+  padding 0.15em
+  border-radius 5px
+  white-space nowrap
+  background-color #fbfbfb
+  
+.tipo-boolean
+  color cornflowerblue
+  
+.tipo-number 
+  color #ae81ff
+  
+.tipo-string
+  color #948814
+
+.tipo-object
+  color #4d8c21
 
 
 // easter egg
