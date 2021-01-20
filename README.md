@@ -82,14 +82,14 @@
 - [CSS parte 5](classes/css5/) - Especificidade, Centralizando coisas e
   a Lanchonete do Coral 55 :palm_tree:
 - [JavaScript parte 0](classes/js0/) - Introdução a JavaScript
-- [JavaScript parte 1](classes/js1/) - Escrevendo código,
+- [JavaScript parte 1](classes/js1/) - Inclusão, Mais tipos de dados,
   Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
 <!-- {"layout": "regular"} -->
 # Aulas (página 3)
 
-- [JavaScript parte 2](classes/js2/) - Arranjos, Alterando o DOM e Exploração
+- [JavaScript parte 2](classes/js2/) - _Template_ strings, Função seta, Alterando o DOM e Exploração
   Espacial :alien:
 - [JavaScript parte 3](classes/js3/) - História, Estilizando
   elementos, Eventos de mouse, Depurando e o PhotoSnap :camera:

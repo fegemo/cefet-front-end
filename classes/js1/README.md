@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # JavaScript (parte 1)
-## Inclusão, Mais tipos de dados, Função seta, Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
+## Inclusão, Mais tipos de dados,<br>Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
 <!-- {"layout": "regular"} -->
@@ -152,7 +152,6 @@
 1. [Resolvendo Equações!](#resolvendo-equacoes)
 1. [Inserindo JavaScript na página](#inserindo-javascript-na-pagina)
 1. [Mais tipos de dados](#mais-tipos-de-dados)
-1. [Função seta](#funcao-seta)
 1. [Clicando em um botão](#clicando-em-um-botao)
 
 ---
@@ -408,7 +407,7 @@
 <!-- {"layout": "regular", "classes": "compact-code"} -->
 ## O tipo `7. Object` <!-- {.tipo-js.tipo-object} -->
 
-- É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right} -->
+- É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right.full-width} -->
   ```js
   let jogador = {
     pontos: 1420,
@@ -567,152 +566,10 @@ loja.vender(); // loja.dinheiro = 530
     ~ (é possível criar novos tipos também)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "funcao-seta"} -->
-# Função Seta
-## A 3ª forma para funções
-
-- 3 Formas:
-  - Função tradicional
-  - Função anônima
-  - Função seta (anônima também)
-
-<!-- {ul^1:.content} -->
-
----
-<!-- {"layout": "regular"} -->
-## Função **tradicional** e **anônima**
-
-- <!-- {.code-split-2} -->
-  <!-- {ul:.full-width} -->
-  ```js
-  function cadastrar() {
-    // ...
-  }
-  ```
-  ```js
-  const cadastrar = function() {
-    // ...
-  };
-  ```
- - **Função seta** é uma **sintaxe mais nova e sucinta** para as anônimas ⬆
- - <!-- {.code-split-2.bulleted style="flex-direction: row-reverse"} -->
-   ```js
-   const cadastrar = () => {
-     // ...
-   };
-   ```
-   1. Omitir `function`
-   2. Seta entre parâmetros e corpo
-   3. `return` implícito
-   4. Mantém o valor do ponteiro `this`
-- Os três primeiros itens já são legais o suficiente pra **preferirmos a forma da função seta** <!-- {li:.bullet} -->
-  - Vejamos alguns exemplos
-
----
-<!-- {"layout": "2-column-content", "classes": "compact-code-more", "slideHash": "funcao-seta-sintaxe"} -->
-## Função seta: sintaxe
-
-```js
-function ciao() {
-  return 'Ciao';
-}
-
-function oi(prim, ult) {
-  return 'Oi ' + prim + ' ' + ult;
-}
-
-function hi(name) {
-  return 'Hi ' + name;
-}
-
-function fatorial(n) {
-  let resultado = 1;
-  while (n > 1) {
-    resultado *= n;
-    n--;
-  }
-  return resultado;  
-}
-```
-
-```js
-let ciao = () => 'Ciao';
-
-
-
-let oi = (prim, ult) => 'Oi ' + prim + ' ' + ult;
-
-
-
-let hi = name => return 'Hi ' + name;
-
-
-
-let fatorial = n => {
-  let resultado = 1;
-  while (n > 1) {
-    resultado *= n;
-    n--;
-  }
-  return resultado;  
-}
-```
-
----
-<!-- {"layout": "regular", "classes": "compact-code-more", "slideHash": "funcoes-seta-com-vetores"} -->
-## Exemplo: funções seta com vetores
-
-```js
-let usuarios = ['Joel', 'Fani', 'Fúlvio'];
-let alunos = [{ matricula: '...' }];
-let numeros = [1, 4, 2, 5];
-```
-
-1. Pegar apenas usuários que começam com letra 'F': <!-- {ol:.full-width.bulleted-0} -->
-   - <!-- {.code-split-2} -->
-     <!-- {ul:style="padding-left: 0"} -->
-     ```js
-     usuarios.filter(function(nome) {
-       return nome.startsWith('F');
-     });
-     ```
-     ```js
-     usuarios.filter(nome => nome.startsWith('F'));
-     
-     
-     ```
-2. Buscar pelo aluno com uma matrícula:
-   - <!-- {.code-split-2} -->
-     <!-- {ul:style="padding-left: 0"} -->
-     ```js
-     alunos.find(function(aluno) {
-       return aluno.matricula === '2005046102';
-     });
-     ```
-     ```js
-     alunos.find(al => al.matricula === '2005046102');
-     
-     
-     ```
-3. Vetor com os quadrados do original:
-   - <!-- {.code-split-2} -->
-     <!-- {ul:style="padding-left: 0"} -->
-     ```js
-     numeros.map(function(numero) {
-       return numero ** 2;
-     });
-     ```
-     ```js
-     numeros.map(numero => numero ** 2);
-
-
-     ```
----
 <!-- {"layout": "section-header", "slideHash": "clicando-em-um-botao"} -->
 # Clicando em um botão
 ## Dando comportamento à página
 
-- Funções em JavaScript
 - Conhecendo o DOM
 - Selecionando um elemento
 - Criando um evento de clique
@@ -791,7 +648,6 @@ let numeros = [1, 4, 2, 5];
 
 ---
 <!-- {"layout": "regular", "slideHash": "evento-clique"} -->
-<!-- FALAR DE PROG. ORIEN. EVENTOS???? EXPLICAR CALLBACKS -->
 # Criando um evento de clique
 
 - Para **executar alguma coisa quando um botão** (ou qualquer elemento, na verdade)
