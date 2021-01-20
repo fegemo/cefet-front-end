@@ -1,6 +1,6 @@
 <!-- {"layout": "title"} -->
 # JavaScript (parte 2)
-## String templates, Função seta,<br>Alterando o DOM e Exploração Espacial :alien:
+## _Template_ strings, Função seta,<br>Alterando o DOM e Exploração Espacial :alien:
 
 ---
 <!-- {"layout": "regular"} -->
