@@ -1,15 +1,15 @@
 <!-- {"layout": "title"} -->
-# Javascript (parte 2)
-## Arranjos, Alterando o DOM e Exploração Espacial :alien:
+# JavaScript (parte 2)
+## String templates, Função seta,<br>Alterando o DOM e Exploração Espacial :alien:
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula... (1/4)
+# Na última aula... (1/3)
 
 - Vimos novos elementos HTML para interação com o usuário:
   ```html
   <label for="numero-de-pasteis">Pastéis: </label>
-  <input type="number" value="1" id="numero-de-pasteis"> <!-- não fecha -->
+  <input type="number" value="1" id="numero-de-pasteis"> <!-- não fecha! -->
 
   <button id="calcular">Calcular Conta</button>
   ```
@@ -18,49 +18,29 @@
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula... (2/4)
+# Na última aula... (2/3)
 
 - Assim como em CSS, há 3 formas para incluir código JavaScript
   1. **Arquivo externo** com `<script src="arquivo.js"></script>` :thumbsup:
   1. Embutido na _tag_ `<script>...</script>` :thumbsdown:
-  1. Inline em atributos `onclick` :thumbsdown::thumbsdown::thumbsdown:
+  1. _Inline_ em atributos `onclick` :thumbsdown::thumbsdown::thumbsdown:
 - A preferida é **arquivo externo**, porque ela:
   - Promove **reutilização de código JavaScript** por mais de um arquivo HTML
   - Respeita o princípio da **separação de responsabilidades**
 
 ---
 <!-- {"layout": "regular"} -->
-# Na última aula... (3/4)
-
-- Definimos **funções** com `function`: <!-- {ul:.push-code-right} -->
-  ```js
-  function nome(parametros) {
-    // comandos aqui
-  }
-  ```
-- Vimos os **tipos de dados** _Boolean_, _Number_, _String_
-- Criamos **variáveis** com `let`:
-  ```js
-  let gatos = 9;            // tipo Number
-  let nome = 'Adamastor';   // tipo String
-  let cineminha = true;     // tipo Boolean
-  ```
-- Não é necessário (nem possível) definir o tipo de variáveis
-  - Porque ele é inferido automaticamente
-
----
-<!-- {"layout": "regular"} -->
-# Na última aula... (4/4)
+# Na última aula... (3/3)
 
 - O DOM é a visão que o JavaScript tem dos elementos da página
 - Dá para recuperar/alterar elementos do DOM com o objeto `document`:
   ```js
-  // cria uma variável e recupera o elemento da logo (id="#logomarca")
+  // cria uma variável e recupera o elemento da logo (id="logomarca")
   let logoEl = document.querySelector('#logomarca');
 
   // atribui um evento de 'click' ao elemento da logo
   logoEl.addEventListener('click', function() {
-    alert('Logo clicada!!');
+    alert('Logo clicada!!'); 👹
   });
   ```
 
@@ -69,281 +49,325 @@
 ---
 # Hoje veremos
 
-1. [Mais tipos de dados](#mais-tipos-de-dados)
-1. [Arranjos e estruturas de repetição](#arranjos-e-estruturas-de-repeticao)
-1. [Alterando o DOM](#alterando-elementos-do-dom)
-1. [Exploração Espacial](#exploracao-espacial) :alien:
+1. [_Template_ strings](#template-strings)
+2. [Função seta](#funcao-seta)
+3. [Alterando o DOM](#alterando-elementos-do-dom)
+4. [Exploração Espacial](#exploracao-espacial) :alien:
 
 ---
-<!-- {"layout": "section-header", "slideHash": "mais-tipos-de-dados"} -->
-# Mais tipos de dados
-## Os primitivos e o complexo
+<!-- {"layout": "section-header", "slideHash": "template-strings"} -->
+# _Template_ Strings
+## Criando strings bacanudas
 
-- _Null_
-- _Undefined_
-- _Object_
+- Relembrando o tipo `String` <!-- {.tipo-js.tipo-string} -->
+- _Template_ strings
+  1. Interpolação de valores
+  1. Strings multilinha
+  1. [Função de transformação][tagged-templates]
+
+[tagged-templates]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 <!-- {ul:.content} -->
 
 ---
+<!-- {"layout": "regular", "slideHash": "o-tipo-string", "backdrop": "oldtimes"} -->
+## O tipo **3. String** <!-- {.tipo-js.tipo-string} -->
+
+- **Representa um texto** <!-- {.tipo-string} --> codificado em UTF-8
+- Não existe o tipo `char` como em C/C++ e Java, apenas _string_ :wink:
+- Usamos aspas **simples** ou duplas
+  ```js
+  "Abc" === 'Abc'   // simples é mais legal!! mas basta ser consistente
+  ```
+- Possui uma propriedade chamada `length` com o seu comprimento:
+  ```js
+  console.log('Cachorro'.length); // 8
+  ```
+- Exemplos:
+  ```js
+  let aranhas = 'fofofauna';
+  const caminhoVideo = 'videos/a.mp4';
+  const nomeCompleto = primeiro + ' ' + ultimo;     // concatenou
+  ```
+
+
+---
 <!-- {"layout": "regular"} -->
-# O tipo _Null_
+## _Template_ Strings: interpolação de valores (1/2)
 
-- O tipo Null contém apenas um valor
-  - `null`
-- Usado quando uma variável **não tem um valor aplicável naquele momento**
+- É uma forma mais recente para criar _strings_ <!-- {ul:.full-width.bulleted} -->
+- Formato: **usa-se crase** para delimitar. Exemplo:
+- <!-- {.code-split-2} -->
   ```js
-  let x = null;
-  console.log(typeof x);    // imprime null
+  // template string
+  let fruta = `Kiwi`;
   ```
+  ```js
+  // string normal
+  let fruta =  'Kiwi';
+  ```
+- Permite **interpolar** (substituir) **variáveis** dentro de strings:
+- <!-- {.code-split-2.compact-code-more} -->
+  ```js
+  const peso = 82;
+  const nome = 'Kagaro Nakama';
+
+  // com template strings
+  const frase = `${nome} pesa ${peso}kg`;
+  // "Kagaro Nakama pesa 82kg"
+  ```
+  ```js
+  const peso = 82;
+  const nome = 'Kagaro Nakama';
+  
+  // concatenando strings normais
+  const frase = nome + ' pesa ' + peso + 'kg';
+  // "Kagaro Nakama pesa 82kg"
+  ```
+- A sintaxe é mais sucinta e legível
+  - Vejamos outros exemplos...
+  
+---
+<!-- {"layout": "regular"} -->
+## _Template_ Strings: interpolação de valores (2/2)
+
+- É possível **colocar expressões** dentre de `${...}`. Exemplo: <!-- {ul:.full-width.bulleted} -->
+  ```js
+  // supondo que existem variáveis preco=5 e qtde=2
+  let aConta = `Sua conta é R$ ${preco * qtde - 3}`;
+  //           "Sua conta é R$ 7"
+  ```
+- <!-- {.code-split-2.compact-code-more} -->
+  ```js
+  // supondo variáveis dia, mês, ano e func. obtemMes
+  const data = `${dia} de ${obtemMes(mes)} de ${ano}`;
+  // Ex:       "20 de janeiro de 2021"
+  ```
+  ```js
+  const tom = 128;
+  const corCinza = `rgb(${tom}, ${tom}, ${tom})`;
+  // Ex:           "rgb(128, 128, 128)"
+  ```
+- Mas qual é o tipo de dados??
+  <!-- {li:.compact-code-more} -->
+  ```js
+  console.log(typeof "texto"); // imprime "string"
+  console.log(typeof `texto`); // imprime "string"
+  ```
+  - É **String** <!-- {.tipo-js.tipo-string} --> mesmo! Só muda a sintaxe pra escrever
+- Ou seja, a **interpolação** é apenas uma **sintaxe mais legal** para concatenar strings com variáveis/expressões
 
 ---
 <!-- {"layout": "regular"} -->
-# O tipo _Undefined_
+## _Template_ Strings: **texto multilinha**
 
-- O tipo Undefined é o tipo atribuído a **variáveis que não foram associadas a
-  nenhum valor**
-- Tem um único valor
-  - `undefined`
-- Exemplo:
+- Digamos que você queira que uma variável string contenha uma poesia (ocupando várias linhas)
+- As _template strings_ permitem que **uma string ocupe mais do que uma linha** no código fonte
+- <!-- {.code-split-2} -->
   ```js
-  let x;
-  console.log(typeof x);    // imprime undefined
+  // com template string
+  let poesia = `Cavei cavei cavei
+    Isto não é um poema
+    Mas é profundo.`;
   ```
+  ```js
+  // com string normal
+  let poesia = 'Cavei cavei cavei\n' +
+    'Isto não é um poema\n' +
+    'Mas é profundo.';
+  ```
+- Nesse caso, quando há uma quebra de linha no código fonte, é colocado um `\n` dentro da _template string_
 
 ---
-# O tipo _Object_
+<!-- {"layout": "section-header", "slideHash": "funcao-seta"} -->
+# Função Seta
+## A 3ª forma para funções
 
-- É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right} -->
+- 3 Formas:
+  - Função tradicional
+  - Função anônima
+  - Função seta (anônima também)
+
+<!-- {ul^1:.content} -->
+
+---
+<!-- {"layout": "regular"} -->
+## Função **tradicional** e **anônima**
+
+- <!-- {.code-split-2} -->
+  <!-- {ul:.full-width} -->
   ```js
-  let jogador = {
-    pontos: 1420,
-    vidas: 2
+  function cadastrar() {
+    // ...
+  }
+  ```
+  ```js
+  const cadastrar = function() {
+    // ...
   };
-  console.log(jogador.pontos);
-  // imprime 1420
-  ```  
-  - Propriedade: (**nome → valor**)
-    - Nome: uma String
-    - Valor: qualquer coisa, exceto `undefined`
-- No exemplo, o objeto tem 2 propriedades:
-  1. Nome: `pontos`, valor: `1420`
-  1. Nome: `vidas`, valor: `2`
-- Novas propriedades podem ser atribuídas mesmo após sua criação
+  ```
+ - **Função seta** é uma **sintaxe mais nova e sucinta** para as anônimas ⬆
+ - <!-- {.code-split-2.bulleted style="flex-direction: row-reverse"} -->
+   ```js
+   const cadastrar = () => {
+     // ...
+   };
+   ```
+   1. Omitir `function`
+   2. Seta entre parâmetros e corpo
+   3. `return` implícito
+   4. Mantém o valor do ponteiro `this`
+- Os três primeiros itens já são legais o suficiente pra **preferirmos a forma da função seta** <!-- {li:.bullet} -->
+  - Vejamos alguns exemplos
 
 ---
-## Instanciando um _Object_
-
-- Na forma literal:
-  ```js
-  let jogador = {             // forma mais expressiva, curta e sexy
-    pontos: 1420,             // propriedades separadas por vírgula
-    vidas: 2
-  };
-  ```
-  ```js
-  let jogador = {};           // um objeto vazio: { }
-  jogador.pontos = 1420;      // criou jogador.pontos com valor 1420
-  jogador.vidas = 2;          // criou jogador.vidas
-  ```
-
-
----
-<!-- {"layout": "2-column-content"} -->
-## Objetos dentro de objetos
+<!-- {"layout": "2-column-content", "classes": "compact-code-more", "slideHash": "funcao-seta-sintaxe"} -->
+## Função seta: sintaxe
 
 ```js
-let voo = {
-    companhia: 'Gol',
-    numero: 815,
-    decolagem: {
-        IATA: 'SYD',
-        horario: '2004-09-22 14:55',
-        cidade: 'Sydney'
-    },
-    chegada: {
-        IATA: 'LAX',
-        horario: '2004-09-23 10:42',
-        cidade: 'Los Angeles'
-    }
-};
+function ciao() {
+  return 'Ciao';
+}
+
+function oi(prim, ult) {
+  return 'Oi ' + prim + ' ' + ult;
+}
+
+function hi(name) {
+  return 'Hi ' + name;
+}
+
+function fatorial(n) {
+  let resultado = 1;
+  while (n > 1) {
+    resultado *= n;
+    n--;
+  }
+  return resultado;  
+}
 ```
-- Aqui existem 3 objetos:
-  - O **`voo`**, com as propriedades:
-     - `companhia`
-     - `numero`
-     - **`decolagem`**
-     - **`chegada`**
-  - `decolagem` e `chegada` são objetos por si mesmos
-
----
-## Outros tipos
-
-- O Javascript possui **outros tipos complexos, que são baseados em Object**:
-  - `Date`
-    - Por exemplo, para imprimir o horário atual no console:
-      ```js
-      let agora = new Date();
-      console.log(agora);
-      ```
-  - `Function` (sim! funções são objetos em JavaScript)
-  - `Array` (veremos na próxima seção)
-
-
----
-<!-- {"layout": "section-header", "slideHash": "arranjos-e-estruturas-de-repeticao"} -->
-# Arranjos e Estruturas de repetição
-## .
-
-- Definindo _arrays_
-- Métodos de _arrays_
-- 3 sabores de `for`
-- _Loops_ `while`/`do { ... } while`
-
-<!-- {ul:.content} -->
-
----
-<!-- {"layout": "regular"} -->
-# Arrays
-
-- Arrays são vetores unidimensionais, **heterogêneos**
-  - Os itens dos vetores **não** precisam ter o mesmo tipo
-    ```js
-    let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
-    ```
-- Assim como a _String_, um _Array_ tem um **comprimento**:
-  - Propriedade `length`:
-    ```js
-    console.log(listaDeCoisas.length);  // imprime 5
-    ```
-
----
-<!-- {"layout": "regular", "elementStyles": { "h2 + pre": "overflow: hidden; width: 100%;"}} -->
-## **Usando** Arrays
 
 ```js
-let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
+let ciao = () => 'Ciao';
+
+
+
+let oi = (prim, ult) => 'Oi ' + prim + ' ' + ult;
+
+
+
+let hi = name => return 'Hi ' + name;
+
+
+
+let fatorial = n => {
+  let resultado = 1;
+  while (n > 1) {
+    resultado *= n;
+    n--;
+  }
+  return resultado;  
+}
 ```
 
-- Indexação: usa-se os símbolos `[` e `]` para acessar um item do array
-  ```js
-  console.log(listaDeCoisas[1]);      // imprime 35
-  listaDeCoisas[0] = '';              // altera primeiro elemento
-  console.log(listaDeCoisas[0]);      // imprime string vazia
-  ```
-- Arrays possuem métodos, [vários](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array):
-  ```js
-  let frutas = [];                    // cria um array vazio
-  frutas.push('kiwi');                // colca 'kiwi' no array
-  console.log(frutas.length);         // imprime 1
-  ```
-
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-de-arrays"} -->
-## **Métodos** de Arrays
+<!-- {"layout": "regular", "classes": "compact-code-more", "slideHash": "funcoes-seta-com-vetores"} -->
+## Exemplo: funções seta com vetores
 
-- Inserindo e removendo elementos
-  ```js
-  frutas.push('mamão');         // insere 'mamão' no final do array
-  frutas.pop();                 // remove o último ('mamão')
-  frutas.unshift('tangerina');  // insere 'tangerina' no início
-  frutas.shift();               // remove o primeiro ('tangerina')
-  ```
-- E alguns outros:
-  ```js
-  frutas.reverse()              // inverte a ordem dos itens
-  frutas.sort();                // ['banana', 'kiwi', 'maçã']
-  frutas.splice(2, 1);          // Remove 1 elemento, a partir do 3º
-  ```
+```js
+let usuarios = ['Joel', 'Fani', 'Fúlvio'];
+let alunos = [{ matricula: '...' }];
+let numeros = [1, 4, 2, 5];
+```
 
----
-<!-- {"layout": "regular"} -->
-# **for** <small>(forma tradicional)</small>
+1. Pegar apenas usuários que começam com letra 'F': <!-- {ol:.full-width.bulleted-0} -->
+   - <!-- {.code-split-2} -->
+     <!-- {ul:style="padding-left: 0"} -->
+     ```js
+     usuarios.filter(function(nome) {
+       return nome.startsWith('F');
+     });
+     ```
+     ```js
+     usuarios.filter(nome => nome.startsWith('F'));
+     
+     
+     ```
+2. Buscar pelo aluno com uma matrícula:
+   - <!-- {.code-split-2} -->
+     <!-- {ul:style="padding-left: 0"} -->
+     ```js
+     alunos.find(function(aluno) {
+       return aluno.matricula === '2005046102';
+     });
+     ```
+     ```js
+     alunos.find(al => al.matricula === '2005046102');
+     
+     
+     ```
+3. Vetor com os quadrados do original:
+   - <!-- {.code-split-2} -->
+     <!-- {ul:style="padding-left: 0"} -->
+     ```js
+     numeros.map(function(numero) {
+       return numero ** 2;
+     });
+     ```
+     ```js
+     numeros.map(numero => numero ** 2);
 
-- Forma tradicional com `for (inicio; condicao; incremento)`:
-  ```js
-  for (let i = 0; i < 10; i++) {
-    console.log(i);               // 0, 1, 2 ... 9
-  }
-  ```
-- Percorrendo items de um _array_:
-  ```js
-  let cores = ['azul', 'rosa'];
-  for (let i = 0; i < cores.length; i++) {
-    console.log(cores[i]);        // azul, rosa
-  }
-  ```
 
----
-<!-- {"layout": "2-column-content", "slideHash": "for-formas-preferiveis"} -->
-# **for** <small>(formas **preferíveis**)</small>
-
-1. Usando `for (let item of array)` ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} --> :thumbsup::
-   ```js
-   let cores = ['azul', 'rosa'];
-   for (let cor of cores) {
-     console.log(cor);
-     // azul, rosa
-   }
-   ```
-- Usando `array.forEach` :thumbsup::
-  ```js
-  let cores = ['azul', 'rosa'];
-  cores.forEach(function(cor) {
-    console.log(cor);
-    // azul, rosa
-  });
-  ```
-
----
-<!-- {"layout": "2-column-content"} -->
-# while/do..while
-
-- Condição **primeiro**
-  ```js
-  let i = 1;
-  while (i !== 10) {
-    console.log(i);
-    i++;
-  }
-  ```
-1. Condição **depois**
-   ```js
-   let i = 0;
-   do {
-     i++;
-     console.log(i);
-   } while (i !== 10);
-   ```
+     ```
 
 ---
 <!-- {"layout": "section-header", "slideHash": "alterando-elementos-do-dom"} -->
 # Alterando o DOM
 ## Mudando os elementos HTML
 
+- Relembrando `document.querySelector()`
 - Selecionando vários elementos
-- Alterando o contéudo de um elemento
+- Alterando o contéudo
 - Alterando atributos
 - Colocando/removendo classes
 
 <!-- {ul:.content} -->
 
 ---
+<!-- {"layout": "regular", "slideHash": "recuperando-elemento-dom", "backdrop": "oldtimes"} -->
+# Selecionando um elemento
+
+- O método `document.querySelector(seletor)` permite que, a partir de um código
+  JavaScript, recuperemos um elemento do DOM
+  - Ele recebe um único **argumento** que é um **seletor CSS**. Exemplo:
+    ```js
+    let logoEl = document.querySelector('#logomarca');
+    let tabelaEl = document.querySelector('#tesouros-pirata');
+    let principalEl = document.querySelector('main');
+    ```
+    - Ele retorna um elemento HTML que pode ser alterado
+  - Também existe `document.querySelectorAll(seletor)` (repare o **`all`**),
+    que retorna mais de um elemento, mas veremos ele depois
+
+
+---
 <!-- {"layout": "regular", "slideHash": "selecionando-varios-elementos"} -->
 # Selecionando vários elementos
 
 - O `document.querySelector` retorna **apenas 1 elemento**
+  - Se tiver mais de um, retorna o primeiro encontrado
 - O `document.querySelectorAll` retorna **todos** que forem selecionados:
   ```js
   let inputs = document.querySelectorAll('input');  // retornou um 'NodeList'
                                                     // com todos inputs da página
 
-  console.log('Quantidade de inputs: ' + inputs.length);
+  console.log(`Quantidade de inputs na página: ${inputs.length}`);
   let primeiroInputEl = inputs[0];
   ```
 
 ---
-## Selecionando vários elementos (cont.)
+<!-- {"layout": "regular"} -->
+## Selecionando vários elementos (2/3)
 
 - Para **atribuir um evento a todos** os elementos retornados:
   ```js
@@ -360,35 +384,112 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-## Selecionando vários elementos (cont.)
+<!-- {"layout": "regular", "embeddedStyles": ".codigos-com-pouco-espaco-vertical pre { margin-top: 0.2em !important;}"} -->
+## Selecionando vários elementos (3/3)
 
-- Um `NodeList` é **"praticamente um _array_"** - ele possui os métodos essenciais:
+- <!-- {ul:.compact-code.bulleted-pre} -->
+  Um `NodeList` é **"praticamente um _array_"** - ele possui os métodos essenciais: 
   ```js
-  let inputs = document.querySelectorAll('input');
-
+  let inputs = document.querySelectorAll('input');      // inputs é um 'NodeList'
+  ```
+- <!-- {.no-bullets.codigos-com-pouco-espaco-vertical style="margin-top: 1em;"} -->
+  ```js
   // propriedade .length (igual um array)
-  console.log('Quantidade de elementos: ' + inputs.length);
+  console.log(`Quantidade de elementos: ${inputs.length}`);
+  ```
+  ```js
   // método 'forEach' (igual um array)
   inputs.forEach(function(el) {
     // ...
   });
+  ```
+  ```js
   // pegando um elemento como se fosse um array
   let primeiroEl = inputs[0];
   ```
 
 ---
-<!-- {"slideHash": "alterando-o-conteudo"} -->
+<!-- {"layout": "regular"} -->
+## `NodeList` vs Vetor
+
+- Um **`NodeList`** é praticamente um _array_, mas **não possui todos os métodos**. Por exemplo:
+- <!-- {.code-split-2.compact-code-more} -->
+  ```js
+  umNodeList.length        ✅
+  umNodeList[5]            ✅
+  umNodeList.forEach(...)  ✅
+
+  umNodeList.indexOf(...)  ❌
+  umNodeList.sort()        ❌
+  umNodeList.reverse()     ❌
+  umNodeList.filter()      ❌
+  umNodeList.find()        ❌
+  ```
+  ```js
+  umVetor.length          ✅
+  umVetor[5]              ✅
+  umVetor.forEach(...)    ✅
+  
+  umVetor.indexOf(...)    ✅
+  umVetor.sort()          ✅
+  umVetor.reverse()       ✅
+  umVetor.filter()        ✅
+  umVetor.find()          ✅
+  ```
+- Se quiser transformar um `NodeList` em um vetor, use<br>`vetor = Array.from(umNodeList)`:
+  ```js
+  let todosParagrafos = document.querySelectorAll('p');   // é um 'NodeList'
+  todosParagrafos = Array.from(todosParagrafos);          // agora é um 'Array'
+  ```
+
+---
+<!-- {"layout": "regular", "backdrop": "oldtimes", "embeddedStyles": "@keyframes highlighting{from{border-color:transparent;background:transparent;transform:scale(1);}to{border-color:darkgoldenrod;background:white;transform:scale(1.05);}}"} -->
+## O objeto **document**
+
+- O objeto `document` dá acesso ao **Document Object Model**, ou DOM
+- Por exemplo, para pegar um elemento a partir de seu `id` e colocá-lo em
+  uma variável:
+  ```js
+  let botaoDeliciaEl = document.querySelector('#botao-delicia');
+  ```
+  - Agora é possível fazer várias coisas com o botão, como: <!-- {li:style="border: 3px solid transparent;padding:0.5em;border-radius:10px;animation:highlighting 1s ease-in-out 5s infinite alternate"} -->
+    1. Associar um evento de clique
+    1. Pegar ou alterar seus atributos
+    1. Alterar seu conteúdo
+    1. Alterar seu estilo
+
+---
+<!-- {"backdrop": "oldtimes"} -->
+# Anatomia de uma **_tag_**
+
+::: figure .figure-slides
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-5.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+:::
+
+- Tags de abertura podem ter **atributos**: <!-- {ul:.no-bullets.bullet.compact-code} -->
+  ```html
+  <img src="bob-esponja.png">
+  <p class="destacado">...</p>
+  <input type="number">
+  ```
+
+
+---
+<!-- {"layout": "centered", "slideHash": "alterando-o-conteudo"} -->
 # Alterando **o conteúdo**
 
-- ![Uma tag, composta por tag de abertura, conteúdo e tag de fechamento](../../images/anatomia-tag.png)
-  <!-- {.push-right style="width: 250px"} -->
-  É possível alterar o **conteúdo** de um elemento com `elemento.innerHTML`:
+- É possível **alterar o conteúdo** <!-- {.alternate-color} --> de um elemento com `elemento.innerHTML`:
   <iframe width="250" height="130" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
   <iframe width="250" height="153" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/html/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
 
   ```js
-  let contador = 0,
-    contadorEl = document.querySelector('#contador');
+  let clicks = 0;
+  let contadorEl = document.querySelector('#contador');
+  
   // quando clicado, (1) conta e (2) altera conteúdo
   contadorEl.addEventListener('click', function() {
     contador++;                       // (1) conta
@@ -397,9 +498,10 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
+<!-- {"layout": "centered", "slideHash": "alterando-atributos"} -->
 # Alterando **atributos**
 
-- É possível alterar atributos dos elementos:
+- É possível **alterar atributos** <!-- {.alternate-color} --> dos elementos:
   ```html
   <img src="imgs/pikachu.png" id="pokemon-lutando">
   ```
@@ -411,34 +513,34 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
     - Por exemplo, em `input` costumamos pegar/alterar o `value`
 
 ---
-<!-- {"slideHash": "colocando-removendo-classes"} -->
+<!-- {"layout": "centered", "slideHash": "colocando-removendo-classes"} -->
 # Colocando/removendo **classes**
 
-- É possível colocar ou remover classes de elementos:
+- É possível **colocar ou remover classes** <!-- {.alternate-color} --> de elementos: <!-- {ul:.bulleted} -->
   ```js
   botaoEl.classList.add('selecionado');   // coloca .selecionado
   imageEl.classList.remove('oculta');     // remove .oculta
   pEl.classList.toggle('expandido');      // coloca ou tira .expandido
   ```
-  - <iframe width="250" height="160" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
-    Isso pode ser usado, por exemplo, pra "marcar" elementos:
+  - <iframe width="250" height="170" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+    Isso pode ser usado, por exemplo, para ↘<br>"marcar" elementos
   - Ou então pra fazer um menu lateral aparecer...
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
 ## Definindo "quem está selecionado"
 
-<iframe width="340" height="250" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
+<iframe width="340" height="200" style="width: 340px" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
 
-- **Marca/desmarca** elemento. Ideia:
-  - No evento de `'click'`:
+- **Marca/desmarca** elemento. Ideia: <!-- {ul:.bullet style="width: calc(100% - 340px)"} -->
+  - No evento de `'click'` de cada um:
     1. Alterna a classe `.selecionado` do elemento que foi "clicado"
        - `el.classList.toggle('selecionado')`
 
-<iframe width="340" height="250" src="//jsfiddle.net/fegemo/8nsjhgga/embedded/result,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>    
+<iframe width="340" height="200" style="width: 340px" src="//jsfiddle.net/fegemo/8nsjhgga/embedded/result,js,css/" allowfullscreen="allowfullscreen" frameborder="0" class="bullet"></iframe>    
 
-- **Apenas 1** elemento selecionado por vez. Ideia:
-  - No evento de `'click'`:
+- **Apenas 1** elemento selecionado por vez. Ideia: <!-- {ul:.bullet style="width: calc(100% - 340px)"} -->
+  - No evento de `'click'` de cada um:
     1. Tira a classe `.selecionado` de todos
     1. "Re"coloca a classe no elemento "clicado"
 
@@ -464,7 +566,6 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 ## Conhecendo o além-atmosfera
 
 - Atividade de hoje
-- Definindo constantes com `const`
 - Que elemento foi clicado?
 - Subindo na árvore do DOM
 - Alternando uma classe
@@ -478,34 +579,17 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 <!-- {"layout": "regular"} -->
 # Exploração Espacial :alien:
 
-- Crie um sisteminha de gerenciamento de tarefas :notebook:
+- Crie parágrafos que expandem/retraem e uma galeria :notebook:
   - [Baixe os arquivos][space] e veja as instruções
-    detalhadas no arquivo `README.md`
+    no arquivo `README.md`
 - Há 2 atividades:
   1. Criar um código em JavaScript para **fazer os botões "+"
      expadirem ou retrairem o texto dos parágrafos**
      - Fazer no arquivo `atividade1.js`
-  1. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
+  2. Criar uma **galeria** mostrando **fotos e imagens** da sonda Philae
      - Fazer no arquivo `atividade2.js`
 
 [space]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
-
----
-<!-- {"slideHash": "definindo-constantes"} -->
-# Definindo constantes com **`const`**
-
-- O `let` possui um irmão, mais conservador, chamado `const`
-  - Uma variável `let` **pode** apontar para outro valor
-    ```js
-    let personagemCoadjuvante = 'Lula Molusco';
-    personagemCoadjuvante = 'Seu Sirigueijo'; // Ok, funciona
-    ```
-  - Uma variável `const` (ou constante) **não pode** apontar para outro valor
-    ```js
-    const cargoDoBobEsponja = 'cozinheiro';
-    cargoDoBobEsponja = 'chefe';              // TypeError: Assignment to
-                                              //   constant variable
-    ```
 
 ---
 <!-- {"slideHash": "argumento-de-click"} -->
@@ -525,22 +609,23 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-<!-- {"slideHash": "subindo-na-arvore"} -->
+<!-- {"slideHash": "subindo-na-arvore", "classes": "compact-code"} -->
 # Subindo na árvore do DOM
 
 - Todo elemento do DOM conhece, na árvore, quem é:
-  1. seu pai (**`elemento.parentNode`**)
-  1. seus filhos (`elemento.childNodes`)
+  1. seu pai (**`elemento.parentNode`** ou `elemento.parentElement`)
+  1. seus filhos (`elemento.childNodes` ou `elemento.children`)
   1. irmão anterior e irmão posterior
-- Para pegar o "pai" de um elemento que foi clicado, por exemplo:
+- Exemplo: clicou numa `<img> `, mas quero a `<div></div>` que é "pai" dela:
   ```js
-  function clicouNoCaption(e) {
-    let clicadoEl = e.currentTarget;          // o <caption> foi clicado
-    let tabelaEl = clicadoEl.parentNode;      // <--- <tabel> é o pai do <caption>
-    console.log(tabelaEl.id);                 // imprime id da tabela
+  function clicouNaImagem(e) {
+    let clicadoEl = e.currentTarget;          // a <img> que foi clicada
+    let divEl = clicadoEl.parentNode;         // <--- <div> é o pai da <img>
+    console.log(divEl.id);                    // imprime id da div
   }
-  let captionEl = document.querySelector('table > caption');
-  captionEl.addEventListener('click', clicouNoCaption);
+
+  let imgEl = document.querySelector('div > img');
+  imgEl.addEventListener('click', clicouNaImagem);
   ```
 
 ---
@@ -548,7 +633,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 # Alternando uma classe
 
 - Às vezes queremos colocar/remover uma classe em um elemento **alternadamente**
-- Para isso, existe o `document.classList.toggle('nome-da-classe')`
+- Para isso, existe o `elemento.classList.toggle('nome-da-classe')`
 - Além de colocar/remover a classe, **o método retorna**:
   - `true` se tiver colocado a classe
   - `false` se tiver removido a classe
