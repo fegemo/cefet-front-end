@@ -1,86 +1,101 @@
 <!-- {"layout": "title"} -->
 # JavaScript (parte 3)
-## História, Estilizando elementos, Eventos de mouse, Depurando
+## História, Estilizando elementos, Eventos de mouse, Depurando código e o PhotoSnap 📷
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": "#tipo-object pre {display: inline-block; margin-top: 0!important; vertical-align: top;} #tipo-object pre:first-of-type { width: 40%; }"} -->
+<!-- {"layout": "regular"} -->
 # Na última aula... (1/4)
 
 **Null**
-  ~ usado quando uma variável não tem um valor aplicável naquele momento
-    (`let x = null;`)
+  ~ usado quando uma variável não tem um valor aplicável naquele momento (`let x = null;`) <!-- {p:.no-margin} -->
 
 **Undefined**
-  ~ é o tipo atribuído a variáveis que não foram associadas
-    a nenhum valor (`let x;`)
+  ~ é o tipo atribuído a variáveis que não foram associadas a nenhum valor (`let x;`) <!-- {p:.no-margin} -->
+
 
 **Object**
-  ~ um **"saquinho" de propriedades**:  <!-- {dd:#tipo-object} -->
-    ```js
-    let voo = {
-      companhia: 'Gol',
-      destino: {
-        cidade: 'Sydney'
+  ~ um **"saquinho" de propriedades**: <!-- {p:.no-margin} -->
+    - <!-- {.code-split-2.no-margin.compact-code} -->
+      <!-- {ul:style="padding-left: 0"} -->
+      ```js
+      let voo = {
+        companhia: 'Gol',
+        destino: {
+          cidade: 'Sydney'
+        }
+      };
+      ```
+      ```js
+      // ...
+      voo.numero = 815;
+      voo.destino.IATA = 'SYD';
+      if (voo.companhia === 'Gol'){
+        voo.preco = 700;
       }
-    };
-    ```
-    ```js
-    // ...
-    voo.numero = 815;
-    voo.destino.IATA = 'SYD';
-    if (voo.companhia === 'Gol') {
-      voo.preco = 700;
-    }
-
-    ```
+      ```
 
 ---
-<!-- {"layout": "2-column-content"} -->
+<!-- {"layout": "2-column-content", "classes": "compact-code-more"} -->
 ## Na última aula... (2/4)
 
-- Declarando e usando _arrays_ (_i.e._, vetores):
+- _Template_ strings: <!-- {ul:.no-bullets} -->
   ```js
-  // cria array vazio, coloca 2
-  // strings e imprime seu tamanho
-  // e apenas o 1º elemento
-  let frutas = [];
-  frutas.push('kiwi');
-  frutas.push('banana');
-  console.log(frutas.length);
-  console.log(frutas[0]);
+  const x = 10;   // queremos "(10px, 20px)"
+  const y = 20;
+
+
+  // string NORMAL: '...' ou "..."
+  let posicao1 = '(' + x + 'px, ' + y + 'px)';
+
+  // string TEMPLATE: `...`
+  let posicao2 = `(${x}px, ${y}px)`;
+
+
+  // ambas geram: "(10px, 20px)"
   ```
-1. Iterando com **for tradicional**:
+  - Isto é bem útil quando queremos concatenar strings e variáveis
+
+1. Função seta:  <!-- {ol:.no-bullets.no-padding} -->
    ```js
-   let crs = ['azul', 'rosa'];
-   for (let i=0; i<crs.length; i++) {
-     console.log(crs[i]); //azul,rosa
-   }
-   ```
-1. Usando `for (let item of array)` ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} --> :thumbsup::
-   ```js
-   for (let cor of cores) {
-     console.log(cor);  // azul, rosa
-   }  // mais curto e elegante!
+   const bebidas = ['refri', 'suco', 'cerveja'];
+
+   
+   // usando função ANÔNIMA:
+   let com5Letras = bebidas.filter(function(b) {
+     return b.length === 5;
+   });
+
+   // usando função SETA:
+   com5Letras = bebidas.filter(b => b.length === 5);
+
+
+
+   // callback com função ANÔNIMA:
+   el.addEventListener('click', function() {
+     alert(':3');
+   }); 
+
+   // callback com função SETA:
+   el.addEventListener('click', () => alert(':3'));
    ```
 
 ---
 <!-- {"layout": "regular"} -->
 ## Na última aula... (3/4)
 
-- O `document.querySelectorAll` retorna **todos** que forem selecionados
-- ![Uma tag, composta por tag de abertura, conteúdo e tag de fechamento](../../images/anatomia-tag.png)
-  <!-- {.push-right style="width: 250px"} -->
-  É possível alterar o **conteúdo** de um elemento com `elemento.innerHTML`:
+- O `document.querySelectorAll` retorna **todos** que forem selecionados <!-- {ul:.compact-code} -->
+- É possível alterar o **conteúdo** de um elemento com `elemento.innerHTML`:
   <iframe width="250" height="130" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
   <iframe width="250" height="153" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/html/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
 
   ```js
-  let contador = 0,
-    contadorEl = document.querySelector('#contador');
+  let clicks = 0;
+  let contadorEl = document.querySelector('#contador');
+  
   // quando clicado, (1) conta e (2) altera conteúdo
-  contadorEl.addEventListener('click', function() {
-    contador++;                       // (1) conta
-    contadorEl.innerHTML = contador;  // (2) altera
+  contadorEl.addEventListener('click', () => {
+    clicks++;                       // (1) conta
+    contadorEl.innerHTML = clicks;  // (2) altera
   });
   ```
 
@@ -170,11 +185,11 @@
 2009
   ~ Versão 5 do ECMAScript
 
-2013 - 2018
-  ~ Versões 6-9
+2013 - 2020
+  ~ Versões 6-9+
     ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} -->
-    do ECMAScript, que mudaram de nome para **es2015**, **es2016**, **es2017**
-    e **es2018** respectivamente
+    do ECMAScript, que mudaram de nome para **es2015**, **es2016**, **es2017**,
+    **es2018**...
 
 
 *[ECMA]: European Computer Manufacturers Association*
@@ -188,7 +203,7 @@
 - Ele possui informações e utilidades sobre a janela corrente.
   Exemplos:
   ```js
-  window.alert('mensagenzinha feia');                     // retorna undefined
+  window.alert('mensagenzinha feia 🔥');                  // retorna undefined
   window.confirm('janela pedindo confirmacao');           // retorna true, false
   window.prompt('escreva seu nome, champz', 'b. verde');  // retorna uma string
   ```
@@ -212,6 +227,7 @@
   ```js
   window.eval('window.alert("eval is evil!");');    // nao fazer em casa
   ```
+  - `window.eval(textoComCodigo)` executa o `textoComCodigo` que é uma String que pode conter código JavaScript
 
 ---
 <!-- {"layout": "regular"} -->
@@ -221,12 +237,12 @@
   - **`window.document`**
     - Acesso ao DOM (estrutura HTML da página)
   - `window.navigator`
-    - Acesso a características do navegador como geolocalização,
+    - Acesso a características do navegador como geolocalização (GPS),
       reconhecimento de fala etc.
   - `window.console`
     - Objeto de acesso ao terminal do navegador
   - `window.Math`
-    - **Funções matemáticas**, como `Math.sin`, `Math.floor`, `Math.round`
+    - Funções matemáticas, como `Math.sin`, `Math.floor`, `Math.round`
   - `window.location`
     - Informações sobre o endereço (a URL) da página
 
@@ -239,11 +255,11 @@
 - Como o objeto `window` é o único objeto global, **podemos acessar
   suas propriedades <u>sem usar `"window."`</u>** :scream:. Por exemplo:
   ```js
-  window.console.log('Piccolo > Goku');
+  window.console.log('JoJo >> Naruto');
   ```
   É o mesmo que:
   ```js
-  console.log('Piccolo > Goku');    // sucesso!!
+  console.log('JoJo >> Naruto');    // sucesso!!
   ```
 - Podemos omitir `window` para que o código fique menorzinho
 
@@ -267,13 +283,14 @@
 ## Alterando o **estilo** de elementos
 
 - Há **2 formas** para alterar o estilo de elementos:
-  1. Adicionando ou removendo classes (já vimos):
+  1. Adicionando ou removendo classes (já vimos): <!-- {ol:.bulleted-0} -->
+     <!-- {li:style="opacity: 0.5"} -->
      ```js
      booEl.classList.add('selecionado');    // adiciona .selecionado
      botaoEl.classList.remove('oculto');    // remove .oculto
      ```
      - Usa a **propriedade `.classList` do elemento**
-  1. Alterando a propriedade `style`:
+  2. Alterando a propriedade `style`:
      ```js
      botaoEl.style.width = '80%';           // define largura como 80%
      botaoEl.style.paddingTop = '2px';      // padding-top vira paddingTop
@@ -305,7 +322,7 @@
 <!-- {"layout": "regular"} -->
 ## Usar _classes_ ou `elemento.style`?
 
-- Devemos **preferir usar _classes_**, porque a estilização fica por conta
+- Devemos **preferir usar _classes_**, porque a estilização fica por conta <!-- {ul:.bulleted-0} -->
   do arquivo CSS
   - Lembre-se do princípio da separação de responsabilidades
 - Contudo, **em certos casos é melhor usar `.style`**:
@@ -314,46 +331,42 @@
   - Exemplo: `abelhinhas.js`
     ```css
     .abelhinha {
-      position: absolute;   /* precisamos disto */
+      position: absolute;   /* precisamos de position: absolute */
       left: ??;             /* mas como calcular left e top? */
-      top: ??;
+      top: ??;              /* tem que ser via JavaScript =) */
     }
     ```
 
 ---
-<!-- {"layout": "2-column-content-result", "embeddedStyles": "#abelhinha-js ~ pre {margin: 0!important; vertical-align: top;}"} -->
+<!-- {"layout": "regular", "classes": "compact-code-more"} -->
 ## Exemplo: _abelhinhas.js_
 
-<!-- {h2:#abelhinha-js} -->
 
-```js
-// cria um objeto abelhinha
-let abelhinha = {
-  x: 0,   // pos. x inicial
-  y: 0,   // pos. y inicial
-  imagemEl: document
-              .querySelector('#abel')
-};
-```
+- <!-- {.code-split-2} -->
+  <!-- {ul:.full-width} -->
+  ```js
+  // cria um objeto abelhinha
+  let abelhinha = {
+    x: 0,   // pos. x inicial
+    y: 0,   // pos. y inicial
+    imagemEl: document.querySelector('#abelhinha')
+  };
+  ```
+  <iframe height="175" src="//jsfiddle.net/fegemo/a1vLv657/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- <!-- {.no-bullets style="margin-top: 1em"} -->
+  ```js
+  // função que acha a nova posição
+  function atualizaAbel() {
+    abelhinha.x += 1;
+    abelhinha.y += Math.sin(abelhinha.x);
 
-<iframe height="175" src="//jsfiddle.net/fegemo/a1vLv657/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    abelhinha.imagemEl.style.left = `${abelhinha.x}px`;
+    abelhinha.imagemEl.style.top = `${abelhinha.y}px`;
+  }
 
-```js
-// função que acha a nova posição
-function atualizaAbel() {
-  abelhinha.x += 1;
-  abelhinha.y +=
-    Math.sin(abelhinha.x);
-
-  abelhinha.imagemEl.style.left =
-    abelhinha.x + 'px';
-  abelhinha.imagemEl.style.top =
-    abelhinha.y + 'px';
-}
-
-// registra a função em um intervalo
-window.setInterval(atualizaAbel, 33);
-```
+  // registra a função em um intervalo
+  setInterval(atualizaAbel, 33);
+  ```
 
 ---
 <!-- {"layout": "section-header", "slideHash": "eventos-de-mouse"} -->
@@ -396,7 +409,7 @@ window.setInterval(atualizaAbel, 33);
     botaoEl.onclick = function(e) { /*...*/ };
     ```
     - Foi a única forma por muitos anos
-    - Permite **apenas um _handler_** por tipo de evento :thumbsdown:
+    - Permite **apenas 01 _handler_** por tipo de evento :thumbsdown:
   - Forma bacana :thumbsup::
     ```js
     botaoEl.addEventListener('click', function(e) { /*...*/ });
@@ -415,8 +428,7 @@ window.setInterval(atualizaAbel, 33);
 
 ---
 <!-- {"layout": "regular"} -->
-## Comparação:
-##  **mouseover** vs **mousemove** vs **mouseout**
+## Comparação: **mouseover** vs **mousemove** vs **mouseout**
 
 - Eventos invocados quando:
   - **mouseover**: o mouse **entra** no elemento
@@ -436,7 +448,7 @@ window.setInterval(atualizaAbel, 33);
 ---
 ## Exemplo: _segue-mouse.js_
 
-<iframe width="100%" height="500" src="//jsfiddle.net/fegemo/1zg25ebs/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="99%" height="500" src="//jsfiddle.net/fegemo/1zg25ebs/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
 <!-- {"layout": "section-header", "slideHash": "depurando-codigo"} -->
@@ -451,39 +463,41 @@ window.setInterval(atualizaAbel, 33);
 <!-- {ul:.content} -->
 
 ---
+<!-- {"layout": "regular"} -->
 ## Depuração: **a aba _Sources_**
 
 - Além de **CSS** e **HTML** podemos depurar o **JavaScript** de uma página:
-
-![Descrição de uso das ferramentas de desenvolvedor para JavaScript no chrome](../../images/developer-js.png)
+  ![Descrição de uso das ferramentas de desenvolvedor para JavaScript no chrome](../../images/developer-js.png) <!-- {.centered style="width: 75%"} -->
 
 ---
+<!-- {"layout": "regular"} -->
 # Erros comuns (1/2)
 
 - _"Uncaught SyntaxError: Identifier 'x' **has already been declared**"_:
   - Declarou mais de uma vez a mesma variável.
   ```js
-    let x = 1;
-    let x = 3;  // erro
+  let x = 1;
+  let x = 3;  // erro
   ```
 - _"Uncaught ReferenceError: paragrafoEl **is not defined**"_:
   - Acessou uma variável antes de inicializá-la.
   ```js
-    function alternarElementoExpandir(e){
-      paragrafoEl.classList.toggle('expandido');  // paragrafoEl não havia sido
-    }                                             // declarada
+  function alternarElementoExpandir(e){
+    paragrafoEl.classList.toggle('expandido');  // paragrafoEl não havia sido
+  }                                             // declarada
   ```
 
 ---
+<!-- {"layout": "regular"} -->
 # Erros comuns (2/2)
 
 - _"Uncaught TypeError: botoesExpandir.addEventListener **is not a function**"_:
   - O objeto não possui essa função.
   ```js
-    let botoesExpandir = document.querySelectorAll(".botao-expandir-retrair");
+  let botoesExpandir = document.querySelectorAll(".botao-expandir-retrair");
 
-    botoesExpandir.addEventListener('click', alternarElementoExpandir); // erro!
-    // dá erro porque botoesExpandir é um array, não um elemento HTML
+  botoesExpandir.addEventListener('click', alternarElementoExpandir); // erro!
+  // dá erro porque botoesExpandir é um array, não um elemento HTML
   ```
 
 ---
