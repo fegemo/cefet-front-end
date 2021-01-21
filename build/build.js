@@ -17643,7 +17643,7 @@ bespoke.from('article', [
   bullets('.bullet, .bulleted li, .bulleted dd, .bulleted-dt dt, .bulleted-dt dd, .bulleted-0 > li, .bulleted-0 > dt, .bullleted-0 > dd, .bulleted-pre pre'),
   // still need to improve bespokeProceed: give feedback to user, switch to JSON comments etc.
   proceed(),
-  scale('transform'),
+  scale(),
   progress(), // progress must be after scale
   hash(),
   state(),

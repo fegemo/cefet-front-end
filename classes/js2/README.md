@@ -491,7 +491,7 @@ let numeros = [1, 4, 2, 5];
   let contadorEl = document.querySelector('#contador');
   
   // quando clicado, (1) conta e (2) altera conteúdo
-  contadorEl.addEventListener('click', function() {
+  contadorEl.addEventListener('click', () => {
     contador++;                       // (1) conta
     contadorEl.innerHTML = contador;  // (2) altera
   });
@@ -603,7 +603,7 @@ let numeros = [1, 4, 2, 5];
     console.log(booClicadoEl.id);       // imprime 'boo1' (id do boo clicado)
   }
 
-  document.querySelectorAll('.boo').forEach(function(booEl) {   // pega os .boo e
+  document.querySelectorAll('.boo').forEach(booEl => {   // pega os .boo e
     booEl.addEventListener('click', imprimeId);                 // coloca o evento
   });                                                           // 'click' neles
   ```
