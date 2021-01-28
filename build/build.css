@@ -535,7 +535,7 @@ div.did-you-know > p {
   transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
 }
 .matematica.bespoke-backdrop-active {
-  background-image: url("../images/matematica.png");
+  background-image: url("../images/activity-thumbs/matematica.png");
   background-size: cover;
   background-position: 50% 0%;
   opacity: 1;
@@ -549,7 +549,7 @@ div.did-you-know > p {
   transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
 }
 .space.bespoke-backdrop-active {
-  background-image: url("../images/cefet-web-space.png");
+  background-image: url("../images/activity-thumbs/space.png");
   background-size: cover;
   background-position: 50% 0%;
   opacity: 1;
