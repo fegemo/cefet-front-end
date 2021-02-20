@@ -563,7 +563,7 @@ div.did-you-know > p {
   transition: opacity 200ms ease 500ms, transform 200ms ease 500ms;
 }
 .avatarcreator.bespoke-backdrop-active {
-  background-image: url("../images/cefet-front-end-avatar.png");
+  background-image: url("../images/activity-thumbs/avatar.jpg");
   background-size: cover;
   background-position: 50% 0%;
   opacity: 1;

@@ -55,7 +55,7 @@
 1. [Elementos HTML de **entrada**](#elementos-de-entrada)
 1. [Elementos HTML de **escolha**](#elementos-de-escolha)
 1. [Envio de formulários e validação](#envio-de-formularios-e-validacao)
-1. [AvatarCreator](#avatar-creator)
+1. [AvatarCreator](#avatar-creator) 💄
 
 ---
 <!-- {"layout": "section-header", "slideHash": "elementos-de-entrada"} -->
@@ -110,7 +110,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Caixa de texto para **e-mail** ![À partir do html5](../../images/html5-logo-32.png)
+## Caixa de texto para **e-mail** ![À partir do html5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
 - <img src="../../images/form-email-sample.png" style="float: right; margin-left: 20px">
   Idêntico à caixa de texto, porém o navegador espera um e-mail válido
@@ -130,7 +130,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Outros semelhantes à caixa de texto ![À partir do html5](../../images/html5-logo-32.png)
+## Outros semelhantes à caixa de texto ![À partir do html5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
 - Pesquisa<br> <!-- {ul:style="display: flex; flex-direction: row; justify-content: space-around"} -->
   `<input type="search">`: <input type="search" style="width: calc(100% - 1em); box-sizing: border-box; margin-bottom: 1em;">
@@ -145,7 +145,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Números, Escala e Cor ![A partir do html5](../../images/html5-logo-32.png)
+## Números, Escala e Cor ![À partir do html5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
 - Formato: <!-- {ul:style="display: flex; flex-direction: row; justify-content: space-around"} -->
   ```html
@@ -165,7 +165,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Data e Hora ![A partir do html5](../../images/html5-logo-32.png)
+## Data e Hora ![À partir do html5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
 - Formato: <!-- {ul:style="display: flex; flex-direction: row; justify-content: space-around"} -->
   ```html
@@ -250,7 +250,7 @@
 <!-- {"layout": "regular"} -->
 ## Radio: <small>escolha dentro de um grupo</small>
 
-- Formato: <!-- {ul:style="display: flex;"} -->
+- Formato: <!-- {ul:.compact-code.no-bullets style="display: flex; margin-bottom: 0"} -->
   ```html
   <label>
     <input type="radio" name="cor" value="azul">Azul
@@ -259,7 +259,7 @@
     <input type="radio" name="cor" value="verde">Verde
   </label>
   ```
-- ![](../../images/old-radio-button.jpg) <!-- {style="max-width: 100%; margin-top: 1.5em"} -->
+- ![](../../images/old-radio-button.jpg) <!-- {.centered style="max-width: 80%; margin-top: 1.5em;"} -->
   ::: result
     <div><label>
       <input type="radio" name="cor" value="azul"> Azul
@@ -270,14 +270,14 @@
   :::
 1. **Atributo `name`**: define qual é o nome do input ao enviar o fomulário
 para o servidor
-1. Repare que apenas uma cor pode ser escolhida - porque os dois `input` têm o
-  mesmo `name`
+1. Repare que apenas uma cor pode ser escolhida - porque **os dois `input` têm o
+  mesmo `name`** <!-- {strong:.alternate-color} -->
 
 ---
 <!-- {"layout": "regular"} -->
 ## Select e options <small>(lista de opções)</small>
 
-- Formato:
+- Formato: <!-- {ul:.no-margin} -->
   ```html
   <label for="sabor">Sabor da pizza:</label>
   <select id="sabor">
@@ -296,10 +296,10 @@ para o servidor
   - `multiple`, para o `select`, para permitir mais de um `option`
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "classes": "compact-code"} -->
 ## Interagindo via JavaScript (2)
 
-1. Verificando se um `checkbox` está marcado: <label><input type="checkbox" id="inscrever"> Inscrever?</label> <button onclick="alert(document.querySelector('#inscrever').checked)">💻</button>
+1. Verificando se um `checkbox` está marcado: <label><input type="checkbox" id="inscrever"> Inscrever?</label> <button onclick="alert(document.querySelector('#inscrever').checked)">💻 Executar</button>
    ```js
    let desejaInscreverEl = document.querySelector('#inscrever');
    let estaMarcado = desejaInscreverEl.checked;   // elemento.checked: true/false
@@ -315,14 +315,15 @@ para o servidor
    let cor = corMarcadaEl.value;   // elemento.value: valor do input
    ```
    - Repare o **seletor**<!--{.alternate-color}-->: todo elemento com
-     **atributo `name="cor"`** e que **esteja no estado `:checked`** (marcado)
+     **atributo `name="cor"`** e que **esteja no estado `:checked`** (marcado) <!-- {ol:.bulleted-0} -->
+
 ---
 <!-- {"layout": "regular"} -->
 ## Outros elementos de dados
 
 | Tipo               	| Markup                  	| Exemplo                 	|
 |--------------------	|-------------------------	|-------------------------	|
-| Seleção de arquivo 	| `<input type="file">`     | <input type="file">     	|
+| Seleção de arquivo 	| `<input type="file">`     | <input type="file" style="font-size: .5em">   	|
 | Campo de senha     	| `<input type="password">`	| <input type="password"> 	|
 | Texto oculto       	| `<input type="hidden">`	  |                          	|
 | Texto multi-linha   | `<textarea></textarea>`   | <textarea></textarea>     |
@@ -372,7 +373,7 @@ para o servidor
 ## Botões de submissão e _reset_
 
 - Dentro de um formulário, um botão do `type="submit"` envia os dados para
-  o servidor: <button type="submit"><img src="../../images/html5-logo-32.png" style="height: 0.75em; font-size: 75%;">Cadastrar</button>
+  o servidor: <button type="submit"><img src="../../images/html5-logo-32.png" style="height: 0.65em; margin-right: .25em;">Cadastrar</button>
   ```html
   <button type="submit">
     <img src="icone.png">Cadastrar <!-- podemos colocar ícones nos botões =) -->
@@ -459,7 +460,7 @@ para o servidor
 
 ---
 <!-- {"layout": "regular"} -->
-## Eventos de formulários
+# Eventos de formulários
 
 - Lembrando que: eventos são **atrelados a nós específicos** e causam a
   invocação de uma função "manipuladora" (_event handler_ ou apenas _handler_)
@@ -469,13 +470,8 @@ para o servidor
   - `focus` (ganhou foco)
   - `keydown` (pressionou uma tecla)
   - `keyup` (liberou uma tecla)<!-- {ul:.multi-column-list-2}-->
-- (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
-
----
-<!-- {"layout": "regular"} -->
-## Exemplo
-
-<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/gprgLz88/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- <iframe width="400" height="120" src="//jsfiddle.net/fegemo/novwcd56/embedded/result,js/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0" style="float: right"></iframe>
+  (Muitos) outros tipos: <a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">Eventos na MDN</a>
 
 ---
 <!-- {"layout": "regular"} -->
