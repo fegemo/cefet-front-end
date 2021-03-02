@@ -1142,3 +1142,67 @@ Toda string possui vários métodos diferentes que podemos invocar
 
 1. Capítulo 2 do livro "JavaScript: The Good Parts"
 1. Mozilla Developer Network (MDN)
+
+---
+<!-- {"layout": "main-point", "slideHash": "erros-comuns"} -->
+# Erros comuns durante a prática
+
+---
+<!-- {"layout": "regular"} -->
+## 01. Falhar no **arejamento** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-arejamento-a.png) <!-- {.full-width} --> <!-- {p:.bullet} -->
+![](../../images/erros-comuns-js0-arejamento-b.png) <!-- {.full-width} -->
+![](../../images/erros-comuns-js0-arejamento-c.png) <!-- {.full-width} -->
+![](../../images/erros-comuns-js0-arejamento-d.png) <!-- {.full-width} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 02. Falhar na **indentação** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-indentacao-a.png) <!-- {.full-width} --> <!-- {p:.bullet} -->
+![](../../images/erros-comuns-js0-indentacao-b.png) <!-- {.full-width} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 03. Nomes de variáveis **sem significado** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-nomes-sem-significado.png) <!-- {.full-width.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 04. Nomes de variáveis **específicos demais** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-nome-especifico-demais.png) <!-- {.full-width.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 05. Esquecer **`console.log`, `alert`** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-esquecer-printf.png) <!-- {.full-width.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 06. Esquecer que **vetor começa de 0** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-indice-do-vetor.png) <!-- {.full-width.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 07. Desnecessário **passar tamanho** do vetor <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-tamanho-vetor.png) <!-- {.full-width.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 08. Deixar de **parametrizar** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-nao-parametrizar.png) <!-- {.full-width.bullet} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 09. Esquecer de **retornar o resultado** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-esquecer-de-retornar.png) <!-- {.full-width.bullet} -->
+
+

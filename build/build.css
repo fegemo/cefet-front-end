@@ -343,6 +343,9 @@ div.did-you-know > p {
 .tipo-object {
   color: #4d8c21;
 }
+.dashed {
+  border: 2px dashed #808080;
+}
 #easter-egg-panel {
   position: absolute;
   right: 1vw;

@@ -724,3 +724,54 @@ loja.vender(); // loja.dinheiro = 530
 
 1. Capítulo 2 do livro "Javascript: The Good Parts"
 1. Mozilla Developer Network (MDN)
+
+---
+<!-- {"layout": "main-point", "slideHash": "erros-comuns"} -->
+# Erros comuns durante a prática
+
+---
+<!-- {"layout": "regular"} -->
+## 01. Falhar na **indentação** e **arejamento** (1/2) <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-indentacao-b.png) <!-- {.full-width.dashed} --> <!-- {p:.bullet} -->
+![](../../images/erros-comuns-equacoes-arejamento.png) <!-- {.full-width.dashed} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 01. Falhar na **indentação** e **arejamento** (2/2)
+
+![](../../images/erros-comuns-equacoes-indentacao-a.png) <!-- {.full-width.dashed} -->
+![](../../images/erros-comuns-equacoes-indentacao-e-arejamento.png) <!-- {.full-width.dashed} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 02. Código com **baixa legibilidade** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-baixa-legibilidade.png) <!-- {.full-width} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 03. Esquecer **`alert`** ou **`console.log`** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-esquecer-alert.png) <!-- {.full-width} -->
+
+---
+<!-- {"layout": "regular"} -->
+## 04. Nome **genérico para arquivo** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-a.png) <!-- {.full-width.dashed} -->
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-b.png) <!-- {.full-width.dashed} -->
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-c.png) <!-- {.full-width.dashed} -->
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-d.png) <!-- {.full-width.dashed} -->
+
+---
+<!-- {"layout": "2-column-content-zigzag"} -->
+## 05. **Sufixo "El"** para certas variáveis <!-- {h2:.bullet} -->
+
+❌ <!-- {style="text-align: right; margin-right: 1em"} -->
+
+![](../../images/erros-comuns-equacoes-sufixo-el-incorreto.png) <!-- {.full-width} -->
+
+![](../../images/erros-comuns-equacoes-sufixo-el-correto.png) <!-- {.full-width} -->
+
+✅
