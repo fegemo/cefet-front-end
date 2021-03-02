@@ -253,11 +253,13 @@ containerEl.appendChild(novaOvelhaEl);
 <!-- {ul:.content} -->
 
 ---
-![](../../images/cefet-front-end-todo-storage-1.png)
+<!-- {"layout": "2-column-content"} -->
+## O que mudou?
 
-- O que mudou? <!-- {ul:style="margin-top: 0;"} -->
-  - Um novo `<input>` para o nome do "dono da lista"
-  - Botões para `#salvar` e `#carregar` os dados
+![](../../images/activity-thumbs/todo-storage.jpg) <!-- {.full-width} --> <!-- {p:style="width: 70%"} -->
+
+- Um novo `<input>` para o nome do "dono da lista" <!-- {ul:style="width: 28%"} -->
+- Botões para `#salvar` e `#carregar` os dados
 
 ---
 <!-- {"layout": "regular"} -->
@@ -272,7 +274,7 @@ containerEl.appendChild(novaOvelhaEl);
   - [Enunciado completo][enunciado-lista-tarefasx2]
   - Resumão: implemente os botões `#salvar` e `#carregar` para armazenar e
     recuperar quem é o dono da lista de tarefas
-    ![](../../images/cefet-front-end-todo-storage-2.png) <!-- {img:.centered} -->
+    ![](../../images/cefet-front-end-todo-storage-2.jpg) <!-- {.full-width} -->
 
 [codigo-seminal-lista-tarefasx2]: https://github.com/fegemo/cefet-front-end-todo/archive/master-webstorage.zip
 [enunciado-lista-tarefasx2]: https://github.com/fegemo/cefet-front-end-todo/blob/master-webstorage/README.md
@@ -445,7 +447,7 @@ use comentários JSON em vez de input[type=hidden] -->
 
 - No **Exercício 5**, você deve salvar e carregar a lista de tarefas do
   usuário, no mesmo momento que salva/carrega o nome do dono da lista
-- ![](../../images/cefet-front-end-todo-storage-3.png) <!-- {.push-right} -->
+- ![](../../images/cefet-front-end-todo-storage-3.jpg) <!-- {.push-right style="max-width: 450px"} -->
   No **Desafio 1**, você deve implementar o botão `#minimizar` que
   minimiza/restaura a logomarca
   - Para isso, simplesmente alterne a classe `.minimizado` em `#marca`
