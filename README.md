@@ -23,15 +23,15 @@
 ### TP2: Aplicação Web
 
 ::: gallery .fish-eye
-- [![](images/trabalhos/2017/friday.png)](https://lord4of4games.github.io/)
+- [![](images/trabalhos/2020/desenho-sem-fio.jpg)](https://serene-forest-07071.herokuapp.com/)
+- [![](images/trabalhos/2020/blackhole-clicker.jpg)](https://o-g7.github.io/blackhole-clicker/)
+- [![](images/trabalhos/2020/vulcaniando.jpg)](https://evelynlaura.github.io/vulcaniando-x2/passaporte/passaporte.html)
+- [![](images/trabalhos/2020/pizza-clicker.jpg)](https://poipoipepe.github.io/Clicker-Pizza/)
+- [![](images/trabalhos/2018/site-dev-tycoon.jpg)](https://sitedevtycoon.neocities.org/)
+- [![](images/trabalhos/2018/disfarca-bobos.jpg)](https://disfarca-bobos.neocities.org)
 - [![](images/trabalhos/2017/life.png)](https://daniekans.github.io/apl)
-- [![](images/trabalhos/2017/classrun.png)](https://classrun.000webhostapp.com)
-- [![](images/trabalhos/2017/sonorize.png)](https://sonorize.github.io)
 - [![](images/trabalhos/2017/symphony.png)](https://sirpedr.github.io/SymphonyOfBlades)
 - [![](images/trabalhos/2017/thecircus.png)](https://sirpedr.github.io/TheCircus)
-- [![](images/trabalhos/2018/site-dev-tycoon.png)](https://sitedevtycoon.neocities.org/)
-- [![](images/trabalhos/2018/protect-the-planet.png)](https://jjoaovviniciuss.github.io/)
-- [![](images/trabalhos/2018/disfarca-bobos.png)](https://disfarca-bobos.neocities.org)
 :::
 
 ---
