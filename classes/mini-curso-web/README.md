@@ -2,10 +2,8 @@
 # Programação Web usando <br>HTML e CSS
 ## História da Web, Plantas Carnívoras, Ingredientes do HTML (_tags_) e Temperando com CSS
 
-
 ---
-<!-- {"layout": "regular"} -->
-# hoje vamos...
+# Hoje vamos...
 
 1. Entender a [história da Web](#web-igual-internet)
 1. Conhecer os [principais componentes da Web](#componentes-web)
@@ -18,18 +16,18 @@
 1. Entender um pouco de [estilo CSS](#estilo-css):
    - `color`, `background-color`
    - `margin`, `text-align`
+
 ---
-<!-- {"layout": "section-header", "slideHash": "web-igual-internet"} -->
+<!-- {"layout": "section-header", "hash": "web-igual-internet"} -->
 # Web == Internet?
 ## A Web é a mesma coisa que a Internet?
 
 - Personagens da história
 - Surgimento da Internet
 - Internet pré-web
-
 <!-- {ul:.content} -->
+
 ---
-<!-- {"layout": "regular"} -->
 # Fatos importantes
 
 Surgimento:
@@ -53,7 +51,7 @@ Dúvidas:
 
 
 ---
-<!-- {"layout": "main-point", "state": "emphatic", "slideHash": "internet-pre-web"} -->
+<!-- {"layout": "main-point", "state": "emphatic", "hash": "internet-pre-web"} -->
 # Dúvida...
 ## Mas se a Web surgiu apenas em 1989, o que era a Internet antes dela?
 
@@ -62,39 +60,45 @@ Dúvidas:
 :::
 
 ---
+<!-- {"layout": "centered"} -->
 ::: figure
 ![Tela do cliente de E-mail ELM](../../images/email-elm.png)
 <figcaption>Cliente de E-mail ELM (1986)</figcaption>
 :::
 
 ---
+<!-- {"layout": "centered"} -->
 ::: figure
 ![Tela do cliente de E-mail Pine](../../images/email-pine.png)
 <figcaption>Cliente de E-mail Pine (1989)</figcaption>
 :::
 
 ---
+<!-- {"layout": "centered"} -->
 ::: figure
 ![Tela do BBS Koala Country](../../images/bbs-koala-country.jpg)
 <figcaption>BBS Koala Country (1989)</figcaption>
 :::
 
 ---
-::: figure . height: calc(90% - 3em)
+<!-- {"layout": "centered"} -->
+::: figure
 <figcaption>Usenet GNUs</figcaption>
 
-![Tela do Usenet GNUs](../../images/usenet-gnus.png)
+![Tela do Usenet GNUs](../../images/usenet-gnus.png) <!-- {style="height: 500px"} -->
 :::
 
 ---
-::: figure . height: calc(90% - 3em)
+<!-- {"layout": "centered"} -->
+::: figure
 <figcaption>Gopher de Jospeh Maistre</figcaption>
 
-![Tela do gopher de Jospeh Maistre](../../images/gopher-jospeh-maistre.png)
+![Tela do gopher de Jospeh Maistre](../../images/gopher-jospeh-maistre.png) <!-- {style="height: 500px"} -->
 :::
 
+
+
 ---
-<!-- {"layout": "regular"} -->
 ## A era Pré-web
 
 - O que mais se aproximava de **troca organizada de documentos** era o
@@ -106,17 +110,15 @@ Dúvidas:
   informação em "formato de teia"
 
 ---
-<!-- {"layout": "section-header", "slideHash": "definicao-web"} -->
+<!-- {"layout": "section-header", "hash": "definicao-web"} -->
 # O que é a Web
 ## Definição e Composição
 
 - Definição de Web
 - Linguagens da Web
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Definição **(~~in~~formal)** de Web
 
 - **World Wide Web**, ou WWW, traduz em "teia mundial"
@@ -137,7 +139,6 @@ Dúvidas:
 <!-- {dl:.bulleted} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Definição **(formal)** de Web
 
 Segundo Andrew Tanembaum (autor de vários livros de Computação):
@@ -159,16 +160,15 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 <!-- {dl:.width-40} -->
 
 ---
-<!-- { "layout": "2-column-highlight-and-list" , "slideHash": "o-que-compoe-web"} -->
-
+<!-- { "layout": "2-column-highlight-and-content" , "hash": "o-que-compoe-web"} -->
 ## O que **compõe** uma página web?
 
-<figure style="height: 80%">
-  <figcaption><a href="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html"><code>racas-raras.html</code></a></figcaption>
-  <iframe src="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html" height="90%" width="100%">
-    ![Tela da página sobre raças de ovelhas](../../images/cefet-web-ovelhas.png)
-  </iframe>
-</figure>
+::: figure . height: 90%
+<figcaption><a href="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html" target="_blank"><code>racas-raras.html</code></a></figcaption>
+<iframe src="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html" height="90%" width="100%">
+  ![Tela da página sobre raças de ovelhas](../../images/cefet-web-ovelhas.png)
+</iframe>
+:::
 
 - Uma página web é formada por **arquivos**:
   - **01** arquivo no formato HTML (*e.g.*, `racas-raras.html`)
@@ -179,6 +179,7 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 
 *[HTML]: Hypertext Markup Language*
 *[CSS]: Cascading Stylesheets*
+
 
 ---
 <!-- {
@@ -542,7 +543,7 @@ ovelha.inicializa();
 
 ---
 <!-- {
-  "layout": "2-column-highlight-and-list",
+  "layout": "2-column-highlight-and-content",
   "embeddedStyles": ".titulo-raras-ovelhas { color: purple; font-family: 'Comic Sans', cursive; font-weight: normal; border-bottom: 2px solid currentColor; }"
 } -->
 ## A página das **Raras Ovelhas** <!-- {.titulo-raras-ovelhas} -->
@@ -564,7 +565,7 @@ ovelha.inicializa();
 
 
 ---
-<!-- {"layout": "section-header", "slideHash": "componentes-web"} -->
+<!-- {"layout": "section-header", "hash": "componentes-web"} -->
 # Surgimento da Web
 ## As principais façanhas de Tim: Os 5 componentes básicos  da Web
 
@@ -576,7 +577,6 @@ ovelha.inicializa();
 <!-- {ul:.content} -->
 
 ---
-<!-- { "layout": "regular"} -->
 ## Tim, o Coração Valente
 
 - ::: figure .floating-portrait-container.push-right
@@ -594,6 +594,7 @@ ovelha.inicializa();
   - **_World Wide Web_**
 
 *[CERN]: Conseil Européen pour la Recherche Nucléaire*
+
 ---
 <!-- {"layout": "main-point", "state": "emphatic"} -->
 ## Tim, o coração valente, tinha uma dúvida
@@ -607,7 +608,6 @@ de forma hierárquica**. E quero que eles possam conter imagens, tabelas, títul
 e outras coisas legais.
 
 ---
-<!-- {"layout": "regular"} -->
 ## HyperText Markup Language (HTML)
 
 - É um _formato de arquivo_ (`.html`) em texto simples (*plain-text*) em que
@@ -624,7 +624,6 @@ e outras coisas legais.
       ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Um **arquivo `html`** completo
 
 - `pagina-singela.html`:
@@ -664,7 +663,6 @@ navegador. Mas quero poder acessar **arquivos de qualquer um que se disponha a
 deixar o computador ligado**, em qualquer parte do mundo.
 
 ---
-<!-- {"layout": "regular"} -->
 ## Servidores Web
 
 - É o **programa que executa** em um computador **24/7** e _"conversa" com os
@@ -693,7 +691,7 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
 **conversar**?
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/http-diagram.min.css"]} -->
 ## **HTTP**
 
 - É um **protocolo** na camada de aplicação
@@ -701,50 +699,67 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
   > entidades se comunicam.
   - É a **"língua falada" pelo navegador e pelo servidor web**
 - Modelo requisição &rarr; resposta
-  ::: figure .figure-slides.no-margin
-  ![](../../images/http-diagram-informal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  ![](../../images/http-diagram-informal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  :::
+
+::: figure .http-diagram.flex-align-center.figure-slides.clean.no-margin.invert-colors-dark-mode
+![](../../images/http-diagram-informal.svg) <!-- {.step-1 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![](../../images/http-diagram-informal.svg) <!-- {.step-2 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![](../../images/http-diagram-informal.svg) <!-- {.step-3 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
+<!-- {"layout": "2-column-content", "embedSVG": "img[src$='.svg']"} -->
 ### **Navegador requisita** algo e **Servidor responde**
 
-```http
-GET /index.html HTTP/1.1
-Host: www.twitter.com
-```
-![](../../images/http-diagram-informal-2.png) <!-- {.three-quarter-width.centered} --> <!-- {p:.no-margin} -->
-```http
-HTTP/1.1 200 OK
-Date: Mon, 23 May 2005 22:38:34 GMT
-Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-Content-Type: text/html; charset=UTF-8
-Content-Length: 131
+- ![](../../images/http-diagram-informal.svg) <!-- {.full-width.centered.step-3.invert-colors-dark-mode} --> <!-- {ul:.http-diagram.no-bullets.no-padding.bullet} -->
+  Requisição:
+  ```http
+  GET /index.html HTTP/1.1
+  Host: www.twitter.com
+  ```
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Twitter</title>
-</head>
-<body>
-  Olá mundo, este é um tweet.
-</body>
-</html>
-```
+1. Resposta: <!-- {ol:.bullet.no-bullets.no-padding.compact-code} -->
+   ```http
+   HTTP/1.1 200 OK
+   Date: Mon, 23 May 2005 22:38:34 GMT
+   Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+   Content-Type: text/html; charset=UTF-8
+   Content-Length: 131
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Twitter</title>
+   </head>
+   <body>
+     Olá mundo, este é um tweet.
+   </body>
+   </html>
+   ```
+
 ---
 # Funcionamento da Web
 ## URL - Unique **Resource** Locator
 
-- É o **endereço de coisas** na Internet - **páginas, imagens, arquivos**, etc.   
-    ![](../../images/url-1.png) <!-- {.block} -->
-- Assim que a resposta é recebida, o navegador a exibe na tela, caso **consiga**
-  - Por exemplo, os navegadores não conseguem exibir um arquivo .zip
-<!-- {ul:.content} -->
+- É o **endereço de coisas**: **páginas, imagens, arquivos**, etc.   
+    ![As partes de uma URL](../../images/url-parts.svg) <!-- {.block.full-width} -->
+    
+    domínio <!-- {dl.bulleted} -->
+    ~ Em que computador estão os arquivos
 
+    porta
+    ~ Qual endereço do programa dentro do computador
 
+    caminho
+    ~ Qual o endereço até o arquivo
+
+- Assim que recebe a resposta, o navegador mostra na tela, _se der_
+ 
+*[URL]: Unique Resource Locator*
 
 ---
-<!-- {"layout": "section-header", "slideHash": "estrutura-basica-html"} -->
+<!-- {"layout": "section-header", "hash": "estrutura-basica-html"} -->
 # Estrutura Básica do **HTML**
 ## . <!-- {style="visibility: hidden;"} -->
 
@@ -752,14 +767,14 @@ Content-Length: 131
   - _Tag_ `<html>...</html>`
   - _Tag_ `<head>...</head>`
   - _Tag_ `<body>...</body>`
-
 <!-- {ul^1:.content} -->
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ![Exemplo de um arquivo html](../../images/exemplo-html.png)
 
 ---
-<!-- {"state": "show-active-slide-and-previous"} -->
+<!-- {"layout": "centered-horizontal", "state": "show-active-slide-and-previous"} -->
 ![Exemplo de um arquivo html no navegador](../../images/exemplo-html-resultado.png)
 
 ---
@@ -784,32 +799,33 @@ Content-Length: 131
   - `<body>...</body>`
 
 ---
+<!-- {"layout": "2-column-content"} -->
 ## A _tag_ &lt;head&gt;
-<style>
-	pre{
-		height: 240px;
-	}
-</style>
+
 - Do inglês: cabeça
-- Contém **meta-informação** sobre este arquivo `html`, por exemplo:
-  - **Título da página** no topo do navegador (obrigatório)
-  - **Codificação** (_encoding_) da página, **Ícone**, **Inclusão de arquivos** (`.css`, `.js`)
-- Trecho de código <!-- {li:.compact-code-more} -->
-  ```html
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <title>Este é o título que aparece na aba</title>
-      ...
-    </head>
-    <body>
-      ...
-    </body>
-  </html>
-  ```
+- Contém **meta-informação** sobre este arquivo HTML, por exemplo: <!-- {li:.bulleted} -->
+  - **Codificação** (_encoding_) da página
+  - **Título da página** na aba/janela do navegador
+  - Iconezinho (_favicon_)
+  - Inclusão de outros arquivos (`.css`, `.js`)
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>   ⬅️
+    <meta charset="utf-8">  <!-- codific. -->
+    <title>Título na aba/janela</title>
+    <link rel="icon" href="icone.png">
+    ...
+  </head>  ⬅️
+  <body>
+    ...
+  </body>
+</html>
+```
 
 ---
+<!-- {"layout": "2-column-content"} -->
 ## A _tag_ &lt;body&gt;
 
 - Do inglês: corpo
@@ -817,19 +833,25 @@ Content-Length: 131
   - parágrafos (`<p>...</p>`)
   - títulos e subtítulos (`<h1>...</h1>`)
   - imagens (`<img>`), etc.
-- Trecho de código
-  ```html
-  <!DOCTYPE html>
-  <html>
-    <head>...</head>
-    <body>
-      ...
-    </body>
-  <html>
-  ```
+- É tudo visível logo abaixo da barra de endereços até o "chão"
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>...</head>
+  <body>   ⬅️
+    ...
+    <h1>Título Grandão</h1>
+    ...
+    <p>Um textinho qualquer</p>
+    <img src="estrela.png">
+    ...
+  </body>  ⬅️
+<html>
+```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "tags-html"} -->
+<!-- {"layout": "section-header", "hash": "tags-html"} -->
 # Algumas _tags_ HTML
 ## . <!-- {style="visibility: hidden"} -->
 
@@ -838,18 +860,22 @@ Content-Length: 131
 - Títulos e subtítulos
 - Imagens
 - Hiperlinks
-
 <!-- {ul:.content} -->
 
 ---
+<!-- {"embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/tag-anatomy.min.css"]} -->
 ## Anatomia de uma **_tag_**
 
-::: figure .figure-slides
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-5.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+::: figure .figure-slides.tag-anatomy.clean.flex-align-center.invert-colors-dark-mode
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-0} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-1} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-2} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-3} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-4} -->
 :::
 
 - Tags de abertura podem ter **atributos**: <!-- {ul:.bulleted} -->
@@ -862,7 +888,7 @@ Content-Length: 131
     - `<img src="...">` <span style="color: green">:thumbsup:</span>
 
 ---
-<!-- {"layout": "regular", "slideHash": "tag-paragrafo"} -->
+<!-- {"hash": "tag-paragrafo"} -->
 ## _Tag_ de **<u>Parágrafo</u>** (`<p>...</p>`)
 
 - **Quebras de linha** são feitas automaticamente <!-- {li:.compact-code} -->
@@ -879,7 +905,7 @@ Content-Length: 131
   :::
 
 ---
-<!-- {"layout": "2-column-content","slideHash": "tag-titulo-subtitulo"} -->
+<!-- {"layout": "2-column-content","hash": "tag-titulo-subtitulo"} -->
 ## _Tag_ de **<u>Títulos</u>** e **<u>Subtítulos</u>** (`h1`, `h2` ... `h6`)
 
 ```html
@@ -889,15 +915,15 @@ Content-Length: 131
 <p>Este é o corpo da subseção</p>
 ```
 
-<iframe width="100%" height="260" src="//jsfiddle.net/fegemo/wxd5s6be/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="230" src="//jsfiddle.net/fegemo/wxd5s6be/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - Há a possibilidade de ter **6 <u>níveis</u> de títulos**
   - Mas a quantidade de títulos é infinita... por exemplo :arrow_right:
 
-<iframe width="100%" height="260" src="//jsfiddle.net/fegemo/qLc41vs3/embedded/html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="230" src="//jsfiddle.net/fegemo/qLc41vs3/embedded/html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular", "slideHash": "tag-imagem"} -->
+<!-- {"hash": "tag-imagem"} -->
 ## _Tag_ de **<u>Imagem</u>** (`<img>`)
 
 - ![Mascote do programa GitKraken](https://fegemo.github.io/kraken-typing/imgs/site/logo-gitkraken.png)  
@@ -914,7 +940,6 @@ Content-Length: 131
   - Veja a diferença no próximo slide
 
 ---
-<!-- {"layout": "regular"} -->
 ## URL externa vs interna
 
 URL **externa**
@@ -930,7 +955,7 @@ URL **interna** <!-- {.alternate-color} -->
     - imagens/ovelha.jpg
 
 ---
-<!-- {"slideHash": "tag-hiperlink"} -->
+<!-- {"hash": "tag-hiperlink"} -->
 ## _Tag_ de **_Hyperlink_** (`<a href="">...</a>`)
 
 - [Link externo](http://www.google.com) (para fora da página):
@@ -959,15 +984,22 @@ URL **interna** <!-- {.alternate-color} -->
 ## Como o navegador <u>vai desenhar</u> as _tags_ HTML?
 
 - Ele usa estilos padrão:
-  - Cor: preta
-  - Fundo de tela: branca
-  - Fonte: Times New Roman (no Windows)
+  
+  Cor do texto
+  ~ preta
+  
+  Cor de fundo
+  ~ branca
+
+  Fonte
+  ~ Times New Roman para títulos (no Windows)
+  ~ Arial para parágrafos
 - Cada navegador pode ter um estilo padrão diferente
 - É possível e altamente recomendável <u>criar estilos próprios</u>
 - Vamos conhecer agora uma segunda linguagem: CSS
 
 ---
-<!-- {"layout": "section-header", "slideHash": "estilo-css"} -->
+<!-- {"layout": "section-header", "hash": "estilo-css"} -->
 # Um pouco de estilo
 ## Conhecendo CSS - Cascading Stylesheets
 
@@ -977,39 +1009,50 @@ URL **interna** <!-- {.alternate-color} -->
   - Cor do fundo: `background-color`
   - Margem (espaçamento): `margin`
   - Fonte: `font-family`
-
 <!-- {ul^1:.content} -->
 
 ---
-## Definindo o estilo
+## Definindo o estilo (aparência)
 
 - Adicionamos um novo elemento: `<style>...</style>`
-- Podemos colocá-lo no &lt;head&gt; ou no &lt;body&gt;, mas a **melhor prática é
-  no cabeçalho**
+- Podemos **colocá-lo no `<head>`** (boa prática) ou no `<body>` (não faça) <!-- {ul:.compact-code} -->
   ```html
+  <!DOCTYPE html>
   <html>
     <head>
       <title>Título da página</title>
+      <!-- início do CSS -->
       <style>
-        /* escrever código CSS aqui dentro */
+        body {
+          background-color: teal; /* um tom de azul */
+        }
       </style>
+      <!-- fim do CSS -->
     </head>
     <body>
     ...
   ```
----
-## CSS: **seletor** e **declaração**
-
-![Regra CSS](../../images/css-selector.png)
 
 ---
-<!-- {"state":"show-active-slide-and-previous"} -->
-## CSS: **propriedade** e **valor**
+<!-- {"layout": "centered", "embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/css-rule-anatomy.min.css"]} -->
 
-![Regra CSS](../../images/css-property-value.png)
+::: figure .figure-slides.clean
+![Uma regra CSS mostrando](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![Uma regra CSS mostrando](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.rule} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+:::
+---
+<!-- {"layout": "centered", "embedSVG": "img[src$='.svg']", "state": "show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "200px", "--show-2-slides-z-distance": "-150px", "--show-2-slides-rotation": "5deg"}} -->
+
+![Regra CSS](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.selector.declaration} -->
 
 ---
-<!-- {"slideHash": "css-cores"} -->
+<!-- {"layout": "centered", "embedSVG": "img[src$='.svg']"} -->
+
+![Regra CSS](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.property.value} -->
+
+---
+<!-- {"hash": "css-cores"} -->
 ## Entendendo o estilo: **cores**
 
 - ```css
@@ -1027,7 +1070,7 @@ URL **interna** <!-- {.alternate-color} -->
   Define a **cor do texto** como branco
 
 ---
-<!-- {"slideHash": "css-margens"} -->
+<!-- {"hash": "css-margens"} -->
 ## Entendendo o estilo: **margens laterais**
 
 - ![](../../images/margin-left.png) <!-- {.push-right} -->
@@ -1041,7 +1084,7 @@ URL **interna** <!-- {.alternate-color} -->
   - Também existem: `margin-top` (cima) e `margin-bottom` (baixo)
 
 ---
-<!-- {"slideHash": "css-fonte"} -->
+<!-- {"hash": "css-fonte"} -->
 ## Entendendo o estilo: **fonte**
 
 - ![](../../images/font-families.png) <!-- {.push-right} -->
@@ -1059,13 +1102,8 @@ URL **interna** <!-- {.alternate-color} -->
   Define a **fonte** sendo usada para o texto de **todos `<h1>` na página**
 
 ---
-<!-- {"layout": "regular", "slideHash": "css-alinhamentoTexto"} -->
+<!-- {"hash": "css-alinhamentoTexto"} -->
 ## Entendendo o estilo: **alinhamento do texto**
-<style>
-pre{
-	height: 100px;
- }
-</style>
 
 - ![](../../images/text-align-justify.png) <!-- {ul:.item-code-with-image.full-width.compact-code} -->
   ```css
@@ -1091,7 +1129,9 @@ pre{
     text-align: center;
   }
   ```
+
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ## Definindo o estilo
 
 ```css
@@ -1121,35 +1161,34 @@ h2 {
 ...e o resultado...
 
 ---
-<!-- {"layout": "regular"} -->
 ## Definindo o estilo (cont.)
 
 <iframe width="100%" height="500" src="//jsfiddle.net/fegemo/ojmwh8gb/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 ---
-<!-- {"layout": "section-header", "slideHash": "minha-primeira-pagina-web"} -->
+<!-- {"layout": "section-header", "hash": "minha-primeira-pagina-web"} -->
 # Minha Primeira Página Web
 ## Como cria-las, o que elas comem, seu habitat etc.
 
 - Atividade de Hoje
 - Ferramentas necessárias
 - Um arquivo HTML
-
 <!-- {ul:.content} -->
+
 ---
+<!-- {"layout": "centered-horizontal"} -->
 # Atividade de Hoje ![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!--{style="height:1em;"}-->
 
-Você tem um novo _hobby_: **criar plantas carnívoras**. Você encontrou um
-documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
+Você tem um novo _hobby_: **criar plantas carnívoras**.
+<!-- {p:style="width: 50%"} -->
+
+Você encontrou um documento solto em um antigo livro
+do seu tio e, depois de lê-lo, decidiu
 **criar uma página web**.
 <!-- {p:style="width: 50%"} -->
 
-
-
 ---
-<!-- {"state":"show-active-slide-and-previous"} -->
+<!-- {"layout": "centered-horizontal", "state":"show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "300px", "--show-2-slides-z-distance": "-400px"}} -->
 ![](../../images/piranha-plant-exercise.png)
-
-
 
 ---
 <!-- {"layout": "tall-figure-right"} -->
@@ -1178,11 +1217,10 @@ documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
 ~ Plantas carnivoras,  [Veja aqui as instruções](https://github.com/fegemo/cefet-front-end-piranha-plant)
 
 - Acesse aqui resumo sobre as [tags HTML](http://bit.ly/2IVYBZ6) e [regras CSS](http://bit.ly/2KIPpt7)
+
 ---
-<!-- { "styles": ["styles/classes/books.min.css"] } -->
+<!-- {"layout": "centered"} -->
 # Referência
 
-- Elisabeth Robson, Eric Freeman. **Use a Cabeça HTML e CSS**, 2ª edição .O'Reilly Media, 2015 (tradução)
+- Elisabeth Robson, Eric Freeman. **Use a Cabeça HTML e CSS**, 2ª edição O'Reilly Media, 2015 (tradução)
 
-
----

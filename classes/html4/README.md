@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# HTML (parte 4)
+# **HTML** parte 4
 ## Div/Span, Box Model, Float e Desafios
 
 ---
@@ -9,20 +9,21 @@
 - Vimos a **ferramenta do desenvolvedor** do Google Chrome
   - Usamos para **investigar erros** e **experimentar propriedades**
 
-![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png) <!-- {.medium-width.centered} -->
+![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png) <!-- {.push-right.large-width.bordered.rounded} -->
 
-![Uma árvore com os elementos HTML](../../images/html-tree-1.png) <!-- {.medium-width.centered} -->
+![Uma árvore com os elementos HTML](../../images/html-tree-1.png) <!-- {.medium-width.centered.block} -->
 
 - Podemos enxergar o HTML da página como uma "árvore" de elementos
 
 ---
+<!-- {"layout": "tall-figure-right"} -->
 # ![Foto de Håkon Wium Lie](../../images/howcome.jpg) <!-- {.portrait.push-right} --> Na última aula... (2/3)
+
+<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
 
 - CSS foi criada por Håkon Wium Lie em 1994
 - Entendemos o que é **a cascata** no CSS:
-  - <iframe width="60%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
-
-    Algumas **propriedades são herdadas** dos elementos ancestrais (_e.g._,
+  - Algumas **propriedades são herdadas** dos elementos ancestrais (_e.g._,
      cor do texto), outras não (_e.g._, a borda)
 
 ---
@@ -30,21 +31,22 @@
 
 - Além de selecionar por _tag_, id ou classe, há diversos **outros seletores**:
 
-  descend./filho
-    ~ `p strong`: todo `<strong>` descendente de `<p>` (filho, neto etc.)
-    ~ `p > strong`: todo `<strong>` filho direto de `<p>`
+descend./filho <!-- {dl:.no-margin} -->
+  ~ `p strong`: todo `<strong>` descendente de `<p>` (filho, neto etc.)
+  ~ `p > strong`: todo `<strong>` filho direto de `<p>`
 
-  atributo
-    ~ `img[alt]`: toda `<img>` que tem atributo `alt="..."`
-    ~ `a[href$=".html"]`: todo `<a>` apontando para um `.html` etc.
+atributo
+  ~ `img[alt]`: toda `<img>` que tem atributo `alt="..."`
+  ~ `a[href$=".html"]`: todo `<a>` apontando para um `.html` etc.
 
-  estado do link
-    ~ `a:link`, `a:visited`, `a:hover`, `a:active`
+estado do link
+  ~ `a:link`, `a:visited`, `a:hover`, `a:active`
 
-  negação
-    ~ `img:not([alt])`: `<img>` sem o atributo `alt`
+negação
+  ~ `img:not([alt])`: `<img>` sem o atributo `alt`
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [`div` e `span`](#div-e-span)
@@ -53,7 +55,7 @@
 1. [Desafios](#desafios)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "div-e-span"} -->
+<!-- {"layout": "section-header", "hash": "div-e-span"} -->
 # **div** e **span**
 ## Agrupando outros elementos HTML
 
@@ -123,7 +125,6 @@ h1, h2 {
 ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Div** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div))
 
 - `<div></div>` serve para agrupar outros elementos
@@ -142,21 +143,20 @@ h1, h2 {
 <!-- {"layout": "2-column-content"} -->
 ## Div (exemplo)
 
-- Exemplo:
-  - `html`
-    ```html
-    <div id="topo-da-pagina">
-      <h1>Título do site</h1>
-      <h2>Subtítulo</h2>
-    </div>
-    ```
-  - `css`
-    ```css
-    #topo-da-pagina {
-      background-color: #4400ac;
-      color: #fffff;
-    }
-    ```
+- `html`
+  ```html
+  <div id="topo-da-pagina">
+    <h1>Título do site</h1>
+    <h2>Subtítulo</h2>
+  </div>
+  ```
+- `css`
+  ```css
+  #topo-da-pagina {
+    background-color: #4400ac;
+    color: #fffff;
+  }
+  ```
 
 ![](../../images/div-exemplo-titulo-subtitulo.png) <!-- {.bordered style="margin-top: 3em"} -->
 
@@ -168,9 +168,9 @@ h1, h2 {
 - ```html
   <body>
   ➡️ <div id="conteudo">
-      <h1>Tesouros</h1>
-      <table><!-- ... --></table>
-      <p>Ajude Barba-Ruiva ...</p>
+        <h1>Tesouros</h1>
+        <table><!-- ... --></table>
+        <p>Ajude Barba-Ruiva ...</p>
   ➡️ </div>
   </body>
   ```
@@ -180,17 +180,16 @@ h1, h2 {
     background: white;
   }
   ```
-  <!-- {ul:.no-list-icon} -->
+  <!-- {ul:.no-list-icon.no-margin} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Span** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span))
 
 - `<span></span>` **tem _exatamente_ <!-- {.underline.upon-activation} -->
   a mesma função** que `div`, porém `inline`
   <!-- {.underline.upon-activation.delay-1200} -->
 
-::: figure .figure-slides.no-margin.centered
+::: figure .figure-slides.no-margin.flex-align-center.invert-colors-dark-mode
 ![](../../images/span-exemplo-nome-preco-produto-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![](../../images/span-exemplo-nome-preco-produto-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
@@ -204,7 +203,7 @@ h1, h2 {
     ```
 
 ---
-<!-- {"embeddedStyles": ".artista { position: relative; padding-left: 1.25em; color: #ff3399; } .artista::before { content: '🎵'; display: inline-block; position: absolute; left: 0; top: 0; width: 1em; height: 1em; color: currentColor; }"} -->
+<!-- {"embeddedStyles": ".artista { position: relative; padding-left: 1.5em; color: #ff3399; } .artista::before { content: '🎵'; display: inline-block; position: absolute; left: 0; top: 0; width: 1em; height: 1em; color: currentColor; }"} -->
 ## Span (exemplo)
 
 - ```html
@@ -216,7 +215,7 @@ h1, h2 {
   ```css
   .artista {
     background: url(imgs/musica.png) no-repeat left;
-    padding-left: 15px;   color: #ff3399; /* rosa choque */
+    padding-left: 20px;   color: #ff3399; /* rosa choque */
   }
   ```
   ::: result
@@ -227,18 +226,17 @@ h1, h2 {
   <!-- {ul:.no-list-icon} -->
 
 ---
-<!-- {"layout": "section-header", "slideHash": "o-box-model"} -->
+<!-- {"layout": "section-header", "hash": "o-box-model"} -->
 # O _Box Model_
 ## Como os elementos são "vistos" pelo navegador
 
 - Componentes da caixa
 - `width` e `height`
 - Alterando o _box-model_
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
+<!-- {"embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
 
 - ![](../../images/box-model.png) <!-- {.push-right} -->
@@ -251,15 +249,15 @@ h1, h2 {
 
 <!-- {ul^1:style="margin-bottom: 0;"} -->
 
-![](../../images/box-model-sample.png) <!-- {p:.centered.no-margin} -->
+![](../../images/box-model-sample.png) <!-- {p:.flex-align-center.no-margin.invert-colors-dark-mode} -->
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ## Visualizando a caixa de um elemento
 
-<video src="../../videos/tools-box-model.mp4" height="440" controls class="centered"></video>
+<video src="../../videos/tools-box-model.mp4" height="440" controls></video>
 
 ---
-<!-- {"layout": "regular"} -->
 ## _Box Model_: **largura** e **altura**
 
 - Quando definimos a **largura** (`width`) ou **altura** (`height`) de
@@ -267,7 +265,7 @@ h1, h2 {
   do _conteúdo da caixa_, <!-- {em:.box-model-part style="background: #8bb4c0;"} -->
   e não da caixa inteira
 
-::: figure .figure-slides
+::: figure .figure-slides.flex-align-center.clean.invert-colors-dark-mode
 ![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
@@ -277,7 +275,7 @@ h1, h2 {
 :::
 
 ---
-<!-- {"layout": "regular-block"} -->
+<!-- {"layout": "tall-figure-right"} -->
 ## **Dimensionando** um elemento
 
 ::: did-you-know .push-right width: 320px; margin-right: 6px;
@@ -288,28 +286,23 @@ Elementos `inline` ignoram os valores de:
 - `margin-top`
 - `margin-bottom`
 :::
+
 - Se sabemos a dimensão total de um elemento, que também contém
   `padding` e/ou `border`, como calcular seus (`width`, `height`)?
-
-::: figure .figure-slides.push-right
-![](../../images/box-model-determine-dimensions-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
-![](../../images/box-model-determine-dimensions-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
-![](../../images/box-model-determine-dimensions-3.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
-![](../../images/box-model-determine-dimensions-4.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
-:::
-- Contudo, fazer essa conta "nós mesmos" pode resultar em erros... <!-- {ul:.bullet} -->
+  ::: figure .figure-slides.push-right.invert-colors-dark-mode
+  ![](../../images/box-model-determine-dimensions-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+  ![](../../images/box-model-determine-dimensions-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+  ![](../../images/box-model-determine-dimensions-3.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+  ![](../../images/box-model-determine-dimensions-4.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded} -->
+  :::
+- Contudo, fazer essa conta "nós mesmos" pode resultar em erros... <!-- {li:.bullet} -->
   - É possível mudar isso!
 
 ---
-<!-- {"layout": "regular-block", "embeddedStyles": ".max-width img{max-width:100%;}"} -->
+<!-- {"layout": "2-column-content", "slideStyles": {"grid-template-columns": "1fr auto"}, "embeddedStyles": ".max-width img{max-width:100%;}"} -->
 ## Alterando o _box model_
 
-::: did-you-know .push-right width: 284px; margin-left: 6px; padding-right: 0.5em
-As **margens** do elemento formam um **espaçamento externo** e não usam
-espaço dentro da caixa.
-:::
-
-- É possível alterar o significado da `width` e `height` de um elemento
+- É possível alterar o significado da `width` e `height` de um elemento <!-- {ul:.no-bullets.no-padding} -->
    **usando _a propriedade `box-sizing`_** <!-- {em:.underline.upon-activation.delay-3000} -->:
   - `box-sizing: content-box` (valor padrão)
     - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
@@ -319,7 +312,12 @@ espaço dentro da caixa.
       _border_ <!-- {.box-model-part style="background: #fddc9a;"} -->
     - Esta forma é mais intuitiva :thumbsup: :thumbsup: :thumbsup: <!-- {ul^2:style="margin-bottom: 0.25em"} -->
 
-::: figure .figure-slides.max-width.centered margin:0 auto; width: calc(100% - 290px); clear: both;
+::: did-you-know .push-right width: 284px; margin-left: 6px; padding-right: 0.5em
+As **margens** do elemento formam um **espaçamento externo** e não usam
+espaço dentro da caixa.
+:::
+
+::: figure .clean.span-columns.figure-slides.max-width.centered.invert-colors-dark-mode margin:0 auto; width: calc(100% - 290px); clear: both;
 ![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-border-box-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
@@ -327,12 +325,12 @@ espaço dentro da caixa.
 :::
 
 ---
-<!-- {"layout": "section-header", "slideHash": "revisitando-o-float", "embeddedStyles": ".guia-do-mochileiro { position: fixed; bottom: -225px; left: calc(50% + 20px); transition: all 200ms ease-out; } .guia-do-mochileiro-container { cursor: help; } .guia-do-mochileiro-container:hover .guia-do-mochileiro { bottom: -10px; box-shadow: 6px 3px 6px rgba(0, 0, 0, .5), -6px 3px 6px rgba(0, 0, 0, .5); }"} -->
+<!-- {"layout": "section-header", "hash": "revisitando-o-float", "embeddedStyles": ".guia-do-mochileiro { position: fixed; bottom: -225px; left: calc(50% + 20px); transition: all 200ms ease-out; } .guia-do-mochileiro-container { cursor: help; } .guia-do-mochileiro-container:hover .guia-do-mochileiro { bottom: -10px; box-shadow: 6px 3px 6px rgba(0, 0, 0, .5), -6px 3px 6px rgba(0, 0, 0, .5); }"} -->
 # Revisitando **float**
 
 > Para voar, basta errar o chão.
 > <cite>Douglas Adams no Guia do Mochileiro das Galáxias</cite> ![](../../images/guia-do-mochileiro.jpg) <!-- {.guia-do-mochileiro} -->
-<!-- {blockquote:.guia-do-mochileiro-container style="max-width: 42%"} -->
+<!-- {blockquote:.guia-do-mochileiro-container style="max-width: 42%; margin-left: 1em;"} -->
 
 - Relembrando o fluxo estático
   - `inline` e `block`
@@ -340,23 +338,21 @@ espaço dentro da caixa.
 - Possíveis "problemas":
   1. Interrompendo o _float_
   1. Remoção do fluxo
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- {"backdrop": "oldtimes"} -->
+<!-- {"layout": "centered-horizontal", "backdrop": "oldtimes"} -->
 ## Elementos **`block`**
 
 ![](../../images/flow1.png) <!-- {style="max-height: 60vh"} -->
-
 ---
-<!-- {"backdrop": "oldtimes", "state": "show-active-slide-and-previous"} -->
+<!-- {"layout": "centered-horizontal", "backdrop": "oldtimes", "state": "show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "300px", "--show-2-slides-z-distance": "-150px", "--show-2-slides-rotation": "5deg"}} -->
 ## Elementos **`inline`**
 
 ![](../../images/flow2.png) <!-- {style="max-height: 60vh"} -->
 
 ---
-<!-- {"backdrop": "oldtimes"} -->
+<!-- {"layout": "centered-horizontal", "backdrop": "oldtimes"} -->
 ## `block` e `inline`, juntos
 
 ![](../../images/flow3.png) <!-- {style="max-height: 60vh"} -->
@@ -369,7 +365,7 @@ espaço dentro da caixa.
 
   <div class="bullet figure-step bullet-no-anim"><img src="../../images/float-p3.png"><figcaption>Com float</figcaption></div>
   :::
-  Flutuando o parágrafo à direita:
+  Flutuando o parágrafo à direita: <!-- {ul:.compact-code} -->
   ```css
   p#amazing {
     width: 200px;
@@ -383,7 +379,6 @@ espaço dentro da caixa.
   - Os `inline`: respeitam o flutuante
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo: **flutuando** uma imagem
 
 <iframe width="100%" height="460" src="//jsfiddle.net/fegemo/7cofhyLc/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -391,7 +386,6 @@ espaço dentro da caixa.
 - Repare os **parágrafos** (`block`) e o **texto** dentro deles (`inline`)...
 
 ---
-<!-- {"layout": "regular"} -->
 ## Possíveis "problemas" com flutuação (1/2)
 
 ![](../../images/exemplo-float-problema-clear.png)
@@ -459,7 +453,7 @@ espaço dentro da caixa.
 <!-- {p:.no-margin.bullet style="margin-top: 1.5em;"} -->
 
 ---
-<!-- {"layout": "section-header", "slideHash": "desafios"} -->
+<!-- {"layout": "section-header", "hash": "desafios"} -->
 # Desafios
 ## Atividade de hoje
 
@@ -472,6 +466,7 @@ espaço dentro da caixa.
 <!-- {ul:.content} -->
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulos 9 (parcial), 10 e 11 (parcial) do livro

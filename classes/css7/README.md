@@ -1,35 +1,31 @@
 <!-- {"layout": "title"} -->
-# CSS (parte 7)
+# **CSS** parte 7
 ## _Responsive Web Design_
 
-<!--
-## Na última aula...
- -->
-
 ---
-<!-- {"embeddedStyles": ".multi-dispositivos { justify-content: center; } .multi-dispositivos li { text-align: center; margin-right: 2em; } .multi-dispositivos img { max-height: 170px; display: block; margin: auto; }"} -->
+<!-- {"embeddedStyles": ".multi-dispositivos { justify-content: center; } .multi-dispositivos li { text-align: center; margin-right: 2em; } .multi-dispositivos img { max-height: 160px; display: block; margin: auto; }"} -->
 # A Web é multi-dispositivos
 
-1. ![](../../images/device-desktop-notebook.png) <!-- {ol:.multi-dispositivos.horizontal-list-flex.no-list-icon.no-padding} -->
+
+1. ![](../../images/device-desktop-notebook.png) <!-- {.invert-colors-dark-mode} --> <!-- {ol:.multi-dispositivos.card-list style="flex-wrap: wrap"} -->
    Computadores
-1. ![](../../images/device-phone-tablet.png)
-   Telefones/_tablets_
-1. ![](../../images/device-console.png)
+1. ![](../../images/device-phone-tablet.png) <!-- {.invert-colors-dark-mode} -->
+   Telefones/_tablets_ 
+1. ![](../../images/device-console.png) <!-- {.invert-colors-dark-mode} -->
    _Videogames_
-1. ![](../../images/device-tv.png)
+1. ![](../../images/device-tv.png) <!-- {.invert-colors-dark-mode} -->
    _Smart TVs_
-1. ![](../../images/device-smartwatch.png)
+1. ![](../../images/device-smartwatch.png) <!-- {.invert-colors-dark-mode} -->
    [_Smartwatches_](https://www.youtube.com/watch?v=Ok1zcRQbvnk)
-1. ![](../../images/device-vr-headset.png)
+1. ![](../../images/device-vr-headset.png) <!-- {.invert-colors-dark-mode} -->
    _VR headsets_
-1. ![](../../images/device-car.png)
+1. ![](../../images/device-car.png) <!-- {.invert-colors-dark-mode} -->
    Carros
 
 *[VR]: Virtual Reality*
 
 
 ---
-<!-- {"layout": "regular"} -->
 # O que varia entre dispositivos?
 
 1. Tamanho da tela
@@ -45,7 +41,6 @@
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/responsive-resize.webm" loop="-1" controls id="responsive-resize"></video>
 
 ---
-<!-- {"layout": "regular"} -->
 # **Diretrizes** para a web multi-dispositivos <!-- {h1:style="font-size: 2.5em;"} -->
 
 1. **Independer de ampliação**
@@ -60,6 +55,7 @@
    - A página não pode demorar para carregar
 
 ---
+<!-- {"layout": "centered"} -->
 # Na aula de hoje
 
 1. [A _tag_ `meta` _viewport_](#a-tag-meta-viewport)
@@ -69,7 +65,7 @@
 1. [A Super Loja](#a-super-loja) :convenience_store:
 
 ---
-<!-- {"layout": "section-header", "slideHash": "a-tag-meta-viewport"} -->
+<!-- {"layout": "section-header", "hash": "a-tag-meta-viewport"} -->
 # A _tag_ `meta` _viewport_
 ## Como definir a janela da página
 
@@ -77,24 +73,22 @@
 - Relembrando a _tag_ `<meta>`
 - Definindo a janela de pintura (_viewport_)
 - Unidades de medida
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular-horizontal", "embeddedStyles": ".viewport-on-device { display: inline-block; margin: 0 3em 0 0; text-align: center; } .viewport-on-device img { margin: auto; display: block; max-height: 450px; } .viewport-on-device p { margin: 0; }"} -->
+<!-- {"layout": "2-column-content", "embeddedStyles": ".viewport-on-device { display: inline-block; margin: 0 3em 0 0; text-align: center; } .viewport-on-device img { margin: auto; display: block; max-height: 450px; } .viewport-on-device p { margin: 0; }"} -->
 
 ::: figure .viewport-on-device
 ![Uma página carregada em um smartphone Android que reduziu o tamanho da página para caber na tela pequena do dispositivo. O texto da página ficou bem pequeno por causa da redução.](../../images/viewport-not-set.png)
-<figcaption>Do jeito errado (se não<br>definirmos a viewport)</figcaption>
+<figcaption>Do jeito errado (se não<br>definirmos a <em>viewport</em>)</figcaption>
 :::
 
 ::: figure .viewport-on-device
 ![Uma página carregada em um smartphone Android com o tamanho do texto normal, sem a necessidade de o usuário ampliar a tela para ler.](../../images/viewport-set.png)
-<figcaption>Do jeito certo<br>(viewport definida)</figcaption>
+<figcaption>Do jeito certo<br>(<em>viewport</em> definida)</figcaption>
 :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## Carregando uma página no _smartphone_
 
 - O navegador, por padrão, assume que a página vai ocupar uns 1000px
@@ -102,29 +96,40 @@
   1. Navegador carrega a página
   1. Navegador vê que ela ocupou mais que a largura do dispositivo
   1. Navegador reduz (faz _zoom out_) na página
-- Para evitar que o usuário precise ampliar/reduzir, **podemos definir qual
+- Precisar dar zoom-in/out é uma experiência de uso ruim! <!-- {li:.note.info.bullet} -->
+- Para evitar que o usuário precise ampliar/reduzir, **podemos definir qual <!-- {li:.bullet} -->
   a largura da "janela de pintura" (_viewport_)** da página
   - Para tanto, vamos usar uma _tag_ `<meta>`
 
 ---
-<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
-## Codificação em uma Página web
+<!-- {"backdrop": "oldtimes"} -->
+## Codificação **Unicode** e UTF-8
 
-- Geralmente, tem-se utilizado UTF-8 nas páginas Web. Porém, nem todas as
-  páginas Web são UTF-8.
-- Por isso, precisamos especificar qual codificação usamos
-- Usa-se a `<meta>` _tag_ com o atributo `charset` para isso:
+- Unicode provê o suporte multilíngua <!-- {ul:.full-width} -->
+  - Diversos alfabetos, não apenas o romano/latino
+- **UTF-8** é uma codificação que usa uma sequência de **8 bits** para
+  armazenar códigos UNICODE
+  - Os 128 primeiros caracteres UTF-8 são idênticos aos ASCII
+    - Ou seja, todo o alfabeto, pontuações mais comuns e números
+- <!-- {li:.push-code-right.compact-code-more} -->
   ```html
-  <meta charset="ISO-8859-1"> <!-- ASCII romano/latino -->
-  <meta charset="utf-8">      <!-- utf-8 -->
+  ...
+  <head>
+    <meta charset="utf-8">  <!-- USE ESTA META TAG -->
+    <title>...</title>
+    ...
   ```
-- A `<meta>` define **configurações** (ou metainformações) da página <!-- {li:.nota style="margin-top: 0.5em;"} -->
+  Em HTML, dentro do `<head>` da página, usamos uma `<meta>` _tag_ com
+  o atributo `charset` para isso ➡️
+  - Essa _tag_ deve aparecer nos primeiros 1024 caracteres da página ([entenda][mdn-charset])
+- Para ASCII, seria `<meta charset="ISO-8859-1">` (ASCII romano/latino)
+
+[mdn-charset]: https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/meta#attr-charset
 
 ---
-<!-- {"layout": "regular"} -->
 ## Definindo a janela de pintura
 
-- Usamos uma _tag_ `<meta name="viewport" content="...">` para definir a largura da janela:
+- Usamos `<meta name="viewport" content="...">` para definir a largura da janela:
   ```html
   <meta name="viewport" content="width=device-width, initial-scale=1">
   ```
@@ -132,11 +137,10 @@
     igual à do dispositivo (não mais, não menos)
   - `initial-scale=1` faz com que a página **não seja** ampliada/reduzida
     inicialmente (mas ainda assim permitindo que o usuário o faça)
-- Ou seja, <u>devemos sempre usar</u> a `<meta name="viewport">` nos sites!
-- Referência: [MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag)
+- <u>Devemos sempre usar</u> a `<meta name="viewport">` nos sites!
+- Referência: [meta _tag_ viewport na MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag)
 
 ---
-<!-- {"layout": "regular"} -->
 ## Unidades de medida
 
 - Além da _viewport_, também precisamos definir **dimensões dos elementos**
@@ -149,7 +153,6 @@
 - Mas o que são unidades de medida relativas?
 
 ---
-<!-- {"layout": "regular"} -->
 ## Unidades de medida **relativas**
 
 - Absolutas (fixas) <!-- {li:style="opacity: 0.5;"} -->
@@ -169,7 +172,6 @@
   - `vmax` (1/100 maior dim.) <!-- {ul:.multi-column-list-2}-->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo: `em` _vs_ `rem`
 
 <iframe height='265' scrolling='no' title='Exemplo em vs rem' src='//codepen.io/fegemo/embed/JrvRgL/?height=300&theme-id=dark&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/fegemo/pen/JrvRgL/'>Exemplo em vs rem</a> by Flavio (<a href='https://codepen.io/fegemo'>@fegemo</a>) on <a href='https://codepen.io'>CodePen</a>.
@@ -181,7 +183,6 @@
 - **Quando usar**: para tamanhos, margens, `padding`, `line-height` etc.
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo: `vh` e `vw`
 
 <iframe height='326' scrolling='no' title='Exemplo vh e vw' src='//codepen.io/fegemo/embed/jGxVMV/?height=326&theme-id=dark&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/fegemo/pen/jGxVMV/'>Exemplo vh e vw</a> by Flavio (<a href='https://codepen.io/fegemo'>@fegemo</a>) on <a href='https://codepen.io'>CodePen</a>.
@@ -193,7 +194,7 @@
   proporção da janela** (_e.g._, slides)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "media-queries"} -->
+<!-- {"layout": "section-header", "hash": "media-queries"} -->
 # _Media Queries_
 ## Regras CSS condicionais
 
@@ -201,34 +202,37 @@
 - Anatomia de uma _media query_
 - Tipos de mídia
 - Características de mídia
-
 <!-- {ul:.content} -->
 
 ---
 ## O que são _media queries_
 
-- Especificadas no CSS3, as _media queries_ têm o propósito de possibilitar a
+- As _media queries_ têm o propósito de possibilitar a
   delimitação do escopo de regras CSS para **diferentes mídias**
 - Exemplos:
   1. Arquivo com regras CSS para impressão
      ```html
-     <link rel="stylesheet" media="print" href="p-impressao.css" />
+     <link rel="stylesheet" media="print" href="p-impressao.css">
      ```
   1. Dentro de um arquivo CSS, regras diferentes para o tamanho de uma imagem
      se o dispositivo estiver orientado verticalmente (_portrait_) ou
      horizontalmente (_landscape_)
-     ```css
-     img.produto {  width: 200px;  }
-     @media screen and (orientation: landscape) {
-       img.produto {  width: 100%;  }
-     }
-     ```
+     - <!-- {ul:.no-bullets.no-padding.no-margin.layout-split-2} -->
+       ```css
+       img.produto {  
+         width: 200px;
+       }
+       ```
+     - ```css
+       @media screen and (orientation: portrait) {
+         img.produto {  width: 100%;  }
+       }
+       ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Anatomia de uma _media query_
 
-![](../../images/media-query-anatomia.png)
+![](../../images/media-query-anatomia.png) <!-- {p:.flex-align-center} -->
 
 - Formada por:
   1. _Media types_
@@ -236,32 +240,36 @@
   1. Operadores
 
 ---
-<!-- {"layout": "regular"} -->
 ## Tipos de Mídia
 
-- `all`
-  - Qualquer dispositivo
-- `print`
-  - Para documentos paginados ou exibidos em modo de visualização
-    de impressão (aperte <kbd>Ctrl+P</kbd>)
-- `screen`
-  - Dispositivos com telas (normalmente) coloridas  
-- `speech`
-  - Para sintetizadores de voz
+`all` <!-- {dl:.width-10} -->
+~ Qualquer dispositivo
+
+`print`
+~ Para documentos paginados ou exibidos em modo de visualização de impressão (aperte <kbd>Ctrl+P</kbd>)
+
+`screen`
+~ Dispositivos com telas (normalmente) coloridas  
+
+`speech`
+~ Para sintetizadores de voz
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo de uso de tipo de mídia: **2 formas** <!-- {''.underline.upon-activation.delay-1000} -->
 
-1. Arquivos **separados**:
+1. Arquivos **separados**: <!-- {ol:.full-width} -->
    ```html
    <link rel="stylesheet" media="all" href="estilos-gerais.css">
    <link rel="stylesheet" media="screen" href="para-monitores.css">
    <link rel="stylesheet" media="print" href="para-impressao.css">
    ```
-1. Dentro de um **mesmo arquivo CSS**:
+1. Dentro de um **mesmo arquivo CSS**: <!-- {li:.two-column-code} -->
    ```css
-   body {  background-color: #ccc; }
+   body {
+     background-color: #ccc;
+   }
+   
+   
    @media print {
      body {
        background-color: transparent;
@@ -270,8 +278,9 @@
    ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Características de Mídia
+
+![](../../images/media-query-anatomia.png) <!-- {p:.flex-align-center.no-margin.small-width} --> <!-- {.full-width} -->
 
 - `width`, `height`, **`max-width`**, `max-height`, `min-width`, `min-height`
   - Largura e altura da janela do navegador
@@ -284,8 +293,7 @@
 - [E mais...](https://developer.mozilla.org/en-US/docs/Web/CSS/@media)
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo de uso de características de mídia
+## Exemplo de uso de características de mídia <small>(1/2)</small>
 
 - **Forma 1**: Em arquivos separados
   ```html
@@ -297,8 +305,7 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo de uso de características de mídia (cont.)
+## Exemplo de uso de características de mídia <small>(2/2)</small>
 
 - **Forma 2**: Dentro de um mesmo arquivo (mais comum)
   ```css
@@ -314,58 +321,53 @@
   ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "densidade-de-pixels"} -->
+<!-- {"layout": "section-header", "hash": "densidade-de-pixels"} -->
 # Densidade de pixels
 ## Telas com "super definição"
 
 - A origem: iPad 3
 - Densidade de pixels
 - Como aproveitar
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "resolutionary"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## _Retina display_ (da Apple)
 
-![](../../images/ipad-retina-display-comparison.png)
+![](../../images/ipad-retina-display-comparison.png) <!-- {p:.flex-align-center} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## _Retina display_ (da Apple)
 
-![](../../images/ipad-retina-zoom.jpg)
+![](../../images/ipad-retina-zoom.jpg) <!-- {p:.flex-align-center} -->
 
 ---
 <!-- {"embeddedStyles": "#calc-dpr { transition: all 200ms ease-out; } .vanished { opacity: 0; transform: scale(2); }"} -->
 ## Simulação de _**retina display**_
 
 ![Desenho da estrela do jogo do Mario](../../images/mario-star-half.png) <!-- {style="width: 100px"} -->
-![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
+![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} --> <!-- {p:.flex-align-center} -->
 
 Para testar em um dispositivo de **tela com alta densidade de pixels**:
 
 ![Desenho da estrela do jogo do Mario](../../images/mario-star-double.png) <!-- {style="width: 100px"} -->
-![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} -->
+![Desenho da estrela do jogo do Mario](../../images/mario-star.png) <!-- {style="width: 100px"} --> <!-- {p:.flex-align-center} -->
 
 - Este dispositivo tem densidade: <span id="device-pixel-ratio">x</span> <button id="calc-dpr" onclick="this.disabled = true; setTimeout(() => { document.querySelector('#device-pixel-ratio').innerHTML = window.devicePixelRatio; this.style.visibility = 'hidden'; }, 200); this.classList.add('vanished');">🔢 <code>window.devicePixelRatio</code></button>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "responsive-web-design"} -->
+<!-- {"layout": "section-header", "hash": "responsive-web-design"} -->
 # _Responsive Design_
 ## Adequando ao dispositivo
 
 - O que é
 - Exemplos de sites
 - Como fazer
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## **O que é** _Responsive Design_
 
 - Não significa desenho responsável =)
@@ -373,30 +375,14 @@ Para testar em um dispositivo de **tela com alta densidade de pixels**:
   exibindo
   - Melhorar a experiência de usuário
   - Aproveitar características específicas de plataformas diferentes
-- Usa o recurso de _media queries_ do CSS3
+- Usa o recurso de _media queries_, mas também tamanhos fluidos, flexbox e grid
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo de site **não**-_responsive_
-
-[![](../../images/submarino.jpg)](http://www.submarino.com.br)
-
----
-<!-- {"layout": "regular"} -->
 ## Exemplo de site **_responsive_**
 
-[![](../../images/muumilaakso.jpg)](http://muumilaakso.tampere.fi/)
+[![](../../images/muumilaakso.jpg)](http://muumilaakso.tampere.fi/) <!-- {.full-width} --> <!-- {p:.large-width.flex-align-center.bordered.rounded} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## Vários exemplos
-
-- [mediaqueri.es](http://mediaqueri.es)
-
-![](../../images/mediaqueries.jpg)
-
----
-<!-- {"layout": "regular"} -->
 ## Como fazer
 
 - Para criar uma página _responsive_, você deve
@@ -413,21 +399,21 @@ Para testar em um dispositivo de **tela com alta densidade de pixels**:
 ## Exemplo
 
 ```css
-div.produto {  display: inline-block; }
+#produtos {  display: flex; }
 
 @media (min-width: 801px) {
   /* tela grande: 4 produtos por linha */
-  div.produto {  width: 25%;  }
+  div.produto {  width: calc(100% / 4);  }
 }
 
-@media (min-width: 481px) and (max-width: 800px) {
+@media (min-width: 481px) and (max-width: 800px) {                 
   /* tela média: 3 produtos por linha */
-  div.produto {  width: 33.333%;  }
+  div.produto {  width: calc(100% / 3);  }
 }
 
 @media (max-width: 480px) {
   /* tela pequena: 2 produtos por linha */
-  div.produto {  width: 50%;  }
+  div.produto {  width: calc(100% / 2);  }
 }
 ```
 
@@ -437,7 +423,7 @@ div.produto {  display: inline-block; }
 <iframe width="100%" height="450" src="//jsfiddle.net/fegemo/Lw7prv0u/6/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "a-super-loja"} -->
+<!-- {"layout": "section-header", "hash": "a-super-loja"} -->
 # A **Super** Loja :convenience_store:
 ## Lojinha responsável
 

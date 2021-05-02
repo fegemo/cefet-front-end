@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# HTML (parte 1)
-## Plantas Carnívoras, Ingredientes do HTML (_tags_) e Temperando com CSS
+# **HTML** parte 1
+## Plantas Carnívoras 🌱🦖,<br>_Tags_ HTML e Temperando com CSS
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula...
 
 - Conversamos sobre a história da Internet e da Web
@@ -16,21 +15,22 @@
   - ~~A linguagem JavaScript~~ (não foi o Tim :scream:)
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 # Atividade de Hoje ![Planta carnívora do jogo Mario Bros](../../images/piranha-mario.png) <!--{style="height:1em;"}-->
 
-Você tem um novo _hobby_: **criar plantas carnívoras**. Você encontrou um
-documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
+Você tem um novo _hobby_: **criar plantas carnívoras**.
+<!-- {p:style="width: 50%"} -->
+
+Você encontrou um documento solto em um antigo livro
+do seu tio e, depois de lê-lo, decidiu
 **criar uma página web**.
 <!-- {p:style="width: 50%"} -->
 
-
-
 ---
-<!-- {"state":"show-active-slide-and-previous"} -->
+<!-- {"layout": "centered-horizontal", "state":"show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "300px", "--show-2-slides-z-distance": "-400px"}} -->
 ![](../../images/piranha-plant-exercise.png)
 
 ---
-<!-- {"layout": "regular"} -->
 # Para isso, hoje vamos...
 
 1. Rever o [funcionamento](#funcionamento-web) dos servidores e navegadores
@@ -45,7 +45,7 @@ documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
    - `margin`, `text-align`
 
 ---
-<!-- {"layout": "section-header", "slideHash": "funcionamento-web"} -->
+<!-- {"layout": "section-header", "hash": "funcionamento-web"} -->
 # Funcionamento da Web
 ## Como o navegador conversa com o servidor
 
@@ -57,46 +57,61 @@ documento solto em um antigo livro do seu tio e, depois de lê-lo, decidiu
 <!-- {ul:.content} -->
 
 ---
+<!-- {"embedSVG": "img[src$='.svg']", "embeddedStyles": ".http-diagram .step-3 .level-3 { visibility: visible !important; }"} -->
 ## O que um **navegador** faz?
 
 - Quando o usuário "vai" até um novo endereço (URL), o navegador solicita esse
   **recurso** ao servidor
   - O **Navegador requisita** algo e **Servidor responde**
 
-```http
-GET /index.html HTTP/1.1
-Host: www.twitter.com
-```
-![](../../images/http-diagram-informal-2.png) <!-- {.half-width.centered} --> <!-- {p:.no-margin} -->
-```http
-HTTP/1.1 200 OK
-Date: Mon, 23 May 2005 22:38:34 GMT
-Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-Content-Type: text/html; charset=UTF-8
-Content-Length: 131
+1. <!-- {ol:.layout-split-2.bulleted.no-bullets.no-margin.no-padding.compact-code-more.http-diagram} -->
+   ![](../../images/http-diagram-informal.svg) <!-- {.centered.step-3.invert-colors-dark-mode style="max-width: 100%; max-height: 236px"} -->
+   - Requisição: <!-- {ul:.no-bullets.no-padding} -->
+     ```http
+     GET /index.html HTTP/1.1
+     Host: www.twitter.com
+     ```
+1. Resposta:
+   ```http
+   HTTP/1.1 200 OK
+   Date: Mon, 23 May 2005 22:38:34 GMT
+   Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+   Content-Type: text/html; charset=UTF-8
+   Content-Length: 131 
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Twitter</title>
-</head>
-<body>
-  Olá mundo, este é um tweet.
-</body>
-</html>
-```
-
----
-## O que um **navegador** faz (cont.)?
-
-- URL: Unique **Resource** Locator
-  - É o **endereço de coisas** na Internet - **páginas, imagens, arquivos**, etc.   
-    ![](../../images/url-1.png) <!-- {.block} -->
-- Assim que a resposta é recebida, o navegador a exibe na tela, caso **consiga**
-  - Por exemplo, os navegadores não conseguem exibir um arquivo .zip
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Twitter</title>
+   </head>
+   <body>
+     Olá mundo, este é um tweet.
+   </body>
+   </html>
+   ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "estrutura-basica-html"} -->
+## O que é um URL?
+
+- URL: Unique **Resource** Locator <!-- {ul:.bulleted} -->
+  - É o **endereço de coisas**: **páginas, imagens, arquivos**, etc.   
+    ![As partes de uma URL](../../images/url-parts.svg) <!-- {.block.full-width} -->
+    
+    domínio <!-- {dl.bulleted} -->
+    ~ Em que computador estão os arquivos
+
+    porta
+    ~ Qual endereço do programa dentro do computador
+
+    caminho
+    ~ Qual o endereço até o arquivo
+
+- Assim que recebe a resposta, o navegador mostra na tela, _se der_
+ 
+*[URL]: Unique Resource Locator*
+
+---
+<!-- {"layout": "section-header", "hash": "estrutura-basica-html"} -->
 # Estrutura Básica do **HTML**
 ## . <!-- {style="visibility: hidden;"} -->
 
@@ -104,62 +119,80 @@ Content-Length: 131
   - _Tag_ `<html>...</html>`
   - _Tag_ `<head>...</head>`
   - _Tag_ `<body>...</body>`
-
 <!-- {ul^1:.content} -->
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ![Exemplo de um arquivo html](../../images/exemplo-html.png)
 
 ---
-<!-- {"state": "show-active-slide-and-previous"} -->
+<!-- {"layout": "centered-horizontal", "state": "show-active-slide-and-previous"} -->
 ![Exemplo de um arquivo html no navegador](../../images/exemplo-html-resultado.png)
 
 ---
-## Estrutura
+## Estrutura de um arquivo HTML
 
-- Um punhado de **tags** no texto
+- Um punhado de **tags** no texto <!-- {ul:.bulleted-0} -->
   - As _tags_ fazem a marcação da estrutura do texto
-  - Existem dezenas de tags (umas 50? 60?) e cada uma tem um propósito e um
+  - Existem dezenas de tags (umas 80? 100?) e cada uma tem um propósito e um
     resultado visual
-  - A grande maioria delas precisam ser fechadas (e.g., `<p>...</p>`)
+  - A grande maioria delas precisam ser fechadas
+    - Por exemplo: parágrafo (`<p>...</p>`), título (`<h1>...</h1>`)
+    - Contraexemplo: imagem (`<img>`)
 - **Indentação e espaçamento** são livres e não afetam o resultado
 - Um arquivo html é _plain-text_, ou puramente textual
   - em contraposição a um arquivo binário, por exemplo
 
 ---
+<!-- {"layout": "2-column-content"} -->
 ## A _tag_ &lt;html&gt;
 
-- Envolve **todas** as outras _tags_
+- Envolve **todas** as outras _tags_ <!-- {ul:.bulleted} -->
   - **Exceto** a _tag_ especial `<!DOCTYPE html>`
-- Dentro dela, deve existir as seguintes _tags_, nesta ordem:
+- Dentro dela, devem sempre existir as seguintes _tags_, nesta ordem:
   - `<head>...</head>`
   - `<body>...</body>`
 
+```html
+<!DOCTYPE html>          
+<html>  ⬅️         
+  <head>
+    ...
+  </head>
+  <body>
+    ...
+  </body>
+</html> ⬅️
+```
+
 ---
+<!-- {"layout": "2-column-content"} -->
 ## A _tag_ &lt;head&gt;
 
 - Do inglês: cabeça
-- Contém **meta-informação** sobre este arquivo `html`, por exemplo:
-  - **Título da página** no topo do navegador (obrigatório)
+- Contém **meta-informação** sobre este arquivo HTML, por exemplo: <!-- {li:.bulleted} -->
   - **Codificação** (_encoding_) da página
-  - Ícone
-  - Inclusão de arquivos (`.css`, `.js`)
-- Trecho de código <!-- {li:.compact-code-more} -->
-  ```html
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <title>Este é o título que aparece na aba</title>
-      ...
-    </head>
-    <body>
-      ...
-    </body>
-  </html>
-  ```
+  - **Título da página** na aba/janela do navegador
+  - Iconezinho (_favicon_)
+  - Inclusão de outros arquivos (`.css`, `.js`)
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>   ⬅️
+    <meta charset="utf-8">  <!-- codific. -->
+    <title>Título na aba/janela</title>
+    <link rel="icon" href="icone.png">
+    ...
+  </head>  ⬅️
+  <body>
+    ...
+  </body>
+</html>
+```
 
 ---
+<!-- {"layout": "2-column-content"} -->
 ## A _tag_ &lt;body&gt;
 
 - Do inglês: corpo
@@ -167,19 +200,25 @@ Content-Length: 131
   - parágrafos (`<p>...</p>`)
   - títulos e subtítulos (`<h1>...</h1>`)
   - imagens (`<img>`), etc.
-- Trecho de código
-  ```html
-  <!DOCTYPE html>
-  <html>
-    <head>...</head>
-    <body>
-      ...
-    </body>
-  <html>
-  ```
+- É tudo visível logo abaixo da barra de endereços até o "chão"
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>...</head>
+  <body>   ⬅️
+    ...
+    <h1>Título Grandão</h1>
+    ...
+    <p>Um textinho qualquer</p>
+    <img src="estrela.png">
+    ...
+  </body>  ⬅️
+<html>
+```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "tags-html"} -->
+<!-- {"layout": "section-header", "hash": "tags-html"} -->
 # Algumas _tags_ HTML
 ## . <!-- {style="visibility: hidden"} -->
 
@@ -188,18 +227,22 @@ Content-Length: 131
 - Títulos e subtítulos
 - Imagens
 - Hiperlinks
-
 <!-- {ul:.content} -->
 
 ---
+<!-- {"embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/tag-anatomy.min.css"]} -->
 ## Anatomia de uma **_tag_**
 
-::: figure .figure-slides
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-5.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+::: figure .figure-slides.tag-anatomy.clean.flex-align-center.invert-colors-dark-mode
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-0} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-1} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-2} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-3} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-4} -->
 :::
 
 - Tags de abertura podem ter **atributos**: <!-- {ul:.bulleted} -->
@@ -212,7 +255,7 @@ Content-Length: 131
     - `<img src="...">` <span style="color: green">:thumbsup:</span>
 
 ---
-<!-- {"layout": "regular", "slideHash": "tag-paragrafo"} -->
+<!-- {"hash": "tag-paragrafo"} -->
 ## _Tag_ de **<u>Parágrafo</u>** (`<p>...</p>`)
 
 - **Quebras de linha** são feitas automaticamente <!-- {li:.compact-code} -->
@@ -229,7 +272,7 @@ Content-Length: 131
   :::
 
 ---
-<!-- {"layout": "2-column-content","slideHash": "tag-titulo-subtitulo"} -->
+<!-- {"layout": "2-column-content","hash": "tag-titulo-subtitulo"} -->
 ## _Tag_ de **<u>Títulos</u>** e **<u>Subtítulos</u>** (`h1`, `h2` ... `h6`)
 
 ```html
@@ -239,19 +282,19 @@ Content-Length: 131
 <p>Este é o corpo da subseção</p>
 ```
 
-<iframe width="100%" height="260" src="//jsfiddle.net/fegemo/wxd5s6be/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="230" src="//jsfiddle.net/fegemo/wxd5s6be/2/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - Há a possibilidade de ter **6 <u>níveis</u> de títulos**
   - Mas a quantidade de títulos é infinita... por exemplo :arrow_right:
 
-<iframe width="100%" height="260" src="//jsfiddle.net/fegemo/qLc41vs3/embedded/html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="230" src="//jsfiddle.net/fegemo/qLc41vs3/embedded/html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular", "slideHash": "tag-imagem"} -->
-## _Tag_ de **<u>Imagem</u>** (`<img>`)
+<!-- {"hash": "tag-imagem"} -->
+## _Tag_ de **<u>Imagem</u>**: `<img>`
 
 - ![Mascote do programa GitKraken](https://fegemo.github.io/kraken-typing/imgs/site/logo-gitkraken.png)  
-  <!-- {.push-right height="100px"} -->
+  <!-- {.push-right style="height: 100px; margin-left: 1em"} -->
   Para exibir imagens...
   ```html
   <img src="http://fegemo.github.io/kraken-typing/imgs/kraken.png">
@@ -264,15 +307,14 @@ Content-Length: 131
   - Veja a diferença no próximo slide
 
 ---
-<!-- {"layout": "regular"} -->
 ## URL externa vs interna
 
-URL **externa**
+URL **externa** <!-- {dl:.width-20.full-width} -->
   ~ Aponta para algo (imagem etc.) de um outro site
   ~ Quase sempre começa com `http://` ou `https://`. Exemplos:
     - http://google.com
     - http://fegemo.github.io/imgs/kraken.png
-    - https://twitter.com/elonmusk
+    - https://twitter.com/fegemo
 
 URL **interna** <!-- {.alternate-color} -->
   ~ Aponta para algo da própria página/site
@@ -280,10 +322,10 @@ URL **interna** <!-- {.alternate-color} -->
     - racas-raras.html <span class="badge type1">relativo</span>
     - imagens/ovelha.jpg <span class="badge type1">relativo</span>
     - ../imgs/logo.png <span class="badge type1">relativo</span>
-    - /arquivos/fotosdafesta.zip <span class="badge type2">absoluto</span>
+    - <strong>/</strong>arquivos/fotosdafesta.zip <span class="badge type2">absoluto</span>
 
 ---
-<!-- {"layout": "regular", "slideHash": "end-relativo-absoluto"} -->
+<!-- {"hash": "end-relativo-absoluto"} -->
 ## Exemplo 1: Arquivo HTML e imagem **na mesma pasta**
 
 - ![Página exibindo a descrição e imagem da Pirá-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-right style="height: 140px;"} -->
@@ -304,7 +346,7 @@ URL **interna** <!-- {.alternate-color} -->
 ## Exemplo 2: Imagem 1 pasta adentro
 
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png) <!-- {.push-left style="height: 140px"} -->
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right style="height: 140px"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel-1.png)<!-- {.push-right.invert-colors-dark-mode style="height: 140px"} -->
 
 - Endereço <span class="badge type2">absoluto</span>: `/ovelhas/racas/img/pira-tovelha.jpg`
   ```html
@@ -319,7 +361,7 @@ URL **interna** <!-- {.alternate-color} -->
 ## Exemplo 3: Imagem 1 pasta acima
 
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)<!-- {.push-left style="height: 140px"} -->
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right style="height: 140px"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--1.png)<!-- {.push-right.invert-colors-dark-mode style="height: 140px"} -->
 
 - Endereço <span class="badge type2">absoluto</span>: `/ovelhas/pira-tovelha.jpg`
   ```html
@@ -334,7 +376,7 @@ URL **interna** <!-- {.alternate-color} -->
 ## Exemplo 4: Imagem 2 pastas acima
 
 ![Página exibindo a descrição e imagem da Pira-tovelha](../../images/pira-tovelha_page.png)<!-- {.push-left style="height: 140px"} -->
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!--{.push-right style="height: 140px"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-pira-tovelha-nivel--2.png)<!--{.push-right.invert-colors-dark-mode style="height: 140px"} -->
 
 - Endereço <span class="badge type2">absoluto</span>: `/pira-tovelha.jpg`
   ```html
@@ -346,12 +388,11 @@ URL **interna** <!-- {.alternate-color} -->
   ```
 
 ---
-<!-- {"layout": "2-column-content"} -->
+<!-- {"layout": "2-column-content", "slideStyles": {"grid-template-rows": "auto auto 1fr"}} -->
 ## Sumarizando: **URLs absolutas e relativas**
 
-![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png)
 
-<!-- {p:style="width: 20%"} -->
+![Estrutura de pastas para demonstrar o endereço absoluto e relativo](../../images/dir-absoluto-vs-relativo.png) <!-- {.invert-colors-dark-mode} -->
 
 | Endereço <span class="badge type2">absoluto</span>          	| Endereço <span class="badge type1">relativo</span> |
 |:--------------------------	|:-------------	|
@@ -360,16 +401,17 @@ URL **interna** <!-- {.alternate-color} -->
 | /ovelhas/b.jpg            	| ../b.jpg     	|
 | /a.jpg                    	| ../../a.jpg  	|
 
-<!-- {table:style="width: 75%"} -->
+<!-- {table:.smaller-text-70} -->
 
-1. Durante este ano, **prefira usar endereços <span class="badge type1">relativos</span> sempre**
-
-- Como estamos acessando as páginas HTML "dando 2 cliques"
-  (sem um servidor Web), um endereço <span class="badge type2">absoluto</span> começa na raiz do sistema
-  de arquivos (_e.g._, "C:\") e não devemos especificar endereços dessa forma
+- Prefira usar **endereços <span class="badge type1">relativos</span>** <!-- {ul:.span-columns} -->
+  ::: did-you-know
+  Ao abrir páginas HTML sem um servidor Web
+  ("dando 2 cliques"), um endereço <span class="badge type2">absoluto</span> 
+  começa na raiz do sistema de arquivos (_e.g._, "C:\") e não devemos especificar endereços dessa forma
+  :::
 
 ---
-<!-- {"slideHash": "tag-hiperlink"} -->
+<!-- {"hash": "tag-hiperlink"} -->
 ## _Tag_ de **_Hyperlink_** (`<a href="">...</a>`)
 
 - [Link externo](http://www.google.com) (para fora da página):
@@ -398,15 +440,22 @@ URL **interna** <!-- {.alternate-color} -->
 ## Como o navegador <u>vai desenhar</u> as _tags_ HTML?
 
 - Ele usa estilos padrão:
-  - Cor: preta
-  - Fundo de tela: branca
-  - Fonte: Times New Roman (no Windows)
+  
+  Cor do texto
+  ~ preta
+  
+  Cor de fundo
+  ~ branca
+
+  Fonte
+  ~ Times New Roman para títulos (no Windows)
+  ~ Arial para parágrafos
 - Cada navegador pode ter um estilo padrão diferente
 - É possível e altamente recomendável <u>criar estilos próprios</u>
 - Vamos conhecer agora uma segunda linguagem: CSS
 
 ---
-<!-- {"layout": "section-header", "slideHash": "estilo-css"} -->
+<!-- {"layout": "section-header", "hash": "estilo-css"} -->
 # Um pouco de estilo
 ## Conhecendo CSS - Cascading Stylesheets
 
@@ -416,64 +465,63 @@ URL **interna** <!-- {.alternate-color} -->
   - Cor do fundo: `background-color`
   - Margem (espaçamento): `margin`
   - Fonte: `font-family`
-
 <!-- {ul^1:.content} -->
 
 ---
-## Definindo o estilo
+## Definindo o estilo (aparência)
 
 - Adicionamos um novo elemento: `<style>...</style>`
-- Podemos colocá-lo no &lt;head&gt; ou no &lt;body&gt;, mas a **melhor prática é
-  no cabeçalho**
+- Podemos **colocá-lo no `<head>`** (boa prática) ou no `<body>` (não faça) <!-- {ul:.compact-code} -->
   ```html
+  <!DOCTYPE html>
   <html>
     <head>
       <title>Título da página</title>
+      <!-- início do CSS -->
       <style>
-        /* escrever código CSS aqui dentro */
+        body {
+          background-color: teal; /* um tom de azul */
+        }
       </style>
+      <!-- fim do CSS -->
     </head>
     <body>
     ...
   ```
 
 ---
+<!-- {"layout": "2-column-content", "classes": "compact-code-more"} -->
 ## Definindo o estilo (cont.)
 
-```css
-body {
-  background-color: teal;
-  color: white;
-  margin-left: 20%;
-  margin-right: 20%;
-  font-family: "Arial", sans-serif;
-}
+- Estilizando a página dos _drinks_: <!-- {ul:.no-bullets.no-padding} -->
+  ```css
+  body {
+    background-color: teal;
+    color: white;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-family: "Arial", sans-serif;
+  }
 
-h1 {
-  color: yellow;
-  font-family: "Courier New", monospace;
-  text-align: center;
-}
+  h1 {
+    color: yellow;
+    font-family: "Courier New", monospace;
+    text-align: center;
+  }
 
-p {
-  text-align: justify;
-}
+  p {
+    text-align: justify;
+  }
 
-h2 {
-  color: pink;
-}
-```
-
-...e o resultado...
-
----
-<!-- {"layout": "regular"} -->
-## Definindo o estilo (cont.)
+  h2 {
+    color: pink;
+  }
+  ```
 
 <iframe width="100%" height="500" src="//jsfiddle.net/fegemo/ojmwh8gb/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"slideHash": "css-cores"} -->
+<!-- {"hash": "css-cores"} -->
 ## Entendendo o estilo: **cores**
 
 - ```css
@@ -481,7 +529,7 @@ h2 {
     background-color: teal;    
   }
   ```
-  Define a **cor** (_color_) **do fundo** (_background_) para azul ocre (_teal_)
+  Define a **cor** (_color_) **do fundo** (_background_) para azul ocre (_teal_) <!-- {ul:.no-bullets.no-padding.bulleted-0} -->
   - Mas também poderia ser: `orange`, `red`, `green`, `black` etc.
 - ```css
   body {
@@ -491,10 +539,10 @@ h2 {
   Define a **cor do texto** como branco
 
 ---
-<!-- {"slideHash": "css-margens"} -->
+<!-- {"hash": "css-margens"} -->
 ## Entendendo o estilo: **margens laterais**
 
-- ![](../../images/margin-left.png) <!-- {.push-right} -->
+- ![](../../images/margin-left.png) <!-- {.push-right style="width: 50%; margin-left: 1em;"} -->
   ```css
   body {
     margin-left: 20%;
@@ -503,18 +551,20 @@ h2 {
   ```
   Define as **margens** (espaço) laterais da página
   - Também existem: `margin-top` (cima) e `margin-bottom` (baixo)
+  <!-- {ul^1:.no-bullets.no-padding.full-width} -->
 
 ---
-<!-- {"slideHash": "css-fonte"} -->
+<!-- {"hash": "css-fonte"} -->
 ## Entendendo o estilo: **fonte**
 
-- ![](../../images/font-families.png) <!-- {.push-right} -->
+- ![](../../images/font-families.png) <!-- {.push-right.invert-colors-dark-mode} -->
   ```css
   body {
     font-family: "Arial", sans-serif;
   }
   ```
-  Define a **fonte** do texto **da página**
+  Define a **fonte** do texto **da página** <!-- {ul:.no-bullets.no-padding.bulleted-0} -->
+  - Dá 2 opções: se não tiver a 1ª, vai a 2ª
 - ```css
   h1 {
     font-family: "Courier New", monospace;
@@ -523,7 +573,7 @@ h2 {
   Define a **fonte** sendo usada para o texto de **todos `<h1>` na página**
 
 ---
-<!-- {"layout": "regular", "slideHash": "css-alinhamentoTexto"} -->
+<!-- {"hash": "css-alinhamentoTexto"} -->
 ## Entendendo o estilo: **alinhamento do texto**
 
 - ![](../../images/text-align-justify.png) <!-- {ul:.item-code-with-image.full-width.compact-code} -->
@@ -544,7 +594,7 @@ h2 {
     text-align: right;
   }
   ```
-- ![](../../images/text-align-center.png) <!-- {.push-right} -->
+- ![](../../images/text-align-center.png)
   ```css
   p {
     text-align: center;
@@ -552,6 +602,7 @@ h2 {
   ```
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulo 1 do livro

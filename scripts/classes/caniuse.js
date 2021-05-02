@@ -26,7 +26,7 @@ const BROWSERS = {
 };
 
 //  Customise HTML here
-let TMPL_TITLE = '<h2>{title}</h2>', // feature title {title}
+let TMPL_TITLE = '<h3>{title}</h3>', // feature title {title}
   TMPL_DESCRIPTION = '<p>Suportado a partir de:</p>', // description to user
   TMPL_DESKTOP_TITLE = '', // desktop header
   TMPL_MOBILE_TITLE = '', // mobile header

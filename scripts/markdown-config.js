@@ -56,13 +56,25 @@ const config = {
       });
     },
 
-    slideHash: (slide, value) => slide.setAttribute('data-bespoke-hash', value),
+    slideStyles: (slideEl, styles) => {
+      Object.keys(styles).forEach(prop => {
+        slideEl.style[prop] = styles[prop];
+      });
+    },
+
+    containerStyles: function(slideEl, styles) {
+      Object.keys(styles).forEach(prop => {
+        this.parent.style.setProperty(prop, styles[prop]);
+      });
+    },
+
+    hash: (slide, value) => slide.setAttribute('data-bespoke-hash', value),
 
     layout: (slide, value) => slide.classList.add('layout-' + value),
 
     state: (slide, value) => slide.setAttribute('data-bespoke-state', value),
 
-    classes: (slide, values) => values.split().forEach(cl => slide.classList.add(cl)),
+    classes: (slide, values) => values.split(' ').forEach(cl => slide.classList.add(cl)),
 
     preventSelection: (slide, unselectableElementsSelector) => {
       const els = slide.querySelectorAll(unselectableElementsSelector);
@@ -74,7 +86,7 @@ const config = {
       });
     },
 
-    fullScreenElement: (slide, elementSelector) => {
+    fullScreenElement: function(slide, elementSelector) {
       const el = slide.querySelector(elementSelector);
       const requestFullScreenName = document.documentElement.requestFullScreen ?
         'requestFullScreen' : `${['webkit', 'moz'].find(p => document.documentElement[`${p}RequestFullScreen`])}RequestFullScreen`;
@@ -106,6 +118,7 @@ const config = {
       // from: https://stackoverflow.com/questions/22217084/video-tag-at-chrome-overlays-on-top
       el.style.backfaceVisibility = 'hidden';
       el.style.transform = 'translateZ(0)';
+      slide.style.padding = '0'
     },
 
     playMediaOnActivation: function(slide, { selector, delay = '1500'}) {
@@ -124,7 +137,50 @@ const config = {
           }, delay);
         }
       });
-    }
+  },
+
+  embedSVG: (slide, selector) => {
+    const svgs = slide.querySelectorAll(selector);
+    svgs.forEach(el => {
+      // pega o id da <img>
+      const id = el.id;
+      const classes = el.className.split(' ').filter(c => c.trim() !== '');
+      const style = el.style.cssText;
+      const viewBox = el.dataset.viewbox;
+      const width = el.width;
+      const height = el.height;
+
+      // faz requisição para pegar o conteúdo SVG
+      fetch(el.src)
+        .then(r => r.text())
+        .then(svg => {
+
+          // cria o documento svg
+          const svgContainerEl = document.createElement('span');
+          svgContainerEl.innerHTML = svg;
+          const svgEl = svgContainerEl.querySelector('svg');
+          svgEl.id = id;
+          if (classes.length > 0) {
+            svgEl.classList.add(...classes);
+          }
+          svgEl.style.cssText = style;
+          if (viewBox) {
+            svgEl.setAttribute('viewBox', viewBox);
+          }
+          if (width) {
+            svgEl.setAttribute('width', width);
+          }
+          if (height) {
+            svgEl.setAttribute('height', height);
+          }
+
+          // substitui a <img src="...svg"> pelo documento
+          el.parentElement.replaceChild(svgEl, el);
+          // el.parentElement.
+        })
+        .catch(console.error);
+    });
+  }
 };
 
 const extensions = [

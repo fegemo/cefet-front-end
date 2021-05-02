@@ -1,292 +1,254 @@
-var fs = require('fs'),
-  gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  plumber = require('gulp-plumber'),
-  del = require('del'),
-  rename = require('gulp-rename'),
-  // uglify = require('gulp-uglify'),
-  stylus = require('gulp-stylus'),
-  replace = require('gulp-replace'),
-  preprocess = require('gulp-preprocess'),
-  autoprefixer = require('gulp-autoprefixer'),
+const { src, dest, series, parallel, watch } = require('gulp'),
+  open = require('open'),
   csso = require('gulp-csso'),
-  changed = require('gulp-changed'),
-  glob = require('glob'),
-  sourcemaps = require('gulp-sourcemaps'),
-  connect = require('gulp-connect'),            // Blacklisted, but whatever
-  source = require('vinyl-source-stream'),
+  rename = require('gulp-rename'),
+  terser = require('gulp-terser'),
+  stylus = require('gulp-stylus'),
   buffer = require('vinyl-buffer'),
-  browserify = require('browserify'),
+  replace = require('gulp-replace'),
+  changed = require('gulp-changed'),
+  connect = require('gulp-connect'),
+  sourcemaps = require('gulp-sourcemaps'),
+  preprocess = require('gulp-preprocess'),
+  source = require('vinyl-source-stream'),
+  autoprefixer = require('gulp-autoprefixer'),
+  glob = require('glob');
+
+const fs = require('fs'),
+  path = require('path'),
+  del = require('delete'),
   through = require('through'),
   ghpages = require('gh-pages'),
-  path = require('path'),
   merge = require('merge-stream'),
-  opn = require('opn'),
-  isDist = false;// process.argv.indexOf('dev') === -1;
+  browserify = require('browserify');
 
+const isDist = process.argv.indexOf('dev') === -1;
 
-
-gulp.task('js', function() {
-  return browserify({
-      entries: 'scripts/main.js',
-      debug: !isDist
-    })
-    .bundle()
-    .on('error', function() {
-      console.log(arguments);
-    })
-    .pipe(source('build.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-      .pipe(isDist ? uglify() : through())
-      .on('error', gutil.log)
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist/build'))
-    .pipe(connect.reload());
-});
-
-gulp.task('js-classes', function(done) {
-  var destination = 'dist/scripts/classes';
-
-  glob('scripts/classes/**/*.js', function(err, files) {
-    if (err) done(err);
-
-    var tasks = files.map(function(file) {
-      var fileName = path.basename(file);
-
-      return browserify({
-        entries: [file],
-        debug: !isDist
-      })
-      .bundle()
-      .on('error', function(err) {
-        gutil.log(gutil.colors.red('Browserify bundle error: ') + err);
-        this.emit('end');
-      })
-      .pipe(source(fileName))
-      .pipe(rename({
-        extname: '.min.js'
-      }))
-      .pipe(buffer())
-      .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(isDist ? uglify() : through())
-        .on('error', function(err) {
-          gutil.log(gutil.colors.red('Uglify error: ') + err.message);
-          this.emit('end');
-      })
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(destination))
-      .pipe(connect.reload());
-    });
-
-    merge(tasks);
-    done();
-  });
-});
-
-
-
-gulp.task('html', function() {
-  return gulp.src('html/index.html')
-    .pipe(preprocess({
-      context: {
-        NODE_ENV: isDist ? 'production' : 'development',
-        DEBUG: true
-      }
-    }))
-    .pipe(isDist ? through() : plumber())
-    .pipe(replace('{path-to-root}', '.'))
-    .pipe(gulp.dest('dist'))
-    .pipe(connect.reload());
-});
-
-gulp.task('md', function() {
-  var tasks = [];
-  tasks.push(gulp.src('README.md')
-    .pipe(changed('dist'))
-    .pipe(isDist ? through() : plumber())
-    .pipe(gulp.dest('dist'))
-    .pipe(connect.reload()));
-  tasks.push(gulp.src('classes/**/*.md')
-    .pipe(changed('dist/classes'))
-    .pipe(isDist ? through() : plumber())
-    .pipe(gulp.dest('dist/classes'))
-    .pipe(connect.reload()));
-  tasks.push(gulp.src('assignments/**/*.md')
-    .pipe(changed('dist/assignments'))
-    .pipe(isDist ? through() : plumber())
-    .pipe(gulp.dest('dist/assignments'))
-    .pipe(connect.reload()));
-  return merge(tasks);
-});
-
-gulp.task('css', function() {
-  return gulp.src('styles/main.styl')
-    .pipe(changed('dist/build'))
-    .pipe(isDist ? through() : plumber())
-    .pipe(stylus({
-      // allows CSS to be imported from node_modules
-      'include css': true,
-      'paths': ['./node_modules']
-    }))
-    .pipe(autoprefixer('last 2 versions', { map: true }))
-    .pipe(isDist ? csso() : through())
-    .pipe(rename('build.css'))
-    .pipe(gulp.dest('dist/build'))
-    .pipe(connect.reload());
-});
-
-gulp.task('css-classes', function(done) {
-  var destination = 'dist/styles/classes';
-
-  glob('styles/classes/**/*.styl', function(err, files) {
-    if (err) done(err);
-
-    var tasks = files.map(function(file) {
-      var fileName = path.basename(file);
-
-      return gulp.src(file)
-        .pipe(changed(destination))
-        .pipe(isDist ? through() : plumber())
-        .pipe(stylus({
-          'include css': true,
-          'paths': ['./node_modules']
-        }))
-        .pipe(autoprefixer('last 2 versions', { map: true }))
-        .pipe(isDist ? csso() : through())
-        .pipe(rename({
-          extname: '.min.css'
-        }))
-        .pipe(gulp.dest(destination))
-        .pipe(connect.reload());
-    });
-
-    merge(tasks);
-    done();
-  });
-});
-
-gulp.task('samples', function() {
-  var destination = 'dist/samples';
-  return gulp.src('samples/**/*')
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination));
-});
-
-gulp.task('attachments', function() {
-  var destination = 'dist/attachments';
-  return gulp.src('attachments/**/*')
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination));
-});
-
-gulp.task('images', function() {
-  var destination = 'dist/images';
-  return gulp.src(['images/**/*', '!images/**/*.db'])
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination))
-    .pipe(connect.reload());
-});
-
-gulp.task('fonts', function() {
-  var destination = 'dist/fonts';
-  return gulp.src('fonts/**/*')
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination))
-    .pipe(connect.reload());
-});
-
-gulp.task('audios', function() {
-  var destination = 'dist/audios';
-  return gulp.src('audios/**/*')
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination))
-    .pipe(connect.reload());
-});
-
-gulp.task('videos', function() {
-  var destination = 'dist/videos';
-  return gulp.src('videos/**/*')
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination))
-    .pipe(connect.reload());
-});
-
-gulp.task('favicon', function() {
-  var destination = 'dist/favicon';
-  return gulp.src('favicon/**/*')
-    .pipe(changed(destination))
-    .pipe(gulp.dest(destination))
-    .pipe(connect.reload());
-});
-
-gulp.task('manifest', function() {
-  var destination = 'dist/favicon';
-  return gulp.src('favicon/manifest.json')
-    .pipe(changed(destination))
-    .pipe(replace('{path-to-root}', '../..'))
-    .pipe(gulp.dest(destination))
-    .pipe(connect.reload());
-});
-
-gulp.task('clean', function() {
-  return del('dist');
-});
-
-function getFolders(cwd, dir) {
-  var targetDirectory = path.join(cwd, dir);
-  return fs.readdirSync(targetDirectory)
-    .filter(function(file) {
-      return fs.statSync(path.join(targetDirectory, file)).isDirectory();
-    })
-    .map(function(filePath) {
-      return path.join(dir, filePath);
-    });
+function clean(cb) {
+  del('dist', cb);
 }
 
-gulp.task('build', ['js', 'js-classes',
-  'html', 'md',
-  'css', 'css-classes',
-  'images',
-  'fonts',
-  'audios',
-  'videos',
-  'attachments',
-  'samples',
-  'favicon',
-  'manifest'], function() {
-  var folders = getFolders('.', 'classes').concat(getFolders('.', 'assignments')),
-      tasks = folders.map(function(folder) {
-        var t = [];
-        t.push(gulp.src(['html/index.html'])
-          .pipe(replace('{path-to-root}', '../..'))
-          .pipe(gulp.dest(path.join('dist', folder))));
-        return merge(t);
-      });
+function js() {
+  return browserify({
+    entries: 'scripts/main.js',
+    debug: !isDist
+  })
+    .bundle()
+    .pipe(source('build.js'))
+    .pipe(buffer())
+    // .pipe(sourcemaps.init({ loadMaps: true }))
+    // .pipe(isDist ? terser() : through())
+    .on('error', console.log)
+    // .pipe(sourcemaps.write('./'))
+    .pipe(dest('dist/build'))
+    .pipe(connect.reload());
+}
+exports.js = js
+
+function jsClasses() {
+  const destination = 'dist/scripts/classes';
+  const files = glob.sync('scripts/classes/**/*.js');
+  return merge(files.map(file => 
+    browserify({
+      entries: file,
+      debug: !isDist 
+    }) 
+      .bundle()
+      .pipe(source(path.basename(file, '.js') + '.min.js'))
+      .pipe(changed(destination))
+      .pipe(dest(destination))
+      .pipe(connect.reload())
+  ));
+}
+
+function html() {
+  return src('html/index.html')
+    .pipe(
+      preprocess({
+        context: {
+          NODE_ENV: isDist ? 'production' : 'development',
+          DEBUG: true,
+        },
+      })
+    )
+    .pipe(replace('{path-to-root}', '.'))
+    .pipe(dest('dist'))
+    .pipe(connect.reload());
+}
+
+function md() {
+  const tasks = [];
+
+  tasks.push(
+    src('README.md')
+      .pipe(changed('dist'))
+      .pipe(dest('dist'))
+      .pipe(connect.reload())
+  );
+
+  tasks.push(
+    src('classes/**/*.md')
+      .pipe(changed('dist/classes'))
+      .pipe(dest('dist/classes'))
+      .pipe(connect.reload())
+  );
+
   return merge(tasks);
-});
+}
 
-gulp.task('watch', function() {
-  gulp.watch('scripts/*.js', ['js']);
-  gulp.watch('scripts/classes/*.js', ['js-classes']);
-  gulp.watch('html/**/*.html', ['html']);
-  gulp.watch(['README.md', 'classes/**/*.md', 'assignments/**/*.md'], ['md']);
-  gulp.watch('styles/**/*.styl', ['css']);
-  gulp.watch('styles/classes/*.styl', ['css-classes']);
-  gulp.watch('images/**/*', ['images']);
-});
+function css() {
+  return src('styles/main.styl')
+    .pipe(changed('dist/build'))
+    .pipe(
+      stylus({
+        'include css': true,
+        paths: ['./node_modules'],
+      })
+    )
+    .pipe(autoprefixer('last 2 versions', { map: false }))
+    .pipe(isDist ? csso() : through())
+    .pipe(rename('build.css'))
+    .pipe(dest('dist/build'))
+    .pipe(connect.reload());
+}
 
-gulp.task('dev', ['watch', 'build'], function(done) {
-  const port = 8081;
+function cssClasses() {
+  const destination = 'dist/styles/classes';
+  const tasks = []
+  tasks.push(src(['styles/classes/**/*.css'])
+    .pipe(changed(destination))
+    .pipe(dest(destination))
+    .pipe(connect.reload()));
+
+  tasks.push(src(['styles/classes/**/*.styl'])
+    .pipe(changed(destination))
+    .pipe(
+      stylus({
+        'include css': true,
+        paths: ['node_modules']
+      })
+    )
+    .pipe(autoprefixer())
+    .pipe(csso())
+    .pipe(rename(path => void (path.extname = '.min' + path.extname)))
+    .pipe(dest(destination))
+    .pipe(connect.reload()));
+
+  return merge(tasks);
+}
+
+function manifest() {
+  const destination = 'dist/favicon';
+  return src('favicon/manifest.json')
+    .pipe(changed(destination))
+    .pipe(replace('{path-to-root}', '../..'))
+    .pipe(dest(destination))
+    .pipe(connect.reload());
+}
+
+function copierTaskGenerator(taskName, source, destination) {
+  const name = Symbol(taskName);
+  const obj = {
+    [name]: () =>
+      src(source)
+        .pipe(changed(destination))
+        .pipe(dest(destination))
+        .pipe(connect.reload())
+  };
+
+  return obj[name];
+}
+
+const theme = copierTaskGenerator('theme', 'node_modules/bespoke-theme-beachday/dist/theme/**/*', 'dist/styles');
+const images = copierTaskGenerator('images', 'images/**/*', 'dist/images');
+const attachments = copierTaskGenerator('attachments', 'attachments/**/*', 'dist/attachments');
+const assignments = copierTaskGenerator('assignments', 'assignments/**/*', 'dist/assignments');
+const samples = copierTaskGenerator('samples', 'samples/**/*', 'dist/samples');
+const videos = copierTaskGenerator('videos', 'videos/**/*', 'dist/videos');
+const audios = copierTaskGenerator('audios', 'audios/**/*', 'dist/audios');
+const favicon = copierTaskGenerator('favicon', 'favicon/**/*', 'dist/favicon');
+const classesStuff = copierTaskGenerator('classes-stuff', ['classes/**/*', '!classes/**/*.md'], 'dist/classes');
+
+function getFolders(cwd, dir) {
+  const targetDirectory = path.join(cwd, dir);
+  return fs
+    .readdirSync(targetDirectory)
+    .filter(file => fs.statSync(path.join(targetDirectory, file)).isDirectory())
+    .map(filePath => path.join(dir, filePath));
+}
+
+function build() {
+  const folders = getFolders('.', 'classes');
+  const tasks = folders.map(folder => 
+    src(['html/index.html'])
+      .pipe(
+        preprocess({
+          context: {
+            NODE_ENV: isDist ? 'production' : 'development',
+            DEBUG: true
+          }
+        })
+      )
+      .pipe(replace('{path-to-root}', '../..'))
+      .pipe(dest(path.join('dist', folder)))
+  );
+
+  return merge(tasks);
+}
+
+function dev() {
+  const port = 8080;
+
+  watch('scripts/*.js', js);
+  watch('videos/**/*', videos);
+  watch('audios/**/*', audios);
+  watch('images/**/*', images);
+  watch('samples/**/*', samples);
+  watch('html/**/*.html', html);
+  watch('styles/*.styl', css);
+  watch('styles/classes/*.styl', cssClasses);
+  watch('favicon/**/*', favicon);
+  watch('attachments/**/*', attachments);
+  watch('assignments/**/*', assignments);
+  watch('scripts/classes/*.js', jsClasses);
+  watch('styles/classes/*.css', cssClasses);
+  watch(['README.md', 'classes/**/*.md'], md);
+  watch(['classes/**/*', '!classes/**/*.md'], classesStuff);
+
   connect.server({
-    root: ['dist'],
-    port: port,
-    livereload: true
+    root: 'dist',
+    livereload: true,
+    port
   });
+  open(`http://localhost:${port}/`)
+}
 
-  opn(`http://localhost:${port}`, done);
-});
+function deploy(done) {
+  ghpages.publish(path.join(__dirname, 'dist'), done);
+}
 
-gulp.task('deploy', function(done) {
-  ghpages.publish(path.join(__dirname, 'dist'), { logger: gutil.log }, done);
-});
+
+exports.clean = clean;
+exports.build = series(
+  parallel(
+    js,
+    md,
+    css,
+    html,
+    theme,
+    images,
+    audios,
+    videos,
+    favicon,
+    samples,
+    manifest,
+    jsClasses,
+    cssClasses,
+    attachments,
+    assignments,
+    classesStuff
+  ),
+  build
+);
+exports.dev = series(exports.build, dev);
+exports.deploy = deploy;

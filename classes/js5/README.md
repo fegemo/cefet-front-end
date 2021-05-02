@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 5)
+# **JavaScript** parte 5
 ## Web Storage, JSON e a Lista de Tarefas :notebook: x2
 
 ---
@@ -27,12 +27,12 @@ jogador.vidas = 2;
   - Dizemos que **estamos usando uma <u>função construtora</u>**
 
 ---
-<!-- {"layout": "2-column-content-40-60"} -->
+<!-- {"layout": "2-column-content", "slideStyles": {"grid-template-columns": ".6fr .4fr"}, "classes": "compact-code-more"} -->
 # Na última aula... (2/4)
 
 - Podemos passar objetos como **argumentos para funções**
-- A função é declarada como **recebendo 1 parâmetro** :arrow_lower_right:
-- Chamamos ela passando um **objeto como argumento** :arrow_lower_right:
+- A função é declarada como **recebendo 1 parâmetro** :arrow_right:
+- Chamamos ela passando um **objeto como argumento** :arrow_right:
 - Para um **vetor** percorremo-lo chamando a função para o
   i-ésimo item :arrow_lower_right: <!-- {ul^1:.bulleted} -->
 
@@ -40,8 +40,7 @@ jogador.vidas = 2;
 ```js
 let jogadores = [
   { nome: 'Yoda', pontos: 1420 },
-  { nome: 'Leia', pontos: 3010 },
-  { nome: 'Luke', pontos: 5600 }
+  { nome: 'Leia', pontos: 3010 }
 ];
 
 function passouDeFase(player) {
@@ -58,17 +57,12 @@ for (let i = 0; i < jogadores.length; i++) {
   passouDeFase(jogadores[i]);
 }
 
-
-// equivalente, porém super-mega-ultra
 // ELEGANTE, usando vetor.forEach:
 jogadores.forEach(passouDeFase);  // 🌟🌟🌟
-
-
 ```
 
 ---
-<!-- {"layout": "regular"} -->
-# Na última aula... (3/4) <!-- {h1:style="padding-bottom: 0.15em;"} -->
+# Na última aula... (3/4) <!-- {h1:style="margin-bottom: 0; padding-bottom: 0.15em;"} -->
 ## Inserção do elemento na árvore DOM <!-- {h1:style="padding-bottom: 0.15em"} -->
 
 - Para vincularmos um elemento criado, precisamos conhecer seu **pai**
@@ -85,13 +79,14 @@ containerEl.appendChild(novaOvelhaEl);
 ```
 
 ---
-<!-- {"layout": "regular"} -->
-# Na última aula... (4/4) <!-- {h1:style="padding-bottom: 0.15em"} -->
+# Na última aula... (4/4) <!-- {h1:style="margin-bottom: 0.15em; padding-bottom: 0"} -->
 
 ![Uma árvore com os elementos HTML](../../images/create-element-resumo.png)
-<!-- {.medium-width.centered} -->
+<!-- {p:.medium-width.centered} -->
+<!-- {.full-width} -->
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro
 
 1. [Usando o Web Storage](#usando-o-web-storage)
@@ -103,7 +98,7 @@ containerEl.appendChild(novaOvelhaEl);
 
 
 ---
-<!-- {"layout": "section-header", "slideHash": "usando-o-web-storage"} -->
+<!-- {"layout": "section-header", "hash": "usando-o-web-storage"} -->
 # Usando o <br>**Web Storage**
 ## Salvando dados na página
 
@@ -111,12 +106,10 @@ containerEl.appendChild(novaOvelhaEl);
 - O Web Storage
   - `localStorage`
   - `sessionStorage`
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
-# Por que e o que salvar?
+# **Por que** e **o que** salvar?
 
 - As nossas páginas podem querer salvar várias coisas:
   1. Exemplo: Moodle
@@ -140,7 +133,6 @@ containerEl.appendChild(novaOvelhaEl);
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/local-storage-trello.webm" controls id="trello-video"></video>
 
 ---
-<!-- {"layout": "regular"} -->
 ## O Web Storage
 
 - O Web Storage permite páginas **armazenarem dados <u>
@@ -149,12 +141,12 @@ containerEl.appendChild(novaOvelhaEl);
 - Existem dois sabores:
   1. `localStorage`, salva os dados <u>"para sempre"</u>
   1. `sessionStorage`, salva <u>apenas "durante a sessão"</u>
-- Os dados são salvos **apenas no próprio navegador** <!-- {li^0:.nota} -->
+- Os dados são salvos **apenas no próprio navegador** <!-- {li^0:.note} -->
   - Isto é, se você abrir a página em <u>outro</u> navegador ou computador,
     ainda não existem dados salvos
 
 ---
-<!-- {"layout": "regular", "slideHash": "local-storage"} -->
+<!-- {"hash": "local-storage"} -->
 ## `localStorage` e `sessionStorage`
 
 - Ambos nos permitem **armazenar valores dentro de _Strings_** <!-- {ul:.bulleted} -->
@@ -176,14 +168,13 @@ containerEl.appendChild(novaOvelhaEl);
 ## **localStorage**
 
 - O navegador **armazena permanentemente**, ou até que o usuário limpe: <!-- {ul.bulleted} -->
-    ![right](../../images/clear-cookies.png) <!-- {img:style="max-height: 200px"} -->
+    ![](../../images/clear-cookies.png) <!-- {img:.push-right style="max-height: 200px"} -->
 1. É possível inspecionar o que foi salvo na aba _Application_:
 
    <video src="../../videos/local-storage-hora-aventura.webm" controls preload width="482" height="262"></video>
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo de uso do **localStorage**
+## Exemplo de uso do **localStorage** <small>(1/2)</small>
 
 - Um evento de clique em um botão que **faz o menu aparecer e desaparecer**:
   ```js
@@ -199,10 +190,9 @@ containerEl.appendChild(novaOvelhaEl);
   - (continua no próximo slide)
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo de uso do **localStorage** (cont.)
+## Exemplo de uso do **localStorage** <small>(2/2)</small>
 
-- Após a página ter sido carregada (e.g., um _script_ ao final do _body_):
+- Após a página ter sido carregada (ex, um _script_ ao final do _body_):
   ```js
   let devoExpandirMenu = localStorage.getItem('menu-esta-expandido');
 
@@ -214,10 +204,9 @@ containerEl.appendChild(novaOvelhaEl);
   - Ou seja, expande o menu se o usuário o havia deixado expandido antes
 
 ---
-<!-- {"layout": "regular"} -->
 ## Principais métodos do **localStorage**
 
-- Salvar alguma coisa:
+- Salvar alguma coisa: <!-- {ul:.full-width} -->
   ```js
   localStorage.setItem('chave', 'valor');
   ```
@@ -231,7 +220,7 @@ containerEl.appendChild(novaOvelhaEl);
   ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "session-storage"} -->
+<!-- {"hash": "session-storage"} -->
 ## **sessionStorage**
 
 - Exata mesma funcionalidade do `localStorage`, porém o navegador armazena
@@ -243,26 +232,24 @@ containerEl.appendChild(novaOvelhaEl);
 - Os métodos do `sessionStorage` são os mesmos do `localStorage`
 
 ---
-<!-- {"layout": "section-header", "slideHash": "lista-de-tarefas-parte-1"} -->
+<!-- {"layout": "section-header", "hash": "lista-de-tarefas-parte-1"} -->
 # Lista de Tarefas :notebook: x2
 ## Voltando à atividade, parte 1
 
 - O que mudou no código
 - Atividade, parte 1
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "2-column-content"} -->
+<!-- {"layout": "2-column-content", "slideStyles": {"grid-template-columns": "7fr 3fr"}} -->
 ## O que mudou?
 
-![](../../images/activity-thumbs/todo-storage.jpg) <!-- {.full-width} --> <!-- {p:style="width: 70%"} -->
+![](../../images/activity-thumbs/todo-storage.jpg) <!-- {.full-width} -->
 
-- Um novo `<input>` para o nome do "dono da lista" <!-- {ul:style="width: 28%"} -->
+- Um novo `<input>` para o nome do "dono da lista"
 - Botões para `#salvar` e `#carregar` os dados
 
 ---
-<!-- {"layout": "regular"} -->
 ## Atividade, parte 1
 
 - Os exercícios 1, 2 e desafio 1 (semana passada) **estão feitos**:
@@ -280,7 +267,6 @@ containerEl.appendChild(novaOvelhaEl);
 [enunciado-lista-tarefasx2]: https://github.com/fegemo/cefet-front-end-todo/blob/master-webstorage/README.md
 
 ---
-<!-- {"layout": "regular"} -->
 ## Atividade, parte 1 (cont.)
 
 - Agora, faça o **Exercício 4**, que é **<u>tentar</u> salvar** também o vetor
@@ -291,7 +277,7 @@ containerEl.appendChild(novaOvelhaEl);
   - Para corrigir isso, volte aos slides/vídeos da aula
 
 **Atenção**: Não avance os slides até fazer o exercício 4
-<!-- {p:.nota} -->
+<!-- {p:.note} -->
 
 <!-- Tentativa de usar o bespokeProceed... preciso deixá-lo mais robusto para
 que ele dê feedback ao usuário (positivo e negativo) e também que ele
@@ -303,7 +289,7 @@ use comentários JSON em vez de input[type=hidden] -->
 
 
 ---
-<!-- {"layout": "regular", "slideHash": "formato-de-armazenamento", "backdrop": "shiny"} -->
+<!-- {"hash": "formato-de-armazenamento", "backdrop": "shiny"} -->
 ## Formato de armazenamento
 
 - Como dito, o Web Storage armazena **apenas _Strings_**
@@ -323,7 +309,7 @@ use comentários JSON em vez de input[type=hidden] -->
     ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "representando-objetos-em-strings"} -->
+<!-- {"hash": "representando-objetos-em-strings"} -->
 ## Representando objetos em _Strings_
 
 - Na verdade, o JavaScript sabe **serializar e desserializar** objetos em
@@ -340,24 +326,21 @@ use comentários JSON em vez de input[type=hidden] -->
   let jogo = localStorage.getItem('estado-do-jogo');
   jogo = JSON.parse(jogo);  // Usamos JSON.parse(stringComUmObjeto)
   ```
-- Agora você já pode fazer o **Exercício 5** :3 <!-- {li:.nota} -->
+- Agora você já pode fazer o **Exercício 5** :3 <!-- {li:.note} -->
 
 *[JSON]: JavaScript Object Notation*
 
 ---
-<!-- {"layout": "section-header", "slideHash": "o-formato-json"} -->
+<!-- {"layout": "section-header", "hash": "o-formato-json"} -->
 # O formato **JSON**
 ## Representando dados
-
 
 - O que é JSON
 - Descrição do formato
 - JSON no navegador
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## O que é JSON: _JavaScript Object Notation_
 
 - É um formato criado **para representar dados** <!-- {ul:.bulleted} -->
@@ -377,7 +360,6 @@ use comentários JSON em vez de input[type=hidden] -->
     ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Descrição do formato JSON
 
 - O formato possui seis tipos de valores:
@@ -395,7 +377,6 @@ use comentários JSON em vez de input[type=hidden] -->
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## JSON no navegador
 
 - O objeto `window` possui o objeto `JSON` que contém métodos de conversão
@@ -413,17 +394,15 @@ use comentários JSON em vez de input[type=hidden] -->
     ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "lista-de-tarefas-parte-2"} -->
+<!-- {"layout": "section-header", "hash": "lista-de-tarefas-parte-2"} -->
 # Lista de Tarefas :notebook: x2
 ## Voltando à atividade, parte 2
 
 - Atividade, parte 2
-
 <!-- {ul:.content} -->
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## Atividade, parte 2
 
 - Agora que você já sabe como salvar representar um _Object_ dentro de uma
@@ -442,7 +421,6 @@ use comentários JSON em vez de input[type=hidden] -->
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Atividade, parte 2 (cont.)
 
 - No **Exercício 5**, você deve salvar e carregar a lista de tarefas do
@@ -457,6 +435,7 @@ use comentários JSON em vez de input[type=hidden] -->
     para ver se precisa minimizar a logomarca (_i.e._, colocar a classe)
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulo 12 do livro "Head First: JavaScript"

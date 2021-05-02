@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# CSS (Parte 2)
+# **CSS** parte 2
 ## História, a Cascata e outros Seletores, Ferramentas e Ninjas :dash:
 
 ---
@@ -8,48 +8,71 @@
 
 - Boas ferramentas possuem: Destacamento de código fonte,
   indentação e autocompletar
-- Atalhos interessantes no **Atom**
-  - Uso do <kbd>tab</kbd> após uma _tag_ para completar com a tag
-    desejada (eg. `html`)
-  - Visualização prévia do código: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
+- Atalhos interessantes no **VS Code/Atom/Sublime**
+  - Abertura de pasta inteira
+  - Esqueleto básico de um arquivo HTML
+  - Uso do <kbd>tab ↔️</kbd> após uma _tag_ para autocompletar
+  - Atualização automática do navegador ao salvar
 
 ---
 # Na última aula... (2/4)
 ## Codificação e DOCTYPE
 
-- Codificação do arquivo
+- ![Exemplo de Codificação de Texto](../../images/codificacao.png)
+  <!-- {.push-right.small-width} -->
+  Codificação do arquivo
   - Como um texto é armazenado em seu computador?
     - ASCII
     - UNICODE e UTF-8
-    ![Exemplo de Codificação de Texto](../../images/codificacao.png)<!-- {.push-right style="height: 300px"} -->
-- Versão do HTML:
-  - DOCTYPE
+- Versão do HTML
+  - DOCTYPE:
+    ```xml
+    <!DOCTYPE html>  <!-- HTML 5 👍 -->
+    ```
 
 ---
 # Na última aula... (3/4)
-## CSS
+## Sobre CSS
 
 - **Seletores de classe**: uso de `.curiosidades` para selecionar
 uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 - **Incluindo arquivos CSS**:
-```html
-<link rel="stylesheet" href="estilos.css">
-```
+  ```html
+  <link rel="stylesheet" href="estilos.css">
+  ```
   - Vantagem: Reaproveita o estilo para diversas páginas
 
-
 ---
+<!-- {"layout": "2-column-content", "classes": "compact-code-more"} -->
 # Na última aula... (4/4)
+## Cores e gradientes <!-- {.span-columns} -->
 
-- **Cores e gradientes**:
+
+1. **Cores** <!-- {ol:.no-bullets.no-padding} -->
+   ```css
+   /* nome */
+   black, blue, green, white,
+   purple, forestgreen,
+   cornflowerblue, etc.
+
+   /* notação rgb/a */
+   rgb(255, 129, 100)
+   rgba(255, 129, 100, 0.5)
+
+   /* notação hexadecimal */
+   #ffca38
+   #ffca38cc
+   ```
+
+- **Gradientes** (degradês): <!-- {ul:.no-bullets.no-padding} -->
   ```css
   p {
     background-image: linear-gradient( 45deg, blue, #00FF00 );
   }
   ```
-  ![](../../images/colors-notations.png) <!-- {.push-right style="max-height: 200px;"} -->
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [Ferramentas do Desenvolvedor](#ferramentas-do-desenvolvedor)
@@ -60,7 +83,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 1. [Os Ninjas](#os-ninjas)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "ferramentas-do-desenvolvedor"} -->
+<!-- {"layout": "section-header", "hash": "ferramentas-do-desenvolvedor"} -->
 # Ferramentas do Desenvolvedor
 ## Investigando erros e experimentando propriedades
 
@@ -74,15 +97,16 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 <!-- {ul:.content} -->
 
 ---
-## Ferramentas do Desenvolvedor
+## Ferramenta do Desenvolvedor
 
-![Ferramentas de desenvolvedor do Chrome](../../images/chrome-dev-tools.png)
+![Ferramenta do desenvolvedor do Chrome](../../images/chrome-dev-tools.png)
+<!-- {.bordered.rounded style=" max-height: calc(var(--slide-height) - 5em)"} -->
+<!-- {p:.flex-align-center} -->
 
 ---
 # O HTML visto como uma árvore
 
-
-::: figure .figure-slides.clean
+::: figure .figure-slides.clean.flex-align-center
 ![Uma árvore com os elementos HTML](../../images/html-tree-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![Uma árvore com os elementos HTML](../../images/html-tree-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 ![Uma árvore com os elementos HTML](../../images/html-tree-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
@@ -90,52 +114,58 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 :::
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ## Exemplo: Alterando/testando propriedades
 
-<video src="../../videos/desenv-chrome.mp4" height="400" controls style="margin: 0 auto;"></video>
+<video src="../../videos/desenv-chrome.mp4" height="480" controls></video>
 
 ---
-## Usando as Ferramentas
+## Usando as ferramentas
 
-- Visualizando o código fonte:
+- Visualizando o código fonte da página:
   - Tecla de atalho no Chrome: <kbd>Ctrl+U</kbd>
   - Ou então:
     1. clicar com **botão direito** do Mouse **na página**
-    1. selecionar **"Exibir código fonte da página"**
-- Ativando o depurador:
+    1. selecionar "**Exibir código fonte da página**"
+- Ferramenta do desenvolvedor:
   - Tecla de atalho padrão: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> ou <kbd>F12</kbd>
   - Ou então:
     1. clicar com **botão direito** do Mouse **na página**
-    1. selecionar **"Inspecionar"**
+    1. selecionar "**Inspecionar**"
+
+Vejamos alguns exemplos de como as ferramentas podem ajudar...
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ### Investigando - _"Criei **uma regra** e ela **não funcionou**"_
 
-<video src="../../videos/tools-investigate-wrong-selector.webm" height="500" controls style="margin: 0 auto;"></video>
+<video src="../../videos/tools-investigate-wrong-selector.webm" height="500" controls></video>
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ### Investigando - _"Nova **propriedade não funcionou**"_
 
-<video src="../../videos/tools-investigate-wrong-property.webm" height="500" controls style="margin: 0 auto;"></video>
+<video src="../../videos/tools-investigate-wrong-property.webm" height="500" controls></video>
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ### Investigando - _"**Arquivo não apareceu**"_
 
-<video src="../../videos/tools-investigate-wrong-path.webm" height="500" controls style="margin: 0 auto;"></video>
+<video src="../../videos/tools-investigate-wrong-path.webm" height="500" controls></video>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "aprofundando-em-css"} -->
+<!-- {"layout": "section-header", "hash": "aprofundando-em-css"} -->
 # Aprofundando<br>em **CSS**
-## CSS: Folhas de Estilo em **Cascata**
+## CSS: Folhas de Estilo<br>em **Cascata**
 
 - História
 - A cascata
 - Outros seletores
-
 <!-- {ul:.content} -->
 
+*[CSS]: Cascading Style-Sheets
+
 ---
-<!-- {"layout": "regular"} -->
 ## História
 
 1989 - 1993 <!-- {.bullet-old} -->
@@ -163,7 +193,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
 *[CERN]: European Organization for Nuclear Research*
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"classes": "compact-code-more"} -->
 ## A **Cascata**
 
 - CSS é a sigla para _**Cascading** Style Sheets_
@@ -175,21 +205,37 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   ```
   - Todo o texto que estiver dentro de `<body>...</body>`, mesmo que dentro de
     parágrafos ou outros elementos, ficarão vermelhos (!)
+    - <!-- {ul^0:.compact-code.no-bullets.no-padding} -->
+      ::: result .push-right margin-left: 1.5em; 
+      # Título <!-- {style="font-family: serif; color: red;"} -->
+      :::
+      ```html
+      ⋮
+      <style>
+        body {
+          color: red;
+        }
+      </style>
+      </head>
+      <body>
+        <h1>Título</h1>
+        ⋮
+      ```
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo da Cascata
+## Exemplo da **cascata**
 
 <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/gqgacz36/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-- Nota: clique nas abas "HTML", "CSS" e "Result". Para editar o código, clique
+- Clique nas abas "HTML", "CSS" e "Result". Para editar o código, clique
   em "Edit in JSFiddle"
 
----
-<!-- {"layout": "regular"} -->
-## Cascata (cont.)
+Algumas propriedades (ex: `color`) são herdadas pelos descendentes, outras não (ex: `border`) <!-- {p:.note.info} -->
 
-- Para as propriedades que não são herdadas por padrão (_e.g._, `border`),
+---
+## Cascata: propriedades **não-herdadas**
+
+- Para as **propriedades que não são herdadas** por padrão (_e.g._, `border`),
   podemos forçar que sejam herdadas usando o valor `inherit`:
   ```css
   p {
@@ -204,8 +250,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   :::
 
 ---
-<!-- {"layout": "regular"} -->
-## Cascata (cont.)
+## Cascata: **sobrescrita** de propriedade
 
 - Também podemos sobrescrever a herança de uma propriedade:
   ```css
@@ -221,13 +266,13 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   :::
 
 ---
-<!-- {"layout": "regular", "slideHash": "outros-seletores"} -->
+<!-- {"hash": "outros-seletores", "embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/css-rule-anatomy.min.css"]} -->
 ## Seletores
 
-- ![Regra CSS](../../images/css-selector-no-margin.png) <!-- {.push-right} -->
+- ![Regra CSS](../../images/css-rule-anatomy.svg) <!-- {.push-right.css-rule-anatomy.selector width="300" data-viewbox="50 0 90 60"} -->
   Até agora, já sabemos **selecionar elementos de <u>03 formas</u>**:
   1. Pelo **nome de sua _tag_**: `p { color: white; }`
-  1. Por (uma de) suas **classes**: `.spam { color: red;}`
+  1. Por (uma de) suas **classes**: `.livro { color: red;}`
   1. Por seu **id**: `#manchete-principal { color: green; }`
 - Contudo, a vida não para por aí...
   - Há 20+ tipos de seletores (dos quais já vimos 3)
@@ -235,11 +280,11 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     consultá-los (Google) depois ;)
 
 ---
-<!-- {"layout": "regular"} -->
 ## Desafio #1
 
 > Colorir de laranja **apenas os <u>links dentro da lista</u> não ordenada**:
 > ![](../../images/css-selectors-descendant-challenge.png) <!-- {.centered} -->
+<!-- {p:style="text-align: left"} -->
 
 - Poderíamos usar uma classe (`.marca-de-sabao`) nos links da lista
   - Mas há uma forma melhor!
@@ -258,10 +303,9 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
       :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## Seletores de **Descendente** e **Filho direto**
 
-- Formato: `X Y` _(antecessor, espaço, elemento selecionado)_ <!-- {ul:.layout-split-2.no-padding.no-list-icon.flex-equal-children} -->
+- Formato: `X Y` _(antecessor, espaço, elemento selecionado)_ <!-- {ul:.code-split-2.no-padding.no-list-icon} -->
   - Exemplo:
     ```css
     ul a {
@@ -280,7 +324,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     - Descrição: seleciona todos os `ul` que têm `#menu-principal` como pai
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"classes": "compact-code"} -->
 ## Exemplo: **Descendente** vs **Filho direto**
 
 - ```html
@@ -311,24 +355,23 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     <!-- {ul^1:.no-list-icon.no-padding}-->
 
 ---
-<!-- {"layout": "regular", "slideHash": "desafio-seletor-atributo"} -->
+<!-- {"hash": "desafio-seletor-atributo"} -->
 ## Desafio #2
 
 > Colocar uma borda rosa **apenas nas imagens .jpg**:
 > ![](../../images/css-selectors-attribute-challenge.png)
+<!-- {p:style="text-align: left"} -->
 
 - Poderíamos usar uma classe (`.formato-jpg`) nessas imagens...
-  - Mas há uma forma melhor!
+  - Mas há uma forma melhor! <!-- {li:.bullet} -->
   - É possível **selecionar elementos de acordo com seus atributos**! <!-- {li:.bullet} -->
-    - ```css
-      img[src$=".jpg"] {
-        border: 5px solid hotpink;
-      }
-      ```
-      <!-- {li:.bullet} -->
+    ```css
+    img[src$=".jpg"] {
+      border: 5px solid hotpink;
+    }
+    ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Seletores de **Atributo**
 
 - Podemos selecionar elementos HTML **de acordo com <u>seus atributos</u>**:
@@ -365,7 +408,6 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     <!-- {ul^2:.layout-split-2.no-list-icon.no-padding.compact-code} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplos de seletores de atributos
 
 ```css
@@ -395,11 +437,12 @@ a[href^="http"] {
 :::
 
 ---
-<!-- {"layout": "regular", "slideHash": "desafio-seletor-estado"} -->
+<!-- {"hash": "desafio-seletor-estado"} -->
 ## Desafio #3
 
 > Tirar o sublinhado do hyperlink **quando passar o mouse sobre ele**:
 > ![](../../images/css-selectors-state-challenge.png)
+<!-- {p:style="text-align: left"} -->
 
 - A única forma de fazer é usando **seletores de estado**: <!-- {li:.bullet} -->
   - ```css
@@ -410,7 +453,7 @@ a[href^="http"] {
     <!-- {li:.bullet} -->
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".link:link {color: blue; text-decoration: underline;}.link:hover {color: cyan;}.link:active {color: gold;}"} -->
+<!-- {"embeddedStyles": ".link:link {color: blue; text-decoration: underline;}.link:hover {color: cyan;}.link:active {color: gold;}"} -->
 ## Seletores de **Estado**
 
 - Podemos selecionar elementos HTML **de acordo com <u>seus atributos</u>**:
@@ -424,6 +467,9 @@ a[href^="http"] {
     a:active {
       color: gold;  /* [c] */
     }
+
+
+
     ```
     ::: result
     [Um link](#um-link) <!-- {a:.link} -->
@@ -444,11 +490,12 @@ a[href^="http"] {
     <!-- {ul^1:.layout-split-2.no-list-icon.no-padding.compact-code} -->
 
 ---
-<!-- {"layout": "regular", "slideHash": "desafio-seletor-negacao"} -->
+<!-- {"hash": "desafio-seletor-negacao"} -->
 ## Desafio #4
 
 > Centralizar todas imagens **exceto uma ou outra**:
 > ![](../../images/css-selectors-negation-challenge.png)
+<!-- {p:style="text-align: left"} -->
 
 - Isso poderia ser feito colocando classes/ids nos elementos <!-- {li:.bullet} -->
   - Mas há outra forma, com o **seletor de negação**:
@@ -461,7 +508,6 @@ a[href^="http"] {
     <!-- {li:.bullet} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Seletor: **Negação**
 
 - Formato: `X:not(seletor)`
@@ -477,15 +523,15 @@ a[href^="http"] {
     não possuam a classe `.destacado`**
 
 ---
-<!-- {"layout": "regular-block", "embeddedStyles": ".tabela tr:nth-child(2n){background:lightblue;}.tabela tr:nth-child(2n+1){background:silver;}"} -->
+<!-- {"slideStyles": {"display": "block"}, "embeddedStyles": ".tabela tr:nth-child(2n){background:white;}.tabela tr:nth-child(2n+1){background:silver;} .tabela { line-height: 1.25em; } .tabela td { border: 1px solid black; } .tabela {border: none!important}", "classes": "compact-code"} -->
 ## Outros seletores
 
-::: did-you-know .push-right width: 360px; margin-left: 6px;
-A parte dso seletores "com dois pontos" (eg, `:not()`, `:hover`) é chamada
+::: did-you-know .push-right width: 400px; margin-left: 1em;
+A parte dos seletores "com dois pontos" (eg, `:not()`, `:hover`) é chamada
 de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes).
 :::
 
-- Seletores **de posição** dentro do pai:
+- Seletores **de posição** dentro do pai: <!-- {li:.bullet} -->
   - `X:first-child`
   - `X:last-child`
   - `X:nth-child(n)` <!-- {ul^0:.multi-column-list-2}-->
@@ -493,7 +539,7 @@ de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/
   - `X:first-of-type`
   - `X:last-of-type`
   - `X:nth-of-type(n)` <!-- {ul^0:.multi-column-list-2}-->
-- Exemplo de `nth-child`:
+- Exemplo de `nth-child`: <!-- {li:.bullet} -->
   - ```html
     <table>
       <tr><td>Linha 1</td></tr>
@@ -503,19 +549,19 @@ de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/
     </table>
     ```
   - ```css
-    tr:nth-child(2n) { /*par*/
-      background: lightblue;
+    tr:nth-child(2n) {   /*par*/
+      background: white;
     }
-    tr:nth-child(2n+1) {
+    tr:nth-child(2n+1) { /* ímpar */
       background: silver;
     }
     ```
   - ::: result
-    <table class="tabela">
-      <tr><td>Linha 1</td></tr>
-      <tr><td>Linha 2</td></tr>
-      <tr><td>Linha 3</td></tr>
-      <tr><td>Linha 4</td></tr>
+    <table class="tabela smaller-text-70">
+      <tr><td>A</td><td>Linha 1</td></tr>
+      <tr><td>B</td><td>Linha 2</td></tr>
+      <tr><td>C</td><td>Linha 3</td></tr>
+      <tr><td>D</td><td>Linha 4</td></tr>
     </table>
     :::
     <!-- {ul^0:.layout-split-3.no-list-icon.no-padding style="justify-content:space-between;"}-->
@@ -523,20 +569,19 @@ de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/
 [css-selectors-30]: https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048
 
 ---
-<!-- {"layout": "section-header", "slideHash": "os-ninjas"} -->
+<!-- {"layout": "section-header", "hash": "os-ninjas"} -->
 # Os Ninjas :dash:
 ## Conheça essa gente ligeira
 
 - Atividade de hoje
 - Atributos `alt` das imagens
 - Embutindo páginas com `<iframe></iframe>`
-
 <!-- {ul:.content} -->
 
 ---
 ## Atividade de Hoje
 
-![](../../images/print-ninja-logo.png)
+![](../../images/print-ninja-logo.png) <!-- {p:.flex-align-center} -->
 
 1. Você deve estilizar as duas páginas web dos ninjas usando os
    conhecimentos que vimos nas aulas anteriores
@@ -558,6 +603,7 @@ de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/
 - Deve descrever bem a imagem
   - É a única descrição da imagem que uma pessoa cega tem ao acessar a página
   - Assista [como uma pessoa cega navega na Web](https://www.youtube.com/watch?v=zNVrNo7MxsA)
+
 ---
 ## Atributo **alt** da imagem - Exemplo
 
@@ -575,16 +621,17 @@ de **pseudoclasse**. Veja [todas aqui](https://developer.mozilla.org/pt-BR/docs/
 - Usada para **embutir outra página** web dentro da atual
 - Exemplo:
   ```html
-  <iframe src="https://www.terra.com.br"></iframe>
+  <iframe src="https://fegemo.github.io/cefet-front-end-ajax/"></iframe>
   ```
   :::result
-  <iframe src="https://www.terra.com.br" width="100%"></iframe>
+  <iframe src="https://fegemo.github.io/cefet-front-end-ajax/" width="100%"></iframe>
   :::
   - Usos comuns:
     - Colocar um vídeo do Youtube na página
     - Colocar um mapa do Google Maps na página
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulo 7 do livro

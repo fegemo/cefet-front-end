@@ -1,27 +1,24 @@
 <!-- {"layout": "title"} -->
-# CSS - Parte 5
+# **CSS** parte 5
 ## Especificidade de seletores, Centralizando coisas e a Lanchonete do Coral 55 :palm_tree:
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula (1/4)
 
-| position | Descrição | Exemplos de uso | top, right, bottom, left | z-index |
+| `position` | Descrição | Exemplos de uso | `top`, `right`, `bottom`, `left` | `z-index` |
 |------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
 | `static` | Fluxo normal | Elementos **sem posicionamento especial** | ignorados | ignorado |
 | `relative` | Fluxo normal, deslocado | Elementos que podem se **deslocar um pouco**; **contextos para elementos absolutos** | **deslocamentos** nas 4 direções | define ordem |
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula  (2/4)
 
-| position | Descrição | Exemplos de uso | top, right, bottom, left | z-index |
+| `position` | Descrição | Exemplos de uso | `top`, `right`, `bottom`, `left` | `z-index` |
 |------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
 | `absolute` | Removido do fluxo, posicionado (x,y) relativo a um contexto | Elementos que queremos **definir os valores (x,y)** para posicioná-los exatamente nesse lugar | **posições** referentes às 4 direções | define ordem |
 | `fixed` | Removido do fluxo, em um (x,y) na janela | Idem, mas a **posição é fixa na janela** | **posições** para as 4 direções | define ordem |
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula (3/4)
 
 - Propriedades do **Flexbox**: <!-- {ul^0:.full-width.no-margin} -->
@@ -34,24 +31,23 @@
     - `order: numero`
 
 <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula (4/4)
 
-- Propriedades do **Grid**: <!-- {ul^0:.full-width.no-margin} -->
+- Propriedades do **grid**: <!-- {ul^0:.full-width.no-margin} -->
   - No elemento pai: <!-- {ul^0:.layout-split-2} -->
     - `display: grid` <!-- {li^1:style="flex: 1"} -->
     - `grid-template-rows`
     - `grid-template-columns`
   - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
-    - `grid-row-start: numero`
-    - `grid-row-end: numero`
-    - `grid-column-start: numero`
-    - `grid-column-end: numero`
+    - `grid-row: inicio / fim`
+    - `grid-column: inicio / fim`
 
 <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/sqtdb95x/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro de hoje
 
 1. [Lanchonete do Coral 55](#lanchonete-do-coral-55) :palm_tree:
@@ -63,7 +59,7 @@
 {
   "embeddedStyles": ".ravie { font-family: Ravie, serif; color: #e90c0c; }",
   "layout": "section-header",
-  "slideHash": "lanchonete-do-coral-55"
+  "hash": "lanchonete-do-coral-55"
 }
 -->
 # Lanchonete do Coral 55  <!-- {.ravie style="font-size: 2em"} -->
@@ -114,13 +110,12 @@
 Observação: **antigamente** era comum usar `float` em alguns elementos para
 definirmos sua posição (como fizemos nos Unicórnios). Mas hoje em dia
 preferimos usar o Flexbox e o Grid, que foram criados para isso.
-<!-- {p:.nota} -->
+<!-- {p:.note} -->
 
 Veja como está estruturado o HTML e como você pode estilizar as partes
 
 ---
 <!-- {
-  "layout": "regular",
   "embeddedStyles": ".code pre { margin-left: 153px; } .code::before { content: 'H T M L'; display: inline-block; height: 4em; width: 1em; font-family: monospace; font-size: 110px; float: right; margin-left: 20px;}"
 } -->
 
@@ -149,7 +144,7 @@ Veja como está estruturado o HTML e como você pode estilizar as partes
 </div>
 
 ---
-<!-- {"state": "show-active-slide-and-previous"} -->
+<!-- {"state":"show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "300px", "--show-2-slides-z-distance": "-400px", "--show-2-slides-rotation": "10deg "}} -->
 
 ::: figure .figure-slides
 ![](../../images/coral-55-annotation-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
@@ -157,7 +152,7 @@ Veja como está estruturado o HTML e como você pode estilizar as partes
 :::
 
 ---
-<!-- {"slideHash": "line-height"} -->
+<!-- {"hash": "line-height"} -->
 ## A propriedade **line-height** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height))
 
 - Define a altura de uma linha de texto.
@@ -179,7 +174,7 @@ Veja como está estruturado o HTML e como você pode estilizar as partes
 
 
 ---
-<!-- {"layout": "section-header", "slideHash": "especificidade-de-seletores"} -->
+<!-- {"layout": "section-header", "hash": "especificidade-de-seletores"} -->
 # Especificidade de seletores
 ## Aplicando regras
 
@@ -191,7 +186,7 @@ Veja como está estruturado o HTML e como você pode estilizar as partes
 ---
 ## Motivação
 
-- Dadas <u>mais de uma regra `CSS` definindo a mesma propriedade</u> para
+- Dadas <u>mais de uma regra CSS definindo a mesma propriedade</u> para
   um elemento, qual prevalece?
   - Como determinar qual a cor do elemento?
     ```html
@@ -222,7 +217,6 @@ Veja como está estruturado o HTML e como você pode estilizar as partes
     - Neste caso, <h4 style="display: inline; color: green;">Ford Prefect (`green`)</h4>
 
 ---
-<!-- {"layout": "regular"} -->
 ## Regras gerais de especificidade
 
 Regra 1 <!-- {dl:.bulleted} -->
@@ -243,7 +237,6 @@ Regra 5
   ~ ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag
 
 ---
-<!-- {"layout": "regular"} -->
 ## Cálculo da **pontuação de especificidade**
 
 - [Especificação na W3C sobre _CSS3 Selectors_](http://www.w3.org/TR/css3-selectors/#specificity)
@@ -259,6 +252,7 @@ Regra 5
   /* pontuação: 121 */
 }
 ```
+
 ---
 ## Exemplos
 
@@ -296,17 +290,18 @@ p strong em { }           /* 003 */
 ---
 <!--
 {
-  "slideHash": "specificator-tabajara",
+  "layout": "centered-horizontal",
+  "hash": "specificator-tabajara",
   "scripts": ["../../scripts/classes/spec-tabajara.min.js"],
   "styles": ["../../styles/classes/spec-tabajara.min.css"]
 }
 -->
 
-## **Specificator Tabajara**
+## **CoutoSan™** Specificity  ![](../../images/flavio-avatar.jpg)<!-- {.emoji.portrait.bordered style="margin-left: 0.5em"} -->![](../../images/hasan-avatar.jpg) <!-- {.emoji.portrait.bordered} -->
 
 <article id="spec-tabajara">
   <div>
-    <input type="text" id="spec-tabajara-input" placeholder="seletor...">
+    <input type="text" id="spec-tabajara-input" placeholder="Digite um seletor aqui...">
   </div>
   <div>
     <button id="spec-tabajara-button">Calcular</button>
@@ -328,21 +323,19 @@ p strong em { }           /* 003 */
 </article>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "centralizando-as-coisas"} -->
+<!-- {"layout": "section-header", "hash": "centralizando-as-coisas"} -->
 # Centralizando as coisas
 ## Centralizando elementos em diferentes cenários
 
 - Centralizando horizontalmente
 - Centralizando verticalmente
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular", "slideHash": "centralizacao-horizontal"} -->
+<!-- {"hash": "centralizacao-horizontal"} -->
 # Centralizando **horizontalmente** <!-- {.underline.upon-activation} -->
 
-- Existem várias formas para centralizar elementos que se aplicam a **situações
-  diferentes**:
+- Existem várias formas para centralizar elementos que se aplicam a **situações diferentes**:
   1. Centralizar o conteúdo _inline_ de um elemento
   1. Centralizar um elemento `block` ou `inline-block` com largura definida
   1. Centralizar um elemento com `position: absolute` ou `fixed`...
@@ -351,7 +344,6 @@ p strong em { }           /* 003 */
   1. E outras formas...
 
 ---
-<!-- {"layout": "regular"} -->
 ## (1) Centralizando conteúdo _inline_
 
 - Para **centralizar os filhos `inline`** de um elemento:
@@ -367,7 +359,6 @@ p strong em { }           /* 003 */
       <iframe width="100%" height="100" src="//jsfiddle.net/fegemo/hko474g8/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular"} -->
 ## (2) Centralizando um elemento _block_
 
 - Para **centralizar um elemento `block`**:
@@ -383,85 +374,127 @@ p strong em { }           /* 003 */
       <iframe width="100%" height="130" src="//jsfiddle.net/fegemo/3a21w96j/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "2-column-content"} -->
+## (3.0) Centralizando um elemento `absolute` ❌
+
+- Ideia: <!-- {ul:.bullet} -->
+  ```css
+  .centraliza-tentativa {
+    position: absolute; /* ou fixed */
+    left: 50%;
+  }
+  ```
+  - Não funciona porque o objeto começa em 50% do pai
+
+![](../../images/center-object-attempt.png) <!-- {.bullet} -->
+
+Há duas soluções: (a) se o tamanho do pai for definido (ex, valor em px) e (b) se o pai for fluido (ex, largura em %) <!-- {p.note.info.span-columns.bullet} -->
+
+---
 ## (3.1) Centralizando um elemento `absolute`
 
 - Centralizando um elemento com `position: absolute` ou `fixed` quando a
-  **largura do seu container é conhecida**:
+  **largura do seu pai é conhecida**:
   ```css
   .centraliza-elemento-absoluto {
-    left: (LARGURA_P - LARGURA_E)/2;
+    position: absolute; /* ou fixed */
+    left: calc((LARGURA_PAI - LARGURA_EL) / 2);
   }
   ```
   ![](../../images/box-element-dimensions.png) <!-- {.push-right} -->
 
-  - Onde `LARGURA_P` é a largura do recipiente e `LARGURA_E` é a largura
+  - Onde `LARGURA_PAI` é a largura do pai (recipiente) e `LARGURA_EL` é a largura
     do elemento que queremos centralizar
+  - Veja [como funciona esse `calc(...)`][calc] do CSS
+
+[calc]: https://css-tricks.com/a-complete-guide-to-calc-in-css/
 
 ---
-<!-- {"layout": "regular"} -->
 ## (3.2) Centralizando um elemento `absolute`
 
-- Centralizando um elemento com `position: absolute` ou `fixed` **em um
-  recipiente fluido** (largura pode variar):
+- Centralizando um elemento com `position: absolute` ou `fixed` 
+  **em um recipiente fluido** (largura do pai pode variar):
   ```css
   .centraliza-elemento-com-pai-fluido {
-    left: 50%;
-    margin-left: -(LARGURA_E / 2);  /* margin-left negativa!! */
+    position: absolute;          /* ou fixed */
+    left: 50%;                   /* põe no "meio", só que começando dele */
+    transform: translateX(-50%); /* volta metade da largura do elemento */
   }
   ```
-- Mais: [Um guia sobre como centralizar qualquer elemento no site designshack.net](http://designshack.net/articles/css/how-to-center-anything-with-css/)
+  - Em outra aula aprenderemos a propriedade CSS `transform`
+- Mais: [Um guia sobre como centralizar qualquer elemento](https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/)
 
 ---
-<!-- {"layout": "regular"} -->
-# Centralizando **verticalmente**  <!-- {.underline.upon-activation} -->
+# Centralizando **verticalmente**  <!-- {.underline.upon-activation.alternate-color} -->
 
 - Assim como a centralização horizontal, a vertical depende do cenário:
+  1. Centralizar um elemento com `position: static`
   1. Centralizar um elemento com `position: absolute` ou `fixed`
-  1. Centralizar um elemento `inline` com 1 única linha
-  1. E outras formas...
 
 ---
-<!-- {"layout": "regular", "slideHash": "centralizando-verticalmente-absolute-fixed"} -->
-## (1) Centralizando vertic. um elemento `absolute`
+<!-- {"layout": "2-column-content", "hash": "centralizando-verticalmente-static", "slideStyles": {"grid-template-rows": "auto auto auto"}} -->
+## (1) Centralizando vertic. um elemento `static`
+
+- Podemos usar **flexbox** com `display: flex` no pai e `align-self: center` no filho sendo centralizado <!-- {ul:.span-columns} -->
+
+```css
+.recipiente {
+  display: flex;
+  /*justify-items: center; 
+   ⬆️ se quiser horizontal tbm */
+}
+.centralizando-vertical {
+  align-self: center;
+}
+```
+
+::: result .center-flex-example 
+<style>
+.center-flex-example p::before {
+  content: '<p class="recipiente">';
+  display: block;
+  position: absolute;
+  right: 1em;
+  top: 0;
+  font-style: italic;
+  color: darkgoldenrod;
+  font-size: 0.45em;
+}
+</style>
+<span style="align-self: center; background: #ddd; padding: .25em">UM SPAN</span> <!-- {p:style="display: flex; height: 5em;border: 1px dotted darkgoldenrod;"} -->
+:::
+
+---
+<!-- {"classes": "compact-code", "hash": "centralizando-verticalmente-absolute-fixed"} -->
+## (2) Centralizando vertic. um elemento `absolute`
 
 - É feito de forma análoga à centralização horizontal de um elemento com
   `position: absolute` ou `fixed`:
   1. Container com altura conhecida:
      ```css
      .centraliza-elemento-absoluto {
-       top: (ALTURA_P - ALTURA_E)/2;
+       position: absolute;
+       top: calc((ALTURA_PAI - ALTURA_EL) / 2);
      }
      ```
-  1. Container fluido:
+  1. Container fluido: <!-- {li:.two-column-code} -->
      ```css
      .centraliza-elemento-absoluto {
+       position: absolute;
        top: 50%;
-       margin-top: -(ALTURA_E / 2);
+       transform: translateY(-50%);
+     }
+
+     .centraliza-elemento-absoluto {
+       position: absolute;
+       top: 50%;
+       left: 50%; /* horizontal tbm */
+       transform: translate(-50%, -50%);
      }
      ```
 
 ---
-<!-- {"layout": "regular"} -->
-## (2) Centralizando vertic. elemento `inline`
-
-- Para **centralizar verticalmente um conteúdo `inline`**
-  1. <iframe width="380" height="171" src="//jsfiddle.net/fegemo/23311u59/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
-     Se ele possui apenas 1 linha:
-
-     ```css
-     .centraliza-vertical-1-linha {
-       line-height: ALTURA_E;
-     }
-     ```
-     - Onde `ALTURA_E` é a altura do conteúdo do elemento sendo centralizado
-  1. Se ele possuir mais de 1 linha:
-     - Usar `display: table` - veja tutorial
-      ["_Vertically center multi-lined text_"][multi-line-text-center]
-
-[multi-line-text-center]: https://css-tricks.com/vertically-center-multi-lined-text/
-
----
+<!-- {"layout": "centered"} -->
 # Referências
 
 - [Propriedade **position** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)

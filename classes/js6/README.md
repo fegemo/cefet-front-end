@@ -1,9 +1,10 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 6)
+# **JavaScript** parte 6
 ## Bibliotecas JavaScript e jQuery
 
 ---
-# Na última aula... (1/2)
+<!-- {"classes": "compact-code"} -->
+# Na última aula... (1/2) <!-- {h1:style="padding: 0; margin-bottom: 0.15em"} -->
 ## **Web Storage**: `localStorage` + `sessionStorage`
 
 - Ambos nos permitem **armazenar valores dentro de _Strings_**
@@ -21,8 +22,7 @@
     ```
 
 ---
-<!-- {"layout": "regular"} -->
-# Na última aula... (2/2)
+# Na última aula... (2/2) <!-- {h1:style="padding: 0; margin-bottom: 0.15em"} -->
 ## **JSON** no navegador
 
 - O objeto `window` possui o objeto `JSON` que contém métodos de conversão
@@ -39,6 +39,7 @@
     ```
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro
 
 1. [Bibliotecas JavaScript](#bibliotecas-javascript)
@@ -50,7 +51,7 @@
 1. Reimplementando [PhotoSnap :camera: x2](#photosnap)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "bibliotecas-javascript"} -->
+<!-- {"layout": "section-header", "hash": "bibliotecas-javascript"} -->
 # **Bibliotecas** JavaScript
 ## Usando código **reutilizável**
 
@@ -69,7 +70,6 @@
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Bibliotecas JavaScript
 
 - São códigos reutilizáveis em vários contextos
@@ -81,8 +81,6 @@
 - Outros objetivos:
   1. **Consertar problemas** na linguagem
      - Exemplos: <u>moment.js</u>, RequireJS, Browserify
-  <!-- 1. Criar programas que testam o código escrito em JavaScript
-     - Jasmine, Mocha -->
   1. Coisas variadas
      - Exemplos: criar gráficos, criar jogos, <u>criar _easter eggs_</u>,
        criar slides etc
@@ -91,7 +89,7 @@
 ## Como usar uma biblioteca?
 
 - Tipicamente, o criador disponibiliza **01 arquivo `.js` que você deve
-  incluir** em suas páginas
+  incluir** em suas páginas <!-- {ul:.compact-code} -->
   - Podemos, então, usar as funções/objetos globais da biblioteca
     nos nossos arquivos `.js`
 - Basicamente:
@@ -107,10 +105,11 @@
   1. Ler a documentação das funções da biblioteca
 
 ---
-<!-- {"layout": "2-column-highlight-and-list"} -->
+<!-- {"layout": "2-column-highlight-and-content", "classes": "compact-code"} -->
 ## Exemplo: [moment.js](https://momentjs.com/)
 
-![](../../images/js-lib-example-moment.png)
+![](../../images/js-lib-example-moment.png) <!-- {p:style="margin: auto 0 auto auto"} --> <!-- {style="max-width: initial; width: 400px"} -->
+
 - Objetivo: trabalhar facilmente com datas. Por exemplo:
   - Operações com datas:
     ```js
@@ -127,10 +126,11 @@
     ```
 
 ---
-<!-- {"layout": "2-column-highlight-and-list"} -->
+<!-- {"layout": "2-column-highlight-and-content"} -->
 ## Exemplo: [cheet.js](http://lou.wtf/cheet.js/)
 
-![](../../images/js-lib-example-cheet.png)
+![](../../images/js-lib-example-cheet.png) <!-- {p:style="margin: auto 0 auto auto"} --> <!-- {style="max-width: initial; width: 400px"} -->
+
 - Objetivo: criar [_easter eggs_][easter-eggs] em uma página web
   ```js
   let dinheiro = 100;
@@ -147,10 +147,11 @@
 [easter-eggs]: https://pt.wikipedia.org/wiki/Ovo_de_p%C3%A1scoa_(virtual)
 
 ---
-<!-- {"layout": "2-column-highlight-and-list"} -->
+<!-- {"layout": "2-column-highlight-and-content"} -->
 ## Exemplo: [underscore.jss](http://underscorejs.org/)
 
-![](../../images/js-lib-example-underscore.png)
+![](../../images/js-lib-example-underscore.png) <!-- {p:style="margin: auto 0 auto auto"} --> <!-- {style="max-width: initial; width: 400px"} -->
+
 - Objetivo: facilidades para trabalhar com vetores etc.
 - Exemplo: (a) achatar vetores e (b) embaralhar cartas
   ```js
@@ -164,7 +165,7 @@
   - **Nota**: o arquivo `underscore.js` expõe um único objeto: o `window._`
 
 ---
-<!-- {"layout": "section-header", "slideHash": "jquery"} -->
+<!-- {"layout": "section-header", "hash": "jquery"} -->
 # jQuery
 ## A biblioteca jQuery
 
@@ -172,14 +173,12 @@
 - Atribuindo eventos
 - Estilizando elementos
 - Efeitos visuais
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## A biblioteca jQuery
 
-- ![Logomarca da biblioteca jQuery](../../images/jquery-logo.png) <!-- {.push-right} -->
+- ![Logomarca da biblioteca jQuery](../../images/jquery-logo.svg) <!-- {.push-right.small-width.invert-colors-dark-mode} -->
   Criada em 2006 por John Resig
   - Pronuncia-se djeiquíulri
 - Objetivos:
@@ -190,10 +189,10 @@
 - Chegou a ser **usada** por quase **<u>75% de toda a Web</u>**
 
 ---
-<!-- {"slideHash": "incluindo-a-biblioteca-jquery"} -->
+<!-- {"hash": "incluindo-a-biblioteca-jquery"} -->
 ## Incluindo a biblioteca jQuery
 
-- Em uma página, você deve incluir o arquivo `jquery.js`. Há 2 formas:
+- Em uma página, você deve incluir o arquivo `jquery.js`. Há 2 formas: <!-- {ul:.compact-code} -->
   1. Baixando o arquivo `jquery.js` e colocando-o com o seu projeto:
      ```html
        <script src="js/jquery.js"></script>
@@ -228,7 +227,7 @@
     `document.querySelectorAll`
 
 ---
-<!-- {"slideHash": "jquery-funcionamento-basico"} -->
+<!-- {"hash": "jquery-funcionamento-basico", "classes": "two-column-code"} -->
 ## Funcionamento básico e seletores (1/3)
 
 - Com jQuery, praticamente tudo é feito **em 2 passos**:
@@ -236,19 +235,16 @@
   1. **Executa-se** alguma lógica com eles
 - Exemplo: alterando o conteúdo HTML de um elemento usando jQuery e
   em "vanilla JavaScript":
-- <!-- {li:.code-split-2} -->
-  ```js
-  // Usando jQuery
-  $('#pokemon').html('Pikachu');
 
-  // $('#pokemon') == jQuery('#pokemon')
-  ```
-  ```js
-  // Em "vanilla js" (js puro)
-  let el = document
-              .querySelector('#pokemon');
-  el.innerHTML = 'Pikachu';
-  ```
+```js
+// Usando jQuery
+$('#pokemon').html('Pikachu');
+
+// $('#pokemon') == jQuery('#pokemon')
+// Em "vanilla js" (js puro)
+let el = document.querySelector('#pokemon');
+el.innerHTML = 'Pikachu';
+```
 
 ---
 ## Funcionamento básico e seletores (2/3)
@@ -267,36 +263,33 @@
 [doc-jquery-fn]: https://api.jquery.com/jQuery/#jQuery-selector-context
 
 ---
+<!-- {"embeddedStyles": ".not-centered-pres pre { margin: 0!important; }"} -->
 ## Funcionamento básico e seletores (3/3)
 
-- Exemplo: na prática da **exploração espacial** (botões '+'/'-')
-- <!-- {li:.code-split-2} -->
+- Exemplo: na prática da **exploração espacial** (botões '+'/'-') <!-- {ul:.no-padding.no-bullets} -->
+- <!-- {li:.layout-split-2.compact-code-mid.not-centered-pres} -->
   ```js
-  $('button').click(function(e) {
-    let $p = $(e.currentTarget)
-                           .closest('p');
+  // versão jQuery
+  $('button').click((e) => {
+    let $p = $(e.currentTarget).closest('p');
     $p.toggleClass('expandido');
-    $p.html($p.hasClass('expandido')
-                            ? '-' : '+');
+    $p.html($p.hasClass('expandido') ? '-' : '+');
   });
   ```
   ```js
-  let botoes = document
-            .querySelectorAll('button');
+  // versão "vanilla js"
+  let botoes = document.querySelectorAll('button');
   for (let bEl of botoes) {
-    bEl.addEventListener('click',fnct(e){
-      let pEl = e.currentTarget
-                    .parentNode;
-      let colocou = pEl.classList
-                    .toggle('expandido');
-      e.currentTarget.innerHTML = colocou
-                            ? '-' : '+';
+    bEl.addEventListener('click', (e) => {
+      let pEl = e.currentTarget.parentNode;
+      let colocou = pEl.classList.toggle('expandido');
+      e.currentTarget.innerHTML = colocou ? '-' : '+';
     });
   }
   ```
 
 ---
-<!-- {"slideHash": "jquery-atribuindo-eventos"} -->
+<!-- {"hash": "jquery-atribuindo-eventos", "classes": "compact-code"} -->
 ## Atribuindo eventos
 
 - Usando jQuery, há atalhos para **colocar eventos** em elementos ou
@@ -310,21 +303,21 @@
   ```
   ```js
   document.querySelectorAll('.ajuda')
-    .forEach(function(el) {
+    .forEach(el =>
       el.addEventListener('click', ajuda);
-  });
+    );
   ```
 - Outros eventos:
   ```js
-  $colecao.click(callback);       // addEventListener('click', callback)
-  $colecao.mousemove(callback);   // 'mousemove'
-  $colecao.keyup(callback);       // 'keyup'
-  $colecao.change(callback);      // 'change' (no input)
+  $colecao.click(callback);                   // addEventListener('click', callback)
+  $colecao.mousemove(callback);               // 'mousemove'
+  $colecao.keyup(callback);                   // 'keyup'
+  $colecao.change(callback);                  // 'change' (no input)
   $colecao.hover(callbackOver, callbackOut);
   ```
 
 ---
-<!-- {"slideHash": "jquery-estilizando-elementos"} -->
+<!-- {"hash": "jquery-estilizando-elementos"} -->
 ## Estilizando elementos
 
 - **Objetos jQuery** podem ser estilizados, como em "vanilla js", usando:
@@ -354,10 +347,10 @@
 [doc-jquery-css]: http://api.jquery.com/css/#css2
 
 ---
-<!-- {"layout": "regular", "slideHash": "jquery-efeitos-visuais"} -->
+<!-- {"hash": "jquery-efeitos-visuais"} -->
 ## Efeitos visuais
 
-- Algumas funções para fazer efeitos visuais:
+- Algumas funções para fazer efeitos visuais: <!-- {ul:.compact-code} -->
   ```js
   $colecao.fadeIn();        // faz elementos surgirem com opacity [0, 1]
   $colecao.fadeOut();       // faz elementos desaparecerem [1, 0]
@@ -368,14 +361,13 @@
   $colecao.slideToggle();   // alterna slideDown()/slideUp()
   ```
 
-
-<iframe width="100%" height="160" src="//jsfiddle.net/fegemo/4L525ow4/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="160" src="//jsfiddle.net/fegemo/4L525ow4/1/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded"></iframe>
 
 ---
-<!-- {"slideHash": "jquery-andando-na-arvore"} -->
+<!-- {"hash": "jquery-andando-na-arvore"} -->
 ## Andando na árvore
 
-- A partir do elemento selecionado, é possível chegar até seus parentes:
+- A partir do elemento selecionado, é possível chegar até seus parentes: <!-- {ul:.compact-code} -->
 - ```html
   <div class="sanfona">
     <h2>Tópico 1</h2>
@@ -386,7 +378,7 @@
   ```
   ```js
   let $topicos = $('.sanfona h2');
-  $topicos.click(function(e) {
+  $topicos.click(e => {
     let $topico = $(e.currentTarget);
     let $p = $topico.next(); // ← ← ←
     $p.slideToggle();
@@ -394,10 +386,10 @@
   ```
   <!-- {li:.code-split-2} -->
 
-<iframe width="100%" height="250" src="//jsfiddle.net/fegemo/4podo400/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="250" src="//jsfiddle.net/fegemo/4podo400/embedded/result,js/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded"></iframe>
 
 ---
-<!-- {"layout": "regular", "slideHash": "jquery-andando-na-arvore-metodos"} -->
+<!-- {"hash": "jquery-andando-na-arvore-metodos"} -->
 ## Andando na árvore: métodos
 
 - Veja [todos os métodos aqui][jquery-doc-traversing]. Alguns são:
@@ -412,20 +404,18 @@
 [jquery-doc-traversing]: http://api.jquery.com/category/traversing/
 
 ---
-<!-- {"layout": "section-header", "slideHash": "photosnap"} -->
+<!-- {"layout": "section-header", "hash": "photosnap"} -->
 # PhotoSnap :camera: x2
 ## Reimplementando com jQuery
 
 - Relembrando...
 - Novo enunciado
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "photosnap"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Enunciado
 
 - O código da atividade PhotoSnap está pronto em _vanilla_ JavaScript, no
@@ -442,6 +432,7 @@ arquivo `script/balaozinho-vanilla.js`
 [arquivos]: https://github.com/fegemo/cefet-front-end-snap/archive/jquery.zip
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Página da jQuery: http://jquery.com/

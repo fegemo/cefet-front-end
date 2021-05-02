@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# HTML (parte 2)
-## Coding Dojo :japanese_castle:, Mais _tags_ HTML e Entendendo regras CSS
+# **HTML** parte 2
+## Coding Dojo :japanese_castle:, Mais _tags_ HTML<br>e Entendendo regras CSS
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (1/2)
 
 - Aprendemos:
@@ -16,8 +15,8 @@
        <body>...</body> <!-- tudo que é visível -->
      </html>
      ```
+
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (2/2)
 
 - Também vimos:
@@ -26,6 +25,7 @@
      `background-color`, `font-family`
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 # Atividade de Hoje
 
 ![Coding Dojo](../../images/coding-dojo.png)
@@ -33,6 +33,7 @@
 Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 - [_Tags_ que indicam importância](#tags-de-importancia)
@@ -42,19 +43,17 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
 - [Entendendo regras CSS](#entendendo-regras-css)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "tags-de-importancia"} -->
+<!-- {"layout": "section-header", "hash": "tags-de-importancia"} -->
 # _Tags_ de importância
 ## Destacando partes do texto
 
-- _Tag_ `<strong></strong>`
-- _Tag_ `<em></em>`
-- _Tags_ `<del></del>` e `<ins></ins>`
-- _Tag_ `<mark></mark>`
-
-<!-- {ul:.content} -->
+1. _Tag_ `<strong></strong>`
+1. _Tag_ `<em></em>`
+1. _Tags_ `<del></del>` e `<ins></ins>`
+1. _Tag_ `<mark></mark>`
+<!-- {ol:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## (1) _Tag_ **`<strong></strong>`** :muscle:
 
 - Usada para marcar **texto com alta importância**, seriedade ou urgência:
@@ -67,10 +66,9 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
   :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## (2) _Tag_ **`<em></em>`**
 
-- Usada para **dar ênfase** (tipo "acentuar") **ao texto**. A ideia é
+- Usada para **dar ênfase** ("dar entonação") **ao texto**. A ideia é
   alterar como uma frase deve ser lida:
   ```html
   <p>Gatos são animais <em>bonitinhos</em>.</p>
@@ -83,7 +81,6 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
   :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## (3) _Tags_ **`<del></del>`** e **`<ins></ins>`** :pencil:
 
 - Usadas para indicar **texto que foi removido** ou **inserido**:
@@ -98,7 +95,6 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
   :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## (4) _Tag_ **`<mark></mark>`** :part_alternation_mark:
 
 - Usada para **realçar parte do texto** considerada **importante para o
@@ -112,28 +108,28 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
   :::
 
 ---
-<!-- {"layout": "section-header", "slideHash": "tags-de-listas"} -->
+<!-- {"layout": "section-header", "hash": "tags-de-listas"} -->
 # _Tags_ de listas
 ## Enumerando coisas
 
-- Lista ordenada
-- Lista não-ordenada
+- Lista numerada: `<ol></ol>`
+- Lista não-numerada: `<ul></ul>`
 - ~~[Lista de termos e definições][dl]~~ (_veja você mesmo_)
 
 [dl]: https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/dl
 <!-- {ul:.content} -->
 
 ---
-## Listas de itens
+## Listas de itens **`<ol></ol>`** e **`<ul></ul>`** 
 
-- Lista **numerada**:
+- Lista **numerada** (também conhecida como _ordenada_):
   - ```html
     <ol>
       <li>Linux</li>
       <li>Windows</li>
     </ol>
     ```
-    <!-- {li:style="flex-grow: 1;"} -->
+    <!-- {li:style="flex-grow: 1; margin-right: 1em;"} -->
   - ::: result
     <ol>
       <li>Linux</li>
@@ -143,14 +139,14 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
     <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
     <!-- {li:style="flex-grow: 1;"} -->
     <!-- {ul^1:style="width: 100%;"} -->
-- Lista **<u>não</u>-numerada**:
+- Lista **<u>não</u>-numerada** (ou _não-ordenada_):
   - ```html
     <ul>
       <li>Uva</li>
       <li>Maçã</li>
     </ul>
     ```
-    <!-- {li:style="flex-grow: 1;"} -->
+    <!-- {li:style="flex-grow: 1; margin-right: 1em;"} -->
   - ::: result
     <ul>
       <li>Uva</li>
@@ -162,28 +158,28 @@ Vamos fazer nosso primeiro **Code Dojo** :japanese_castle:!
     <!-- {ul^1:style="width: 100%;"} -->
 
 ---
-<!-- {"layout": "section-header", "slideHash": "elementos-inline-vs-block"} -->
+<!-- {"layout": "section-header", "hash": "elementos-inline-vs-block"} -->
 # Elementos _inline_ _vs._ _block_
 ## Quebrar ou não quebrar linha? :thought_balloon:
 
 
-![](../../images/philosoraptor.jpg) <!-- {.portrait.centered} -->
+![](../../images/philosoraptor.jpg) <!-- {.portrait.centered style="display: block"} -->
 
 Pergunta
 ~  Por que um **parágrafo** está sempre **abaixo do outro**, mas
   um elemento **`<strong>`** pode ficar **ao lado** de outro texto?
 
-<!-- {dl:.content} -->
+<!-- {dl:.content.width-30} -->
 
 ---
-## Fazendo um *teste*
+## Vamos fazer um *teste*... <!-- {.bullet} -->
 
-1. Colocando dois `<p>` seguidos
+1. Colocando dois `<p>` seguidos (lado a lado) no código <!-- {ol:.bulleted} -->
    - ```html
      <p>Primeiro</p> <p>Segundo</p>
      ```
      <!-- {li:style="flex-grow: 1;"} -->
-   - ::: result
+   - ::: result . margin-left: 1em;
      <p>Primeiro</p> <p>Segundo</p>
      :::
      <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
@@ -194,55 +190,60 @@ Pergunta
      <strong>Primeiro</strong> <strong>Segundo</strong>
      ```
      <!-- {li:style="flex-grow: 1;"} -->
-   - ::: result
+   - ::: result . margin-left: 1em;
      <strong style="color: inherit;">Primeiro</strong> <strong style="color: inherit;">Segundo</strong>
      :::
      <!-- {ul:.layout-split-2.no-list-icon.no-padding} -->
      <!-- {li:style="flex-grow: 1;"} -->
      <!-- {ol:style="width: 100%;"} -->
 
-Por quê isso acontece?
+Por quê isso acontece? <!-- {.bullet} -->
 
 ---
-## Elementos _block_ e elementos _inline_
+## Elementos **block** e elementos **inline** <!-- {.alternate-color} -->
 
 - Ao desenhar uma página, o navegador precisa decidir **como <u>dispor</u>
   os elementos**
 - Alguns elementos são do tipo `block`, outros são `inline`:
 
-  Elementos `block`
+  Elementos **`block`** <!-- {dl:.bullet} -->
     ~ são dispotos um <u>abaixo do outro</u>
+    ~ ex: parágrafos, títulos e subtítulos, listas <!-- {dd:.bullet} -->
 
-  Elementos `inline`
+  Elementos **`inline`** <!-- {.alternate-color} -->
     ~ são dispostos um <u>à direita do outro</u>
+    ~ ex: links, strong, em, imagens <!-- {dd:.bullet} -->
+
+Vamos ver como o navegador faz... <!-- {.bullet} -->
 
 ---
 ## Elementos **`block`**
 
-![](../../images/flow1.png)
+![](../../images/flow1.png) <!-- {p:.flex-align-center} -->
 
 ---
-## Elementos **`inline`**
+## Elementos **`inline`** <!-- {.alternate-color} -->
 
-![](../../images/flow2.png)
+![](../../images/flow2.png) <!-- {p:.flex-align-center} -->
 
 ---
-## `block` e `inline`, juntos
+<!-- {"layout": "centered-horizontal"} -->
+## **`block`** e **`inline`** <!-- {.alternate-color} -->, juntos
 
 ![](../../images/flow3.png)
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## De volta ao **`<p>` _vs._ `<strong>`**...
+## De volta ao **`<p>` _vs._ `<strong>`** <!-- {.alternate-color} -->...
 
-- São elementos `block`:
+- São elementos **`block`**: <!-- {ul:.no-bullets.no-padding} -->
   - **`<p>`**
-  - `<h1>...<h6>`
+  - `<h1>, <h2> ... <h6>`
   - `<ul>`, `<ol>`, `<li>`
   - e outros...
 
-1. São elementos `inline`:
-   - **`<strong>`**
+1. São elementos **`inline`**: <!-- {.alternate-color} --> <!-- {ol:.no-bullets.no-padding} -->
+   - **`<strong>`** <!-- {.alternate-color} -->
    - `<em>`
    - `<del>`, `<ins>`
    - `<mark>`
@@ -252,7 +253,7 @@ Por quê isso acontece?
    - e outros...
 
 ---
-<!-- {"layout": "section-header", "slideHash": "mais-tipos-de-hiperlinks"} -->
+<!-- {"layout": "section-header", "hash": "mais-tipos-de-hiperlinks"} -->
 # Mais tipos de **hiperlinks**
 ## Ligações internas entre recursos e para emails
 
@@ -263,10 +264,10 @@ Por quê isso acontece?
   - Dentro de uma parte da página
 - Atributo _target_
 
-<!-- {ul:.content} -->
+<!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+<!-- {"backdrop": "oldtimes"} -->
 ## *Relembrando* hiperlinks
 
 - [Link externo](http://www.google.com) (para fora da página):
@@ -279,34 +280,32 @@ Por quê isso acontece?
   <a href="downloads/exemplo.zip">Link interno</a>
   ```
 
-Mas como criar um link para **outra página do site**?
+1. ![](../../images/philosoraptor.jpg) <!-- {.portrait.push-left.bullet} --> <!-- {ol:.flex-align-end.no-bullets.no-padding.bullet} -->
+   - Mas como criar um link para **outra página do meu próprio site**? <!-- {ul:.no-bullets.no-padding.bullet} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## Mais hiperlinks
+## Mais sobre hiperlinks
 
 - [Link para uma **outra página**](/classes/html1/index.html) do próprio site:
-
   ```html
   <a href="outra-pagina.html">Outra página</a>
   ```
 - [Link para **enviar um email**](mailto:coutinho@decom.cefetmg.br) para alguém:
-
   ```html
-  <a href="mailto:coutinho@decom.cefetmg.br">Me envie um email</a>
+  <a href="mailto:fegemo@cefetmg.br">Me envie um email</a>
   ```
   - Ao clicar no link, o navegador abre o email do usuário
 
-Como fazer para o link **abrir em outra aba**?
+1. ![](../../images/philosoraptor.jpg) <!-- {.portrait.push-left.bullet} --> <!-- {ol:.flex-align-end.no-bullets.no-padding.bullet style="margin-top: 1.5em"} -->
+   - Como fazer para o link **abrir em outra aba**? <!-- {ul:.no-bullets.no-padding.bullet} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## O **atributo `target="..."`** dos links
 
 A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
   os seguintes valores:
 
-  `_self`
+  `_self` <!-- {dl:.width-10.full-width} -->
     ~ O recurso "linkado" **abre <u>na própria aba</u>** (valor padrão)
     ~ _Exemplo_: `<a href="..." target="_self">Sobre mim</a>`
 
@@ -315,27 +314,25 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
     ~ _Exemplo_: `<a href="..." target="_blank">Salgadinhos</a>`
 
 ---
-<!-- {"layout": "dd2-column-content"} -->
 ## Link para dentro de uma página
 
-- <video style="float: right; width: 400px; height: 331px;" controls autoplay loop="0" src="../../videos/link-interno.mp4"></video>
+- <video style="float: right; width: 400px; height: 331px; margin-left: 1em" controls autoplay loop="0" src="../../videos/link-interno.mp4"></video>
   Para criar um link para dentro da própria página:
   ```html
-  <a href="#um-id-de-elemento">Link interno</a>
+  <a href="#id-de-um-elemento">Link interno</a>
   ```
-  - Repare o `#um-id-de-elemento`
-
+  - Repare o `#id-de-um-elemento`
     ```html
-    <h2 id="um-id-de-elemento">Um título</h2>
+    <h2 id="id-de-um-elemento">Um título</h2>
     ```
     - Ao clicar no link, o navegador vai rolar a barra até que esse `<h2></h2>`
-      fique visível e no topo do navegador (**mas o que é esse `id`?**)
+      fique visível e no topo do navegador (**mas o que é esse atributo `id`?**)
 
 ---
-<!-- {"layout": "regular", "slideHash": "id-de-um-elemento-html"} -->
-## O `id` de um elemento HTML
+<!-- {"hash": "id-de-um-elemento-html"} -->
+## O **`id`** de um elemento HTML
 
-- É possível **definir um nome** que **identifique um elemento** da página
+- É possível **definir um nome** que **identifique um elemento** da página <!-- {ul:.bulleted} -->
 - Todo elemento HTML pode ter um atributo `id`. Exemplos:
   ```html
   <img src="..." id="logomarca-da-empresa">
@@ -346,11 +343,12 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
   ```html
   <ul id="melhores-pokemon">...</ul>
   ```
-  - O atributo `id` deve ser único na página
+  - O atributo `id` **<u>deve ser único</u> na página**
+    - Não pode haver 2+ elementos com um mesmo `id`
   - Podemos **usar o `id` para <u>estilizar elementos</u> em CSS**!
 
 ---
-<!-- {"layout": "section-header", "slideHash": "entendendo-regras-css"} -->
+<!-- {"layout": "section-header", "hash": "entendendo-regras-css"} -->
 # Entendendo **regras CSS**
 ## Como funcionam as regras
 
@@ -358,30 +356,50 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
 - Estilizando elementos um a um
 - Colocando bordas
 - Centralizando imagens
-
 <!-- {ul:.content} -->
 
 ---
-## Sintaxe: **regra**
+<!-- {"layout": "centered", "embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/css-rule-anatomy.min.css"]} -->
 
-![Uma regra CSS mostrando](../../images/css-rule.png)
+::: figure .figure-slides.clean
+![Uma regra CSS mostrando](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![Uma regra CSS mostrando](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.rule} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+:::
+---
+<!-- {"layout": "centered", "embedSVG": "img[src$='.svg']", "state": "show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "200px", "--show-2-slides-z-distance": "-150px", "--show-2-slides-rotation": "5deg"}} -->
+
+![Regra CSS](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.selector.declaration} -->
 
 ---
-<!-- {"state":"show-active-slide-and-previous"} -->
-## Sintaxe: **seletor** e **declaração**
+<!-- {"layout": "centered", "embedSVG": "img[src$='.svg']"} -->
 
-![Regra CSS](../../images/css-selector.png)
-
----
-## Sintaxe: **propriedade** e **valor**
-
-![Regra CSS](../../images/css-property-value.png)
+![Regra CSS](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.property.value} -->
 
 ---
-<!-- {"slideHash": "seletor-de-tag-e-id"} -->
-## Seletor de <u>_tag_</u> e de `id`
+<!-- {"layout": "tall-figure-left", "embedSVG": "img[src$='.svg']", "hash": "seletores-css", "slideStyles": {"grid-template-columns": ".2fr 1fr"}} -->
+## **Seletores** CSS
 
-- Regras se aplicam a "todos os elementos selecionados"
+![Uma regra CSS destacando o seletor](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.selector style="width: 242px" data-viewbox="50 0 100 65"} -->
+
+- O seletor define a **que(ais) elemento(s)** HTML da página a **regra CSS será aplicada** <!-- {ul:.bulleted-0} -->
+- Há [diversos tipos de seletores][outros-seletores]. Veremos 2 hoje:
+  1. _tag_
+  1. `id`
+- Regras podem ter 1+ seletor, separados por vírgula:
+  ```css
+  /* tanto <p>, qto <h1>, qto <ul> */
+  p, h1, ul {
+    color: black;
+  }
+  ```
+
+[outros-seletores]: http://localhost:8080/classes/css2/#outros-seletores
+
+---
+<!-- {"hash": "seletor-de-tag"} -->
+## Seletor de <u>_tag_</u>
+
 - Se usarmos um seletor que é **o nome de uma _tag_**...
   ```css
   p { /* usamos 'p', que é o nome da tag de parágrafo */
@@ -390,9 +408,22 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
   ```
   - ...selecionamos **todos os elementos da página <u>com aquela _tag_</u>**
     (_e.g._, todos os parágrafos)
+- Outros exemplos: <!-- {li:.three-column-code} -->
+  ```css
+  img {
+    border-radius: 50%;
+  }
+  body {
+    font-size: 20px;
+  }
+  strong {
+    color: forestgreen;
+  }
+  ```
 
 ---
-## Seletor de _tag_ e de <u>`id`</u>
+<!-- {"hash": "seletor-de-id"} -->
+## Seletor de <u>`id`</u>
 
 - Se usarmos um seletor **que começa com o símbolo `#`** (_hashtag_)...
   ```css
@@ -433,13 +464,13 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
 :::
 
 ---
-<!-- {"slideHash": "colocando-bordas"} -->
+<!-- {"hash": "colocando-bordas", "embedSVG": "img[src$='.svg']"} -->
 ## Colocando bordas         
-
 
 - A **propriedade `border`** é um atalho para `border-width`, `border-style` e
   `border-color`
   - Exemplo (os dois são **equivalentes**):
+    ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.property.value.push-right data-viewbox="56 30 90 65" style="width: 250px"} -->
     ```css
     p {
       border-width: 1px;    /* largura de 1 pixel */
@@ -469,7 +500,7 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
 
 
 ---
-<!-- {"slideHash": "centralizando-imagens"} -->
+<!-- {"hash": "centralizando-imagens"} -->
 ## Centralizando imagens
 
 - Para centralizar uma imagem, é necessário definir "margens
@@ -487,6 +518,7 @@ A _tag_ de hiperlink possui um atributo `target="..."` que pode ter
     não permite definir margens para elementos `inline`
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulos 1, 2 e 3 do livro

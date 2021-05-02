@@ -1,4 +1,6 @@
-@import 'highlight.js/styles/monokai-sublime.css'
+@import 'highlight.js/styles/atom-one-light.css'
+@media (prefers-color-scheme: dark)
+  @import 'highlight.js/styles/monokai-sublime.css'
 
 // variables
 $page-header-height = 1vw
@@ -14,6 +16,7 @@ html, body
 
 body
   background-color $background-color
+
 
 // header and presentation-container layout
 #page-header
@@ -58,6 +61,8 @@ body
   transform translate3d(0, $page-header-height, 0)
   transition transform 300ms ease
 
+#presentation
+  transition all 200ms ease-out
 
 // title animation
 $title-animation-duration = 600ms
@@ -132,142 +137,6 @@ $title-animation-easing = cubic-bezier(0, 0, 0.7, 1.58)
 .clearer
   clear both
 
-.markdown-it-container
-  position relative
-  & > p
-    margin 0
-  &::before
-    content attr(data-before)
-
-div.result
-  @extend .markdown-it-container
-  margin-left 1.5em
-  padding-top 1em
-  margin-top 0.5em
-  padding 0.5em
-  background-color #c4e3ff
-  border 1px dashed darken(#c4e3ff, 30%)
-  border-radius 0.25em
-  &::before
-    border 1px solid #FF5722
-    background-color #FF8A65
-    color white
-    display inline-block
-    transform rotate(-3deg)
-    font-weight bold
-    position absolute
-    top -0.5em
-    left -2em
-    font-size .75em
-    line-height 1.5em
-    padding 0 .5em
-
-div.did-you-know
-  @extend .markdown-it-container
-  background-image url(../images/question-mark-bg.png)
-  border-left 4px solid purple
-  box-shadow 5px 5px 5px silver
-  padding-right 1em
-  &::before
-    display block
-    margin 4px
-    background-color white
-    font-family "Purisa", "Comic Sans MS", cursive;
-    font-weight bold
-    color purple
-  & > p
-    padding-left 0.5em
-
-.push-code-right
-  pre
-    float right
-    clear right
-
-.code-split-2,
-.code-split-3
-  display flex
-  align-items flex-start
-  > *
-    flex 1
-  pre.hljs
-    margin-top 0
-    margin-bottom 0
-    &:not(:last-of-type)
-      border-right 3px double white
-  pre.hljs + pre.hljs
-    margin-top 0
-
-
-.full-width
-  width 100%
-
-.item-code-with-image,
-.item-code-with-result
-  padding-left 0
-  list-style-type none
-
-  li
-    clear right
-    margin-bottom 1em
-
-  li > img,
-  li > .result
-    float right
-    margin-left 1em
-
-.compact-code pre,
-.compact-code ~ pre
-  line-height 1em
-.compact-code-more pre,
-.compact-code-more ~ pre
-  line-height 1em
-  font-size 75%
-
-.push-code-right
-  & > code
-    float right
-.push-code-left
-  & > code
-  pre
-    float left
-
-.push-code-right-without-clearing
-  pre
-    clear none
-    float right
-  & > code
-    float right
-
-.no-bullets
-  list-style-type none
-
-.badge
-  display inline-block
-  background-color white
-  border-radius 4px
-  border 1px solid #333
-  color #666
-  font-size 75%
-  line-height 1em
-  padding 0.1em 0.2em
-
-  &.type1
-    color teal
-    border-color teal
-
-  &.type2
-    color cornflowerblue
-    border-color cornflowerblue
-
-.cool-rotation-x
-  animation cool-rotation-x 1200ms ease-in-out 0s infinite alternate
-
-@keyframes cool-rotation-x
-  0%
-    transform rotateX(-10deg)
-  100%
-    transform rotateX(10deg)
-
 
 .tipo-js
   border 1px solid currentColor
@@ -275,6 +144,10 @@ div.did-you-know
   border-radius 5px
   white-space nowrap
   background-color #fbfbfb
+
+@media (prefers-color-scheme: dark)
+  .tipo-js
+    background-color #111
   
 .tipo-boolean
   color cornflowerblue
@@ -327,52 +200,15 @@ div.did-you-know
     transform scale(2)
     opacity 0
 
-.shaking
-  animation shaking 500ms ease-out 0s 1
-  &:nth-child(2n)
-    animation-delay 100ms
-
-@keyframes shaking
-  0%
-    transform translate3d(4px, 0px, 0px)
-  10%
-    transform translate3d(-7px, -5px, 0px)
-  20%
-    transform translate3d(8px, 5px, 0px)
-  30%
-    transform translate3d(-7px, 3px, 0px)
-  40%
-    transform translate3d(9px, -3px, 0px)
-  50%
-    transform translate3d(-4px, 3px, 0px)
-  60%
-    transform translate3d(4px, -4px, 0px)
-  70%
-    transform translate3d(-5px, -4px, 0px)
-  80%
-    transform translate3d(4px, 2px, 0px)
-  90%
-    transform translate3d(-3px, -1px, 0px)
-  100%
-    transform translate3d(0px, 0px, 0px)
 
 @require backdrops
-@require move-to-theme
 @require tutorial
 @require gallery
 @require bespoke-proceed
 @import './caniuse.css';
-
+  
 @media print
   #page-header
     display none
   #presentation-container
     height auto
-  // gambiarra: alguns slides excedem a altura. Por agora, usar overflow:hidden
-  .bespoke-slide
-    overflow-y hidden
-
-pre.hljs
-  margin auto
-  & + pre.hljs
-    margin-top 1em
