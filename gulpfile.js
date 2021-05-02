@@ -1,26 +1,26 @@
-const { src, dest, series, parallel, watch } = require('gulp'),
-  open = require('open'),
-  csso = require('gulp-csso'),
-  rename = require('gulp-rename'),
-  terser = require('gulp-terser'),
-  stylus = require('gulp-stylus'),
-  buffer = require('vinyl-buffer'),
-  replace = require('gulp-replace'),
-  changed = require('gulp-changed'),
-  connect = require('gulp-connect'),
-  sourcemaps = require('gulp-sourcemaps'),
-  preprocess = require('gulp-preprocess'),
-  source = require('vinyl-source-stream'),
-  autoprefixer = require('gulp-autoprefixer'),
-  glob = require('glob');
+const fs = require('fs')
+const path = require('path')
+const glob = require('glob')
 
-const fs = require('fs'),
-  path = require('path'),
-  del = require('delete'),
-  through = require('through'),
-  ghpages = require('gh-pages'),
-  merge = require('merge-stream'),
-  browserify = require('browserify');
+const { src, dest, series, parallel, watch } = require('gulp')
+const open = require('open')
+const csso = require('gulp-csso')
+const rename = require('gulp-rename')
+const terser = require('gulp-terser')
+const stylus = require('gulp-stylus')
+const buffer = require('vinyl-buffer')
+const replace = require('gulp-replace')
+const changed = require('gulp-changed')
+const connect = require('gulp-connect')
+const sourcemaps = require('gulp-sourcemaps')
+const preprocess = require('gulp-preprocess')
+const source = require('vinyl-source-stream')
+const autoprefixer = require('gulp-autoprefixer')
+const del = require('delete')
+const through = require('through')
+const ghpages = require('gh-pages')
+const merge = require('merge-stream')
+const browserify = require('browserify')
 
 const isDist = process.argv.indexOf('dev') === -1;
 
@@ -36,14 +36,13 @@ function js() {
     .bundle()
     .pipe(source('build.js'))
     .pipe(buffer())
-    // .pipe(sourcemaps.init({ loadMaps: true }))
-    // .pipe(isDist ? terser() : through())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(isDist ? terser() : through())
     .on('error', console.log)
-    // .pipe(sourcemaps.write('./'))
+    .pipe(sourcemaps.write('./'))
     .pipe(dest('dist/build'))
     .pipe(connect.reload());
 }
-exports.js = js
 
 function jsClasses() {
   const destination = 'dist/scripts/classes';
@@ -105,7 +104,7 @@ function css() {
         paths: ['./node_modules'],
       })
     )
-    .pipe(autoprefixer('last 2 versions', { map: false }))
+    .pipe(autoprefixer())
     .pipe(isDist ? csso() : through())
     .pipe(rename('build.css'))
     .pipe(dest('dist/build'))
@@ -251,4 +250,4 @@ exports.build = series(
   build
 );
 exports.dev = series(exports.build, dev);
-exports.deploy = deploy;
+exports.deploy = series(exports.build, deploy);
