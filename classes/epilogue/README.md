@@ -3,6 +3,7 @@
 ## Quais caminhos para continuar<br>aprendendo sobre web
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro
 
 - O que vimos
@@ -38,7 +39,6 @@
 - Web fora do navegaor <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # _Back-ends_
 
 - Há várias opções de tecnologias. Exemplos:
@@ -53,7 +53,6 @@
   - Firebase
 
 ---
-<!-- {"layout": "regular"} -->
 # Novos recursos CSS/HTML
 
 - CSS
@@ -67,7 +66,6 @@
   - Portals
 
 ---
-<!-- {"layout": "regular"} -->
 # Novos recursos JavaScript
 
 - Classes (para construir objetos)
@@ -78,7 +76,6 @@
 - Funções geradoras
 
 ---
-<!-- {"layout": "regular"} -->
 # Bibliotecas da moda
 
 - Para criação de _single-page applications_ (SPAs):
@@ -93,7 +90,6 @@
   - PlayCanvas
 
 ---
-<!-- {"layout": "regular"} -->
 # Web fora do navegador
 
 - WebOS (para TVs)
@@ -105,7 +101,6 @@
 - Node.js
 
 ---
-<!-- {"layout": "regular"} -->
 # Como ficar informado?
 
 - Há pelo menos 2 excelentes listas semanais de email
@@ -116,7 +111,6 @@
    - [JS Weekly](https://javascriptweekly.com/)
 
 ---
-<!-- {"layout": "regular"} -->
 # Por fim...
 
 

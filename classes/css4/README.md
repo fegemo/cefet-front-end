@@ -1,12 +1,11 @@
 <!-- {"layout": "title"} -->
-# CSS - Parte 4
+# **CSS** parte 4
 ## Posicionamento e mais Assombrações :ghost::ghost::ghost:
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula (1/4)
 
-- **_Tags_ Semânticas**:
+- **_Tags_ semânticas**:
   - O HTML5 ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} -->
     propôs elementos idênticos às `divs`/`spans`, mas que **possuem
     sentido para o navegador**. Por exemplo:
@@ -22,9 +21,9 @@
 ---
 # Na última aula  (2/4)
 
-- **Propriedade `display`**
+- **Propriedade `display`** e valores `inline`, `block`, `inline-block` e `none`
 
-  <iframe width="600" height="300" src="//jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="600" height="320" src="//jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="flex-align-center"></iframe>
 
 ---
 # Na última aula (3/4)
@@ -34,9 +33,9 @@
   - `visibility: hidden;`: o elemento fica escondido, mas ainda ocupa espaço
   - `opacity`: define a opacidade:
     ```css
-      video {
-        opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
-      }
+    video {
+      opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
+    }
     ```
 
 ---
@@ -54,6 +53,7 @@
       (primeira letra)
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro de hoje
 
 1. [Posicionamento estático](#posicionamento-estatico)
@@ -63,14 +63,13 @@
 1. [Mais Assombrações](#mais-assombracoes) :ghost::ghost::ghost:
 
 ---
-<!-- {"layout": "section-header", "slideHash": "posicionamento-estatico"} -->
+<!-- {"layout": "section-header", "hash": "posicionamento-estatico"} -->
 # Posicionamento estático
 ## Deixando o navegador definir o fluxo da página
 
 - Relembrando o fluxo padrão
 - A propriedade `position`
 - O valor `static`
-
 <!-- {ul:.content} -->
 
 ---
@@ -105,6 +104,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
     float: right;
   }
   ```
+  <!-- {ul:.full-width} -->
 - Quem flutua é **removido do fluxo**
   - _i.e._, não ocupa mais espaço
 - Elementos **<u>depois</u> do flutuante**:
@@ -113,7 +113,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
 
 ---
-<!-- {"layout": "regular", "backdrop": "exemplo-position-absolute"} -->
+<!-- {"backdrop": "exemplo-position-absolute"} -->
 ## **Limitações** do fluxo padrão
 
 - Mesmo com `float` e `clear` não é possível fazer algumas coisas
@@ -126,16 +126,16 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   dispor um elemento usando **o fluxo padrão ou outro fluxo**
 - Valores possíveis:
   1. `position: static` (valor padrão, para o fluxo padrão)
-  1. `position: relative` (fluxo padrão, com deslocamento)
+  1. `position: relative`
   1. `position: absolute`
   1. `position: fixed`
   1. `position: sticky` ![](../../images/logo-css.svg) <!-- {.emoji} -->
 
 ---
-## Posição **estática**
+## Posicionamento **estático**
 
 - O próprio navegador encontra as posições (x,y) dos elementos
-- Valor padrão - usa o posicionamento do fluxo padrão
+- É o valor padrão - usa o posicionamento do fluxo padrão
   ```html
   <div class="estatico">Conteúdo</div>
   ```
@@ -144,8 +144,8 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
     position: static; /* este já é o valor padrão */
   }
   ```
-- <div style="display:inline-block;float:right;height:1em;font-size:.4em;"><input type="checkbox" checked id="button-estatico" class="switch" onclick="javascript: (function() { var b = document.getElementById('estatico'); b.classList.toggle('estatico');}())" />
-    <label for="button-estatico">`.estatico`</label>
+- <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-estatico" class="switch" onclick="javascript: (function() { var b = document.getElementById('estatico'); b.classList.toggle('estatico');}())" />
+    <label for="button-estatico">.estatico</label>
   </div>
   Resultado
   <style>.estatico {position: static;}</style>
@@ -155,7 +155,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
 
 ---
-<!-- {"layout": "section-header", "slideHash": "posicionamento-relativo"} -->
+<!-- {"layout": "section-header", "hash": "posicionamento-relativo"} -->
 # Posicionamento relativo
 ## Deslocando elementos
 
@@ -181,16 +181,15 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   .relativo1 { position: relative; }
   .relativo2 { position: relative; left: 30px; top: -10px; }
   ```
-- <div style="display:inline-block;float:right;height:1em;font-size:.4em;"><input type="checkbox" checked id="button-relativo2" class="switch" onclick="javascript: (function() { var b = document.getElementById('relativo2'); b.classList.toggle('relativo2');}())" />
-    <label for="button-relativo2">`.relativo2`</label>
+- <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-relativo2" class="switch" onclick="javascript: (function() { var b = document.getElementById('relativo2'); b.classList.toggle('relativo2');}())" />
+    <label for="button-relativo2">.relativo2</label>
   </div>
   Resultado:
   <style>.relativo2 { position: relative; left: 30px; top: -10px; }</style>
-  <div style="position: relative; border: 3px dashed rebeccapurple; background: white;">Comporta-se como <code>static</code>...</div>
-  <div id="relativo2" class="relativo2" style="border: 3px dashed green; background: white;">...Mas pode ter um deslocamento.</div>
+  <div style="position: relative; border: 3px dashed rebeccapurple; background: var(--presentation-color);">Comporta-se como <code>static</code>...</div>
+  <div id="relativo2" class="relativo2" style="border: 3px dashed green; background: var(--presentation-color);">...Mas pode ter um deslocamento.</div>
 
 ---
-<!-- {"layout": "regular"} -->
 ## Detalhes sobre `position: relative`
 
 1. O elemento continua no **fluxo normal**, a menos que tenha suas propriedades
@@ -202,7 +201,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
    são ajustados** para ocupar eventuais "buracos" na página
 
 ---
-<!-- {"layout": "regular", "backdrop": "exemplo-position-relative"} -->
+<!-- {"backdrop": "exemplo-position-relative"} -->
 ## **Utilidade** do `position: relative` (1/2)
 
 - É útil quando queremos que um elemento fique próximo de onde ele estaria,
@@ -210,7 +209,6 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   - Legal para **"dar um charme"** no _layout_
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Utilidade** do `position: relative` (2/2)
 
 <style>
@@ -242,7 +240,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   (veremos mais adiante)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "posicionamento-absoluto"} -->
+<!-- {"layout": "section-header", "hash": "posicionamento-absoluto"} -->
 # Posicionamento absoluto
 ## Definindo (x,y) dos elementos
 
@@ -253,7 +251,6 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   1. `bottom` :arrow_down:
   1. `left` :arrow_left:
 - Casos comuns
-
 <!-- {ul:.content} -->
 
 ---
@@ -270,8 +267,8 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 ---
 ## Exemplo de posição absoluta
 
-
-- ```html
+- <!-- {ul:.full-width} -->
+  ```html
   <div class="relativo">Este é um recipiente relativo.
     <div class="absoluto">Este é absoluto.</div>
   </div>
@@ -281,13 +278,13 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   .absoluto { position: absolute; width: 50%;
                right: 30px; bottom: 10px; }
   ```
-  <div style="display:inline-block;float:right;height:1em;font-size:.4em;"><input type="checkbox" checked id="button-absoluto" class="switch" onclick="javascript: (function() { var b = document.getElementById('absoluto'); b.classList.toggle('absoluto');}())" />
-    <label for="button-absoluto">`.absoluto`</label>
+  <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-absoluto" class="switch" onclick="javascript: (function() { var b = document.getElementById('absoluto'); b.classList.toggle('absoluto');}())" />
+    <label for="button-absoluto">.absoluto</label>
   </div>
   Resultado:
   <style>.absoluto { position: absolute; width: 50%; right: 30px; bottom: 10px; }</style>
-  <div style="position: relative; height: 150px; border: 3px dashed rebeccapurple; background: white">Este é um recipiente relativo.
-    <div id="absoluto" class="absoluto" style="border: 3px dashed green; background: white">Este é absoluto.</div>
+  <div style="position: relative; height: 140px; border: 3px dashed rebeccapurple; background: var(--presentation-color)">Este é um recipiente relativo.
+    <div id="absoluto" class="absoluto" style="border: 3px dashed green; background: var(--presentation-color)">Este é absoluto.</div>
   </div>
 
 ---
@@ -303,7 +300,6 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
 <!-- {ol:.bulleted} -->
 ---
-<!-- {"layout": "regular"} -->
 ## **Detalhes** do `position: absolute`
 
 - O elemento **não tem espaço reservado para ele**. Em vez disso, ele fica
@@ -313,13 +309,8 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
    <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/nt2bqmar/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-<!-- isto é avançado demais
-1. Margens se aplicam, porém elas não fazem _margin collapse_ com outras
-   - Ou seja, elas sempre se somam
--->
-
 ---
-<!-- {"layout": "section-header", "slideHash": "posicionamento-fixo"} -->
+<!-- {"layout": "section-header", "hash": "posicionamento-fixo"} -->
 # Posicionamento fixo
 ## Definindo (x,y) dos elementos **na janela**
 
@@ -331,7 +322,6 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   1. `left` :arrow_left:
 - Casos comuns
 - `z-index`
-
 <!-- {ul:.content} -->
 
 ---
@@ -395,7 +385,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 <iframe width="90%" height="50%" src="//jsfiddle.net/fegemo/jnjvsqy4/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
 
 ---
-<!-- {"slideHash": "valores-position"} -->
+<!-- {"layout": "centered", "hash": "valores-position"} -->
 
 | `position` | Descrição                                                         | Exemplos de uso                                                                                              | `top`, `right`, `bottom`, `left`      | `z-index`       |
 |------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
@@ -404,7 +394,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 | `absolute` | Removido do fluxo, posicionado em um (x,y) relativo a um contexto | Elementos que queremos **determinar os valores (x,y)** para posicioná-los exatamente em algum lugar          | **posições** referentes às 4 direções | determina ordem |
 | `fixed`    | Removido do fluxo, posicionado em um (x,y) relativo à janela      | Idem ao `absolute`, mas a **posição é fixa na janela** (e não na página)                                     | **posições** referentes às 4 direções | determina ordem |
 
-<!-- {table:style="transform: scale(.75)"} -->
+<!-- {table:style="transform: scale(.7)"} -->
 
 ---
 ## **z-index**
@@ -434,8 +424,10 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
     }
 </style>
+
 - Define a ordem "no eixo Z" com a qual elementos que se tocam deve ser exibida
-:::result
+
+::: result .flex-align-center
   <div style="width:200px;height:170px;">
     <div class="quadrado q1">
       z-index=1
@@ -454,19 +446,17 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
 
 ---
-<!-- {"layout": "section-header", "slideHash": "mais-assombracoes"} -->
+<!-- {"layout": "section-header", "hash": "mais-assombracoes"} -->
 # Mais Assombrações :ghost:
 ## Outros exercícios no blog Assombrado
 
 - Atividade de hoje
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "assombrado-position"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Atividade de Hoje
 
 - Fazer mais exercícios no "Blog Assombrado"
@@ -481,6 +471,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 [assombrado-exercicio-position]: https://github.com/fegemo/cefet-front-end-assombrado/archive/exercise-positioning.zip
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 - [Propriedade **position** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)

@@ -3,7 +3,7 @@
 ## <span class="subtitle">Plano de Ensino<br>por **Flávio Coutinho** e **Daniel Hasan**</span>
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "centered-horizontal"} -->
 ### TP1: O Assunto X
 
 ::: gallery .fish-eye
@@ -19,7 +19,7 @@
 :::
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "centered-horizontal"} -->
 ### TP2: Aplicação Web
 
 ::: gallery .fish-eye
@@ -55,8 +55,8 @@
 <!-- {dl:.content} -->
 
 ---
-<!-- {"slideHash": "slides", "layout": "regular"} -->
-# Aulas
+<!-- {"hash": "slides"} -->
+# Aulas <small>(1/4)</small>
 
 - [Introdução à Programação Web](classes/intro/)
 - [HTML parte 1](classes/html1/) - Plantas Carnívoras, Ingredientes do HTML
@@ -70,8 +70,7 @@
   Ferramentas e Ninjas :dash:
 
 ---
-<!-- {"layout": "regular"} -->
-# Aulas (página 2)
+# Aulas <small>(2/4)</small>
 
 - [HTML parte 4](classes/html4/) - Div/Span, Box Model, Float e Desafios
 - [CSS parte 3](classes/css3/) - Layout, Fontes, Multimídia e Unicórnios 🦄
@@ -86,8 +85,7 @@
   Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
-<!-- {"layout": "regular"} -->
-# Aulas (página 3)
+# Aulas <small>(3/4)</small>
 
 - [JavaScript parte 2](classes/js2/) - _Template_ strings, Função seta, Alterando o DOM e Exploração
   Espacial :alien:
@@ -103,8 +101,7 @@
   Tarefas :notebook: x2
 
 ---
-<!-- {"layout": "regular"} -->
-# Aulas (página 4)
+# Aulas <small>(4/4)</small>
 
 - [JavaScript parte 6](classes/js6/) - Bibliotecas, jQuery e o PhotoSnap x2
 - [CSS parte 7](classes/css7/) - _Responsive Web Design_
@@ -114,12 +111,7 @@
 
 
 ---
-<!--
-{
-  "slideHash": "ementa",
-  "layout": "section-header"
-}
--->
+<!-- { "hash": "ementa", "layout": "section-header" } -->
 # Ementa
 
 ## Objetivos
@@ -133,21 +125,17 @@
 <!-- {ol:.content} -->
 
 ---
-<!--
-{
-  "slideHash": "bibliografia",
-  "layout": "section-header"
-}
--->
+<!-- { "hash": "bibliografia", "layout": "section-header" } -->
 # Bibliografia
 
 ## Os textos e materiais que vamos usar
 
-Veja a bibliografia básica e a complementar.
+- Veja a bibliografia básica e a complementar.
 
-<!-- {p:.content} -->
+<!-- {ul:.content.no-bullets.no-padding} -->
+
 ---
-<!-- { "styles": ["styles/classes/books.min.css"] } -->
+<!-- { "layout": "centered", "styles": ["styles/classes/books.min.css"] } -->
 ## **Livro texto** sobre HTML e CSS
 
 ::: figure .book
@@ -178,6 +166,7 @@ Veja a bibliografia básica e a complementar.
    ~ O'Reilly Media, 2015 (tradução)
 
 ---
+<!-- {"layout": "centered"} -->
 ## **Livro texto** sobre JavaScript
 
 ::: figure .book
@@ -209,6 +198,7 @@ Veja a bibliografia básica e a complementar.
 
 
 ---
+<!-- {"layout": "centered"} -->
 ## **Livro texto** sobre APIs do HTML5
 
 ::: figure .book
@@ -239,9 +229,11 @@ Veja a bibliografia básica e a complementar.
   ~ O'Reilly Media, 2014 (tradução)
 
 ---
+<!-- {"layout": "centered", "state": "emphatic"} -->
 # Bibliografia Complementar
 
 ---
+<!-- {"layout": "centered"} -->
 ## Mergulhe no HTML5
 
 <div class="book-cover-container">
@@ -252,6 +244,7 @@ Veja a bibliografia básica e a complementar.
 - [Online](http://diveintohtml5.com.br/), gratuito
 
 ---
+<!-- {"layout": "centered"} -->
 ## JavaScript: The Good Parts
 
 <div class="book-cover-container">
@@ -264,17 +257,11 @@ Veja a bibliografia básica e a complementar.
 - **Editora** O'Reilly Media, 2008
 
 ---
-<!--
-{
-  "slideHash": "avaliacao",
-  "layout": "section-header"
-}
--->
+<!-- { "hash": "avaliacao", "layout": "section-header" } -->
 # Avaliação
 
 ## Distribuição de pontos (aproximada) por bimestre
 
 - ~08 Atividades práticas: **80%** da nota
 - 01 Prova: **20%** pontos
-
 <!-- {ul:.content} -->

@@ -1,0 +1,162 @@
+\documentclass[16pt]{examdesign}
+
+
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{amsmath}
+\usepackage{pifont}
+%\usepackage{gensymb}
+\usepackage{textcomp}
+%\SectionFont{\large\sffamily}
+\Fullpages
+\ContinuousNumbering
+%\ShortKey
+\NoKey
+
+\DefineAnswerWrapper{}{}
+\NumberOfVersions{1}
+%\IncludeFromFile{foobar.tex}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\setrandomseed{1373}
+\usepackage[portuguese]{algorithm2e}
+
+
+\addtolength{\textwidth}{80pt}
+\addtolength{\hoffset}{-55pt}
+
+
+\addtolength{\voffset}{-40pt}
+\addtolength{\textheight}{60pt}
+
+
+
+
+
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{1pt}
+
+\newcommand{\aspas}{``}
+
+\hyphenation{usa-do}
+\hyphenation{tem-pe-ra-tu-ra}
+% \newenvironment{Figure}
+%   {\par\medskip\noindent\minipage{\linewidth}}
+%   {\endminipage\par\medskip}
+
+%\setlength\columnsep{25pt}
+%Static/final
+%Erro no código
+%Teorica
+%O que imprime? 
+%Visibilidade
+
+\begin{document}
+    \input{../../../estilo_algoritmo}
+
+\begin{examtop}
+
+      \pgfdeclaremask{cefetLogo}{cefetLogo}
+      \pgfdeclareimage[mask=cefetLogo,height=2cm]{cefetLogo}{../../../img/cefetLogo.png}
+      
+    \begin{multicols}{2}[]
+    \begin{minipage}{2.5cm}
+      \pgfuseimage{cefetLogo}
+    \end{minipage}
+      \columnbreak
+      \begin{minipage}{400px}
+      \begin{center}\large{\textbf{Lab. de Programação de Computadores 2 - Prova 1}}\end{center}~\\
+      Professor: Daniel Hasan Dalip~~~~~~~~Valor: 10 Pontos~~~~~Belo Horizonte, 06/04/2017\\~\\
+      Nome do(a) Aluno(a): \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_	\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_~
+      %Nota:\_\_\_\_\_\_\_\_\_\_\_\\       
+      \end{minipage}
+
+
+
+    \end{multicols}
+  \hrulefill
+  \begin{multicols}{2}[]
+  \begin{small}
+    \begin{itemize}
+    
+    \item Prova individual e sem consulta.\vspace{-6pt}
+    
+    \item Não é permitido o uso de acesso a internet durante a prova. \vspace{-6pt}
+    \item Durante a elaboração da prova, o seu computador deverá ficar com o cabo de rede desconectado. Aluno que 
+    tentar colocar o cabo, terá sua prova zerada.\vspace{-6pt}
+    \item A interpretação da questão faz parte da avaliação  \vspace{-6pt}
+    \item Qualquer tentativa de cola/fraude/plágio ou uso da internet durante a realização da prova, a mesma será zerada. 
+    \item Em qualquer caso de plágio ambos os alunos (quem usou e quem forneceu) terão as suas provas zeradas.\vspace{-6pt}
+    \end{itemize}
+  \end{small}
+  \end{multicols}
+\def\arraystretch{1}
+\end{examtop}
+
+
+
+
+
+ 
+ 
+
+\begin{fillin}[title={},
+                    rearrange=no,resetcounter=no,suppressprefix]
+                    \vspace*{-20pt}
+Para a questão abaixo crie um projeto e, a seguir, crie um pacote contendo todas as classes do exercício. Este pacote chamará empresa. 
+Assim que finalizar os exercícios, levante a mão. O professor irá até sua mesa e o acompanhará para enviar o exercício via Moodle. 
+%Cliente -> Profissão
+%Funcionario -> Qualificacao
+%Estudante -> Periodo
+%Estudante -> Curso
+                    
+    \begin{question}
+	
+Você irá criar um sistema para controle dos equipamentos de uma 
+casa. Para isso, implemente:
+	\begin{itemize}
+		
+		\item Crie a classe \word{{Profissão}{Qualificacao}}. Esta classe possuirá apenas dois atributos: o nome (String)
+		e uma descrição  sobre tal \word{{profissão}{qualificacao}} (String). 
+		Faça o construtor, o \textit{getter} e \textit{setter} de cada atributo e o toString. 
+		Os atributos devem ser criados obedecendo boas práticas de programação orientada à objetos, conforme visto em sala.		
+		[1 ponto]
+		
+		\item \word{{Um cliente possui nome, profissão (objeto da classe Profissao) e quantidade de pontos de fidelidade acumulados.}
+			    {Um funcionário possui nome, qualificação e salário. }}
+		Os atributos devem ser criados obedecendo boas práticas de programação orientada à objetos, conforme visto em sala. 
+		Em seu construtor, deverá ser passado como parâmetro \word{{o nome e a profissão. Os pontos serão inicializados como zero.}{os três atributos}}.
+		Crie o toString que deverá apresentar o \word{{cliente}{funcionário}} da seguinte forma: 
+		\word{{\textbf{Nome: Daniel Hasan Dalip Quantidade de pontos: 1000 Profissão: Professor}}
+		      {\textbf{Nome: Daniel Hasan Dalip Salário R\$ 2000,00 Qualificação: Mestrado}}}.
+		Crie os \textit{getters} e \textit{setters} de cada atributo. Não haverá \textit{setter} para \word{{a quantidade de pontos ganho}{o salário}}, 
+		ao invés disso, deverá ser criado o método \word{{\textbf{incrementaPontos}}{aumentaSalario}} (explicado no próximo item).
+		 [2 pontos]
+		
+		
+		\item Crie o método \word{{incrementaPontos}{aumentaSalario}} no qual \word{{adiciona uma quantidade de pontos à quantidade de 
+		pontos acumulados}{adiciona um aumento no salário}}. Este método deverá possuir apenas um parâmetro. 
+		Caso \word{{a profissão seja de ``Estudante''  a quantidade de pontos adicionada deve ser dobrada}{a qualificação seja igual à ``Mestrado''
+		o aumento deve ser triplicado}}. 
+		Dica: Lembre-se que o operador de igualdade não funciona ao comparar dois objetos.		
+		O método \textbf{equalsIgnoreCase}, da classe String, será útil: ele retorna verdadeiro caso a \textit{string}, passada como parâmetro, seja igual 
+		a string do objeto atual (sem importar com maiúsculas ou minúsculas) - o \textbf{equals} também poderia ser usado.  [2 pontos]
+		
+		\item Crie uma exceção \word{{QuantidadeDePontosInvalida}{AumentoInvalido}}. Esta exceção será lançada pelo método \textbf{\word{{incrementaPontos}{aumentaSalario}}} sempre 
+		que a quantidade de pontos, passada como parâmetro, seja \textbf{menor ou igual à zero}. Tal exceção não pode ser \textbf{RuntimeException}.[3 pontos]
+		
+		\item Crie uma classe Principal. Nesta classe principal crie duas profissões e três clientes. Associe o primeiro cliente à primeira profissão e, os demais,  
+		à segunda profissão. Teste também a chamada ao método  \textbf{incrementaPontos} e, logo após, imprima os dados dos clientes. 
+		Para finalizar, altere o nome da segunda profissão e imprima os clientes associados à esta profissão.[2 pontos]
+	
+	\end{itemize}
+	
+\end{question}
+
+
+\end{fillin}
+\end{document}

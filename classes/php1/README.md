@@ -1,8 +1,9 @@
 <!-- {"layout": "title"} -->
-# Introdução a servidores Web
+# Introdução a **servidores Web**
 ## Apache, PHP, MySQL e os piratas :crown: x2
 
 ---
+<!-- {"layout": "centered"} -->
 # O que veremos hoje
 
 1. [O que é um servidor](#servidor-web)
@@ -14,7 +15,7 @@
 *[PHP]: PHP Hypertext Preprocessor*
 
 ---
-<!-- {"layout": "section-header", "slideHash": "servidor-web"} -->
+<!-- {"layout": "section-header", "hash": "servidor-web"} -->
 # Servidor Web
 ## O que come, onde vive
 
@@ -22,11 +23,9 @@
 - O que faz um servidor Web?
 - Página estática vs página dinâmica
 - Servidor Apache
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Como fizemos até agora
 
 - Nas práticas
@@ -42,42 +41,53 @@
   **protocolo HTTP**
 
 ---
-<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+<!-- {"embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/http-diagram.min.css"], "backdrop": "oldtimes"} -->
 ## Relembrando, o protocolo **HTTP**
 
-- É um **protocolo de redes** na camada de aplicação
+- É um **protocolo** na camada de aplicação
   > Conjunto de regras bem definidas descrevendo como
   > entidades se comunicam.
   - É a **"língua falada" pelo navegador e pelo servidor web**
 - Modelo requisição &rarr; resposta
-  ::: figure .figure-slides.no-margin
-  ![](../../images/http-diagram-informal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  ![](../../images/http-diagram-informal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  :::
+
+::: figure .http-diagram.flex-align-center.figure-slides.clean.no-margin
+![](../../images/http-diagram-informal.svg) <!-- {.step-1 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![](../../images/http-diagram-informal.svg) <!-- {.step-2 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![](../../images/http-diagram-informal.svg) <!-- {.step-3 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
-<!-- {"layout": "regular-block", "backdrop": "oldtimes"} -->
-## **Navegador requisita** algo e **Servidor responde**
+<!-- {"layout": "2-column-content", "embedSVG": "img[src$='.svg']", "backdrop": "oldtimes"} -->
+### **Navegador requisita** algo e **Servidor responde**
 
-```http
-GET /index.html HTTP/1.1
-Host: www.twitter.com                         # exemplo: requisição para www.twitter.com
-```
-```http
-HTTP/1.1 200 OK                               # exemplo: resposta
-Date: Mon, 23 May 2005 22:38:34 GMT
-Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-Content-Type: text/html; charset=UTF-8
-Content-Length: 131
+- ![](../../images/http-diagram-informal.svg) <!-- {.full-width.centered.step-3} --> <!-- {ul:.http-diagram.no-bullets.no-padding.bullet} -->
+  Requisição:
+  ```http
+  GET /index.html HTTP/1.1
+  Host: www.twitter.com
+  ```
 
-<!DOCTYPE html>
-<html>
-<head><title>Twitter</title></head>
-<body>
-  Olá mundo, este é um tweet.
-</body>
-</html>
-```
+1. Resposta: <!-- {ol:.bullet.no-bullets.no-padding.compact-code} -->
+   ```http
+   HTTP/1.1 200 OK
+   Date: Mon, 23 May 2005 22:38:34 GMT
+   Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+   Content-Type: text/html; charset=UTF-8
+   Content-Length: 131
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Twitter</title>
+   </head>
+   <body>
+     Olá mundo, este é um tweet.
+   </body>
+   </html>
+   ```
+
 
 ---
 ::: figure .figure-slides.full-width-slides
@@ -87,9 +97,7 @@ Content-Length: 131
 ![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
 
-
 ---
-<!-- {"layout": "regular"} -->
 ## O que faz um servidor Web?
 
 - O servidor Web **precisa**:
@@ -106,7 +114,6 @@ Content-Length: 131
 *[SO]: Sistema Operacional*
 
 ---
-<!-- {"layout": "regular"} -->
 ## Páginas HTML **estáticas** vs páginas **dinâmicas** <!-- {.alternate-color} -->
 
 Pág. **estáticas**
@@ -137,7 +144,6 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 	- Problema: precisa-se <u>repetir muito código</u> HTML entre uma página e outra
 
 ---
-<!-- {"layout": "regular"} -->
 ## Site das ovelhas: páginas **dinâmicas** <!-- {.alternate-color} -->
 
 ::: figure .figure-slides.clean
@@ -149,24 +155,29 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 :::
 
 ---
-<!-- {"layout": "regular"} -->
-## O que é uma **URL**?
+## O que é uma **URL**? <small>Unique Resource Locator </small>
 
-- URL: Unique **Resource** Locator
-  - É o **endereço de coisas** na Internet - **páginas, imagens, arquivos**, etc.   
-    ![](../../images/url-1.png) <!-- {.block} -->
-		- Também pode haver `#alguma-coisa` ao final da _query string_
-		- Essa parte é denominada _hash_, ou _fragment_
-- A **_query string_** pode ser usada para identificar o que se deseja
-	mostrar - por exemplo, o código identificador da ovelha
-- O _back-end_ pode usar a _query string_ para fazer uma busca no
-	banco de dados e retornar informações
+![As partes de uma URL](../../images/url-parts.svg) <!-- {.block.full-width} -->
+  
+domínio <!-- {dl.bulleted} -->
+~ Em que computador estão os arquivos
+
+porta
+~ Qual endereço do programa dentro do computador
+
+caminho
+~ Qual o endereço até o arquivo
+
+**_query string_**
+~ Identificar o que se deseja mostrar - por exemplo, o código identificador da ovelha
+
+O _back-end_ pode usar a _query string_ para fazer uma busca no
+banco de dados e retornar informações sobre algo específico. <!-- {p:.note.info} -->
 
 
 *[URL]: Unique Resource Locator*
 
 ---
-<!-- {"layout": "regular"} -->
 ## Servidores Web
 
 - Exemplos de Servidores Web:
@@ -188,20 +199,20 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 	**_back-end_** (digamos, a "parte oculta" de um site)
 
 ---
-<!-- {"layout": "regular", "slideHash": "servidor-apache"} -->
+<!-- {"hash": "servidor-apache"} -->
 ## **Apache**
 
 - O servidor web mais utilizado desde 1995
-- Tipicamente (mas não exclusivamente) usado associado à linguagem PHP
+- Tipicamente (mas não exclusivamente) associado à linguagem PHP
 - Motivos para seu sucesso:
   1. Projeto altamente modularizado e configurável
   1. Gratuito
   1. Extensível
   1. Bom desempenho
-  1. Multi-plataforma (Pode ser executado tanto no Linux quanto no Windows)
+  1. Multi-plataforma (Linux, Windows, OSX)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "php"} -->
+<!-- {"layout": "section-header", "hash": "php"} -->
 # PHP
 ## Hypertext Preprocessor
 
@@ -209,11 +220,9 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 - Condicionais
 - Estrutura de Repetição
 - Vetores
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## PHP - Hypertext Preprocessor
 
 - É uma linguagem amplamente usada
@@ -231,7 +240,7 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 ```
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "for-formas-preferiveis"} -->
+<!-- {"layout": "2-column-content", "hash": "for-formas-preferiveis"} -->
 ## PHP - Sintaxe Básica
 
 1. `echo`: exibe no HTML o que for passado como parametro. Exemplo, arquivo `index.php`:
@@ -256,7 +265,6 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## PHP - **Variáveis**
 
 - Variáveis não precisam ser declaradas
@@ -275,7 +283,6 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## PHP - **Condicionais**
 
 - Condicionais possuem a sintaxe similar ao JavaScript:
@@ -293,7 +300,6 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## PHP - Estrutura de repetição - **for**
 
 - Também possui a sintaxe similar ao JavaScript
@@ -311,7 +317,6 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## PHP - Estrutura de repetição - **while**
 
 ```php
@@ -330,12 +335,12 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 ```
 
 ---
-<!-- {"layout": "regular"} -->
-## PHP - **Vetores** (_Arrays_)
+<!-- {"classes": "compact-code"} -->
+## PHP - **Vetores** (_Arrays_) <small>(1/2)</small>
 
 - Inicialização:
   ```php
-  <?php $frutas =  array("kiwi","morango","uva");?>
+  <?php $frutas =  array("kiwi", "morango", "uva"); ?>
   ```
 - Percorrendo o _array_:
   ```php
@@ -351,8 +356,8 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 - A função `count` retorna o tamanho do _array_
 
 ---
-<!-- {"layout": "regular"} -->
-## PHP - Vetores (cont.)
+<!-- {"classes": "compact-code"} -->
+## PHP - Vetores <small>(2/2)</small>
 
 - _Arrays_ em PHP são, na verdade, **mapas ordenados**:
 	- mapeiam uma *chave* a um *valor*
@@ -364,13 +369,13 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 
     $personagem["pontos"] += 100;
 
-		echo("O personagem {$personagem['nome']} possui {$personagem['pontos']}");
+    echo("O personagem {$personagem['nome']} possui {$personagem['pontos']}");
   ?>
   ```
 	- São parecidos com os objetos em JavaScript!
 
 ---
-<!-- {"layout": "section-header", "slideHash": "bancos-de-dados"} -->
+<!-- {"layout": "section-header", "hash": "bancos-de-dados"} -->
 # Bancos de Dados
 
 - Por que centralizar dados?
@@ -379,11 +384,9 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 - Tabelas e Registros
 - Cláusula SELECT
 - PHP e MySQL
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Centralizando dados
 
 - Servidores são úteis para **centralizar dados**, para, por exemplo:
@@ -399,7 +402,6 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 	- favorecendo o **uso por muitos usuários**
 
 ---
-<!-- {"layout": "regular"} -->
 ## **S**istema de **G**erenciamento de **B**anco de **D**ados
 
 - **SGBD**: É um conjunto de ferramentas para gerenciar *bancos de dados*
@@ -415,77 +417,72 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 *[SGBD]: Sistema de Gerenciamento de Banco de Dados
 
 ---
-<!-- {"layout": "regular"} -->
-## Entidades e Relacionamentos
+## **Entidades** e **Relacionamentos** <!-- {.alternate-color} -->
 
-- Um banco de dados é formado um conjunto de *entidades* com *relacionamentos*
-- Entidades podem ser abstratas ou concretas:
-	- Pessoa, Carro, Alimento, Pedido, Transação Bancária
-- Cada entidade pode ter **relacionamentos** com outras:
-	- Uma **pessoa** faz diversas **transações bancárias**
-	- Um **carro** possui uma **pessoa** que é seu dono
-	- Uma **pessoa** pode fazer diversos **pedidos de compra**
-- Em SGBDs, *entidades* são representadas por **tabelas** <!-- {.alternate-color} -->
+- Um banco de dados é formado por um conjunto de *entidades* com *relacionamentos* <!-- {ul:.bulleted-0} -->
+- **Entidades** podem ser abstratas ou concretas:
+	- **Pessoa**, **Carro**, **Alimento**, **Pedido**, **Transação Bancária**
+- Cada entidade pode ter **relacionamentos** <!-- {.alternate-color} --> com outras:
+	- Uma **pessoa** **faz** <!-- {.alternate-color} --> diversas **transações bancárias**
+	- Um **carro** **possui** <!-- {.alternate-color} --> uma **pessoa** que é seu dono
+	- Uma **pessoa** pode **fazer** <!-- {.alternate-color} --> diversos **pedidos de compra**
+- Em SGBDs, *entidades* são representadas por _tabelas_ <!-- {.underline.upon-activation.delay-1600} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## Tabelas e registros
+## Tabelas e registros <small>(ou "linhas")</small>
 
-- Uma entidade é representada por uma ou mais **tabelas** em um banco de dados
+- Uma entidade é representada por uma ou mais **tabelas** em um SGBD
 - Tais tabelas possuem um conjunto de **registros**
 - Na tabela, cada linha é um **registro** e cada coluna é um **campo**
 	que descreve aquela entidade
 
-![Tabela de ovelhas](../../images/sql-tabela-e-registros.png)
+![Tabela de ovelhas](../../images/sql-tabela-e-registros.png) <!-- {p:.centered} -->
+
+Para interagir com um SGBD, precisamos de uma linguagem...<!-- {p:.note.info} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## SQL - Structured Query Language
 
-- Dado que temos um conjunto de tabelas, precisamos de uma linguagem para:
-	- Manipular e Pesquisar nos registros
-	- Criar, alterar a estrutura das tabelas
-	- Conceder e retirar permissões
-	- etc...
+- Tendo um conjunto de tabelas, precisamos de uma linguagem para:
+	1. Manipular e pesquisar nos registros
+	1. Criar, alterar a estrutura das tabelas
+	1. Conceder e retirar permissões de usuários, etc.
 - Para isso, foi criado o **SQL** que é uma linguagem padrão que a maioria dos SGBDs adotam (com algumas adaptações)
-- Na aula de hoje, iremos aprender a consultar uma tabela usando a cláusula **SELECT**
+- Na aula de hoje, iremos aprender a consultar os registros que uma tabela possui usando a cláusula SQL **SELECT**
 
+*[SQL]: Structured Query Language
 
 ---
-<!-- {"layout": "regular"} -->
-## SQL - Cláusula **SELECT**
+<!-- {"layout": "centered"} -->
+# SQL - Cláusula **SELECT**
 
 ![Formato da clausula SELECT](../../images/sql-formato.png)
 
 ---
-<!-- {"layout": "regular"} -->
-## SQL - Cláusula **SELECT** - Exemplo (1/3)
+## SQL - Cláusula **SELECT** - Exemplo <small>(1/3)</small>
 
 - Seleciona todas as colunas e registros da tabela `RACA_OVELHA`
 
-![Seleciona todos os registros e colunas](../../images/sql-exemplo1.png)
+![Seleciona todos os registros e colunas](../../images/sql-exemplo1.png) <!-- {p:.centered} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## SQL - Cláusula **SELECT** - Exemplo (2/3)
+## SQL - Cláusula **SELECT** - Exemplo <small>(2/3)</small>
 
 - Seleciona o nome de todas as raças de ovelha (i.e. tabela `RACA_OVELHA`)
 
-![Seleciona o nome de todas as raças de ovelha](../../images/sql-exemplo2.png)
+![Seleciona o nome de todas as raças de ovelha](../../images/sql-exemplo2.png) <!-- {p:.centered} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## SQL - Cláusula **SELECT** - Exemplo (3/3)
+## SQL - Cláusula **SELECT** - Exemplo <small>(3/3)</small>
 
 - Seleciona o nome e alimento preferido de todas as raças de ovelha (i.e. tabela `RACA_OVELHA`) em que a expectativa de vida é menor que 5 anos
 
-![Seleciona o nome e o alimento preferido de todas as raças de ovelha com expectativa de vida menor que 5](../../images/sql-exemplo3.png)
+![Seleciona o nome e o alimento preferido de todas as raças de ovelha com expectativa de vida menor que 5](../../images/sql-exemplo3.png) <!-- {p:.centered} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## PHP e MySQL - Exemplo
+## PHP e MySQL - Exemplo <small>(1/2)</small>
 
-- Para usarmos o MySQL no PHP precisamos conectar ao MySQL:
+- Para usarmos o MySQL no PHP precisamos conectar ao MySQL: <!-- {ul:.full-width.compact-code} -->
   ```php
   <?php
     // faz a conexão com o banco de dados
@@ -499,17 +496,19 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
     }
   ?>
   <!DOCTYPE html>
+  <html>
+  <head>
+    ⋮
   ```
 
 ---
-<!-- {"layout": "regular"} -->
-## PHP e MySQL - Exemplo (cont.)
+## PHP e MySQL - Exemplo <small>(2/2)</small>
 
-- Logo após, podemos fazer uma consulta, por exemplo, exibindo todas as raças de ovelha.
+- Logo após, podemos fazer uma consulta, por exemplo, exibindo todas as raças de ovelha: <!-- {ul:.full-width.compact-code} -->
   ```php
   <?php
     $sql = "SELECT nome, alimento_preferido FROM raca_ovelha";
-    $result = $db->query($sql); //db é a conexao obtida
+    $result = $db->query($sql); // $db é a conexão obtida
     if ($result->num_rows > 0) {
       echo("<ul>");
       while($linha = $result->fetch_assoc()) {
@@ -526,20 +525,18 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 
 
 ---
-<!-- {"layout": "section-header", "slideHash": "tesouros-de-piratas-dinamicos"} -->
+<!-- {"layout": "section-header", "hash": "tesouros-de-piratas-dinamicos"} -->
 # Piratas Dinâmicos
 ## Barba-Ruiva + Apache, PHP e MySQL
 
 - Instalando Apache, PHP e MySQL
 - Atividade de hoje
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "piratas-php"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Instalando Apache, PHP e MySQL
 
 - **<u>Pergunte ao professor</u> se é necessário instalar algo** nos
@@ -565,17 +562,21 @@ Pág. **dinâmicas** <!-- {.alternate-color} -->
 [xampp]: https://www.apachefriends.org/pt_br/index.html
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "2-column-content"} -->
 ## Atividade de hoje
 
-![](../../images/piratas-php-inicial.jpg) <!-- {.push-left style="width: 45%;"} -->
-![](../../images/piratas-php.jpg)<!-- {.push-right style="width: 45%;"} -->
+![](../../images/piratas-php-inicial.jpg) <!-- {.full-width} -->
 
-- Torne a página dos tesouros do Barba-Ruiva em uma página dinâmica usando
-  o Apache, PHP e um banco de dados MySQL
-- Veja o enunciado completo no Moodle
+![](../../images/piratas-php.jpg) <!-- {.full-width} -->
+
+- Torne a página dos tesouros do Barba-Ruiva uma página dinâmica usando
+  o Apache, PHP e um banco de dados MySQL <!-- {ul:.span-columns} -->
+- Veja o [enunciado completo][enunciado-pirates] no Github
+
+[enunciado-pirates]: https://github.com/fegemo/cefet-front-end-pirates/tree/master-php
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. [Site do Apache](http://apache.org)

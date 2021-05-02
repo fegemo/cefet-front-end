@@ -30,7 +30,7 @@
 - Os sistemas adotados podiam usar **bancos de dados diferentes** e 
   funcionar em **plataformas distintas**
   - Como fazer para integrá-los?
-    - ![right](../../images/csv-exemplo.png)
+    - ![](../../images/csv-exemplo.png) <!-- {.push-right} -->
       Uma forma muito usada (até hoje), porém horrível: 
       **exportação/importação de arquivo de texto** entre um 
       sistema e outro

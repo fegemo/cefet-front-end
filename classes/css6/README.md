@@ -1,10 +1,11 @@
 <!-- {"layout": "title"} -->
-# CSS - Parte 6
-## Transformações, Transições, Animações e os Animais :dog: :cat:
+# **CSS** parte 6
+## Transformações, Transições, Animações<br>e os Animais :dog: :cat:
 
 ---
 <!--
 {
+  "layout": "centered",
   "styles": ["https://fonts.googleapis.com/css?family=Righteous"],
   "embeddedStyles": ".righteous { font-family: Righteous, cursive; color: #e90c0c }"
 }
@@ -21,7 +22,7 @@
 <!--
 {
   "layout": "section-header",
-  "slideHash": "edukids-animals"
+  "hash": "edukids-animals"
 }
 -->
 # EduKids Animals <!-- {.righteous} -->
@@ -30,45 +31,52 @@
 ![Desenho de um urso](../../images/urso.jpg) <!-- {.portrait.centered style="box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.34);"} -->
 
 ---
+<!-- {"layout": "2-column-content"} -->
 ## Motivação
 
-Seus pais vão viajar e você deve cuidar do seu mini irmãozinho de 3 anos.
+> Seus pais vão viajar e você deve cuidar do seu mini irmãozinho de 3 anos.
+>
+> Com um comportamento de anjinho (#sqn), o pequeno Joãozinho vai dar trabalho.
+>
+> Você, como um ótimo irmã(ão) e programador(a)
+> exímio, decide que é hora de criar um jogo Web para, além de entreter seu
+> mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
-Com um comportamento de anjinho (#sqn), o pequeno Joãozinho vai precisar ser
-entretido por um bom tempo. Você, como um ótimo irmã(ão) e programador(a)
-exímio, decide que é hora de criar um jogo Web para, além de entreter seu
-mini-irmão, ensiná-lo como falar o nome de alguns animais.
-
----
-## O jogo
-
-[![](../../images/edukids-thumb.png)](../../images/edukids.png)
+![](../../images/edukids.png) <!-- {.full-width.bordered.rounded} -->
 
 ---
-## O jogo, como está
+## O jogo **Edukids Animals** <!-- {.righteous} -->
 
 - Funcionamento do jogo:
   - Assim que apertar **play**, o jogo começa
-  - A cada ~2s, um animal é sorteado e começa a ficar agitado, com fome
+  - A cada ~2s, um animal é sorteado e começa a ficar com fome
   - Você deve clicar no animal agitado para alimentá-lo antes que ele coma
     alguém
     - Fazendo isso, ganha-se 1 ponto
-  - Se um animal não é clicado, perde-se 2 pontos
+  - Se um animal não é clicado a tempo, perde-se 2 pontos
   - Se um animal que estava sossegado é perturbado fora de hora, perde-se 1
     ponto
-- Essa funcionalidade **já está implementada**
+- Essa funcionalidade **já está implementada** em um arquivo JavaScript
 
 ---
 ## O que está **faltando**
 
 1. O jogo ainda não dá um _feedback_ visual interessante para o jogador
    - Apenas o nome do animal aparece escrito e seu irmão ainda não sabe ler
-1. O arquivo javascript `jogo.js` controla o jogo. Ele tem um temporizador que
+1. O arquivo `jogo.js` controla o jogo. Ele tem um temporizador que
    fica **adicionando e removendo classes dos elementos** dos animais
-   - `com-fome`, quando o animal está com fome
-   - `satisfeito`, quando o animal acabou de comer
-   - `com-raiva`, quando um animal sossegado é perturbado
-   - `atacando`, quando um animal com fome não é alimentado a tempo
+   
+   `com-fome`
+   ~ quando o animal está com fome
+   
+   `satisfeito`
+   ~ quando o animal acabou de comer
+   
+   `com-raiva`
+   ~ quando um animal sossegado é perturbado
+   
+   `atacando`
+   ~ quando um animal com fome não é alimentado a tempo
 
 ---
 ## Pede-se: fazer os **2 exercícios** abaixo
@@ -77,16 +85,16 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
    _play/stop_ (para que o elemento se revele lentamente)
 1. Você deve implementar uma **metáfora visual** para cada um dos 4 estados dos
    animais. Algumas sugestões:
-   - `com-fome`, animal piscando (opacidade variando)
-   - `satisfeito`, uma borda verde no animal e o animal fica girando de alegria
-   - `com-raiva`, animal vai crescendo, ou fica pulsando
-   - `atacando`, animal dá um salto e cresce, com uma borda vermelha
+   1. `com-fome`, animal piscando (opacidade variando)
+   1. `satisfeito`, uma borda verde no animal e o animal fica girando de alegria
+   1. `com-raiva`, animal vai crescendo, ou fica pulsando
+   1. `atacando`, animal dá um salto e cresce, com uma borda vermelha
 
 ---
 <!--
 {
   "layout": "section-header",
-  "slideHash": "transformacoes"
+  "hash": "transformacoes"
 }
 -->
 # Transformações
@@ -98,13 +106,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   - Rotação
 - Efeitos 3D com `perspective`
 - Ponto de origem da transformação
-
 <!-- {ul^1:.content} -->
-
----
-## Por que precisamos disso?
-
-![](../../images/o-que-queremos-transforms.png)
 
 ---
 ## A propriedade **transform** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform))
@@ -113,13 +115,13 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   elemento **`block`** (ou **`inline-block`**)
 - Exemplo:
   ```html
-  <p>Yay, sem Photoshop!</p>
+  <p>Yay, girei com força!</p>
   ```
   ```css
   p { transform: rotate(-3deg); }
   ```
 - Resultado:
-  <p style="transform: rotate(-3deg); background-color: #bcdefb">Yay, sem Photoshop!</p>
+  <p style="transform: rotate(-3deg); background-color: #bcdefb; color: #333">Yay, girei com força!</p>
 
 ---
 ## **transform** com translação
@@ -172,7 +174,6 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## Efeitos 3D
 
 - Para ter um efeito de profundidade das coisas, precisamos definir
@@ -190,7 +191,6 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   - Aqui também usamos uma `animation`
 
 ---
-<!-- {"layout": "regular"} -->
 ## Ponto de origem da transformação
 
 - Normalmente a transformação é feita com base no centro do objeto
@@ -211,7 +211,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 <!--
 {
   "layout": "section-header",
-  "slideHash": "transicoes"
+  "hash": "transicoes"
 }
 -->
 # Transições
@@ -221,13 +221,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 - Propriedades que podemos animar
 - Funções de interpolação
 - Transição com transformação
-
 <!-- {ul:.content} -->
-
----
-## Pra que isso?
-
-![](../../images/o-que-queremos-animacoes.png)
 
 ---
 ## Transições CSS
@@ -240,10 +234,12 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 - CSS3 especifica uma nova propriedade: `transition`
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"classes": "compact-code"} -->
 ## Como usar `transition`
 
-- <style>
+- Exemplo: mudando cor quando passa o mouse:
+  ::: result .push-right margin-left: 1em; margin-top: 1.25em;
+  <style>
     p.transition-link {
       transition: color 600ms linear;
       color: red;
@@ -251,12 +247,14 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
     p.transition-link:hover { color: #000; }
   </style>
   <p class="transition-link">Heyyy, hover me</p>
-
+  :::
   ```css
   p {
     color: 'red';
-    transition: color 600ms linear;
+    transition: color 600ms linear; 
+             /* propriedade duração interpolação */
   }
+
   p:hover {
     color: 'black';
   }
@@ -265,12 +263,11 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   e qual a **função de interpolação**
 
 ---
-<!-- {"layout": "regular"} -->
 ## A propriedade **transition** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
 
 - É um atalho para:
-  - `transition-property: all`, que propriedades `CSS` devem sofrer transição
-  - `transition-duration: 0s`, a duração da transição
+  - `transition-property: all`, ou qual propriedade `CSS` deve sofrer transição
+  - `transition-duration: 0s`, ou a duração da transição
   - `transition-timing-function: ease`, a função de interpolação
   - `transition-delay: 0s`, tempo de atraso até que se comece a transição
 - Sintaxe formal:
@@ -280,7 +277,6 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Propriedades que podemos animar
 
 - Nem todas as propriedades são animáveis e elas podem variar entre navegadores
@@ -312,7 +308,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 - <style>
   a.combinando {
     display: inline-block;
-    transition:transform .2s cubic-bezier(.37,1.89,.59,.73);
+    transition: transform .2s cubic-bezier(.37,1.89,.59,.73);
   }
   a.combinando:hover {
     transform: scale(1.4);
@@ -337,7 +333,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 <!--
 {
   "layout": "section-header",
-  "slideHash": "animacoes"
+  "hash": "animacoes"
 }
 -->
 # Animações
@@ -350,20 +346,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## O que queremos?
-
-- Criar **animações mais complexas** do que uma interpolação entre dois valores de
-  uma propriedade
-- Sem usar JavaScript!!
-  - Maior desempenho
-  - Fácil de fazer (de forma declarativa em vez de imperativa)
-  - Permite que o navegador controle a animação, possibilitando que ele utilize
-    dos recursos de hardware gráficos presentes ou mesmo pausando a computação
-    de animações que não estão visíveis
-
----
-<!-- {"layout": "regular"} -->
+<!-- {"classes": "compact-code"} -->
 ## A propriedade **animation** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/animation))
 
 - Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
@@ -376,6 +359,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
     position: relative;
     animation: flutuando .5s ease-in-out 0s infinite alternate;
   }
+
   @keyframes flutuando {
     from { top: 0;     }
     to   { top: -30px; }
@@ -395,12 +379,12 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   to   { top: -30px; }
 }
   </style>
-  <div style="position: absolute; top: 50%; left: 50%; margin-top: -75px; margin-left: -75px;">
+  <div style="position: absolute; top: 50%; right: 10%; margin-top: -75px; margin-left: -75px;">
   <img src="../../images/urso.jpg" style="width: 150px; border-radius: 75px;" class="urso-flutuante">
   </div>
 
 ---
-<!-- {"layout": "regular", "slideHash": "criando-uma-animacao"} -->
+<!-- {"hash": "criando-uma-animacao"} -->
 ## Criando uma animação
 
 - Uma animação CSS é composta por
@@ -412,7 +396,6 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   sequência de quadros a ser usada
 
 ---
-<!-- {"layout": "regular"} -->
 ## A propriedade **animation** (cont.)
 
 - É um atalho para:
@@ -428,7 +411,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   - `animation-play-state: running`, estado da animação
 
 ---
-<!-- {"layout": "centered"} -->
+<!-- {"classes": "compact-code"} -->
 ## Definindo **@keyframes**
 
 <style>
@@ -445,16 +428,18 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
   padding: 0.75em;
 }</style>
 
-- ```css
+- <!-- {ul:.no-padding.no-bullets.full-width} -->
+  ```css
   @keyframes piscando {
-    from { opacity: 1.0; }
-    to   { opacity: 0.7; }
+    from { opacity: 1.0; }   /* usa apenas     */
+    to   { opacity: 0.7; }   /* 'from' e 'to'  */
   }
   ```
   ```css
   @keyframes terra-ao-longo-do-dia {
-  	0%   { background: #6c5228; }  33%  { background: #48a037; }
-  	66%  { background: #48a037; }  100% { background: #6c5228; }
+    /* define quantos pontos forem necessários */
+    0%   { background: #6c5228; }  33%  { background: #48a037; }
+    66%  { background: #48a037; }  100% { background: #6c5228; }
   }
   ```
   <div class="terra">animation: terra-ao-longo-do-dia 20s linear 0s infinite;</div>
@@ -463,7 +448,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 <!-- {"layout": "tall-figure-left"} -->
 ## Exemplo 1: estrelinha girando
 
-![](../../images/mario-star.png) <!-- {.estrela-mario-1} -->
+![](../../images/mario-star.png) <!-- {.estrela-mario-1} --> <!-- {p:.center-aligned style="transform: initial; align-self: center"} -->
 
 ```css
 .estrela-mario-1:hover {  /* apenas em :hover */
@@ -482,8 +467,9 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 
 <style>
 .estrela-mario-1 {
-  position: absolute;
-
+  display: inline-block;
+  width: 100px;
+  height: 100px;
 }
 .estrela-mario-1:hover {
   animation: girando 1s ease-in-out 0s infinite alternate;
@@ -494,7 +480,7 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 }</style>
 
 ---
-<!-- {"layout": "regular", "slideHash": "mais-de-uma-animacao"} -->
+<!-- {"hash": "mais-de-uma-animacao"} -->
 ## Exemplo 2: **mais de uma** animação
 
 <style>
@@ -513,7 +499,8 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 }
 </style>
 
-- ```css
+- <!-- {.no-bullets} -->
+  ```css
   .estrela-mario-2:hover {
     animation: sumindo 600ms ease-in 3s 1 forwards,
                girando-de-costas 3600ms ease-in 1 forwards;
@@ -537,23 +524,27 @@ mini-irmão, ensiná-lo como falar o nome de alguns animais.
 ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "animation-ou-transition"} -->
+<!-- {"layout": "main-point", "state": "emphatic", "hash": "animation-ou-transition"} -->
 ## **animation** ou **transition**?
 
-- **`transition`** é uma interpolação entre <u>dois valores</u> de uma propriedade
-- **`animation`** é uma interpolação entre <u>dois ou mais valores</u>, opcionalmente
+**`transition`**
+~ é uma interpolação entre <u>dois valores</u> de uma propriedade
+
+**`animation`**
+~ é uma interpolação entre <u>dois ou mais valores</u>, opcionalmente
   acontecendo mais de uma vez e em ordem alternada
+
 - Sempre optamos pelo mais simples
   - No caso, `transition`, quando possível
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 - [Mozilla Developer Network](https://developer.mozilla.org/)
 - [caniuse.com](http://caniuse.com/)
 
 ---
-<!-- {"layout": "regular"} -->
 # Slide **_easter egg_**!!
 
 - Em 01/04/2015, a Google lançou um espelho para seu buscador, o com.google.

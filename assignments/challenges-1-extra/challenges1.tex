@@ -1,0 +1,108 @@
+\documentclass[16pt]{examdesign}
+
+
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{amsmath}
+\usepackage{pifont}
+%\usepackage{gensymb}
+\usepackage{textcomp}
+%\SectionFont{\large\sffamily}
+\Fullpages
+\ContinuousNumbering
+%\ShortKey
+\NoKey
+
+\DefineAnswerWrapper{}{}
+\NumberOfVersions{1}
+%\IncludeFromFile{foobar.tex}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\setrandomseed{1373}
+\usepackage[portuguese]{algorithm2e}
+\usepackage{listings}
+
+
+\addtolength{\textwidth}{80pt}
+\addtolength{\hoffset}{-55pt}
+
+
+\addtolength{\voffset}{-40pt}
+\addtolength{\textheight}{60pt}
+
+
+
+
+
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{1pt}
+
+\newcommand{\aspas}{``}
+
+\hyphenation{usa-do}
+\hyphenation{tem-pe-ra-tu-ra}
+% \newenvironment{Figure}
+%   {\par\medskip\noindent\minipage{\linewidth}}
+%   {\endminipage\par\medskip}
+
+\begin{document}
+
+\begin{examtop}
+
+      \pgfdeclaremask{cefetLogo}{cefetLogo}
+      \pgfdeclareimage[mask=cefetLogo,height=2cm]{cefetLogo}{../../images/cefetLogo.png}
+
+    \begin{multicols}{2}[]
+    \begin{minipage}{2.5cm}
+      \pgfuseimage{cefetLogo}
+    \end{minipage}
+      \columnbreak
+      \begin{minipage}{400px}
+      \begin{center}\large{\textbf{Lab. de Programação Web}}\end{center}~\\
+      Professores: Daniel Hasan e Flávio Coutinho~~~~~~~~~~~~~~~Belo Horizonte, 09/04/2019\\~\\
+
+      %Nota:\_\_\_\_\_\_\_\_\_\_\_\\
+      \end{minipage}
+
+
+
+    \end{multicols}
+  \hrulefill
+
+\end{examtop}
+
+
+
+
+
+
+
+
+\begin{fillin}[title={},
+                    rearrange=no,resetcounter=no,suppressprefix]
+                    \vspace*{-20pt}
+
+
+    \begin{question}
+
+
+       \fbox{
+	\begin{minipage}{18cm}
+
+\word{{\lstinputlisting[language=HTML,extendedchars=true,inputencoding=utf8,literate={á}{{\'a}}1 {ê}{{\^e}}1 {ç}{{\c{c}}}1 {ã}{{\~a}}1 {é}{{\'e}}1]{progSemCafeA.html}}
+      {\lstinputlisting[language=HTML,extendedchars=true,inputencoding=utf8,literate={á}{{\'a}}1 {ê}{{\^e}}1 {ç}{{\c{c}}}1 {ã}{{\~a}}1 {é}{{\'e}}1]{progSemCafeA.html}}}
+
+
+	  \end{minipage}
+      }
+%<!-- tfoot dentro do tbody sem tr no thead;  div fechado errado.img nao pode ser fechado. em nao foi fechado -->
+%<!-- Sem /html e /table  faltou a tag head. o th ta fechando td /tr e /td trocados na coxinha-->
+     \end{question}
+
+
+\end{fillin}
+\end{document}

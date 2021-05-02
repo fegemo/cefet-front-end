@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 2)
+# **JavaScript** parte 2
 ## _Template_ strings, Função seta,<br>Alterando o DOM e Exploração Espacial :alien:
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (1/3)
 
 - Vimos novos elementos HTML para interação com o usuário:
@@ -17,7 +16,6 @@
     usar JavaScript
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (2/3)
 
 - Assim como em CSS, há 3 formas para incluir código JavaScript
@@ -29,7 +27,6 @@
   - Respeita o princípio da **separação de responsabilidades**
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (3/3)
 
 - O DOM é a visão que o JavaScript tem dos elementos da página
@@ -47,6 +44,7 @@
 *[DOM]: Document Object Model*
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [_Template_ strings](#template-strings)
@@ -55,7 +53,7 @@
 4. [Exploração Espacial](#exploracao-espacial) :alien:
 
 ---
-<!-- {"layout": "section-header", "slideHash": "template-strings"} -->
+<!-- {"layout": "section-header", "hash": "template-strings"} -->
 # _Template_ Strings
 ## Criando strings bacanudas
 
@@ -70,7 +68,7 @@
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular", "slideHash": "o-tipo-string", "backdrop": "oldtimes"} -->
+<!-- {"hash": "o-tipo-string", "backdrop": "oldtimes"} -->
 ## O tipo **3. String** <!-- {.tipo-js.tipo-string} -->
 
 - **Representa um texto** <!-- {.tipo-string} --> codificado em UTF-8
@@ -92,7 +90,6 @@
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## _Template_ Strings: interpolação de valores (1/2)
 
 - É uma forma mais recente para criar _strings_ <!-- {ul:.full-width.bulleted} -->
@@ -128,7 +125,6 @@
   - Vejamos outros exemplos...
   
 ---
-<!-- {"layout": "regular"} -->
 ## _Template_ Strings: interpolação de valores (2/2)
 
 - É possível **colocar expressões** dentre de `${...}`. Exemplo: <!-- {ul:.full-width.bulleted} -->
@@ -158,7 +154,6 @@
 - Ou seja, a **interpolação** é apenas uma **sintaxe mais legal** para concatenar strings com variáveis/expressões
 
 ---
-<!-- {"layout": "regular"} -->
 ## _Template_ Strings: **texto multilinha**
 
 - Digamos que você queira que uma variável string contenha uma poesia (ocupando várias linhas)
@@ -179,7 +174,7 @@
 - Nesse caso, quando há uma quebra de linha no código fonte, é colocado um `\n` dentro da _template string_
 
 ---
-<!-- {"layout": "section-header", "slideHash": "funcao-seta"} -->
+<!-- {"layout": "section-header", "hash": "funcao-seta"} -->
 # Função Seta
 ## A 3ª forma para funções
 
@@ -187,11 +182,9 @@
   - Função tradicional
   - Função anônima
   - Função seta (anônima também)
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Função **tradicional** e **anônima**
 
 - <!-- {.code-split-2} -->
@@ -221,57 +214,56 @@
   - Vejamos alguns exemplos
 
 ---
-<!-- {"layout": "2-column-content", "classes": "compact-code-more", "slideHash": "funcao-seta-sintaxe"} -->
+<!-- {"classes": "compact-code-more", "hash": "funcao-seta-sintaxe"} -->
 ## Função seta: sintaxe
 
-```js
-function ciao() {
-  return 'Ciao';
-}
-
-function oi(prim, ult) {
-  return 'Oi ' + prim + ' ' + ult;
-}
-
-function hi(name) {
-  return 'Hi ' + name;
-}
-
-function fatorial(n) {
-  let resultado = 1;
-  while (n > 1) {
-    resultado *= n;
-    n--;
+- <!-- {ul:.no-bullets.no-padding.full-width.two-column-code} -->
+  ```js
+  function ciao() {
+    return 'Ciao';
   }
-  return resultado;  
-}
-```
 
-```js
-let ciao = () => 'Ciao';
-
-
-
-let oi = (prim, ult) => 'Oi ' + prim + ' ' + ult;
-
-
-
-let hi = name => return 'Hi ' + name;
-
-
-
-let fatorial = n => {
-  let resultado = 1;
-  while (n > 1) {
-    resultado *= n;
-    n--;
+  function oi(prim, ult) {
+    return 'Oi ' + prim + ' ' + ult;
   }
-  return resultado;  
-}
-```
+
+  function hi(name) {
+    return 'Hi ' + name;
+  }
+
+  function fatorial(n) {
+    let resultado = 1;
+    while (n > 1) {
+      resultado *= n;
+      n--;
+    }
+    return resultado;  
+  }
+
+  let ciao = () => 'Ciao';
+
+
+
+  let oi = (prim, ult) => 'Oi ' + prim + ' ' + ult;
+
+
+
+  let hi = name => 'Hi ' + name;
+
+
+
+  let fatorial = n => {
+    let resultado = 1;
+    while (n > 1) {
+      resultado *= n;
+      n--;
+    }
+    return resultado;  
+  }
+  ```
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code-more", "slideHash": "funcoes-seta-com-vetores"} -->
+<!-- {"classes": "compact-code-more", "hash": "funcoes-seta-com-vetores"} -->
 ## Exemplo: funções seta com vetores
 
 ```js
@@ -321,7 +313,7 @@ let numeros = [1, 4, 2, 5];
      ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "alterando-elementos-do-dom"} -->
+<!-- {"layout": "section-header", "hash": "alterando-elementos-do-dom"} -->
 # Alterando o DOM
 ## Mudando os elementos HTML
 
@@ -330,11 +322,10 @@ let numeros = [1, 4, 2, 5];
 - Alterando o contéudo
 - Alterando atributos
 - Colocando/removendo classes
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular", "slideHash": "recuperando-elemento-dom", "backdrop": "oldtimes"} -->
+<!-- {"hash": "recuperando-elemento-dom", "backdrop": "oldtimes"} -->
 # Selecionando um elemento
 
 - O método `document.querySelector(seletor)` permite que, a partir de um código
@@ -351,7 +342,7 @@ let numeros = [1, 4, 2, 5];
 
 
 ---
-<!-- {"layout": "regular", "slideHash": "selecionando-varios-elementos"} -->
+<!-- {"hash": "selecionando-varios-elementos"} -->
 # Selecionando vários elementos
 
 - O `document.querySelector` retorna **apenas 1 elemento**
@@ -366,7 +357,6 @@ let numeros = [1, 4, 2, 5];
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Selecionando vários elementos (2/3)
 
 - Para **atribuir um evento a todos** os elementos retornados:
@@ -384,7 +374,7 @@ let numeros = [1, 4, 2, 5];
   ```
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".codigos-com-pouco-espaco-vertical pre { margin-top: 0.2em !important;}"} -->
+<!-- {"embeddedStyles": ".codigos-com-pouco-espaco-vertical pre { margin-top: 0.2em !important;}"} -->
 ## Selecionando vários elementos (3/3)
 
 - <!-- {ul:.compact-code.bulleted-pre} -->
@@ -409,7 +399,6 @@ let numeros = [1, 4, 2, 5];
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## `NodeList` vs Vetor
 
 - Um **`NodeList`** é praticamente um _array_, mas **não possui todos os métodos**. Por exemplo:
@@ -443,7 +432,7 @@ let numeros = [1, 4, 2, 5];
   ```
 
 ---
-<!-- {"layout": "regular", "backdrop": "oldtimes", "embeddedStyles": "@keyframes highlighting{from{border-color:transparent;background:transparent;transform:scale(1);}to{border-color:darkgoldenrod;background:white;transform:scale(1.05);}}"} -->
+<!-- {"backdrop": "oldtimes", "embeddedStyles": "@keyframes highlighting{from{border-color:transparent;background:transparent;transform:scale(1);}to{border-color:darkgoldenrod;background:white;transform:scale(1.05);}}"} -->
 ## O objeto **document**
 
 - O objeto `document` dá acesso ao **Document Object Model**, ou DOM
@@ -459,27 +448,34 @@ let numeros = [1, 4, 2, 5];
     1. Alterar seu estilo
 
 ---
-<!-- {"backdrop": "oldtimes"} -->
-# Anatomia de uma **_tag_**
+<!-- {"backdrop": "oldtimes", "embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/tag-anatomy.min.css"]} -->
+## Anatomia de uma **_tag_**
 
-::: figure .figure-slides
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag-5.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+::: figure .figure-slides.tag-anatomy.clean.flex-align-center
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-0} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-1} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-2} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-3} -->
+
+![Anatomia de uma tag mostrando que ela consiste de seu nome envolto por sinais de "menor que" e "maior que"](../../images/anatomia-tag.svg) <!-- {p:.bullet.figure-step.bullet-no-anim.step-4} -->
 :::
 
-- Tags de abertura podem ter **atributos**: <!-- {ul:.no-bullets.bullet.compact-code} -->
+- Tags de abertura podem ter **atributos**:
   ```html
   <img src="bob-esponja.png">
-  <p class="destacado">...</p>
-  <input type="number">
   ```
+  - Em `<img>`, o atributo `src="..."` aponta para a URL do arquivo
+  - **Não deve haver espaço** entre seu nome e seu valor:
+    - `<img src = "...">` <span style="color: red">:thumbsdown:</span>
+    - `<img src="...">` <span style="color: green">:thumbsup:</span>
+
 
 
 ---
-<!-- {"layout": "centered", "slideHash": "alterando-o-conteudo"} -->
+<!-- {"hash": "alterando-o-conteudo"} -->
 # Alterando **o conteúdo**
 
 - É possível **alterar o conteúdo** <!-- {.alternate-color} --> de um elemento com `elemento.innerHTML`:
@@ -487,7 +483,7 @@ let numeros = [1, 4, 2, 5];
   <iframe width="250" height="153" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/html/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
 
   ```js
-  let clicks = 0;
+  let contador = 0;
   let contadorEl = document.querySelector('#contador');
   
   // quando clicado, (1) conta e (2) altera conteúdo
@@ -498,7 +494,7 @@ let numeros = [1, 4, 2, 5];
   ```
 
 ---
-<!-- {"layout": "centered", "slideHash": "alterando-atributos"} -->
+<!-- {"hash": "alterando-atributos"} -->
 # Alterando **atributos**
 
 - É possível **alterar atributos** <!-- {.alternate-color} --> dos elementos:
@@ -511,9 +507,12 @@ let numeros = [1, 4, 2, 5];
   ```
   - Aqui, alteramos o atributo `src` da `img`, mas poderia ser qualquer um
     - Por exemplo, em `input` costumamos pegar/alterar o `value`
+      ```js
+      inputEl.value = 'novo valor';
+      ```
 
 ---
-<!-- {"layout": "centered", "slideHash": "colocando-removendo-classes"} -->
+<!-- {"layout": "centered", "hash": "colocando-removendo-classes"} -->
 # Colocando/removendo **classes**
 
 - É possível **colocar ou remover classes** <!-- {.alternate-color} --> de elementos: <!-- {ul:.bulleted} -->
@@ -522,8 +521,9 @@ let numeros = [1, 4, 2, 5];
   imageEl.classList.remove('oculta');     // remove .oculta
   pEl.classList.toggle('expandido');      // coloca ou tira .expandido
   ```
-  - <iframe width="250" height="170" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+  - <iframe width="250" height="170" src="//jsfiddle.net/fegemo/wbq109xg/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right bring-forward"></iframe>
     Isso pode ser usado, por exemplo, para ↘<br>"marcar" elementos
+    <!-- {li:.bring-forward} -->
   - Ou então pra fazer um menu lateral aparecer...
 
 ---
@@ -545,7 +545,7 @@ let numeros = [1, 4, 2, 5];
     1. "Re"coloca a classe no elemento "clicado"
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "menu-lateral"} -->
+<!-- {"layout": "2-column-content", "hash": "menu-lateral"} -->
 ## Um menu lateral aparecer
 
 <iframe width="100%" height="400" src="//jsfiddle.net/fegemo/dj37kc7e/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -561,7 +561,7 @@ let numeros = [1, 4, 2, 5];
 - No CSS, desloca tudo para a direita quando o `<body>` tem `.menu-visivel`
 
 ---
-<!-- {"layout": "section-header", "slideHash": "exploracao-espacial"} -->
+<!-- {"layout": "section-header", "hash": "exploracao-espacial"} -->
 # Exploração Espacial :alien:
 ## Conhecendo o além-atmosfera
 
@@ -569,14 +569,12 @@ let numeros = [1, 4, 2, 5];
 - Que elemento foi clicado?
 - Subindo na árvore do DOM
 - Alternando uma classe
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "space"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Exploração Espacial :alien:
 
 - Crie parágrafos que expandem/retraem e uma galeria :notebook:
@@ -592,24 +590,59 @@ let numeros = [1, 4, 2, 5];
 [space]: https://github.com/fegemo/cefet-front-end-space/archive/master.zip
 
 ---
-<!-- {"slideHash": "argumento-de-click"} -->
-# Que elemento foi clicado?
+## Associando **mesma _callback_** para **vários elementos**
 
-- A _callback_ de eventos é executada com um **argumento com informações
-  sobre o evento**. Tipicamente damos o nome de `e`, `evt` ou `event`:
-  ```js
-  function imprimeId(e) {      // repare o argumento 'e' (evento)
-    let booClicadoEl = e.currentTarget; // <--- o elemento "alvo" do evento (img.boo)
-    console.log(booClicadoEl.id);       // imprime 'boo1' (id do boo clicado)
-  }
+- É bastante comum associarmos uma mesma função (_callback_) a algum evento de vários elementos HTML diferentes <!-- {ul:.bulleted} -->
+  - Como no exercício: _callback_ de `'click'` em TODOS os parágrafos
+  - <!-- {.code-split-2.compact-code-more} -->
+    - <!-- {ul:.no-bullets.no-padding} -->
+      ```html
+      <p>Parágrafo 1</p>
+      <p>Parágrafo 2</p>
+      <p>Parágrafo 3</p>
+      ```
+      ::: result .example-ps.bullet
+      <style>.example-ps p {font-size: 0.8em}</style>
+      <p onclick="this.style.background='lightblue'">Parágrafo 1</p>
+      <p onclick="this.style.background='lightblue'">Parágrafo 2</p>
+      <p onclick="this.style.background='lightblue'">Parágrafo 3</p>
+      :::
+    ```js
+    function colore() {
+      let el = ??; // <-- quem colocar aqui??
+      el.style.background = 'lightblue';
+    };
 
-  document.querySelectorAll('.boo').forEach(booEl => {   // pega os .boo e
-    booEl.addEventListener('click', imprimeId);                 // coloca o evento
-  });                                                           // 'click' neles
-  ```
+    let ps = document.querySelectorAll('p');
+    for (let pEl of ps) {
+      pEl.addEventListener('click', colore);
+    }
+    ```
+- Dentro da _callback_, é possível saber **qual elemento foi <u>alvo do evento</u>**! <!-- {u:.underline.upon-activation.delay-1600} -->
+  - Precisamos usar o **argumento de evento**! (Próximo slide)
 
 ---
-<!-- {"slideHash": "subindo-na-arvore", "classes": "compact-code"} -->
+<!-- {"hash": "argumento-de-click"} -->
+# Quem disparou o evento?
+
+- Quando o navegador executa uma _callback_ de eventos, ele passa um parâmetro com  **informações sobre o evento** <!-- {ul:.compact-code} -->
+  - Tipicamente damos o nome de `e`, `evt` ou `event`:
+    - <!-- {ul:.no-bullets.no-padding.bulleted} -->
+      ```js
+      let ps = document.querySelectorAll('p');  // igualzinho antes!
+      for (let pEl of ps) {
+        pEl.addEventListener('click', colore);
+      }
+      ```
+    - ```js
+      function colore(e) {                  // repare o argumento 'e' (evento)
+        let el = e.currentTarget;           // <--- o elemento "alvo" do evento
+        el.style.background = 'lightblue';  // colore parágrafo alvo do evento
+      }
+      ```
+
+---
+<!-- {"hash": "subindo-na-arvore", "classes": "compact-code-more"} -->
 # Subindo na árvore do DOM
 
 - Todo elemento do DOM conhece, na árvore, quem é:
@@ -629,7 +662,7 @@ let numeros = [1, 4, 2, 5];
   ```
 
 ---
-<!-- {"slideHash": "alternando-uma-classe"} -->
+<!-- {"hash": "alternando-uma-classe", "classes": "compact-code"} -->
 # Alternando uma classe
 
 - Às vezes queremos colocar/remover uma classe em um elemento **alternadamente**
@@ -637,15 +670,15 @@ let numeros = [1, 4, 2, 5];
 - Além de colocar/remover a classe, **o método retorna**:
   - `true` se tiver colocado a classe
   - `false` se tiver removido a classe
-- Exemplo:
   ```js
   let colocou = booEl.classList.toggle('selecionado');
-  console.log(colocou);         // imprime 'true', porque colocou .selecionado
+  console.log(colocou);         // imprime 'true', porque adicionou .selecionado
   colocou = booEl.classList.toggle('selecionado');
   console.log(colocou);         // imprime 'false', porque tirou .selecionado
   ```
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 - Livro "Javascript: The Good Parts" (Douglas Crockford)

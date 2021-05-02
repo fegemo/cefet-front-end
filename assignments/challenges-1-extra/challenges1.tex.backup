@@ -1,0 +1,111 @@
+\documentclass[16pt]{examdesign}
+
+
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{amsmath}
+\usepackage{pifont}
+%\usepackage{gensymb}
+\usepackage{textcomp}
+%\SectionFont{\large\sffamily}
+\Fullpages
+\ContinuousNumbering
+%\ShortKey
+\NoKey
+
+\DefineAnswerWrapper{}{}
+\NumberOfVersions{2}
+%\IncludeFromFile{foobar.tex}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\setrandomseed{1373}
+\usepackage[portuguese]{algorithm2e}
+\usepackage{listings}
+
+
+\addtolength{\textwidth}{80pt}
+\addtolength{\hoffset}{-55pt}
+
+
+\addtolength{\voffset}{-40pt}
+\addtolength{\textheight}{60pt}
+
+
+
+
+
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{1pt}
+
+\newcommand{\aspas}{``}
+
+\hyphenation{usa-do}
+\hyphenation{tem-pe-ra-tu-ra}
+% \newenvironment{Figure}
+%   {\par\medskip\noindent\minipage{\linewidth}}
+%   {\endminipage\par\medskip}
+
+\begin{document}
+
+\begin{examtop}
+
+      \pgfdeclaremask{cefetLogo}{cefetLogo}
+      \pgfdeclareimage[mask=cefetLogo,height=2cm]{cefetLogo}{../../../img/cefetLogo.png}
+      
+    \begin{multicols}{2}[]
+    \begin{minipage}{2.5cm}
+      \pgfuseimage{cefetLogo}
+    \end{minipage}
+      \columnbreak
+      \begin{minipage}{400px}
+      \begin{center}\large{\textbf{Lab. de Programação de Computadores 2 - Prova 1}}\end{center}~\\
+      Professor: Daniel Hasan Dalip~~~~~~~~Valor: 10 Pontos~~~~~Belo Horizonte, 06/04/2017\\~\\
+      Nome do(a) Aluno(a): \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_	\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_~
+      %Nota:\_\_\_\_\_\_\_\_\_\_\_\\       
+      \end{minipage}
+
+
+
+    \end{multicols}
+  \hrulefill
+
+\end{examtop}
+
+
+
+
+
+ 
+ 
+
+\begin{fillin}[title={},
+                    rearrange=no,resetcounter=no,suppressprefix]
+                    \vspace*{-20pt}
+
+                    
+    \begin{question}
+    
+	\textbf{Código 1}
+	
+	
+       \fbox{
+	\begin{minipage}{18cm}
+\lstinputlisting[language=HTML,extendedchars=true,inputencoding=utf8,literate={á}{{\'a}}1 {ê}{{\^e}}1 {ç}{{\c{c}}}1 {ã}{{\~a}}1 {é}{{\'e}}1]{\word{{progSemCafeA.html}{progSemCafeB.html}}}
+
+
+	  \end{minipage}
+      }
+
+     \end{question}
+    \begin{question}
+	\textbf{Seja o navegador!}
+
+
+     \end{question}
+
+\end{fillin}
+\end{document}

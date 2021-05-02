@@ -2,11 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- preload is not used by chrome because the ajax request made by besp-markdownit is synchronous -->
+    <!-- and to make it async, bespoke has to expect plugins to return promises -->
+    <!-- <link rel="preload" href="README.md" as="fetch" type="text/markdown" crossorigin> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laboratório de Programação Web</title>
     <link rel="stylesheet" href="../../fonts/ravie.css">
     <link rel="stylesheet" href="../../build/build.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatica+SC:700|Source+Code+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Source+Code+Pro&display=swap">
+    <link rel="stylesheet" href="../../styles/theme.css">
     <link rel="apple-touch-icon" sizes="57x57" href="../../favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../../favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../../favicon/apple-icon-72x72.png">
@@ -37,14 +42,13 @@
       </h1>
     </header>
     <section id="presentation-container">
-      <article id="presentation" class="transition-subtle">
+      <article id="presentation" class="transition-subtle" style="visibility: hidden; transform: translateY(100px); opacity: 0">
         <section data-markdown="README.md"></section>
       </article>
       <aside class="tutorial">Use as <strong>setas</strong> (&#x2190; &#x2192;) para navegar</aside>
     </section>
 
     <script async src="../../build/build.js"></script>
-    <!-- @if NODE_ENV='production' -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -55,6 +59,5 @@
       ga('send', 'pageview');
 
     </script>
-    <!-- @endif -->
   </body>
 </html>

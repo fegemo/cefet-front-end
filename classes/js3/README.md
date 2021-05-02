@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 3)
+# **JavaScript** parte 3
 ## História, Estilizando elementos, Eventos de mouse, Depurando código e o PhotoSnap 📷
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (1/4)
 
 **Null**
@@ -80,7 +79,6 @@
    ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Na última aula... (3/4)
 
 - O `document.querySelectorAll` retorna **todos** que forem selecionados <!-- {ul:.compact-code} -->
@@ -89,21 +87,20 @@
   <iframe width="250" height="153" src="//jsfiddle.net/fegemo/wLp3kv59/embedded/html/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right" style="clear: right;"></iframe>
 
   ```js
-  let clicks = 0;
+  let contador = 0;
   let contadorEl = document.querySelector('#contador');
   
   // quando clicado, (1) conta e (2) altera conteúdo
   contadorEl.addEventListener('click', () => {
-    clicks++;                       // (1) conta
-    contadorEl.innerHTML = clicks;  // (2) altera
+    contador++;                       // (1) conta
+    contadorEl.innerHTML = contador;  // (2) altera
   });
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Na última aula... (4/4)
 
-1. **Alterando classes** de um elemento:
+1. **Alterando classes** de um elemento: <!-- {ol:.full-width} -->
    ```js
    booEl.classList.toggle('selecionado');   // add, remove ou toggle (alternar)
    ```
@@ -121,6 +118,7 @@
 
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [História do JavaScript](#historia-do-javascript)
@@ -129,7 +127,7 @@
 1. [Depurando código](#depurando-codigo)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "historia-do-javascript"} -->
+<!-- {"layout": "section-header", "hash": "historia-do-javascript"} -->
 # História do JavaScript
 ## Como chegamos até aqui
 
@@ -141,7 +139,7 @@
 ---
 # História
 
-1989 - 1993 <!-- {.bullet-old} -->
+1989 - 1993 <!-- {.bullet-old} --> <!-- {dl:.full-width} -->
   ~ Tim Berners-Lee cria a WWW em CERN (*European Organization for
     Nuclear Research*) e a deixa aberta ao público <!-- {dd:.bullet-old} -->
 
@@ -152,51 +150,50 @@
 1995 (maio)
   ~ ![Foto de Brendan Eich](../../images/brendan-eich.png) <!-- {.portrait.push-right} -->
     Brendan Eich, funcionário do Netscape, criou (em 10 dias!!) uma
-    linguagem para alterar páginas web dinamicamente - o _Mocha_
+    linguagem para alterar páginas dinamicamente - o _Mocha_
 
 1995 (setembro)
   ~ _LiveScript_ (novo nome) é lançado com a versão beta do Netscape 2.0
 
-1995 (dezembro)
-  ~ Nome alterado para JavaScript na versão 2.0 oficial para
-    aproveitar a fama do Java
 
 ---
 ## História (cont.)
 
+1995 (dezembro)
+  ~ Nome virou JavaScript para aproveitar a fama do Java
+    
 1996 (agosto)
-  ~ Microsoft adota o JavaScript sob o nome de JScript no navegador
-    Internet Explorer 3.0
+  ~ Microsoft adota o JavaScript sob o nome de JScript
 
 1996 (novembro)
   ~ A Netscape submeteu o JavaScript para a
     _Ecma international_ para padronização. A especificação recebeu o nome de
      _ECMAScript_
 
-1997 (junho)
-  ~ A _Ecma International_ publicou a primeira versão, o ECMA-262
+1997
+  ~ A _Ecma International_ publicou a primeira versão
 
 1998
   ~ Versão 2 do ECMAScript
 
-1999 (junho)
+1999
   ~ Versão 3 do ECMAScript
 
 2009
   ~ Versão 5 do ECMAScript
 
-2013 - 2020
+2013 - hoje
   ~ Versões 6-9+
     ![](../../images/logo-javascript.svg) <!-- {style="height: 1em;"} -->
-    do ECMAScript, que mudaram de nome para **es2015**, **es2016**, **es2017**,
-    **es2018**...
+    do ECMAScript, que mudaram de nome para **ES2015**, **ES2016**, **ES2017**,
+    **ES2018**...
 
 
 *[ECMA]: European Computer Manufacturers Association*
 *[Ecma]: European Computer Manufacturers Association*
 
 ---
-<!-- {"layout": "regular", "slideHash": "o-objeto-global-window"} -->
+<!-- {"hash": "o-objeto-global-window"} -->
 # O objeto global: **window**
 
 - O navegador **expõe um único objeto** por janela chamado `window`
@@ -213,7 +210,6 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## O objeto global: **window** (cont.)
 
 - Mais algumas utilidades de **window**
@@ -230,7 +226,6 @@
   - `window.eval(textoComCodigo)` executa o `textoComCodigo` que é uma String que pode conter código JavaScript
 
 ---
-<!-- {"layout": "regular"} -->
 ## Objetos notáveis dentro de **window**
 
 - Além de utilidades, `window` possui outros objetos importantes:
@@ -264,7 +259,7 @@
 - Podemos omitir `window` para que o código fique menorzinho
 
 ---
-<!-- {"layout": "section-header", "slideHash": "estilizando-elementos-dinamicamente"} -->
+<!-- {"layout": "section-header", "hash": "estilizando-elementos-dinamicamente"} -->
 # **Estilizando** elementos dinamicamente <!-- {h1:style="padding-top: 0"} -->
 ## Alterando propriedades CSS de elementos
 
@@ -274,12 +269,9 @@
      - `el.classList.remove(...)`
      - `el.classList.toggle(...)`
   1. **Usando propriedade `style`**
-
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Alterando o **estilo** de elementos
 
 - Há **2 formas** para alterar o estilo de elementos:
@@ -298,7 +290,6 @@
      - Usa a **propriedade `.style` do elemento**
 
 ---
-<!-- {"layout": "regular"} -->
 ## Nomes das propriedades de estilo em JS
 
 - Repare a mudança das propriedades **CSS para JS**:
@@ -319,7 +310,6 @@
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## Usar _classes_ ou `elemento.style`?
 
 - Devemos **preferir usar _classes_**, porque a estilização fica por conta <!-- {ul:.bulleted-0} -->
@@ -338,9 +328,8 @@
     ```
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code-more"} -->
+<!-- {"classes": "compact-code-more"} -->
 ## Exemplo: _abelhinhas.js_
-
 
 - <!-- {.code-split-2} -->
   <!-- {ul:.full-width} -->
@@ -369,19 +358,17 @@
   ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "eventos-de-mouse"} -->
+<!-- {"layout": "section-header", "hash": "eventos-de-mouse"} -->
 # Eventos de mouse
 ## Acionados com o controle do mouse
 
 - _Event handlers_
 - Eventos de clique
 - Eventos ao movimentar o mouse
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {
-  "layout": "regular",
   "scripts": ["../../scripts/classes/mouse-events.min.js"],
   "styles": ["../../styles/classes/mouse-events.min.css"]
 } -->
@@ -400,7 +387,6 @@
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## _Event handlers_
 
 - Há 2 formas de atribuir _handlers_ a eventos
@@ -417,7 +403,6 @@
     - Pode haver mais de um _handler_ :thumbsup:
 
 ---
-<!-- {"layout": "regular"} -->
 ## Comparação: **click** vs **mousedown** vs **mouseup**
 
   - **mousedown**: evento invocado ao **apertar** o botão do mouse
@@ -427,7 +412,6 @@
     <iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/xxemf1eq/3/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular"} -->
 ## Comparação: **mouseover** vs **mousemove** vs **mouseout**
 
 - Eventos invocados quando:
@@ -438,7 +422,7 @@
     <iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/1eoacrkm/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"slideHash": "posicao-mouse"} -->
+<!-- {"hash": "posicao-mouse"} -->
 ## Pegando (x,y) do mouse
 
 - Todos os eventos de mouse informam a posição (x,y) do mouse
@@ -451,7 +435,7 @@
 <iframe width="99%" height="500" src="//jsfiddle.net/fegemo/1zg25ebs/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "depurando-codigo"} -->
+<!-- {"layout": "section-header", "hash": "depurando-codigo"} -->
 # Depurando código
 ## Como executar Javascript passo-a-passo
 
@@ -459,18 +443,17 @@
 - Erros comuns
 - Investigando "elementos que não foram alterados como previsto"
 - Depuração passo-a-passo
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Depuração: **a aba _Sources_**
 
-- Além de **CSS** e **HTML** podemos depurar o **JavaScript** de uma página:
-  ![Descrição de uso das ferramentas de desenvolvedor para JavaScript no chrome](../../images/developer-js.png) <!-- {.centered style="width: 75%"} -->
+- ![Descrição de uso das ferramentas de desenvolvedor para JavaScript no chrome](../../images/developer-js.png) <!-- {.push-right.large-width} -->
+  Além de **CSS** e **HTML** podemos depurar o **JavaScript** de uma página:
+
+
 
 ---
-<!-- {"layout": "regular"} -->
 # Erros comuns (1/2)
 
 - _"Uncaught SyntaxError: Identifier 'x' **has already been declared**"_:
@@ -488,7 +471,6 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 # Erros comuns (2/2)
 
 - _"Uncaught TypeError: botoesExpandir.addEventListener **is not a function**"_:
@@ -501,6 +483,7 @@
   ```
 
 ---
+<!-- {"layout": "main-point", "state": "emphatic"} -->
 # Investigando:
 ## "um elemento não foi alterado (via JS) como era previsto"
 
@@ -510,6 +493,7 @@
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/erro-js-propriedade-nao-alterada.mp4" controls id="video-propriedade-nao-alterada"></video>
 
 ---
+<!-- {"layout": "main-point", "state": "emphatic"} -->
 # Depurando passo-a-passo (1/2)
 
 ---
@@ -518,6 +502,7 @@
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/depurando-js-parte-1.mp4" controls id="video-depurando-1"></video>
 
 ---
+<!-- {"layout": "main-point", "state": "emphatic"} -->
 # Depurando passo-a-passo (2/2)
 
 ---
