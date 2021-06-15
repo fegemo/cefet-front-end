@@ -256,7 +256,7 @@
     <input type="radio" name="cor" value="verde">Verde
   </label>
   ```
-1. ![](../../images/old-radio-button.jpg) <!-- {style="max-width: 80%; margin-top: 1.5em;"} --> <!-- {ol:.no-bullets.no-padding.center-aligned.no-margin} -->
+1. ![](../../images/old-radio-button.webp) <!-- {style="max-width: 80%; margin-top: 1.5em;"} --> <!-- {ol:.no-bullets.no-padding.center-aligned.no-margin} -->
    ::: result
      <div><label>
        <input type="radio" name="cor" value="azul"> Azul

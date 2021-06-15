@@ -436,7 +436,7 @@ URL **interna** <!-- {.alternate-color} -->
   :::
 
 ---
-<!-- {"layout": "main-point"} -->
+<!-- {"layout": "main-point", "state": "emphatic"} -->
 ## Como o navegador <u>vai desenhar</u> as _tags_ HTML?
 
 - Ele usa estilos padrão:

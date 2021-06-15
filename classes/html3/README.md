@@ -511,7 +511,7 @@ body {
   ![](../../images/ocupando-toda-altura-disponivel-body-html.png) <!-- {.push-right style="height: 134px; margin-top: 1em;"} -->
   ```css
   html, body {
-    height: 100%;
+    min-height: 100%;
   }
   ```
 

@@ -374,7 +374,7 @@ Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## Referenciando o CSS : Exemlo de **atalho no Atom**
+## Referenciando o CSS : Exemplo de **atalho no Atom**
 
 - Esqueceu toda a sintaxe (forma de escrita)?
 - Digite apenas `link` e, logo após, aperte <kbd>Tab ↔️</kbd>:
@@ -401,7 +401,7 @@ Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 
 - ### **Nomes** <!-- {ul:.no-bullets.no-padding.no-margin} -->
   <pre class="hljs"><code><span class="color-portrait red"></span> red
-  <span class="color-portrait ciano"></span> ciano
+  <span class="color-portrait cyan"></span> cyan
   <span class="color-portrait gold"></span> gold
   <span class="color-portrait forestgreen"></span> forestgreen
   <span class="color-portrait cornflowerblue"></span> cornflowerblue
@@ -418,7 +418,7 @@ Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 1. Exemplo: <!-- {ol:.no-bullets.no-padding.no-margin} -->
    ```css
    p {
-     color: ciano;
+     color: cyan;
    }
    ```
 - Exemplo:<!-- {ul:.no-bullets.no-padding.no-margin} -->
@@ -440,7 +440,7 @@ Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 
 - ### **Nomes** <!-- {ul:.no-bullets.no-padding.no-margin} --> ❌
   <pre class="hljs"><code><span class="color-portrait red"></span> red
-  <span class="color-portrait ciano"></span> ciano
+  <span class="color-portrait cyan"></span> cyan
   <span class="color-portrait gold"></span> gold
   <span class="color-portrait forestgreen"></span> forestgreen
   <span class="color-portrait cornflowerblue"></span> cornflowerblue

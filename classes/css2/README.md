@@ -93,7 +93,6 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
   1. :mega: "Criei uma regra e ela não funcionou"
   1. :mega: "Apliquei uma propriedade e ela não apareceu"
   1. :mega: "Coloquei uma imagem ou arquivo CSS e não apareceu"
-
 <!-- {ul:.content} -->
 
 ---

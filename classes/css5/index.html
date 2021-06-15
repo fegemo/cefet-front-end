@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -8,10 +8,13 @@
     <!-- <link rel="preload" href="README.md" as="fetch" type="text/markdown" crossorigin> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laboratório de Programação Web</title>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../../styles/theme.css">
     <link rel="stylesheet" href="../../fonts/ravie.css">
     <link rel="stylesheet" href="../../build/build.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Source+Code+Pro&display=swap">
-    <link rel="stylesheet" href="../../styles/theme.css">
+    
+    <!-- icons in several formats -->
     <link rel="apple-touch-icon" sizes="57x57" href="../../favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../../favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../../favicon/apple-icon-72x72.png">
@@ -26,10 +29,70 @@
     <link rel="icon" type="image/png" sizes="96x96" href="../../favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png">
     <link rel="manifest" href="../../favicon/manifest.json">
+
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-  </head>
+    <meta name="color-sceheme" content="light dark">
+    
+    <!-- search engines -->
+    <meta name="title" content="Laboratório de Programação Web - CSS5">
+    <meta name="description" content="Slides do curso de Laboratório de Programação Web para aprender HTML, CSS e JavaScript para se tornar um programador ninja.">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Laboratório de Programação Web",
+        "description": "Curso de Laboratório de Programação Web (HTML, CSS, JavaScript) do CEFET-MG.",
+        "courseCode": "1INF.016",
+        "numberOfCredits": 4,
+        "educationalLevel": "beginner",
+        "learningResourceType": "presentation",
+        "teaches": "Programação Web, HTML, CSS, JavaScript",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Flávio Coutinho",
+            "jobTitle": "Professor Efetivo do Ensino Básico, Técnico e Tecnológico",
+            "image": "https://fegemo.github.io/cefet-front-end/images/flavio-avatar.jpg"
+          },
+          {
+            "@type": "Person",
+            "name": "Daniel Hasan",
+            "jobTitle": "Professor Efetivo do Ensino Básico, Técnico e Tecnológico",
+            "image": "https://fegemo.github.io/cefet-front-end/images/hasan-avatar.jpg"
+          }
+        ],
+        "provider": {
+          "@type": "Organization",
+          "name": "Centro Federal de Educação Tecnológica de Minas Gerais",
+          "sameAs": "https://cefetmg.br"
+        },
+        "inLanguage": "pt-BR",
+        "isAccessibleForFree": true,
+        "datePublished": "2017-01-02",
+        "dateModified": "2021-06-15"
+      }
+    </script>
+    
+    <!-- social media -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:creator" content="@fegemo">
+    <meta property="twitter:title" content="Laboratório de Programação Web - CSS5">
+    <meta property="twitter:description" content="Slides do curso de Laboratório de Programação Web para aprender HTML, CSS e JavaScript para se tornar um programador ninja.">
+    <meta property="twitter:image" content="https://fegemo.github.io/cefet-front-end/images/social-media-cover-square.webp">
+    <meta property="twitter:image:alt" content="Capa dos slides com os dizeres: 'Laboratório de Programação Web' e 'Plano de ensino por Flávio Coutinho e Daniel Hasan'">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Laboratóirio de Programação Web - CSS5">
+    <meta property="og:description" content="Slides do curso de Laboratório de Programação Web para aprender HTML, CSS e JavaScript para se tornar um programador ninja.">
+    <meta property="og:image" content="https://fegemo.github.io/cefet-front-end/images/social-media-cover-wide.webp">
+    <meta property="og:image:width" content="2354">
+    <meta property="og:image:height" content="1356">
+    <meta property="og:image:alt" content="Capa dos slides com os dizeres: 'Laboratório de Programação Web' e 'Plano de ensino por Flávio Coutinho e Daniel Hasan'">
+    <meta property="og:url" content="https://fegemo.github.io/cefet-front-end/classes/css5">
+    <meta property="og:local" content="pt_BR">
+    </head>
   <body>
     <header id="page-header">
       <div id="page-author">
@@ -38,7 +101,7 @@
         <img class="page-author-picture" src="../../images/hasan-avatar.jpg" alt="Foto do Professor Daniel Hasan">
       </div>
       <h1 id="page-title">
-        <a href="../..">Laboratório de <strong>Programação</strong> Web</a>
+        <a href="../../#slides">Laboratório de <strong>Programação</strong> Web</a>
       </h1>
     </header>
     <section id="presentation-container">
@@ -49,15 +112,5 @@
     </section>
 
     <script async src="../../build/build.js"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-55446903-6', 'auto');
-      ga('send', 'pageview');
-
-    </script>
   </body>
 </html>

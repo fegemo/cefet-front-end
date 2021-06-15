@@ -281,8 +281,6 @@ h1, h2 {
 ::: did-you-know .push-right width: 320px; margin-right: 6px;
 Elementos `inline` ignoram os valores de:
 - `width`, `height`
-- `padding-top`
-- `padding-bottom`
 - `margin-top`
 - `margin-bottom`
 :::
