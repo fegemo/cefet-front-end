@@ -1,4 +1,4 @@
-const api = require('how-caniuse').howcaniuse;
+const api = require('how-caniuse').howcaniuse
 
 /*  Configure the browsers you want to show here.
     The order defines the order they will appear on the page.
@@ -23,7 +23,7 @@ const BROWSERS = {
   edge: 'Edge',
   opera: 'Opera',
   safari: 'Safari'
-};
+}
 
 //  Customise HTML here
 let TMPL_TITLE = '<h3>{title}</h3>', // feature title {title}
@@ -36,21 +36,21 @@ let TMPL_TITLE = '<h3>{title}</h3>', // feature title {title}
   TMPL_LEGEND = '<ul class="legend"><li>Legenda:</li><li class="y">Sim</li><li class="n">Não</li><li class="a">Parcial</li><li class="p">Polyfill</li></ul>',
   TMPL_FOOTER = '<p class="stats">Dados de <a href="http://caniuse.com/#feat={feature}" target="_blank">caniuse.com</a></p>',
   TMPL_LOADING = '<h2>Carregando</h2>',
-  TMPL_ERROR = '<h2>Erro</h2><p>Funcionalidade "{feature}" não encontrada!</p>';
+  TMPL_ERROR = '<h2>Erro</h2><p>Funcionalidade "{feature}" não encontrada!</p>'
 
 
 // get feature data based on feature name
 function getFeature(featureName = '') {
-  featureName = featureName.toLowerCase();
+  featureName = featureName.toLowerCase()
 
-  let support = null;
+  let support = null
   try {
-    support = api.getSupport(featureName);
+    support = api.getSupport(featureName)
   } catch (error) {
     // ignore error - the database is probably outdated
-    console.info(`The feature ${featureName} was not found on the how-caniuse database.`);
+    console.info(`The feature ${featureName} was not found on the how-caniuse database.`)
   }
-  return support;
+  return support
 }
 
 // get the full text description for the support status
@@ -62,13 +62,13 @@ function getSupportStatus(key) {
     'a': 'Suporte parcial',
     'p': 'Polyfill',
     'u': 'Desconhecido'
-  };
+  }
 
-  return status[key];
+  return status[key]
 }
 
 function findSupport(browserData) {
-  const status = ['y', 'a', 'x', 'p'];
+  const status = ['y', 'a', 'x', 'p']
 
   // find what support is available for this browser
   for (let stat of status) {
@@ -85,22 +85,22 @@ function findSupport(browserData) {
     result: 'n',
     prefixed: false,
     version: 'Não'
-  };
+  }
 }
 
 /* put the data in a more platable format */
 function generateResults(feature) {
-  const results = {};
+  const results = {}
 
-  results.title = feature.title; // feature name
-  results.code = feature.code; // feature code?
-  results.agents = [];
+  results.title = feature.title // feature name
+  results.code = feature.code // feature code?
+  results.agents = []
 
   for (let browser of Object.keys(BROWSERS)) {
 
     if (feature.browsers[browser]) {
 
-      const support = findSupport(feature.browsers[browser]);
+      const support = findSupport(feature.browsers[browser])
 
       results.agents.push({
         'browsercode': browser,
@@ -110,34 +110,34 @@ function generateResults(feature) {
         'title': BROWSERS[browser],
         'type': 'desktop',
         'version': support.version
-      });
+      })
     }
   }
 
-  return results;
+  return results
 }
 
 
 function generateHtml(results) {
 
-  var html = '',
+  let html = '',
     resultHtml = '',
     desktopHtml = '',
     mobileHtml = '',
     prefixes = false,
     result = {},
     i = 0,
-    l = 0;
+    l = 0
 
-  resultHtml = TMPL_TITLE.replace('{title}', results.title);
-  resultHtml += TMPL_DESCRIPTION;
+  resultHtml = TMPL_TITLE.replace('{title}', results.title)
+  resultHtml += TMPL_DESCRIPTION
 
   for (i = 0, l = results.agents.length; i < l; i++) {
-    result = results.agents[i]; // simply things
+    result = results.agents[i] // simply things
 
     // we need to show that prefix notice, captain
     if (result.prefixed) {
-      prefixes = true;
+      prefixes = true
     }
 
     html = TMPL_SUPPORT.replace(/\{browsercode\}/g, result.browsercode)
@@ -145,71 +145,71 @@ function generateHtml(results) {
       .replace(/\{supportcode\}/g, result.supportcode)
       .replace(/\{support\}/g, result.support)
       .replace(/\{browser\}/g, result.title)
-      .replace(/\{version\}/g, result.version);
+      .replace(/\{version\}/g, result.version)
 
     if (result.type === 'desktop') {
-      desktopHtml += html;
+      desktopHtml += html
     } else if (result.type === 'mobile') {
-      mobileHtml += html;
+      mobileHtml += html
     }
   }
 
   // only show if we are including desktop browsers
   if (desktopHtml !== '') {
-    resultHtml += TMPL_DESKTOP_TITLE;
-    resultHtml += TMPL_SUPPORT_WRAPPER.replace(/\{items\}/g, desktopHtml);
+    resultHtml += TMPL_DESKTOP_TITLE
+    resultHtml += TMPL_SUPPORT_WRAPPER.replace(/\{items\}/g, desktopHtml)
   }
 
   // only show if we are including mobile browsers
   if (mobileHtml !== '') {
-    resultHtml += TMPL_MOBILE_TITLE;
-    resultHtml += TMPL_SUPPORT_WRAPPER.replace(/\{items\}/g, mobileHtml);
+    resultHtml += TMPL_MOBILE_TITLE
+    resultHtml += TMPL_SUPPORT_WRAPPER.replace(/\{items\}/g, mobileHtml)
   }
 
   if (prefixes) {
-    resultHtml += TMPL_PREFIX_NOTE;
+    resultHtml += TMPL_PREFIX_NOTE
   }
 
-  resultHtml += TMPL_LEGEND;
-  resultHtml += TMPL_FOOTER.replace(/\{feature\}/g, results.featureCode);
+  resultHtml += TMPL_LEGEND
+  resultHtml += TMPL_FOOTER.replace(/\{feature\}/g, results.featureCode)
 
-  return resultHtml;
+  return resultHtml
 }
 
 function generate() {
-  let canIUseElements = document.querySelectorAll('.caniuse');
+  let canIUseElements = document.querySelectorAll('.caniuse')
 
   for (let el of canIUseElements) {
-    const featureCode = el.getAttribute('data-feature') || 'unknown';
-    let feature = getFeature(featureCode);
+    const featureCode = el.getAttribute('data-feature') || 'unknown'
+    let feature = getFeature(featureCode)
 
     if (feature) {
       if (Array.isArray(feature)) {
-        feature = feature[0];
+        feature = feature[0]
       }
-      feature.code = featureCode;
+      feature.code = featureCode
 
-      const result = generateResults(feature);
+      const result = generateResults(feature)
 
-      result.featureCode = featureCode;
-      el.innerHTML = generateHtml(result);
+      result.featureCode = featureCode
+      el.innerHTML = generateHtml(result)
     } else {
-      el.innerHTML = TMPL_ERROR.replace(/\{feature\}/g, featureCode);
+      el.innerHTML = TMPL_ERROR.replace(/\{feature\}/g, featureCode)
     }
   }
 }
 
 function showLoading() {
-  let canIUseElements = document.querySelectorAll('.caniuse');
+  let canIUseElements = document.querySelectorAll('.caniuse')
 
   for (let el of canIUseElements) {
-    el.innerHTML = TMPL_LOADING;
+    el.innerHTML = TMPL_LOADING
   }
 }
 
 function populate() {
-  showLoading();
-  generate();
+  showLoading()
+  generate()
 }
 
-populate();
+populate()

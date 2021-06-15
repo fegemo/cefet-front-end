@@ -161,7 +161,6 @@ Dúvidas:
 
 - Definição de Web
 - Linguagens da Web
-
 <!-- {ul:.content} -->
 
 ---
@@ -227,11 +226,7 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 *[CSS]: Cascading Stylesheets*
 
 ---
-<!-- {
-  "layout": "3-column-element-with-titles-expansible",
-  "preventSelection": "code"
-} -->
-
+<!-- {"layout": "3-column-element-with-titles-expansible","preventSelection": "code"} -->
 ## ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} --> `racas-raras.`**`html`**
 
 ```html
@@ -817,7 +812,7 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
 - Versões
   - 1991: v0.9
   - 1996: v1.0
-  - 1997-1999: v1.1
+  - 1997 - 1999: v1.1
   - 2014 - 2016: HTTP/2
   - 2017 - atual: HTTP/3
 - Alternativas
@@ -830,8 +825,8 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
 
 - Ferramentas necessárias
 - Um arquivo HTML
-
 <!-- {ul:.content} -->
+
 ---
 <!-- {"layout": "tall-figure-right"} -->
 ## Ferramentas Necessárias

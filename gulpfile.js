@@ -22,10 +22,14 @@ const ghpages = require('gh-pages')
 const merge = require('merge-stream')
 const browserify = require('browserify')
 
-const isDist = process.argv.indexOf('dev') === -1;
+const isDist = process.argv.indexOf('dev') === -1
+
+function dateToday() {
+  return new Date().toISOString().slice(0, 10)
+}
 
 function clean(cb) {
-  del('dist', cb);
+  del('dist', cb)
 }
 
 function js() {
@@ -41,23 +45,27 @@ function js() {
     .on('error', console.log)
     .pipe(sourcemaps.write('./'))
     .pipe(dest('dist/build'))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
 }
 
 function jsClasses() {
-  const destination = 'dist/scripts/classes';
-  const files = glob.sync('scripts/classes/**/*.js');
-  return merge(files.map(file => 
+  const destination = 'dist/scripts/classes'
+  const files = glob.sync('scripts/classes/**/*.js')
+  return merge(files.map(file =>
     browserify({
       entries: file,
-      debug: !isDist 
-    }) 
+      debug: !isDist
+    })
       .bundle()
       .pipe(source(path.basename(file, '.js') + '.min.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(isDist ? terser() : through())
       .pipe(changed(destination))
+      .pipe(sourcemaps.write('.'))
       .pipe(dest(destination))
       .pipe(connect.reload())
-  ));
+  ))
 }
 
 function html() {
@@ -67,32 +75,35 @@ function html() {
         context: {
           NODE_ENV: isDist ? 'production' : 'development',
           DEBUG: true,
-        },
+          FOLDER: '',
+          SPECIFIC_TITLE: '',
+          LAST_MODIFICATION: dateToday()
+        }
       })
     )
     .pipe(replace('{path-to-root}', '.'))
     .pipe(dest('dist'))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
 }
 
 function md() {
-  const tasks = [];
+  const tasks = []
 
   tasks.push(
     src('README.md')
       .pipe(changed('dist'))
       .pipe(dest('dist'))
       .pipe(connect.reload())
-  );
+  )
 
   tasks.push(
     src('classes/**/*.md')
       .pipe(changed('dist/classes'))
       .pipe(dest('dist/classes'))
       .pipe(connect.reload())
-  );
+  )
 
-  return merge(tasks);
+  return merge(tasks)
 }
 
 function css() {
@@ -108,16 +119,16 @@ function css() {
     .pipe(isDist ? csso() : through())
     .pipe(rename('build.css'))
     .pipe(dest('dist/build'))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
 }
 
 function cssClasses() {
-  const destination = 'dist/styles/classes';
+  const destination = 'dist/styles/classes'
   const tasks = []
   tasks.push(src(['styles/classes/**/*.css'])
     .pipe(changed(destination))
     .pipe(dest(destination))
-    .pipe(connect.reload()));
+    .pipe(connect.reload()))
 
   tasks.push(src(['styles/classes/**/*.styl'])
     .pipe(changed(destination))
@@ -129,105 +140,112 @@ function cssClasses() {
     )
     .pipe(autoprefixer())
     .pipe(csso())
-    .pipe(rename(path => void (path.extname = '.min' + path.extname)))
+    .pipe(rename(p => void (p.extname = '.min' + p.extname)))
     .pipe(dest(destination))
-    .pipe(connect.reload()));
+    .pipe(connect.reload()))
 
-  return merge(tasks);
+  return merge(tasks)
 }
 
 function manifest() {
-  const destination = 'dist/favicon';
+  const destination = 'dist/favicon'
   return src('favicon/manifest.json')
     .pipe(changed(destination))
     .pipe(replace('{path-to-root}', '../..'))
     .pipe(dest(destination))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
 }
 
-function copierTaskGenerator(taskName, source, destination) {
-  const name = Symbol(taskName);
+function copierTaskGenerator(taskName, sourceLocation, destination) {
+  const name = Symbol(taskName)
   const obj = {
     [name]: () =>
-      src(source)
+      src(sourceLocation)
         .pipe(changed(destination))
         .pipe(dest(destination))
         .pipe(connect.reload())
-  };
+  }
 
-  return obj[name];
+  return obj[name]
 }
 
-const theme = copierTaskGenerator('theme', 'node_modules/bespoke-theme-beachday/dist/theme/**/*', 'dist/styles');
-const images = copierTaskGenerator('images', 'images/**/*', 'dist/images');
-const attachments = copierTaskGenerator('attachments', 'attachments/**/*', 'dist/attachments');
-const assignments = copierTaskGenerator('assignments', 'assignments/**/*', 'dist/assignments');
-const samples = copierTaskGenerator('samples', 'samples/**/*', 'dist/samples');
-const videos = copierTaskGenerator('videos', 'videos/**/*', 'dist/videos');
-const audios = copierTaskGenerator('audios', 'audios/**/*', 'dist/audios');
-const favicon = copierTaskGenerator('favicon', 'favicon/**/*', 'dist/favicon');
-const classesStuff = copierTaskGenerator('classes-stuff', ['classes/**/*', '!classes/**/*.md'], 'dist/classes');
+const theme = copierTaskGenerator('theme', 'node_modules/bespoke-theme-beachday/dist/theme/**/*', 'dist/styles')
+const images = copierTaskGenerator('images', 'images/**/*', 'dist/images')
+const attachments = copierTaskGenerator('attachments', 'attachments/**/*', 'dist/attachments')
+const assignments = copierTaskGenerator('assignments', 'assignments/**/*', 'dist/assignments')
+const samples = copierTaskGenerator('samples', 'samples/**/*', 'dist/samples')
+const fonts = copierTaskGenerator('fonts', 'fonts/**/*', 'dist/fonts')
+const videos = copierTaskGenerator('videos', 'videos/**/*', 'dist/videos')
+const audios = copierTaskGenerator('audios', 'audios/**/*', 'dist/audios')
+const favicon = copierTaskGenerator('favicon', 'favicon/**/*', 'dist/favicon')
+const classesStuff = copierTaskGenerator('classes-stuff', ['classes/**/*', '!classes/**/*.md'], 'dist/classes')
 
 function getFolders(cwd, dir) {
-  const targetDirectory = path.join(cwd, dir);
+  const targetDirectory = path.join(cwd, dir)
   return fs
     .readdirSync(targetDirectory)
     .filter(file => fs.statSync(path.join(targetDirectory, file)).isDirectory())
-    .map(filePath => path.join(dir, filePath));
+    .map(filePath => path.join(dir, filePath))
 }
 
 function build() {
-  const folders = getFolders('.', 'classes');
-  const tasks = folders.map(folder => 
+  const folders = getFolders('.', 'classes')
+    .concat('assignments/code-dojo-1')
+    .concat('assignments/challenges-1')
+  const tasks = folders.map(folder =>
     src(['html/index.html'])
       .pipe(
         preprocess({
           context: {
             NODE_ENV: isDist ? 'production' : 'development',
-            DEBUG: true
+            DEBUG: true,
+            FOLDER: folder,
+            SPECIFIC_TITLE: ` - ${folder.substr(folder.lastIndexOf('/') + 1).toUpperCase()}`,
+            LAST_MODIFICATION: dateToday()
           }
         })
       )
       .pipe(replace('{path-to-root}', '../..'))
       .pipe(dest(path.join('dist', folder)))
-  );
+  )
 
-  return merge(tasks);
+  return merge(tasks)
 }
 
 function dev() {
-  const port = 8080;
+  const port = 8080
 
-  watch('scripts/*.js', js);
-  watch('videos/**/*', videos);
-  watch('audios/**/*', audios);
-  watch('images/**/*', images);
-  watch('samples/**/*', samples);
-  watch('html/**/*.html', html);
-  watch('styles/*.styl', css);
-  watch('styles/classes/*.styl', cssClasses);
-  watch('favicon/**/*', favicon);
-  watch('attachments/**/*', attachments);
-  watch('assignments/**/*', assignments);
-  watch('scripts/classes/*.js', jsClasses);
-  watch('styles/classes/*.css', cssClasses);
-  watch(['README.md', 'classes/**/*.md'], md);
-  watch(['classes/**/*', '!classes/**/*.md'], classesStuff);
+  watch('scripts/*.js', js)
+  watch('videos/**/*', videos)
+  watch('audios/**/*', audios)
+  watch('images/**/*', images)
+  watch('samples/**/*', samples)
+  watch('fonts/**/*', fonts)
+  watch('html/**/*.html', html)
+  watch('styles/*.styl', css)
+  watch('styles/classes/*.styl', cssClasses)
+  watch('favicon/**/*', favicon)
+  watch('attachments/**/*', attachments)
+  watch('assignments/**/*', assignments)
+  watch('scripts/classes/*.js', jsClasses)
+  watch('styles/classes/*.css', cssClasses)
+  watch(['README.md', 'classes/**/*.md'], md)
+  watch(['classes/**/*', '!classes/**/*.md'], classesStuff)
 
   connect.server({
     root: 'dist',
     livereload: true,
     port
-  });
+  })
   open(`http://localhost:${port}/`)
 }
 
 function deploy(done) {
-  ghpages.publish(path.join(__dirname, 'dist'), done);
+  ghpages.publish(path.join(__dirname, 'dist'), done)
 }
 
 
-exports.clean = clean;
+exports.clean = clean
 exports.build = series(
   parallel(
     js,
@@ -235,6 +253,7 @@ exports.build = series(
     css,
     html,
     theme,
+    fonts,
     images,
     audios,
     videos,
@@ -248,6 +267,6 @@ exports.build = series(
     classesStuff
   ),
   build
-);
-exports.dev = series(exports.build, dev);
-exports.deploy = series(exports.build, deploy);
+)
+exports.dev = series(exports.build, dev)
+exports.deploy = deploy
