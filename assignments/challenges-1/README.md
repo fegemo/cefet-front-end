@@ -114,8 +114,8 @@ Você deve corrigir o código de forma que ele fique correto.
 
 - Considere que há 4 elementos `div` dentro de outro `div` externo, assim:
 
-  - <iframe width="100%" height="320" src="//jsfiddle.net/fegemo/pvrLo5fa/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-  - <iframe width="100%" height="320" src="//jsfiddle.net/fegemo/pvrLo5fa/embedded/html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+  - <iframe width="100%" height="320" src="https://jsfiddle.net/fegemo/pvrLo5fa/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+  - <iframe width="100%" height="320" src="https://jsfiddle.net/fegemo/pvrLo5fa/embedded/html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
   <!-- {ul^0:.multi-column-list-2.no-list-icon} -->
 
 [Turma 1](#turma1-exercicio2) -- [Turma 2](#turma2-exercicio2) -- [Turma 3](#turma3-exercicio2) <!-- {p:.flex-align-center} -->
@@ -124,27 +124,27 @@ Você deve corrigir o código de forma que ele fique correto.
 <!-- {"hash": "turma1-exercicio2"} -->
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 <!-- Turma 1 -->
-1. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/vyeawf53/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-2. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/dropwvuf/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+1. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/vyeawf53/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+2. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/dropwvuf/embedded/result,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
+
+---
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
+<!-- Turma 1 -->
+
+3. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/umphkg01/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+4. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/hhdrc8km/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 ---
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 1 -->
-3. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/umphkg01/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+5. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/oo7zyh1q/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-4. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/hhdrc8km/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-<!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
-
----
-## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
-
-<!-- Turma 1 -->
-5. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/oo7zyh1q/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-6. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/b2ch5ce5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+6. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/b2ch5ce5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 [Próximo Exercício](#exercicio4) :point_right: <!-- {p:.flex-align-end} -->
@@ -154,27 +154,27 @@ Você deve corrigir o código de forma que ele fique correto.
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 2 -->
-1. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/qvmmvnyy/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/qvmmvnyy/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-2. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/gcLvspge/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+2. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/gcLvspge/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 ---
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 2 -->
-3. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+3. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-4. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/c340jeb0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+4. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/c340jeb0/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 ---
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 2 -->
-5. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/zszront8/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+5. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/zszront8/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-6. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/4L085rw7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+6. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/4L085rw7/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 [Próximo Exercício](#exercicio4) :point_right: <!-- {p:.flex-align-end} -->
@@ -184,27 +184,27 @@ Você deve corrigir o código de forma que ele fique correto.
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 3 -->
-1. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/e63o68bk/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+1. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/e63o68bk/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
-2. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/gcLvspge/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+2. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/gcLvspge/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 ---
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 3 -->
-3. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+3. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-4. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/hhdrc8km/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+4. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/hhdrc8km/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 ---
 ## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 3 -->
-5. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/rzow3j6h/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+5. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/rzow3j6h/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-6. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/zejdh423/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
+6. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/zejdh423/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 [Próximo Exercício](#exercicio4) :point_right: <!-- {p:.flex-align-end} -->
@@ -216,7 +216,7 @@ Você deve corrigir o código de forma que ele fique correto.
 Considerando o HTML dado pelo professor, deseja-se apresentar a tabela e
 a `div` da seguinte forma:
 
-<iframe id="xpto" width="60%" height="400" src="//jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="flex-align-center"></iframe>  
+<iframe id="xpto" width="60%" height="400" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="flex-align-center"></iframe>  
 
 
 Para isso, indique as alterações **no HTML** necessárias para
@@ -225,7 +225,7 @@ que seja apresentada a tabela **exatamente** da forma indicada.
 ---
 # <span class="badge">Exercício 5</span> Estilizando tabela <small>pt 1</small>
 
-1. <iframe width="40%" height="400" class="push-right" src="//jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+1. <iframe width="40%" height="400" class="push-right" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
    Escreva a regra para que os tipos de pratos (entradas, prato principal e
    sobremesa) fiquem com fundo `yellow` e o texto centralizado. Crie um
@@ -235,7 +235,7 @@ que seja apresentada a tabela **exatamente** da forma indicada.
 ---
 # <span class="badge">Exercício 6</span> Estilizando tabela <small>pt 2</small>
 
-- <iframe width="40%" height="400" class="push-right" src="//jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- <iframe width="40%" height="400" class="push-right" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
   
   Escreva a regra para que o `div` de promoção fique:
   - com um espaçamento entre o texto e a borda de 5 pixels;

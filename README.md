@@ -9,13 +9,13 @@
 ::: gallery .fish-eye
 - [![](images/trabalhos/2017/little-cout.png)](https://brandaogabriel7.github.io/web-com-little-cout/)
 - [![](images/trabalhos/2017/vulcanismo.png)](https://eumsmo.github.io/geo-chop-suey/)
-- [![](images/trabalhos/2017/arte.png)](https://sirpedr.github.io/)
+- [![](images/trabalhos/2017/arte.png)](https://sirpedr.github.io/Arte)
 - [![](images/trabalhos/2017/biomedicina.png)](https://biomedicina.neocities.org)
-- [![](images/trabalhos/2017/teorias-atomicas.png)](https://quimicaatomica.comeze.com)
+- <a href="https://marcosazevedo2112.github.io/NeedForSpace/"><video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/need-for-space.mp4" autoplay muted loop="0" poster="images/trabalhos/2020/need-for-space.webp"></video></a>
 - [![](images/trabalhos/2017/quimica.png)](https://quimica.neocities.org)
-- [![](images/trabalhos/2017/medieval.png)](https://webhistoriamedieval.000webhostapp.com/)
+- [![](images/trabalhos/2020/holanda-invaders.webp)](https://o-g7.github.io/holanda-invaders/index.html)
 - [![](images/trabalhos/2018/blogueirinha.png)](https://blogueirinhas.neocities.org/)
-- [![](images/trabalhos/2018/jornada-do-conhecimento.png)](https://jornadadoconhecimento.000webhostapp.com/)
+- <a href="https://arthurg12.github.io/trabalho/"><video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/weboretum.mp4" autoplay muted loop="0" poster="images/trabalhos/2020/weboretum.webp"></video></a>
 :::
 
 ---
@@ -25,7 +25,7 @@
 ::: gallery .fish-eye
 - [![](images/trabalhos/2020/desenho-sem-fio.jpg)](https://serene-forest-07071.herokuapp.com/)
 - [![](images/trabalhos/2020/blackhole-clicker.jpg)](https://o-g7.github.io/blackhole-clicker/)
-- [![](images/trabalhos/2020/vulcaniando.jpg)](https://evelynlaura.github.io/vulcaniando-x2/passaporte/passaporte.html)
+- [![](images/trabalhos/2020/vulcaniando.webp)](https://evelynlaura.github.io/vulcaniando-x2/passaporte/passaporte.html)
 - [![](images/trabalhos/2020/pizza-clicker.jpg)](https://poipoipepe.github.io/Clicker-Pizza/)
 - [![](images/trabalhos/2018/site-dev-tycoon.jpg)](https://sitedevtycoon.neocities.org/)
 - [![](images/trabalhos/2018/disfarca-bobos.jpg)](https://disfarca-bobos.neocities.org)
