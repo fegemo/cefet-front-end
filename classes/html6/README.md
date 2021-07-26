@@ -1,10 +1,9 @@
 <!-- {"layout": "title"} -->
-# HTML (parte 6)
+# **HTML** parte 6
 
-## Elementos HTML de entrada, eventos e formulários
+## Elementos HTML de entrada, eventos e formulários<br>e o AvatarCreator 💄
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (1/4)
 
 - Objeto Global Window
@@ -20,7 +19,6 @@
 - Convenção: omitir o window
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (2/4)
 
 - Alterando a propriedade `style`:
@@ -34,31 +32,30 @@
    - `margin` ➡️ `margin`
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (3/4)
 
 - **click** vs **mousedown** vs **mouseup**
-    <iframe width="100%" height="100" src="https://jsfiddle.net/fegemo/xxemf1eq/3/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    <iframe width="100%" height="100" src="https://jsfiddle.net/fegemo/xxemf1eq/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 - **mouseover** vs **mousemove** vs **mouseout**
-  <iframe width="100%" height="200" src="https://jsfiddle.net/fegemo/1eoacrkm/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+  <iframe width="100%" height="200" src="https://jsfiddle.net/fegemo/1eoacrkm/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (4/4)
 
 - Obtendo as posições do mouse por meio das propriedades `e.pageX` e `e.pageY`
-<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/79bnmhp7/embedded/result,js,css/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="260" src="https://jsfiddle.net/fegemo/79bnmhp7/embedded/result,js,css/dark/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered"></iframe>
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro
 
 1. [Elementos HTML de **entrada**](#elementos-de-entrada)
 1. [Elementos HTML de **escolha**](#elementos-de-escolha)
 1. [Envio de formulários e validação](#envio-de-formularios-e-validacao)
-1. [AvatarCreator](#avatar-creator)
+1. [AvatarCreator](#avatar-creator) 💄
 
 ---
-<!-- {"layout": "section-header", "slideHash": "elementos-de-entrada"} -->
+<!-- {"layout": "section-header", "hash": "elementos-de-entrada"} -->
 # Elementos HTML de **entrada**
 ## Interação "livre" com usuário
 
@@ -67,12 +64,10 @@
 - Rótulos: relembrando o `label`
 - O elemento `textarea`
 - Interagindo via JavaScript
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## Caixa de texto
+## Caixa de texto <small>(p/ usuário digitar)</small>
 
 - Elemento HTML onde o usuário pode digitar qualquer coisa
 - Formato:
@@ -84,13 +79,11 @@
   - `type="text"` é o valor padrão para o `input`
   - `placeholder="um texto..."` define um texto de ajuda que só aparece
     quando não há nada digitado
-
-::: result
-<input type="text" placeholder="Digite...">
-:::
+  ::: result
+  <input type="text" placeholder="Digite...">
+  :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## Rótulos <small>(ou etiquetas)</small>
 
 - Tipicamente atribuímos rótulos (`<label></label>`) aos campos (`input`)
@@ -109,11 +102,12 @@
     :::
 
 ---
-<!-- {"layout": "regular"} -->
-## Caixa de texto para **e-mail** ![À partir do html5](../../images/html5-logo-32.png)
+<!-- {"layout": "tall-figure-right"} -->
+## Caixa de texto para **e-mail** ![A partir do HTML5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
-- <img src="../../images/form-email-sample.png" style="float: right; margin-left: 20px">
-  Idêntico à caixa de texto, porém o navegador espera um e-mail válido
+![](../../images/form-email-sample.png) <!-- {p:.centered} -->
+
+- Idêntico à caixa de texto, porém o navegador espera um e-mail válido
 - Formato:
   ```html
   <label>Remetente:
@@ -129,8 +123,7 @@
 :::
 
 ---
-<!-- {"layout": "regular"} -->
-## Outros semelhantes à caixa de texto ![À partir do html5](../../images/html5-logo-32.png)
+## Outros semelhantes à caixa de texto ![A partir do HTML5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
 - Pesquisa<br> <!-- {ul:style="display: flex; flex-direction: row; justify-content: space-around"} -->
   `<input type="search">`: <input type="search" style="width: calc(100% - 1em); box-sizing: border-box; margin-bottom: 1em;">
@@ -144,30 +137,32 @@
 
 
 ---
-<!-- {"layout": "regular"} -->
-## Números, Escala e Cor ![A partir do html5](../../images/html5-logo-32.png)
+<!-- {"layout": "2-column-content"} -->
+## Números, Escala e Cor ![A partir do HTML5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
-- Formato: <!-- {ul:style="display: flex; flex-direction: row; justify-content: space-around"} -->
+- Formato: <!-- {ul:.no-bullets.no-padding} -->
   ```html
   <input type="number" step="0.5">
   <input type="range" min="0" max="100" step="1">
   <input type="color">
   ```
-- ::: result . background-color:white;
-  1. <input type="number" step="0.5" size="4"><br>
-  2. <input type="range" min="0" max="100" step="1"><br>
-  3. <input type="color">
-  :::
-1. `number` é indicado para digitação de um número específico
-1. `range` para uma escala (_e.g._, quente ou frio?)
-   - `number` e `range` aceitam `min`, `max` e `step` (incremento)
-1. `color` para pegar o valor hexadecimal de uma cor
+1. <!-- {ol:.no-bullets.no-padding} -->
+   ::: result . background-color:white; margin-top: 1.25em
+   1. <input type="number" step="0.5" size="4"><br>
+   2. <input type="range" min="0" max="100" step="1"><br>
+   3. <input type="color">
+   :::
+
+- `number` é indicado para digitação de um número específico <!-- {ul:.span-columns} -->
+- `range` para uma escala (_e.g._, quente ou frio?)
+  - `number` e `range` aceitam `min`, `max` e `step` (incremento)
+- `color` para pegar o valor hexadecimal de uma cor
 
 ---
-<!-- {"layout": "regular"} -->
-## Data e Hora ![A partir do html5](../../images/html5-logo-32.png)
+<!-- {"layout": "2-column-content"} -->
+## Data e Hora ![A partir do HTML5](../../images/html5-logo-big.png) <!-- {style="max-height: .75em"} -->
 
-- Formato: <!-- {ul:style="display: flex; flex-direction: row; justify-content: space-around"} -->
+- Formato: <!-- {ul:.no-bullets.no-padding} -->
   ```html
   <input type="date">
   <input type="time">
@@ -175,20 +170,20 @@
   <input type="month">
   <input type="week">
   ```
-- ::: result
-  1. <input type="date"><br>
-  2. <input type="time"><br>
-  3. <input type="datetime-local"><br>
-  3. <input type="month"><br>
-  3. <input type="week">
-  :::
 
-1. Observações:
-   - `date` é apenas uma data, `time` apenas um horário
-   - `datetime-local` é um dia/horário
+::: result . display: flex; flex-direction: column; margin-top: 2.25em;
+<input type="date">
+<input type="time">
+<input type="datetime-local">
+<input type="month">
+<input type="week">
+:::
+
+- Observações: <!-- {ul:.span-columns} -->
+  - `date` é apenas uma data, `time` apenas um horário
+  - `datetime-local` é um dia/horário
 
 ---
-<!-- {"layout": "regular"} -->
 ## Interagindo via JavaScript
 
 - Todo `<input>` possui o **atributo `value`**, que é o **valor <u>padrão</u>**.
@@ -203,16 +198,20 @@
   ```js
   let quantidadePizzasEl = document.querySelector('#qtde-pizzas');
 
+
   // podemos pegar o valor atual no console acessando .value:
   let qtdePizzasAtual = quantidadePizzasEl.value; // botão 1
   alert(qtdePizzasAtual);
+
 
   // ou podemos definir um novo valor para o elemento:
   quantidadePizzasEl.value = 25;                  // botão 2
   ```
 
+<!-- {li:.compact-code} -->
+
 ---
-<!-- {"layout": "section-header", "slideHash": "elementos-de-escolha"} -->
+<!-- {"layout": "section-header", "hash": "elementos-de-escolha"} -->
 # Elementos HTML de **escolha**
 ## Pegando a escolha do usuário
 
@@ -220,11 +219,9 @@
 - O `input` do tipo `radio`
 - O elemento `select` e suas `option`s
 - Interação via JavaScript
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Checkbox: <small>caixinha de marcação</small>
 
 - Formato:
@@ -247,10 +244,10 @@
     ```
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "2-column-content"} -->
 ## Radio: <small>escolha dentro de um grupo</small>
 
-- Formato: <!-- {ul:style="display: flex;"} -->
+- Formato: <!-- {ul:.no-margin} -->
   ```html
   <label>
     <input type="radio" name="cor" value="azul">Azul
@@ -259,47 +256,46 @@
     <input type="radio" name="cor" value="verde">Verde
   </label>
   ```
-- ![](../../images/old-radio-button.jpg) <!-- {style="max-width: 100%; margin-top: 1.5em"} -->
-  ::: result
-    <div><label>
-      <input type="radio" name="cor" value="azul"> Azul
-    </label>
-    <label>
-      <input type="radio" name="cor" value="verde"> Verde
-    </label></div>
-  :::
-1. **Atributo `name`**: define qual é o nome do input ao enviar o fomulário
-para o servidor
-1. Repare que apenas uma cor pode ser escolhida - porque os dois `input` têm o
-  mesmo `name`
+1. ![](../../images/old-radio-button.webp) <!-- {style="max-width: 80%; margin-top: 1.5em;"} --> <!-- {ol:.no-bullets.no-padding.center-aligned.no-margin} -->
+   ::: result
+     <div><label>
+       <input type="radio" name="cor" value="azul"> Azul
+     </label>
+     <label>
+       <input type="radio" name="cor" value="verde"> Verde
+     </label></div>
+   :::
+
+- **Atributo `name`**: define qual é o nome do input ao enviar o fomulário para o servidor <!-- {ul:.span-columns} -->
+- Repare que apenas uma cor pode ser escolhida
+  - porque **os dois `<input>` têm o mesmo `name`** <!-- {strong:.alternate-color} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Select e options <small>(lista de opções)</small>
 
-- Formato:
+- ::: result .push-right margin-left: 1em; margin-top: 1.25em
+  <label for="sabor" style="display: block">Sabor da pizza:</label> <select name="sabor" id="sabor">
+    <option value="marg">Marguerita</option>
+    <option value="muzza" selected>Frango</option>
+  </select>
+  :::
+  Formato: <!-- {ul:.full-width.no-margin} -->
   ```html
   <label for="sabor">Sabor da pizza:</label>
   <select id="sabor">
     <option value="marg">Marguerita</option>
-    <option value="muzza" selected>Muzzarela</option>
+    <option value="muzza" selected>Frango</option>
   </select>
   ```
-::: result
-  <label for="sabor">Sabor da pizza:</label> <select name="sabor" id="sabor">
-    <option value="marg">Marguerita</option>
-    <option value="muzza" selected>Muzzarela</option>
-  </select>
-:::
 - Atributos:
   - `selected`, para o `option`, para deixar selecionado
   - `multiple`, para o `select`, para permitir mais de um `option`
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"classes": "compact-code"} -->
 ## Interagindo via JavaScript (2)
 
-1. Verificando se um `checkbox` está marcado: <label><input type="checkbox" id="inscrever"> Inscrever?</label> <button onclick="alert(document.querySelector('#inscrever').checked)">💻</button>
+1. Verificando se um `checkbox` está marcado: <label><input type="checkbox" id="inscrever"> Inscrever?</label> <button onclick="alert(document.querySelector('#inscrever').checked)">💻 Executar</button>
    ```js
    let desejaInscreverEl = document.querySelector('#inscrever');
    let estaMarcado = desejaInscreverEl.checked;   // elemento.checked: true/false
@@ -315,20 +311,21 @@ para o servidor
    let cor = corMarcadaEl.value;   // elemento.value: valor do input
    ```
    - Repare o **seletor**<!--{.alternate-color}-->: todo elemento com
-     **atributo `name="cor"`** e que **esteja no estado `:checked`** (marcado)
+     **atributo `name="cor"`** e que **esteja no estado `:checked`** (marcado) <!-- {ol:.bulleted-0} -->
+
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "centered-horizontal"} -->
 ## Outros elementos de dados
 
 | Tipo               	| Markup                  	| Exemplo                 	|
 |--------------------	|-------------------------	|-------------------------	|
-| Seleção de arquivo 	| `<input type="file">`     | <input type="file">     	|
+| Seleção de arquivo 	| `<input type="file">`     | <input type="file" style="font-size: .5em">   	|
 | Campo de senha     	| `<input type="password">`	| <input type="password"> 	|
 | Texto oculto       	| `<input type="hidden">`	  |                          	|
 | Texto multi-linha   | `<textarea></textarea>`   | <textarea></textarea>     |
 
 ---
-<!-- {"layout": "section-header", "slideHash": "envio-de-formularios-e-validacao"} -->
+<!-- {"layout": "section-header", "hash": "envio-de-formularios-e-validacao"} -->
 # Envio de Formulários e Validação
 ## Enviando dados e verificando
 
@@ -337,12 +334,11 @@ para o servidor
 - Validação de campos e formulário
 
 ---
-<!-- {"layout": "regular"} -->
 ## O Elemento HTML `<form>...</form>`
 
 - Um **formulário** é um conjunto de campos de dados (_i.e._, entrada/escolha)
   que pode ser **enviado** <!-- {.underline} --> a um servidor Web. Exemplos:
-  - ![](../../images/cadastro-facebook.png) <!-- {.push-right style="max-width: 450px"} -->
+  - ![](../../images/cadastro-facebook.png) <!-- {.push-right.bordered.rounded style="max-width: 450px"} -->
     Ao se cadastrar no Facebook (ou qualquer site)
   - Ao preencher e enviar um questionário
   - Ao editar seu perfil em algum site
@@ -350,7 +346,6 @@ para o servidor
   algumas **restrições** (_e.g._, campo obrigatório)
 
 ---
-<!-- {"layout": "regular"} -->
 ## Formulário e Botões
 
 - Um _form_ agrupa _inputs_ para, posteriormente, serem enviados a
@@ -368,11 +363,10 @@ para o servidor
 - Exemplo de [formulário](../../samples/form/index.html) <!-- {target="_blank"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Botões de submissão e _reset_
 
 - Dentro de um formulário, um botão do `type="submit"` envia os dados para
-  o servidor: <button type="submit"><img src="../../images/html5-logo-32.png" style="height: 0.75em; font-size: 75%;">Cadastrar</button>
+  o servidor: <button type="submit"><img src="../../images/html5-logo-32.png" style="height: 0.65em; margin-right: .25em;">Cadastrar</button>
   ```html
   <button type="submit">
     <img src="icone.png">Cadastrar <!-- podemos colocar ícones nos botões =) -->
@@ -390,7 +384,6 @@ para o servidor
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Validação e Restrições nos Campos
 
 - Podemos usar o atributo HTML `required` para marcar um campo como
@@ -415,7 +408,6 @@ para o servidor
   :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## Outros Tipos de Restrições
 
 | Tipo      	            | Código HTML                  	        | Exemplo                 	                   |
@@ -428,7 +420,7 @@ para o servidor
 | Desabilitar             | `<input disabled>` | <input disabled size="5">     |
 
 ---
-<!-- {"layout": "section-header", "slideHash": "avatar-creator"} -->
+<!-- {"layout": "section-header", "hash": "avatar-creator"} -->
 # AvatarCreator :lipstick:
 ## Gerador de avatares
 
@@ -443,7 +435,6 @@ para o servidor
 <!-- {"backdrop": "avatarcreator"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Atividade de Hoje
 
 - Completar a página do "AvatarCreator" :lipstick:
@@ -458,27 +449,20 @@ para o servidor
 [avatar-seminal]: https://github.com/fegemo/cefet-front-end-avatar/archive/master.zip
 
 ---
-<!-- {"layout": "regular"} -->
-## Eventos de formulários
+# Eventos de formulários
 
-- Lembrando que: eventos são **atrelados a nós específicos** e causam a
-  invocação de uma função "manipuladora" (_event handler_ ou apenas _handler_)
+- Lembrando: eventos são **associados a elementos HTML** e causam a
+  invocação de uma função "manipuladora" (_event handler_)
 - Eventos de entrada de dados:
   - `change` ou `input` (modificou)
   - `blur` (perdeu foco)
   - `focus` (ganhou foco)
   - `keydown` (pressionou uma tecla)
   - `keyup` (liberou uma tecla)<!-- {ul:.multi-column-list-2}-->
-- (Muitos) outros tipos: [Eventos na MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
+- <iframe width="700" height="170" src="//jsfiddle.net/fegemo/novwcd56/embedded/result,js/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0" class="push-right bordered rounded"></iframe>
+  (Muitos) outros tipos: <a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">Eventos na MDN</a>
 
 ---
-<!-- {"layout": "regular"} -->
-## Exemplo
-
-<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/gprgLz88/embedded/html,js,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-<!-- {"layout": "regular"} -->
 ## Estilizando campos de formulários
 
 - Campos de "entrada livre" (`text`, `number`, `email` etc.) podem ser
@@ -508,7 +492,7 @@ para o servidor
 
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".estilizando-forms input:focus { outline: 3px solid yellow !important; } .estilizando-forms input:invalid { border: 1px solid red; }"} -->
+<!-- {"embeddedStyles": ".estilizando-forms input:focus { outline: 3px solid yellow !important; } .estilizando-forms input:invalid { border: 1px solid red; }"} -->
 ## Estilizando campos em diferentes estados
 
 - É possível estilizar campos **em diferentes situações** <!-- {ul:.estilizando-forms} -->
@@ -525,10 +509,11 @@ para o servidor
   <input type="text" pattern="[0-9]{4}" maxlength="4" size="20" placeholder="Padrão de 4 dígitos">
   :::
   - É importante ressaltar o elemento que **está com o foco**
-  - Além de mostrar os **estão com erro**
+  - Além de mostrar os que **estão com erro**
 
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulo _"A Form of Madness"_ do livro online diveintohtml5.info

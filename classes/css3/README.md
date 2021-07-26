@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# CSS (Parte 3)
+# **CSS** parte 3
 ## Fontes, Multimídia e Unicórnios 🦄
 
 ---
-<!-- {"layout": "regular"} -->
 ## Revisão da prova - erros comuns (1/4)
 ### Endereço absoluto vs relativo
 
@@ -16,13 +15,12 @@
   | /a.jpg                    	| `../../a.jpg`  	|
 
 ---
-<!-- {"layout": "regular"} -->
 ## Revisão da prova - erros comuns (2/4)
 
 - Escreva uma (única) regra em CSS para colorir de vermelho apenas links
   que estejam dentro de tabelas. Os demais links não devem ser alterados.
 
-1. Correto:
+1. Correto ✅:
    ```css
    table a {
      color: red;
@@ -48,18 +46,16 @@
    ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Revisão da prova - erros comuns (3/4)
 
-- **Regra CSS** para fazer com que uma **linha** da tabela mude sua **cor de fundo** quando o **mouse passar em cima dela** ([jsFiddle][jsFiddle]).
+- ![Questão exibindo as 4 possíveis alternativas de respostas.](../../images/linha-branca-tabela.png) <!-- {.push-right} -->
+  **Regra CSS** para fazer com que uma **linha** da tabela mude sua **cor de fundo** quando o **mouse passar em cima dela** ([jsFiddle][jsFiddle]).
 
 
 [jsFiddle]: https://jsfiddle.net/fegemo/nc2txkng/
 
-![Questão exibindo as 4 possíveis alternativas de respostas.](../../images/linha-branca-tabela.png)
 
 ---
-<!-- {"layout": "regular"} -->
 ## Revisão da prova - erros comuns (4/4)
 
 - Lista de item dentro de um parágrafo
@@ -127,7 +123,7 @@
 - É possível que um elemento interrompa uma flutuação à esquerda (`left`),
   à direita (`right`) ou em ambos os lados (`both`) usando `clear`
 
-  <iframe width="50%" height="340" src="//jsfiddle.net/fegemo/vxb79m2c/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+  <iframe width="50%" height="260" src="//jsfiddle.net/fegemo/vxb79m2c/embedded/result,html,css/dark/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
 
   - A **propriedade `clear`** pode ser:
     - `left` ou `right`: interrompe apenas as flutuações à esquerda ou à direita
@@ -135,6 +131,7 @@
     - `none`: **não interrompe** (valor padrão)
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [Formatos de imagens](#formatos-de-imagens)
@@ -143,7 +140,7 @@
 1. [Unicórnios](#unicornios) 🦄
 
 ---
-<!-- {"layout": "section-header", "slideHash": "formatos-de-imagens"} -->
+<!-- {"layout": "section-header", "hash": "formatos-de-imagens"} -->
 # Formatos de imagens
 ## Usando diferentes formatos
 
@@ -151,11 +148,9 @@
 - GIF
 - PNG
 - SVG
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Imagens
 
 - Usamos a tag `<img src="...">`, que é um **elemento _void_**
@@ -170,22 +165,24 @@
 [mdn-img]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
 
 ---
-<!-- {"layout": "regular"} -->
 ## Imagens: **formato**
 
-- Existem vários formatos de imagens suportados por navegadores
-  <!-- {ul:.bulleted} -->
-  - **JPEG** <!-- {strong:.alternate-color} --> (ou JPG), bom para **fotos**
-    tiradas do mundo real, que possuem muita variação de cor. Não possui
-    transparência
-  - **GIF** <!-- {strong:.alternate-color} -->, **transparência** de 1 bit e
-    suporta **animações** de quadros
-    - Apenas 256 cores na imagem (muito pouco!!)
-  - **PNG** <!-- {strong:.alternate-color} -->, **transparência** de 8 bits
-    e suporta **mais cores** que GIF
-    - Bom formato para imagens com pouca variação de cor
-  - **SVG** <!-- {strong:.alternate-color} -->, imagens **vetoriais** que não
-    perdem qualidade se **ampliadas**
+- Existem vários formatos de imagens suportados por navegadores: <!-- {.bullet} -->
+
+**JPEG** (ou JPG) <!-- {strong:.alternate-color} -->  <!-- {dl:.bulleted} -->
+~ bom para **fotos** tiradas do mundo real, que possuem muita variação de cor. Não possui
+  transparência
+
+**GIF** <!-- {strong:.alternate-color} -->
+~ **transparência** de 1 bit e suporta **animações** de quadros
+~ apenas 256 cores na imagem (muito pouco!!)
+
+**PNG** <!-- {strong:.alternate-color} -->
+~ **transparência** de 8 bits e suporta **mais cores** que GIF
+~ bom formato para imagens com pouca variação de cor
+
+**SVG** <!-- {strong:.alternate-color} -->
+~ imagens **vetoriais** que não perdem qualidade se **ampliadas**
 
 *[JPEG]: Joint Photographic Experts Group*
 *[GIF]: Graphics Interchange Format*
@@ -199,7 +196,7 @@
 **GIF**: Um pixel é totalmente transparente ou totalmente opaco
 
 ::: figure .no-margin
-![Exemplo de transparência usando GIF](../../images/gif-transparency-2.gif)
+![Exemplo de transparência usando GIF](../../images/gif-transparency-2.gif) <!-- {p:.center-aligned} -->
 ![Exemplo de transparência usando GIF](../../images/gif-transparency.gif)
 :::
 
@@ -207,7 +204,7 @@
 0% e 100%
 
 ::: figure .no-margin
-![Exemplo de transparência usando PNG](../../images/png-transparency-2.png)
+![Exemplo de transparência usando PNG](../../images/png-transparency-2.png) <!-- {p:.center-aligned} -->
 ![Exemplo de transparência usando PNG](../../images/png-transparency.png)
 :::
 
@@ -218,26 +215,25 @@
 Imagem _bitmap_ (JPG, GIF, PNG) original (pequena) e aumentada
 (fica "**estourada**")
 
-::: figure .no-margin.center-aligned
-![Exemplo de transparencia usando PNG](../../images/imagem-bitmap.png)
+::: figure .no-margin
+![Exemplo de transparencia usando PNG](../../images/imagem-bitmap.png) <!-- {p:.center-aligned} -->
 ![Exemplo de transparencia usando PNG](../../images/imagem-bitmap.png)<!-- {style="width: 100px"} -->
 :::
 
 Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 
-::: figure .no-margin.center-aligned
-![Exemplo de transparencia usando PNG](../../images/imagem-vetorial.svg)
+::: figure .no-margin
+![Exemplo de transparencia usando PNG](../../images/imagem-vetorial.svg) <!-- {p:.center-aligned} -->
 ![Exemplo de transparencia usando PNG](../../images/imagem-vetorial.svg)<!-- { style="width: 100px"} -->
 :::
 
 ---
-<!-- {"layout": "section-header", "slideHash": "video-e-audio"} -->
+<!-- {"layout": "section-header", "hash": "video-e-audio"} -->
 # Vídeo e Áudio
 ## Usando elementos multimídia
 
 - Vídeo
 - Áudio
-
 <!-- {ul:.content} -->
 
 ---
@@ -309,7 +305,6 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 - Também há os atributos `width="x"` e `height="y"`
 
 ---
-<!-- {"layout": "regular"} -->
 ## Suporte dos navegadores por formato
 
 - Nem todos navegadores suportam **os mesmos formatos de vídeo**
@@ -328,47 +323,42 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
   - se, mesmo assim, não conseguir, será exibido o texto
 
 ---
-<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
+<!-- {"layout": "3-column-content", "scripts": ["../../scripts/classes/caniuse.min.js"]} -->
 ## Suporte **hoje** (formatos de vídeo)
 
-<span class="caniuse" data-feature="webm" style="width: 30%"></span>
-<span class="caniuse" data-feature="mpeg4" style="width: 30%"></span>
-<span class="caniuse" data-feature="ogv" style="width: 30%"></span>
+<div class="caniuse" data-feature="webm"></div>
 
-<!-- {p:.center-aligned} -->
+<div class="caniuse" data-feature="mpeg4"></div>
+
+<div class="caniuse" data-feature="ogv"></div>
 
 ---
 ## Audio
 
-- `<audio>` funciona **exatamente** da mesma forma que `<video>`
+- `<audio>` funciona **exatamente** da mesma forma que `<video>` <!-- {ul:.full-width.compact-code} -->
   - [Referência na MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
 - Formatos mais comuns: **MP3** <!-- {strong:.alternate-color} --> e
   **OGG**  <!-- {strong:.alternate-color} -->
-- Exemplo: <!-- {style="display: flex; flex-direction: row;"} -->
+- Exemplo:
+  <audio src="../../audios/banjo-kazooie-short.mp3" controls loop="0" class="push-right" style="margin-left: 0.5em; margin-top: 1.25em"></audio>
   ```html
   <audio src="banjo-kazooie.mp3" controls loop="0"></audio>
   ```
-  <audio src="../../audios/banjo-kazooie-short.mp3" controls loop="0"></audio>
+
+1. <!-- {ol:.no-bullets.no-padding.layout-split-2} -->
+   <div class="caniuse" data-feature="mp3"></div>
+1. <div class="caniuse" data-feature="ogg-vorbis" style="margin-left: 1em"></div>
 
 *[MP3]: MPEG-1/2 Audio Layer 3*
 
 ---
-## Suporte **hoje** (formatos de áudio)
-
-<span class="caniuse" data-feature="mp3" style="width: 40%"></span>
-<span class="caniuse" data-feature="ogg-vorbis" style="width: 45%"></span>
-
-<!-- {p:.center-aligned} -->
-
----
-<!-- {"layout": "section-header", "slideHash": "web-fonts"} -->
+<!-- {"layout": "section-header", "hash": "web-fonts"} -->
 # _Web Fonts_
 ## Usando fontes não-instaladas
 
 - Formatos de fontes
 - A regra `@font-face`
 - Google Fonts
-
 <!-- {ul:.content} -->
 
 ---
@@ -390,7 +380,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 ---
 ## Web Fonts (cont.)
 
-1. Descrever a fonte no arquivo CSS usando `@font-face {...}`:
+1. Descrever a fonte no arquivo CSS usando `@font-face {...}`: <!-- {ol:.compact-code} -->
    ```css
    @font-face {
      font-family: "Emblema One";    /* dando um nome à fonte */
@@ -409,13 +399,13 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 
 
 ---
-<!-- {"scripts": ["../../scripts/classes/caniuse.min.js"]} -->
+<!-- {"layout": "2-column-content", "scripts": ["../../scripts/classes/caniuse.min.js"]} -->
 ## **Formatos de fonte** e os navegadores
 
-<span class="caniuse" data-feature="woff2" style="width: 45%"></span>
-<span class="caniuse" data-feature="woff" style="width: 45%"></span>
+<div class="caniuse" data-feature="woff2" style="width: 75%"></div>
+<div class="caniuse" data-feature="woff" style="width: 75%"></div>
 
-- **WOFF2** é até 50% menor que **WOFF**
+- **WOFF2** é até 50% menor que **WOFF** <!-- {ul:.span-columns} -->
 - **TTF** é suportado em todos navegadores
 
 ---
@@ -436,12 +426,13 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 [font-space]: http://www.fontspace.com/
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ## Utilização do Google Fonts
 
-<video src="../../videos/web-fonts-google.mp4" width="802" height="456" controls style="margin: 0 auto;"></video>
+<video src="../../videos/web-fonts-google.mp4" width="802" height="456" controls></video>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "unicornios"} -->
+<!-- {"layout": "section-header", "hash": "unicornios"} -->
 # _Unicorns are real_
 ## Conheça a verdade
 
@@ -450,14 +441,12 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 - _Layouts_ no Photoshop
 - Quebrando linhas no texto
 - Relembrando o _Box Model_
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "pratica-unicornios"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Atividade de Hoje
 
 - Criar uma página para expor a verdade sobre esses pôneis.
@@ -473,7 +462,6 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 [unicorns-seminal]: https://github.com/fegemo/cefet-front-end-unicorns/archive/master.zip
 
 ---
-<!-- {"layout": "regular"} -->
 # _Layouts_ no Photoshop
 
 - ![](../../images/psd-to-html-css.png) <!-- {.push-right} -->
@@ -489,8 +477,8 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 ---
 ## Comp / Specs
 
-[![](../../images/unicorns-comp-lpw.png)](../../images/unicorns-comp-lpw.png) <!-- {style="max-width: 25%"} -->
-[![](../../images/unicorns-specs-lpw.png)](../../images/unicorns-specs-lpw.png) <!-- {style="max-width: 25%"} -->
+[![](../../images/unicorns-comp-lpw.png)](../../images/unicorns-comp-lpw.png) <!-- {.bordered style="max-width: 35%"} --> <!-- {a:target="_blank"} -->
+[![](../../images/unicorns-specs-lpw.png)](../../images/unicorns-specs-lpw.png) <!-- {.bordered style="max-width: 35%"} --> <!-- {a:target="_blank"} -->
 
 *[Comp]: Comprehensive Layout*
 *[Specs]: Specifications*
@@ -498,7 +486,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 <!-- {p:.center-aligned} -->
 
 ---
-<!-- {"slideHash": "quebra-de-linha"} -->
+<!-- {"hash": "quebra-de-linha"} -->
 # Quebra de linha (tag `<br>`)
 
 - A _tag_ `<br>` funciona para quebrarmos linha em um parágrafo
@@ -511,7 +499,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }", "backdrop": "oldtimes", "slideHash": "box-model"} -->
+<!-- {"embeddedStyles": ".box-model-part {color: #333; border-radius: 4px; font-style: normal; padding: 1px 3px; } .box-model-part code { background: initial; }", "backdrop": "oldtimes", "hash": "box-model"} -->
 ## _Box Model_ ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/box_model))
 
 - ![](../../images/box-model.png) <!-- {.push-right} -->
@@ -524,10 +512,10 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 
 <!-- {ul^1:style="margin-bottom: 0;"} -->
 
-![](../../images/box-model-sample.png) <!-- {p:.centered.no-margin} -->
+![](../../images/box-model-sample.png) <!-- {p:.centered.no-margin.invert-colors-dark-mode} -->
 
 ---
-<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+<!-- {"backdrop": "oldtimes"} -->
 ## _Box Model_: **largura** e **altura**
 
 - Quando definimos a **largura** (`width`) ou **altura** (`height`) de
@@ -535,7 +523,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
   do _conteúdo da caixa_, <!-- {em:.box-model-part style="background: #8bb4c0;"} -->
   e não da caixa inteira
 
-::: figure .figure-slides
+::: figure .figure-slides.clean.flex-align-center.invert-colors-dark-mode
 ![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
@@ -545,16 +533,16 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
 :::
 
 ---
-<!-- {"layout": "regular-block", "slideHash": "alterando-o-box-model", "backdrop": "oldtimes"} -->
+<!-- {"layout": "tall-figure-right", "hash": "alterando-o-box-model", "backdrop": "oldtimes"} -->
 ## Alterando o _box model_
 
-::: did-you-know .push-right width: 260px; margin-right: 6px;
+::: did-you-know . width: 290px; margin-right: 6px;
 As **margens** de um elemento formam um **espaçamento externo** e não contam
 espaço dentro da caixa.
 :::
 
-- É possível alterar o significado da `width` e `height` que damos a um elemento
-   **usando _a propriedade `box-sizing`_** <!-- {em:.underline.upon-activation.delay-3000} -->:
+- É possível alterar o significado da `width` e `height` que damos a um elemento <!-- {ul:style="margin-bottom: 0"} -->
+   <br>**usando _a propriedade `box-sizing`_** <!-- {em:.underline.upon-activation.delay-3000} -->:
   - `box-sizing: content-box` (valor padrão)
     - `width` = largura do _conteúdo_ <!-- {.box-model-part style="background: #8bb4c0;"} -->
   - `box-sizing: border-box`
@@ -564,7 +552,7 @@ espaço dentro da caixa.
     - Esta forma é mais intuitiva :thumbsup: :thumbsup: :thumbsup:
 
 
-::: figure .figure-slides.centered margin: 0 auto
+::: figure .figure-slides.centered.span-columns.invert-colors-dark-mode margin: 0 auto
 ![](../../images/box-model-product-0.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-2.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
 ![](../../images/box-model-product-border-box-1.png)<!-- {.bullet.figure-step.bullet-no-anim.rounded.bordered} -->
@@ -572,6 +560,7 @@ espaço dentro da caixa.
 :::
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulos 5 e 6 do livro

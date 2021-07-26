@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 0)
+# **JavaScript** parte 0
 ## Tipos de Dados, Variáveis, Estrutura Sequencial, Condicionais, Iterações e Funções
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula (1/2)
 
 - Quando **mais de uma regra CSS se aplica**, uma delas prevalece
@@ -15,7 +14,6 @@
   - Quanto maior esse número, maior a precedência da regra ser aplicada
 
 ---
-<!-- {"layout": "regular"} -->
 ## Na última aula (2/2)
 - Exemplo: qual a cor do `<h2>` que seja filho direto de alguém com as classes `.post` e `.novidade` que, por sua vez, esteja dentro de um `#posts-recentes`? <!-- {ul:.bulleted} -->
   ```css
@@ -31,7 +29,6 @@
   - Azul!
 
 ---
-<!-- {"layout": "regular"} -->
 # Atividade de hoje
 
 1. O objetivo é começar a usar JavaScript
@@ -42,6 +39,7 @@
 [js0]: https://github.com/fegemo/cefet-front-end-js0/archive/master.zip
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos...
 
 1. [Tipos de dados, Variáveis e Funções](#tipos-de-dados-variaveis-e-funcoes)
@@ -49,24 +47,21 @@
 1. [Mais sobre funções e Métodos úteis](#mais-sobre-funcoes-e-metodos-uteis)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "tipos-de-dados-variaveis-e-funcoes"} -->
+<!-- {"layout": "section-header", "hash": "tipos-de-dados-variaveis-e-funcoes"} -->
 # Tipos de Dados, Variáveis e Funções
 ## Elementos da Linguagem JavaScript
 
 - Tipos de dados
 - Declarando variáveis
 - Criando funções
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
-# O que é JavaScript?
+# ![Logo da linguagem JavaScript](../../images/logo-javascript.svg) <!-- {.push-right style="max-width: 75px"} --> O que é JavaScript?
 
-- ![Logo da linguagem JavaScript](../../images/logo-javascript.svg) <!-- {.push-right style="max-width: 100px"} -->
-  Possui sintaxe parecida com C, C++, Java
-  - JavaScript **não** é Java
-  - Ter "Java" no nome foi apenas uma **jogada de marketing** na época :scream:
+- Possui sintaxe parecida com C, C++, Java
+  - JavaScript **não é Java**
+  - Ter "Java" no nome foi apenas uma **jogada de marketing** na época
 - Suporta os estilos de programação **orientada a objetos** e **funcional**
 - Existem diferentes tipos de dados (como em C, C++, Java)
   - Mas não é necessário definir os tipos das variáveis
@@ -79,7 +74,7 @@
 <!-- {"layout": "2-column-content"} -->
 ## <span style="font-family: 'Amatica SC',cursive;">hello-world.js</span> e imprimindo no console
 
-- Um arquivo HTML pode incluir um arquivo .js <!-- {ul:.bullet.compact-code-more style="width: 45%"} -->
+- Um arquivo HTML pode incluir um arquivo .js <!-- {ul:.bullet.compact-code-more} -->
   ```html
   <!DOCTYPE html>
   <html>
@@ -100,7 +95,7 @@
   window.alert('Sou das trevas');
   ```
 
-1. Um arquivo JavaScript incluído por um HTML é **baixado e executado linha a linha** <!-- {ol:.bullet.compact-code-more style="margin-left: auto; width: 52%"} -->
+1. Um arquivo JavaScript incluído por um HTML é **baixado e executado linha a linha** <!-- {ol:.bullet.compact-code-more style="margin-left: auto;"} -->
 2. Para testar escrevemos no console do navegador com
    ```js
    console.log('.......');
@@ -112,7 +107,7 @@
    - ...mas não faça isto, jovem, porque essa janelinha é muito chata ;)
 
 ---
-<!-- {"layout": "regular", "slideHash": "criando-variaveis-com-let"} -->
+<!-- {"hash": "criando-variaveis-com-let"} -->
 # Declarando **variáveis** (com `let`)
 
 - Usamos a palavra-chave `let` para criar variáveis:
@@ -128,7 +123,7 @@
   com o valor '`js0`'
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "const-e-var"} -->
+<!-- {"layout": "2-column-content", "hash": "const-e-var"} -->
 ## Outras formas de declarar variáveis `(const/var)`
 
 - Usamos a palavra-chave `const` para criar variáveis que **sempre apontam para o mesmo valor** <!-- {ul:.compact-code-more} -->
@@ -140,7 +135,7 @@
   ```
   - É uma boa prática usar `const` sempre que se sabe que a variável não receberá um novo valor
 
-1. **Usávamos** (passado, _old_, não use) a palavra-chave `var`:  <!-- {ol:.compact-code-more} -->
+1. **Usávamos** (passado, _old_, não use) a palavra-chave `var`:  <!-- {ol:.compact-code-more.no-bullets} -->
    ```js
    var vegetal = 'batata';
    ```
@@ -151,7 +146,6 @@
    - Encontra-se códigos antigos na Web usando `var`
 
 ---
-<!-- {"layout": "regular"} -->
 # Fracamente tipada e dinâmica
 
 - Em JavaScript, não é necessário declarar o tipo das variáveis:
@@ -168,7 +162,7 @@
   - Dizemos que JavaScript é **dinâmica**
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "tipos-de-dados"} -->
+<!-- {"layout": "2-column-content", "hash": "tipos-de-dados"} -->
 ## Tipos de dados
 
 - Há seis **tipos primitivos** de dados:
@@ -205,10 +199,10 @@
    ```
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "os-tipos-boolean-e-number"} -->
+<!-- {"layout": "2-column-content", "hash": "os-tipos-boolean-e-number"} -->
 ## <span>O tipo **1. Boolean** <!-- {.tipo-js.tipo-boolean} --></span> <span>O tipo **2. Number** <!-- {.tipo-js.tipo-number} --></span> <!-- {h2:style="display:flex;justify-content:space-between"} -->
 
-1. O tipo **Boolean** <!-- {.tipo-boolean} --> armazena um valor verdadeiro ou falso. Exemplo: <!-- {ol:.bullet.compact-code-more style="width:38%;"} -->
+1. O tipo **Boolean** <!-- {.tipo-boolean} --> armazena um valor verdadeiro ou falso. Exemplo: <!-- {ol:.bullet.compact-code-more.no-bullets} -->
    ```js
    let abelhinhaEstaVoando = true;
    let modoEscuro = false;
@@ -216,7 +210,7 @@
    ```
 
 
-- **Apenas 1 tipo numérico** 64bits <!-- {ul:.bullet.compact-code-more style="width:60%;"} --> <!-- {.tipo-number} -->
+- **Apenas 1 tipo numérico** 64bits <!-- {ul:.bullet.compact-code-more.no-bullets} --> <!-- {.tipo-number} -->
   - <small>(equivalente ao `double` de C/Java)</small>
   - Não há um tipo específico para números inteiros
 - Exemplos de variáveis com números:
@@ -230,7 +224,7 @@
   ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "o-tipo-string"} -->
+<!-- {"hash": "o-tipo-string"} -->
 ## O tipo **3. String** <!-- {.tipo-js.tipo-string} -->
 
 - **Representa um texto** <!-- {.tipo-string} --> codificado em UTF-8
@@ -251,7 +245,6 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Manipulando Strings
 
 - É possível **concatenar** (juntar, colar) para criar novas strings: <!-- {ul:.bulleted} -->
@@ -272,7 +265,7 @@
   ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "operadores", "embeddedStyles": ".less-padding ul li{padding-left:0em;list-style-type:none}"} -->
+<!-- {"hash": "operadores", "embeddedStyles": ".less-padding ul li{padding-left:0em;list-style-type:none}"} -->
 # Operadores
 
 - Aritméticos <!-- {ul^0:.less-padding} --> <!-- {li^0:.bullet} -->
@@ -295,7 +288,6 @@
   - **`!`** não&nbsp;&nbsp;&nbsp;**`&&`** e&nbsp;&nbsp;&nbsp;**`||`** ou <!-- {ul^4:.multi-column-list-2} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## O que significa `===` (igualdade forte)?
 
 - Se compararmos '1' com 1 (uma **string** <!-- {.tipo-string} --> com um **number** <!-- {.tipo-number} -->) usando `==`: <!-- {ul:.bulleted-0} -->
@@ -313,7 +305,7 @@
   - Prefira esta forma!! :wink:
 
 ---
-<!-- {"layout": "regular", "slideHash": "o-objeto-math"} -->
+<!-- {"hash": "o-objeto-math"} -->
 ## O objeto `Math`
 
 - Além dos operadores matemáticos (_e.g._, `+, -, /, *`), existem
@@ -334,7 +326,7 @@
 [math-mdn]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math
 
 ---
-<!-- {"layout": "2-column-content-zigzag", "embeddedStyles": ".push-code-right pre{float:right;}", "slideHash": "declarando-e-invocando-funcoes"} -->
+<!-- {"layout": "2-column-content-zigzag", "embeddedStyles": ".push-code-right pre{float:right;}", "hash": "declarando-e-invocando-funcoes"} -->
 # Declarando e invocando **funções**
 
 
@@ -355,10 +347,10 @@ dizOla();
 - Funções são **invocadas** (chamadas) por seu nome, seguido de parênteses
 
 ---
-<!-- {"layout": "2-column-content-zigzag", "embeddedStyles": "#parametros{width:40%;}#parametros+pre{width:56%;}"} -->
+<!-- {"layout": "2-column-content-zigzag", "classes": "compact-code", "embeddedStyles": "#parametros{width:40%;}#parametros+pre{width:56%;}"} -->
 ## Declarando **parâmetros para funções**
 
-- Os parâmetros ficam entre os parênteses e separados por vírgula: <!-- {li:.push-code-right} --> <!-- {ul:#parametros.bulleted} -->
+- Os parâmetros ficam entre os parênteses e separados por vírgula: <!-- {li:.push-code-right} --> <!-- {ul:#parametros.bulleted.no-margin} -->
   - Não é necessário declarar o tipo do parâmetro - apenas o nome
 
 ```js
@@ -381,7 +373,6 @@ dizOla();
     Nesse caso, o parâmetro tem valor `undefined`
 
 ---
-<!-- {"layout": "regular"} -->
 # Valor de **retorno** de funções
 
 - A função pode retornar um valor explicitamente: <!-- {ul:.bulleted-0} -->
@@ -418,7 +409,7 @@ dizOla();
 - São idênticas ↑ ⬈
 
 ---
-<!-- {"layout": "regular", "slideHash": "regras-de-legibilidade-e-nomenclatura-1"} -->
+<!-- {"hash": "regras-de-legibilidade-e-nomenclatura-1"} -->
 ## Regras de legibilidade e nomenclatura (1/2)
 
 1. Nomes de funções e variáveis com **notação camelo** 🐪 sem acentuação: <!-- {ol:.full-width.bulleted} -->
@@ -462,7 +453,7 @@ dizOla();
    ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "regras-de-legibilidade-e-nomenclatura-2"} -->
+<!-- {"hash": "regras-de-legibilidade-e-nomenclatura-2"} -->
 ## Regras de legibilidade e nomenclatura (2/2)
 
 - **Nomes de variáveis e funções** devem ser bem **descritivos**: <!-- {ul:.push-code-left.compact-code-more.full-width.bulleted} -->
@@ -511,7 +502,7 @@ dizOla();
   ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "condicionais-vetores-e-estruturas-de-repeticao"} -->
+<!-- {"layout": "section-header", "hash": "condicionais-vetores-e-estruturas-de-repeticao"} -->
 # Condicionais, Vetores e Repetição
 ## _Arrays_, for, while e variações
 
@@ -522,11 +513,10 @@ dizOla();
     - For of
     - forEach
 - While/Do while
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "if-else", "classes": "compact-code"} -->
+<!-- {"layout": "2-column-content", "hash": "if-else", "classes": "compact-code"} -->
 ## **if/else** (condicionais)
 
 ```js
@@ -557,7 +547,6 @@ if (estouComSono)
   - Contudo, é uma má ideia
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Operador ternário** (condicionais)
 
 - Quando temos um `if/else` "simples", pode ser mais legível fazer a verificação em 1 linha com **o operador ternário ?:**
@@ -579,7 +568,7 @@ if (estouComSono)
   ```
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "switch"} -->
+<!-- {"layout": "2-column-content", "hash": "switch"} -->
 ## **switch** (condicionais)
 
 ```js
@@ -608,7 +597,7 @@ switch (climaAgora) {
 - Caso `default` para pegar outros valores (equivalente ao `else`)
 
 ---
-<!-- {"layout": "regular", "slideHash": "vetores"} -->
+<!-- {"hash": "vetores"} -->
 # Vetores
 
 - Vetores (ou _arrays_) armazenam uma sequência de valores: <!-- {ul:.bulleted-0.compact-code} -->
@@ -629,7 +618,7 @@ switch (climaAgora) {
     ```
 
 ---
-<!-- {"layout": "regular", "elementStyles": { "h2 + pre": "overflow: hidden; width: 100%;"}} -->
+<!-- {"elementStyles": { "h2 + pre": "overflow: hidden; width: 100%;"}} -->
 ## **Usando** vetores
 
 ```js
@@ -650,11 +639,10 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-<!-- {"layout": "regular"} -->
-# **for** (forma tradicional)
+# **for** <small>(forma tradicional)</small>
 
-
-- ::: did-you-know .push-right width:240px;
+- <!-- {ul:no-margin} -->
+  ::: did-you-know .push-right width:240px;
   Em JavaScript há pelo menos 3 formas diferentes de fazer um `for`. Esta é a **tradicional** mas as outras mais fáceis até.
   :::
   Forma tradicional com `for (inicio; condicao; incremento)`:
@@ -672,10 +660,10 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-<!-- {"layout": "2-column-content", "slideHash": "for-formas-mais-legais"} -->
-# **for** (formas **mais legais**)
+<!-- {"layout": "2-column-content", "hash": "for-formas-mais-legais"} -->
+# **for** <small>(formas **mais legais**)</small>
 
-1. **For of**: `for (let item of array)` :thumbsup::
+1. **For of**: `for (let item of array)` :thumbsup:: <!-- {ol:.no-bullets} -->
    ```js
    let cores = ['azul', 'rosa'];
    for (let cor of cores) {
@@ -683,7 +671,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
      // azul, rosa
    }
    ```
-- **For each**: `array.forEach` :thumbsup::
+- **For each**: `array.forEach` :thumbsup:: <!-- {ul:.no-bullets} -->
   ```js
   let cores = ['azul', 'rosa'];
   cores.forEach(function(cor) {
@@ -696,7 +684,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 <!-- {"layout": "2-column-content"} -->
 # while/do..while
 
-- Condição **primeiro**
+- Condição **primeiro** <!-- {ul:.no-bullets} -->
   ```js
   let i = 1;
   while (i !== 10) {
@@ -704,7 +692,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
     i++;
   }
   ```
-1. Condição **depois**
+1. Condição **depois** <!-- {ol:.no-bullets} -->
    ```js
    let i = 0;
    do {
@@ -714,7 +702,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
    ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "mais-sobre-funcoes-e-metodos-uteis"} -->
+<!-- {"layout": "section-header", "hash": "mais-sobre-funcoes-e-metodos-uteis"} -->
 # Mais sobre funções, Métodos úteis
 ## Mais coisas legais
 
@@ -722,14 +710,12 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 - Função como parâmetro
 - Métodos comuns de strings
 - Métodos comuns de vetores
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Mais sobre funções
 
-- Em JavaScript as funções são super flexíveis
+- Em JavaScript as **funções são super flexíveis**
   1. Função "tradicional" (já vimos)
   1. Função anônima (próximo slide)
   1. Função seta (próxima aula)
@@ -740,7 +726,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
 <!-- {"layout": "2-column-content"} -->
 ## Função **anônima** (atribuída a **variável**)
 
-1. Declaração de função "tradicional":
+1. Declaração de função "tradicional": <!-- {ol:.no-bullets} -->
    ```js
    function dizOla(nome) {
      console.log('olá ' + nome);
@@ -749,7 +735,7 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
    ```
    - `function` + nome + (params)
 
-- Criar uma **função <u>anônima</u>** e **atribuí-la a uma variável**:
+- Criar uma **função <u>anônima</u>** e **atribuí-la a uma variável**: <!-- {ul:.no-bullets} -->
   ```js
   let dizOla = function(nome) {
     console.log('olá ' + nome);
@@ -759,7 +745,6 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   - Funciona da mesma forma
 
 ---
-<!-- {"layout": "regular"} -->
 ## Passando **função como parâmetro**
 
 - ```js
@@ -787,7 +772,6 @@ let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Função vs Método
 
 Função
@@ -818,7 +802,7 @@ Método
   ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-comuns-de-strings-1"} -->
+<!-- {"hash": "metodos-comuns-de-strings-1"} -->
 ## **Métodos** comuns de **strings** (1/3)
 
 Toda string possui vários métodos diferentes que podemos invocar
@@ -840,7 +824,7 @@ Toda string possui vários métodos diferentes que podemos invocar
   ~ `'Doug'.toUpperCase() === 'DOUG'`
   
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-comuns-de-strings-2"} -->
+<!-- {"hash": "metodos-comuns-de-strings-2"} -->
 ## **Métodos** comuns de **strings** (2/3)
 
 `texto.trim()`
@@ -864,7 +848,7 @@ Toda string possui vários métodos diferentes que podemos invocar
   ~ `'Banana'.split('a') === ['B', 'n', 'n']`
 
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-comuns-de-strings-3"} -->
+<!-- {"hash": "metodos-comuns-de-strings-3"} -->
 ## **Métodos** comuns de **strings** (3/3)
 
 `t.startsWith(trech)`
@@ -925,7 +909,7 @@ Toda string possui vários métodos diferentes que podemos invocar
    ```
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code-more"} -->
+<!-- {"classes": "compact-code-more"} -->
 ## Exemplos que usam métodos de strings (2/2)
 
 - Pega uma frase e se a última letra de cada palavra (com mais do que 1 letra) terminar em 'a' ou 'o', substitui por 'x' <!-- {ul:.bulleted} -->
@@ -987,7 +971,7 @@ Toda string possui vários métodos diferentes que podemos invocar
   ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-comuns-de-vetores-1"} -->
+<!-- {"hash": "metodos-comuns-de-vetores-1"} -->
 ## **Métodos** comuns de **vetores** (1/3)
 
 - Assim como as strings, os vetores também possuem vários métodos úteis
@@ -1005,7 +989,7 @@ Toda string possui vários métodos diferentes que podemos invocar
       ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-comuns-de-vetores-2"} -->
+<!-- {"hash": "metodos-comuns-de-vetores-2"} -->
 ## **Métodos** comuns de **vetores** (2/3)
 
 `vetor.push(elem)`
@@ -1022,7 +1006,7 @@ Toda string possui vários métodos diferentes que podemos invocar
   ~ `[5,6,7].indexOf(2) === -1`
 
 ---
-<!-- {"layout": "regular", "slideHash": "metodos-comuns-de-vetores-3"} -->
+<!-- {"hash": "metodos-comuns-de-vetores-3"} -->
 ## **Métodos** comuns de **vetores** (3/3)
 
 `vetor.reverse()`
@@ -1082,7 +1066,7 @@ Toda string possui vários métodos diferentes que podemos invocar
    ```
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code-more"} -->
+<!-- {"classes": "compact-code-more"} -->
 ## Exemplos com métodos de vetores (2/2)
 
 - Função que imprime uma matriz n x n de números <!-- {ul:.full-width.bulleted} --> ([no jsfiddle](https://jsfiddle.net/fegemo/f0uc4qyx/)) <!-- {target="_blank"} -->
@@ -1137,8 +1121,65 @@ Toda string possui vários métodos diferentes que podemos invocar
   // | 1 2 |
   // | 3 4 |
   ```
+
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulo 2 do livro "JavaScript: The Good Parts"
 1. Mozilla Developer Network (MDN)
+
+---
+<!-- {"layout": "main-point", "state": "emphatic", "hash": "erros-comuns"} -->
+# Erros comuns durante a prática
+
+---
+## 01. Falhar no **arejamento** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-arejamento-a.png) <!-- {.full-width} --> <!-- {p:.bullet} -->
+![](../../images/erros-comuns-js0-arejamento-b.png) <!-- {.full-width} -->
+![](../../images/erros-comuns-js0-arejamento-c.png) <!-- {.full-width} -->
+![](../../images/erros-comuns-js0-arejamento-d.png) <!-- {.full-width} -->
+
+---
+## 02. Falhar na **indentação** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-indentacao-a.png) <!-- {.full-width} --> <!-- {p:.bullet} -->
+![](../../images/erros-comuns-js0-indentacao-b.png) <!-- {.full-width} -->
+
+---
+## 03. Nomes de variáveis **sem significado** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-nomes-sem-significado.png) <!-- {.full-width.bullet} -->
+
+---
+## 04. Nomes de variáveis **específicos demais** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-nome-especifico-demais.png) <!-- {.full-width.bullet} -->
+
+---
+## 05. Esquecer **`console.log`, `alert`** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-esquecer-printf.png) <!-- {.full-width.bullet} -->
+
+---
+## 06. Esquecer que **vetor começa de 0** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-indice-do-vetor.png) <!-- {.full-width.bullet} -->
+
+---
+## 07. Desnecessário **passar tamanho** do vetor <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-tamanho-vetor.png) <!-- {.full-width.bullet} -->
+
+---
+## 08. Deixar de **parametrizar** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-nao-parametrizar.png) <!-- {.full-width.bullet} -->
+
+---
+## 09. Esquecer de **retornar o resultado** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-js0-esquecer-de-retornar.png) <!-- {.full-width.bullet} -->
+
+

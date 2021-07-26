@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 1)
+# **JavaScript** parte 1
 ## Inclusão, Mais tipos de dados,<br>Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula (1/3)
 
 - JavaScript:
@@ -27,7 +26,7 @@
      ```
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code-more"} -->
+<!-- {"classes": "compact-code-more"} -->
 ## Na última aula (2/3)
 
 - Funções: <!-- {ul:.full-width} -->
@@ -82,7 +81,7 @@
     ```
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code-more"} -->
+<!-- {"classes": "compact-code-more"} -->
 ## Na última aula (3/3)
 
 - Vetores <!-- {ul:.bulleted.full-width} -->
@@ -134,7 +133,7 @@
   ```
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".html-tree { margin: 0 auto; } .html-tree img { max-height: 320px; }"} -->
+<!-- {"embeddedStyles": ".html-tree { margin: 0 auto; } .html-tree img { max-height: 320px; }"} -->
 # Em alguma aula anterior <!-- {style="padding-bottom: 0.2em"} -->
 ## O HTML visto como uma árvore
 
@@ -145,8 +144,8 @@
 ![Uma árvore com os elementos HTML](../../images/html-tree-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
 :::
 
-
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos...
 
 1. [Resolvendo Equações!](#resolvendo-equacoes)
@@ -155,7 +154,7 @@
 1. [Clicando em um botão](#clicando-em-um-botao)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "resolvendo-equacoes"} -->
+<!-- {"layout": "section-header", "hash": "resolvendo-equacoes"} -->
 # Resolvendo Equações!
 ## ~~para roubar na prova~~
 
@@ -164,14 +163,12 @@
   - Entrada de números (`<input>`)
   - Rótulos (`<label>...</label>`)
   - Botão (`<button>...</button>`)
-
 <!-- {ul^1:.content} -->
 
 ---
 <!-- {"backdrop": "matematica"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Atividade de hoje
 
 1. O objetivo é começar a usar JavaScript _nas páginas_
@@ -192,7 +189,7 @@
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/pastel-parte-1.mp4" controls id="input-video"></video>
 
 ---
-<!-- {"layout": "regular", "slideHash": "campo-de-entrada-numerica"} -->
+<!-- {"hash": "campo-de-entrada-numerica"} -->
 ## **Campo de entrada** de dados numéricos
 
 - Usuários podem digitar valores em elementos `<input type="...">`: <input>
@@ -210,11 +207,9 @@
       width: 40px;
     }
     ```
-
 <!-- {ul^0:.bulleted} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Entrada** de dados numéricos - **atributos** <!-- {.underline.upon-activation} -->
 
 - Existem alguns atributos do `<input type="number">`:
@@ -230,11 +225,9 @@
     ::: result
     <input type="number" step="0.2" style="width: 4em;"> \<input type="number" **step="0.2"**\>
     :::
-
 <!-- {ul^0:.bulleted} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Rótulo** para o campo de entrada
 
 - Além do campo de entrada de dados, é comum colocarmos um texto indicando
@@ -251,7 +244,7 @@
        ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "botoes-de-acao"} -->
+<!-- {"hash": "botoes-de-acao"} -->
 ## **Botões** de ação
 
 - É possível criar botões com o elemento `<button>texto</button>`, em que:
@@ -272,7 +265,7 @@
     ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "inserindo-javascript-na-pagina"} -->
+<!-- {"layout": "section-header", "hash": "inserindo-javascript-na-pagina"} -->
 # Inserindo JavaScript na página
 ## . <!-- {style="opacity: 0"} -->
 
@@ -280,11 +273,9 @@
   1. arquivo externo
   2. embutido
   3. _inline_
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Três formas de inclusão
 
 - O navegador executa o código assim que vê o elemento `<script></script>` e
@@ -303,7 +294,6 @@
      ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Inclusão em páginas
 
 2. Código embutido :thumbsdown:
@@ -324,7 +314,6 @@
 <!-- {ol:.bulleted} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Sumário** de inclusão de JavaScript
 
 | Código   | Quando executa?                                       | Reaproveitamento                   | Fica no cache? | Boa prática? |
@@ -336,7 +325,6 @@
 <!-- {table:.aero-rows} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Onde colocar** `<script src="..."></script>`?
 
 - Pode ser colocado em qualquer lugar da página
@@ -368,7 +356,7 @@
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/pastel-parte-2.mp4" controls id="inclusion-video"></video>
 
 ---
-<!-- {"layout": "section-header", "slideHash": "mais-tipos-de-dados"} -->
+<!-- {"layout": "section-header", "hash": "mais-tipos-de-dados"} -->
 # Mais tipos de dados
 ## Os primitivos e o complexo
 
@@ -384,7 +372,6 @@
 
 [symbol]: https://medium.com/trainingcenter/javascript-symbols-decifrando-o-mist%C3%A9rio-383e359e64e3
 ---
-<!-- {"layout": "regular"} -->
 ## O tipo `4. Null` <!-- {.tipo-js} -->
 
 - Tecnicamente um tipo, mas na prática contém apenas 1 valor: `null`
@@ -404,7 +391,7 @@
   É o tipo padrão de **variáveis que não foram associadas a nenhum valor** <!-- {li:.push-code-right} -->
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code"} -->
+<!-- {"classes": "compact-code"} -->
 ## O tipo `7. Object` <!-- {.tipo-js.tipo-object} -->
 
 - É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right.full-width} -->
@@ -434,7 +421,6 @@
     ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Objetos conhecidos
 
 - ::: did-you-know .push-right width: 250px;
@@ -462,7 +448,7 @@
 
 
 ---
-<!-- {"layout": "regular", "classes": "compact-code"} -->
+<!-- {"classes": "compact-code"} -->
 ## Criando um objeto <small>(2 formas)</small>
 
 1. Na **forma literal**: <!-- {ol:.bulleted-0} --> 
@@ -544,7 +530,6 @@ loja.vender(); // loja.dinheiro = 530
 
 
 ---
-<!-- {"layout": "regular"} -->
 ## Outros tipos, baseados em `Object` <!-- {.tipo-js.tipo-object} -->
 
 - Existem **outros tipos complexos**, que são **baseados em `Object`**: <!-- {.tipo-js.tipo-object} -->
@@ -566,18 +551,16 @@ loja.vender(); // loja.dinheiro = 530
     ~ (é possível criar novos tipos também)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "clicando-em-um-botao"} -->
+<!-- {"layout": "section-header", "hash": "clicando-em-um-botao"} -->
 # Clicando em um botão
 ## Dando comportamento à página
 
 - Conhecendo o DOM
 - Selecionando um elemento
 - Criando um evento de clique
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Nosso plano...
 
 - Para fazer algo acontecer quando um botão for pressionado, precisamos,
@@ -592,7 +575,7 @@ loja.vender(); // loja.dinheiro = 530
 [js0-funcoes-anonimas]: http://localhost:8081/classes/js0/#mais-sobre-funcoes-e-metodos-uteis
 
 ---
-<!-- {"layout": "regular", "slideHash": "conhecendo-o-dom"} -->
+<!-- {"hash": "conhecendo-o-dom"} -->
 # Conhecendo o DOM
 
 - O DOM é uma **visão dos elementos** HTML da página **como uma árvore**:
@@ -614,7 +597,6 @@ loja.vender(); // loja.dinheiro = 530
 *[DOM]: Document Object Model*
 
 ---
-<!-- {"layout": "regular"} -->
 ## O objeto **document**
 
 - O objeto `document` dá acesso ao **Document Object Model**, ou DOM
@@ -631,7 +613,7 @@ loja.vender(); // loja.dinheiro = 530
     1. Alterar seu estilo
 
 ---
-<!-- {"layout": "regular", "slideHash": "recuperando-elemento-dom"} -->
+<!-- {"hash": "recuperando-elemento-dom"} -->
 # Selecionando um elemento
 
 - A função `document.querySelector(seletor)` permite que, a partir de um código
@@ -647,7 +629,7 @@ loja.vender(); // loja.dinheiro = 530
     que retorna mais de um elemento, mas veremos ele depois
 
 ---
-<!-- {"layout": "regular", "slideHash": "evento-clique"} -->
+<!-- {"hash": "evento-clique"} -->
 # Criando um evento de clique
 
 - Para **executar alguma coisa quando um botão** (ou qualquer elemento, na verdade)
@@ -663,7 +645,6 @@ loja.vender(); // loja.dinheiro = 530
   - Chamamos essa função de **_callback_**
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo de _callback_
 
 - Uma _callback_ é só um nome especial para quando uma função passada
@@ -680,7 +661,6 @@ loja.vender(); // loja.dinheiro = 530
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Implementando a função **antes**
 
 - É possível implementar a função **antes da linha onde ela é atribuída ao
@@ -697,7 +677,7 @@ loja.vender(); // loja.dinheiro = 530
   - Isso costuma deixar o código mais legível e organizado :thumbsup:
 
 ---
-<!-- {"layout": "regular", "slideHash": "valor-do-input"} -->
+<!-- {"hash": "valor-do-input"} -->
 # Usando o valor de um `input`
 
 - Para **_pegar_ <!-- {.underline.upon-activation.delay-600} --> o valor** <!-- {ul:.bulleted} -->
@@ -720,7 +700,54 @@ loja.vender(); // loja.dinheiro = 530
 <video src="//fegemo.github.io/cefet-front-end-large-assets/videos/pastel-parte-3.mp4" controls id="writing-video"></video>
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulo 2 do livro "Javascript: The Good Parts"
 1. Mozilla Developer Network (MDN)
+
+---
+<!-- {"layout": "main-point", "state": "emphatic", "hash": "erros-comuns"} -->
+# Erros comuns durante a prática
+
+---
+## 01. Falhar na **indentação** e **arejamento** (1/2) <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-indentacao-b.png) <!-- {.full-width.dashed} --> <!-- {p:.bullet} -->
+![](../../images/erros-comuns-equacoes-arejamento.png) <!-- {.full-width.dashed} -->
+
+---
+## 01. Falhar na **indentação** e **arejamento** (2/2)
+
+![](../../images/erros-comuns-equacoes-indentacao-a.png) <!-- {.full-width.dashed} --><!-- {p:.bullet} -->
+![](../../images/erros-comuns-equacoes-indentacao-e-arejamento.png) <!-- {.full-width.dashed} -->
+
+---
+## 02. Código com **baixa legibilidade** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-baixa-legibilidade.png) <!-- {.full-width} --><!-- {p:.bullet} -->
+
+---
+## 03. Esquecer **`alert`** ou **`console.log`** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-esquecer-alert.png) <!-- {.full-width} --><!-- {p:.bullet} -->
+
+---
+## 04. Nome **genérico para arquivo** <!-- {h2:.bullet} -->
+
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-a.png) <!-- {.full-width.dashed} --><!-- {p:.bullet} -->
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-b.png) <!-- {.full-width.dashed} -->
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-c.png) <!-- {.full-width.dashed} -->
+![](../../images/erros-comuns-equacoes-nome-de-arquivo-d.png) <!-- {.full-width.dashed} -->
+
+---
+<!-- {"layout": "2-column-content-zigzag"} -->
+## 05. **Sufixo "El"** para certas variáveis <!-- {h2:.bullet} -->
+
+❌ <!-- {style="text-align: right; margin-right: 1em"} -->
+
+![](../../images/erros-comuns-equacoes-sufixo-el-incorreto.png) <!-- {.full-width} -->
+
+![](../../images/erros-comuns-equacoes-sufixo-el-correto.png) <!-- {.full-width} -->
+
+✅

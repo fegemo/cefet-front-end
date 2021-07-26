@@ -1,0 +1,34 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Laboratório de Programação Web",
+  "description": "Curso de Laboratório de Programação Web (HTML, CSS, JavaScript) do CEFET-MG.",
+  "courseCode": "1INF.016",
+  "numberOfCredits": 4,
+  "educationalLevel": "beginner",
+  "learningResourceType": "presentation",
+  "teaches": "Programação Web, HTML, CSS, JavaScript",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Flávio Coutinho",
+      "jobTitle": "Professor Efetivo do Ensino Básico, Técnico e Tecnológico",
+      "image": "https://fegemo.github.io/cefet-front-end/images/flavio-avatar.jpg"
+    },
+    {
+      "@type": "Person",
+      "name": "Daniel Hasan",
+      "jobTitle": "Professor Efetivo do Ensino Básico, Técnico e Tecnológico",
+      "image": "https://fegemo.github.io/cefet-front-end/images/hasan-avatar.jpg"
+    }
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "Centro Federal de Educação Tecnológica de Minas Gerais",
+    "sameAs": "https://cefetmg.br"
+  },
+  "inLanguage": "pt-BR",
+  "isAccessibleForFree": true,
+  "datePublished": "2017-01-02",
+  "dateModified": "<!-- @echo LAST_MODIFICATION -->"
+}

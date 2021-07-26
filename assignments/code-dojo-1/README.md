@@ -1,5 +1,5 @@
+<!-- {"layout": "centered"} -->
 # Coding Dojo
-
 
 ![Coding Dojo](../../images/coding-dojo.png)
 
@@ -43,6 +43,7 @@ Codificação **em grupo**, em que o aluno pode desempenhar um dos três papeis:
     - Conversa
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 # Coding Dojo
 
 

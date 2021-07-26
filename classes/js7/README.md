@@ -1,8 +1,9 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 7)
+# **JavaScript** parte 7
 ## Ajax e as Guerras Estelares :stars:
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [Requisições síncronas](#requisicoes-sincronas)
@@ -14,7 +15,7 @@
    - Usos típicos de AJAX
 
 ---
-<!-- { "layout": "section-header", "slideHash": "requisicoes-sincronas"} -->
+<!-- { "layout": "section-header", "hash": "requisicoes-sincronas"} -->
 # Requisições Síncronas
 ## Como funcionam as requisições
 
@@ -24,7 +25,7 @@
 - Síncrono _vs_ assíncrono <!-- {ul^1:.content} -->
 
 ---
-<!-- {"layout": "regular", "backdrop": "oldtimes"} -->
+<!-- {"embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/http-diagram.min.css"], "backdrop": "oldtimes"} -->
 ## Relembrando, o protocolo **HTTP**
 
 - É um **protocolo** na camada de aplicação
@@ -32,42 +33,44 @@
   > entidades se comunicam.
   - É a **"língua falada" pelo navegador e pelo servidor web**
 - Modelo requisição &rarr; resposta
-  ::: figure .figure-slides.no-margin
-  ![](../../images/http-diagram-informal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  ![](../../images/http-diagram-informal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  :::
 
----
-<!-- {"layout": "regular-block", "backdrop": "oldtimes"} -->
-## **Navegador requisita** algo e **Servidor responde**
+::: figure .http-diagram.flex-align-center.figure-slides.clean.no-margin
+![](../../images/http-diagram-informal.svg) <!-- {.step-1 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
 
-```http
-GET /index.html HTTP/1.1
-Host: www.twitter.com                         # exemplo: requisição para www.twitter.com
-```
-```http
-HTTP/1.1 200 OK                               # exemplo: resposta
-Date: Mon, 23 May 2005 22:38:34 GMT
-Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-Content-Type: text/html; charset=UTF-8
-Content-Length: 131
+![](../../images/http-diagram-informal.svg) <!-- {.step-2 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
 
-<!DOCTYPE html>
-<html>
-<head><title>Twitter</title></head>
-<body>
-  Olá mundo, este é um tweet.
-</body>
-</html>
-```
-
----
-::: figure .figure-slides.full-width-slides
-![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-3.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![Carregando uma página com um servidor vs sem](../../images/carregando-pagina-servidor-vs-local-4.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
+![](../../images/http-diagram-informal.svg) <!-- {.step-3 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
 :::
+
+---
+<!-- {"layout": "2-column-content", "embedSVG": "img[src$='.svg']", "backdrop": "oldtimes"} -->
+### **Navegador requisita** algo e **Servidor responde**
+
+- ![](../../images/http-diagram-informal.svg) <!-- {.full-width.centered.step-3} --> <!-- {ul:.http-diagram.no-bullets.no-padding.bullet} -->
+  Requisição:
+  ```http
+  GET /index.html HTTP/1.1
+  Host: www.twitter.com
+  ```
+
+1. Resposta: <!-- {ol:.bullet.no-bullets.no-padding.compact-code} -->
+   ```http
+   HTTP/1.1 200 OK
+   Date: Mon, 23 May 2005 22:38:34 GMT
+   Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+   Content-Type: text/html; charset=UTF-8
+   Content-Length: 131
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Twitter</title>
+   </head>
+   <body>
+     Olá mundo, este é um tweet.
+   </body>
+   </html>
+   ```
 
 ---
 <!-- {"layout": "2-column-content"} -->
@@ -79,7 +82,7 @@ Content-Length: 131
   resposta chega, uma função JavaScript é chamada
   - O usuário pode **continuar usando a página** enquanto a resposta chega
 
-::: figure .figure-slides.clean top: -3em;
+::: figure .figure-slides.clean.invert-colors-dark-mode top: -3em;
 ![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-01.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
 ![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-02.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
 ![Páginas dinâmicas](../../images/requisicoes-sincronas-assincronas-03.svg) <!-- {.bullet.figure-step.bullet-no-anim.full-width} -->
@@ -101,19 +104,19 @@ Content-Length: 131
 [fumaceiro]: https://fegemo.github.io/cefet-front-end-ajax
 
 ---
-<!-- {"layout": "section-header", "slideHash": "ajax"} -->
+<!-- {"layout": "section-header", "hash": "ajax"} -->
 # Ajax
 ## Requisições **assíncronas**
 
-![Foto do personagem Deadpool enfrentando um limpador multiuso AJAX](../../images/ajax-deadpool.jpg)
-- Exemplo com _vanilla_ JS
-- Exemplo com jQuery
-- Exemplo com fetch ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
+![Foto do personagem Deadpool enfrentando um limpador multiuso AJAX](../../images/ajax-deadpool.jpg) <!-- {.medium-width.centered.block} -->
 
-<!-- {.content style="max-width: 100%"} -->
+1. Exemplo antigão (`XMLHttpRequest`)
+1. Exemplo com jQuery
+1. Exemplo com fetch ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
+
+<!-- {ol:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Ajax
 
 - É a sigla para _Asynchronous JavaScript and XML_ <!-- {ul:.bullet} -->
@@ -124,7 +127,7 @@ Content-Length: 131
   servidor, que respondia no formato XML (em vez de HTML)
 - Hoje em dia, **responde-se com** qualquer objeto reconhecido pelo navegador
   (o mais comum é **JSON**)
-- Para criar uma requisição Ajax, usamos `window.XMLHttpRequest` (XHR) <!-- {li:.bullet} -->
+- Podemos ver as requisições Ajax (XHR) da página: <!-- {li:.bullet} -->
   ![](../../images/network-tab-filtering-xhr.png) <!-- {.centered} -->
 
 [ajax-article]: http://www.adaptivepath.org/ideas/ajax-new-approach-web-applications/
@@ -133,11 +136,10 @@ Content-Length: 131
 *[XHR]: XMLHttpRequest*
 
 ---
-<!-- {"layout": "regular", "slideHash": "ajax-vanilla-1"} -->
-## O **`XMLHttpRequest`**
+<!-- {"hash": "ajax-vanilla-1"} -->
+## (1) O **`XMLHttpRequest`** <small>(antigão)</small>
 
-- Cada requisição Ajax é um objeto `XMLHttpRequest`. Supondo o exemplo
-  do Twitter:
+- Cada requisição Ajax é um objeto `XMLHttpRequest`. Exemplo do Twitter:
   ```js
   let requisicao = new XMLHttpRequest();
   requisicao.onreadystatechange = callbackMaisTweets;
@@ -150,7 +152,7 @@ Content-Length: 131
 - [Referência](https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest) e [Tutorial](https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/Usando_XMLHttpRequest) na MDN
 
 ---
-<!-- {"layout": "centered", "slideHash": "ajax-vanilla-2"} -->
+<!-- {"layout": "centered-horizontal", "hash": "ajax-vanilla-2"} -->
 ```js
 function callbackMaisTweets() {
   if (requisicao.readyState === 4) {  // 4: DONE (resp. recebida)
@@ -170,7 +172,7 @@ function callbackMaisTweets() {
   - da requisição `XMLHttpRequest`
 
 ---
-<!-- {"layout": "centered", "state":"show-active-slide-and-previous"} -->
+<!-- {"layout": "centered", "state":"show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "310px", "--show-2-slides-z-distance": "-400px", "--show-2-slides-rotation": "10deg "}} -->
 
 - A resposta foi isto:
 ```json
@@ -189,7 +191,6 @@ function callbackMaisTweets() {
 ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Estados de um `XMLHttpRequest`
 
 **0	`UNSENT`**
@@ -215,7 +216,7 @@ function callbackMaisTweets() {
 <!-- {"layout": "2-column-content"} -->
 ## Exemplo do Fumaceiro <small>(versão [_vanilla js_][fumaceiro])</small>
 
-![](../../images/exemplo-ajax-fumaceiro.png) <!-- {style="max-width: 100%; border: 1px solid silver; box-shadow: 3px 3px 3px silver"} -->
+![](../../images/exemplo-ajax-fumaceiro.png) <!-- {.bordered.rounded style="max-width: 100%; box-shadow: 3px 3px 3px silver"} -->
 
 - Uma página de um jogo com **informações + avaliações**
 - Como nem todos usuários lêem avaliações, elas não são carregadas inicialmente
@@ -226,13 +227,14 @@ function callbackMaisTweets() {
 [fumaceiro]: https://fegemo.github.io/cefet-front-end-ajax/
 
 ---
+<!-- {"classes": "compact-code"} -->
 ```js
 // no clique, faz um Ajax para pegar o xcom-reviews.json
-showReviewsEl.addEventListener('click', function() {
+showReviewsEl.addEventListener('click', () => {
   let requisicao = new XMLHttpRequest();
   requisicao.open('GET', 'xcom-reviews.json');
   requisicao.responseType = 'json';
-  requisicao.onreadystatechange = function() {
+  requisicao.onreadystatechange = () => {
     // chegando a resposta, põe as avaliações na página
     if (requisicao.readyState === 4) {
       if (requisicao.status === 200) {
@@ -244,6 +246,7 @@ showReviewsEl.addEventListener('click', function() {
       }
     }
   }
+
   requisicao.send();
 });
 ```
@@ -271,8 +274,8 @@ showReviewsEl.addEventListener('click', function() {
 ```
 
 ---
-<!-- {"layout": "regular", "slideHash": "ajax-jquery"} -->
-## Ajax mais facinho **com jQuery**
+<!-- {"hash": "ajax-jquery"} -->
+## (2) Ajax mais facinho **com jQuery**
 
 - O jQuery possui uma abstração do objeto `XMLHttpRequest` para facilitar a
   realização de requisições Ajax. Exemplo:
@@ -293,15 +296,14 @@ showReviewsEl.addEventListener('click', function() {
 [jquery-ajax]: http://api.jquery.com/jquery.ajax/#jQuery-ajax-url-settings
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo do Fumaceiro <small>(versão [jQuery][fumaceiro-jquery])</small>
 
 ```js
-$('#show-reviews').click(function() {
+$('#show-reviews').click(() => {
   $.ajax({
     url: 'xcom-reviews.json',
     dataType: 'json',
-    success: function(resposta) {
+    success: resposta => {
       // a resposta é um objeto js que contém uma propriedade avaliacoes
       let avaliacoes = resposta.avaliacoes;
       // limpamos a <div id="reviews">...</div>
@@ -316,11 +318,27 @@ $('#show-reviews').click(function() {
 [fumaceiro-jquery]: https://fegemo.github.io/cefet-front-end-ajax/index-jquery.html
 
 ---
-<!-- {"layout": "regular"} -->
+## (3) Ajax usando **fetch** ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
+
+- Mais recentemente, foi introduzida nova forma: `fetch(...)` <!-- {ul:.full-width} -->
+- Ele envia uma requisição Ajax e retorna uma **Promessa**
+  > **Promessa**: algo que pode dar certo, ou errado.
+  > <cite>Coutinho</cite>
+- Formato:
+  ```js
+  fetch(url, opcoes)
+    .then(callbackSucesso)
+    .catch(callbackErro);
+  ```
+- Referência do [Fetch na MDN][fetch-mdn]
+
+[fetch-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+---
 ## Exemplo do Fumaceiro <small>(versão [fetch][fumaceiro-fetch])</small>
 
 ```js
-showReviewsEl.addEventListener('click', function() {
+showReviewsEl.addEventListener('click', () => {
   fetch('xcom-reviews.json')                        // retorna uma *promessa*
     .then(respostaBruta => respostaBruta.json())    // arrow function
     .then(resposta => {
@@ -337,20 +355,18 @@ showReviewsEl.addEventListener('click', function() {
 [fumaceiro-fetch]: https://fegemo.github.io/cefet-front-end-ajax/index-fetch.html
 
 ---
-<!-- {"layout": "section-header", "slideHash": "guerras-estelares"} -->
+<!-- {"layout": "section-header", "hash": "guerras-estelares"} -->
 # Guerras Estelares :stars:
 ## Intro nas estrelas
 
 - Usos comuns de Ajax
 - Atividade de hoje
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "starwars"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Usos comuns de Ajax
 
 - Pegar novas informações depois que a página carregou. Exemplos:
@@ -364,23 +380,23 @@ showReviewsEl.addEventListener('click', function() {
   - Adicionar produto ao carrinho
 - Pegar informações **de outros sites** (se eles permitirem)
   - Basta usar uma URL absoluta, por exemplo, colocando
-    [`https://swapi.co/api/films/1/`][swapi-example] como a URL
+    [`https://swapi.dev/api/films/1/`][swapi-example] como a URL
 
-[swapi-example]: https://swapi.co/api/films/1/
+[swapi-example]: https://swapi.dev/api/films/1/
 
 ---
-<!-- {"layout": "regular"} -->
 # Intro nas Estrelas
 
 - Vamos criar um letreiro Star Wars em JavaScript e CSS \o/
 - Você deve escrever código JavaScript para fazer uma chamada Ajax para
   uma API pública com informações sobre Star Wars
-  - Disponível em https://swapi.co/
+  - Disponível em https://swapi.dev/
 - Mais instruções no Moodle ou [na atividade][guerras-estelares]
 
 [guerras-estelares]: https://github.com/fegemo/cefet-front-end-starwars
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Mozilla Developer Network (MDN)
@@ -389,7 +405,7 @@ showReviewsEl.addEventListener('click', function() {
 [artigo-ajax]: http://adaptivepath.org/ideas/ajax-new-approach-web-applications/
 
 ---
-<!-- {"slideHash": "setup-local-server"} -->
+<!-- {"hash": "setup-local-server"} -->
 ## Erro ao fazer o AJAX (slide oculto :P)
 
 - Os navegadores têm uma política de permissões diferente para quando

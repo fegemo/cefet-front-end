@@ -3,35 +3,35 @@
 ## <span class="subtitle">Plano de Ensino<br>por **Flávio Coutinho** e **Daniel Hasan**</span>
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "centered-horizontal"} -->
 ### TP1: O Assunto X
 
 ::: gallery .fish-eye
 - [![](images/trabalhos/2017/little-cout.png)](https://brandaogabriel7.github.io/web-com-little-cout/)
 - [![](images/trabalhos/2017/vulcanismo.png)](https://eumsmo.github.io/geo-chop-suey/)
-- [![](images/trabalhos/2017/arte.png)](https://sirpedr.github.io/)
+- [![](images/trabalhos/2017/arte.png)](https://sirpedr.github.io/Arte)
 - [![](images/trabalhos/2017/biomedicina.png)](https://biomedicina.neocities.org)
-- [![](images/trabalhos/2017/teorias-atomicas.png)](https://quimicaatomica.comeze.com)
+- <a href="https://marcosazevedo2112.github.io/NeedForSpace/"><video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/need-for-space.mp4" autoplay muted loop="0" poster="images/trabalhos/2020/need-for-space.webp"></video></a>
 - [![](images/trabalhos/2017/quimica.png)](https://quimica.neocities.org)
-- [![](images/trabalhos/2017/medieval.png)](https://webhistoriamedieval.000webhostapp.com/)
+- [![](images/trabalhos/2020/holanda-invaders.webp)](https://o-g7.github.io/holanda-invaders/index.html)
 - [![](images/trabalhos/2018/blogueirinha.png)](https://blogueirinhas.neocities.org/)
-- [![](images/trabalhos/2018/jornada-do-conhecimento.png)](https://jornadadoconhecimento.000webhostapp.com/)
+- <a href="https://arthurg12.github.io/trabalho/"><video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/weboretum.mp4" autoplay muted loop="0" poster="images/trabalhos/2020/weboretum.webp"></video></a>
 :::
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "centered-horizontal"} -->
 ### TP2: Aplicação Web
 
 ::: gallery .fish-eye
-- [![](images/trabalhos/2017/friday.png)](https://lord4of4games.github.io/)
+- [![](images/trabalhos/2020/desenho-sem-fio.jpg)](https://serene-forest-07071.herokuapp.com/)
+- [![](images/trabalhos/2020/blackhole-clicker.jpg)](https://o-g7.github.io/blackhole-clicker/)
+- [![](images/trabalhos/2020/vulcaniando.webp)](https://evelynlaura.github.io/vulcaniando-x2/passaporte/passaporte.html)
+- [![](images/trabalhos/2020/pizza-clicker.jpg)](https://poipoipepe.github.io/Clicker-Pizza/)
+- [![](images/trabalhos/2018/site-dev-tycoon.jpg)](https://sitedevtycoon.neocities.org/)
+- [![](images/trabalhos/2018/disfarca-bobos.jpg)](https://disfarca-bobos.neocities.org)
 - [![](images/trabalhos/2017/life.png)](https://daniekans.github.io/apl)
-- [![](images/trabalhos/2017/classrun.png)](https://classrun.000webhostapp.com)
-- [![](images/trabalhos/2017/sonorize.png)](https://sonorize.github.io)
 - [![](images/trabalhos/2017/symphony.png)](https://sirpedr.github.io/SymphonyOfBlades)
 - [![](images/trabalhos/2017/thecircus.png)](https://sirpedr.github.io/TheCircus)
-- [![](images/trabalhos/2018/site-dev-tycoon.png)](https://sitedevtycoon.neocities.org/)
-- [![](images/trabalhos/2018/protect-the-planet.png)](https://jjoaovviniciuss.github.io/)
-- [![](images/trabalhos/2018/disfarca-bobos.png)](https://disfarca-bobos.neocities.org)
 :::
 
 ---
@@ -55,8 +55,8 @@
 <!-- {dl:.content} -->
 
 ---
-<!-- {"slideHash": "slides", "layout": "regular"} -->
-# Aulas
+<!-- {"hash": "slides"} -->
+# Aulas <small>(1/4)</small>
 
 - [Introdução à Programação Web](classes/intro/)
 - [HTML parte 1](classes/html1/) - Plantas Carnívoras, Ingredientes do HTML
@@ -70,8 +70,7 @@
   Ferramentas e Ninjas :dash:
 
 ---
-<!-- {"layout": "regular"} -->
-# Aulas (página 2)
+# Aulas <small>(2/4)</small>
 
 - [HTML parte 4](classes/html4/) - Div/Span, Box Model, Float e Desafios
 - [CSS parte 3](classes/css3/) - Layout, Fontes, Multimídia e Unicórnios 🦄
@@ -86,8 +85,7 @@
   Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
 
 ---
-<!-- {"layout": "regular"} -->
-# Aulas (página 3)
+# Aulas <small>(3/4)</small>
 
 - [JavaScript parte 2](classes/js2/) - _Template_ strings, Função seta, Alterando o DOM e Exploração
   Espacial :alien:
@@ -103,8 +101,7 @@
   Tarefas :notebook: x2
 
 ---
-<!-- {"layout": "regular"} -->
-# Aulas (página 4)
+# Aulas <small>(4/4)</small>
 
 - [JavaScript parte 6](classes/js6/) - Bibliotecas, jQuery e o PhotoSnap x2
 - [CSS parte 7](classes/css7/) - _Responsive Web Design_
@@ -114,12 +111,7 @@
 
 
 ---
-<!--
-{
-  "slideHash": "ementa",
-  "layout": "section-header"
-}
--->
+<!-- { "hash": "ementa", "layout": "section-header" } -->
 # Ementa
 
 ## Objetivos
@@ -133,21 +125,17 @@
 <!-- {ol:.content} -->
 
 ---
-<!--
-{
-  "slideHash": "bibliografia",
-  "layout": "section-header"
-}
--->
+<!-- { "hash": "bibliografia", "layout": "section-header" } -->
 # Bibliografia
 
 ## Os textos e materiais que vamos usar
 
-Veja a bibliografia básica e a complementar.
+- Veja a bibliografia básica e a complementar.
 
-<!-- {p:.content} -->
+<!-- {ul:.content.no-bullets.no-padding} -->
+
 ---
-<!-- { "styles": ["styles/classes/books.min.css"] } -->
+<!-- { "layout": "centered", "styles": ["styles/classes/books.min.css"] } -->
 ## **Livro texto** sobre HTML e CSS
 
 ::: figure .book
@@ -178,6 +166,7 @@ Veja a bibliografia básica e a complementar.
    ~ O'Reilly Media, 2015 (tradução)
 
 ---
+<!-- {"layout": "centered"} -->
 ## **Livro texto** sobre JavaScript
 
 ::: figure .book
@@ -209,6 +198,7 @@ Veja a bibliografia básica e a complementar.
 
 
 ---
+<!-- {"layout": "centered"} -->
 ## **Livro texto** sobre APIs do HTML5
 
 ::: figure .book
@@ -239,9 +229,11 @@ Veja a bibliografia básica e a complementar.
   ~ O'Reilly Media, 2014 (tradução)
 
 ---
+<!-- {"layout": "centered", "state": "emphatic"} -->
 # Bibliografia Complementar
 
 ---
+<!-- {"layout": "centered"} -->
 ## Mergulhe no HTML5
 
 <div class="book-cover-container">
@@ -252,6 +244,7 @@ Veja a bibliografia básica e a complementar.
 - [Online](http://diveintohtml5.com.br/), gratuito
 
 ---
+<!-- {"layout": "centered"} -->
 ## JavaScript: The Good Parts
 
 <div class="book-cover-container">
@@ -264,17 +257,11 @@ Veja a bibliografia básica e a complementar.
 - **Editora** O'Reilly Media, 2008
 
 ---
-<!--
-{
-  "slideHash": "avaliacao",
-  "layout": "section-header"
-}
--->
+<!-- { "hash": "avaliacao", "layout": "section-header" } -->
 # Avaliação
 
 ## Distribuição de pontos (aproximada) por bimestre
 
 - ~08 Atividades práticas: **80%** da nota
 - 01 Prova: **20%** pontos
-
 <!-- {ul:.content} -->

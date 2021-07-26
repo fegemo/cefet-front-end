@@ -1,9 +1,8 @@
 <!-- {"layout": "title"} -->
-# JavaScript (parte 4)
-## Usando objetos, Criando elementos HTML e a Lista de Tarefas :notebook:
+# **JavaScript** parte 4
+## Usando objetos, Criando elementos HTML<br>e a Lista de Tarefas :notebook:
 
 ---
-<!-- {"layout": "regular"} -->
 # Na última aula... (1/3)
 ## Transformações <!-- {h1:style="padding-bottom: 0.15em"} -->
 
@@ -24,26 +23,24 @@
   - `rotateY(ang)`<!-- {ul:.multi-column-list-4}-->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "2-column-content"} -->
 # Na última aula... (2/3) <!-- {h1:style="padding-bottom: 0.15em;"} -->
-## Transição <!-- {h1:style="padding-bottom: 0"} -->
 
-- Utilizando transição, perspectiva e mudando a origem da transformação (`transform-origin`):
+- Usando transição, perspectiva e mudando a origem da transformação (`transform-origin`): <!-- {ul:.span-columns} -->
 
-  <iframe width="470" height="240" src="//jsfiddle.net/fegemo/2bcLx47t/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
+```css
+.porta {
+  transform-origin: left center;
+  transition: transform ease 600ms;
+}
+.porta:hover {
+  transform: rotateY(-95deg);
+}
+```
 
-  ```css
-  .porta {
-    transform-origin: left center;
-    transition: transform ease 600ms;
-  }
-  .porta:hover {
-    transform: rotateY(-95deg);
-  }
-  ```
+<iframe width="470" height="240" src="//jsfiddle.net/fegemo/2bcLx47t/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
 
 ---
-<!-- {"layout": "regular-block"} -->
 # Na última aula... (3/3) <!-- {h1:style="padding-bottom: 0.15em; margin-bottom: 0;"} -->
 ## Animação <!-- {h1:style="padding-bottom: 0.15em"} -->
 
@@ -82,6 +79,7 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
  </div>
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro
 
 1. [Usando objetos em JavaScript](#usando-objetos-em-javascript)
@@ -91,7 +89,7 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
    - Exemplo 2: [Agenda telefônica](#agenda-telefonica)
 
 ---
-<!-- { "layout": "section-header", "slideHash": "usando-objetos-em-javascript"} -->
+<!-- { "layout": "section-header", "hash": "usando-objetos-em-javascript"} -->
 # Usando objetos em JavaScript
 ## Saquinhos de propriedades
 
@@ -102,7 +100,7 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
 - Quando usar objetos <!-- {ul^1:.content} -->
 
 ---
-<!-- {"backdrop": "oldtimes", "layout": "regular"} -->
+<!-- {"backdrop": "oldtimes"} -->
 ## Conforme vimos: O tipo **_Object_**
 
 - É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right} -->
@@ -123,7 +121,7 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
 - Novas propriedades podem ser atribuídas mesmo após sua criação
 
 ---
-<!-- {"backdrop": "oldtimes", "layout": "regular"} -->
+<!-- {"backdrop": "oldtimes"} -->
 ## Conforme vimos: Instanciando um _Object_
 
 - Na forma literal:
@@ -140,7 +138,6 @@ Especificada no CSS3, `animation` e `@keyframes` possibilitam o uso de
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Instanciando um _object_ **usando `new`**
 
 - Além da forma literal, podemos criar objetos vazios usando a palavra `new`:
@@ -182,11 +179,11 @@ let voo = {
   - `decolagem` e `chegada` são objetos por si mesmos
 
 ---
-<!-- {"layout": "2-column-content-30-70", "slideHash": "vetores-de-objeto"} -->
+<!-- {"layout": "2-column-content", "hash": "vetores-de-objeto", "slideStyles": {"grid-template-columns": ".3fr .7fr"}} -->
 ## Vetores de Objetos <!-- {.compact-code} -->
 
 ```js  
-let jogadores = [
+let jogadores = [      
   {
     nome: 'Yoda',
     pontos: 1420
@@ -200,6 +197,7 @@ let jogadores = [
     pontos: 5600
   }
 ];
+
 ```
 - Como qualquer outro tipo, podemos fazer um vetor de _Objects_:
 - Posteriormente, **podemos percorrer o vetor**:
@@ -214,14 +212,14 @@ let jogadores = [
     sem problemas!
 
 ---
-<!-- {"layout": "2-column-content-40-60", "slideHash": "passando-vetores-como-argumentos"} -->
-## Passando objetos como argumentos <!-- {.compact-code} -->
+<!-- {"layout": "2-column-content", "hash": "passando-vetores-como-argumentos", "slideStyles": {"grid-template-columns": ".6fr .4fr"}, "classes": "compact-code-more"} -->
+## Passando objetos como argumentos
 
 - Podemos passar objetos como **argumentos para funções**
 - A função é declarada como **recebendo 1 parâmetro** :arrow_lower_right:
   - Não definimos o tipo do parâmetro!
 - Chamamos ela passando um **objeto como argumento** :arrow_lower_right:
-- Para um **vetor** percorremo-lo chamando a função para o
+- Para um **vetor** percorremos chamando a função para o
   i-ésimo item :arrow_lower_right: <!-- {ul^1:.bulleted} -->
 
 ```js
@@ -249,8 +247,6 @@ for (let i = 0; i < jogadores.length; i++) {
 // equivalente, porém super-mega-ultra
 // ELEGANTE, usando vetor.forEach:
 jogadores.forEach(passouDeFase);  // 🌟🌟🌟
-
-
 ```
 
 ---
@@ -287,7 +283,7 @@ function incluiNaBiblioteca(livro) {
 ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "criando-elementos-html-dinamicamente"} -->
+<!-- {"layout": "section-header", "hash": "criando-elementos-html-dinamicamente"} -->
 # **Criando Elementos** HTML Dinamicamente <!-- {h1:style="padding-top: 0"} -->
 ## Criando e removendo elementos na página
 
@@ -303,7 +299,6 @@ function incluiNaBiblioteca(livro) {
   - **remover elementos**: `removeChild`<!-- {ul^3:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Criando elementos dinamicamente
 
 - É possível criar elementos dinamicamente, de duas formas:
@@ -322,10 +317,9 @@ function incluiNaBiblioteca(livro) {
      ```
 
 ---
-<!-- {"layout": "regular-block"} -->
 # Instanciação de elementos HTML
 
-- A função **document.createElement** cria um elemento HTML
+- A função **document.createElement** cria um elemento HTML <!-- {ul:.compact-code.bulleted-0} -->
   - Devemos especificar a _tag_ do elemento que iremos criar
 - Exemplo - criação de uma imagem:
   ```js
@@ -343,7 +337,6 @@ function incluiNaBiblioteca(livro) {
   o adicionou**</u> na árvore
 
 ---
-<!-- {"layout": "regular"} -->
 ## Inserção do elemento na árvore DOM
 
 - Para vincularmos um elemento criado, precisamos conhecer quem será seu
@@ -361,48 +354,45 @@ containerEl.appendChild(novaOvelhaEl);
 ```
 
 ---
-<!-- {"layout": "regular-block", "embeddedStyles": ".create-element img { width: 72%; }"} -->
 ## Vinculação na árvore DOM com **(1) `appendChild`**
 
-::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+::: figure .figure-slides.clean.flex-align-center.medium-width.invert-colors-dark-mode
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-1.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-2.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-3.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-5.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
-<!-- {"layout": "regular-block"} -->
 ## Vinculação na árvore DOM com **(2) `insertBefore`**
 
-::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+::: figure .figure-slides.clean.flex-align-center.medium-width.invert-colors-dark-mode
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-7.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
-<!-- {"layout": "regular-block"} -->
 ## Vinculação na árvore DOM com **(3) `replaceChild`**
 
-::: figure .figure-slides.create-element.clean
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
-![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)<!-- {.medium-width.bullet.figure-step.bullet-no-anim} -->
+::: figure .figure-slides.clean.flex-align-center.medium-width.invert-colors-dark-mode
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-4.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-6.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
+![Exemplo de vinculação de elemento na árvore DOM](../../images/create-element-8.png)<!-- {.full-width.bullet.figure-step.bullet-no-anim} -->
 :::
 
 ---
 ## Resumindo: `appendChild`, `insertBefore` e `replaceChild`
 
 ![Uma árvore com os elementos HTML](../../images/create-element-resumo.png)
-<!-- {.medium-width.centered} -->
+<!-- {p:.medium-width.centered} -->
+<!-- {.full-width} -->
 
 ---
-<!-- {"layout": "regular-block"} -->
 ## **Inserindo texto** nos elementos
 
-- Podemos colocar texto nos elementos de 2 formas:
+- Podemos colocar texto nos elementos de 2 formas: <!-- {ul:.compact-code} -->
   1. Usando `document.createTextNode('texto aqui')`:
      ```js
      let bodyEl = document.querySelector('body');
@@ -420,10 +410,10 @@ containerEl.appendChild(novaOvelhaEl);
      ```
 
 ---
-<!-- {"layout": "regular-block", "slideHash": "remocao-de-elementos"} -->
+<!-- { "hash": "remocao-de-elementos"} -->
 # Remoção de Elementos
 
-- Usamos `containerEl.removeChild` ou, para remover todos, `innerHTML`:
+- Usamos `containerEl.removeChild(el)` ou, para remover todos, `innerHTML`:  <!-- {ul:.compact-code} -->
   ```html
   <main>
     <img id="urso" src="img/urso.png">
@@ -439,7 +429,7 @@ containerEl.appendChild(novaOvelhaEl);
   ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "lista-de-tarefas"} -->
+<!-- {"layout": "section-header", "hash": "lista-de-tarefas"} -->
 # Lista de Tarefas :notebook:
 ## Saiba o que procrastinar a seguir
 
@@ -448,14 +438,12 @@ containerEl.appendChild(novaOvelhaEl);
   - Exemplo: albums de música
   - Exercício 2
   - Exemplo: lista telefônica
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "lista-de-tarefas"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Lista de Tarefas :notebook:
 
 - Crie um sisteminha de gerenciamento de tarefas :notebook:
@@ -468,7 +456,6 @@ containerEl.appendChild(novaOvelhaEl);
 [todos]: https://github.com/fegemo/cefet-front-end-todo/archive/master.zip
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exercício 1
 
 - ![](../../images/cefet-front-end-todo-tarefas-ja-existentes.png) <!-- {.push-right} -->
@@ -480,10 +467,10 @@ containerEl.appendChild(novaOvelhaEl);
   tarefa na página
 
 ---
-<!-- { "slideHash": "albums-de-musica"} -->
+<!-- { "hash": "albums-de-musica"} -->
 ## Exemplo: Albums de música
 
-<iframe width="700" height="450" src="//jsfiddle.net/fegemo/s1p824jd/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="550" src="//jsfiddle.net/fegemo/s1p824jd/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded"></iframe>
 
 ---
 ## Exercício 2
@@ -501,7 +488,7 @@ containerEl.appendChild(novaOvelhaEl);
            chamando `campoDeTextoEl.focus()`
 
 ---
-<!-- { "slideHash": "agenda-telefonica"} -->
+<!-- { "hash": "agenda-telefonica"} -->
 ## Exemplo: Agenda telefônica
 
-<iframe width="700" height="450" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="550" src="//jsfiddle.net/fegemo/zrmpjaLg/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded"></iframe>

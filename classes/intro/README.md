@@ -3,6 +3,7 @@
 ## História e conceitos básicos
 
 ---
+<!-- {"layout": "centered"} -->
 # Roteiro
 
 1. [Web == Internet?](#web-igual-internet)
@@ -11,17 +12,16 @@
 1. [Minha primeira página web](#minha-primeira-pagina-web)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "web-igual-internet"} -->
+<!-- {"layout": "section-header", "hash": "web-igual-internet"} -->
 # Web == Internet?
 ## A Web é a mesma coisa que a Internet?
 
 - Personagens da história
 - Surgimento da Internet
 - Internet pré-web
-
 <!-- {ul:.content} -->
+
 ---
-<!-- {"layout": "regular"} -->
 # Fatos importantes
 
 Surgimento:
@@ -44,7 +44,6 @@ Dúvidas:
   ~ (b) Como surgiu a Internet?
 
 ---
-<!-- {"layout": "regular"} -->
 ## Linha do Tempo (1/2)
 
 1969
@@ -71,11 +70,10 @@ Dúvidas:
 ::: figure .embedded-caption
 <figcaption class="caption-bottom centered">A Internet em 1986</figcaption>
 
-![Diagrama lógico da ARPANET em 1986](../../images/arpanet-1986.png)
+![Diagrama lógico da ARPANET em 1986](../../images/arpanet-1986.png) <!-- {.slide-contain} -->
 :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## Linha do Tempo (2/2)
 
 1988 - 1989
@@ -92,7 +90,7 @@ Dúvidas:
     geral
 
 ---
-<!-- {"layout": "main-point", "state": "emphatic", "slideHash": "internet-pre-web"} -->
+<!-- {"layout": "main-point", "state": "emphatic", "hash": "internet-pre-web"} -->
 # Dúvida...
 ## Mas se a Web surgiu apenas em 1989, o que era a Internet antes dela?
 
@@ -109,39 +107,43 @@ Dúvidas:
 - Gopher (1991)
 
 ---
+<!-- {"layout": "centered"} -->
 ::: figure
 ![Tela do cliente de E-mail ELM](../../images/email-elm.png)
 <figcaption>Cliente de E-mail ELM (1986)</figcaption>
 :::
 
 ---
+<!-- {"layout": "centered"} -->
 ::: figure
 ![Tela do cliente de E-mail Pine](../../images/email-pine.png)
 <figcaption>Cliente de E-mail Pine (1989)</figcaption>
 :::
 
 ---
+<!-- {"layout": "centered"} -->
 ::: figure
 ![Tela do BBS Koala Country](../../images/bbs-koala-country.jpg)
 <figcaption>BBS Koala Country (1989)</figcaption>
 :::
 
 ---
-::: figure . height: calc(90% - 3em)
+<!-- {"layout": "centered"} -->
+::: figure
 <figcaption>Usenet GNUs</figcaption>
 
-![Tela do Usenet GNUs](../../images/usenet-gnus.png)
+![Tela do Usenet GNUs](../../images/usenet-gnus.png) <!-- {style="height: 500px"} -->
 :::
 
 ---
-::: figure . height: calc(90% - 3em)
+<!-- {"layout": "centered"} -->
+::: figure
 <figcaption>Gopher de Jospeh Maistre</figcaption>
 
-![Tela do gopher de Jospeh Maistre](../../images/gopher-jospeh-maistre.png)
+![Tela do gopher de Jospeh Maistre](../../images/gopher-jospeh-maistre.png) <!-- {style="height: 500px"} -->
 :::
 
 ---
-<!-- {"layout": "regular"} -->
 ## A era Pré-web
 
 - O que mais se aproximava de **troca organizada de documentos** era o
@@ -153,17 +155,15 @@ Dúvidas:
   informação em "formato de teia"
 
 ---
-<!-- {"layout": "section-header", "slideHash": "o-que-e-a-web"} -->
+<!-- {"layout": "section-header", "hash": "o-que-e-a-web"} -->
 # O que é a Web
 ## Definição e Composição
 
 - Definição de Web
 - Linguagens da Web
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Definição **(~~in~~formal)** de Web
 
 - **World Wide Web**, ou WWW, traduz em "teia mundial"
@@ -184,7 +184,6 @@ Dúvidas:
 <!-- {dl:.bulleted} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Definição **(formal)** de Web
 
 Segundo Andrew Tanembaum (autor de vários livros de Computação):
@@ -206,16 +205,15 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 <!-- {dl:.width-40} -->
 
 ---
-<!-- { "layout": "2-column-highlight-and-list" , "slideHash": "o-que-compoe-web"} -->
-
+<!-- { "layout": "2-column-highlight-and-content" , "hash": "o-que-compoe-web"} -->
 ## O que **compõe** uma página web?
 
-<figure style="height: 80%">
-  <figcaption><a href="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html"><code>racas-raras.html</code></a></figcaption>
-  <iframe src="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html" height="90%" width="100%">
-    ![Tela da página sobre raças de ovelhas](../../images/cefet-web-ovelhas.png)
-  </iframe>
-</figure>
+::: figure . height: 90%
+<figcaption><a href="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html" target="_blank"><code>racas-raras.html</code></a></figcaption>
+<iframe src="https://fegemo.github.io/cefet-web-ovelhas/racas-raras.html" height="90%" width="100%">
+  ![Tela da página sobre raças de ovelhas](../../images/cefet-web-ovelhas.png)
+</iframe>
+:::
 
 - Uma página web é formada por **arquivos**:
   - **01** arquivo no formato HTML (*e.g.*, `racas-raras.html`)
@@ -228,11 +226,7 @@ Segundo Andrew Tanembaum (autor de vários livros de Computação):
 *[CSS]: Cascading Stylesheets*
 
 ---
-<!-- {
-  "layout": "3-column-element-with-titles-expansible",
-  "preventSelection": "code"
-} -->
-
+<!-- {"layout": "3-column-element-with-titles-expansible","preventSelection": "code"} -->
 ## ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} --> `racas-raras.`**`html`**
 
 ```html
@@ -589,7 +583,7 @@ ovelha.inicializa();
 
 ---
 <!-- {
-  "layout": "2-column-highlight-and-list",
+  "layout": "2-column-highlight-and-content",
   "embeddedStyles": ".titulo-raras-ovelhas { color: purple; font-family: 'Comic Sans', cursive; font-weight: normal; border-bottom: 2px solid currentColor; }"
 } -->
 ## A página das **Raras Ovelhas** <!-- {.titulo-raras-ovelhas} -->
@@ -608,7 +602,7 @@ ovelha.inicializa();
     ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "as-proezas-de-tim"} -->
+<!-- {"layout": "section-header", "hash": "as-proezas-de-tim"} -->
 # Como surgiu a Web
 ## O que levou ao seu surgimento
 
@@ -618,11 +612,9 @@ ovelha.inicializa();
   - O navegador
   - O servidor web
   - O protocolo HTTP
-
 <!-- {ul^1:.content} -->
 
 ---
-<!-- { "layout": "regular"} -->
 ## Tim, o Coração Valente
 
 - ::: figure .floating-portrait-container.push-right
@@ -642,7 +634,6 @@ ovelha.inicializa();
 *[CERN]: Conseil Européen pour la Recherche Nucléaire*
 
 ---
-<!-- {"layout": "regular"} -->
 ## As 5 Façanhas de Tim
 
 - Ao final de 1990, Tim (:heart:) havia escrito **os 5 componentes básicos
@@ -671,7 +662,6 @@ de forma hierárquica**. E quero que eles possam conter imagens, tabelas, títul
 e outras coisas legais.
 
 ---
-<!-- {"layout": "regular"} -->
 ## HyperText Markup Language (HTML)
 
 - É um _formato de arquivo_ (`.html`) em texto simples (*plain-text*) em que
@@ -688,7 +678,6 @@ e outras coisas legais.
       ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Um **arquivo `html`** completo
 
 - `pagina-singela.html`:
@@ -705,7 +694,6 @@ e outras coisas legais.
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## **Evolução** do HTML e outras **alternativas**
 
 Versões
@@ -713,7 +701,7 @@ Versões
   ~ 1995: HTML 2.0
   ~ 1997: HTML 3.2
   ~ 1997: HTML 4.0
-  ~ 2008 - 2014: **HTML 5** ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
+  ~ 2008 - hoje: **HTML 5** ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
 
 Alternativas
   ~ 2000: XHTML 1.0 ![](../../images/seta-meh.png) <!-- {.on-line.bouncing-left.delay-1} -->
@@ -729,9 +717,9 @@ que seja capaz de renderizar** seu conteúdo e permitir a **navegação** de um
 arquivo html para outro.
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
 ![Foto do navegador WorldWideWeb](../../images/browser-www.jpg)
-<!-- {img.full-width} -->
-<!-- {p:.contain} -->
+<!-- {.slide-contain.centered.block} -->
 
 ---
 <!-- {"layout": "main-point", "state": "emphatic"} -->
@@ -743,7 +731,6 @@ navegador. Mas quero poder acessar **arquivos de qualquer um que se disponha a
 deixar o computador ligado**, em qualquer parte do mundo.
 
 ---
-<!-- {"layout": "regular"} -->
 ## Servidores Web
 
 - É o **programa que executa** em um computador **24/7** e _"conversa" com os
@@ -772,7 +759,7 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
 **conversar**?
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/http-diagram.min.css"]} -->
 ## **HTTP**
 
 - É um **protocolo** na camada de aplicação
@@ -780,36 +767,44 @@ solicitado não exista? **Em que "língua"** que o servidor web e o navegador v�
   > entidades se comunicam.
   - É a **"língua falada" pelo navegador e pelo servidor web**
 - Modelo requisição &rarr; resposta
-  ::: figure .figure-slides.no-margin
-  ![](../../images/http-diagram-informal.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  ![](../../images/http-diagram-informal-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-  :::
+
+::: figure .http-diagram.flex-align-center.figure-slides.clean.no-margin.invert-colors-dark-mode
+![](../../images/http-diagram-informal.svg) <!-- {.step-1 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![](../../images/http-diagram-informal.svg) <!-- {.step-2 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+
+![](../../images/http-diagram-informal.svg) <!-- {.step-3 style="height: 280px"} --> <!-- {p:.bullet.figure-step.bullet-no-anim} -->
+:::
 
 ---
+<!-- {"layout": "2-column-content", "embedSVG": "img[src$='.svg']"} -->
 ### **Navegador requisita** algo e **Servidor responde**
 
-```http
-GET /index.html HTTP/1.1
-Host: www.twitter.com
-```
-![](../../images/http-diagram-informal-2.png) <!-- {.three-quarter-width.centered} --> <!-- {p:.no-margin} -->
-```http
-HTTP/1.1 200 OK
-Date: Mon, 23 May 2005 22:38:34 GMT
-Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-Content-Type: text/html; charset=UTF-8
-Content-Length: 131
+- ![](../../images/http-diagram-informal.svg) <!-- {.full-width.centered.step-3.invert-colors-dark-mode} --> <!-- {ul:.http-diagram.no-bullets.no-padding.bullet} -->
+  Requisição:
+  ```http
+  GET /index.html HTTP/1.1
+  Host: www.twitter.com
+  ```
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Twitter</title>
-</head>
-<body>
-  Olá mundo, este é um tweet.
-</body>
-</html>
-```
+1. Resposta: <!-- {ol:.bullet.no-bullets.no-padding.compact-code} -->
+   ```http
+   HTTP/1.1 200 OK
+   Date: Mon, 23 May 2005 22:38:34 GMT
+   Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+   Content-Type: text/html; charset=UTF-8
+   Content-Length: 131
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Twitter</title>
+   </head>
+   <body>
+     Olá mundo, este é um tweet.
+   </body>
+   </html>
+   ```
 
 ---
 ## HTTP
@@ -817,20 +812,21 @@ Content-Length: 131
 - Versões
   - 1991: v0.9
   - 1996: v1.0
-  - 1997-1999: v1.1
-  - 2014 - 2016: **HTTP/2** ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
+  - 1997 - 1999: v1.1
+  - 2014 - 2016: HTTP/2
+  - 2017 - atual: HTTP/3
 - Alternativas
   - 2009: SPDY
 
 ---
-<!-- {"layout": "section-header", "slideHash": "minha-primeira-pagina-web"} -->
+<!-- {"layout": "section-header", "hash": "minha-primeira-pagina-web"} -->
 # Minha Primeira Página Web
 ## Como cria-las, o que elas comem, seu habitat etc.
 
 - Ferramentas necessárias
 - Um arquivo HTML
-
 <!-- {ul:.content} -->
+
 ---
 <!-- {"layout": "tall-figure-right"} -->
 ## Ferramentas Necessárias
@@ -850,7 +846,7 @@ Content-Length: 131
     ~ fim!
 
 ---
-# Atividade Prática (1/4)
+# Atividade Prática <small>(1/4)</small>
 
 **Enunciado**
   ~ Você vai recriar a página das raças raras de ovelhas.
@@ -867,11 +863,11 @@ Content-Length: 131
 [codigo-seminal-ovelhas]: https://github.com/fegemo/cefet-web-ovelhas/archive/exercicio.zip
 
 ---
-<!-- {"preventSelection": "pre > code", "elementStyles": {"pre": "height: 170px"} } -->
-# Atividade Prática (2/4)
+<!-- {"preventSelection": "pre > code", "elementStyles": {"pre": "height: 160px"} } -->
+# Atividade Prática <small>(2/4)</small>
 
 - **Atividade 1**
-  - Digite o conteúdo do arquivo `racas-raras.html` no editor de texto:
+  - Digite o conteúdo do arquivo `racas-raras.html` no editor de texto: <!-- {.compact-code} -->
     ```html
     <!DOCTYPE html>
     <html>
@@ -923,11 +919,10 @@ Content-Length: 131
     - Repare que não é possível copiar/colar
 - **Testando**
   - De tempos em tempos, **<u>abra o arquivo</u> no navegador** (_e.g._,
-    dando dois cliques) no arquivo para ver como está ficando
-  - Para saber se está certo, compare a sua página com a do professor: http://fegemo.github.io/cefet-web-ovelhas/racas-raras.html <!-- {target="_blank"}-->
+    dando dois cliques nele) para ver como está ficando
 
 ---
-# Atividade Prática (3/4)
+# Atividade Prática <small>(3/4)</small>
 
 **Atividade 2**
   ~ Depois de copiado o código, você deve testar algumas _tags_, como:
@@ -936,10 +931,8 @@ Content-Length: 131
     `em`, `ins` e `mark`. Veja o que ocorre e entenda o funcionamento de
     cada uma _tag_ usada
 
-
-
 ---
-# Atividade Prática (4/4)
+# Atividade Prática <small>(4/4)</small>
 
 **Pesquisando**
   ~ Pesquise na Web (_e.g._, [Google][google], [Bing][bing]) sobre essas _tags_,

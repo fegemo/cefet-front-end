@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# CSS parte 1
+# **CSS** parte 1
 ## Seletores de classe, Flutuação e Abelhas :honeybee:
 
 ---
@@ -19,6 +19,7 @@
 [mdn-table]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
 
 ---
+<!-- {"layout": "centered"} -->
 # Hoje veremos
 
 1. [Editores de Texto](#editores-de-texto)
@@ -27,65 +28,91 @@
 1. [Abelhas :honeybee: e suas castas](#abelhas-e-suas-castas)
 
 ---
-<!-- {"layout": "section-header", "slideHash": "editores-de-texto"} -->
+<!-- {"layout": "section-header", "hash": "editores-de-texto"} -->
 # Editores de texto
 ## Ferramentas para edição e melhoria da produtividade
 
 - Editores de texto
 - _Hotkeys_
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"layout": "regular"} -->
 ## Como ser mais **produtivo**
 
-- Na hora de escrever/editar código HTML, CSS e JavaScript, queremos ter:
+- Na hora de escrever código HTML, CSS e JavaScript, queremos ter:
   - **Destacamento (_highlighting_) de código fonte**
   - **Indentação** automática
   - ![Auto-completar no Atom](../../images/auto-complete-atom.png) <!-- {.push-right} -->
     **Auto-completar** tags HTML, propriedades CSS etc.
 - Editores indicados:
-  - [Atom][atom] (gratuito, do GitHub)
+  - [VSCode][vscode] (gratuito 🌟)
+  - [Atom][atom] (gratuito)
   - [Sublime Text 3][sublime] (pago, faz vista grossa com quem não paga)
-  - [VSCode][vscode] (gratuito, do tio Bill)
 
 [atom]: https://atom.io/
 [sublime]: https://www.sublimetext.com/3
 [vscode]: https://code.visualstudio.com/
 
 ---
-<!-- {"layout": "regular"} -->
-## Sugestão do Professor
+<!-- {"layout": "2-column-content"} -->
+## Sugestão do professor: **VS Code** 🌟
 
-- [![Página inicial do editor de texto Atom right](../../images/atom-homepage.png)](https://atom.io)
-  Benefícios:
+- Benefícios: <!-- {ul:.no-padding} --> <!-- {li:style="list-style-type: none"} -->
   - **Gratuito**
   - Altamente **personalizável**
-  - Muitas **_hotkeys_ (teclas de atalho) \o/**
-  - **Atenção:** as _hotkeys_ e sugestões no _Atom_ **só** irão funcionar
-    após salvar o arquivo como **html**
+  - **Atalhos** úteis
+- **Atenção:** os atalhos e sugestões no VS Code só irão **funcionar após salvar**
+  o arquivo como `.html` <!-- {li:.note.warning style="margin-top: 1em"} -->
+
+[![Tela do VS Code](../../images/vscode.png)](https://code.visualstudio.com/) <!-- {style="max-width: 540px; margin-top: 1.5em;"} -->
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## _Hotkeys_ Úteis - Criando um Novo Arquivo HTML
+## Abrindo uma pasta inteira
 
-<video src="../../videos/atom-html.mp4" height="340" controls style="float: right; margin: 0 auto;"></video>
+<video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/vscode-opening-project.mp4" width="100%" controls></video>
 
-- Crie o arquivo e salve com a extensão **`.html`** (_e.g._, `index.html`)
-- Digite `html` e pressione <kbd>tab</kbd>
-- Aparecerá a estrutura básica do html
-- Isso funciona para todas as _tags_. Exemplo:
-  - Digite `em` e pressione <kbd>tab</kbd>
-
----
-## _Hotkeys_ Úteis - Visualização prévia do código
-
-- <video src="../../videos/coding-simple-table.mp4" height="340" controls style="float: right; margin: 0 auto;"></video>
-  Pressione <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>
+- Evite "Open File" (1 arquivo só), abra uma pasta inteira (**"Open Folder"**)
+  - Deixa claro quais arquivos compõe a página/site
+- Salve o arquivo (ex, `.html`) para ter coloração de sintaxe
+- Mantenha a indentação. Se precisar corrigir:
+  1. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (guia de comandos)
+  1. _Format Document_
 
 ---
-<!-- {"layout": "section-header", "slideHash": "doctype-e-codificacao"} -->
+<!-- {"layout": "2-column-content"} -->
+## Digitando sem erros
+
+- Solicite do editor o **esqueleto básico** de uma página HTML
+  - Digite a palavra "html" e pressione <kbd>Tab ↔️</kbd>
+- Evite usar as teclas <kbd>&lt;</kbd> e <kbd>&gt;</kbd>
+  - Digite apenas o nome da _tag_, depois <kbd>Tab ↔️</kbd>
+  - Assim você fica muito mais rápido
+- Use os atalhos sugeridos
+  - Algumas _tags_ já vêem com atributos básicos (ex, `<img>`)
+
+<video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/vscode-autocomplete.mp4" width="100%" controls></video>
+
+---
+<!-- {"layout": "2-column-content"} -->
+## Atualização automática ao salvar
+
+<video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/vscode-auto-reload.mp4" width="100%" controls></video>
+
+- Instale uma extensão (_plugin_ ou _add-on_) para **atualizar automaticamente o navegador** sempre que salvar um arquivo
+  
+  VS Code <!-- {dl:.width-30} -->
+  ~ Live Server ([link][live-server])
+
+  Atom
+  ~ Atom Live Server ([link][atom-live-server])
+- Efeito colateral: estará acessando o site usando um **servidor web**
+
+[live-server]: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+[atom-live-server]: https://atom.io/packages/atom-live-server
+
+---
+<!-- {"layout": "section-header", "hash": "doctype-e-codificacao"} -->
 # Codificação e DOCTYPE
 
 - Codificação do arquivo
@@ -94,14 +121,14 @@
     - UNICODE e UTF-8
 - Versão do HTML:
   - DOCTYPE
-
 <!-- {ul^3:.content} -->
 
 ---
 <!-- {"layout": "2-column-content"} -->
 ## Como o texto é armazenado em seu computador?
 
-![Exemplo de Codificação de Texto](../../images/codificacao.png)<!-- {.push-right style="height: 300px"} -->
+![Exemplo de Codificação de Texto](../../images/codificacao.png)<!-- {.push-right.invert-colors-dark-mode style="height: 300px"} -->
+
 - Arquivos HTMLs são representados como arquivos textuais
 - Porém, internamente, eles são armazenados no formato **numérico** em **binário**
 - Codificação é um **<u>mapeamento</u> de letras para números**
@@ -109,7 +136,6 @@
   - (1) ASCII, (2) UNICODE, ...
 
 ---
-<!-- {"layout": "regular"} -->
 ## Codificação **ASCII**
 
 - ASCII é um dos **mais antigos** padrões de codificação
@@ -122,7 +148,7 @@
 
 ---
 <!-- {"layout": "2-column-content"} -->
-## **Tabela ASCII**
+## **Tabela ASCII** (um pedacinho)
 
 | Código| Letra 	|
 |:-----:|:-------:|
@@ -147,141 +173,126 @@
 ---
 ## Codificação **Unicode** e UTF-8
 
-- Unicode provê o suporte multilíngua
+- Unicode provê o suporte multilíngua <!-- {ul:.full-width.bulleted-0} -->
   - Diversos alfabetos, não apenas o romano/latino
-
 - **UTF-8** é uma codificação que usa uma sequência de **8 bits** para
   armazenar códigos UNICODE
-
-
----
-## Codificação em uma Página web
-
-- Geralmente, tem-se utilizado UTF-8 nas páginas Web. Porém, nem todas as
-  páginas Web são UTF-8.
-
-- Por isso, precisamos especificar qual codificação usamos
-
-- Usa-se a `<meta>` _tag_ com o atributo `charset` para isso:
+  - Os 128 primeiros caracteres UTF-8 são idênticos aos ASCII
+    - Ou seja, todo o alfabeto, pontuações mais comuns e números
+- <!-- {li:.push-code-right.compact-code-more} -->
   ```html
-  <meta charset="ISO-8859-1"> <!-- ASCII romano/latino -->
-  <meta charset="utf-8">      <!-- utf-8 -->
+  ...
+  <head>
+    <meta charset="utf-8">  <!-- USE ESTA META TAG -->
+    <title>...</title>
+    ...
   ```
+  Em HTML, dentro do `<head>` da página, usamos uma `<meta>` _tag_ com
+  o atributo `charset` para isso ➡️
+  - Essa _tag_ deve aparecer nos primeiros 1024 caracteres da página ([entenda][mdn-charset])
+- Para ASCII, seria `<meta charset="ISO-8859-1">` (ASCII romano/latino)
+
+[mdn-charset]: https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/meta#attr-charset
 
 ---
-## Codificação em uma Página web (cont.)
+## Codificação em uma página web
 
-- A codificação de uma página deve ser especificada de forma explícita
-    - Senão, UTF-8 é inferido
+- ![Foto do VS Code mostrando a codificação do arquivo aberto](../../images/vscode-encoding.png) <!-- {.push-right style="max-width: 360px"} -->
+  Além do arquivo HTML especificar, o próprio arquivo **deve estar salvo usando UTF-8**. No VS Code ➡️
 - Opções de codificação são gerenciadas pela IANA e [podem ser vistas aqui](http://www.iana.org/assignments/character-sets/character-sets.xhtml)
 
-- ![Uma página web com caracteres não reconhecidos devido a um problema de codificação](../../images/encoding-error.png) <!-- {.push-right style="height: 300px"} -->
-  Erro de codificação:
+
+1. ![Uma página web com caracteres não reconhecidos devido a um problema de codificação](../../images/encoding-error.png) <!-- {.push-left style="max-width: 360px;"} --> <!-- {ol:.no-padding.no-bullets.no-margin} -->
+  ⬅️ Caso haja divergência de codificação, alguns caracteres podem não aparecer corretamente
+
+*[IANA]: Internet Assigned Numbers Authority
 
 ---
 # DOCTYPE - Versão do HTML
----
-<!-- {"layout": "regular"} -->
-## DOCTYPE
 
-- Especifica para o navegador qual a versão do HTML que estamos usando
-- Aparece como a primeira "tag" em um arquivo `html`
-- Formato:
+- Especifica qual a versão do HTML que estamos usando. Formato: <!-- {ul:.full-width} -->
   ```html
   <!DOCTYPE ... >
   ```
+- Deve ser a primeira "_tag_" em um arquivo HTML
+  - Não pode haver nem comentários antes: <!-- {li:.two-column-code} -->
+    ```html
+    <!DOCTYPE html> ✔️
+    <html>
+    ...
+    <!-- um comentário --> ❌
+    <!DOCTYPE html>
+    <html>
+    ```
 
 ---
-<!-- {"layout": "regular"} -->
-## Evolução do DOCTYPE
+## Valores do DOCTYPE
 
-- HTML 4.01
-  ```xml
+HTML 4.01
+~ ```xml
   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
   ```
-- XHTML 1.1
-  ```xml
+
+XHTML 1.1
+~ ```xml
   <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
   ```
 
----
-<!-- {"layout": "regular"} -->
-## DOCTYPE hoje
-
-- HTML5
-  ```xml
+HTML5
+~ ```xml
   <!DOCTYPE html>
   ```
-  ![Bebezinho fazendo cara de que gostou do que foi falado](../../images/baby-success.jpg)
 
-<!--
-<!- {"layout": "regular"} ->
-## E se colocarmos um DOCTYPE inválido?
+Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 
-- O navegador possui o conceito de _strict mode_ e o de _quirks mode_
-- Problemas com o DOCTYPE vão ativar o **_quirks mode_**
-  - Para páginas sem DOCTYPE ou com DOCTYPEs que o navegador não conhece
-- Em _quirks mode_, o navegador é altamente **permissivo com relação a marcação
-  incorreta** e ele utiliza um interpretador antigo para algumas propriedades
-  CSS
-- [Artigo sobre o _quirks mode_ no site quirksmode.org][quirks-mode] :)
-
-[quirks-mode]: http://www.quirksmode.org/css/quirksmode.html
--->
 ---
-<!-- {"layout": "section-header", "slideHash": "reaproveitando-codigo-css"} -->
+<!-- {"layout": "section-header", "hash": "reaproveitando-codigo-css"} -->
 # Reaproveitando código CSS
 ## Seletor de classe, incluindo arquivo e mais sobre cores
 
 - Seletor de classes
 - Incluindo arquivos **CSS**
 - Cores e Gradientes
-
 <!-- {ul:.content} -->
 
 ---
-## Relembrando... **seletor** e **declaração**
+<!-- {"layout": "centered-horizontal", "embedSVG": "img[src$='.svg']", "styles": ["../../styles/classes/css-rule-anatomy.min.css"]} -->
+## Relembrando... **regra CSS**
 
-![Regra CSS](../../images/css-selector.png)
+- ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.rule.push-right data-viewbox="56 0 90 10" style="width: 250px"} -->
+- ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.declaration.value.push-right data-viewbox="60 10 140 65" style="width: 370px"} -->
+- ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.property.value.push-right data-viewbox="56 30 90 65" style="width: 250px"} --> <!-- {ul:.card-list} -->
 
----
-<!-- {"state":"show-active-slide-and-previous"} -->
-## **propriedade** e **valor**
-
-![Regra CSS](../../images/css-property-value.png)
 
 ---
-<!-- {"layout": "regular"} -->
 ## Problema: **selecionando** elementos
 
-- Como fazemos para selecionar (_e.g._):
+- Como fazemos para selecionar (_e.g._): <!-- {ul:.bulleted} -->
   1. apenas **alguns parágrafos** em vez de todos?
   1. apenas o **primeiro título h2** da página?
   1. apenas **uma imagem em especial**?
 - Uma solução possível é usar os atributos universais¹ HTML chamados
   **`class`** e **`id`** para identificar os elementos e estilizá-los
-
-  > **Atributos universais¹**: aqueles que qualquer elemento pode ter <cite>Coutinho & Hasan, 2018</cite>
+  > ¹**Atributos universais**: aqueles que qualquer elemento pode ter <cite>Coutinho & Hasan, 2021</cite>
   >
+- Vamos ver diferentes formas para isso...
 
 ---
-<!-- {"layout": "regular"} -->
 ## Selecionar **por nome de _tag_**
 
 - Até agora, estilizamos elementos HTML de duas formas:
-- **Primeira forma:** Selecionando a tag:
+- **Primeira forma:** Selecionando a _tag_:
   ```css
   p {
     color: blue;
   }
   ```
-  - Isso faz com que **todos os parágrafos** sejam estilizados com a cor azul
+  - Isso faz com que **todos os parágrafos** fiquem com a cor azul
 
 ---
-<!-- {"layout": "regular"} -->
 ## Selecionar **por `id`**
 
 - **Segunda forma:** selecionando 01 elemento em específico
@@ -292,12 +303,13 @@
   }
   ```
   - Deixando de cor azul apenas o parágrafo cujo `id` é `resumo`.
+  - Contudo, <u>não pode haver mais de 1 elemento</u> com o mesmo `id` <!-- {li:.bullet} -->
   - Como fazemos, então, para estilizar não apenas 01, mas **um subconjunto de
-    elementos** da forma como queremos?
-    - Resposta: usando **classes**
+    elementos** da forma como queremos? <!-- {li:.bullet} -->
+    - Resposta: usando **classes** <!-- {li:.bullet} -->
 
 ---
-<!-- {"layout": "regular","slideHash": "css-seletor-por-classe"} -->
+<!-- {"hash": "css-seletor-por-classe"} -->
 ## Selecionar **por classe**
 
 - Dada a seguinte estrutura de um `<body></body>`:
@@ -315,7 +327,6 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Selecionar por classe (cont.)
 
 - E, em um arquivo CSS, podemos escrever o nome da _tag_, seguido por um ponto
@@ -334,7 +345,7 @@
   ```
 
 ---
-<!-- {"slideHash": "incluindo-css"} -->
+<!-- {"hash": "incluindo-css"} -->
 # Incluindo arquivo CSS
 
 - Por enquanto, colocamos o CSS **dentro do arquivo HTML**
@@ -350,7 +361,7 @@
 ---
 ## Referenciando o **CSS usando a tag _link_**
 
-- Um arquivo HTML podoe referenciar um CSS assim:
+- Um arquivo HTML pode referenciar ("incluir") um CSS assim:
   ```html
   <link rel="stylesheet" href="arquivo-de-estilos.css">
   ```
@@ -359,21 +370,24 @@
   - **_Caching_** do arquivo CSS: o arquivo é baixado apenas uma vez e
     usado sempre que necessário
     - Útil se o site tem várias páginas
+- Quando o navegador lê essa linha, ele baixa esse arquivo CSS e o interpreta
 
 ---
-## Referenciando o CSS : **Atalho do Atom**
+<!-- {"layout": "2-column-content"} -->
+## Referenciando o CSS : Exemplo de **atalho no Atom**
 
 - Esqueceu toda a sintaxe (forma de escrita)?
-- Digite apenas `link` e, logo após, aperte <kbd>tab</kbd>:
+- Digite apenas `link` e, logo após, aperte <kbd>Tab ↔️</kbd>:
+- O mesmo vale para o VS Code
 
 <video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"slideHash": "cores-e-gradientes"} -->
+<!-- {"hash": "cores-e-gradientes", "layout": "main-point"} -->
 <style>
-.color-text { color: #afaf03; }
+.color-text { color: #ffff0a; }
 .gradient-text {
-    background: linear-gradient(to right, #1bff00, #44b2d8, #b934d0);
+    background: linear-gradient(to right, #0f9000, #c900d6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -382,38 +396,116 @@
 # <span class="color-text">Cores</span> e <span class="gradient-text">Gradientes</span>
 
 ---
-## Notações RGB e Hexadecimal
+<!-- {"layout": "3-column-content", "slideStyles": {"grid-template-columns": "auto auto auto", "grid-template-rows": "auto auto auto"}, "classes": "compact-code-more", "styles": "../../styles/classes/color-portraits.min.css"} -->
+## Notações: Nome, RGB e Hexadecimal
 
-![](../../images/colors-notations.png)
+- ### **Nomes** <!-- {ul:.no-bullets.no-padding.no-margin} -->
+  <pre class="hljs"><code><span class="color-portrait red"></span> red
+  <span class="color-portrait cyan"></span> cyan
+  <span class="color-portrait gold"></span> gold
+  <span class="color-portrait forestgreen"></span> forestgreen
+  <span class="color-portrait cornflowerblue"></span> cornflowerblue
+  <span class="color-portrait rebeccapurple"></span> rebeccapurple
+  ⋮</code></pre>
+1. ### Notação **RGB** <!-- {ol:.no-bullets.no-padding.no-margin} -->
+   <pre class="hljs"><code>rgb(<span style="color: #fb4d4d">verme</span>, <span style="color: #18dc18">verde</span>, <span style="color: cornflowerblue;">azul</span>)</code></pre>
+   - rgb(...) com número entre 0...255 para <u>verme</u>lho, <u>verde</u>, <u>azul</u> <!-- {li:.smaller-text-80} -->
+- ### Notação **Hexadecimal** <!-- {ul:.no-bullets.no-padding.no-margin} -->
+  <pre class="hljs"><code>#<span style="color: #fb4d4d">vm</span><span style="color: #18dc18">vd</span><span style="color: cornflowerblue">az</span></code></pre>
+  - '#' + 2 caracteres para <u>v</u>er<u>m</u>elho, <u>v</u>e<u>r</u>de, <u>az</u>ul <!-- {li:.smaller-text-80} -->
+  - (0...9, A(10)...F(15)) <!-- {li:.smaller-text-80} -->
+
+1. Exemplo: <!-- {ol:.no-bullets.no-padding.no-margin} -->
+   ```css
+   p {
+     color: cyan;
+   }
+   ```
+- Exemplo:<!-- {ul:.no-bullets.no-padding.no-margin} -->
+  ```css
+  p {
+    color: rgb(0, 255, 255);
+  }
+  ```
+1. Exemplo:<!-- {ol:.no-bullets.no-padding.no-margin} -->
+   ```css
+   p {
+     color: #00ffff;
+   }
+   ```
 
 ---
-## Cores
+<!-- {"layout": "3-column-content", "slideStyles": {"grid-template-columns": "auto auto auto", "grid-template-rows": "auto auto auto"}, "classes": "compact-code-more", "styles": "../../styles/classes/color-portraits.min.css"} -->
+## Cores **com opacidade** <!-- {.underline.upon-activation.delay-1000} --> (transparência)
 
-- Exemplos de cores:
+- ### **Nomes** <!-- {ul:.no-bullets.no-padding.no-margin} --> ❌
+  <pre class="hljs"><code><span class="color-portrait red"></span> red
+  <span class="color-portrait cyan"></span> cyan
+  <span class="color-portrait gold"></span> gold
+  <span class="color-portrait forestgreen"></span> forestgreen
+  <span class="color-portrait cornflowerblue"></span> cornflowerblue
+  <span class="color-portrait rebeccapurple"></span> rebeccapurple
+  ⋮</code></pre>
+  - Não tem como <!-- {li:.smaller-text-80} -->
+1. ### Notação **RGB<u>A</u>** <!-- {ol:.no-bullets.no-padding.no-margin} -->
+   <pre class="hljs"><code>rgb<ins>a</ins>(verme, verde, azul, <ins style="color: black; font-weight: bolder">alpha</ins>)</code></pre>
+   - `alpha` é a opacidade da cor <!-- {li:.smaller-text-80} -->
+     - opacidade = 1 - transparência <!-- {li:.smaller-text-80} -->
+   - De 0 (transp.) até 1 (opaco) <!-- {li:.smaller-text-80} -->
+- ### Notação **Hexadecimal <u>+AA</u>** <!-- {ul:.no-bullets.no-padding.no-margin} -->
+  <pre class="hljs"><code>#vmvdaz<ins style="color: black; font-weight: bolder">aa</ins></code></pre>
+  - 2 caracteres para `alpha` <!-- {li:.smaller-text-80} -->
+  - De 0 (transp.) até FF (opaco) <!-- {li:.smaller-text-80} -->
+
+1. Exemplo: <!-- {ol:.no-bullets.no-padding.no-margin} -->
+   - Não tem!
+- Exemplo:<!-- {ul:.no-bullets.no-padding.no-margin} -->
+  ```css
+  p {
+    color: rgba(0, 255, 255, 0.5);
+  }
   ```
-  #ff0033                   /* Cor RGB em hexadecimal */
-  #F03                      /* Mesmo que anterior */
+1. Exemplo:<!-- {ol:.no-bullets.no-padding.no-margin} -->
+   ```css
+   p {
+     color: #00ffff80;
+   }
+   ```
+
+---
+## Mais exemplos de cores
+
+- ```css
+  #FF0033 /* maiúsc. ou min. */
+  #ff0033
+  #f03
+  ```
+  <!-- {ul:.push-code-right} -->
+  Se ambos caracteres de cada componente em hexa são iguais (ex: `#ff0033`), pode escrever só 1 de cada (ex: `#f03`)
+- ```css
   rgb(255, 0, 51)
   rgb(100%, 0%, 20%)
-  hsl(60, 100%,50%)
-  rgba(255,0,0,0.1)         /* Vermelho 10% opaco */  
-  hsla(240,100%,50%,0.05)   /* Azul 5% opaco */
-  brown
-  gold
+  rgba(255, 0, 0, 0.1)         
   ```
+  Em vez de 0...255, pode escrever 0%...100% <!-- {li:.clearer} -->
+- ```css
+  hsl(60, 100%, 50%)
+  hsla(240, 100%, 50%, 0.05)   
+  ````
+  Também existe `hsl(hue, sat, light)`, mas é menos comum <!-- {li:.clearer} -->
 
 ---
-<!-- {"layout": "regular", "slideHash": "escolhendo-cores"} -->
+<!-- {"layout": "centered-horizontal", "hash": "escolhendo-cores"} -->
 ## Escolhendo cores (<kbd>F12</kbd>)
 
 <video src="../../videos/escolhendo-cores.mp4" height="460" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"layout": "regular", "slideHash": "gradientes"} -->
-## Gradientes
+<!-- {"hash": "gradientes"} -->
+## Gradientes (ou degradês)
 
 - `linear-gradient` é um **valor válido para `background-image`**,
-      e não para `background-color`
+      e não para `background-color` nem para `color`
   - Veja a documentação do que é um [`gradient`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient)
 
 1. <!-- {ol:.item-code-with-image.full-width.compact-code-more} -->
@@ -443,21 +535,19 @@
    ```
 
 ---
-<!-- {"layout": "section-header", "slideHash": "abelhas-e-suas-castas"} -->
+<!-- {"layout": "section-header", "hash": "abelhas-e-suas-castas"} -->
 # Abelhas :honeybee: e suas castas
 ## :honey_pot: :honey_pot: :honey_pot: :honey_pot: :honey_pot:
 
 - A atividade das abelhas
 - Flutuando coisas
 - Pesquisando novas propriedades CSS/elementos HTML
-
 <!-- {ul:.content} -->
 
 ---
 <!-- {"backdrop": "pratica-abelhas"} -->
 
 ---
-<!-- {"layout": "regular"} -->
 # Abelhas :honeybee: e suas castas
 
 1. [Baixe as imagens e páginas](https://github.com/fegemo/cefet-front-end-bees/archive/master.zip)
@@ -469,7 +559,7 @@
    1. Veja [instruções detalhadas aqui](https://github.com/fegemo/cefet-front-end-bees/blob/master/README.md)
 
 ---
-<!-- {"layout": "regular", "slideHash": "flutuando-coisas"} -->
+<!-- {"hash": "flutuando-coisas"} -->
 # Flutuando coisas
 
 > ![](../../images/float-magazine.png) <!-- {.push-right style="height: 200px;"} -->
@@ -482,22 +572,22 @@
 - Na web também queremos fazer isso!
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "centered-horizontal"} -->
 ## Como flutuar elementos usando CSS?
 
 ![](../../images/pratica-abelhas-operarias.png)
 
+Vamos conhecer um nova propriedade: `float`
 
 ---
-<!-- {"layout": "regular"} -->
 ## Propriedade `float`
 
 - Usado para alterar o fluxo tradicional da página
   - Em CSS:  
     ```css
     img#abelha-operaria {
-      float: left; /* right, none */
-    }              /* none é o valor padrão - sem flutuação*/
+      float: left; /* left, right, none */
+    }              /* none é o valor padrão - sem flutuação */
     ```
   - No HTML:
     ```html
@@ -506,8 +596,7 @@
     ```
 
 ---
-<!-- {"layout": "regular"} -->
-## Propriedade `float` (cont.)
+## Como funciona o `float`
 
 - ![](../../images/float-p1.png) <!-- {.push-right} -->
   Um elemento flutuante é removido do fluxo tradicional e
@@ -517,7 +606,6 @@
   flutue à direita **nos próximos 2 slides**...
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo de `float` (1º passo)
 
 - ![](../../images/float-p2.png)  <!-- {.push-right style="max-height: 440px;"} -->
@@ -529,10 +617,9 @@
   ```
 
 ---
-<!-- {"layout": "regular"} -->
 ## Exemplo de `float` (2º passo)
 
-- ![](../../images/float-p3.png)  <!-- {.push-right style="max-height: 440px;"} -->
+- ![](../../images/float-p3.png)  <!-- {.push-right style="max-height: 350px;"} -->
   Flutuando o parágrafo à direita
   ```css
   p#amazing {
@@ -548,7 +635,7 @@
       - Se forem `inline`, **respeitam** o elemtno flutuante
 
 ---
-<!-- {"layout": "regular", "slideHash": "arredondando-bordas"} -->
+<!-- {"hash": "arredondando-bordas"} -->
 # Arredondando bordas
 
 - ![](../../images/borda-arredondada.png) <!-- {.push-right} -->
@@ -558,9 +645,10 @@
   - Pesquise ["como arredondar bordas em CSS" no Google][border-radius-google],
     por exemplo
 
-[border-radius-google]: http://lmgtfy.com/?q=como+arredondar+bordas+em+css
+[border-radius-google]: https://www.google.com.br/search?hl=pt-BR&q=como+arredondar+bordas+em+css&meta=
 
 ---
+<!-- {"layout": "centered"} -->
 # Referências
 
 1. Capítulos 5 e 6 do livro
