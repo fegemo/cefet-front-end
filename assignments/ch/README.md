@@ -99,21 +99,10 @@ um cardápio de um restaurante, contudo o programador que criou o código
 estava precisando de um pouco mais de café e acabou por cometer alguns erros.
 Você deve corrigir o código de forma que ele fique correto.
 
----
-<!-- {"layout": "regular-block", "slideHash": "turma3-exercicio1"} -->
-## <span class="badge">Exercício 3</span> Qual CSS deve ser usado?
-
-- Apresente a regra CSS que deve ser usada para cada estilização a seguir (sem que se altere o HTML): <!-- {ul:.bulleted} -->
-  1. Colorir a fonte de azul em todos os elementos de tag `strong`
-  1. Colocar uma borda tracejada (dashed) azul em todas as imagens que estejam dentro de tabelas
-  1. Elementos da tag `strong` dentro de listas numeradas, quando passado o mouse sobre ele, deverá ficar com cor amarela 
-  1. Colocar um fundo azul de links externos ao passar o mouse sob ele
-
-
 
 ---
 <!-- {"layout": "regular", "slideHash": "exercicio3"} -->
-# <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
+# <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 - Será apresentada uma página com algumas `<div>...</div>`
 - Você deverá definir as propriedades _float_ e _clear_, quando necessário,
@@ -124,7 +113,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular"} -->
-## <span class="badge">Exercício 4</span> Defina **_floats_ e _clear_**
+## <span class="badge">Exercício 3</span> Defina **_floats_ e _clear_**
 
 - Considere que há 4 elementos `div` dentro de outro `div` externo, assim:
 
@@ -136,7 +125,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered", "slideHash": "turma1-exercicio2"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 1 -->
 1. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/vyeawf53/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
@@ -146,7 +135,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 1 -->
 3. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/umphkg01/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -156,7 +145,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 1 -->
 5. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/oo7zyh1q/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -168,7 +157,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered", "slideHash": "turma2-exercicio2"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 2 -->
 1. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/qvmmvnyy/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
@@ -178,7 +167,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 2 -->
 3. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -188,7 +177,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 2 -->
 5. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/zszront8/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -200,7 +189,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered", "slideHash": "turma3-exercicio2"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 3 -->
 1. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/e63o68bk/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
@@ -210,7 +199,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 3 -->
 3. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -220,7 +209,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block-centered"} -->
-## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
+## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small> <!-- {h2:.align-left} -->
 
 <!-- Turma 3 -->
 5. <iframe width="100%" height="360" src="//jsfiddle.net/fegemo/rzow3j6h/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -232,7 +221,7 @@ Você deve corrigir o código de forma que ele fique correto.
 
 ---
 <!-- {"layout": "regular-block", "slideHash": "exercicio4"} -->
-# <span class="badge">Exercício 5</span> Tabela
+# <span class="badge">Exercício 4</span> Tabela
 
 Considerando o HTML dado pelo professor, deseja-se apresentar a tabela e
 a `div` da seguinte forma:
@@ -245,7 +234,7 @@ que seja apresentada a tabela **exatamente** da forma indicada.
 
 ---
 <!-- {"layout": "regular-block"} -->
-# <span class="badge">Exercício 6</span> Estilizando tabela <small>pt 1</small>
+# <span class="badge">Exercício 5</span> Estilizando tabela <small>pt 1</small>
 
 <iframe width="40%" height="400" class="push-right" src="//jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>  
 
