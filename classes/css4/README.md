@@ -19,6 +19,7 @@
     perdem qualidade se **ampliadas**
 
 ---
+<!-- {"classes": "compact-code-more"} -->
 # Na última aula: **vídeos** (2/3)
 
 ```html
@@ -37,6 +38,7 @@
   - se, mesmo assim, não conseguir, será exibido o texto
 
 ---
+<!-- {"classes": "compact-code-more"} -->
 # Na última aula: **_Web Fonts_** (3/3)
 
 1. Descrever a fonte no arquivo CSS usando `@font-face {...}`: <!-- {ol:.compact-code} -->
@@ -85,11 +87,12 @@
 
 - Define o **tipo de visualização** de um elemento e também seu
   **comportamento** no fluxo da página
-- Os valores mais comuns
+- Os valores mais "tradicionais" <!-- {li:.bullet} -->
   - `block`, para definir um elemento com comportamento `block`
   - `inline`, similarmente, para `inline`
   - `inline-block`, similar a `block`, porém sem quebra de linha
   - `none`, sem renderização
+- Veremos esses primeiro, depois `table-*` e os bacanões `flex` e `grid` <!-- {li:.bullet} -->
 
 ---
 ## A propriedade **display** (cont.)
