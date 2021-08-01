@@ -61,7 +61,7 @@
 <!-- {"layout": "centered"} -->
 # Roteiro de hoje
 
-1. [Propriedade `display`](#propriedade-display)
+1. [Propriedade `display`](#a-propriedade-display)
 1. [Flexbox](#flexbox)
 1. [Grid](#grid)
 
