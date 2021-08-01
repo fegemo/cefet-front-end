@@ -56,58 +56,88 @@
 
 ---
 <!-- {"hash": "slides"} -->
-# Aulas <small>(1/4)</small>
+# Aulas <small>(1/3)</small>
 
-- [Introdução à Programação Web](classes/intro/)
-- [HTML parte 1](classes/html1/) - Plantas Carnívoras, Ingredientes do HTML
-  (_tags_) e Temperando com CSS
-- [HTML parte 2](classes/html2/) - Coding Dojo :japanese_castle:, Mais _tags_
-  HTML e Entendendo regras CSS
-- [HTML parte 3](classes/html3/) - Tabelas, Tesouros :crown: e Piratas
-- [CSS parte 1](classes/css1/) - Seletores de classe, Flutuação e
-  Abelhas :honeybee:
-- [CSS parte 2](classes/css2/) - História, a Cascata e outros Seletores,
-  Ferramentas e Ninjas :dash:
+[🐑 Intro](classes/intro)  <!-- {dl:.width-20.full-width} -->
+~ Introdução à Programação Web e as Ovelhas
 
----
-# Aulas <small>(2/4)</small>
+[🦖 HTML1](classes/html1/)
+~ Plantas Carnívoras, Ingredientes do HTML (_tags_) e Temperando com CSS
 
-- [HTML parte 4](classes/html4/) - Div/Span, Box Model, Float e Desafios
-- [CSS parte 3](classes/css3/) - Layout, Fontes, Multimídia e Unicórnios 🦄
-- [HTML parte 5](classes/html5/) - Divitite e as _Tags_ Semânticas, display,
-  pseudo-coisas e Assombrações :ghost:
-- [CSS parte 4](classes/css4/) - Posicionamento e mais
-  Assombrações :ghost::ghost::ghost:
-- [CSS parte 5](classes/css5/) - Especificidade, Centralizando coisas e
-  a Lanchonete do Coral 55 :palm_tree:
-- [JavaScript parte 0](classes/js0/) - Introdução a JavaScript
-- [JavaScript parte 1](classes/js1/) - Inclusão, Mais tipos de dados,
-  Clicando em botões e Resolvendo equações :chart_with_upwards_trend:
+[🏯 HTML2](classes/html2/)
+~ Coding Dojo, Mais _tags_ HTML e Entendendo regras CSS
+
+[👑 HTML3](classes/html3/)
+~ Tabelas, Tesouros e Piratas
+
+[🐝 CSS1](classes/css1/)
+~ Seletores de classe, Flutuação e Abelhas 
+
+[🥷 CSS2](classes/css2/)
+~ História, a Cascata e outros Seletores, Ferramentas e Ninjas 
+
+[🗒️ HTML4](classes/html4/)
+~ Div/Span, Box Model, Float e Desafios 
+
+[🦄 CSS3](classes/css3/)
+~ Fontes, Multimídia e Unicórnios 
 
 ---
-# Aulas <small>(3/4)</small>
+# Aulas <small>(2/3)</small>
 
-- [JavaScript parte 2](classes/js2/) - _Template_ strings, Função seta, Alterando o DOM e Exploração
-  Espacial :alien:
-- [JavaScript parte 3](classes/js3/) - História, Estilizando
-  elementos, Eventos de mouse, Depurando e o PhotoSnap :camera:
-- [HTML parte 6](classes/html6) - Elementos de dados e
-  o AvatarCreator :lipstick:
-- [CSS parte 6](classes/css6) - Transições, Animações e
-  os Animais :dog: :cat:
-- [JavaScript parte 4](classes/js4/) - Usando objetos, Criando elementos HMTL
-  e a Lista de Tarefas :notebook:
-- [JavaScript parte 5](classes/js5/) - Web Storage, JSON e a Lista de
-  Tarefas :notebook: x2
+
+[🐸🥕 CSS4](classes/css4/)  <!-- {dl:.width-20.full-width} -->
+~ Display, Flexbox, Grid e Sapos no Jardim
+
+[👻 HTML5](classes/html5/)
+~ Divitite e as _Tags_ Semânticas Especificidade, pseudo-coisas e Assombrações 
+
+[👻👻 CSS5](classes/css5/)
+~ Posicionamento e mais Assombrações
+
+[🤖 JS0](classes/js0/)
+~ Introdução a JavaScript
+
+[📈 JS1](classes/js1/)
+~ Inclusão, Mais tipos de dados, Clicando em botões e Resolvendo equações 
+
+[👽 JS2](classes/js2/)
+~ _Template_ strings, Função seta, Alterando o DOM e Exploração
+  Espacial
+
+[📸 JS3](classes/js3/)
+~ História, Estilizando
+  elementos, Eventos de mouse, Depurando e o PhotoSnap 
+
+
+<!-- Layout, Centralizando coisas e a Lanchonete do Coral 55 :palm_tree: -->
 
 ---
-# Aulas <small>(4/4)</small>
+# Aulas <small>(3/3)</small>
 
-- [JavaScript parte 6](classes/js6/) - Bibliotecas, jQuery e o PhotoSnap x2
-- [CSS parte 7](classes/css7/) - _Responsive Web Design_
-- [_Back-ends_ parte 1](classes/php1/) - Apache, PHP, MySQL e os Tesouros
-  Dinâmicos :crown:
-- [JavaScript parte 7](classes/js7/) - Ajax e as Guerras Estelares :stars:
+[💄 HTML6](classes/html6)  <!-- {dl:.width-20.full-width} -->
+~ Elementos de dados e o AvatarCreator
+
+[🐶🐱 CSS6](classes/css6)
+~ Transições, Animações e os Animais 
+
+[📓 JS4](classes/js4/)
+~ Usando objetos, Criando elementos HMTL e a Lista de Tarefas
+
+[📓📓 JS5](classes/js5/)
+~ Web Storage, JSON e a Lista de Tarefas x2
+
+[📸📸 JS6](classes/js6/)
+~ Bibliotecas, jQuery e o PhotoSnap x2
+
+[🏪 CSS7](classes/css7/)
+~ _Responsive Web Design_ e a Super Loja
+
+[👑👑 PHP1](classes/php1/)
+~ Apache, PHP, MySQL e os Tesouros Dinâmicos 
+
+[🌠 JS7](classes/js7/)
+~ Ajax e as Guerras Estelares
 
 
 ---
@@ -121,18 +151,7 @@
 1. Criar **páginas web interativas** usando JavaScript
 1. **Integrar páginas** web estáticas com servidores **via AJAX**
 1. Tornar-se um **ninja** Javascript
-
 <!-- {ol:.content} -->
-
----
-<!-- { "hash": "bibliografia", "layout": "section-header" } -->
-# Bibliografia
-
-## Os textos e materiais que vamos usar
-
-- Veja a bibliografia básica e a complementar.
-
-<!-- {ul:.content.no-bullets.no-padding} -->
 
 ---
 <!-- { "layout": "centered", "styles": ["styles/classes/books.min.css"] } -->
