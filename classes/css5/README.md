@@ -1,501 +1,483 @@
 <!-- {"layout": "title"} -->
 # **CSS** parte 5
-## Especificidade de seletores, Centralizando coisas e a Lanchonete do Coral 55 :palm_tree:
+## Posicionamento e mais Assombrações :ghost::ghost::ghost:
 
 ---
 # Na última aula (1/4)
 
-| `position` | Descrição | Exemplos de uso | `top`, `right`, `bottom`, `left` | `z-index` |
-|------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
-| `static` | Fluxo normal | Elementos **sem posicionamento especial** | ignorados | ignorado |
-| `relative` | Fluxo normal, deslocado | Elementos que podem se **deslocar um pouco**; **contextos para elementos absolutos** | **deslocamentos** nas 4 direções | define ordem |
+- **_Tags_ semânticas**:
+  - O HTML5 ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} -->
+    propôs elementos idênticos às `divs`/`spans`, mas que **possuem
+    sentido para o navegador**. Por exemplo:
+    ```html
+    <header></header>   <!-- em vez de <div id="header"></div> -->
+    <footer></footer>   <!-- em vez de <div id="footer"></div> -->
+    <article></article> <!-- em vez de <div id="article"></div> -->
+    <time></time>       <!-- em vez de <span id="time"></span> -->
+    <nav></nav>         <!-- em vez de <div id="navigation"></div> -->
+    ```
+    - E várias outras...
 
 ---
 # Na última aula  (2/4)
 
-| `position` | Descrição | Exemplos de uso | `top`, `right`, `bottom`, `left` | `z-index` |
-|------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
-| `absolute` | Removido do fluxo, posicionado (x,y) relativo a um contexto | Elementos que queremos **definir os valores (x,y)** para posicioná-los exatamente nesse lugar | **posições** referentes às 4 direções | define ordem |
-| `fixed` | Removido do fluxo, em um (x,y) na janela | Idem, mas a **posição é fixa na janela** | **posições** para as 4 direções | define ordem |
+- Quando **mais de uma regra CSS se aplica**, uma delas prevalece
+  - O navegador calcula uma pontuação de especificidade (**`abc`**<!--{strong:.alternate-color}-->) do seletor
+    de cada regra:
+    - **`a`**<!--{strong:.alternate-color}-->: quantidade de **ids** no seletor
+    - **`b`**<!--{strong:.alternate-color}-->: quantidade de **classes, atributos e pseudo-classes** no seletor
+    - **`c`**<!--{strong:.alternate-color}-->: quantidade de **pseudo-elementos** no seletor
+  - Quanto maior esse número, maior a precedência da regra ser aplicada
+
 
 ---
 # Na última aula (3/4)
 
-- Propriedades do **Flexbox**: <!-- {ul^0:.full-width.no-margin} -->
-  - No elemento pai:  <!-- {ul^0:.layout-split-2} -->
-    - `display: flex` <!-- {li^1:style="flex: 1"} -->
-    - `flex-direction: row | column`
-    - `justify-content: flex-start | flex-end | center | space-around | space-between`
-  - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
-    - `align-self: flex-start | flex-end | center`
-    - `order: numero`
-
-<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+- **Alterando a visibilidade**:
+  - `display:none`: o elemento é removido do fluxo
+  - `visibility: hidden;`: o elemento fica escondido, mas ainda ocupa espaço
+  - `opacity`: define a opacidade:
+    ```css
+    video {
+      opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
+    }
+    ```
 
 ---
 # Na última aula (4/4)
 
-- Propriedades do **grid**: <!-- {ul^0:.full-width.no-margin} -->
-  - No elemento pai: <!-- {ul^0:.layout-split-2} -->
-    - `display: grid` <!-- {li^1:style="flex: 1"} -->
-    - `grid-template-rows`
-    - `grid-template-columns`
-  - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
-    - `grid-row: inicio / fim`
-    - `grid-column: inicio / fim`
+- **_Pseudo-classes_ e _Pseudo-elements_**:
 
-<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/sqtdb95x/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+  _Pseudo-class_
+    ~ permitem **selecionar** elementos em **diferentes situações**
+    ~ Exemplos: `:focus` (contém o foco), `:hover` (mouse em cima)
+
+  _Pseudo-element_
+    ~ permitem **estilizar** certas **partes de elementos**
+    ~ Exemplos: `::selection` (seleção de texto) `::first-letter`
+      (primeira letra)
 
 ---
 <!-- {"layout": "centered"} -->
 # Roteiro de hoje
 
-1. [Lanchonete do Coral 55](#lanchonete-do-coral-55) :palm_tree:
-1. [Especificidade de seletores](#especificidade-de-seletores)
-1. [Centralizando coisas](#centralizando-as-coisas)
+1. [Posicionamento estático](#posicionamento-estatico)
+1. [Posicionamento relativo](#posicionamento-relativo)
+1. [Posicionamento absoluto](#posicionamento-absoluto)
+1. [Posicionamento fixo](#posicionamento-fixo)
+1. [Mais Assombrações](#mais-assombracoes) :ghost::ghost::ghost:
 
 ---
-<!--
-{
-  "embeddedStyles": ".ravie { font-family: Ravie, serif; color: #e90c0c; }",
-  "layout": "section-header",
-  "hash": "lanchonete-do-coral-55"
+<!-- {"layout": "section-header", "hash": "posicionamento-estatico"} -->
+# Posicionamento estático
+## Deixando o navegador definir o fluxo da página
+
+- Relembrando o fluxo padrão
+- A propriedade `position`
+- O valor `static`
+<!-- {ul:.content} -->
+
+---
+<!-- {"layout": "tall-figure-right", "backdrop": "oldtimes"} -->
+# Relembrando o fluxo padrão
+
+![](../../images/flow3.png)
+
+
+Elementos **`block`**
+  ~ Ocupam **toda a largura** disponível
+  ~ Dispostos de **cima para baixo**
+  ~ **Quebram linha**
+
+Elementos **`inline`** <!-- {strong:.alternate-color} -->
+  ~ Ocupam o **espaço necessário**  <!-- {.alternate-color} --> (não mais)
+  ~ Dispostos da **esquerda para direita**  <!-- {.alternate-color} -->
+
+---
+<!-- {"backdrop": "oldtimes"} -->
+## Alterando o fluxo com `float` e `clear`
+
+- ::: figure .figure-slides.push-right
+  <div class="bullet figure-step bullet-no-anim"><img src="../../images/float-p1.png"><figcaption>Sem float</figcaption></div>
+
+  <div class="bullet figure-step bullet-no-anim"><img src="../../images/float-p3.png"><figcaption>Com float</figcaption></div>
+  :::
+  Flutuando o parágrafo à direita:
+  ```css
+  p#amazing {
+    width: 200px;
+    float: right;
+  }
+  ```
+  <!-- {ul:.full-width} -->
+- Quem flutua é **removido do fluxo**
+  - _i.e._, não ocupa mais espaço
+- Elementos **<u>depois</u> do flutuante**:
+  - Os `block`: passam a ignorar o elemento flutuante
+  - Os `inline`: respeitam o flutuante
+
+
+---
+<!-- {"backdrop": "exemplo-position-absolute"} -->
+## **Limitações** do fluxo padrão
+
+- Mesmo com `float` e `clear` não é possível fazer algumas coisas
+  - Por exemplo, como colocar um texto em cima de uma imagem?
+
+---
+# A propriedade `position`
+
+- **A propriedade `position`** permite definirmos se o navegador vai
+  dispor um elemento usando **o fluxo padrão ou outro fluxo**
+- Valores possíveis:
+  1. `position: static` (valor padrão, para o fluxo padrão)
+  1. `position: relative`
+  1. `position: absolute`
+  1. `position: fixed`
+  1. `position: sticky` ![](../../images/logo-css.svg) <!-- {.emoji} -->
+
+---
+## Posicionamento **estático**
+
+- O próprio navegador encontra as posições (x,y) dos elementos
+- É o valor padrão - usa o posicionamento do fluxo padrão
+  ```html
+  <div class="estatico">Conteúdo</div>
+  ```
+  ```css
+  .estatico {
+    position: static; /* este já é o valor padrão */
+  }
+  ```
+- <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-estatico" class="switch" onclick="javascript: (function() { var b = document.getElementById('estatico'); b.classList.toggle('estatico');}())" />
+    <label for="button-estatico">.estatico</label>
+  </div>
+  Resultado
+  <style>.estatico {position: static;}</style>
+  <div id="estatico" class="estatico" style="border: 3px dashed rebeccapurple">Conteúdo</div>
+
+  - Definir um `position: static` não altera nada
+
+
+---
+<!-- {"layout": "section-header", "hash": "posicionamento-relativo"} -->
+# Posicionamento relativo
+## Deslocando elementos
+
+- O valor `relative`
+- **Deslocando** um elemento com as propriedades:
+  1. `top`
+  1. `right`
+  1. `bottom`
+  1. `left`
+
+<!-- {ul:.content} -->
+
+---
+## Posicionamento **relativo**
+
+- O elemento é posicionado como se estivesse no fluxo padrão, mas pode ser
+  **deslocado** com as propriedades `top`, `right`, `bottom` e `left`
+  ```html
+  <div class="relativo1">Comporta-se como static...</div>
+  <div class="relativo2">...Mas pode ter um deslocamento.</div>
+  ```
+  ```css
+  .relativo1 { position: relative; }
+  .relativo2 { position: relative; left: 30px; top: -10px; }
+  ```
+- <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-relativo2" class="switch" onclick="javascript: (function() { var b = document.getElementById('relativo2'); b.classList.toggle('relativo2');}())" />
+    <label for="button-relativo2">.relativo2</label>
+  </div>
+  Resultado:
+  <style>.relativo2 { position: relative; left: 30px; top: -10px; }</style>
+  <div style="position: relative; border: 3px dashed rebeccapurple; background: var(--presentation-color);">Comporta-se como <code>static</code>...</div>
+  <div id="relativo2" class="relativo2" style="border: 3px dashed green; background: var(--presentation-color);">...Mas pode ter um deslocamento.</div>
+
+---
+## Detalhes sobre `position: relative`
+
+1. O elemento continua no **fluxo normal**, a menos que tenha suas propriedades
+   `top` :arrow_up:, `right` :arrow_right:, `bottom` :arrow_down: e `left`
+   :arrow_left: ajustadas.
+1. A posição do elemento será **ajustada com relação à sua posição original**
+   (caso ele fosse `static`)
+1. Os elementos posteriores a um elemento com `position: relative` **não
+   são ajustados** para ocupar eventuais "buracos" na página
+
+---
+<!-- {"backdrop": "exemplo-position-relative"} -->
+## **Utilidade** do `position: relative` (1/2)
+
+- É útil quando queremos que um elemento fique próximo de onde ele estaria,
+  mas **levemente deslocado**
+  - Legal para **"dar um charme"** no _layout_
+
+---
+## **Utilidade** do `position: relative` (2/2)
+
+<style>
+.button-img {
+  position: relative;
 }
--->
-# Lanchonete do Coral 55  <!-- {.ravie style="font-size: 2em"} -->
-## Conhecendo o menu da lanchonete
+.button-img:active {
+  left: -3px;
+  top: -3px;
+}
+</style>
+
+- Podemos fazer um pequeno deslocamento dando a ideia de botão:
+  ::: figure .push-right.center-aligned
+  ![](../../images/mario-star.png) <!-- {.button-img} -->
+  <br>Click me!
+  :::
+  ```css
+  img {
+    position: relative;
+  }
+  img:active {
+    left: -3px;
+    top: -3px;
+  }
+  ```
+- Também utilizamos `position: relative` para definir um "plano de
+  referência" para os filhos que estiverem com `position: absolute`
+  (veremos mais adiante)
+
+---
+<!-- {"layout": "section-header", "hash": "posicionamento-absoluto"} -->
+# Posicionamento absoluto
+## Definindo (x,y) dos elementos
+
+- O valor `absolute`
+- **Posicionando** com:
+  1. `top` :arrow_up:
+  1. `right` :arrow_right:
+  1. `bottom` :arrow_down:
+  1. `left` :arrow_left:
+- Casos comuns
+<!-- {ul:.content} -->
+
+---
+## Posicionamento **absoluto**
+
+- O elemento é colocado nas posições especificadas pelas propriedades
+  `top` :arrow_up:, `right` :arrow_right:, `bottom` :arrow_down: e `left`
+  :arrow_left:, considerando como referência **o ancestral
+  mais próximo que esteja posicionado não estaticamente** (`relative`, `absolute` ou
+  `fixed`)
+  - Se não houver um ancestral, posiciona de acordo com elemento `<html>`
+- **Não ocupa espaço**, já que o elemento é removido do fluxo
+
+---
+## Exemplo de posição absoluta
+
+- <!-- {ul:.full-width} -->
+  ```html
+  <div class="relativo">Este é um recipiente relativo.
+    <div class="absoluto">Este é absoluto.</div>
+  </div>
+  ```
+  ```css
+  .relativo { position: relative; }
+  .absoluto { position: absolute; width: 50%;
+               right: 30px; bottom: 10px; }
+  ```
+  <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-absoluto" class="switch" onclick="javascript: (function() { var b = document.getElementById('absoluto'); b.classList.toggle('absoluto');}())" />
+    <label for="button-absoluto">.absoluto</label>
+  </div>
+  Resultado:
+  <style>.absoluto { position: absolute; width: 50%; right: 30px; bottom: 10px; }</style>
+  <div style="position: relative; height: 140px; border: 3px dashed rebeccapurple; background: var(--presentation-color)">Este é um recipiente relativo.
+    <div id="absoluto" class="absoluto" style="border: 3px dashed green; background: var(--presentation-color)">Este é absoluto.</div>
+  </div>
+
+---
+## **Utilidades** do `position: absolute`
+
+1. <video src="../../videos/exemplo-position-absolute-steam.mp4" loop="0" class="push-right" controls></video>
+   **Criar _"drop-downs"_** de opções que não "empurram" a página pra baixo
+   (porque não ocupam espaço)
+1. Colocar elementos "**um em cima do outro**"
+   ![](../../images/exemplo-position-absolute-sensacionalista.png) <!-- {.block.centered} -->
+1. ![](../../images/exemplo-position-absolute-bees.gif) <!-- {.push-right} -->
+   **Posicionar** elementos em **qualquer lugar** na página
+
+<!-- {ol:.bulleted} -->
+---
+## **Detalhes** do `position: absolute`
+
+- O elemento **não tem espaço reservado para ele**. Em vez disso, ele fica
+  exatamente na posição especificada por `top`, `right`, `bottom`, `left`
+  relativo ao **seu mais próximo antecessor-posicionado (não _static_)**
+  <!-- {strong:.underline.upon-activation.delay-1600} -->
+
+   <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/nt2bqmar/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "section-header", "hash": "posicionamento-fixo"} -->
+# Posicionamento fixo
+## Definindo (x,y) dos elementos **na janela**
+
+- O valor `fixed`
+- **Posicionando** com:
+  1. `top` :arrow_up:
+  1. `right` :arrow_right:
+  1. `bottom` :arrow_down:
+  1. `left` :arrow_left:
+- Casos comuns
+- `z-index`
+<!-- {ul:.content} -->
+
+---
+## Posicionamento **fixo**
+
+- O elemento é posicionado de acordo com os valores das propriedades `top`,
+  `right`, `bottom` e `left`, assim como `absolute`, porém **seu ponto de
+  partida é o canto superior esquerdo da _janela_** <!-- {em:.underline.upon-activation.delay-1200} -->
+- Não acompanha a rolagem da página
+- Não ocupa espaço, já que o elemento é removido do fluxo
+
+---
+## Posição fixa (cont.)
+
+- ```html
+  <div class="fixo">Este é um elemento fixo.</div>
+  ```
+  ```css
+  .fixo { position: fixed; right: 0; bottom: 10px; }
+  ```
+- Resultado:
+  <iframe width="100%" height="240" src="https://jsfiddle.net/fegemo/s01Lc3a8/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+---
+<!-- {"layout": "2-column-content-zigzag"} -->
+## **Utilidade** do `position: fixed`
+
+- Manter elementos **sempre na mesma posição**, independente da **barra
+  de rolagem**
+
+![](../../images/exemplo-position-fixed-inbox.png)
+
+
+![](../../images/exemplo-position-fixed-g1.png)
+- Criar **caixas de diálogo modais** (que o usuário precisa interagir ou fechar)
+
+---
+## **position** -- Exemplo com todos
+
+<style>
+.minibola{
+  display: inline-block;
+
+  width:48px;
+
+  padding: 4px 15px;
+  border: 2px solid rebeccapurple;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 70px;
+
+}
+</style>
+
+
+- Considere que:
+  - O div representado pelo **quadrado pontilhado** está como
+    **`position:relative`**
+  - O div <span class="minibola"> 2 </span> possui as propriedades:
+    **`top:-20px`** e **`left: 30px`**
+
+<iframe width="90%" height="50%" src="//jsfiddle.net/fegemo/jnjvsqy4/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+
+---
+<!-- {"layout": "centered", "hash": "valores-position"} -->
+
+| `position` | Descrição                                                         | Exemplos de uso                                                                                              | `top`, `right`, `bottom`, `left`      | `z-index`       |
+|------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------|-----------------|
+| `static`   | Fluxo normal                                                      | Elementos que **não requerem posicionamento especial**                                                       | ignorados                             | ignorado        |
+| `relative` | Fluxo normal, deslocado                                           | Elementos que podem se **deslocar um pouco**; elementos **contextos para outros absolutamente posicionados** | **deslocamentos** nas 4 direções      | determina ordem |
+| `absolute` | Removido do fluxo, posicionado em um (x,y) relativo a um contexto | Elementos que queremos **determinar os valores (x,y)** para posicioná-los exatamente em algum lugar          | **posições** referentes às 4 direções | determina ordem |
+| `fixed`    | Removido do fluxo, posicionado em um (x,y) relativo à janela      | Idem ao `absolute`, mas a **posição é fixa na janela** (e não na página)                                     | **posições** referentes às 4 direções | determina ordem |
+
+<!-- {table:style="transform: scale(.7)"} -->
+
+---
+## **z-index**
+<style>
+  .quadrado{
+    height: 100px;
+    width: 140px;
+    border: 1px dashed black;
+    position:absolute;
+  }
+  .q1{
+    background-color:lightblue;
+    z-index:1;
+  }
+  .q2{
+    background-color:lightyellow;
+    top:45px;
+    left: 20px;
+    z-index:2;
+  }
+  .q3{
+    background-color:lightgreen;
+    top:75px;
+    left: 30px;
+    z-index:3;
+
+
+    }
+</style>
+
+- Define a ordem "no eixo Z" com a qual elementos que se tocam deve ser exibida
+
+::: result .flex-align-center
+  <div style="width:200px;height:170px;">
+    <div class="quadrado q1">
+      z-index=1
+    </div>
+    <div class="quadrado q2">
+      z-index=2
+    </div>
+    <div class="quadrado q3">
+      z-index=3
+    </div>
+
+  </div>
+:::
+
+- Útil apenas para elementos `position: absolute` ou `position: fixed`
+
+
+---
+<!-- {"layout": "section-header", "hash": "mais-assombracoes"} -->
+# Mais Assombrações :ghost:
+## Outros exercícios no blog Assombrado
 
 - Atividade de hoje
-- Layout e posicionamento
-- Propriedade `line-height`
-
 <!-- {ul:.content} -->
 
 ---
-<!-- {"backdrop": "coral-55"} -->
+<!-- {"backdrop": "assombrado-position"} -->
 
 ---
-## Comp / Specs
-
-[![](../../images/coral55-comp.png)](../../images/coral55-comp.png) <!-- {style="width: 49%"} -->
-[![](../../images/coral55-specs.png)](../../images/coral55-specs.png) <!-- {style="width: 49%"} -->
-
-*[Comp]: Comprehensive Layout*
-*[Specs]: Specifications*
-
----
-# Atividade de hoje
-
-1. O objetivo é treinar **_layout_ e posicionamento** em `CSS`
-   - Usando Grid (`display: grid`) e Flexbox (`display: flex`)
-   - O HTML está pronto, faltando o CSS da página
-1. O _layout_ que usamos no exercício dos Unicórnios se chama **fluido** (100% da largura). Hoje,
-   você vai fazer um **_layout_ de largura fixa**
-   - O conteúdo da página deve ter `800px` de largura e deve estar centralizado
-1. [Baixe os arquivos][coral-55-seminal]. Instruções detalhadas estão no
-   arquivo README.md.
-
-[coral-55-seminal]: https://github.com/fegemo/cefet-front-end-coral-55/archive/master.zip
-
----
-## _Layout_ de páginas
-
-- Para definir o **_layout_** (posição das regiões da página), uma boa ideia
-  é usar **Grid** (`display: grid`)
-- Para definir o posicionamento dos **elementos que formam cada região**,
-  podemos usar **Flexbox** (`display: flex`) ou Grid (`display: grid`) também
-- Se precisarmos definir exatamente o (x,y) de um elemento, ou de
-  colocar um elemento em cima de outro, podemos usar `position`
-
-Observação: **antigamente** era comum usar `float` em alguns elementos para
-definirmos sua posição (como fizemos nos Unicórnios). Mas hoje em dia
-preferimos usar o Flexbox e o Grid, que foram criados para isso.
-<!-- {p:.note} -->
-
-Veja como está estruturado o HTML e como você pode estilizar as partes
-
----
-<!-- {
-  "embeddedStyles": ".code pre { margin-left: 153px; } .code::before { content: 'H T M L'; display: inline-block; height: 4em; width: 1em; font-family: monospace; font-size: 110px; float: right; margin-left: 20px;}"
-} -->
-
-<div class="code">
-
-```html
-<body>
-  <div id="recipiente">
-    <header id="cabecalho-pagina">
-      <!-- titulos -->
-    </header>
-    <section id="lateral">
-      <!-- siri, peixe, bolhas -->
-    </section>
-    <main id="cardapio">
-      <article><!-- ... --></article>
-      <article><!-- ... --></article>
-      <!-- mais itens do menu -->
-    </main>
-    <footer><!-- cartoes --></footer>
-  </div>
-  <aside id="ticket"><!-- ... --></aside>
-</body>
-```
-
-</div>
-
----
-<!-- {"state":"show-active-slide-and-previous", "containerStyles": {"--show-2-slides-x-distance": "300px", "--show-2-slides-z-distance": "-400px", "--show-2-slides-rotation": "10deg "}} -->
-
-::: figure .figure-slides
-![](../../images/coral-55-annotation-1.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-![](../../images/coral-55-annotation-2.png) <!-- {.bullet.figure-step.bullet-no-anim} -->
-:::
-
----
-<!-- {"hash": "line-height"} -->
-## A propriedade **line-height** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height))
-
-- Define a altura de uma linha de texto.
-- Inicialmente, `line-height: 1em;`, mas qualquer valor de medida de tamanho
-  pode ser usado
-  - Exemplo:
-    ```css
-    .espacamento-simples { line-height: 1em; }
-    .espacamento-duplo   { line-height: 2em; }
-    ```
-
-    <p style="float: left; width: 45%; line-height: 1em; height: 100px; overflow: auto; border: 3px solid black">
-      Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit. Curabitur mauris eros, fermentum eget dolor sit amet.</p>
-
-    <p style="float: right; width: 45%; line-height: 2em; height: 100px; overflow: auto; border: 3px solid black">
-    Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit. Curabitur mauris eros, fermentum eget dolor sit amet.</p>
-
-
----
-<!-- {"layout": "section-header", "hash": "especificidade-de-seletores"} -->
-# Especificidade de seletores
-## Aplicando regras
-
-- Mais de uma regra definindo a mesma propriedade
-- Regras de especificidade
-- Especificator Tabajara(tm)
-<!-- {ul:.content} -->
-
----
-## Motivação
-
-- Dadas <u>mais de uma regra CSS definindo a mesma propriedade</u> para
-  um elemento, qual prevalece?
-  - Como determinar qual a cor do elemento?
-    ```html
-    <style>
-      h4 { color: black; }
-      h4 { color: white; }      
-    </style>
-
-    <h4>Arthur Dent</h4> <!-- qual a cor de Arthur Dent? -->
-    ```
-
----
-## Mais Difícil...
-
-```html
-<style>
-  .destaque { color: red; }
-  #titulo   { color: green; }
-  h4        { color: blue; }
-</style>
-
-<h4 id="titulo" class="destaque">Ford Prefect</h4>
-```
-- E agora??
-- Os **3 seletores <u>se aplicam</u>** ao elemento! <!-- {ul:.bulleted} -->
-  - Mas com **prioridades diferentes**
-  - (↑) mais específico o seletor da regra → (↑) maior sua prioridade
-    - Neste caso, <h4 style="display: inline; color: green;">Ford Prefect (`green`)</h4>
-
----
-## Regras gerais de especificidade
-
-Regra 1 <!-- {dl:.bulleted} -->
-  ~ Cada seletor tem uma **pontuação de especificidade**
-
-Regra 2
-  ~ Se dois seletores selecionam o mesmo elemento, mas com pontuações
-    diferentes, ganha aquele com pontuação maior
-
-Regra 3
-  ~ Se dois seletores selecionam o mesmo elemento e têm a mesma
-    pontuação, ganha o que foi declarado por último
-
-Regra 4
-  ~ Estilo Inline &gt;&gt; Arquivo Externo &gt;&gt; Incorporado
-
-Regra 5
-  ~ ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag
-
----
-## Cálculo da **pontuação de especificidade**
-
-- [Especificação na W3C sobre _CSS3 Selectors_](http://www.w3.org/TR/css3-selectors/#specificity)
-- Algoritmo
-  1. Contar o número de IDs no seletor (variável `a`)
-  1. Contar o número de classes, atributos e pseudo-classes no seletor (`b`)
-  1. Contar o número de tags e pseudo-elementos no seletor (`c`)
-  1. Concatenar os três números (`abc`)
-
-```css
-#posts-recentes .post.novidade > h2 {
-  /* id: 1, classes: 2, tag: 1 */
-  /* pontuação: 121 */
-}
-```
-
----
-## Exemplos
-
-```css
-/* seletor { propriedades }  abc */
-li { }                    /* 001 */
-.destaque { }             /* 010 */
-li.destaque { }           /* 011 */
-
-#rodape { }               /* 100 */
-#rodape #logo { }         /* 200 */
-
-a[href^="www"] { }        /* 011 */
-p strong em { }           /* 003 */
-```
-
----
-## Exercício
-
-- Qual é a cor do texto?
-  ```html
-  <style>
-    #a .b .c { color: red; }
-    .d .e .f { color: green; }
-    .g .h #i { color: blue; }
-  </style>
-  <p id="a" class="d g">
-      <strong class="b e h">
-          <em id="i" class="c f">Qual é a minha cor?</em>
-      </strong>
-  </p>
-  ```
-  - [Resposta](https://jsfiddle.net/fegemo/bw1xt1az/) no JSFiddle
-
----
-<!--
-{
-  "layout": "centered-horizontal",
-  "hash": "specificator-tabajara",
-  "scripts": ["../../scripts/classes/spec-tabajara.min.js"],
-  "styles": ["../../styles/classes/spec-tabajara.min.css"]
-}
--->
-
-## **CoutoSan™** Specificity  ![](../../images/flavio-avatar.jpg)<!-- {.emoji.portrait.bordered style="margin-left: 0.5em"} -->![](../../images/hasan-avatar.jpg) <!-- {.emoji.portrait.bordered} -->
-
-<article id="spec-tabajara">
-  <div>
-    <input type="text" id="spec-tabajara-input" placeholder="Digite um seletor aqui...">
-  </div>
-  <div>
-    <button id="spec-tabajara-button">Calcular</button>
-  </div>
-  <div>
-    <div class="spec-class">
-      <div id="spec-tabajara-output-a" class="spec-output">0</div>
-      <div>(a) IDs</div>
-    </div>
-    <div class="spec-class">
-      <div id="spec-tabajara-output-b" class="spec-output">0</div>
-      <div>(b) Classes, atributos e pseudo-classes</div>
-    </div>
-    <div class="spec-class">
-      <div id="spec-tabajara-output-c" class="spec-output">0</div>
-      <div>(c) Elementos, pseudo-elementos</div>
-    </div>
-  </div>
-</article>
-
----
-<!-- {"layout": "section-header", "hash": "centralizando-as-coisas"} -->
-# Centralizando as coisas
-## Centralizando elementos em diferentes cenários
-
-- Centralizando horizontalmente
-- Centralizando verticalmente
-<!-- {ul:.content} -->
-
----
-<!-- {"hash": "centralizacao-horizontal"} -->
-# Centralizando **horizontalmente** <!-- {.underline.upon-activation} -->
-
-- Existem várias formas para centralizar elementos que se aplicam a **situações diferentes**:
-  1. Centralizar o conteúdo _inline_ de um elemento
-  1. Centralizar um elemento `block` ou `inline-block` com largura definida
-  1. Centralizar um elemento com `position: absolute` ou `fixed`...
-     1. ...quando ele tem largura fixa
-     1. ...quando ele é fluido
-  1. E outras formas...
-
----
-## (1) Centralizando conteúdo _inline_
-
-- Para **centralizar os filhos `inline`** de um elemento:
-  ```css
-  .centraliza-os-filhos {
-    text-align: center;   /* usar a propriedade text-align: center */
-  }
-  ```
-  - Exemplos:
-    - centralizar texto (que é _inline_) dentro de um título h1
-    - centralizar uma imagem (_inline_) dentro de um parágrafo
-    - centralizar `<span>` (_inline_ ou `inline-block`) dentro de uma `<div>`:
-      <iframe width="100%" height="100" src="//jsfiddle.net/fegemo/hko474g8/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-## (2) Centralizando um elemento _block_
-
-- Para **centralizar um elemento `block`**:
-  ```css
-  .centraliza-block {
-    margin: 0 auto; /* margin-left: auto, margin-right: auto, top/bottom: 0 */
-  }
-  ```
-  - Exemplos:
-    - centralizar uma imagem com `display: block`
-    - centralizar uma `<div>` dentro de outra
-    - centralizar uma `<table>` dentro de seu container:
-      <iframe width="100%" height="130" src="//jsfiddle.net/fegemo/3a21w96j/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
----
-<!-- {"layout": "2-column-content"} -->
-## (3.0) Centralizando um elemento `absolute` ❌
-
-- Ideia: <!-- {ul:.bullet} -->
-  ```css
-  .centraliza-tentativa {
-    position: absolute; /* ou fixed */
-    left: 50%;
-  }
-  ```
-  - Não funciona porque o objeto começa em 50% do pai
-
-![](../../images/center-object-attempt.png) <!-- {.bullet} -->
-
-Há duas soluções: (a) se o tamanho do pai for definido (ex, valor em px) e (b) se o pai for fluido (ex, largura em %) <!-- {p.note.info.span-columns.bullet} -->
-
----
-## (3.1) Centralizando um elemento `absolute`
-
-- Centralizando um elemento com `position: absolute` ou `fixed` quando a
-  **largura do seu pai é conhecida**:
-  ```css
-  .centraliza-elemento-absoluto {
-    position: absolute; /* ou fixed */
-    left: calc((LARGURA_PAI - LARGURA_EL) / 2);
-  }
-  ```
-  ![](../../images/box-element-dimensions.png) <!-- {.push-right} -->
-
-  - Onde `LARGURA_PAI` é a largura do pai (recipiente) e `LARGURA_EL` é a largura
-    do elemento que queremos centralizar
-  - Veja [como funciona esse `calc(...)`][calc] do CSS
-
-[calc]: https://css-tricks.com/a-complete-guide-to-calc-in-css/
-
----
-## (3.2) Centralizando um elemento `absolute`
-
-- Centralizando um elemento com `position: absolute` ou `fixed` 
-  **em um recipiente fluido** (largura do pai pode variar):
-  ```css
-  .centraliza-elemento-com-pai-fluido {
-    position: absolute;          /* ou fixed */
-    left: 50%;                   /* põe no "meio", só que começando dele */
-    transform: translateX(-50%); /* volta metade da largura do elemento */
-  }
-  ```
-  - Em outra aula aprenderemos a propriedade CSS `transform`
-- Mais: [Um guia sobre como centralizar qualquer elemento](https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/)
-
----
-# Centralizando **verticalmente**  <!-- {.underline.upon-activation.alternate-color} -->
-
-- Assim como a centralização horizontal, a vertical depende do cenário:
-  1. Centralizar um elemento com `position: static`
-  1. Centralizar um elemento com `position: absolute` ou `fixed`
-
----
-<!-- {"layout": "2-column-content", "hash": "centralizando-verticalmente-static", "slideStyles": {"grid-template-rows": "auto auto auto"}} -->
-## (1) Centralizando vertic. um elemento `static`
-
-- Podemos usar **flexbox** com `display: flex` no pai e `align-self: center` no filho sendo centralizado <!-- {ul:.span-columns} -->
-
-```css
-.recipiente {
-  display: flex;
-  /*justify-items: center; 
-   ⬆️ se quiser horizontal tbm */
-}
-.centralizando-vertical {
-  align-self: center;
-}
-```
-
-::: result .center-flex-example 
-<style>
-.center-flex-example p::before {
-  content: '<p class="recipiente">';
-  display: block;
-  position: absolute;
-  right: 1em;
-  top: 0;
-  font-style: italic;
-  color: darkgoldenrod;
-  font-size: 0.45em;
-}
-</style>
-<span style="align-self: center; background: #ddd; padding: .25em">UM SPAN</span> <!-- {p:style="display: flex; height: 5em;border: 1px dotted darkgoldenrod;"} -->
-:::
-
----
-<!-- {"classes": "compact-code", "hash": "centralizando-verticalmente-absolute-fixed"} -->
-## (2) Centralizando vertic. um elemento `absolute`
-
-- É feito de forma análoga à centralização horizontal de um elemento com
-  `position: absolute` ou `fixed`:
-  1. Container com altura conhecida:
-     ```css
-     .centraliza-elemento-absoluto {
-       position: absolute;
-       top: calc((ALTURA_PAI - ALTURA_EL) / 2);
-     }
-     ```
-  1. Container fluido: <!-- {li:.two-column-code} -->
-     ```css
-     .centraliza-elemento-absoluto {
-       position: absolute;
-       top: 50%;
-       transform: translateY(-50%);
-     }
-
-     .centraliza-elemento-absoluto {
-       position: absolute;
-       top: 50%;
-       left: 50%; /* horizontal tbm */
-       transform: translate(-50%, -50%);
-     }
-     ```
+# Atividade de Hoje
+
+- Fazer mais exercícios no "Blog Assombrado"
+- [Baixe os arquivos][assombrado-exercicio-position] contendo o HTML e faça os exercícios
+  - O resultado final tem que ser semelhante ao [desta imagem](../../images/assombrado-position.png)
+  - Leia as instruções detalhadas no arquivo `README.md`. No geral:
+    1. _Tags_ parecendo botões
+    1. Títulos em cima das imagens
+    1. Botão "voltar ao topo"
+    1. +3 desafios ;)
+
+[assombrado-exercicio-position]: https://github.com/fegemo/cefet-front-end-assombrado/archive/exercise-positioning.zip
 
 ---
 <!-- {"layout": "centered"} -->
 # Referências
 
 - [Propriedade **position** na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
-- [Um breve e interessante tutorial sobre posicionamento](http://learnlayout.com/position.html)
+- [Um breve e interessante tutorial sobre posicionamento](https://learnlayout.com/position.html)

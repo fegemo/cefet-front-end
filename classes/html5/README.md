@@ -1,73 +1,58 @@
 <!-- {"layout": "title"} -->
 # **HTML** parte 5
-## Divitite e tags semânticas, display,<br>pseudo-coisas e Assombrações :ghost:
+## Divitite e tags semânticas, especificidade,<br>pseudo-coisas e Assombrações :ghost:
 
 ---
-# Na última aula (1/3)
+<!-- {"layout": "centered-horizontal"} -->
+# Na última aula <small>(1/3)</small>
 
-- Formatos de Imagens
-  - **JPEG** <!-- {strong:.alternate-color} --> (ou JPG), bom para **fotos**
-    tiradas do mundo real, que possuem muita variação de cor. Não possui
-    transparência
-  - **GIF** <!-- {strong:.alternate-color} -->, **transparência** de 1 bit e
-    suporta **animações** de quadros
-    - Apenas 256 cores na imagem (muito pouco!!)
-  - **PNG** <!-- {strong:.alternate-color} -->, **transparência** de 8 bits
-    e suporta **mais cores** que GIF
-    - Bom formato para imagens com pouca variação de cor
-  - **SVG** <!-- {strong:.alternate-color} -->, imagens **vetoriais** que não
-    perdem qualidade se **ampliadas**
+- **Propriedade `display`** e valores `inline`, `block`, `inline-block` e `none`
+  <iframe width="510" height="320" src="https://jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right bordered rounded"></iframe>
+- Também há outros valores:
+  - `table`, `table-row`, `table-cell` etc.
+  - `flex` e `inline-flex`
+  - `grid` e `inline-grid`
 
 ---
-# Na última aula: **vídeos** (2/3)
+# Na última aula <small>(2/3)</small>
+- Propriedades do **Flexbox**: <!-- {ul^0:.full-width.no-margin} -->
+  - No elemento pai:  <!-- {ul^0:.layout-split-2} -->
+    - `display: flex` <!-- {li^1:style="flex: 1"} -->
+    - `flex-direction: row | column`
+    - `justify-content: flex-start | flex-end | center | space-around | space-between`
+  - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
+    - `align-self: flex-start | flex-end | center`
+    - `order: numero`
 
-```html
-<video src="videos/fendadobiquini.mp4" controls></video>
-```
-- Para aumentar a compatibilidade: <!-- {ul:.compact-code} -->
-  ```html
-  <video width="320" height="240" controls>
-    <source src="bob-esponja.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="bob-esponja.webm" type="video/webm; codecs=vp8,vorbis">
-    Seu navegador não suporta o elemento video.
-  </video>
-  ```
-- O navegador tentará abrir o vídeo `bob-esponja.mp4` (_i.e._, o primeiro)
-  - se não conseguir, tentará o arquivo `bob-esponja.webm` (2º)
-  - se, mesmo assim, não conseguir, será exibido o texto
+<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ---
-# Na última aula: **_Web Fonts_** (3/3)
+# Na última aula <small>(3/3)</small>
 
-1. Descrever a fonte no arquivo CSS usando `@font-face {...}`: <!-- {ol:.compact-code} -->
-   ```css
-   @font-face {
-     font-family: "Emblema One";    /* dando um nome à fonte */
-     src: url("fonts/EmblemaOne-Regular.woff2") format('woff2'), /* 1º formato */
-          url("fonts/EmblemaOne-Regular.ttf")   format('ttf');   /* 2º formato */
-   }
-   ```
-2. Usar a fonte:
-   ```css
-   h1 {
-     font-family: "Emblema One", sans-serif;
-   }
-   ```
-   - Sempre coloque uma segunda opção (_e.g._, `sans-serif`)
+- Propriedades do **grid**: <!-- {ul^0:.full-width.no-margin} -->
+  - No elemento pai: <!-- {ul^0:.layout-split-2} -->
+    - `display: grid` <!-- {li^1:style="flex: 1"} -->
+    - `grid-template-rows`
+    - `grid-template-columns`
+  - Nos elementos filhos: <!-- {li^0:style="flex: 1"} -->
+    - `grid-row: inicio / fim`
+    - `grid-column: inicio / fim`
+
+<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/sqtdb95x/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ---
 <!-- {"layout": "centered"} -->
 # Hoje veremos...
 
 1. [Divitite - doença e cura com **_tags_ semânticas**](#divitite-e-tags-semanticas)
-1. [A propriedade **display**](#a-propriedade-display)
+1. [Especificidade de seletores](#especificidade-de-seletores)
 1. [_Pseudo-classes_ e _pseudo-elements_](#pseudo-classes-e-pseudo-elements)
 1. [Assombrações](#assombracoes) :ghost:
 
 ---
 <!-- {"layout": "section-header", "hash": "divitite-e-tags-semanticas"} -->
-# Divitite e _Tags_ Semânticas
-## Inflamação das `<div>`s
+# _Tags_ Semânticas
+## Curando a divitite
 
 Motivação
   ~ SEO e Acessibilidade na Web
@@ -129,7 +114,7 @@ Acessibilidade
 
 ---
 <!-- {"hash": "elementos-semanticos"} -->
-## Elementos semânticos (1/3)
+## Elementos semânticos <small>(1/3)</small>
 
 - [`<main></main>`](http://www.w3.org/wiki/HTML/Elements/main) `(block)`
   - Conteúdo principal da página
@@ -145,7 +130,7 @@ Acessibilidade
     - Em uma loja, seria um produto
 
 ---
-## Elementos semânticos (2/3)
+## Elementos semânticos <small>(2/3)</small>
 
 - [`<section></section>`](http://www.w3.org/wiki/HTML/Elements/sectionhtml)
   `(block)`
@@ -160,7 +145,7 @@ Acessibilidade
 *[TOC]: Table of Contents*
 
 ---
-## Elementos semânticos (3/3)
+## Elementos semânticos <small>(3/3)</small>
 
 - [`<aside></aside>`](http://www.w3.org/wiki/HTML/Elements/aside) `(block)`
   - Uma seção de conteúdo periférico na página
@@ -177,7 +162,7 @@ Acessibilidade
 ---
 ## Exemplo de uso - Elementos semânticos
 
-  <iframe width="100%" height="80%" src="//jsfiddle.net/fegemo/oy82x4tu/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+  <iframe width="98%" height="600" src="//jsfiddle.net/fegemo/oy82x4tu/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="rounded bordered block centered"></iframe>
 
 ---
 ## Elementos semânticos **pré-HTML5**
@@ -203,213 +188,177 @@ Acessibilidade
 [`<kbd></kbd>`](http://www.w3.org/wiki/HTML/Elements/kbd)
 ~ para teclas do teclado
 
+[`<figure></figure>`](http://www.w3.org/wiki/HTML/Elements/figure)
+~ imagem, tabela ou gráfico
+
+[`<figcaption></figcaption>`](http://www.w3.org/wiki/HTML/Elements/figcaption)
+~ legenda de imagem, tabela ou gráfico
 
 ---
-<!-- {"layout": "section-header", "hash": "a-propriedade-display"} -->
-# A propriedade **display**
-## e seus diversos valores
+<!-- {"layout": "section-header", "hash": "especificidade-de-seletores"} -->
+# Especificidade de seletores
+## Aplicando regras
 
-- Valores:
-  - `block`
-  - `inline`
-  - `inline-block`
-  - `none`
-  - `table`
-  - `table-row`
-  - `table-cell`
-  - `flex` e `inline-flex` ![Logomarca do CSS](../../images/logo-css.svg) <!-- {.emoji} -->
-  - `grid` e `inline-grid` ![Logomarca do CSS](../../images/logo-css.svg) <!-- {.emoji} -->
-- Alterando a visibilidade
-
-<!-- {ul^1:.content} -->
+- Mais de uma regra definindo a mesma propriedade
+- Regras de especificidade
+- CoutoSan Especificator(tm)
+<!-- {ul:.content} -->
 
 ---
-## A propriedade **display** (na [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/display))
+## Motivação
 
-- Define o **tipo de visualização** de um elemento e também seu
-  **comportamento** no fluxo da página
-- Os valores mais comuns
-  - `block`, para definir um elemento com comportamento `block`
-  - `inline`, similarmente, para `inline`
-  - `inline-block`, similar a `block`, porém sem quebra de linha
-  - `none`, sem renderização
+- Dadas <u>mais de uma regra CSS definindo a mesma propriedade</u> para
+  um elemento, qual prevalece?
+  - Como determinar qual a cor do elemento?
+    ```html
+    <style>
+      h4 { color: black; }
+      h4 { color: white; }      
+    </style>
 
----
-## A propriedade **display** (cont.)
-
-- É possível, por exemplo:
-  ```css
-  div { display: inline; }
-  span { display: block; }
-  ```
-
-  - Mas é claro que você não vai fazer isso... ;)
-- Para **remover um elemento do fluxo e não renderizá-lo** de forma alguma:
-  ```css
-  a[href*="xxx"] { display: none; }
-  ```
+    <h4>Arthur Dent</h4> <!-- qual a cor de Arthur Dent? -->
+    ```
 
 ---
-## Display: **inline-block**
+## Mais Difícil...
 
-- Une a **capacidade de se <u>definir dimensões</u> de `block`** e a
-  possibilidade de **ter um <u>fluxo lateral</u>** (sem quebra de linha), como
-  `inline`. Exemplo:
-  ```html
-  <div class="passo">Instalar</div>
-  <div class="passo">Aprender</div>
-  <div class="passo">Programar</div>
-  ```
-  ```css
-  .passo {
-    display: inline-block;
-    width: 150px;
-    height: 150px; /* ... */
-  }
-  ```
+```html
+<style>
+  .destaque { color: red; }
+  #titulo   { color: green; }
+  h4        { color: blue; }
+</style>
 
----
-## Resultado do display **inline-block**
-
-<iframe width="600" height="400" src="//jsfiddle.net/fegemo/2gfkyrrh/3/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="flex-align-center bordered rounded"></iframe>
-
----
-<!-- {"layout": "tall-figure-right", "scripts": ["../../scripts/classes/caniuse.min.js"]} -->
-## Display: **table-***
-
-<div class="caniuse" data-feature="css-table" style="justify-self: flex-end"></div>
-
-- Alguns valores são para a criação de _layouts_ em formato de tabelas:
-  - `table`, `table-cell`, `table-column`, `table-column-group`,
-    `table-footer-group`, `table-header-group`, `table-row`,
-    `table-row-group`, `inline-table`
-- Veja alguns [exemplos de uso](http://colintoh.com/blog/display-table-anti-hero) no link
-
-**Hoje em dia**: preferimos _flex_ ou _grid_ ;) <!-- {p:.span-columns.note.info} -->
-
----
-<!-- {"layout": "tall-figure-left", "slideStyles": {"grid-template-columns": "auto 1fr"}} -->
-## Display: **flex** e **inline-flex** ![Logomarca do CSS](../../images/logo-css.svg) <!-- {.emoji} -->
-
-<div class="caniuse" data-feature="flexbox"></div>
-
-- Mais recentemente, o CSS3 introduziu o **flexbox** <!-- {ul:.bulleted} -->
-- É uma forma **bem flexível** para dispor os elementos
-- Cria uma linha (`row`) ou coluna (`column`) com os filhos
-- Além de `display: flex` e `display: inline-flex`, foram introduzidas outras propriedades. Exemplos:
-
-`flex-direction` <!-- {dl:.span-columns.width-20.full-width.no-margin.bulleted.bullet} -->
-~ `row` (padrão), `column`, `row-reverse`, `column-reverse`
-~ dispõe filhos na horizontal (se `row`) ou vertical (`column`)
-
-`justify-content`
-~ `flex-start` (padrão), `center`, `space-around`, `space-between`...
-~ define como distribuir o espaço que sobrou
-
-`align-items`
-~ `stretch` (padrão), `flex-start`, `center`...
-~ define posição dos elementos no "contraeixo"
-
----
-<!-- {"layout": "2-column-content", "embeddedStyles": ".horizontal-flex-example li { font-size: .8em; flex: 1; margin-right: 4px; background: #fffc; outline: 1px solid silver; } .horizontal-flex-example { display: flex; justify-content: space-between; list-style-type: none; padding-left: 0; }"} -->
-## Exemplo com flexbox: lista horizontal
-
-```css
-ul.horizontal {
-  display: flex;
-  justify-content: space-around;
-
-  /* tirar coisas que vem na <ul> */
-  list-style-type: none;
-  padding-left: 0;
-}
-
-ul.horizontal > li {
-  flex: 1; /* crescer com peso 1 */
-  
-  /* espacinho e centralização */
-  margin-right: 4px;
-  text-align: center;
-}
+<h4 id="titulo" class="destaque">Ford Prefect</h4>
 ```
-
-- ::: result . text-align: center
-  - Abacaxi <!-- {ul:.horizontal-flex-example} -->
-  - Kiwi
-  - Maçã
-  - Uva
-  - Limão
-  :::
-- Veremos mais sobre **flexbox** em outra aula <!-- {ul^1:.no-bullets.no-padding.bulleted-0} -->
+- E agora??
+- Os **3 seletores <u>se aplicam</u>** ao elemento! <!-- {ul:.bulleted} -->
+  - Mas com **prioridades diferentes**
+  - (↑) mais específico o seletor da regra → (↑) maior sua prioridade
+    - Neste caso, <h4 style="display: inline; color: green;">Ford Prefect (`green`)</h4>
 
 ---
-<!-- {"layout": "tall-figure-right", "slideStyles": {"grid-template-columns": "auto 1fr"}, "embeddedStyles": ".grid-desc-dl dd {margin-bottom: .15em;}"} -->
-## Display: **grid** <!-- {.alternate-color} --> e **inline-grid** <!-- {.alternate-color} --> ![Logomarca do CSS](../../images/logo-css.svg) <!-- {.emoji} -->
+## Regras gerais de especificidade
 
-<div class="caniuse" data-feature="css-grid"></div>
+Regra 1 <!-- {dl:.bulleted} -->
+  ~ Cada seletor tem uma **pontuação de especificidade**
 
-- **Flexbox** é uma ferramenta de **1 dimensão**:
-  - Cria linha (`row`) ou coluna (`column`)
-- Mas vários _layouts_ têm 2 dimensões (linhas+cols)
-- O `display: grid` e `display: inline-grid` criam **_layouts_ 2D** <!-- {strong:.alternate-color} -->
-- E, como o flexbox, há várias outras propriedades. Por exemplo: <!-- {ul^1:.bulleted} -->
+Regra 2
+  ~ Se dois seletores selecionam o mesmo elemento, mas com pontuações
+    diferentes, ganha aquele com pontuação maior
 
-`grid-template-rows`<br>`grid-template-columns`  <!-- {dl:.span-columns.smaller-text-90.width-20.full-width.no-margin.bulleted.bullet.grid-desc-dl} -->
-~ determina os tamanhos das linhas ou colunas
-~ ex: `auto 1fr auto` (3 partes, do meio ocupando o que sobrar)
-~ ex: `200px 10% 1fr` (3 partes, 1ª fixa, 2ª fluida e 3ª restante)
-~ ex: `1fr 3fr` (2 partes, 1ª ocupando 1/4 e 2ª 3/4 do espaço)
+Regra 3
+  ~ Se dois seletores selecionam o mesmo elemento e têm a mesma
+    pontuação, ganha o que foi declarado por último
 
-`grid-row`<br>`grid-column`
-~ propriedade de cada filho, define onde ficar nas linhas e colunas, ex: `1 / 3`, `1 / 2`
+Regra 4
+  ~ Estilo Inline &gt;&gt; Arquivo Externo &gt;&gt; Incorporado
+
+Regra 5
+  ~ ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag
 
 ---
-<!-- {"layout": "2-column-content", "classes": "compact-code-more"} -->
-## Exemplo usando `grid`
+## Cálculo da **pontuação de especificidade**
 
-- HTML <!-- {ul:.no-bullets.no-padding} -->
-  ```html
-  <main>
-    <header></header>
-    <nav></nav>
-    <section></section>
-    <footer></footer>
-  </main>
-  ```
-  CSS (elemento pai)
-  ```css
-  main {
-    display: grid;
-    grid-template-rows: 200px 1fr auto;
-    grid-template-columns: 300px 1fr;
+- [Especificação na W3C sobre _CSS3 Selectors_](http://www.w3.org/TR/css3-selectors/#specificity)
+- Algoritmo: <!-- {ul:style="margin-bottom: 0"} -->
+
+**A** <!-- {dl:.width-10.full-width} -->
+~ Contar o número de IDs no seletor
+
+**B**
+~ Contar o número de classes, atributos e pseudo-classes no seletor
+
+**C**
+~ Contar o número de _tags_ e pseudo-elementos no seletor
+
+.
+~ Concatenar os três números (**ABC**)
+
+- ```css
+  #posts-recentes .post.novidade > h2 {
+    /* id: 1, classes: 2, tag: 1 */
+    /* pontuação: 121 */
   }
   ```
+  <!-- {ul:.no-bullets.no-padding.no-margin.full-width.compact-code} -->
 
-1. CSS (dos filhos) <!-- {ol:.no-bullets.no-padding.two-column-code} -->
+---
+<!-- {"layout": "2-column-content"} -->
+## Exemplos e Exercício
+
+1. Exemplos:
    ```css
-   header {
-     grid-column: 1 / 3;
-   }
+   /* seletor { propriedades }  abc */
+   li { }                    /* 001 */
+   .destaque { }             /* 010 */
+   li.destaque { }           /* 011 */
 
-   nav {
-     grid-column: 1 / 2;
-     grid-row: 2 / 3;
-   }
-   section {
-     grid-column: 2 / 3;
-     grid-row: 2 / 3;
-   }
-   footer {
-     grid-column: 1 / 3;
-     grid-row: 3 / 4;
-   }
+   #rodape { }               /* 100 */
+   #rodape #logo { }         /* 200 */
+
+   a[href^="www"] { }        /* 011 */
+   tr:hover { }              /* 011 */
+   .curiosidade::before { }  /* 011 */
+
+   ul li { }                 /* 002 */
+   ul > li { }               /* 002 */
+   h1, h2 { }           /* 001, 001 */
    ```
-   ::: result .full-width height: 250px; display: grid; grid-template-rows: 60px 1fr auto; grid-template-columns: 90px 1fr;
-   <header style="background: lightblue; grid-column: 1/3;"></header>
-   <nav style="background: black; grid-column: 1/2; grid-row: 2/3;"></nav>
-   <section style="background: green; grid-column: 2/3; grid-row: 2/3;"></section>
-   <footer style="background: gray; grid-column: 1/3; grid-row: 3/4; min-height: 40px;"></footer>
-   :::
+   <!-- {ol:.no-padding.no-bullets.no-margin.compact-code} -->
+
+- <!-- {ul:.no-bullets.no-margin.no-padding.compact-code} -->
+  Qual é a cor do texto?
+  ```html
+  <style>
+    #a .b .c { color: red; }
+    .d .e .f { color: green; }
+    .g .h #i { color: blue; }
+  </style>
+  <p id="a" class="d g">
+      <strong class="b e h">
+          <em id="i" class="c f">Texto</em>
+      </strong>
+  </p>
+  ```
+  - [Resposta](https://jsfiddle.net/fegemo/bw1xt1az/) no JSFiddle
+
+
+---
+<!--
+{
+  "layout": "centered-horizontal",
+  "hash": "specificator-tabajara",
+  "scripts": ["../../scripts/classes/spec-tabajara.min.js"],
+  "styles": ["../../styles/classes/spec-tabajara.min.css"]
+}
+-->
+
+## **CoutoSan™** Specificity  ![](../../images/flavio-avatar.jpg)<!-- {.emoji.portrait.bordered style="margin-left: 0.5em"} -->![](../../images/hasan-avatar.jpg) <!-- {.emoji.portrait.bordered} -->
+
+<article id="spec-tabajara">
+  <div>
+    <input type="text" id="spec-tabajara-input" placeholder="Digite um seletor aqui...">
+  </div>
+  <div>
+    <button id="spec-tabajara-button">Calcular</button>
+  </div>
+  <div>
+    <div class="spec-class">
+      <div id="spec-tabajara-output-a" class="spec-output">0</div>
+      <div>(a) IDs</div>
+    </div>
+    <div class="spec-class">
+      <div id="spec-tabajara-output-b" class="spec-output">0</div>
+      <div>(b) Classes, atributos e pseudo-classes</div>
+    </div>
+    <div class="spec-class">
+      <div id="spec-tabajara-output-c" class="spec-output">0</div>
+      <div>(c) Elementos, pseudo-elementos</div>
+    </div>
+  </div>
+</article>
+
 
 ---
 <!-- {"layout": "section-header"} -->
@@ -511,6 +460,7 @@ _Pseudo-element_
 <!-- {dl:.content} -->
 
 ---
+<!-- {"classes": "compact-code-more"} -->
 ## _Pseudo-**classes**_
 
 - Indicam um estado (situação) de um elemento. Exemplos:
@@ -706,7 +656,7 @@ _Pseudo-element_
   }
   ```
   - Resultado:
-    <iframe width="100%" height="120" src="//jsfiddle.net/fegemo/76wdcLao/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    <iframe width="100%" height="120" src="//jsfiddle.net/fegemo/76wdcLao/embedded/html,result,css/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded"></iframe>
 
 ---
 <!-- {"layout": "section-header", "hash": "assombracoes"} -->
