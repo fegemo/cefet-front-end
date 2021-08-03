@@ -24,7 +24,7 @@
     - `align-self: flex-start | flex-end | center`
     - `order: numero`
 
-<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/f5odrgk9/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ---
 # Na última aula <small>(3/3)</small>
@@ -38,7 +38,7 @@
     - `grid-row: inicio / fim`
     - `grid-column: inicio / fim`
 
-<iframe width="100%" height="300" src="//jsfiddle.net/fegemo/sqtdb95x/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/fegemo/sqtdb95x/embedded/result,html,css/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 ---
 <!-- {"layout": "centered"} -->
@@ -252,10 +252,10 @@ Regra 3
     pontuação, ganha o que foi declarado por último
 
 Regra 4
-  ~ Estilo Inline &gt;&gt; Arquivo Externo &gt;&gt; Incorporado
+  ~ Estilo Inline &gt;&gt; Arquivo Externo e Incorporado
 
 Regra 5
-  ~ ID &gt;&gt; classe &gt;&gt; atributo &gt;&gt; tag
+  ~ ID &gt;&gt; classe e atributo &gt;&gt; tag
 
 ---
 ## Cálculo da **pontuação de especificidade**
@@ -660,7 +660,7 @@ _Pseudo-element_
 
 ---
 <!-- {"layout": "section-header", "hash": "assombracoes"} -->
-# Assombrações :ghost:
+# Assombrações 👻
 ## Faça o **Blog Assombrado**
 
 - Atividade de hoje
@@ -693,14 +693,16 @@ _Pseudo-element_
   1. ![](../../images/ul-default-padding.png) <!-- {.push-right} --> **Tirar
      o `padding-left`** da `<ul>` ➡️
   1. Transformar **`<li>`s em `inline-block`** ou **usar flexbox para a `<ul>`** <!-- {strong:.alternate-color} --> 🌟
-  1. Tirar "bolinha" do item:
+  1. Tirar "bolinha" dos itens:
+     <!-- {li:.compact-code} -->
      ```css
-     #menu-principal li {
+     #menu-principal {
        list-style-type: none;
      }
      ```
-  1. Colocar uma **margem lateral** entre os `<li>`s
-  1. Estilizar o `<li>` no estado de `:hover` para mostrar que ele é "clicável"
+  1. Colocar um espacinho pequeno entre os `<li>`
+  1. Estilizar `<li>` ou `<a>` no estado de `:hover` indicando ser "clicável"
+  1. Preencher (`padding`) os links em `<li>` para aumentar área "clicável"
 
 ---
 <!-- {"layout": "centered"} -->
