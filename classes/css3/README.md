@@ -495,7 +495,7 @@ Imagem vetorial (SVG) original (pequena) e aumentada (mantém a qualidade)
   ou outros elementos
 - Exemplo: escrevendo um poema
 
-<iframe width="100%" height="460" src="//jsfiddle.net/danielhasan/v3zkLwp2/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="400" height="460" src="https://jsfiddle.net/fegemo/5xfek8yq/embedded/html,result" allowfullscreen="allowfullscreen" frameborder="0" class="rounded bordered flex-align-center"></iframe>
 
 
 ---
