@@ -263,7 +263,7 @@ Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 ## Relembrando... **regra CSS**
 
 - ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.rule.push-right data-viewbox="56 0 90 10" style="width: 250px"} -->
-- ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.declaration.value.push-right data-viewbox="60 10 140 65" style="width: 370px"} -->
+- ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.declaration.selector.push-right data-viewbox="50 10 150 65" style="width: 370px"} -->
 - ![](../../images/css-rule-anatomy.svg) <!-- {.css-rule-anatomy.property.value.push-right data-viewbox="56 30 90 65" style="width: 250px"} --> <!-- {ul:.card-list} -->
 
 
@@ -383,7 +383,7 @@ Hoje em dia usamos sempre HTML5 😉 <!-- {.flex-align-center} -->
 <video src="../../videos/link-css-atom.mp4" height="340" controls style="margin: 0 auto;"></video>
 
 ---
-<!-- {"hash": "cores-e-gradientes", "layout": "main-point"} -->
+<!-- {"hash": "cores-e-gradientes", "layout": "main-point", "state": "emphatic"} -->
 <style>
 .color-text { color: #ffff0a; }
 .gradient-text {
