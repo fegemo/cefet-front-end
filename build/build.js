@@ -2932,7 +2932,7 @@ function expandOrCloneMode(mode) {
   return mode;
 }
 
-var version = "10.7.2";
+var version = "10.7.3";
 
 // @ts-nocheck
 
@@ -52904,7 +52904,7 @@ function normalizeLinkText(url) {
  *   highlight: function (str, lang) {
  *     if (lang && hljs.getLanguage(lang)) {
  *       try {
- *         return hljs.highlight(lang, str, true).value;
+ *         return hljs.highlight(str, { language: lang, ignoreIllegals: true }).value;
  *       } catch (__) {}
  *     }
  *
@@ -52924,7 +52924,7 @@ function normalizeLinkText(url) {
  *     if (lang && hljs.getLanguage(lang)) {
  *       try {
  *         return '<pre class="hljs"><code>' +
- *                hljs.highlight(lang, str, true).value +
+ *                hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
  *                '</code></pre>';
  *       } catch (__) {}
  *     }
@@ -54862,7 +54862,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   state.line = last;
 
   token         = state.push('code_block', 'code', 0);
-  token.content = state.getLines(startLine, last, 4 + state.blkIndent, true);
+  token.content = state.getLines(startLine, last, 4 + state.blkIndent, false) + '\n';
   token.map     = [ startLine, state.line ];
 
   return true;
@@ -55085,7 +55085,7 @@ var HTML_OPEN_CLOSE_TAG_RE = require('../common/html_re').HTML_OPEN_CLOSE_TAG_RE
 // last argument defines whether it can terminate a paragraph or not
 //
 var HTML_SEQUENCES = [
-  [ /^<(script|pre|style)(?=(\s|>|$))/i, /<\/(script|pre|style)>/i, true ],
+  [ /^<(script|pre|style|textarea)(?=(\s|>|$))/i, /<\/(script|pre|style|textarea)>/i, true ],
   [ /^<!--/,        /-->/,   true ],
   [ /^<\?/,         /\?>/,   true ],
   [ /^<![A-Z]/,     />/,     true ],
@@ -55397,7 +55397,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   if ((posAfterMarker = skipOrderedListMarker(state, startLine)) >= 0) {
     isOrdered = true;
     start = state.bMarks[startLine] + state.tShift[startLine];
-    markerValue = Number(state.src.substr(start, posAfterMarker - start - 1));
+    markerValue = Number(state.src.slice(start, posAfterMarker - 1));
 
     // If we're starting a new ordered list right after
     // a paragraph, it should start with 1.
@@ -55490,6 +55490,9 @@ module.exports = function list(state, startLine, endLine, silent) {
     token        = state.push('list_item_open', 'li', 1);
     token.markup = String.fromCharCode(markerCharCode);
     token.map    = itemLines = [ startLine, 0 ];
+    if (isOrdered) {
+      token.info = state.src.slice(start, posAfterMarker - 1);
+    }
 
     // change current state, then restore it after parser subcall
     oldTight = state.tight;
@@ -55566,6 +55569,7 @@ module.exports = function list(state, startLine, endLine, silent) {
     if (isOrdered) {
       posAfterMarker = skipOrderedListMarker(state, nextLine);
       if (posAfterMarker < 0) { break; }
+      start = state.bMarks[nextLine] + state.tShift[nextLine];
     } else {
       posAfterMarker = skipBulletListMarker(state, nextLine);
       if (posAfterMarker < 0) { break; }
@@ -56997,12 +57001,14 @@ function processDelimiters(state, delimiters) {
     if (!closer.close) continue;
 
     // Previously calculated lower bounds (previous fails)
-    // for each marker and each delimiter length modulo 3.
+    // for each marker, each delimiter length modulo 3,
+    // and for whether this closer can be an opener;
+    // https://github.com/commonmark/cmark/commit/34250e12ccebdc6372b8b49c44fab57c72443460
     if (!openersBottom.hasOwnProperty(closer.marker)) {
-      openersBottom[closer.marker] = [ -1, -1, -1 ];
+      openersBottom[closer.marker] = [ -1, -1, -1, -1, -1, -1 ];
     }
 
-    minOpenerIdx = openersBottom[closer.marker][closer.length % 3];
+    minOpenerIdx = openersBottom[closer.marker][(closer.open ? 3 : 0) + (closer.length % 3)];
 
     openerIdx = closerIdx - closer.jump - 1;
 
@@ -57063,7 +57069,7 @@ function processDelimiters(state, delimiters) {
       // See details here:
       // https://github.com/commonmark/cmark/issues/178#issuecomment-270417442
       //
-      openersBottom[closer.marker][(closer.length || 0) % 3] = newMinOpenerIdx;
+      openersBottom[closer.marker][(closer.open ? 3 : 0) + ((closer.length || 0) % 3)] = newMinOpenerIdx;
     }
   }
 }
@@ -58237,6 +58243,7 @@ function Token(type, tag, nesting) {
    *
    * - Info string for "fence" tokens
    * - The value "auto" for autolink "link_open" and "link_close" tokens
+   * - The string value of the item marker for ordered-list "list_item_open" tokens
    **/
   this.info     = '';
 

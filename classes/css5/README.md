@@ -3,7 +3,7 @@
 ## Posicionamento e mais Assombrações :ghost::ghost::ghost:
 
 ---
-# Na última aula (1/4)
+# Na última aula <small>(1/3)</small>
 
 - **_Tags_ semânticas**:
   - O HTML5 ![Logomarca do HTML](../../images/logo-html.svg) <!-- {.emoji} -->
@@ -19,7 +19,7 @@
     - E várias outras...
 
 ---
-# Na última aula  (2/4)
+# Na última aula <small>(2/3)</small>
 
 - Quando **mais de uma regra CSS se aplica**, uma delas prevalece
   - O navegador calcula uma pontuação de especificidade (**`abc`**<!--{strong:.alternate-color}-->) do seletor
@@ -29,22 +29,8 @@
     - **`c`**<!--{strong:.alternate-color}-->: quantidade de **pseudo-elementos** no seletor
   - Quanto maior esse número, maior a precedência da regra ser aplicada
 
-
 ---
-# Na última aula (3/4)
-
-- **Alterando a visibilidade**:
-  - `display:none`: o elemento é removido do fluxo
-  - `visibility: hidden;`: o elemento fica escondido, mas ainda ocupa espaço
-  - `opacity`: define a opacidade:
-    ```css
-    video {
-      opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
-    }
-    ```
-
----
-# Na última aula (4/4)
+# Na última aula <small>(3/3)</small>
 
 - **_Pseudo-classes_ e _Pseudo-elements_**:
 
@@ -65,6 +51,7 @@
 1. [Posicionamento relativo](#posicionamento-relativo)
 1. [Posicionamento absoluto](#posicionamento-absoluto)
 1. [Posicionamento fixo](#posicionamento-fixo)
+1. [Alterando a visibilidade](#alterando-a-visibilidade)
 1. [Mais Assombrações](#mais-assombracoes) :ghost::ghost::ghost:
 
 ---
@@ -137,6 +124,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   1. `position: sticky` ![](../../images/logo-css.svg) <!-- {.emoji} -->
 
 ---
+<!-- {"classes": "compact-code"} -->
 ## Posicionamento **estático**
 
 - O próprio navegador encontra as posições (x,y) dos elementos
@@ -270,26 +258,37 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 - **Não ocupa espaço**, já que o elemento é removido do fluxo
 
 ---
+<!-- {"classes": "compact-code-more"} -->
 ## Exemplo de posição absoluta
 
-- <!-- {ul:.full-width} -->
+- <!-- {ul:.full-width.no-bullets.no-padding} -->
   ```html
-  <div class="relativo">Este é um recipiente relativo.
-    <div class="absoluto">Este é absoluto.</div>
+  <div class="de-fora">Este é um recipiente relativo.
+    <div class="de-dentro">Este é absoluto.</div>
   </div>
   ```
+- <!-- {li:.two-column-code} -->
   ```css
-  .relativo { position: relative; }
-  .absoluto { position: absolute; width: 50%;
-               right: 30px; bottom: 10px; }
+  .de-fora {
+    position: relative;
+  }
+  
+  
+  
+  .de-dentro {
+    position: absolute;
+    width: 50%;
+    right: 30px;
+    bottom: 10px;
+  }
   ```
-  <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-absoluto" class="switch" onclick="javascript: (function() { var b = document.getElementById('absoluto'); b.classList.toggle('absoluto');}())" />
-    <label for="button-absoluto">.absoluto</label>
+  <div style="float:right;font-size:.4em;"><input type="checkbox" checked id="button-absoluto" class="switch" onclick="javascript: (function() { var b = document.getElementById('absoluto'); b.classList.toggle('de-dentro');}())" />
+    <label for="button-absoluto">.de-dentro</label>
   </div>
   Resultado:
-  <style>.absoluto { position: absolute; width: 50%; right: 30px; bottom: 10px; }</style>
+  <style>.de-dentro { position: absolute; width: 50%; right: 30px; bottom: 10px; }</style>
   <div style="position: relative; height: 140px; border: 3px dashed rebeccapurple; background: var(--presentation-color)">Este é um recipiente relativo.
-    <div id="absoluto" class="absoluto" style="border: 3px dashed green; background: var(--presentation-color)">Este é absoluto.</div>
+    <div id="absoluto" class="de-dentro" style="border: 3px dashed green; background: var(--presentation-color)">Este é absoluto.</div>
   </div>
 
 ---
@@ -301,7 +300,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 1. Colocar elementos "**um em cima do outro**"
    ![](../../images/exemplo-position-absolute-sensacionalista.png) <!-- {.block.centered} -->
 1. ![](../../images/exemplo-position-absolute-bees.gif) <!-- {.push-right} -->
-   **Posicionar** elementos em **qualquer lugar** na página
+   **Posicionar** elementos em **qualquer lugar** - um (x,y) - na página
 
 <!-- {ol:.bulleted} -->
 ---
@@ -312,7 +311,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   relativo ao **seu mais próximo antecessor-posicionado (não _static_)**
   <!-- {strong:.underline.upon-activation.delay-1600} -->
 
-   <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/nt2bqmar/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+   <iframe width="100%" height="300" src="//jsfiddle.net/fegemo/nt2bqmar/embedded/result,html/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded"></iframe>
 
 ---
 <!-- {"layout": "section-header", "hash": "posicionamento-fixo"} -->
@@ -339,16 +338,25 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 - Não ocupa espaço, já que o elemento é removido do fluxo
 
 ---
+<!-- {"layout": "2-column-content"} -->
 ## Posição fixa (cont.)
 
-- ```html
-  <div class="fixo">Este é um elemento fixo.</div>
+- <!-- {ul:.no-bullets.no-padding} -->
+  ```html
+  <div class="bilhete">
+    Este é um elemento fixo.
+  </div>
   ```
   ```css
-  .fixo { position: fixed; right: 0; bottom: 10px; }
+  .bilhete {
+    position: fixed;
+    right: 0;
+    bottom: 10px;
+  }
   ```
-- Resultado:
-  <iframe width="100%" height="240" src="https://jsfiddle.net/fegemo/s01Lc3a8/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+1. <!-- {ol:.no-bullets.no-padding} -->
+   Resultado:
+   <iframe width="100%" height="332" src="https://jsfiddle.net/fegemo/s01Lc3a8/2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="rounded bordered"></iframe>
 
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
@@ -387,7 +395,7 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
   - O div <span class="minibola"> 2 </span> possui as propriedades:
     **`top:-20px`** e **`left: 30px`**
 
-<iframe width="90%" height="50%" src="//jsfiddle.net/fegemo/jnjvsqy4/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="float: right"></iframe>
+<iframe width="50%" height="260" src="//jsfiddle.net/fegemo/jnjvsqy4/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered rounded flex-align-center"></iframe>
 
 ---
 <!-- {"layout": "centered", "hash": "valores-position"} -->
@@ -449,6 +457,92 @@ Elementos **`inline`** <!-- {strong:.alternate-color} -->
 
 - Útil apenas para elementos `position: absolute` ou `position: fixed`
 
+---
+<!-- {"layout": "section-header", "hash": "alterando-a-visibilidade"} -->
+# Alterando a visibilidade
+## Fazendo elementos aparecerem ou sumirem
+
+- Com `display: none`
+- Com `visibility: hidden`
+- Com `opacity: 0`
+<!-- {ul:.content} -->
+
+---
+## Visibilidade usando **display**
+
+- É possível tornar um elemento invisível usando `display: none;`
+- O elemento é **removido do fluxo**, ou seja, o espaço onde ele seria
+  posicionado é liberado
+  ```css
+  img#logotipo {
+    display: none;
+  }
+  ```
+
+---
+## A propriedade **visibility** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility))
+
+- Usada para alterar a visibilidade de elementos
+  ```css
+  img#logotipo {
+    visibility: hidden; /* visible */
+  }
+  ```
+- Os elementos invisíveis (`hidden`) continuam ocupando espaço
+- Descendentes de elementos invisíveis herdam o valor `hidden`, mas podem
+  tornar-se visíveis usando `visibility: visible;`
+
+---
+## A propriedade **opacity** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity))
+
+- Usada para definir a opacidade (transparência) de elementos
+  ```css
+  video {
+    opacity: 0.5; /* 0.0 (transparente) a 1.0 (opaco) */
+  }
+  ```
+- Os elementos transparentes continuam ocupando espaço, mas deixam transparecer
+  quem está "atrás" deles
+
+1. <!-- {ol:.no-bullets.layout-split-2.no-margin.no-padding.full-width} -->
+   <iframe width="600" height="180" src="//jsfiddle.net/fegemo/dr3546z9/embedded/result,html,css/" allowfullscreen="allowfullscreen"  allowpaymentrequest frameborder="0" class="bordered"></iframe>
+1. ↙️ Comparação entre `display`, `visibility` e `opacity`
+
+---
+## A propriedade **overflow** ([na MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow))
+
+- Controla se conteúdo que extrapola o elemento deve ser cortado, se deve ser
+  mostrado ou se deve ser criada uma barra de rolagem
+  ```css
+  div {
+    overflow: scroll; /* visible, hidden, scroll, auto */
+  }
+  ```
+- Exemplo:
+  - <!-- {li^0:.no-bullets.no-padding.layout-split-2.compact-code} -->
+    ```css
+    div {
+      max-height: 175px;
+      overflow: auto;
+
+      /* para visualizar a div */        
+      border: 1px dashed gray;
+    }
+    ```
+    ::: result . max-width: 50%
+    <div style="max-height: 175px; overflow: auto; border: 1px dashed gray;">
+      <p class="smaller-text-70">Cultuadas ao longo da história por diversas civilizações como símbolo
+        de riqueza, trabalho ou de perseverança, pela forma como defendem
+        seu território, as abelhas surgiram muito antes do homem,
+        há mais de 100 milhões de anos.
+      </p>
+      <p class="smaller-text-70">Pertencentes à ordem <em>Hymenoptera</em> e à superfamília dos
+        <em>Apoidea</em> (grupo <em>Apiformes</em>), as abelhas se dividem em
+        cerca de 20 mil espécies e a mais conhecida é a
+        <em>Apis mellifera</em>.
+      </p>
+    </div>
+    :::
 
 ---
 <!-- {"layout": "section-header", "hash": "mais-assombracoes"} -->
