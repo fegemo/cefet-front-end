@@ -214,7 +214,7 @@ Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
 
 Apenas a URL apontando para o site hospedado na Internet. É isso mesmo. Na Internet :3!!
 
-<iframe src="https://www.youtube.com/watch?v=vKJkxsgzMl4" width="800" height="450" frameborder="0" allowfullscreen="1"></iframe>
+<iframe src="https://www.youtube.com/embed/vKJkxsgzMl4" width="800" height="450" frameborder="0" allowfullscreen="1"></iframe>
 
 Para tanto, o grupo deve publicar o site
 **usando algum serviço de hospedagem gratuito**. Ouvi dizer que o
