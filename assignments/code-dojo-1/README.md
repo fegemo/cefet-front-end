@@ -5,12 +5,17 @@
 
 
 ---
+<!-- {"layout": "centered"} -->
 # O que é Coding Dojo? ![Coding Dojo](../../images/coding-dojo.png)<!-- {.push-left style="height: 100px;"} -->
 
-- **Dojo**: local de treinamento :japanese_castle: (em japonês)
-  - Termo usado em artes marciais
+**Dojo**
+~ Local de treinamento :japanese_castle: (em japonês)
+~ Termo usado em artes marciais
 
-- **Coding Dojo**: Local de treinamento para **codificar**
+**Coding Dojo**
+~ Local de treinamento para **codificar**
+
+
 ---
 # Coding Dojo ![Coding Dojo](../../images/coding-dojo.png)<!-- {.push-left style="height: 100px;"} -->
 Codificação **em grupo**, em que o aluno pode desempenhar um dos três papeis:
@@ -38,9 +43,9 @@ Codificação **em grupo**, em que o aluno pode desempenhar um dos três papeis:
   - Fazer algo não relacionado ao exercício
   - Parar de participar por:
     - Usar outro computador
-    - Uso de celular
-    - Usar a internet
-    - Conversa
+    - Conversa fora do assunto da aula
+    - Usar a Internet a não ser para pesquisar
+    - Uso de celular 
 
 ---
 <!-- {"layout": "centered-horizontal"} -->
@@ -52,132 +57,135 @@ Codificação **em grupo**, em que o aluno pode desempenhar um dos três papeis:
 Exercício: fazer uma página explicando o que é Coding Dojo
 
 ---
-## Criação da Página
-
+## 0. Criação da Página
 
 - Crie uma **pasta** na área de trabalho
 - **Crie um arquivo HTML**
 - No início do HTML, **especifique a versão do HTML**: `<!DOCTYPE html>`
 - Escreva as **tags principais no arquivo** (html, head  e body)
-- **Exiba o título** (na aba do navegador) `Coding Dojo`
+- **Exiba o título** (na aba do navegador) `Coding Dojo` <!-- {ul:.bullet} -->
+
+::: did-you-know .bullet
+**Dikentinha**: no VS Code, dentro de um arquivo já salvo no formato `.html`,
+digite a palavra `html` e selecione a opção `html:5` (ou aperta <kbd>TAB</kbd>)
+para autocompletar com o esqueleto básico de todo arquivo HTML.
+:::
 
 ---
-## Criação da Página
-
-
+## 1. Criação da Página
 
 - **Utilize a propriedade charset** da tag `meta` (dentro do `head`) para garantir que o html seja lido da forma correta:
 `<meta charset="utf-8">`
 - Exiba um **ícone** para a página
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo1.png) <!-- {.push-right style="height: 200px;"} -->
+![Página exibindo o primeiro passo](../../images/coding-dojo-1-passos/passo1.png) <!-- {.bordered.rounded.push-right style="height: 120px;"} -->
   - Ícone pode ser encontrado no arquivo `imgs-coding-dojo.zip`, disponibilizado no Moodle
   - Salve todas as imagens em uma pasta separada
-- Para **testar**, escreva e exiba a frase `Coding dojo é muito legal`
+- Para **testar**, escreva e exiba a frase `Coding dojo é muito legal` dentro do `<body>...</body>`
 
 ---
-## Título (primeiro nível) e estilos da página
+## 2. Título (primeiro nível) e estilos da página
 
 
-- ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo2.png) <!-- {.push-right style="height: 240px;"} -->
+- ![Página exibindo o primeiro passo](../../images/coding-dojo-1-passos/passo2.png) <!-- {.bordered.rounded.push-right style="height: 240px;"} -->
   Título (primeiro nível):
 	- Cor da fonte: Azul (`blue`)
 	- Centralizado
-- Fundo da página: Azul claro (`lightblue`)
-- Margem (esquerda e direita): 30%
+- Corpo da página:
+  - Cor de fundo: Azul claro (`lightblue`)
+  - Margem (esquerda e direita): 20%
 - Abrir a página `Coding Dojo` da Wikipédia
-  - Crie um parágrafo utilizando o texto da Wikipedia de "Coding dojo é..." até "a partir do trabalho dos pilotos anteriores."
-- Parágrafo: Justificado, com fonte Arial ou sans-serif
+  - Crie 01 parágrafo utilizando o texto da Wikipedia de "Coding dojo é..." até "grupos de coding dojo surgiram em 2009."
+- Parágrafos: Justificados, com fonte Arial ou sans-serif
 
 ---
-## Título (segundo nível) e estilos da página
+## 3. Título (segundo nível) e estilos da página
 
-
-- Título (segundo nível):
+- Título (segundo nível): "Funcionamento do Coding Dojo"
 	- Cor da fonte: Azul (`blue`)
 	- Texto alinhado à esquerda
-  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo3.png) <!-- {.push-right style="height: 280px;"} -->
-- Página `Coding Dojo` da Wikipedia:
-  - Primeiro parágrafo: use o texto da Wikipédia de "O mestre oferece..." até "entre si e o piloto e copiloto."
-  - Segundo parágrafo: use o texto da Wikipédia de "Independente do desafio..." até "ligeiramente mais complexo."
+  ![Página exibindo o terceiro passo](../../images/coding-dojo-1-passos/passo3.png) <!-- {.bordered.rounded.push-right style="height: 280px;"} -->
+- Da página `Coding Dojo` da Wikipedia:
+  - Primeiro parágrafo: use o texto da Wikipédia de "Dojo é uma palavra..." até "...treinamento de programação."
+  - Segundo parágrafo: use o texto da Wikipédia de "Nessa dinâmica, todas..." até "...dos pilotos anteriores."
 
 ---
-## Alteração no primeiro parágrafo
+## 4. Alteração no primeiro parágrafo
 
 - **Apenas o primeiro parágrafo** deve ser:
-  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo4.png) <!-- {.push-right style="height: 300px;"} -->
+  ![Página exibindo o quarto passo](../../images/coding-dojo-1-passos/passo4.png) <!-- {.bordered.rounded.push-right.bullet style="height: 250px;"} -->
   - Cor de fundo: Azure
-  - Borda: pontilhada, 1 pixel e preto
-  - Espaçamento entre o texto e a borda: 3px
+  - Borda: 1 pixel pontilhada e preta
+  - Espaçamento entre o texto e a borda: 10px
     - Espaçamento possível usando a propriedade `padding`
 
----
-## Outras alterações no texto...
-
-  - Deixar a primeira aparição da palavra **Coding Dojo** com uma grafia mais forte
-  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo5.png) <!-- {.push-right style="height: 300px;"} -->
-	- Marcar a definição de **Coding Dojo** no texto
-	- Deixar enfatizado os textos: "método de aprendizagem" e "hackerspaces"
-  - Escrever e riscar a palavra "yoda", como na imagem
+1. Refletindo: será necessário criar um `id`. Sugestões: <!-- {ol:.no-padding.no-margin.no-bullets.note.info.bullet} -->
+   - `paragrafo-1`: ❌ pq não é bom o nome indicar a ordem do elemento
+   - `Introdução`: ❌ pq contém maiúsculas e caracteres especiais
+   - `introducao`: ✅ pq não indica ordem, mas sim a função do elemento
 
 
 ---
-## Inserção da Imagem
+## 5. Outras alterações no texto...
 
-- ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo6.png) <!-- {.push-right style="height: 300px;"} -->
-  Insira a imagem `coding-dojo.png` após o primeiro título
-- Insira a imagem `evento-code-dojo.jpg` após o segundo título
+- Deixar a primeira aparição da palavra **Coding Dojo** com uma grafia mais forte
+![Página exibindo o quinto passo](../../images/coding-dojo-1-passos/passo5.png) <!-- {.bordered.rounded.push-right style="height: 300px;"} -->
+- Marcar a definição de **Coding Dojo** no texto
+- Deixar enfatizado o trecho: "método de aprendizagem"
+- Escrever e riscar a palavra "JoJo", como na imagem
+
+
+---
+## 6. Inserção de imagens
+
+- ![Página exibindo o sexto passo](../../images/coding-dojo-1-passos/passo6.png) <!-- {.bordered.rounded.push-right style="height: 420px;"} -->
+  Insira a imagem `logotipo.png` após o primeiro título
+  - Repare que elas estão dentro da pastinha `imagens-dojo`
+- Insira a imagem `foto-de-evento.jpg` após o segundo título
 - Centralize as imagens
 
 
 ---
-## Links Externos e na Própria Página
+## 7. Links Externos e na Própria Página
 
 - Insira um link, no final da página, para voltar ao topo da página
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo7.png) <!-- {.push-right style="height: 400px;"} -->
+![Página exibindo o sétimo passo](../../images/coding-dojo-1-passos/passo7.png) <!-- {.bordered.rounded.bullet.push-right style="width: 300px;"} -->
 - Insira um link para a página da Wikipédia sobre Coding Dojo:
   `https://pt.wikipedia.org/wiki/Coding_Dojo`
+- Para o link interno (1º), será necessário criar um `id` para o primeiro elemento da página (o `<h1>`).
+  Que nome seria interessante? Pense em qual função esse elemento exerce. Evite maiúsculas e
+  caracteres especiais. Não pode haver espaços. <!-- {li:.note.info.bullet style="width: calc(100% - 300px - 1em); margin-top: 1.5em;"} -->
 
 ---
-## Uma Nova Página
+## 8. Uma Nova Página
 
-- Crie uma pasta chamada `outrasPaginas` e, dentro dela, um arquivo HTML
+- Crie uma pasta chamada `outras-paginas` e, dentro dela, um arquivo HTML
   chamado `links.html`
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo8.png) <!-- {.push-right style="height: 125px;"} -->
+![Página exibindo o oitavo passo](../../images/coding-dojo-1-passos/passo8.png) <!-- {.bordered.rounded.push-right style="height: 125px;"} -->
 - No início do HTML, especifique a versão: `<!DOCTYPE html>`
 - Crie as _tags_ principais desta página
 - Utilize o atributo `charset` da _tag_ `meta` (dentro do `head`) para
   garantir que o html seja lido da forma correta: `<meta charset="utf-8">`
-- Crie um título para a página
-- Exiba o ícone para a página (mesmo da página anterior)
-- Conforme na imagem ao lado, a página deverá possuir uma borda dupla azul e margem de topo (margin-top) de 5% e margem nas laterais de 30%.
+- Crie um título para a página (da aba)
+- Exiba o ícone (mesmo da página anterior - ⚠️ caminho diferente!)
+- O corpo deverá possuir uma borda de 5px dupla azul e margens laterais de 30%
 
 
 ---
-## Adicione texto, título e link à nova página
+## 9. Adicione texto, título e link à nova página
 
-- Deixe um espançamento entre a borda e o texto de 10 pixels (use a propriedade `padding`)
+- Deixe um espaçamento entre a borda e o texto de 10 pixels (use a propriedade `padding`)
 - Crie uma lista não numerada de itens
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo9.png) <!-- {.push-right style="height: 300px;"} -->
-- Cada item é um link:
+![Página exibindo o primeiro passo](../../images/coding-dojo-1-passos/passo9.png) <!-- {.bordered.rounded.push-right style="width: 400px;"} -->
+- Cada item da lista contém 1 link:
   - `http://www.devmedia.com.br/o-que-e-o-coding-dojo/30517`
   - `http://flaviosilveira.com/2011/coding-dojo-o-que-e-e-como-participar/`
   - `http://dojopuzzles.com/`
-
-----
-## Estilo
-
 - Título: cor azul (_blue_) centralizado
-![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo9.png) <!-- {.push-right style="height: 300px;"} -->
 - Parágrafo: fonte "Arial", Justificado
-
----
-## Link Voltar
-
 - Crie o link para voltar para a página anterior
-  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo10.png) <!-- {.push-right style="height: 400px;"} -->
 
 ---
-## Retornando à pagina inicial...
+## 10. Retornando à pagina inicial...
 
-- Faça um link para a página `links.html`
-  ![Página exibindo o primeiro passo](../../images/coding_dojo_1_passos/passo11.png) <!-- {.push-right style="height: 400px;"} -->
+- Na página inicial, crie um link para a página de links
+  ![Página exibindo o primeiro passo](../../images/coding-dojo-1-passos/passo10.png) <!-- {.bordered.rounded.push-right style="height: 380px;"} -->
