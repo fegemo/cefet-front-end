@@ -318,6 +318,7 @@ $('#show-reviews').click(() => {
 [fumaceiro-jquery]: https://fegemo.github.io/cefet-front-end-ajax/index-jquery.html
 
 ---
+<!-- {"hash": "ajax-fetch"} -->
 ## (3) Ajax usando **fetch** ![](../../images/seta-o-cara.png) <!-- {.on-line.bouncing-left} -->
 
 - Mais recentemente, foi introduzida nova forma: `fetch(...)` <!-- {ul:.full-width} -->
