@@ -57,13 +57,23 @@ Codificação **em grupo**, em que o aluno pode desempenhar um dos três papeis:
 Exercício: fazer uma página explicando o que é Coding Dojo
 
 ---
+## Iniciando
+
+1. Baixe um [arquivo compactado][baixar-imagens] com as imagens
+1. Descompacte esse arquivo
+1. Em um editor de texto (ex: VS Code), abra a pasta `code-dojo` inteira
+1. ![](../../images/coding-dojo-estrutura-de-pastas.png) <!-- {.push-right} -->
+   <u>Ao final</u> da atividade, a estrutura de pastas será assim:
+
+[baixar-imagens]: https://fegemo.github.io/cefet-front-end/assignments/code-dojo-1/code-dojo.zip
+
+---
 ## 0. Criação da Página
 
-- Crie uma **pasta** na área de trabalho
-- **Crie um arquivo HTML**
+- Na pasta `code-dojo`, **crie um arquivo HTML** (ex: `principal.html`)
 - No início do HTML, **especifique a versão do HTML**: `<!DOCTYPE html>`
 - Escreva as **tags principais no arquivo** (html, head  e body)
-- **Exiba o título** (na aba do navegador) `Coding Dojo` <!-- {ul:.bullet} -->
+- **Coloque o título** (na aba do navegador) `Coding Dojo` <!-- {ul:.bullet} -->
 
 ::: did-you-know .bullet
 **Dikentinha**: no VS Code, dentro de um arquivo já salvo no formato `.html`,
@@ -78,7 +88,7 @@ para autocompletar com o esqueleto básico de todo arquivo HTML.
 `<meta charset="utf-8">`
 - Exiba um **ícone** para a página
 ![Página exibindo o primeiro passo](../../images/coding-dojo-1-passos/passo1.png) <!-- {.bordered.rounded.push-right style="height: 120px;"} -->
-  - Ícone pode ser encontrado no arquivo `imgs-coding-dojo.zip`, disponibilizado no Moodle
+  - Ícone pode ser encontrado na pasta `imagens-dojo` e o nome do arquivo é `icone-da-pagina.png`
   - Salve todas as imagens em uma pasta separada
 - Para **testar**, escreva e exiba a frase `Coding dojo é muito legal` dentro do `<body>...</body>`
 
