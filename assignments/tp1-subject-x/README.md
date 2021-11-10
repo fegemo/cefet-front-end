@@ -106,7 +106,7 @@ O site deve conter:
       <summary>Dicas sobre fontes...</summary>
       <ul>
          <li>As fontes padrão (Arial, Times New Roman etc.) são super batidas</li>
-         <li>Tipicamente, usamos 1 para os títulos da página, outra para o restante (atribuída ao &lt;body&gt; e herdada pelhos descendentes)</li>
+         <li>Tipicamente, usamos 1 para os títulos da página, outra para o restante (atribuída ao &lt;body&gt; e herdada pelos descendentes)</li>
          <li>Usar fontes demais (4+) acaba virando uma "farofa" visual e não é recomendado</li>
       </ul>
    </details>
