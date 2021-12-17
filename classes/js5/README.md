@@ -27,7 +27,7 @@ jogador.vidas = 2;
   - Dizemos que **estamos usando uma <u>função construtora</u>**
 
 ---
-<!-- {"layout": "2-column-content", "slideStyles": {"grid-template-columns": ".6fr .4fr"}, "classes": "compact-code-more"} -->
+<!-- {"layout": "2-column-content", "slideStyles": {"grid-template-columns": ".55fr .45fr"}, "classes": "compact-code-more"} -->
 # Na última aula... (2/4)
 
 - Podemos passar objetos como **argumentos para funções**
@@ -309,7 +309,7 @@ use comentários JSON em vez de input[type=hidden] -->
     ```
 
 ---
-<!-- {"hash": "representando-objetos-em-strings"} -->
+<!-- {"hash": "representando-objetos-em-strings", "classes": "compact-code-more"} -->
 ## Representando objetos em _Strings_
 
 - Na verdade, o JavaScript sabe **serializar e desserializar** objetos em
