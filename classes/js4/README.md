@@ -41,6 +41,7 @@
 <iframe width="470" height="240" src="//jsfiddle.net/fegemo/2bcLx47t/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0" class="push-right"></iframe>
 
 ---
+<!-- {"classes": "compact-code-more"} -->
 # Na última aula... (3/3) <!-- {h1:style="padding-bottom: 0.15em; margin-bottom: 0;"} -->
 ## Animação <!-- {h1:style="padding-bottom: 0.15em"} -->
 
@@ -179,7 +180,7 @@ let voo = {
   - `decolagem` e `chegada` são objetos por si mesmos
 
 ---
-<!-- {"layout": "2-column-content", "hash": "vetores-de-objeto", "slideStyles": {"grid-template-columns": ".3fr .7fr"}} -->
+<!-- {"layout": "2-column-content", "hash": "vetores-de-objeto", "slideStyles": {"grid-template-columns": ".32fr .68fr"}} -->
 ## Vetores de Objetos <!-- {.compact-code} -->
 
 ```js  
@@ -212,7 +213,7 @@ let jogadores = [
     sem problemas!
 
 ---
-<!-- {"layout": "2-column-content", "hash": "passando-vetores-como-argumentos", "slideStyles": {"grid-template-columns": ".6fr .4fr"}, "classes": "compact-code-more"} -->
+<!-- {"layout": "2-column-content", "hash": "passando-vetores-como-argumentos", "slideStyles": {"grid-template-columns": ".55fr .45fr"}, "classes": "compact-code-more"} -->
 ## Passando objetos como argumentos
 
 - Podemos passar objetos como **argumentos para funções**
@@ -317,6 +318,7 @@ function incluiNaBiblioteca(livro) {
      ```
 
 ---
+<!-- {"classes": "compact-code-more"} -->
 # Instanciação de elementos HTML
 
 - A função **document.createElement** cria um elemento HTML <!-- {ul:.compact-code.bulleted-0} -->
