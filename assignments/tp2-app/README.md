@@ -36,6 +36,9 @@ localmente no navegador.
 
 ² O envio de enquetes para outra pessoa também requer um _back-end_.
 
+## Análise da participação e pontuação individual
+
+Cada integrante do grupo deverá usar o GitHub e a participação (e nota) do aluno será avaliado individualmente pelo GitHub por meio da tela de contribuições - [veja aqui um exemplo](https://github.com/daniel-hasan/ri-crawler/graphs/contributors). Por exemplo, caso o grupo tenha 3 alunos e for verificado que apenas 2 alunos participaram ativamente do projeto, o aluno que participou menos terá a nota mais reduzida em relação aos demais.
 
 ## Funcionalidade da Aplicação
 
@@ -125,9 +128,7 @@ em sua aplicação web um subconjunto dos seguintes itens opcionais:
    para persistir os dados no servidor, em vez de apenas localmente com
    o _web storage_
    - 💣 (+10%) Possibilitar usuário se cadastrar e logar na aplicação
-1. (8%) Usar o Git com o Github (ou outro serviço de hospedagem de repositórios)
-   - (+4%) Usando linha de comando ou alguma interface gráfica (ex, 🌟 Gitkraken, Github Desktop)
-   - (+4%) Fazendo vários commits (por todos alunos pelo menos 1 por semana)
+1. (8%) Usar o Git com o Github (ou outro serviço de hospedagem de repositórios) fazendo vários commits (por todos alunos pelo menos 1 por semana)
 1. (10%) Fazer uma entrega parcial (praticamente completa) no dia 11/01/22 (no horário da aula)
 
 Legenda:
