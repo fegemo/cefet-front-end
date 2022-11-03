@@ -14,11 +14,12 @@ let objeto = {"xuxu":{"oi":1},
 ```
 Vc pode acessar os campos simples "a" e "b" de forma bem "usual":
 
+```javascript
 console.log(objeto["a"]); //imprime "alaal"
 
 //para acessar dicionario dentro de dicionarios:
-```javascript
 console.log(objeto["xuxu"]["oi"]); //imporime 1
+
 ```
 
 Para acessar lista de dicionarios, lembre por ex, que objeto["ola"] é uma lista. Assim:
