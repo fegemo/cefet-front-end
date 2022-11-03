@@ -147,8 +147,8 @@
 [easter-eggs]: https://pt.wikipedia.org/wiki/Ovo_de_p%C3%A1scoa_(virtual)
 
 ---
-<!-- {"layout": "2-column-highlight-and-content"} -->
-## Exemplo: [underscore.jss](http://underscorejs.org/)
+<!-- {"layout": "2-column-highlight-and-content", "classes": "compact-code-more"} -->
+## Exemplo: [underscore.js](http://underscorejs.org/)
 
 ![](../../images/js-lib-example-underscore.png) <!-- {p:style="margin: auto 0 auto auto"} --> <!-- {style="max-width: initial; width: 400px"} -->
 
@@ -227,7 +227,7 @@
     `document.querySelectorAll`
 
 ---
-<!-- {"hash": "jquery-funcionamento-basico", "classes": "two-column-code"} -->
+<!-- {"hash": "jquery-funcionamento-basico", "classes": "two-column-code compact-code-more"} -->
 ## Funcionamento básico e seletores (1/3)
 
 - Com jQuery, praticamente tudo é feito **em 2 passos**:
@@ -263,7 +263,7 @@ el.innerHTML = 'Pikachu';
 [doc-jquery-fn]: https://api.jquery.com/jQuery/#jQuery-selector-context
 
 ---
-<!-- {"embeddedStyles": ".not-centered-pres pre { margin: 0!important; }"} -->
+<!-- {"embeddedStyles": ".not-centered-pres pre { margin: 0!important; }", "classes": "compact-code-more"} -->
 ## Funcionamento básico e seletores (3/3)
 
 - Exemplo: na prática da **exploração espacial** (botões '+'/'-') <!-- {ul:.no-padding.no-bullets} -->
@@ -289,7 +289,7 @@ el.innerHTML = 'Pikachu';
   ```
 
 ---
-<!-- {"hash": "jquery-atribuindo-eventos", "classes": "compact-code"} -->
+<!-- {"hash": "jquery-atribuindo-eventos", "classes": "compact-code-more"} -->
 ## Atribuindo eventos
 
 - Usando jQuery, há atalhos para **colocar eventos** em elementos ou

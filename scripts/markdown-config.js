@@ -137,7 +137,7 @@ const config = {
     this.on('activate', e => {
       if (e.slide === slide) {
         setTimeout(() => {
-          Array.from(els).forEach(el => el.play ? e.play() : null)
+          Array.from(els).forEach(el => el.play ? el.play() : null)
         }, delay)
       }
     })
