@@ -47,7 +47,7 @@ Como as chaves "ola" e "oi" tem o mesmo conteudo, podemos fazer uma funcao que i
 ```javascript
 function imprimeLista(lista){
 	for(let item of lista){
-		console.log(item);
+		console.log(item); //imprime o dicionario do i-ésimo numero em objeto["ola"] podendo ser, por ex, {"lala":2,"lulu":4} no caso do primeiro 
 		console.log(item["lala"]);
 	}
 }
