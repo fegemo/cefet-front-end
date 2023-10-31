@@ -129,7 +129,6 @@ em sua aplicação web um subconjunto dos seguintes itens opcionais:
    o _web storage_
    - 💣 (+10%) Possibilitar usuário se cadastrar e logar na aplicação
 1. (8%) Usar o Git com o Github (ou outro serviço de hospedagem de repositórios) fazendo vários commits (por todos alunos pelo menos 1 por semana)
-1. (10%) Fazer uma entrega parcial (praticamente completa) no dia 11/01/22 (no horário da aula)
 
 Legenda:
 - 💣 assuntos que não são cobertos na nossa disciplina e são considerados
