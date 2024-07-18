@@ -16,13 +16,13 @@ A diferença de um site estático para uma aplicação está em seu uso:
   identificar (e.g., fazendo _login_)¹. A ideia é criar algo que
   permita que **o usuário crie algum conteúdo**, e não apenas o programador. Na atividade "Lista de Tarefas" (ainda vamos fazer), a aplicação web permite o usuário cadastrar suas próprias atividades.
 
-Exemplos de aplicações web interativas incluem (a) um sistema que gerencia uma
-lista de jogos/livros/músicas/filmes que você quer ou já
-jogou/leu/ouviu/assistiu; (b) um jogo de cartas (alguém disse truco?), de
-navinha, de perguntas e respostas, [tamagotchi][tama]; (c) um sistema de enquetes
-que permite o usuário criar enquetes, enviá-las para outras pessoas e
-visualizar os resultados em um gráfico²; (d) um player de música com criação
-de playlists etc.
+Nesta tarefa, você irão fazer uma dentre as seguintes aplicações:
+
+(a) um sistema que gerencia uma lista de jogos/livros/músicas/filmes que você quer ou já jogou/leu/ouviu/assistiu. Nesse sistema, o usuario poderá, inclusive categorizar os itens, filtrar por categoria. Cada categoria deverá ser definida junto com sua cor. Pelo menos a lista e as categorias devem ser salvos usando WebStorage;
+
+(b) um jogo de cartas (alguém disse truco?), de navinha, de perguntas e respostas,  tamagotchi (dentre outros). Nesses jogos, deverá obrigatoriamente haver um ranking dos jogadores, alguma forma do usuario personalisar o jogo (por exemplo, seu avatar). Pelo menos o ranking e o avatar devem ser salvos usando WebStorage;
+
+(c) um sistema de enquetes que permite o usuário criar enquetes, enviá-las para outras pessoas e visualizar os resultados em um gráfico². As enquetes devem ser categorizadas ao serem listadas e o usuario poderá filtrar por categoria. A categoria deverá ter pelo menos um nome e uma cor. As enquetes devem ser salvas, pelo menos, usando webStorage.;
 
 **Nota:** neste trabalho, você vai precisar <u>buscar por bem mais
 informações</u> do que aquelas que foram abordadas em sala de
@@ -33,8 +33,12 @@ aula durante o ano! O trabalho será avaliado pela capacidade do grupo de
 um banco de dados e um _back-end_, que são assuntos que não foram cobertos
 nesta matéria. Nesse caso, podemos usar _web storage_ para salvar informações
 localmente no navegador.
+
 ² O envio de enquetes para outra pessoa também requer um _back-end_.
 
+## Análise da participação e pontuação individual
+
+Cada integrante do grupo deverá usar o GitHub e a participação (e nota) do aluno será avaliado individualmente pelo GitHub por meio da tela de contribuições - [veja aqui um exemplo](https://github.com/daniel-hasan/ri-crawler/graphs/contributors). Por exemplo, caso o grupo tenha 3 alunos e for verificado que apenas 2 alunos participaram ativamente do projeto, o aluno que participou menos terá a nota mais reduzida em relação aos demais.
 
 ## Funcionalidade da Aplicação
 
@@ -124,10 +128,7 @@ em sua aplicação web um subconjunto dos seguintes itens opcionais:
    para persistir os dados no servidor, em vez de apenas localmente com
    o _web storage_
    - 💣 (+10%) Possibilitar usuário se cadastrar e logar na aplicação
-1. (8%) Usar o Git com o Github (ou outro serviço de hospedagem de repositórios)
-   - (+4%) Usando linha de comando ou alguma interface gráfica (ex, 🌟 Gitkraken, Github Desktop)
-   - (+4%) Fazendo vários commits (por todos alunos pelo menos 1 por semana)
-1. (10%) Fazer uma entrega parcial (praticamente completa) no dia 11/01/22 (no horário da aula)
+1. (8%) Usar o Git com o Github (ou outro serviço de hospedagem de repositórios) fazendo vários commits (por todos alunos pelo menos 1 por semana)
 
 Legenda:
 - 💣 assuntos que não são cobertos na nossa disciplina e são considerados
