@@ -1,7 +1,7 @@
 <!-- {"layout": "title"} -->
 # **HTML** parte 6
 
-## Elementos HTML de entrada, eventos e formulários<br>e o AvatarCreator 💄
+## Elementos HTML de entrada, eventos e formulários<br>e o AvatarCreator 💄💓
 
 ---
 # Na última aula... (1/4)
