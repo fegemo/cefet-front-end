@@ -222,7 +222,8 @@ Para tanto, o grupo deve publicar o site
 sobre [Git][git] e [GitHub][github], o [Github Pages][gh-pages] **é
 uma opção bem melhor** (vide vídeo).
 
-Apenas 01 integrante do grupo deve enviar a URL e pelo Moodle. E deve **seguir o formato** usado no exemplo de entrega a seguir:
+Envie o seu site no GitHub do seu repositório. Crie um arquivo "utens_opcionais.md" para apresentar os itens opcionais apresentando  evidências que comprovem os itens opcionais implementados... por exemplo, a imagem do Comprehensive Layout, se tiver feito esse item.  
+Este aquivo deve **seguir o formato** usado no exemplo de entrega a seguir:
 
 **Título do tópico**
 
@@ -231,28 +232,25 @@ Grupo 05 - BioHazard
 **Conteúdo do tópico**
 
 _URL do site:_ https://usuario.github.io/biohazard/
-_Integrantes:_
-1. Arzimar da Silva Costa
-1. Frederico Aleixo Alencar
-1. Genézio Oliveira Pontes
-1. Custódio Armando Gato
 
 _Itens opcionais implementados (conforme enunciado):_
 - (5-8%) Comprehensive layout (vide anexo 1 ao tópico)
+**coloque um link com a a referencia do  Comprehensive layout**
+
 - (3-10%) Criar algo interativo na página (criamos um joguinho de plantar e regar árvores em JavaScript)
+**anexe a imagem com o print de parte deste codigo**
+
 - (3%) Exibição de um vídeo (usamos iframe para incluir vídeo do YouTube)
-- (3-6%) Usar flexbox/grid (usamos grid para layout da página e flexbox para o menu principal)
+**anexe a imagem com o print de parte deste codigo**
 
-**Anexos da postagem**
-
-_(colocar evidências que comprovem os itens opcionais implementados... por exemplo, a imagem do Comprehensive Layout, se tiver feito esse item)_
-
-
+- (3-6%) Usar flexbox/grid (usamos grid para layout da página e flexbox para o menu principal) - video arquivo XXX lin
+**anexe a imagem com o print de parte deste codigo**
+  
 
 
 ## O que deve ser **apresentado**
 
-Na última aula do bimestre, o trabalho deve ser apresentado em sala de aula. Não é necessário fazer uma apresentação, mas apenas mostrar o site e falar sobre como foi seu desenvolvimento.
+O trabalho deve ser apresentado em sala de aula. Não é necessário fazer uma apresentação, mas apenas mostrar o site e falar sobre como foi seu desenvolvimento.
 
 
 
