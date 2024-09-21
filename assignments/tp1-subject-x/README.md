@@ -214,15 +214,13 @@ Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
 
 Apenas a URL apontando para o site hospedado na Internet. É isso mesmo. Na Internet :3!!
 
-<iframe src="https://www.youtube.com/embed/vKJkxsgzMl4" width="800" height="450" frameborder="0" allowfullscreen="1"></iframe>
-
 Para tanto, o grupo deve publicar o site
 **usando algum serviço de hospedagem gratuito**. Ouvi dizer que o
 [Neocities][neocities] é uma boa. Ouvi ainda, que para quem conhece um pouco
 sobre [Git][git] e [GitHub][github], o [Github Pages][gh-pages] **é
-uma opção bem melhor** (vide vídeo).
+uma opção bem melhor** (vide vídeo). Você pode usar seu proprio repositório e o [Github Pages][gh-pages]. Veja [como hospedar/publicar seu site](https://www.youtube.com/embed/vKJkxsgzMl4).
 
-Envie o seu site no GitHub do seu repositório. Crie um arquivo "utens_opcionais.md" para apresentar os itens opcionais apresentando  evidências que comprovem os itens opcionais implementados... por exemplo, a imagem do Comprehensive Layout, se tiver feito esse item.  
+Envie o seu site no GitHub do seu repositório. Crie um arquivo "itens_opcionais.md" para apresentar os itens opcionais apresentando  evidências que comprovem os itens opcionais implementados... por exemplo, a imagem do Comprehensive Layout, se tiver feito esse item.  
 Este aquivo deve **seguir o formato** usado no exemplo de entrega a seguir:
 
 **Título do tópico**
