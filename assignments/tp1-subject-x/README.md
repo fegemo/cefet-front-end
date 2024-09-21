@@ -1,6 +1,6 @@
 # Trabalho Prático 1 - O Assunto X
 
-Ao sair do banho, você e mais 2 ou 3 amiguinh@s decidiram **fazer um site
+Você deverá fazer **fazer um site
 sobre um determinado assunto - o Assunto X -**, para motivar os amigos a
 gostarem da mesma coisa que vocês, além de ensinar um pouquinho sobre alguma matéria.
 
