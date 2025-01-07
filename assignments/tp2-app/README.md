@@ -36,6 +36,8 @@ localmente no navegador.
 
 ² O envio de enquetes para outra pessoa também requer um _back-end_.
 
+**O aluno será pontuado individulamente de acordo com suas contibuições enviadas no GitHUB**. Ou seja, o aluno deverá enviar a sua parte no repossitório para sabermos o que foi feito por cada integrante. 
+
 ## Análise da participação e pontuação individual
 
 Cada integrante do grupo deverá usar o GitHub e a participação (e nota) do aluno será avaliado individualmente pelo GitHub por meio da tela de contribuições - [veja aqui um exemplo](https://github.com/daniel-hasan/ri-crawler/graphs/contributors). Por exemplo, caso o grupo tenha 3 alunos e for verificado que apenas 2 alunos participaram ativamente do projeto, o aluno que participou menos terá a nota mais reduzida em relação aos demais.
@@ -150,6 +152,7 @@ Legenda:
 
 Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
 - Plágio do trabalho de outrem
+- Penalidade individual, caso o aluno não tenha feito contribuições no repositório
 - Ausência de itens obrigatórios
 - Falta de originalidade: utilização de códigos prontos (de práticas anteriores, por exemplo)
 - Uso de elementos antigos dentro do HTML (e.g., _tags_ `<center>`, `<b>`,
