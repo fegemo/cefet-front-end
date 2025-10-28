@@ -7,12 +7,12 @@
 ### TP1: O Assunto X
 
 ::: gallery .fish-eye
-- [![](images/trabalhos/2017/little-cout.png)](https://brandaogabriel7.github.io/web-com-little-cout/)
-- [![](images/trabalhos/2017/vulcanismo.png)](https://eumsmo.github.io/geo-chop-suey/)
-- [![](images/trabalhos/2017/arte.png)](https://sirpedr.github.io/Arte)
-- [![](images/trabalhos/2017/biomedicina.png)](https://biomedicina.neocities.org)
+- [![](images/trabalhos/2025/tp1_consciencia.png)](https://prof-hasan.github.io/mylovelypage2-Duda130/)
+- [![](images/trabalhos/2025/tp1_musculacao.png)](https://prof-hasan.github.io/mylovelypage2-pietrocunha/)
+- [![](images/trabalhos/2025/tp1_manual_do_fazendeiro.png)](https://prof-hasan.github.io/mylovelypage2-JoaoPaulo907/)
+- [![](images/trabalhos/2025/tp1_pequeno_principe.png)](https://prof-hasan.github.io/mylovelypage2-AnaCarol09/prince.html)
 - <a href="https://marcosazevedo2112.github.io/NeedForSpace/"><video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/need-for-space.mp4" autoplay muted loop="0" poster="images/trabalhos/2020/need-for-space.webp"></video></a>
-- [![](images/trabalhos/2017/quimica.png)](https://quimica.neocities.org)
+- [![](images/trabalhos/2025/tp1_rogelite.png)](https://prof-hasan.github.io/mylovelypage2-Joao-Victor-MM/)
 - [![](images/trabalhos/2020/holanda-invaders.webp)](https://o-g7.github.io/holanda-invaders/index.html)
 - [![](images/trabalhos/2018/blogueirinha.png)](https://blogueirinhas.neocities.org/)
 - <a href="https://arthurg12.github.io/trabalho/"><video src="https://fegemo.github.io/cefet-front-end-large-assets/videos/weboretum.mp4" autoplay muted loop="0" poster="images/trabalhos/2020/weboretum.webp"></video></a>

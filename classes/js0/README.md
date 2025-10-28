@@ -1,50 +1,20 @@
 <!-- {"layout": "title"} -->
 # **JavaScript** parte 0
-## Tipos de Dados, Variáveis, Estrutura Sequencial, Condicionais, Iterações e Funções
+## Tipos de Dados, Variáveis, Funções e Objetos
 
----
-# Na última aula (1/2)
-
-- Quando **mais de uma regra CSS se aplica**, uma delas prevalece
-  - O navegador calcula uma pontuação de especificidade (**`abc`**<!--{strong:.alternate-color}-->) do seletor
-    de cada regra:
-    - **`a`**<!--{strong:.alternate-color}-->: quantidade de **ids** no seletor
-    - **`b`**<!--{strong:.alternate-color}-->: quantidade de **classes, atributos e pseudo-classes** no seletor
-    - **`c`**<!--{strong:.alternate-color}-->: quantidade de **pseudo-elementos** no seletor
-  - Quanto maior esse número, maior a precedência da regra ser aplicada
-
----
-## Na última aula (2/2)
-- Exemplo: qual a cor do `<h2>` que seja filho direto de alguém com as classes `.post` e `.novidade` que, por sua vez, esteja dentro de um `#posts-recentes`? <!-- {ul:.bulleted} -->
-  ```css
-  /* id: 1, classes: 2, tag: 1; pontuação: 121 */
-  #posts-recentes .post.novidade > h2 {
-    color: blue;
-  }
-  /* id: 0, classes: 0, tag: 1; pontuação: 001 */
-  h2 {
-    color: green;
-  }
-  ```
-  - Azul!
 
 ---
 # Atividade de hoje
 
-1. O objetivo é começar a usar JavaScript
-1. [Baixe os arquivos][js0]. Você deve abrir a página web no navegador e seguir as instruções
-
-![](../../images/activity-thumbs/js0.png) <!-- {p:.centered style="perspective: 900px"} --> <!-- {.cool-rotation-x style="max-width: 100%"} -->
-
-[js0]: https://github.com/fegemo/cefet-front-end-js0/archive/master.zip
+O objetivo é entender os conceitos básicos de JavaScript
 
 ---
 <!-- {"layout": "centered"} -->
 # Hoje veremos...
 
-1. [Tipos de dados, Variáveis e Funções](#tipos-de-dados-variaveis-e-funcoes)
-1. [Condicionais, Vetores e Estruturas de Repetição](#condicionais-vetores-e-estruturas-de-repeticao)
-1. [Mais sobre funções e Métodos úteis](#mais-sobre-funcoes-e-metodos-uteis)
+1. [Tipos de dados e Variáveis](#tipos-de-dados-variaveis-e-funcoes)
+1. [Condicionais e funções](#condicionais-vetores-e-estruturas-de-repeticao)
+1. [Objetos](#objetos)
 
 ---
 <!-- {"layout": "section-header", "hash": "tipos-de-dados-variaveis-e-funcoes"} -->
@@ -304,27 +274,98 @@
   - Mais rápido para o computador, porque ele não faz a conversão
   - Prefira esta forma!! :wink:
 
+
+
+
 ---
-<!-- {"hash": "o-objeto-math"} -->
-## O objeto `Math`
+<!-- {"layout": "section-header", "hash": "condicionais-vetores-e-estruturas-de-repeticao"} -->
+# Condicionais e Funções
+## Condicionais e uso de funções para modularizar seu código 
 
-- Além dos operadores matemáticos (_e.g._, `+, -, /, *`), existem
-  outras funções matemáticas acessíveis via o objeto `Math`:
+- Condicionais
+- Funções
+
+<!-- {ul^1:.content} -->
+---
+<!-- {"layout": "2-column-content", "hash": "if-else", "classes": "compact-code"} -->
+## **if/else** (condicionais)
+
+```js
+if (hora < 12) {
+  manha = true;
+} else {
+  manha = false;
+}
+
+if (nome === 'Robervaldo') { 
+  conceito = 'A';
+} else if (nome === 'Ana') {
+  conceito = 'B';
+} else {
+  conceito = 'C';
+}
+
+if (estouComSono)
+  dormir(); // mas evite omitir { }
+```
+
+- Dentro dos parênteses colocamos uma expressão que avalia para `true` ou `false`. Ex:
+  - `nome === 'Ana'`
+  - `ano < 2000`&nbsp;&nbsp;`ano % 4 === 0`
+  - `!jaEstudei`
+  - `hp > 0 && (balas || granada)`
+- Com apenas 1 comando no `if`/`else`, é possível omitir as chaves (como em C/C++, Java)
+  - Contudo, é uma má ideia
+
+---
+## **Operador ternário** (condicionais)
+
+- Quando temos um `if/else` "simples", pode ser mais legível fazer a verificação em 1 linha com **o operador ternário ?:**
+- <!-- {.code-split-2} -->
   ```js
-  const pi = Math.PI;           // a constante pi
-  let a = Math.sin(1);          // seno de 1 radiano
-  let b = Math.cos(pi);         // cosseno de pi radianos
-  let c = Math.pow(5, 2);       // 5 elevado a 2
-  let d = Math.sqrt(100);       // raiz quadrada de 100
-  let e = Math.random();        // nº aleatório entre [0, 1]
-  let f = Math.round(0.5);      // arredonda p/ inteiro mais próximo (1)
-  let g = Math.floor(0.5);      // arredonda p/ baixo ("chão": 0)
-  let h = Math.ceil(0.5);       // arredonda p/ cima ("teto": 1)
+  if (armaduraForte) {
+    hp -= 10;
+  } else {
+    hp -= 50;
+  }
   ```
-  - Todos os métodos do [objeto Math na MDN][math-mdn]
+  ```js
+  // mesmo código, em 1 linha
+  hp -= armaduraForte ? 10 : 50;
+  ```
+- Formato:
+  ```js
+  CONDICAO_TESTE ? VALOR_SE_TRUE : VALOR_SE_FALSE;
+  ```
 
-[math-mdn]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math
+---
+<!-- {"layout": "2-column-content", "hash": "switch"} -->
+## **switch** (condicionais)
 
+```js
+let corDoSite = 'black';
+switch (climaAgora) {
+    case 'ensolarado':
+      corDoSite = 'yellow';
+      break;
+    
+    case 'nublado':
+    case 'chuvoso':
+      corDoSite = 'gray';
+      break;
+
+    default:
+      corDoSite = 'white';
+      break;
+}
+```
+
+- Palavra-chave `switch` +  ( + expressão + )
+- Um ou mais `case` + valor para a expressão
+- Sequência de comandos
+- Palavra-chave `break` para sair
+  - (pode ser omitida para continuar)
+- Caso `default` para pegar outros valores (equivalente ao `else`)
 ---
 <!-- {"layout": "2-column-content-zigzag", "embeddedStyles": ".push-code-right pre{float:right;}", "hash": "declarando-e-invocando-funcoes"} -->
 # Declarando e invocando **funções**
@@ -501,685 +542,199 @@ dizOla();
   }
   ```
 
----
-<!-- {"layout": "section-header", "hash": "condicionais-vetores-e-estruturas-de-repeticao"} -->
-# Condicionais, Vetores e Repetição
-## _Arrays_, for, while e variações
 
-- Condicionais
-- Vetores
-- For
-    - Tradicional
-    - For of
-    - forEach
-- While/Do while
-<!-- {ul^1:.content} -->
+
+
 
 ---
-<!-- {"layout": "2-column-content", "hash": "if-else", "classes": "compact-code"} -->
-## **if/else** (condicionais)
+<!-- {"layout": "section-header", "hash": "objetos"} -->
+# Objetos
+## Nosso "saquinho" de propriedades e comportamento 
 
-```js
-if (hora < 12) {
-  manha = true;
-} else {
-  manha = false;
-}
-
-if (nome === 'Robervaldo') { 
-  conceito = 'A';
-} else if (nome === 'Ana') {
-  conceito = 'B';
-} else {
-  conceito = 'C';
-}
-
-if (estouComSono)
-  dormir(); // mas evite omitir { }
-```
-
-- Dentro dos parênteses colocamos uma expressão que avalia para `true` ou `false`. Ex:
-  - `nome === 'Ana'`
-  - `ano < 2000`&nbsp;&nbsp;`ano % 4 === 0`
-  - `!jaEstudei`
-  - `hp > 0 && (balas || granada)`
-- Com apenas 1 comando no `if`/`else`, é possível omitir as chaves (como em C/C++, Java)
-  - Contudo, é uma má ideia
+- Definição
+- Como declarar
+- Objetos dentro de objetos
+- Métodos
 
 ---
-## **Operador ternário** (condicionais)
+<!-- {"classes": "compact-code"} -->
+## O tipo `Object` <!-- {.tipo-js.tipo-object} -->
 
-- Quando temos um `if/else` "simples", pode ser mais legível fazer a verificação em 1 linha com **o operador ternário ?:**
-- <!-- {.code-split-2} -->
+- É um **"saquinho" de propriedades**: <!-- {ul:.push-code-right.full-width} -->
   ```js
-  if (armaduraForte) {
-    hp -= 10;
-  } else {
-    hp -= 50;
-  }
-  ```
-  ```js
-  // mesmo código, em 1 linha
-  hp -= armaduraForte ? 10 : 50;
-  ```
-- Formato:
-  ```js
-  CONDICAO_TESTE ? VALOR_SE_TRUE : VALOR_SE_FALSE;
-  ```
-
----
-<!-- {"layout": "2-column-content", "hash": "switch"} -->
-## **switch** (condicionais)
-
-```js
-let corDoSite = 'black';
-switch (climaAgora) {
-    case 'ensolarado':
-      corDoSite = 'yellow';
-      break;
-    
-    case 'nublado':
-    case 'chuvoso':
-      corDoSite = 'gray';
-      break;
-
-    default:
-      corDoSite = 'white';
-      break;
-}
-```
-
-- Palavra-chave `switch` +  ( + expressão + )
-- Um ou mais `case` + valor para a expressão
-- Sequência de comandos
-- Palavra-chave `break` para sair
-  - (pode ser omitida para continuar)
-- Caso `default` para pegar outros valores (equivalente ao `else`)
-
----
-<!-- {"hash": "vetores"} -->
-# Vetores
-
-- Vetores (ou _arrays_) armazenam uma sequência de valores: <!-- {ul:.bulleted-0.compact-code} -->
-  ```js
-  let notas = [10, 4, 7, 8, 8];
-  let cores = ['azul', 'verde'];
-  let animais = []; // <- vetor vazio
-  ```
-- ```js
-  console.log(notas.length);  // impr. 5
-  console.log(cores.length);  // impr. 2
-  ```
-  Assim como _string_, um vetor tem um **comprimento** (propriedade `length` <!-- {style="float:none"} -->): <!-- {li:.push-code-right style="margin-top: 0.25em;"} -->
-- Em JavaScript, vetores são heterogêneos
-  - Os itens dos vetores **não** precisam ter o mesmo tipo
+  let jogador = {
+    pontos: 1420,
+    vidas: 2
+  };
+  console.log(jogador.pontos);
+  // imprime 1420
+  ```  
+  - Propriedade: (**nome → valor**)
+    - Nome: uma String
+    - Valor: qualquer coisa, exceto `undefined`
+- No exemplo, o objeto tem 2 propriedades: <!-- {li^0:.bullet} -->
+  1. Nome: `pontos`, valor: `1420`
+  1. Nome: `vidas`, valor: `2`
+- Para acessar as propriedades, há 2 formas: <!-- {li:.bullet} -->
+  - <!-- {.code-split-2} -->
     ```js
-    let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
+    // notação ponto
+    console.log(jogador.vidas);
+    ```
+    ```js
+    // notação colchete
+    console.log(jogador['vidas']);
     ```
 
 ---
-<!-- {"elementStyles": { "h2 + pre": "overflow: hidden; width: 100%;"}} -->
-## **Usando** vetores
+## Objetos conhecidos
+
+- ::: did-you-know .push-right width: 250px;
+  Quando um objeto tem uma **propriedade que é uma função**, chamamos ela de **método**.
+  :::
+  Há vários objetos comuns que usamos no dia a dia: `Math`, `console`, `window`. Exemplos:
+  - O objeto `Math` possui uma propriedade:
+    - ```js
+      Math.PI
+      ```
+      (PI → 3.14159) (cujo valor é `Number`) <!-- {.tipo-js.tipo-number} -->      
+  - O objeto `console` possui uma propriedade
+    - ```js
+      console.log
+      ```
+      (log → function() {...})
+  - O objeto `window` possui uma propriedade
+    - ```js
+      window.alert
+      ```
+      (alert → function() {...})
+- E se quisermos criar nossos próprios objetos? #mcfaz? <!-- {li:.bullet} -->
+
+<!-- {ul^3:.bulleted-0.push-code-right-without-clearing.compact-code-more} -->
+
+
+---
+<!-- {"classes": "compact-code"} -->
+## Criando um objeto <small>(2 formas)</small>
+
+1. Na **forma literal**: <!-- {ol:.bulleted-0} --> 
+   ```js
+   let jogador = {             // forma mais expressiva, curta e sexy 😎
+     pontos: 1420,             // propriedades separadas por vírgula
+     vidas: 2
+   };
+   ```
+   ```js
+   let jogador = {};           // um objeto vazio: { }
+   jogador.pontos = 1420;      // criou jogador.pontos com valor 1420
+   jogador.vidas = 2;          // criou jogador.vidas
+   ```
+   - Novas propriedades podem ser atribuídas mesmo após sua criação! <!-- {li:.bullet} -->
+2. Na **forma do operador `new`**: <!-- {strong:.alternate-color} -->
+   - <!-- {li:.code-split-2} -->
+     ```js
+     let jogador = new Object();
+     jogador.pontos = 1420;
+     jogador.vidas = 2;
+     ```
+     - Contudo, desta forma sempre cria-se um objeto vazio e deve-se preenchê-lo
+
+---
+<!-- {"layout": "2-column-content"} -->
+## Objetos dentro de objetos
 
 ```js
-let listaDeCoisas = ['Aew', 35, true, [], 'outra string'];
+let voo = {
+    companhia: 'Gol',
+    numero: 815,
+    decolagem: {
+        IATA: 'SYD',
+        horario: '2004-09-22 14:55',
+        cidade: 'Sydney'
+    },
+    chegada: {
+        IATA: 'LAX',
+        horario: '2004-09-23 10:42',
+        cidade: 'Los Angeles'
+    }
+};
+```
+- Aqui existem 3 objetos:
+  - O **`voo`**, com as propriedades:
+     - `companhia`
+     - `numero`
+     - **`decolagem`**
+     - **`chegada`**
+  - `decolagem` e `chegada` são objetos por si mesmos
+
+---
+<!-- {"layout": "2-column-content"} -->
+## **Métodos** de objetos <!-- {.alternate-color} -->
+
+```js
+const loja = {
+  livros: [       // prop. é um vetor
+    'macunaíma',
+    'torre negra'
+  ],
+  dinheiro: 500,  // propri. é number
+  
+  // método vender
+  vender: function() { // p. é função
+    this.dinheiro += 15;
+  } 
+};
+
+loja.vender(); // loja.dinheiro = 515
+loja.vender(); // loja.dinheiro = 530
 ```
 
-- Indexação: usa-se os símbolos `[` e `]` para acessar um item do _array_ <!-- {ul:.bulleted} -->
-  ```js
-  console.log(listaDeCoisas[1]);      // imprime 35
-  listaDeCoisas[0] = '';              // altera primeiro elemento
-  console.log(listaDeCoisas[0]);      // imprime string vazia
-  ```
-- _Arrays_ possuem métodos, [vários](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) (veremos outros mais adiante):
-  ```js
-  let frutas = [];                    // cria um array vazio
-  frutas.push('kiwi');                // coloca 'kiwi' no array
-  console.log(frutas);                // imprime ['kiwi']
-  ```
+- O **<u>valor</u> de uma propriedade** pode ser uma **função**
+  - Nesse caso, chamamos ela de **método** <!-- {.alternate-color} -->
+  - Todo método tem acesso ao próprio objeto com o ponteiro `this`
+  - Objetos com métodos formam o princípio do conceito de **Orientação a Objetos**
+
 
 ---
-# **for** <small>(forma tradicional)</small>
+## Outros tipos, baseados em `Object` <!-- {.tipo-js.tipo-object} -->
 
-- <!-- {ul:no-margin} -->
-  ::: did-you-know .push-right width:240px;
-  Em JavaScript há pelo menos 3 formas diferentes de fazer um `for`. Esta é a **tradicional** mas as outras mais fáceis até.
-  :::
-  Forma tradicional com `for (inicio; condicao; incremento)`:
-  ```js
-  for (let i = 0; i < 10; i++) {
-    console.log(i);               // 0, 1, 2 ... 9
-  }
-  ```
-- Percorrendo items de um _array_:
-  ```js
-  let cores = ['azul', 'rosa'];
-  for (let i = 0; i < cores.length; i++) {
-    console.log(cores[i]);        // azul, rosa
-  }
-  ```
-
----
-<!-- {"layout": "2-column-content", "hash": "for-formas-mais-legais"} -->
-# **for** <small>(formas **mais legais**)</small>
-
-1. **For of**: `for (let item of array)` :thumbsup:: <!-- {ol:.no-bullets} -->
-   ```js
-   let cores = ['azul', 'rosa'];
-   for (let cor of cores) {
-     console.log(cor);
-     // azul, rosa
-   }
-   ```
-- **For each**: `array.forEach` :thumbsup:: <!-- {ul:.no-bullets} -->
-  ```js
-  let cores = ['azul', 'rosa'];
-  cores.forEach(function(cor) {
-    console.log(cor);
-    // azul, rosa
-  });
-  ```
-
----
-<!-- {"layout": "2-column-content"} -->
-# while/do..while
-
-- Condição **primeiro** <!-- {ul:.no-bullets} -->
-  ```js
-  let i = 1;
-  while (i !== 10) {
-    console.log(i);
-    i++;
-  }
-  ```
-1. Condição **depois** <!-- {ol:.no-bullets} -->
-   ```js
-   let i = 0;
-   do {
-     i++;
-     console.log(i);
-   } while (i !== 10);
-   ```
-
----
-<!-- {"layout": "section-header", "hash": "mais-sobre-funcoes-e-metodos-uteis"} -->
-# Mais sobre funções, Métodos úteis
-## Mais coisas legais
-
-- Função atribuída a variável
-- Função como parâmetro
-- Métodos comuns de strings
-- Métodos comuns de vetores
-<!-- {ul:.content} -->
-
----
-# Mais sobre funções
-
-- Em JavaScript as **funções são super flexíveis**
-  1. Função "tradicional" (já vimos)
-  1. Função anônima (próximo slide)
-  1. Função seta (próxima aula)
-- Variáveis podem apontar para funções
-- Podemos passar funções como parâmetro para outra função
-
----
-<!-- {"layout": "2-column-content"} -->
-## Função **anônima** (atribuída a **variável**)
-
-1. Declaração de função "tradicional": <!-- {ol:.no-bullets} -->
-   ```js
-   function dizOla(nome) {
-     console.log('olá ' + nome);
-   }
-   dizOla('submundo');
-   ```
-   - `function` + nome + (params)
-
-- Criar uma **função <u>anônima</u>** e **atribuí-la a uma variável**: <!-- {ul:.no-bullets} -->
-  ```js
-  let dizOla = function(nome) {
-    console.log('olá ' + nome);
-  };
-  dizOla('submundo');          
-  ```
-  - Funciona da mesma forma
-
----
-## Passando **função como parâmetro**
-
-- ```js
-  function estudar(aluno, fnAprender) {
-    console.log(aluno + ' aprendeu ' + fnAprender()); 
-  }
-  ```
-  Vamos criar uma função que recebe outra como parâmetro →→→ <!-- {ul:.compact-code-more.bulleted} --> <!-- {li:.push-code-right} -->
-- Ao chamar `estudar(...)` devemos passar uma função no segundo argumento <!-- {li:style="clear:both"} -->
-- Neste exemplo, dependendo do que foi estudado, o aluno aprende coisas diferentes:
-  ```js
-  function lerHarryPotter() {                       function lerOlavoCarvalho() {
-    return 'criatividade';                            return '?'; 
-  }                                                 }
-  let lerDarcyRibeiro = function() {
-    return 'sociologia';
-  }
-
-  ```
-- Agora vamos invocar a função `estudar(...)`:
-  ```js
-  estudar('André', lerHarryPotter);   // 'André aprendeu criatividade'
-  estudar('Luiz', lerDarcyRibeiro);   // 'Luiz aprendeu sociologia'
-  estudar('Jair', lerOlavoCarvalho);  // 'Jair aprendeu ?'
-  ```
-
----
-## Função vs Método
-
-Função
-~ sozinha no mundo, **ninguém é dono** dela
-~ exemplo: todas as que vimos
-
-Método
-~ nasceu de algum objeto, ele **tem dono**
-~ ex: as funções das strings, dos vetores (e outros)
-
-- <!-- {ul:.full-width} -->
-  <!-- {.code-split-2} -->
-  ```js
-  // 'dobra' é uma função
-  function dobra(n) {
-    return 2 * n;
-  }
-  let nota = 5;
-  dobra(nota);
-  ```
-  ```js
-  // sqrt() é método de Math
-  nota = Math.sqrt(25);
-
-  // toLowerCase() é método
-  // das strings
-  'HaNa MonTAna'.toLowerCase();
-  ```
-
----
-<!-- {"hash": "metodos-comuns-de-strings-1"} -->
-## **Métodos** comuns de **strings** (1/3)
-
-Toda string possui vários métodos diferentes que podemos invocar
-
-`texto.length`
-  ~ não é um método, mas retorna quantos caracteres
-  ~ `'trem'.length === 4`
-
-`texto[i]`
-  ~ não é um método, mas retorna o i-ésimo caractere
-  ~ `'trem'[3] === 'm'`
-
-`texto.toLowerCase()`
-  ~ método que retorna tudo em minúsculas
-  ~ `'Doug'.toLowerCase() === 'doug'`
-
-`texto.toUpperCase()`
-  ~ método que retorna tudo em maiúsculas
-  ~ `'Doug'.toUpperCase() === 'DOUG'`
+- Existem **outros tipos complexos**, que são **baseados em `Object`**: <!-- {.tipo-js.tipo-object} -->
   
----
-<!-- {"hash": "metodos-comuns-de-strings-2"} -->
-## **Métodos** comuns de **strings** (2/3)
-
-`texto.trim()`
-  ~ método que remove espaços em branco ao redor
-  ~ `' mosca  '.trim() === 'mosca'`
-
-`t.indexOf(trecho)`
-  ~ método que retorna a posição do `trecho` no `texto` (ou -1)
-  ~ `'Thanos'.indexOf('os') === 4`
-
-`t.substr(ini, tam)`
-  ~ método que retorna um trecho dado início e tamanho
-  ~ `'Pronto'.substr(0, 2) === 'Pr'`
-
-`t.includes(trecho)`
-  ~ método que verifica se texto contém o trecho
-  ~ `'Hakuna'.includes('ku') === true`
-  
-`t.split(separad)`
-  ~ método que retorna um vetor de trechos
-  ~ `'Banana'.split('a') === ['B', 'n', 'n']`
-
----
-<!-- {"hash": "metodos-comuns-de-strings-3"} -->
-## **Métodos** comuns de **strings** (3/3)
-
-`t.startsWith(trech)`
-  ~ método que verifica se começa com o trecho
-  ~ `'Hakuna'.startsWith('Ha') === true`
-
-`t.endsWith(trecho)`
-  ~ método que verifica se termina com o trecho
-  ~ `'Hakuna'.endsWith('na') === true`
-
-`t.replace(tr, novo)`
-  ~ método que substitui um trecho por algo novo
-  ~ (apenas primeira ocorrência)
-  ~ `'ana'.replace('a', 'e') === 'ena'`
-
-`t.replaceAll(tr, n)`
-  ~ método que substitui um trecho por algo novo
-  ~ (todas as ocorrências)
-  ~ `'ana'.replaceAll('a', 'e') === 'ene'` <!-- {dl:style="margin-bottom: 0"} -->
-
-- [Lista de métodos de string na MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String) <!-- {ul:.no-margin} -->
-
----
-<!-- {"layout": "2-column-content"} -->
-## Exemplos que usam métodos de strings (1/2)
-
-- Função que verifica se nome tem menos que 10 caracteres <!-- {ul:.bulleted.compact-code-more} -->
-  ```js
-  function temMenosDe10(nome) {
-    return nome.length < 10;
-  }
-  temMenosDe10('Donarudo Torampu');
-  // false
-  ```
-- Função que verifica se primeiro nome tem menos que 10 caracteres
-  ```js
-  function primeiroNomeMenos10(nome) {
-    const cadaNomeSeparado = nome.split(' ');
-    const primeiroNome = cadaNomeSeparado[0];
-    return temMenosDe10(primeiroNome);
-  }
-  primeiroNomeMenos10('Donarudo Torampu');
-  // true
-  ```
-1. Função que verifica se uma URL começa com https <!-- {ol:.bulleted.compact-code-more} -->
-   ```js
-   function comecaComHttps(url) {
-     return url.startsWith('https');
-   }
-   comecaComHttps('http://omo.com.br');
-   // false
-   ```
-1. Função que remove todas as ocorrências de um caractere em um texto
-   ```js
-   function removeCaractere(texto, caractere) {
-     return texto.replaceAll(caractere, '');
-   }
-   ```
-
----
-<!-- {"classes": "compact-code-more"} -->
-## Exemplos que usam métodos de strings (2/2)
-
-- Pega uma frase e se a última letra de cada palavra (com mais do que 1 letra) terminar em 'a' ou 'o', substitui por 'x' <!-- {ul:.bulleted} -->
-  ([no jsfiddle](https://jsfiddle.net/fegemo/Lgwv6yne/)) <!-- {target="_blank"} -->
-- <!-- {.code-split-2} -->
-  ```js
-  function alteraFinalzinhoPalavras(frase) {
-    let palavras = frase.split(' ');
-  ```
-  ```js
-
-  // 1. divide a frase em um vetor de palavras
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-    for (let i = 0; i < palavras.length; i++) {
-      palavras[i] = palavras[i].trim();
-  ```
-  ```js
-  // 2. para cada palavra
-  // 2.1. remove espaços em branco ao redor da palavra
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-      if (palavras[i].length <= 1) continue;
-  ```
-  ```js
-  // 2.1. verifica se tamanho > 1
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-      if (palavras[i].endsWith('o') || 
-          palavras[i].endsWith('a')) {
-        const ateUltimaLetra = palavras[i].length - 1;
-        
-        palavras[i] = 
-          palavras[i].substr(0, ateUltimaLetra) + 'x';
-      }
-    }
-  ```
-  ```js
-  // 2.2. verifica se termina 'a' ou 'o'
-
-  // 2.2.1. pega posição antes da última letra
-
-  // 2.2.2. substitui última letra da palavra por 'x'
-
-
-
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-    return palavras.join(' '); 
-  }
-  ```
-  ```js
-  // remonta a frase, juntando o vetor de palavras
-  // colocando um espaço entre cada uma
-  ```
-
----
-<!-- {"hash": "metodos-comuns-de-vetores-1"} -->
-## **Métodos** comuns de **vetores** (1/3)
-
-- Assim como as strings, os vetores também possuem vários métodos úteis
-  
-  `vetor.length`
-    ~ não é método, mas retorna tamanho do vetor
-    ~ `[5].length === 1`
-
-  `vetor[i]`
-    ~ não é método, mas retorna i-ésimo elemento
-    ~ `[3, 10][0] === 3`
-    ~ ```js
-      let letras = ['x'];
-      letras[0] = 'y';
+  `Date`
+    ~ Por exemplo, para imprimir o horário atual no console:
+      ```js
+      let agora = new Date();
+      console.log(agora);     //Sun Jan 17 2021 18:11:46...
       ```
-
----
-<!-- {"hash": "metodos-comuns-de-vetores-2"} -->
-## **Métodos** comuns de **vetores** (2/3)
-
-`vetor.push(elem)`
-  ~ método que insere `elem` ao final do vetor
-  ~ `['a'].push('b') === ['a', 'b']`
-
-`vetor.pop()`
-  ~ método que remove último elemento
-  ~ `['a', 'b'].pop() === ['a']`
-
-`vetor.indexOf(elem)`
-  ~ método que retorna o índice do elemento no vetor (ou -1)
-  ~ `[5,6,7].indexOf(5) === 0`
-  ~ `[5,6,7].indexOf(2) === -1`
-
----
-<!-- {"hash": "metodos-comuns-de-vetores-3"} -->
-## **Métodos** comuns de **vetores** (3/3)
-
-`vetor.reverse()`
-  ~ método que inverte a ordem dos elementos
-  ~ `[1,2,3].reverse() === [3,2,1]`
-
-`vetor.sort()`
-  ~ método que coloca os elementos em ordem
-  ~ `[8,1,-6].sort() === [-6,1,8]`
-  ~ `['f', 'b'].sort() === ['b', 'f']`
-
-`vetor.join(spacer)`
-  ~ método que retorna uma string juntando os elementos
-  ~ `['fl', 'rb'].join(' ') === 'fl rb'`
-  ~ `['fl', 'rb'].join('+') === 'fl+rb'`
-
-- [Lista de métodos comuns de vetores na MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array)
-
----
-<!-- {"layout": "2-column-content", "classes": "compact-code-more"} -->
-## Exemplos com métodos de vetores (1/2)
-
-- Função que soma todos os elementos do vetor <!-- {ul:.bulleted} -->
-  ```js
-  function soma(valores) {
-    let total = 0;
-    for (let n of valores) {
-      total += n;
-    }
-    return total;
-  }
-  ```
-- Função que retorna um vetor com os quadrados
-  ```js
-  function quadrados(valores) {
-    let resultado = [];
-    for (let n of valores) {
-      resultado.push(n ** 2);
-    }
-    return resultado;
-  }
-  ```
-
-1. Função que busca por um elemento específico <!-- {ol:.bulleted} -->
-   ```js
-   function busca(vetor, elem) {
-     return vetor.indexOf(elem);
-   }
-   ```
-1. Função que adiciona no vetor apenas se elemento ainda não estiver nele
-   ```js
-   function adicionaSemDuplicar(vetor, elem) {
-     if (busca(vetor, elem) === -1) {
-       vetor.push(elem);
-     }
-   }
-   ```
-
----
-<!-- {"classes": "compact-code-more"} -->
-## Exemplos com métodos de vetores (2/2)
-
-- Função que imprime uma matriz n x n de números <!-- {ul:.full-width.bulleted} --> ([no jsfiddle](https://jsfiddle.net/fegemo/f0uc4qyx/)) <!-- {target="_blank"} -->
-- <!-- {.code-split-2} -->
-  ```js
-  function imprimeMatriz(matriz) {
-    let resultado = '';
-  ```
-  ```js
   
+  `Function`
+    ~ (sim! funções são objetos em JavaScript)
   
-  ```
-- <!-- {.code-split-2} -->
+  `Array`
+    ~ (vetores também são objetos)
+
+  `SeuProprioTipo`™
+    ~ (é possível criar novos tipos também)
+
+---
+<!-- {"hash": "o-objeto-math"} -->
+## O objeto `Math`
+
+- Além dos operadores matemáticos (_e.g._, `+, -, /, *`), existem
+  outras funções matemáticas acessíveis via o objeto `Math`:
   ```js
-    for (let i = 0; i < matriz.length; i++) {
-      resultado += '| ';
-      for (let j = 0; j < matriz[i].length; j++) {
+  const pi = Math.PI;           // a constante pi
+  let a = Math.sin(1);          // seno de 1 radiano
+  let b = Math.cos(pi);         // cosseno de pi radianos
+  let c = Math.pow(5, 2);       // 5 elevado a 2
+  let d = Math.sqrt(100);       // raiz quadrada de 100
+  let e = Math.random();        // nº aleatório entre [0, 1]
+  let f = Math.round(0.5);      // arredonda p/ inteiro mais próximo (1)
+  let g = Math.floor(0.5);      // arredonda p/ baixo ("chão": 0)
+  let h = Math.ceil(0.5);       // arredonda p/ cima ("teto": 1)
   ```
-  ```js
-  // 1. para cada linha
-  // começou a linha
-  // 2. para cada coluna
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-        resultado += matriz[i][j] + ' ';
-      }
-      resultado += '|\n';
-    }
-  ```
-  ```js
-  // 3. imprime o elemento (i,j)
+  - Todos os métodos do [objeto Math na MDN][math-mdn]
 
-  // acabou a linha, coloca paredinha |
-  
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-    console.log(resultado);
-  }
-  ```
-  ```js
-  // e quebra linha \n
-
-  ```
-- <!-- {.code-split-2} -->
-  ```js
-  
-  imprimeMatriz([[1,2],[3,4]])
-  ```
-  ```js
-  // | 1 2 |
-  // | 3 4 |
-  ```
-
----
-<!-- {"layout": "centered"} -->
-# Referências
-
-1. Capítulo 2 do livro "JavaScript: The Good Parts"
-1. Mozilla Developer Network (MDN)
-
----
-<!-- {"layout": "main-point", "state": "emphatic", "hash": "erros-comuns"} -->
-# Erros comuns durante a prática
-
----
-## 01. Falhar no **arejamento** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-arejamento-a.png) <!-- {.full-width} --> <!-- {p:.bullet} -->
-![](../../images/erros-comuns-js0-arejamento-b.png) <!-- {.full-width} -->
-![](../../images/erros-comuns-js0-arejamento-c.png) <!-- {.full-width} -->
-![](../../images/erros-comuns-js0-arejamento-d.png) <!-- {.full-width} -->
-
----
-## 02. Falhar na **indentação** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-indentacao-a.png) <!-- {.full-width} --> <!-- {p:.bullet} -->
-![](../../images/erros-comuns-js0-indentacao-b.png) <!-- {.full-width} -->
-
----
-## 03. Nomes de variáveis **sem significado** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-nomes-sem-significado.png) <!-- {.full-width.bullet} -->
-
----
-## 04. Nomes de variáveis **específicos demais** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-nome-especifico-demais.png) <!-- {.full-width.bullet} -->
-
----
-## 05. Esquecer **`console.log`, `alert`** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-esquecer-printf.png) <!-- {.full-width.bullet} -->
-
----
-## 06. Esquecer que **vetor começa de 0** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-indice-do-vetor.png) <!-- {.full-width.bullet} -->
-
----
-## 07. Desnecessário **passar tamanho** do vetor <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-tamanho-vetor.png) <!-- {.full-width.bullet} -->
-
----
-## 08. Deixar de **parametrizar** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-nao-parametrizar.png) <!-- {.full-width.bullet} -->
-
----
-## 09. Esquecer de **retornar o resultado** <!-- {h2:.bullet} -->
-
-![](../../images/erros-comuns-js0-esquecer-de-retornar.png) <!-- {.full-width.bullet} -->
+[math-mdn]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math
 
 
