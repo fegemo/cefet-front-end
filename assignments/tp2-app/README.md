@@ -203,9 +203,7 @@ _(colocar evidências que comprovem os itens opcionais implementados, se necess�
 
 ## O que deve ser **apresentado**
 
-Na última aula do bimestre, o trabalho deve ser apresentado em sala de aula. Não é necessário fazer uma apresentação, mas apenas mostrar o site e falar sobre como foi seu desenvolvimento. Todos integrantes do grupo devem participar.
-
-
+Na última aula do bimestre, o trabalho deve ser apresentado em sala de aula. Não é necessário fazer uma apresentação, mas apenas mostrar o site e falar sobre como foi seu desenvolvimento. Os alunos devem demonstrar dominio técnico do que fizeram. Todos integrantes do grupo devem participar.
 
 
 [neocities]: https://neocities.org/
