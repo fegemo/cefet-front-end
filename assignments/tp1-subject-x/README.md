@@ -4,7 +4,7 @@ Você deverá fazer **fazer um site
 sobre um determinado assunto - o Assunto X -**, para motivar os amigos a
 gostarem da mesma coisa que vocês, além de ensinar um pouquinho sobre alguma matéria.
 
-Esse assunto deve ser algo de interesse em comum dos integrantes do grupo e deve ser escolhido dentre as matérias que estão sendo vistas ao longo do primeiro ano, das matérias de biologia, geografia, português, matemática etc. A ideia é **pegar algum trabalho de outra matéria** e, em vez de apresentá-lo como um relatório ou PowerPoint, **criar um site** para isso.
+Esse assunto deve ser algo escolhido dentre as matérias que estão sendo vistas ao longo do primeiro ano, das matérias de biologia, geografia, português, matemática etc. A ideia é **pegar algum trabalho de outra matéria** e, em vez de apresentá-lo como um relatório ou PowerPoint, **criar um site** para isso.
 
 
 
