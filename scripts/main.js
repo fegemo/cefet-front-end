@@ -17,11 +17,13 @@ const easter = require('./easter')
 const tutorial = require('./tutorial')
 const titler = require('./titler')
 const markdownItConfig = require('./markdown-config')
+const classIdentifier = require('./class-identifier')
 
 // Bespoke.js
 bespoke.from('article', [
   markdown(markdownItConfig.config, markdownItConfig.extensions),
-  titler(),
+  classIdentifier(),
+  titler(':not(.syllabus)'),
   classes(),
   // beachday({ insertFonts: false }),
   keys(),
