@@ -46,7 +46,7 @@
     "delete": "^1.1.0",
     "gh-pages": "^3.2.3",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
+    "gulp-autoprefixer": "^10.0.0",
     "gulp-changed": "^4.0.3",
     "gulp-connect": "^5.7.0",
     "gulp-csso": "^4.0.1",
