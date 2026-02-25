@@ -21,6 +21,7 @@ const through = require('through')
 const ghpages = require('gh-pages')
 const merge = require('merge-stream')
 const browserify = require('browserify')
+const { materializeProps } = require('./scripts/utils')
 
 const isDist = process.argv.indexOf('dev') === -1
 
@@ -76,7 +77,10 @@ function html() {
           NODE_ENV: isDist ? 'production' : 'development',
           DEBUG: true,
           FOLDER: '',
-          SPECIFIC_TITLE: '',
+          TITLE: 'Laboratório de Programação Web',
+          DESCRIPTION: 'Slides do curso de Laboratório de Programação Web' +
+                       'para aprender HTML, CSS e JavaScript para se tornar' +
+                       'um programador ninja.',
           LAST_MODIFICATION: dateToday()
         }
       })
@@ -192,21 +196,43 @@ function build() {
   const folders = getFolders('.', 'classes')
     .concat('assignments/code-dojo-1')
     .concat('assignments/challenges-1')
-  const tasks = folders.map(folder =>
-    src(['html/index.html'])
+  const tasks = folders.map(folder => {
+    let classMetaData = {}
+    try {
+      const metaPath = path.join('.', folder, 'meta.json')
+      classMetaData = JSON.parse(fs.readFileSync(metaPath, 'utf-8'))
+    } catch (e) {
+      console.info(`No metadata file ('meta.json') found for class ${folder}, using defaults.`)
+    }
+  
+    const metaData = {
+      NODE_ENV: isDist ? 'production' : 'development',
+      DEBUG: true,
+      FOLDER: folder,
+      SPECIFIC_TITLE: 'Aula ' + folder.substring(folder.lastIndexOf('/') + 1).toUpperCase(),
+      TITLE() { 
+        return `${this.SPECIFIC_TITLE} - LPW`
+      },
+      DESCRIPTION() {
+        return this.TEACHES ? 
+          `Apresentação de slides de aula sobre: ${this.TEACHES}` :
+          'Slides do curso de Laboratório de Programação Web para ' + 
+          'aprender HTML, CSS e JavaScript para se tornar ' + 
+          'um programador ninja.'
+      },
+      LAST_MODIFICATION: dateToday(),
+      ...classMetaData
+    }
+
+    return src(['html/index.html'])
       .pipe(
         preprocess({
-          context: {
-            NODE_ENV: isDist ? 'production' : 'development',
-            DEBUG: true,
-            FOLDER: folder,
-            SPECIFIC_TITLE: ` - ${folder.substr(folder.lastIndexOf('/') + 1).toUpperCase()}`,
-            LAST_MODIFICATION: dateToday()
-          }
+          context: materializeProps(metaData)
         })
       )
       .pipe(replace('{path-to-root}', '../..'))
       .pipe(dest(path.join('dist', folder)))
+    }
   )
 
   return merge(tasks)

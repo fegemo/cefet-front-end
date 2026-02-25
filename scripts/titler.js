@@ -12,7 +12,7 @@
 // 
 // This is useful for giving each slide a unique 
 // title based on its content.
-module.exports = (filterToActivate) => deck => {
+module.exports = (filterToActivate, suffix = '') => deck => {
   const firstSlideEl = deck.slides[0]
   if (filterToActivate && !deck.parent.matches(filterToActivate)) {
     return
@@ -34,6 +34,7 @@ module.exports = (filterToActivate) => deck => {
       pageTitle += ' - '
       pageTitle += subtitleEl.textContent.trim()
     }
+    pageTitle += suffix
 
     document.title = pageTitle
   }

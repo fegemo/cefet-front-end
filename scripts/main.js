@@ -23,7 +23,7 @@ const classIdentifier = require('./class-identifier')
 bespoke.from('article', [
   markdown(markdownItConfig.config, markdownItConfig.extensions),
   classIdentifier(),
-  titler(':not(.syllabus)'),
+  titler(':not(.syllabus)', ' - LPW'),
   classes(),
   // beachday({ insertFonts: false }),
   keys(),
