@@ -59652,6 +59652,25 @@ module.exports = function() {
 }
 
 },{}],290:[function(require,module,exports){
+// This plugin adds a class to the presentation parent with the 
+// name of the class, from the URL. For example, if the URL is 
+// https://example.com/classes/math101, it will add the class "math101" 
+// to the presentation parent element
+//
+// This is useful for applying class-specific styles to the presentation,
+// such as different color schemes for different classes.
+// 
+// The titler plugin requires this plugin to be loaded first, as it uses 
+// the class name to set the document title.
+module.exports = () => deck => {
+  const path = location.pathname;
+  const startOfClassName = path.indexOf('/classes/') === -1 ? 0 : path.indexOf('/classes/') + '/classes/'.length;
+  const className = path.substring(startOfClassName, path.indexOf('/', startOfClassName));
+  
+  deck.parent.classList.add(className || 'syllabus');
+}
+
+},{}],291:[function(require,module,exports){
 const cheet = require('cheet.js')
 
 function pathToAssets(assetType) {
@@ -59734,7 +59753,7 @@ module.exports = function() {
 
 }
 
-},{"cheet.js":15}],291:[function(require,module,exports){
+},{"cheet.js":15}],292:[function(require,module,exports){
 const bespoke = require('bespoke')
 const keys = require('bespoke-keys')
 const touch = require('bespoke-touch')
@@ -59754,11 +59773,13 @@ const easter = require('./easter')
 const tutorial = require('./tutorial')
 const titler = require('./titler')
 const markdownItConfig = require('./markdown-config')
+const classIdentifier = require('./class-identifier')
 
 // Bespoke.js
 bespoke.from('article', [
   markdown(markdownItConfig.config, markdownItConfig.extensions),
-  titler(),
+  classIdentifier(),
+  titler(':not(.syllabus)'),
   classes(),
   // beachday({ insertFonts: false }),
   keys(),
@@ -59795,7 +59816,7 @@ easter()
 // Used to load gmaps api async (it requires a callback to be passed)
 window.noop = function() {}
 
-},{"./bespoke-proceed":289,"./easter":290,"./markdown-config":292,"./titler":293,"./tutorial":294,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-classes":3,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-search":10,"bespoke-simple-overview":11,"bespoke-state":12,"bespoke-touch":13}],292:[function(require,module,exports){
+},{"./bespoke-proceed":289,"./class-identifier":290,"./easter":291,"./markdown-config":293,"./titler":294,"./tutorial":295,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-classes":3,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-search":10,"bespoke-simple-overview":11,"bespoke-state":12,"bespoke-touch":13}],293:[function(require,module,exports){
 // markdownit plugins
 const markdownItContainer = require('markdown-it-container')
 const markdownItDecorate = require('markdown-it-decorate')
@@ -60138,19 +60159,49 @@ const extensions = [
 exports.config = config
 exports.extensions = extensions
 
-},{"markdown-it-abbr":214,"markdown-it-container":215,"markdown-it-decorate":216,"markdown-it-deflist":217,"markdown-it-emoji":219}],293:[function(require,module,exports){
+},{"markdown-it-abbr":214,"markdown-it-container":215,"markdown-it-decorate":216,"markdown-it-deflist":217,"markdown-it-emoji":219}],294:[function(require,module,exports){
 // This plugin sets the document title to the text content of the 
 // first heading element (h1, h2, h3, h4, h5, or h6) found from the parent 
-// element of the deck. This is useful for giving each slide a unique 
+// element of the deck. 
+// 
+// It also looks for a second heading element to use as a subtitle, which is
+// as an h1, h2...h6 on the same section (ie, slide), if present.
+//
+// The filterToActivate parameter can be used to specify a CSS selector to
+// determine whether the plugin should be activated or not. For example, if
+// filterToActivate is set to ':not(.syllabus)', the plugin will only be 
+// activated if the presentation parent does not have the class "syllabus".
+// 
+// This is useful for giving each slide a unique 
 // title based on its content.
-module.exports = () => deck => {
-  const title = deck.parent.querySelector('h1, h2, h3, h4, h5, h6')
-  if (title) {
-    document.title = title.textContent
+module.exports = (filterToActivate) => deck => {
+  const firstSlideEl = deck.slides[0]
+  if (filterToActivate && !deck.parent.matches(filterToActivate)) {
+    return
+  }
+  const htmlTitleSelector = 'h1, h2, h3, h4, h5, h6'
+  const titleEl = firstSlideEl.querySelector(htmlTitleSelector)
+  if (titleEl) {  
+    const otherTitleEls = firstSlideEl.querySelectorAll(htmlTitleSelector)
+    let subtitleEl = null
+    for (const el of otherTitleEls || []) {
+      if (el !== titleEl) {
+        subtitleEl = el
+        break
+      }
+    }
+
+    let pageTitle = titleEl.textContent.trim()
+    if (subtitleEl) {
+      pageTitle += ' - '
+      pageTitle += subtitleEl.textContent.trim()
+    }
+
+    document.title = pageTitle
   }
 }
 
-},{}],294:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 const tutorial = {
   turnedOn: true,
   timer: 0,
@@ -60189,6 +60240,6 @@ const tutorial = {
 module.exports = tutorialEl => deck => tutorial.start(deck, tutorialEl)
 
 
-},{}]},{},[291])
+},{}]},{},[292])
 
 //# sourceMappingURL=build.js.map
