@@ -59752,11 +59752,13 @@ const backdrop = require('bespoke-backdrop')
 const proceed = require('./bespoke-proceed')
 const easter = require('./easter')
 const tutorial = require('./tutorial')
+const titler = require('./titler')
 const markdownItConfig = require('./markdown-config')
 
 // Bespoke.js
 bespoke.from('article', [
   markdown(markdownItConfig.config, markdownItConfig.extensions),
+  titler(),
   classes(),
   // beachday({ insertFonts: false }),
   keys(),
@@ -59793,7 +59795,7 @@ easter()
 // Used to load gmaps api async (it requires a callback to be passed)
 window.noop = function() {}
 
-},{"./bespoke-proceed":289,"./easter":290,"./markdown-config":292,"./tutorial":293,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-classes":3,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-search":10,"bespoke-simple-overview":11,"bespoke-state":12,"bespoke-touch":13}],292:[function(require,module,exports){
+},{"./bespoke-proceed":289,"./easter":290,"./markdown-config":292,"./titler":293,"./tutorial":294,"bespoke":14,"bespoke-backdrop":1,"bespoke-bullets":2,"bespoke-classes":3,"bespoke-forms":4,"bespoke-hash":5,"bespoke-keys":6,"bespoke-markdownit":7,"bespoke-progress":8,"bespoke-scale":9,"bespoke-search":10,"bespoke-simple-overview":11,"bespoke-state":12,"bespoke-touch":13}],292:[function(require,module,exports){
 // markdownit plugins
 const markdownItContainer = require('markdown-it-container')
 const markdownItDecorate = require('markdown-it-decorate')
@@ -60137,6 +60139,18 @@ exports.config = config
 exports.extensions = extensions
 
 },{"markdown-it-abbr":214,"markdown-it-container":215,"markdown-it-decorate":216,"markdown-it-deflist":217,"markdown-it-emoji":219}],293:[function(require,module,exports){
+// This plugin sets the document title to the text content of the 
+// first heading element (h1, h2, h3, h4, h5, or h6) found from the parent 
+// element of the deck. This is useful for giving each slide a unique 
+// title based on its content.
+module.exports = () => deck => {
+  const title = deck.parent.querySelector('h1, h2, h3, h4, h5, h6')
+  if (title) {
+    document.title = title.textContent
+  }
+}
+
+},{}],294:[function(require,module,exports){
 const tutorial = {
   turnedOn: true,
   timer: 0,
