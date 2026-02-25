@@ -1,5 +1,5 @@
 <!-- {"layout": "title"} -->
-# **JavaScript** parte 2
+# **JavaScript** parte 1.5
 ## Estrutura de repetição, vetores, mais sobre funções e métodos úteis de strings
 
 
