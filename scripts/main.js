@@ -15,11 +15,13 @@ const backdrop = require('bespoke-backdrop')
 const proceed = require('./bespoke-proceed')
 const easter = require('./easter')
 const tutorial = require('./tutorial')
+const titler = require('./titler')
 const markdownItConfig = require('./markdown-config')
 
 // Bespoke.js
 bespoke.from('article', [
   markdown(markdownItConfig.config, markdownItConfig.extensions),
+  titler(),
   classes(),
   // beachday({ insertFonts: false }),
   keys(),
