@@ -1,9 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
+const yargs = require('yargs')
 
 const { src, dest, series, parallel, watch } = require('gulp')
 const open = require('open')
+const log = require('fancy-log')
 const csso = require('gulp-csso')
 const rename = require('gulp-rename')
 const terser = require('gulp-terser')
@@ -14,6 +16,7 @@ const changed = require('gulp-changed')
 const connect = require('gulp-connect')
 const sourcemaps = require('gulp-sourcemaps')
 const preprocess = require('gulp-preprocess')
+const flatmap = require('gulp-flatmap')
 const source = require('vinyl-source-stream')
 const autoprefixer = require('gulp-autoprefixer').default
 const del = require('delete')
@@ -91,6 +94,19 @@ function html() {
 }
 
 function md() {
+  const args = yargs(process.argv.slice(2)).parse()
+  const chosenProfile = args.profile ?? 'coutinho-2026'
+  let profilePath = ''
+  let profileData = {}
+  try {
+    profilePath = path.join('.', 'profiles', chosenProfile + '.json')
+    profileData = JSON.parse(fs.readFileSync(profilePath, 'utf-8'))
+  } catch (e) {
+    console.warn(`Não foi encontrado o arquivo ${profilePath} para carregar a  `
+      + `ordem das aulas do perfil ${chosenProfile}. Portanto, as aulas não ` 
+      + `serão processadas para incluir os arquivos de review.`)
+  }
+  
   const tasks = []
 
   tasks.push(
@@ -101,8 +117,46 @@ function md() {
   )
 
   tasks.push(
-    src('classes/**/*.md')
+    src('classes/**/README.md')
       .pipe(changed('dist/classes'))
+      .pipe(flatmap((stream, fileMeta) => {
+        const className = path.basename(path.dirname(fileMeta.path))
+        // 3. substitui PATH_TO_REVIEW_FILE pelo caminho correto do arquivo de review
+        return stream.pipe(replace(/<\!\-\-\s*@include (PATH_TO_REVIEW_FILE)\s*-->/, function handleReplace() {
+          // 1. encontra aula atual (ex: classes/aula-1.md -> aula-1)
+          const classIndex = profileData.classes.indexOf(className)
+          if (classIndex === -1) {
+            log.warn(`Aula ${className} não encontrada no perfil `
+              + `${chosenProfile}, portanto, não será processada para incluir o `
+              + `arquivo de review.`)
+            return ''
+          }
+
+          // 2. encontra aula anterior
+          const previousClass = profileData.classes[classIndex - 1]
+          if (!previousClass) {
+            log.warn(`Aula anterior à ${className} segundo o perfil `
+              + `${chosenProfile} não foi encontrada porque subtraindo 1 `
+              + `resultou em ${classIndex - 1}. Portanto, a aula ${className} `
+              + `não terá review.`)
+            return ''
+          }
+
+          // 3. verifica se o arquivo de review existe
+          const pathToReviewFile = path.join('classes', previousClass, 'review.md')
+          if (!fs.existsSync(pathToReviewFile)) {
+            log.warn(`A aula ${className} esperava incluir review da ` 
+              + `${previousClass}. Contudo, essa aula anterior não tem um `
+              + `arquivo classes/${previousClass}/review.md em sua pasta. Portanto, `
+              + `não será incluído review para a aula ${className}.`)
+            return ''
+          }
+
+          return `<!-- @include ../../${pathToReviewFile} -->`
+        }))
+      }))
+      // 4. processa para preprocess incluir o arquivo de review
+      .pipe(preprocess())
       .pipe(dest('dist/classes'))
       .pipe(connect.reload())
   )
@@ -202,7 +256,8 @@ function build() {
       const metaPath = path.join('.', folder, 'meta.json')
       classMetaData = JSON.parse(fs.readFileSync(metaPath, 'utf-8'))
     } catch (e) {
-      console.info(`No metadata file ('meta.json') found for class ${folder}, using defaults.`)
+      log.info(`Não foi encontrado arquivo de metadados ('meta.json') `
+        + `para a aula '${folder}', usando metadados padrão.`)
     }
   
     const metaData = {

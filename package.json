@@ -32,6 +32,7 @@
     "bespoke-theme-beachday": "^2.0.1",
     "bespoke-touch": "^1.0.0",
     "cheet.js": "^0.3.3",
+    "fancy-log": "^2.0.0",
     "how-caniuse": "^1.0.1",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-anchor": "^8.4.1",
@@ -50,6 +51,7 @@
     "gulp-changed": "^4.0.3",
     "gulp-connect": "^5.7.0",
     "gulp-csso": "^4.0.1",
+    "gulp-flatmap": "^1.0.2",
     "gulp-plumber": "^1.2.1",
     "gulp-preprocess": "^6.0.0",
     "gulp-rename": "^2.0.0",
@@ -61,7 +63,8 @@
     "open": "^8.4.0",
     "through": "^2.3.8",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "vinyl-source-stream": "^2.0.0",
+    "yargs": "^18.0.0"
   },
   "engines": {
     "node": ">10.0.0"

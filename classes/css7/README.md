@@ -2,6 +2,8 @@
 # **CSS** parte 7
 ## _Responsive Web Design_
 
+<!-- @include PATH_TO_REVIEW_FILE -->
+
 ---
 <!-- {"embeddedStyles": ".multi-dispositivos { justify-content: center; } .multi-dispositivos li { text-align: center; margin-right: 2em; } .multi-dispositivos img { max-height: 160px; display: block; margin: auto; }"} -->
 # A Web é multi-dispositivos

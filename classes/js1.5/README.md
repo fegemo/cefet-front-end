@@ -2,6 +2,7 @@
 # **JavaScript** parte 1.5
 ## Estrutura de repetição, vetores, mais sobre funções e métodos úteis de strings
 
+<!-- @include PATH_TO_REVIEW_FILE -->
 
 ---
 <!-- {"layout": "centered"} -->
