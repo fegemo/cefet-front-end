@@ -1,7 +1,7 @@
 <!-- {"layout": "title"} -->
 # **HTML** parte 6
-
 ## Elementos HTML de entrada, eventos e formulários<br>e o AvatarCreator 💄💓
+
 
 ---
 # Na última aula... (1/4)
@@ -44,6 +44,7 @@
 
 - Obtendo as posições do mouse por meio das propriedades `e.pageX` e `e.pageY`
 <iframe width="100%" height="260" src="https://jsfiddle.net/fegemo/79bnmhp7/embedded/result,js,css/dark/" allowfullscreen="allowfullscreen" frameborder="0" class="bordered"></iframe>
+
 
 ---
 <!-- {"layout": "centered"} -->

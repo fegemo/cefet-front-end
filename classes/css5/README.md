@@ -2,6 +2,7 @@
 # **CSS** parte 5
 ## Posicionamento e mais Assombrações :ghost::ghost::ghost:
 
+
 ---
 # Na última aula <small>(1/3)</small>
 
@@ -42,6 +43,7 @@
     ~ permitem **estilizar** certas **partes de elementos**
     ~ Exemplos: `::selection` (seleção de texto) `::first-letter`
       (primeira letra)
+
 
 ---
 <!-- {"layout": "centered"} -->

@@ -2,6 +2,7 @@
 # **CSS** parte 2
 ## História, a Cascata e outros Seletores, Ferramentas e Ninjas :dash:
 
+
 ---
 # Na última aula... (1/4)
 ## Ferramentas de Produtividade
@@ -70,6 +71,7 @@ uma classe curiosidade (previamente definido na tag pelo atributo `class` )
     background-image: linear-gradient( 45deg, blue, #00FF00 );
   }
   ```
+
 
 ---
 <!-- {"layout": "centered"} -->

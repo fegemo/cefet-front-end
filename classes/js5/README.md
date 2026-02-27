@@ -2,6 +2,7 @@
 # **JavaScript** parte 5
 ## Web Storage, JSON e a Lista de Tarefas :notebook: x2
 
+
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
 # Na última aula... (1/4)
@@ -84,6 +85,7 @@ containerEl.appendChild(novaOvelhaEl);
 ![Uma árvore com os elementos HTML](../../images/create-element-resumo.png)
 <!-- {p:.medium-width.centered} -->
 <!-- {.full-width} -->
+
 
 ---
 <!-- {"layout": "centered"} -->

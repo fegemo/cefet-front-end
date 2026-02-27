@@ -2,6 +2,7 @@
 # **HTML** parte 1
 ## Plantas Carnívoras 🌱🦖,<br>_Tags_ HTML e Temperando com CSS
 
+
 ---
 # Na última aula...
 
@@ -13,6 +14,7 @@
   - O primeiro navegador (WorldWideWeb)
   - ~~A linguagem CSS~~ (não foi o Tim :scream:)
   - ~~A linguagem JavaScript~~ (não foi o Tim :scream:)
+
 
 ---
 <!-- {"layout": "centered-horizontal"} -->

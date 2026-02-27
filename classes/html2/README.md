@@ -2,6 +2,7 @@
 # **HTML** parte 2
 ## Coding Dojo :japanese_castle:, Mais _tags_ HTML<br>e Entendendo regras CSS
 
+
 ---
 # Na última aula... (1/2)
 
@@ -23,6 +24,7 @@
   1. Algumas **_tags_ básicas**, como `<p>`, `<img>`, `<h1...6>`, `<a href="">`
   1. A usar um **pouquinho de CSS**: `color`, `margin`,
      `background-color`, `font-family`
+
 
 ---
 <!-- {"layout": "centered-horizontal"} -->

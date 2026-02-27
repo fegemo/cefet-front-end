@@ -2,6 +2,7 @@
 # **CSS** parte 1
 ## Seletores de classe, Flutuação e Abelhas :honeybee:
 
+
 ---
 # Na última aula...
 
@@ -17,6 +18,7 @@
 - [Referência na Mozilla Developer Network][mdn-table]
 
 [mdn-table]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
+
 
 ---
 <!-- {"layout": "centered"} -->

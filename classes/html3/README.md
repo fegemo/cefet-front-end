@@ -2,6 +2,7 @@
 # **HTML** parte 3
 ## Tabelas, Tesouros :crown: e Piratas
 
+
 ---
 # Na última aula... (1/4)
 
@@ -60,6 +61,7 @@
     margin-right: auto;
   }
   ```
+
 
 ---
 <!-- {"layout": "centered"} -->

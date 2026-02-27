@@ -2,6 +2,7 @@
 # **JavaScript** parte 6
 ## Bibliotecas JavaScript e jQuery
 
+
 ---
 <!-- {"classes": "compact-code"} -->
 # Na última aula... (1/2) <!-- {h1:style="padding: 0; margin-bottom: 0.15em"} -->
@@ -37,6 +38,7 @@
     let banco = JSON.parse('{"nome":"Itaú","codigo":"341"}');
     console.log(banco.nome);          // imprime Itaú
     ```
+
 
 ---
 <!-- {"layout": "centered"} -->

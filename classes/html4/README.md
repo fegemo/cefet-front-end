@@ -2,6 +2,7 @@
 # **HTML** parte 4
 ## Div/Span, Box Model, Float e Desafios
 
+
 ---
 <!-- {"layout": "2-column-content-zigzag"} -->
 # Na última aula... (1/3)
@@ -44,6 +45,7 @@ estado do link
 
 negação
   ~ `img:not([alt])`: `<img>` sem o atributo `alt`
+
 
 ---
 <!-- {"layout": "centered"} -->

@@ -2,6 +2,7 @@
 # **JavaScript** parte 3
 ## História, Estilizando elementos, Eventos de mouse, Depurando código e o PhotoSnap 📷
 
+
 ---
 # Na última aula... (1/4)
 

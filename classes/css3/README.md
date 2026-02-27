@@ -130,6 +130,7 @@
     - `both`: interrompe **ambos** lados
     - `none`: **não interrompe** (valor padrão)
 
+
 ---
 <!-- {"layout": "centered"} -->
 # Hoje veremos
