@@ -1,11 +1,15 @@
 # Trabalho Prático 1 - O Assunto X
 
-Você deverá fazer **fazer um site
-sobre um determinado assunto - o Assunto X -**, para motivar os amigos a
-gostarem da mesma coisa que vocês, além de ensinar um pouquinho sobre alguma matéria.
+Você deverá fazer 
+**fazer um site sobre um determinado assunto - o Assunto X -**, para 
+motivar os amigos a gostarem da mesma coisa que vocês, além de ensinar 
+um pouquinho sobre alguma matéria.
 
-Esse assunto deve ser algo escolhido dentre as matérias que estão sendo vistas ao longo do primeiro ano, das matérias de biologia, geografia, português, matemática etc. A ideia é **pegar algum trabalho de outra matéria** e, em vez de apresentá-lo como um relatório ou PowerPoint, **criar um site** para isso.
-
+Esse assunto deve ser algo escolhido dentre as matérias que estão sendo 
+vistas ao longo do primeiro ano, das matérias de biologia, geografia, 
+português, matemática etc. A ideia é 
+**pegar algum trabalho de outra matéria** e, em vez de apresentá-lo 
+como um relatório ou PowerPoint, **criar um site** para isso.
 
 
 ## Funcionalidades do Site
@@ -158,11 +162,14 @@ O site deve conter:
    </details>
 
 
-Fazendo tudo isso certinho, da melhor forma possível, o grupo adquire 80% da pontuação do trabalho. Se quiser mais pontinhos, até um limite de 120%, o grupo também pode implementar:
+Fazendo tudo isso certinho, da melhor forma possível, o grupo adquire 80% da 
+pontuação do trabalho. Se quiser mais pontinhos, até um limite de 120%, 
+o grupo também pode implementar:
 
 
-1. (5-8%) Criar um **_comprehensive layout_** em algum editor de imagem (paint não vale =) antes do desenvolvimento
-1. (3-10%) Criar **algo interativo na página usando JavaScript**.    
+1. (5-8%) Criar um **_comprehensive layout_** em algum editor de imagem 
+   (paint não vale =) antes do desenvolvimento
+1. (3-12%) Criar **algo interativo na página usando JavaScript**.    
    <details>
       <summary>Exemplos de coisinhas com JavaScript...</summary>
       <ul>
@@ -174,18 +181,21 @@ Fazendo tudo isso certinho, da melhor forma possível, o grupo adquire 80% da po
          <li>Fazer alguns cálculos de equações como báscara, equações da física etc.</li>
       </ul>
    </details>
-1. (5-10%) Colocar **animações, transições e transformações** (mas sem exageros, onde ficar bom e fizer sentido)
+1. (5-10%) Colocar **animações, transições e transformações** 
+   (mas sem exageros, onde ficar bom e fizer sentido)
 1. (2-5%) **Easter eggs** usando CSS ou JavaScript (mais pontos)
 1. (5%) Alguns **elementos com posicionamento** não estático
    ([ver slides][posicionamento])
 1. (3%) Exibição de um **vídeo sobre o tema** ([ver slides][video])
    - Pode ser um vídeo do Youtube (eg, `<iframe ...>`), ou um vídeo hospedado
      no próprio site (`<video ...>`)
-1. (5%) Usar o **Git ao longo do** trabalho (hospedado no Github, Gitlab, Bitbucket ou outro)
-   - Não vale como item extra se usar apenas nos últimos dias para publicar
-1. (5%) Fazer o site todo **completamente responsive**  ([ver slides][responsive])
-1. (3-6%) Usar **flexbox e grid**
+1. (7%) Fazer o site todo **completamente responsive** ([ver slides][responsive])
+1. (4-8%) Usar **flexbox e grid**
 
+O grupo deve usar o Git (leia-se guite) e o Github (leia-se guiterrãb) para
+o trabalho, e todos os integrantes do grupo devem participar ativamente.
+Aprenda
+[o que são Git e Github](https://ava.cefetmg.br/mod/page/view.php?id=126591).
 
 [responsive]: https://fegemo.github.io/cefet-front-end/classes/css7/
 [pseudo-coisas]: https://fegemo.github.io/cefet-front-end/classes/html5/#pseudo-classes-e-pseudo-elements
@@ -197,13 +207,20 @@ Fazendo tudo isso certinho, da melhor forma possível, o grupo adquire 80% da po
 
 ### O que faz **perder nota**
 
-Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
-- Plágio do trabalho de outrem
+Todos os integrantes do grupo precisam participar com protagonismo. O professor
+vai verificar a participação de cada um e caso seja constatado que algum
+integrante não participou, sua nota será zerada. Caso tenha participado muito
+pouco, a nota também refletirá a baixa participação.
+
+Além disso, alguns descuidos podem reduzir a nota:
+- Submeter código gerado por LLMs
+- Plagiar o trabalho (copiar de colega, ou de outra pessoa qualquer)
 - Ausência de itens obrigatórios
 - Falta de originalidade: utilização de códigos prontos (de práticas anteriores, por exemplo)
 - Uso de elementos antigos dentro do HTML (e.g., _tags_ `<center>`, `<b>`,
   `<font>`)
 - Ignorar boas práticas de programação:
+  - Dar nomes ruins a variáveis/ids/classes/arquivos (por exemplo, `<p id="paragrafo">` é ruim)
   - Código pouco legível,
   - Muita repetição de código,
   - Criação de variáveis desnecessárias
@@ -212,48 +229,54 @@ Alguns descuidos podem fazer com que sua nota fique muito abaixo do esperado:
 
 ## O que deve ser **entregue**
 
-Apenas a URL apontando para o site hospedado na Internet. É isso mesmo. Na Internet :3!!
+1. **Entrega 0:** integrantes do grupo (nome completo de cada um),
+de 2 a 3 alunos (sem exceção) e nome do grupo. Entregar via Moodle.
+   - Data via Moodle.
+1. **Entrega 1:** apresentar em sala de aula:
+   - O layout feito no Figma, Canva ou similar
+   para a página inicial
+   - O arquivo HTML e CSS dessa mesma página
+   - Prints do layout e da página no navegador devem ser entregues 1 dia antes,
+     e apresentados no dia
+   - Data via Moodle.
+1. **Entrega 2 (final)**: entregar no Moodle "TP1 - Entrega Final" criando um
+   tópico no fórum, que deve seguir o formato a seguir. 
+   Além disso, um PDF anexo justificando por meio de evidências que 
+   comprovem os itens opcionais implementados. Formato do texto no fórum:
+   - Data via Moodle.
+ 
+<table border="1"><tr><td>
 
-Para tanto, o grupo deve publicar o site
-**usando algum serviço de hospedagem gratuito**. Ouvi dizer que o
-[Neocities][neocities] é uma boa. Ouvi ainda, que para quem conhece um pouco
-sobre [Git][git] e [GitHub][github], o [Github Pages][gh-pages] **é
-uma opção bem melhor** (vide vídeo). Você pode usar seu proprio repositório e o [Github Pages][gh-pages]. Veja [como hospedar/publicar seu site](https://www.youtube.com/embed/vKJkxsgzMl4).
+**Título do trabalho**: Grupo XYZ
 
-Envie o seu site no GitHub do seu repositório. Crie um arquivo "itens_opcionais.md" para apresentar os itens opcionais apresentando  evidências que comprovem os itens opcionais implementados... por exemplo, a imagem do Comprehensive Layout, se tiver feito esse item.  
-Este aquivo deve **seguir o formato** usado no exemplo de entrega a seguir:
+**URL do site**: https://USUARIO.github.io/REPOSITORIO
 
-**Título do tópico**
+**Integrantes**:
+1. Arzimar da Silva Costa
+1. Genézio Oliveira Pontes
+1. Custódio Armando Gato
 
-Grupo 05 - BioHazard
+**Itens opcionais implementados (conforme enunciado)**:
+- (3 a 6%) Um comprehensive layout em algum editor de imagem
+- (5%) Easter eggs usando CSS ou JavaScript
+- (2 a 12%)Usar o Git ao longo do trabalho
+- (3-6%) Usar flexbox/grid (usamos grid para layout da página e 
+   flexbox para o menu principal)
 
-**Conteúdo do tópico**
-
-_URL do site:_ https://usuario.github.io/biohazard/
-
-_Itens opcionais implementados (conforme enunciado):_
-- (5-8%) Comprehensive layout (vide anexo 1 ao tópico)
-**coloque um link com a a referencia do  Comprehensive layout**
-
-- (3-10%) Criar algo interativo na página (criamos um joguinho de plantar e regar árvores em JavaScript)
-**anexe a imagem com o print de parte deste codigo**
-
-- (3%) Exibição de um vídeo (usamos iframe para incluir vídeo do YouTube)
-**anexe a imagem com o print de parte deste codigo**
-
-- (3-6%) Usar flexbox/grid (usamos grid para layout da página e flexbox para o menu principal) - video arquivo XXX lin
-**anexe a imagem com o print de parte deste codigo**
-  
+**Anexo**
+(um PDF com evidências que comprovem os itens opcionais implementados... 
+por exemplo, a imagem do Comprehensive Layout, se tiver feito esse item).
+</td></tr></table>
 
 
 ## O que deve ser **apresentado**
 
-O trabalho deve ser apresentado em sala de aula. Não é necessário fazer uma apresentação, mas apenas mostrar o site e falar sobre como foi seu desenvolvimento.
+O trabalho final deve ser apresentado em sala de aula. Não é necessário 
+fazer uma apresentação de PowerPoint, mas apenas mostrar o site e falar 
+sobre como foi seu desenvolvimento, de forma sucinta em 05-07 minutos.
 
 
 
-
-[neocities]: https://neocities.org/
 [git]: https://git-scm.com/
 [github]: https://github.com/
 [gh-pages]: https://pages.github.com/
