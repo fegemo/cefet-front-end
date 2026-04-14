@@ -201,7 +201,7 @@ Você deve corrigir o código de forma que ele fique correto.
 <!-- {ol:.multi-column-list-2.full-width .alpha-list .border-right-list}-->
 
 ---
-## <span class="badge">Exercício 3</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
+## <span class="badge">Exercício 4</span> <small>Defina **_floats_ e _clear_** quando necessário</small>
 
 <!-- Turma 3 -->
 3. <iframe width="100%" height="360" src="https://jsfiddle.net/fegemo/pxt6243s/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -225,18 +225,19 @@ Você deve corrigir o código de forma que ele fique correto.
 # <span class="badge">Exercício 5</span> Tabela
 
 Considerando o HTML dado pelo professor, deseja-se apresentar a tabela e
-a `div` da seguinte forma:
+o parágrafo da seguinte forma:
 
-<iframe id="xpto" width="60%" height="400" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="flex-align-center"></iframe>  
-
-
-Para isso, indique as alterações **no HTML** necessárias para
-que seja apresentada a tabela **exatamente** da forma indicada.
+- <!-- {ul:.no-bullets.no-padding.no-margin} -->
+  <iframe id="xpto" width="60%" height="280" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0" class="flex-align-center" style="float: left; width: 50%; margin-right: 3rem;"></iframe>  
+  
+  Para isso, indique as alterações **no HTML** da tabela necessárias para
+que as células que ocupam mais de uma linha ou coluna funcionem como<br>⬅️ na imagem .
 
 ---
 # <span class="badge">Exercício 6</span> Estilizando tabela <small>pt 1</small>
 
-1. <iframe width="40%" height="400" class="push-right" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+1. <!-- {ol:.no-bullets.no-margin.no-padding} --> 
+   <iframe width="40%" height="300" class="push-right" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
    Escreva a regra para que os tipos de pratos (entradas, prato principal e
    sobremesa) fiquem com fundo `yellow` e o texto centralizado. Crie um
@@ -246,10 +247,10 @@ que seja apresentada a tabela **exatamente** da forma indicada.
 ---
 # <span class="badge">Exercício 6</span> Estilizando tabela <small>pt 2</small>
 
-- <iframe width="40%" height="400" class="push-right" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+- <iframe width="40%" height="300" class="push-right" src="https://jsfiddle.net/fegemo/xbbg4LL5/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
   
-  Escreva a regra para que o `div` de promoção fique:
-  - com um espaçamento entre o texto e a borda de 5 pixels;
+  Escreva a regra para que o parágrafo de promoção fique:
+  - com um espaçamento entre seu conteúdo (o texto) e a borda de 5 pixels;
   - margem direita de 10 pixels
   - largura de 100 pixels
   - fique a esquerda da tabela
